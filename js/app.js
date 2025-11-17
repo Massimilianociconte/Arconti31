@@ -20,7 +20,17 @@ function displayBeers(beers) {
         return;
     }
 
-    grid.innerHTML = beers.map((beer, index) => `
+    grid.innerHTML = beers.map((beer, index) => {
+        const tagsHtml = beer.tags && beer.tags.length > 0 && beer.tags[0] !== 'Nessuno'
+            ? `<div class="beer-tags">
+                ${beer.tags.map(tag => {
+                    const tagClass = tag.toLowerCase().replace(/\s+/g, '-');
+                    return `<span class="beer-tag ${tagClass}">${tag}</span>`;
+                }).join('')}
+               </div>`
+            : '';
+        
+        return `
         <div class="beer-card" data-category="${beer.categoria}" style="animation-delay: ${index * 0.1}s">
             <img 
                 src="${beer.immagine || 'https://via.placeholder.com/400x300?text=Birra'}" 
@@ -34,13 +44,15 @@ function displayBeers(beers) {
                     <span class="beer-price">€${beer.prezzo}</span>
                 </div>
                 <span class="beer-category">${beer.categoria}</span>
+                ${tagsHtml}
                 <p class="beer-description">${beer.descrizione}</p>
                 <div class="availability ${beer.disponibile ? 'available' : 'unavailable'}">
                     ${beer.disponibile ? 'Disponibile' : 'Non disponibile'}
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function setupFilters(beers) {

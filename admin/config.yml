@@ -19,5 +19,6 @@ collections:
       - {label: "Descrizione", name: "descrizione", widget: "text"}
       - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
       - {label: "Categoria", name: "categoria", widget: "select", options: ["Chiara", "Scura", "Rossa", "Artigianale", "IPA", "Lager", "Weiss"]}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Senza Glutine", "Specialità"], multiple: true, required: false}
       - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}

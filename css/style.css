@@ -147,6 +147,36 @@ header h1 {
     margin-bottom: 0.8rem;
 }
 
+.beer-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+}
+
+.beer-tag {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.beer-tag.novita {
+    background: #10b981;
+    color: white;
+}
+
+.beer-tag.senza-glutine {
+    background: #3b82f6;
+    color: white;
+}
+
+.beer-tag.specialita {
+    background: #8b5cf6;
+    color: white;
+}
+
 .beer-description {
     color: #6b7280;
     font-size: 0.95rem;
