@@ -294,4 +294,20 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+function toggleCompactView() {
+    const grid = document.querySelector('.beer-grid');
+    const toggleBtn = document.getElementById('toggle-view-btn');
+    const toggleText = toggleBtn.querySelector('.toggle-text');
+    
+    if (grid.classList.contains('compact-view')) {
+        grid.classList.remove('compact-view');
+        toggleBtn.classList.remove('active');
+        toggleText.textContent = 'Vista Compatta';
+    } else {
+        grid.classList.add('compact-view');
+        toggleBtn.classList.add('active');
+        toggleText.textContent = 'Vista Completa';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', loadAllBeverages);

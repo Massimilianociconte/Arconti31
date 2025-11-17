@@ -93,6 +93,12 @@ header h1 {
     margin: 2rem 0 1rem;
 }
 
+.breadcrumb-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 .breadcrumb-btn {
     padding: 0.8rem 1.5rem;
     background: var(--secondary);
@@ -110,6 +116,38 @@ header h1 {
     background: var(--primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-view-btn {
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: var(--secondary);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-view-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-view-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.toggle-icon {
+    font-size: 1.2rem;
 }
 
 .categories-view {
@@ -199,11 +237,53 @@ header h1 {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Compact view styles */
+.beer-grid.compact-view {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+}
+
+.beer-grid.compact-view .beer-card {
+    border-radius: 12px;
+}
+
+.beer-grid.compact-view .beer-card .beer-image {
+    display: none;
+}
+
+.beer-grid.compact-view .beer-card .beer-content {
+    padding: 1rem 1.5rem;
+}
+
+.beer-grid.compact-view .beer-card .beer-header {
+    margin-bottom: 0;
+}
+
+.beer-grid.compact-view .beer-card .beer-name {
+    font-size: 1.1rem;
+}
+
+.beer-grid.compact-view .beer-card .beer-price {
+    font-size: 1.2rem;
+}
+
+.beer-grid.compact-view .beer-card .beer-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.beer-grid.compact-view .beer-card .beer-category,
+.beer-grid.compact-view .beer-card .beer-tags,
+.beer-grid.compact-view .beer-card .beer-description,
+.beer-grid.compact-view .beer-card .availability {
+    display: none;
 }
 
 .beer-card.logo-only {
@@ -713,9 +793,17 @@ footer {
         padding: 0.4rem 0.8rem;
     }
 
-    .breadcrumb-btn {
+    .breadcrumb-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .breadcrumb-btn,
+    .toggle-view-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
     }
 
     .modal-content {
