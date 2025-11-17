@@ -59,18 +59,39 @@ beers.forEach(beer => {
   beersBySection[section].push(beer);
 });
 
-// Processa altre bevande
-const beveragesDir = path.join(__dirname, '../beverages');
-const beverages = processCollection(beveragesDir, 'beverage');
+// Processa tutte le categorie di bevande
+const categories = [
+  { name: 'Cocktails', folder: 'cocktails' },
+  { name: 'Analcolici', folder: 'analcolici' },
+  { name: 'Bibite', folder: 'bibite' },
+  { name: 'Caffetteria', folder: 'caffetteria' },
+  { name: 'Bollicine', folder: 'bollicine' },
+  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
+  { name: 'Vini rossi', folder: 'vini-rossi' }
+];
 
-// Raggruppa bevande per tipo
 const beveragesByType = {};
-beverages.forEach(beverage => {
-  const type = beverage.tipo || 'Altro';
-  if (!beveragesByType[type]) {
-    beveragesByType[type] = [];
+let totalBeverages = 0;
+
+categories.forEach(category => {
+  const dir = path.join(__dirname, `../${category.folder}`);
+  const items = processCollection(dir, 'beverage');
+  
+  // Aggiungi il tipo a ogni item
+  items.forEach(item => {
+    item.tipo = category.name;
+  });
+  
+  if (items.length > 0) {
+    beveragesByType[category.name] = items;
+    totalBeverages += items.length;
   }
-  beveragesByType[type].push(beverage);
+});
+
+// Crea array piatto di tutte le bevande
+const allBeverages = [];
+Object.values(beveragesByType).forEach(items => {
+  allBeverages.push(...items);
 });
 
 // Scrivi i file JSON
@@ -84,7 +105,7 @@ fs.writeFileSync(
 );
 
 const beveragesOutput = { 
-  beverages,
+  beverages: allBeverages,
   beveragesByType 
 };
 fs.writeFileSync(
@@ -93,4 +114,4 @@ fs.writeFileSync(
 );
 
 console.log(`✅ Generato beers.json con ${beers.length} birre in ${Object.keys(beersBySection).length} sezioni`);
-console.log(`✅ Generato beverages.json con ${beverages.length} bevande in ${Object.keys(beveragesByType).length} categorie`);
+console.log(`✅ Generato beverages.json con ${totalBeverages} bevande in ${Object.keys(beveragesByType).length} categorie`);

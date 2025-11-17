@@ -29,24 +29,146 @@ collections:
       - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
-  - name: "beverages"
-    label: "Altre Bevande"
-    folder: "beverages"
+  - name: "cocktails"
+    label: "Cocktails"
+    folder: "cocktails"
     create: true
     slug: "{{slug}}"
     editor:
       preview: false
     fields:
       - {label: "Nome", name: "nome", widget: "string"}
-      - {label: "Tipo Bevanda", name: "tipo", widget: "select", options: ["Cocktails", "Analcolici", "Bibite", "Caffetteria", "Bollicine", "Bianchi fermi", "Vini rossi"]}
       - {label: "Immagine Grande", name: "immagine", widget: "image", required: false, hint: "Immagine a tutta larghezza (opzionale)"}
       - {label: "Logo", name: "logo", widget: "image", required: false, hint: "Logo piccolo accanto al nome (opzionale)"}
       - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
       - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, hint: "Descrizione completa visibile nel popup", pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
       - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
-      - {label: "Formato", name: "formato", widget: "string", required: false, hint: "Es: Calice, Bottiglia 0,75L"}
+      - {label: "Formato", name: "formato", widget: "string", required: false, hint: "Es: Calice"}
       - {label: "Gradazione Alcolica (%)", name: "gradazione", widget: "string", required: false, hint: "Es: 12%"}
       - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Senza Glutine", "Specialità", "Biologico"], multiple: true, required: false}
       - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Glutine", "Lattosio", "Solfiti", "Frutta a Guscio", "Sedano", "Uova"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "analcolici"
+    label: "Analcolici"
+    folder: "analcolici"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Senza Glutine", "Biologico"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Glutine", "Lattosio", "Solfiti", "Frutta a Guscio"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "bibite"
+    label: "Bibite"
+    folder: "bibite"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Senza Glutine"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Glutine", "Lattosio", "Solfiti"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "caffetteria"
+    label: "Caffetteria"
+    folder: "caffetteria"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Senza Glutine"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Glutine", "Lattosio"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "bollicine"
+    label: "Bollicine"
+    folder: "bollicine"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false, hint: "Es: Calice, Bottiglia 0,75L"}
+      - {label: "Gradazione Alcolica (%)", name: "gradazione", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Biologico"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Solfiti"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "bianchi-fermi"
+    label: "Bianchi fermi"
+    folder: "bianchi-fermi"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false, hint: "Es: Calice, Bottiglia 0,75L"}
+      - {label: "Gradazione Alcolica (%)", name: "gradazione", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Biologico"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Solfiti"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  - name: "vini-rossi"
+    label: "Vini rossi"
+    folder: "vini-rossi"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome", name: "nome", widget: "string"}
+      - {label: "Immagine Grande", name: "immagine", widget: "image", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Descrizione Breve", name: "descrizione", widget: "text", pattern: ['.{0,500}', "Massimo 500 caratteri"]}
+      - {label: "Descrizione Dettagliata", name: "descrizione_dettagliata", widget: "text", required: false, pattern: ['.{0,2000}', "Massimo 2000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Formato", name: "formato", widget: "string", required: false, hint: "Es: Calice, Bottiglia 0,75L"}
+      - {label: "Gradazione Alcolica (%)", name: "gradazione", widget: "string", required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Nessuno", "Novità", "Biologico"], multiple: true, required: false}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Solfiti"], multiple: true, required: false}
       - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
