@@ -154,12 +154,18 @@ function createCategoryCard(name, count, icon, type) {
     // Nota: In un caso reale verificheremmo l'esistenza, qui usiamo il mapping.
     // Se l'immagine non è definita nel mapping, l'elemento background sarà vuoto (colore di fallback CSS)
     const imageUrl = ICONS.categories[name]; 
-    const bgStyle = imageUrl ? `background-image: url('${imageUrl}');` : '';
+    // const bgStyle = imageUrl ? `background-image: url('${imageUrl}');` : ''; // OLD
     const hasImageClass = imageUrl ? 'has-bg-image' : '';
+
+    const imageHtml = imageUrl 
+        ? `<img src="${imageUrl}" alt="${name}" class="category-bg-img" loading="lazy" decoding="async">` 
+        : '';
 
     return `
         <div class="category-card ${hasImageClass}" onclick="showCategory('${name}', '${type}')">
-            <div class="category-bg-layer" style="${bgStyle}"></div>
+            <div class="category-bg-layer">
+                ${imageHtml}
+            </div>
             <div class="category-overlay-layer"></div>
             
             <div class="category-content-wrapper">
@@ -217,7 +223,7 @@ function renderCard(item, index, type) {
     
     // Se non c'è immagine copertina, NON renderizzare placeholder
     const imageHtml = hasAnyImage 
-        ? `<div class="card-image-container"><img src="${item.immagine}" alt="${item.nome}" class="beer-image" loading="lazy"></div>`
+        ? `<div class="card-image-container"><img src="${item.immagine}" alt="${item.nome}" class="beer-image" loading="lazy" decoding="async"></div>`
         : ''; // Stringa vuota se non c'è immagine
     
     // Classe speciale se non c'è immagine per adattare layout CSS

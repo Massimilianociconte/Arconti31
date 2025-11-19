@@ -160,13 +160,19 @@ header {
 .category-bg-layer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
+    /* Background image handled by img tag now */
     transition: transform 0.6s ease;
     z-index: 1;
-    /* Default dark bg if no image */
     background-color: rgba(30,30,30,0.8);
     will-change: transform;
+}
+
+.category-bg-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    /* Img inherits transform from parent layer or we apply to img if needed, 
+       but applying to layer scales the container. 
+       Wait, if layer scales, img scales. Correct. */
 }
 
 .category-card:hover .category-bg-layer {
@@ -438,6 +444,7 @@ header {
     border-radius: 50%;
     background: #333;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin-left: auto; /* Spinge il punto a destra in un contenitore flex */
 }
 
 .availability-dot.available { background: #10b981; box-shadow: 0 0 8px #10b981; }
