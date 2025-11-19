@@ -92,8 +92,8 @@ function showCategoriesView() {
         // Sezioni Food
         const foodOrder = [
             { name: 'Hamburger di bufala', icon: '🍔' },
-            { name: 'Hamburger Fassona e Street food', icon: '🥩' },
             { name: 'OKTOBERFEST', icon: '🥨' },
+            { name: 'Hamburger Fassona e Street food', icon: '🥩' },
             { name: 'Panini', icon: '🥪' },
             { name: 'Griglieria', icon: '🔥' },
             { name: 'Piatti Speciali', icon: '🍽️' },

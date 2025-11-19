@@ -1,31 +1,42 @@
 {
-  "beers": [
-    {
-      "nome": "Birra Moretti",
-      "immagine": "/images/beers/moretti.jpg",
-      "descrizione": "Lager italiana dal gusto equilibrato e rinfrescante, perfetta per accompagnare ogni pasto",
-      "prezzo": "4.50",
-      "categoria": "Chiara",
-      "disponibile": true,
-      "order": 1
-    },
-    {
-      "nome": "Guinness Draught",
-      "immagine": "/images/beers/guinness.jpg",
-      "descrizione": "Stout irlandese cremosa con note di caffè e cioccolato, un classico intramontabile",
-      "prezzo": "6.00",
-      "categoria": "Scura",
-      "disponibile": true,
-      "order": 2
-    },
-    {
-      "nome": "Weihenstephaner Weiss",
-      "immagine": "/images/beers/weiss.jpg",
-      "descrizione": "Birra di frumento bavarese con sentori di banana e chiodi di garofano",
-      "prezzo": "5.50",
-      "categoria": "Weiss",
-      "disponibile": true,
-      "order": 3
-    }
-  ]
+  "beersBySection": {
+    "Birre artigianali alla spina a rotazione": [
+      { "nome": "Rochefort", "prezzo": "7,00", "descrizione": "\"La Speciale\" è la ricetta più giovane dell'Abbazia. Schiuma densa, profumi di mirtillo e frutta matura", "tags": ["Novità"], "gradazione": "8%", "disponibile": true },
+      { "nome": "Paulaner Oktoberfest", "prezzo": "7,00", "descrizione": "Tradizione secolare. Colore rame, note fruttate di cassis", "tags": ["Novità", "Specialità"], "gradazione": "6%", "disponibile": true },
+      { "nome": "Zlatan - Railroad", "prezzo": "7,00", "descrizione": "High fermentation, luppoli americani, Imperial IPA style", "gradazione": "8,3%", "disponibile": true },
+      { "nome": "Giasa Blanche - Railroad", "prezzo": "6,00", "descrizione": "Velata e chiara, note agrumate e speziate", "formato": "0,4L", "gradazione": "4,3%", "disponibile": true },
+      { "nome": "Carpe Diem - Birrificio dei Castelli", "prezzo": "6,50", "descrizione": "IPA senza glutine, fresca e fruttata", "tags": ["Novità", "Senza glutine"], "gradazione": "5,7%", "disponibile": true },
+      { "nome": "Hovels Original", "prezzo": "6,00", "descrizione": "", "formato": "0,4L", "gradazione": "5,5%", "disponibile": true },
+      { "nome": "Backdoor - OrsoVerde (BITTER)", "prezzo": "6,00", "descrizione": "Extra Special Bitter ambrata, aromi di pepe rosa e cedro", "formato": "0,4L", "gradazione": "5%", "disponibile": true },
+      { "nome": "Tropic Flanders - Eastside Brewing", "prezzo": "6,50", "descrizione": "Modern Saison, multi cereale, luppoli Galaxy e Citra", "formato": "0,4L", "gradazione": "6%", "disponibile": true },
+      { "nome": "Hop.E - Birrificio Mastino", "prezzo": "6,00", "descrizione": "Session IPA, colore oro carico, frutta tropicale", "formato": "0,4L", "gradazione": "4,7%", "disponibile": true },
+      { "nome": "Bernhardus Bock - Schnitzlbaumer", "prezzo": "6,00", "descrizione": "Tedesca della Baviera, stile Bock, scura e corposa", "formato": "0,4L", "gradazione": "6,2%", "disponibile": true },
+      { "nome": "Tipopils Harvest - Birrificio Italiano", "prezzo": "6,00", "descrizione": "Chiara a bassa fermentazione, luppolo fresco raccolto", "formato": "0,4L", "gradazione": "5,2%", "disponibile": true }
+    ],
+    "Birre alla spina": [
+      { "nome": "Guinness", "prezzo": "6,50", "descrizione": "Stout irlandese da 4,2%", "formato": "50cl", "gradazione": "4,2%", "disponibile": true },
+      { "nome": "Ayinger", "prezzo": "6,00", "descrizione": "Colore biondo dorato, aromi di malto e miele", "formato": "Pinta 40cl", "gradazione": "4,9%", "disponibile": true },
+      { "nome": "Leffe Rouge", "prezzo": "6,00", "descrizione": "Birra belga doppio malto rossa", "gradazione": "6,6%", "disponibile": true },
+      { "nome": "Schnee weisse", "prezzo": "7,00", "descrizione": "Birra di frumento alta fermentazione", "formato": "50cl", "disponibile": true },
+      { "nome": "Bjorne", "prezzo": "6,00", "descrizione": "Birra chiara doppio malto", "formato": "0,40cl", "gradazione": "8,3%", "disponibile": true }
+    ],
+    "Birre speciali in bottiglia": [
+      { "nome": "3 Fonteinen Oude Geuze", "prezzo": "30,00", "descrizione": "Vera Geuze Lambic di altissimo livello, fermentazione spontanea. Note di agrumi freschi e acetico", "tags": ["Specialità"], "formato": "75cl", "disponibile": true },
+      { "nome": "Theresianer Senza Glutine", "prezzo": "5,00", "descrizione": "Lager non filtrata, equilibrata", "tags": ["Senza glutine"], "formato": "0,33L", "gradazione": "4,8%", "disponibile": true },
+      { "nome": "Caution Barrication Area C.B.A. - Birra Menaresta", "prezzo": "10,00", "descrizione": "Sour Ale in botti di Laphroaig, complessa e acida. Colore: ambrato", "gradazione": "7%", "disponibile": true }
+    ],
+    "Frigo Birre": [
+      { "nome": "Chimay chiara", "prezzo": "6,00", "descrizione": "Birra belga chiara trapista", "formato": "33cl", "gradazione": "7%", "disponibile": true },
+      { "nome": "Chimay Rossa", "prezzo": "6,00", "descrizione": "Birra rossa trappista belga di Vallonia", "formato": "33cl", "gradazione": "7%", "disponibile": true },
+      { "nome": "Chouffe", "prezzo": "6,00", "descrizione": "Belgian strong ale chiara", "formato": "33cl", "gradazione": "8%", "disponibile": true },
+      { "nome": "Against the grain gluten free", "prezzo": "8,00", "descrizione": "Apa Pale Ale senza glutine", "tags": ["Senza glutine"], "formato": "50cl", "gradazione": "4,5%", "disponibile": true },
+      { "nome": "Marmalade Porter gluten free", "prezzo": "8,00", "descrizione": "Porter complessa", "tags": ["Senza glutine"], "formato": "50cl", "gradazione": "5%", "disponibile": true },
+      { "nome": "Scarborough fair IPA gluten free", "prezzo": "8,00", "descrizione": "IPA senza glutine", "tags": ["Senza glutine"], "formato": "50cl", "gradazione": "6%", "disponibile": true },
+      { "nome": "Ayinger Keller", "prezzo": "6,50", "descrizione": "Chiara a bassa fermentazione, non filtrata", "tags": ["Specialità"], "formato": "50cl", "gradazione": "4,9%", "disponibile": true },
+      { "nome": "Plain of the po", "prezzo": "6,50", "descrizione": "Double Dry Hopped IPA, mouthfeel cremoso", "gradazione": "5,2% vol", "disponibile": true },
+      { "nome": "3 Fonteinen oude geuze", "prezzo": "30,00", "descrizione": "Lambic fermentazione spontanea", "formato": "75cl", "gradazione": "6,8%", "disponibile": true },
+      { "nome": "Bloemenbier - De Proefbrouwerij", "prezzo": "6,00", "descrizione": "Ambrata brassata con fiori", "formato": "33cl", "gradazione": "7%", "disponibile": true },
+      { "nome": "Estrella Galicia Senza Glutine", "prezzo": "5,00", "descrizione": "Applicazione enzima per glutine", "tags": ["Senza glutine"], "formato": "0,33L", "gradazione": "5,5%", "disponibile": true }
+    ]
+  }
 }
