@@ -726,4 +726,7 @@ header {
         border-radius: 20px; /* Keep rounded corners */
         width: 95%; /* Slight spacing from sides */
     }
+
+    /* Center Header on Mobile */
+    .header-content { justify-content: center; }
 }
