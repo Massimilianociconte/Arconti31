@@ -19,7 +19,7 @@ const ICONS = {
         'OKTOBERFEST': 'images/minicard sezioni/oktoberfest.jpg',
         'Panini': 'images/minicard sezioni/panini.jpg',
         'Griglieria': 'images/minicard sezioni/picanha.jpg', // Assumed picanha for griglieria
-        'Piatti Speciali': 'images/minicard sezioni/bevande.jpg', // Fallback or missing? Using generic
+        'Piatti Speciali': 'images/minicard sezioni/piatti-speciali.jpg', // Fallback or missing? Using generic
         'Piadine': 'images/minicard sezioni/piadine.jpg',
         'Fritti': 'images/minicard sezioni/fritti.jpg',
         'Dolci': 'images/minicard sezioni/dolci.jpg',
