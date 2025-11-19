@@ -681,5 +681,11 @@ header {
     
     .card-image-container { height: 180px; }
     
-    .modal-content { max-height: 100vh; height: 100%; border-radius: 0; }
+    /* Fix Modal mobile style */
+    .modal-content { 
+        max-height: 85dvh; /* Limit height to avoid touching edges */
+        height: auto; 
+        border-radius: 20px; /* Keep rounded corners */
+        width: 95%; /* Slight spacing from sides */
+    }
 }
