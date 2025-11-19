@@ -6,8 +6,28 @@ media_folder: "images/beverages"
 public_folder: "/images/beverages"
 
 collections:
+  # NUOVO MENÙ FOOD
+  - name: "food"
+    label: "Menù Food"
+    folder: "food"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Nome Piatto", name: "nome", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["Hamburger di bufala", "Hamburger Fassona e Street food", "OKTOBERFEST", "Panini", "Griglieria", "Piatti Speciali", "Piadine", "Fritti", "Dolci", "Aperitivo"]}
+      - {label: "Immagine", name: "immagine", widget: "image", required: false}
+      - {label: "Descrizione", name: "descrizione", widget: "text", required: false, pattern: ['.{0,1000}', "Massimo 1000 caratteri"]}
+      - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
+      - {label: "Allergeni", name: "allergeni", widget: "select", options: ["Glutine", "Lattosio", "Uova", "Frutta a Guscio", "Pesce", "Soia", "Senza Glutine"], multiple: true, required: false}
+      - {label: "Tag Speciali", name: "tags", widget: "select", options: ["Novità", "Vegetariano", "Vegano", "Piccante"], multiple: true, required: false}
+      - {label: "Disponibile", name: "disponibile", widget: "boolean", default: true}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  # MENÙ BEVERAGE (Raggruppato visivamente)
   - name: "beers"
-    label: "Birre"
+    label: "Menù Beverage: Birre"
     folder: "beers"
     create: true
     slug: "{{slug}}"
@@ -30,7 +50,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "cocktails"
-    label: "Cocktails"
+    label: "Menù Beverage: Cocktails"
     folder: "cocktails"
     create: true
     slug: "{{slug}}"
@@ -51,7 +71,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "analcolici"
-    label: "Analcolici"
+    label: "Menù Beverage: Analcolici"
     folder: "analcolici"
     create: true
     slug: "{{slug}}"
@@ -71,7 +91,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "bibite"
-    label: "Bibite"
+    label: "Menù Beverage: Bibite"
     folder: "bibite"
     create: true
     slug: "{{slug}}"
@@ -91,7 +111,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "caffetteria"
-    label: "Caffetteria"
+    label: "Menù Beverage: Caffetteria"
     folder: "caffetteria"
     create: true
     slug: "{{slug}}"
@@ -111,7 +131,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "bollicine"
-    label: "Bollicine"
+    label: "Menù Beverage: Bollicine"
     folder: "bollicine"
     create: true
     slug: "{{slug}}"
@@ -132,7 +152,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "bianchi-fermi"
-    label: "Bianchi fermi"
+    label: "Menù Beverage: Bianchi fermi"
     folder: "bianchi-fermi"
     create: true
     slug: "{{slug}}"
@@ -153,7 +173,7 @@ collections:
       - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int"}
 
   - name: "vini-rossi"
-    label: "Vini rossi"
+    label: "Menù Beverage: Vini rossi"
     folder: "vini-rossi"
     create: true
     slug: "{{slug}}"

@@ -59,6 +59,21 @@ beers.forEach(beer => {
   beersBySection[section].push(beer);
 });
 
+// Processa food (NUOVO)
+const foodDir = path.join(__dirname, '../food');
+const foodItems = processCollection(foodDir, 'food');
+
+// Raggruppa food per categoria
+const foodByCategory = {};
+foodItems.forEach(item => {
+  const category = item.category || 'Altro';
+  if (!foodByCategory[category]) {
+    foodByCategory[category] = [];
+  }
+  foodByCategory[category].push(item);
+});
+
+
 // Processa tutte le categorie di bevande
 const categories = [
   { name: 'Cocktails', folder: 'cocktails' },
@@ -104,14 +119,31 @@ fs.writeFileSync(
   JSON.stringify(beersOutput, null, 2)
 );
 
+// Scrivi food.json (NUOVO)
+const foodOutput = {
+  food: foodItems,
+  foodByCategory
+};
+// Ensure food dir exists (already done but good for safety)
+if (!fs.existsSync(foodDir)) fs.mkdirSync(foodDir);
+fs.writeFileSync(
+  path.join(__dirname, '../food/food.json'),
+  JSON.stringify(foodOutput, null, 2)
+);
+
 const beveragesOutput = { 
   beverages: allBeverages,
   beveragesByType 
 };
+// Ensure beverages dir exists
+const beveragesDir = path.join(__dirname, '../beverages');
+if (!fs.existsSync(beveragesDir)) fs.mkdirSync(beveragesDir);
+
 fs.writeFileSync(
-  path.join(__dirname, '../beverages/beverages.json'),
+  path.join(beveragesDir, 'beverages.json'),
   JSON.stringify(beveragesOutput, null, 2)
 );
 
 console.log(`✅ Generato beers.json con ${beers.length} birre in ${Object.keys(beersBySection).length} sezioni`);
+console.log(`✅ Generato food.json con ${foodItems.length} piatti in ${Object.keys(foodByCategory).length} categorie`);
 console.log(`✅ Generato beverages.json con ${totalBeverages} bevande in ${Object.keys(beveragesByType).length} categorie`);

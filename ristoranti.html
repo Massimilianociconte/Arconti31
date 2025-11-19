@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ember & Oak | Fine Dining</title>
+    
+    <!-- Fonts: Playfair Display (Eleganza classica) e DM Sans (Leggibilità moderna) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABILI & RESET --- */
+        :root {
+            --bg-color: #0b0b0b;     /* Nero profondo */
+            --text-color: #e0e0e0;   /* Bianco sporco */
+            --accent: #C5A059;       /* Oro spento/Bronzo */
+            --secondary: #1f1f1f;    /* Grigio scuro */
+            
+            --font-main: 'Playfair Display', serif;
+            --font-sans: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference; /* Inverte i colori sui fondi chiari/scuri */
+        }
+
+        .logo {
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .reserve-btn {
+            border: 1px solid #fff;
+            padding: 0.8rem 2rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            color: #fff;
+        }
+
+        .reserve-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- HERO PARALLAX --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Immagine Fuoco/Carne */
+            background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            background-attachment: fixed; /* Effetto Parallasse */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            opacity: 0;
+            animation: fadeUp 1.5s ease forwards 0.5s;
+        }
+
+        h1 {
+            font-family: var(--font-main);
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+        }
+
+        /* --- ATMOSPHERE SECTION --- */
+        .atmosphere {
+            padding: 10rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .atmosphere p {
+            font-family: var(--font-main);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .atmosphere span { color: var(--text-color); }
+
+        /* --- INTERACTIVE MENU --- */
+        .menu-section {
+            position: relative;
+            padding: 6rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Sfondo che cambia (Atmosphere) */
+        .menu-bg-reveal {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.05; /* Molto scuro di base */
+            transition: opacity 0.6s ease, background-image 0.6s ease;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) grayscale(50%);
+            transform: scale(1.1);
+        }
+
+        /* Immagine Flottante (Cursore) */
+        .hover-reveal-img {
+            position: fixed;
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            pointer-events: none; /* Il mouse ci passa attraverso */
+            opacity: 0;
+            transform: scale(0.8) translate(-50%, -50%);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            z-index: 50;
+            border-radius: 4px;
+            top: 0; left: 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .menu-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .menu-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+        }
+
+        .menu-list { border-top: 1px solid #222; }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 2.5rem 1rem;
+            border-bottom: 1px solid #222;
+            cursor: none; /* Nascondiamo il cursore standard sull'elemento */
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            padding-left: 3rem;
+            padding-right: 1rem;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .menu-item:hover .dish-name { color: var(--accent); }
+        .menu-item:hover .dish-price { color: #fff; }
+
+        .dish-name {
+            font-family: var(--font-main);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            transition: color 0.3s;
+        }
+
+        .dish-price {
+            font-size: 1.2rem;
+            font-family: var(--font-sans);
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .dish-desc {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.5rem;
+            max-width: 400px;
+            font-family: var(--font-sans);
+        }
+
+        /* --- CHEF / IMAGE GRID --- */
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            border-bottom: 1px solid #222;
+        }
+
+        .grid-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1);
+        }
+
+        .grid-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem;
+            background: #0e0e0e;
+        }
+
+        .grid-text h2 {
+            font-family: var(--font-main);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: #050505;
+        }
+
+        footer h3 {
+            font-family: var(--font-main);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section { grid-template-columns: 1fr; height: auto; }
+            .grid-text { padding: 3rem 2rem; order: 1; }
+            .grid-img { height: 50vh; order: 2; } /* Immagine sotto il testo su mobile */
+            .hero-bg { background-attachment: scroll; } /* Fix mobile performance */
+            nav { padding: 1.5rem; }
+            .hover-reveal-img { display: none; } /* Disabilita effetto hover su touch */
+            .menu-item { cursor: pointer; }
+            .menu-item:hover { padding-left: 1rem; padding-right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">EMBER & OAK</div>
+        <a href="#" class="reserve-btn">Prenota Tavolo</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="subtitle">Wood Fired Experience</div>
+            <h1>Taste the<br>Elements</h1>
+        </div>
+    </header>
+
+    <!-- Philosophy -->
+    <section class="atmosphere">
+        <p>Crediamo nel fuoco vivo. Ingredienti grezzi, <span>fumo di quercia</span>, e il rispetto ossessivo per il tempo. Una cucina che non nasconde nulla.</p>
+    </section>
+
+    <!-- Menu Interattivo -->
+    <section class="menu-section">
+        <!-- Sfondo che cambia (Atmosphere) -->
+        <div class="menu-bg-reveal" id="menu-bg"></div>
+
+        <!-- Immagine flottante che segue il mouse -->
+        <img src="" alt="" class="hover-reveal-img" id="hover-img">
+
+        <div class="menu-container">
+            <div class="menu-title">Menu Degustazione</div>
+            
+            <ul class="menu-list">
+                <!-- Item 1: Tartare (Immagine Fixata) -->
+                <li class="menu-item" data-img="https://images.unsplash.com/photo-1632557366232-9e869a4322eb?q=80&w=1974&auto=format&fit=crop">
+                    <div>
+                        <div class="dish-name">Smoked Wagyu Tartare</div>
+                        <span class="dish-desc">Tuorlo affumicato, tartufo nero, pane al carbone.</span>
+                    </div>
+                    <div class="dish-price">€28</div>
+                </li>
+
+                <!-- Item 2 -->
+                <li class="menu-item" data-img="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop">
+                    <div>
+                        <div class="dish-name">Burnt Leek & Scallops</div>
+                        <span class="dish-desc">Capesante scottate, crema di porri bruciati, olio all'aneto.</span>
+                    </div>
+                    <div class="dish-price">€32</div>
+                </li>
+
+                <!-- Item 3 -->
+                <li class="menu-item" data-img="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2070&auto=format&fit=crop">
+                    <div>
+                        <div class="dish-name">Dry Aged Ribeye</div>
+                        <span class="dish-desc">Frollatura 45 giorni, sale Maldon, midollo alla griglia.</span>
+                    </div>
+                    <div class="dish-price">€85</div>
+                </li>
+
+                <!-- Item 4 -->
+                <li class="menu-item" data-img="https://images.unsplash.com/photo-1560155016-bd4879ae8f21?q=80&w=1964&auto=format&fit=crop">
+                    <div>
+                        <div class="dish-name">Dark Chocolate Sphere</div>
+                        <span class="dish-desc">Oro 24k, caramello salato caldo, lamponi ghiacciati.</span>
+                    </div>
+                    <div class="dish-price">€18</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Chef / Story (Immagine Fixata) -->
+    <section class="grid-section">
+        <div class="grid-text">
+            <h2>L'Arte del Fuoco</h2>
+            <p style="color: #888; line-height: 1.8; margin-bottom: 2rem;">
+                La nostra griglia non si spegne mai. Utilizziamo solo legna di quercia proveniente da foreste sostenibili per dare ai nostri tagli di carne quel sapore ancestrale e inconfondibile. Ogni piatto è una performance, un dialogo tra calore e materia.
+            </p>
+            <a href="#" style="color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;">Scopri la Brigata →</a>
+        </div>
+        <!-- Nuova Immagine Chef (Funzionante) -->
+        <img src="https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=2080&auto=format&fit=crop" alt="Chef plating" class="grid-img">
+    </section>
+
+    <footer>
+        <h3>Ember & Oak</h3>
+        <div class="footer-info">
+            <span>Via Roma 10, Milano</span>
+            <span>+39 02 123 4567</span>
+            <span>IG: @emberandoak</span>
+        </div>
+        <br><br><br>
+        <a href="#" class="reserve-btn" style="background: #fff; color: #000;">Prenota Ora</a>
+        <br><br>
+        <p style="font-size: 0.7rem; opacity: 0.3; margin-top: 2rem;">© 2023 Ember & Oak. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- LOGICA MENU REVEAL (Fixata e Migliorata) ---
+        const menuItems = document.querySelectorAll('.menu-item');
+        const hoverImg = document.getElementById('hover-img');
+        const menuBg = document.getElementById('menu-bg');
+
+        // Aggiorna posizione immagine
+        document.addEventListener('mousemove', (e) => {
+            // Applica la posizione mouse all'immagine flottante
+            // Usa translate per centrare l'immagine sul cursore
+            hoverImg.style.left = e.clientX + 'px'; 
+            hoverImg.style.top = e.clientY + 'px';
+        });
+
+        menuItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const imgUrl = this.getAttribute('data-img');
+                
+                // 1. Mostra immagine flottante (Vicino al cursore)
+                if(imgUrl) {
+                    hoverImg.src = imgUrl;
+                    hoverImg.style.opacity = '1';
+                    // Aumenta scale per effetto "Pop"
+                    hoverImg.style.transform = 'scale(1) translate(-50%, -50%) rotate(-2deg)'; 
+                    
+                    // 2. Cambia sfondo sfocato (Atmosfera generale)
+                    menuBg.style.backgroundImage = `url(${imgUrl})`;
+                    menuBg.style.opacity = '0.2'; 
+                }
+            });
+
+            item.addEventListener('mouseleave', function() {
+                // Nascondi immagine flottante
+                hoverImg.style.opacity = '0';
+                hoverImg.style.transform = 'scale(0.8) translate(-50%, -50%)';
+                
+                // Resetta sfondo
+                menuBg.style.opacity = '0.05';
+            });
+        });
+    </script>
+</body>
+</html>

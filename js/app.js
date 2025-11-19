@@ -1,17 +1,20 @@
 let beersData = null;
 let beveragesData = null;
+let foodData = null;
 let currentView = 'home';
 
-// Carica tutte le bevande
+// Carica tutte le bevande e il cibo
 async function loadAllBeverages() {
     try {
-        const [beersResponse, beveragesResponse] = await Promise.all([
+        const [beersResponse, beveragesResponse, foodResponse] = await Promise.all([
             fetch('beers/beers.json'),
-            fetch('beverages/beverages.json').catch(() => ({ json: async () => ({ beverages: [], beveragesByType: {} }) }))
+            fetch('beverages/beverages.json').catch(() => ({ json: async () => ({ beverages: [], beveragesByType: {} }) })),
+            fetch('food/food.json').catch(() => ({ json: async () => ({ food: [], foodByCategory: {} }) }))
         ]);
         
         beersData = await beersResponse.json();
         beveragesData = await beveragesResponse.json();
+        foodData = await foodResponse.json();
         
         showCategoriesView();
     } catch (error) {
@@ -30,6 +33,39 @@ function showCategoriesView() {
     const categoriesView = document.getElementById('categories-view');
     let html = '';
     
+    // Sezioni Food (NUOVO)
+    if (foodData && foodData.foodByCategory) {
+        const foodOrder = [
+            { name: 'Hamburger di bufala', icon: '🍔' },
+            { name: 'Hamburger Fassona e Street food', icon: '🥩' },
+            { name: 'OKTOBERFEST', icon: '🥨' },
+            { name: 'Panini', icon: '🥪' },
+            { name: 'Griglieria', icon: '🔥' },
+            { name: 'Piatti Speciali', icon: '🍽️' },
+            { name: 'Piadine', icon: '🥯' },
+            { name: 'Fritti', icon: '🍟' },
+            { name: 'Dolci', icon: '🍰' },
+            { name: 'Aperitivo', icon: '🥜' }
+        ];
+        
+        // Aggiungi header per il cibo se ci sono elementi
+        const hasFood = foodOrder.some(cat => foodData.foodByCategory[cat.name]);
+        if (hasFood) {
+            html += '<h2 class="section-header">Menù Food</h2>';
+            foodOrder.forEach(cat => {
+                const items = foodData.foodByCategory[cat.name];
+                if (items && items.length > 0) {
+                    html += createCategoryCard(cat.name, items.length, cat.icon, 'food');
+                }
+            });
+        }
+    }
+
+    // Sezioni Menù Beverage (Header)
+    if ((beersData && beersData.beersBySection) || (beveragesData && beveragesData.beveragesByType)) {
+        html += '<h2 class="section-header">Menù Beverage</h2>';
+    }
+
     // Sezioni birre
     if (beersData && beersData.beersBySection) {
         const sectionOrder = [
@@ -100,6 +136,8 @@ function showCategory(categoryName, type) {
         items = beersData.beersBySection[categoryName] || [];
     } else if (type === 'beverage' && beveragesData && beveragesData.beveragesByType) {
         items = beveragesData.beveragesByType[categoryName] || [];
+    } else if (type === 'food' && foodData && foodData.foodByCategory) {
+        items = foodData.foodByCategory[categoryName] || [];
     }
     
     let html = `
@@ -149,10 +187,10 @@ function renderCard(item, index, type) {
         ? `<img src="${item.logo}" alt="${item.nome}" class="beer-logo">`
         : '';
     
-    const categoryLabel = type === 'beer' ? item.categoria : item.tipo;
+    const categoryLabel = type === 'beer' ? item.categoria : (type === 'food' ? item.category : item.tipo);
     
     return `
-        <div class="beer-card ${cardClass}" data-category="${item.categoria || ''}" data-type="${type}" style="animation-delay: ${(index % 10) * 0.1}s" onclick="openModal(${index}, '${type}', '${item.nome.replace(/'/g, "\\'")}')">
+        <div class="beer-card ${cardClass}" data-category="${item.categoria || item.category || ''}" data-type="${type}" style="animation-delay: ${(index % 10) * 0.1}s" onclick="openModal(${index}, '${type}', '${item.nome.replace(/'/g, "\\'")}')">
             ${imageHtml}
             <div class="beer-content">
                 <div class="beer-header">
@@ -185,10 +223,58 @@ function openModal(index, type, itemName) {
         Object.values(beveragesData.beveragesByType).forEach(typeItems => {
             items = items.concat(typeItems);
         });
+    } else if (type === 'food' && foodData && foodData.foodByCategory) {
+        Object.values(foodData.foodByCategory).forEach(catItems => {
+            items = items.concat(catItems);
+        });
     }
     
-    const item = items[index];
-    if (!item) return;
+    // Questo metodo di trovare l'item per indice globale è fragile se filtriamo per categoria
+    // Ma per ora manteniamo la logica esistente, assicurandoci che l'ordine sia consistente
+    // Un approccio migliore sarebbe passare l'oggetto item completo o ID
+    
+    // FIX: Se siamo in detail view, items dovrebbe essere SOLO quelli della categoria
+    // Ma qui stiamo ricostruendo items globali... 
+    // In showCategory, passiamo l'indice relativo alla lista filtrata.
+    // Qui dobbiamo recuperare l'item corretto.
+    
+    // Riprovo a cercare l'item giusto
+    let targetItem = null;
+    
+    // Se siamo in detail view, dovremmo cercare nella categoria attiva
+    // Ma openModal viene chiamato con index relativo alla lista renderizzata
+    // Quindi dobbiamo ricostruire la lista della categoria corrente se possibile
+    // Ma non abbiamo 'categoryName' qui.
+    
+    // TRUCCO: Per ora, cerchiamo l'item per nome (non ideale se duplicati)
+    // O modifichiamo renderCard per passare l'oggetto (non si può in HTML string)
+    
+    // Recuperiamo l'item dalla lista filtrata che abbiamo renderizzato in showCategory
+    // Sfortunatamente 'items' in showCategory è locale.
+    
+    // SOLUZIONE MIGLIORE: Modifichiamo openModal per accettare categoryName se possibile
+    // Ma cambiamo troppo codice.
+    
+    // Cerchiamo l'item in tutti gli item del tipo che hanno quel nome
+    const allItemsOfType = items; // items qui contiene tutti gli item del tipo (appiattiti)
+    // Wait, items construction above is flattened all sections.
+    // renderCard index is relative to the category view!
+    
+    // Se clicco sul primo item della categoria "Hamburger", l'index è 0.
+    // Ma nel mio array flattened, potrebbe essere 50.
+    // Questo codice esistente sembra buggato per le detail view se usa indici relativi.
+    // Vediamo showCategory: items = beveragesData.beveragesByType[categoryName]
+    // renderCard usa index (0, 1, 2...)
+    // openModal riceve (0, 'food', 'Nome')
+    
+    // Quindi openModal DEVE sapere la categoria per risolvere l'indice 0.
+    // Ma la firma è openModal(index, type, itemName).
+    
+    // Cerco l'item per nome e tipo
+    targetItem = allItemsOfType.find(i => i.nome === itemName.replace(/\\'/g, "'"));
+    
+    if (!targetItem) return;
+    const item = targetItem;
     
     const modal = document.getElementById('beer-modal');
     const modalBody = document.getElementById('modal-body');
@@ -243,9 +329,9 @@ function openModal(index, type, itemName) {
         ? `<div class="modal-meta">${metaItems.join('')}</div>`
         : '';
     
-    const descrizioneCompleta = item.descrizione_dettagliata || item.descrizione;
+    const descrizioneCompleta = item.descrizione_dettagliata || item.descrizione || '';
     const logoHtml = item.logo ? `<img src="${item.logo}" alt="${item.nome}" class="modal-logo">` : '';
-    const categoryLabel = item.categoria || item.tipo || '';
+    const categoryLabel = item.categoria || item.category || item.tipo || '';
     
     modalBody.innerHTML = `
         ${item.immagine ? `<img src="${item.immagine}" alt="${item.nome}" class="modal-image">` : ''}
