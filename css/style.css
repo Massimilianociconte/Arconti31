@@ -56,6 +56,12 @@ header {
     padding: 0 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
     gap: 15px;
 }
 
@@ -182,6 +188,12 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 25px;
+}
+
+/* COMPACT VIEW (LIST) */
+.beer-grid.compact-view {
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
 .section-title {
@@ -359,15 +371,38 @@ header {
 .availability-dot.available { background: #10b981; box-shadow: 0 0 8px #10b981; }
 .availability-dot.unavailable { background: #ef4444; }
 
-/* --- NO IMAGE VARIANT (COMPACT) --- */
+/* --- NO IMAGE VARIANT --- */
 .beer-card.no-image-card {
-    min-height: auto;
+    align-self: start; /* Prevent stretching to fill grid row height */
     background: linear-gradient(145deg, rgba(30,30,30,0.8), rgba(20,20,20,0.9));
 }
 
-/* Per le card senza immagine, rimuoviamo padding eccessivo se necessario */
 .beer-card.no-image-card .beer-content {
     padding: 25px;
+}
+
+/* --- COMPACT VIEW STYLES --- */
+.beer-grid.compact-view .beer-card {
+    flex-direction: row;
+    align-items: center;
+    min-height: auto;
+}
+
+.beer-grid.compact-view .card-image-container {
+    width: 120px;
+    height: 100%;
+    min-height: 120px;
+    flex-shrink: 0;
+}
+
+.beer-grid.compact-view .beer-content {
+    padding: 15px 20px;
+}
+
+.beer-grid.compact-view .beer-description {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    margin-bottom: 10px;
 }
 
 /* --- MODAL --- */
@@ -395,11 +430,38 @@ header {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 50px 100px -20px rgba(0,0,0,0.9);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--accent-gold);
+    color: black;
+    transform: rotate(90deg);
 }
 
 .modal-hero-wrapper {
     height: 250px;
     width: 100%;
+    flex-shrink: 0;
 }
 
 .modal-hero-img {
@@ -409,6 +471,8 @@ header {
 .modal-content-scroll {
     padding: 25px;
     overflow-y: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 .modal-header-row {
@@ -482,6 +546,7 @@ header {
     padding: 15px 25px;
     background: #121212;
     border-top: 1px solid var(--bg-card-border);
+    flex-shrink: 0;
 }
 
 .modal-close-action {
@@ -500,6 +565,33 @@ header {
 
 /* --- ANIMATIONS --- */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- FOOTER SITE (MENU PAGE) --- */
+.site-footer {
+    position: relative;
+    margin-top: 50px;
+    padding: 2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+.site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.site-footer a:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+/* --- LANDING PAGE FOOTER SPECIFIC --- */
+/* We keep generic footer styling in index.html internal styles if possible, or specific here */
+/* Assuming index.html relies on this file but has its own style block overrides. */
+
 
 /* --- MOBILE --- */
 @media (max-width: 768px) {

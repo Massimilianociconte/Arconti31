@@ -1,5 +1,16 @@
+# Dependency directories
 node_modules/
+jspm_packages/
+
+# System files
 .DS_Store
-*.log
-.env
-.netlify/
+Thumbs.db
+
+# Tool generated folders (detected in workspace)
+.ScreamingFrogSEOSpider/
+.adalflow/
+.android/
+.vscode/
+.idea/
+dist/
+build/
