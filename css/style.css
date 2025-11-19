@@ -667,11 +667,12 @@ header {
 }
 
 .webnovis-link:hover {
-    color: #000;
+    color: #000000 !important;
     background: var(--accent-gold);
     border-color: var(--accent-gold);
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     transform: translateY(-2px);
+    font-weight: 700;
 }
 
 /* Center alignment wrapper for injected links */
