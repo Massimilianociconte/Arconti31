@@ -70,16 +70,18 @@
             font-weight: 700;
             color: #fff;
             display: flex;
-            align-items: center;
+            align-items: center; /* Assicura allineamento verticale centrale */
             gap: 15px;
             animation: logoReveal 1s ease forwards;
             text-transform: uppercase;
+            line-height: 1; /* Importante per l'allineamento del testo */
         }
 
         .logo img {
             height: 45px;
             width: auto;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            display: block; /* Rimuove spazi fantasma sotto l'immagine */
         }
 
         /* --- CINEMATIC HERO SECTION --- */
@@ -259,21 +261,25 @@
         /* --- WEB NOVIS LINK (Home Specific) --- */
         .webnovis-link {
             display: inline-block;
-            margin-top: 15px;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.3);
+            margin-top: 25px; /* Più spazio sopra */
+            font-size: 0.85rem; /* Più grande */
+            font-weight: 600; /* Più grassetto */
+            color: rgba(255, 255, 255, 0.7); /* Più visibile di default */
             text-transform: uppercase;
             letter-spacing: 2px;
             text-decoration: none;
-            border-bottom: 1px solid transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3); /* Bordo dorato sottile sempre presente */
+            padding: 10px 20px; /* Diventa un vero bottone */
             transition: all 0.3s ease;
-            padding-bottom: 2px;
+            background: rgba(0, 0, 0, 0.3); /* Leggero sfondo per stacco */
         }
 
         .webnovis-link:hover {
-            color: var(--accent);
+            color: #000; /* Testo nero su sfondo oro */
+            background: var(--accent); /* Sfondo oro pieno */
             border-color: var(--accent);
-            text-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         /* --- FOOTER --- */
@@ -364,7 +370,7 @@
                 padding-top: 110px; 
                 height: auto; /* Permette alla pagina di allungarsi se necessario */
                 min-height: 100vh; /* Garantisce comunque l'altezza minima schermo */
-                padding-bottom: 160px; /* Spazio abbondante per evitare che il footer copra il bottone */
+                padding-bottom: 220px; /* Spazio ancora più abbondante per footer e nuovi link */
             }
 
             .subtitle { font-size: 0.8rem; letter-spacing: 3px; }
