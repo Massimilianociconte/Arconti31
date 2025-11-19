@@ -14,31 +14,31 @@ const ICONS = {
     // Mapping Immagini Categorie
     categories: {
         // Food
-        'Hamburger di bufala': 'images/food/hamburger-bufala.jpg',
-        'Hamburger Fassona e Street food': 'images/food/hamburger-fassona.jpg',
-        'OKTOBERFEST': 'images/food/oktoberfest.jpg',
-        'Panini': 'images/food/panini.jpg',
-        'Griglieria': 'images/food/griglieria.jpg',
-        'Piatti Speciali': 'images/food/piatti-speciali.jpg',
-        'Piadine': 'images/food/piadine.jpg',
-        'Fritti': 'images/food/fritti.jpg',
-        'Dolci': 'images/food/dolci.jpg',
-        'Aperitivo': 'images/food/aperitivo.jpg',
+        'Hamburger di bufala': 'images/minicard sezioni/hamburger-bufala.png',
+        'Hamburger Fassona e Street food': 'images/minicard sezioni/bufala-streetfood.png',
+        'OKTOBERFEST': 'images/minicard sezioni/oktoberfest.jpg',
+        'Panini': 'images/minicard sezioni/panini.jpg',
+        'Griglieria': 'images/minicard sezioni/picanha.jpg', // Assumed picanha for griglieria
+        'Piatti Speciali': 'images/minicard sezioni/bevande.jpg', // Fallback or missing? Using generic
+        'Piadine': 'images/minicard sezioni/piadine.jpg',
+        'Fritti': 'images/minicard sezioni/fritti.jpg',
+        'Dolci': 'images/minicard sezioni/dolci.jpg',
+        'Aperitivo': 'images/minicard sezioni/aperitivo.jpg',
         
         // Beer Sections
-        'Birre artigianali alla spina a rotazione': 'images/beers/gemini_generated_image_eb6e5jeb6e5jeb6e.png', // Placeholder
-        'Birre alla spina': 'images/beers/ceres-test.png', // Placeholder
-        'Birre speciali in bottiglia': 'images/beers/bottiglia.jpg',
-        'Frigo Birre': 'images/beers/frigo.jpg',
+        'Birre artigianali alla spina a rotazione': 'images/minicard sezioni/birre-spina-rotazione.png',
+        'Birre alla spina': 'images/minicard sezioni/birra-spina.png',
+        'Birre speciali in bottiglia': 'images/minicard sezioni/speciali-bottiglia.png',
+        'Frigo Birre': 'images/minicard sezioni/frigo-birre.png',
 
         // Beverage Types
-        'Cocktails': 'images/beverages/gemini_generated_image_2z98hx2z98hx2z98.png', // Placeholder
-        'Analcolici': 'images/beverages/analcolici.jpg',
-        'Bibite': 'images/beverages/bibite.jpg',
-        'Caffetteria': 'images/beverages/caffetteria.jpg',
-        'Bollicine': 'images/beverages/bollicine.jpg',
-        'Bianchi fermi': 'images/beverages/bianchi.jpg',
-        'Vini rossi': 'images/beverages/rossi.jpg'
+        'Cocktails': 'images/minicard sezioni/cocktail.jpg',
+        'Analcolici': 'images/minicard sezioni/analcolici.jpg',
+        'Bibite': 'images/minicard sezioni/bevande.jpg', // Using bevande.jpg as generic for Bibite
+        'Caffetteria': 'images/minicard sezioni/caffetteria.jpg',
+        'Bollicine': 'images/minicard sezioni/bollicine.jpg',
+        'Bianchi fermi': 'images/minicard sezioni/bianchi-fermi.png',
+        'Vini rossi': 'images/minicard sezioni/rossi.jpg'
     },
     allergeni: {
         'Glutine': '🌾',
@@ -89,8 +89,7 @@ function showCategoriesView() {
     const categoriesView = document.getElementById('categories-view');
     let html = '';
     
-    // Sezioni Food
-    if (foodData && foodData.foodByCategory) {
+        // Sezioni Food
         const foodOrder = [
             { name: 'Hamburger di bufala', icon: '🍔' },
             { name: 'Hamburger Fassona e Street food', icon: '🥩' },
@@ -104,61 +103,50 @@ function showCategoriesView() {
             { name: 'Aperitivo', icon: '🥜' }
         ];
         
-        const hasFood = foodOrder.some(cat => foodData.foodByCategory[cat.name]);
-        if (hasFood) {
-            html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
-            foodOrder.forEach(cat => {
-                const items = foodData.foodByCategory[cat.name];
-                if (items && items.length > 0) {
-                    html += createCategoryCard(cat.name, items.length, cat.icon, 'food');
-                }
-            });
-            html += '</div>';
-        }
-    }
-
-    // Sezioni Beverage
-    if ((beersData && beersData.beersBySection) || (beveragesData && beveragesData.beveragesByType)) {
+        html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
+        foodOrder.forEach(cat => {
+            // Count items even if undefined (0)
+            const items = (foodData && foodData.foodByCategory && foodData.foodByCategory[cat.name]) ? foodData.foodByCategory[cat.name] : [];
+            // Always show card, pass 0 if empty
+            html += createCategoryCard(cat.name, items.length, cat.icon, 'food');
+        });
+        html += '</div>';
+    
+        // Sezioni Beverage
         html += '<h2 class="section-header">Beverage</h2><div class="categories-grid">';
         
-        if (beersData && beersData.beersBySection) {
-            const sectionOrder = [
-                { name: 'Birre artigianali alla spina a rotazione', icon: '🍺' },
-                { name: 'Birre alla spina', icon: '🍻' },
-                { name: 'Birre speciali in bottiglia', icon: '🍾' },
-                { name: 'Frigo Birre', icon: '❄️' }
-            ];
-            
-            sectionOrder.forEach(section => {
-                const items = beersData.beersBySection[section.name];
-                if (items && items.length > 0) {
-                    html += createCategoryCard(section.name, items.length, section.icon, 'beer');
-                }
-            });
-        }
+        // Beer Categories
+        const sectionOrder = [
+            { name: 'Birre artigianali alla spina a rotazione', icon: '🍺' },
+            { name: 'Birre alla spina', icon: '🍻' },
+            { name: 'Birre speciali in bottiglia', icon: '🍾' },
+            { name: 'Frigo Birre', icon: '❄️' }
+        ];
         
-        if (beveragesData && beveragesData.beveragesByType) {
-            const typeOrder = [
-                { name: 'Cocktails', icon: '🍹' },
-                { name: 'Analcolici', icon: '🥤' },
-                { name: 'Bibite', icon: '🥫' },
-                { name: 'Caffetteria', icon: '☕' },
-                { name: 'Bollicine', icon: '🥂' },
-                { name: 'Bianchi fermi', icon: '🍷' },
-                { name: 'Vini rossi', icon: '🍷' }
-            ];
-            
-            typeOrder.forEach(type => {
-                const items = beveragesData.beveragesByType[type.name];
-                if (items && items.length > 0) {
-                    html += createCategoryCard(type.name, items.length, type.icon, 'beverage');
-                }
-            });
-        }
+        sectionOrder.forEach(section => {
+            const items = (beersData && beersData.beersBySection && beersData.beersBySection[section.name]) ? beersData.beersBySection[section.name] : [];
+            html += createCategoryCard(section.name, items.length, section.icon, 'beer');
+        });
+        
+        // Other Beverages
+        const typeOrder = [
+            { name: 'Cocktails', icon: '🍹' },
+            { name: 'Analcolici', icon: '🥤' },
+            { name: 'Bibite', icon: '🥫' },
+            { name: 'Caffetteria', icon: '☕' },
+            { name: 'Bollicine', icon: '🥂' },
+            { name: 'Bianchi fermi', icon: '🍷' },
+            { name: 'Vini rossi', icon: '🍷' }
+        ];
+        
+        typeOrder.forEach(type => {
+            const items = (beveragesData && beveragesData.beveragesByType && beveragesData.beveragesByType[type.name]) ? beveragesData.beveragesByType[type.name] : [];
+            html += createCategoryCard(type.name, items.length, type.icon, 'beverage');
+        });
+        
         html += '</div>';
-    }
     
-    categoriesView.innerHTML = html || '<p class="loading">Nessuna categoria disponibile.</p>';
+    categoriesView.innerHTML = html;
 }
 
 function createCategoryCard(name, count, icon, type) {
