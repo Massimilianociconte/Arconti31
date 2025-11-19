@@ -4,40 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags -->
-    <title>Arconti 31 | Ristorante & Hamburgeria a Gallarate</title>
-    <meta name="description" content="Benvenuti da Arconti 31 a Gallarate. Hamburger di qualità, specialità di carne e birre selezionate. Scopri il nostro menù digitale o prenota su GoLocal.">
-    <meta name="keywords" content="Arconti 31, ristorante Gallarate, hamburgeria, birreria, menù digitale, carne alla griglia, GoLocal, aperitivo Gallarate">
+    <!-- SEO Meta Tags - Ottimizzati per "Pub" e "Arconti 31" -->
+    <title>Arconti 31 - Il Miglior Pub a Gallarate | Hamburgeria & Birre Artigianali</title>
+    <meta name="description" content="Scopri Arconti 31: molto più di un pub a Gallarate. Hamburger gourmet, birre artigianali selezionate e cocktail d'autore in un'atmosfera unica e spettacolare. Prenota ora!">
+    <meta name="keywords" content="Arconti 31, pub Gallarate, hamburgeria gourmet, birreria artigianale, cocktail bar, aperitivo Gallarate, cena Gallarate, ristorante carne">
+    <meta name="robots" content="index, follow">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arconti31.it/">
+    <meta property="og:title" content="Arconti 31 - Il Miglior Pub a Gallarate">
+    <meta property="og:description" content="Non il solito pub. Un'esperienza di gusto e atmosfera unica a Gallarate.">
+    <meta property="og:image" content="images/loghi/sfondo-homepage-arconti31.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
-        /* --- LANDING SPECIFIC STYLES --- */
+        /* --- SPECTACULAR LANDING STYLES --- */
         :root {
-            --bg-color: #0b0b0b;
-            --text-color: #e0e0e0;
-            --accent: #f59e0b; /* Arancione Arconti */
-            --secondary: #1f1f1f;
+            --bg-deep: #050505;
+            --text-color: #f0f0f0;
+            --accent: #d4af37; /* Oro Lussuoso */
+            --accent-glow: rgba(212, 175, 55, 0.6);
+            --secondary: #ffffff;
             --font-main: 'Playfair Display', serif;
             --font-sans: 'DM Sans', sans-serif;
+            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-deep);
             color: var(--text-color);
             font-family: var(--font-sans);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; color: inherit; transition: 0.3s var(--transition); }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION GLASS --- */
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -46,29 +57,35 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            background: rgba(5, 5, 5, 0.2);
+            backdrop-filter: blur(10px); /* Effetto Vetro */
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
         }
 
         .logo {
             font-family: var(--font-main);
-            font-size: 1.8rem; /* Slightly bigger */
-            letter-spacing: 1px;
-            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 700;
             color: #fff;
             display: flex;
             align-items: center;
             gap: 15px;
             animation: logoReveal 1s ease forwards;
+            text-transform: uppercase;
         }
 
         .logo img {
-            height: 50px;
+            height: 45px;
             width: auto;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
         }
 
-        /* --- HERO SECTION --- */
+        /* --- CINEMATIC HERO SECTION --- */
         .hero {
-            height: 100vh;
+            height: 100vh; /* Fullscreen experience */
+            min-height: 600px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -85,97 +102,158 @@
             background-image: url('images/loghi/sfondo-homepage-arconti31.png'); 
             background-size: cover;
             background-position: center;
-            opacity: 0; /* Parte invisibile per l'animazione */
-            animation: heroReveal 2s ease-out forwards, kenBurns 20s infinite alternate ease-in-out;
+            opacity: 0; 
+            animation: heroReveal 1.5s ease-out forwards, kenBurns 25s infinite alternate ease-in-out;
+            z-index: 0;
         }
         
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(11,11,11,0.8) 100%);
+            /* Gradiente più trasparente al centro/alto per far brillare l'immagine */
+            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.6) 50%, #050505 100%);
             z-index: 1;
+        }
+
+        /* Vignette Effect - Ridotto per lasciare più spazio all'immagine */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 800px;
-            animation: fadeUp 1.2s ease forwards 0.5s; /* Leggero ritardo rispetto allo sfondo */
+            z-index: 10;
+            max-width: 900px;
+            animation: fadeUp 1.2s ease forwards 0.3s;
             opacity: 0;
-            transform: translateY(30px); 
+            transform: translateY(40px); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             color: var(--accent);
             margin-bottom: 1.5rem;
             display: block;
-            font-weight: 700;
+            font-weight: 600;
+            text-shadow: 0 0 20px var(--accent-glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Elegant lines aside subtitle */
+        .subtitle::before, .subtitle::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            vertical-align: middle;
+            opacity: 0.7;
+            margin: 0 15px;
         }
 
         h1 {
             font-family: var(--font-main);
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.1;
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            line-height: 1.05;
             margin-bottom: 2rem;
-            font-style: italic;
             color: white;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+        }
+        
+        h1 span {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
         }
 
         p.intro-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #ccc;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+            margin-bottom: 3.5rem;
+            max-width: 650px;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* --- BUTTONS --- */
+        /* --- SPECTACULAR BUTTONS --- */
         .cta-container {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-size: 0.9rem;
+            padding: 1.1rem 3rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 4px;
+            letter-spacing: 2px;
+            border-radius: 0; /* Sharp elegant edges */
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s var(--transition);
             position: relative;
             overflow: hidden;
-            min-width: 220px;
+            min-width: 240px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
 
+        /* Gold Button */
         .btn-primary {
             background-color: var(--accent);
-            color: white;
-            border: 2px solid var(--accent);
+            color: #000;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: 0.5s;
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: var(--accent);
+            background-color: #fff;
+            border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
+        /* Ghost Button */
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 2px solid white;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
         }
 
         .btn-secondary:hover {
-            background-color: white;
-            color: black;
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(0,0,0,0.5);
+            transform: translateY(-3px);
         }
 
         /* --- FOOTER --- */
@@ -186,103 +264,113 @@
             padding: 2rem;
             text-align: center;
             z-index: 10;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
             font-size: 0.8rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            background: linear-gradient(to top, #050505, transparent);
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: 0.3s;
         }
         
         .footer-links a:hover {
             color: var(--accent);
         }
 
-        /* --- ANIMATIONS --- */
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- KEYFRAMES --- */
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes heroReveal {
-            0% { opacity: 0; filter: blur(10px) brightness(0.5); transform: scale(1.05); }
-            100% { opacity: 0.6; filter: blur(0) brightness(0.8); transform: scale(1); }
+            0% { opacity: 0; filter: blur(20px) brightness(0); transform: scale(1.1); }
+            100% { opacity: 0.75; filter: blur(0) brightness(0.9); transform: scale(1); }
         }
 
         @keyframes kenBurns {
             0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
         }
 
         @keyframes logoReveal {
-            0% { opacity: 0; transform: translateY(-20px); }
+            0% { opacity: 0; transform: translateY(-30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- MOBILE --- */
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
             nav { 
-                padding: 1rem 1.5rem; 
-                flex-direction: column;
-                gap: 0.5rem;
-                background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.8));
+                padding: 1.2rem; 
+                justify-content: center;
+                background: rgba(0,0,0,0.8);
             }
             
-            .logo {
-                flex-direction: column;
-                text-align: center;
-                gap: 5px;
-                font-size: 1.5rem;
-            }
+            .logo { font-size: 1.2rem; }
             
             h1 { 
-                font-size: 3rem; 
+                font-size: 3.2rem; 
                 margin-bottom: 1.5rem; 
             }
             
-            .hero {
-                height: auto;
-                min-height: 100vh;
-                padding: 140px 20px 100px; /* Increased padding top */
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+            .subtitle::before, .subtitle::after { width: 20px; }
+            
+            .hero { 
+                padding-top: 110px; 
+                height: auto; /* Permette alla pagina di allungarsi se necessario */
+                min-height: 100vh; /* Garantisce comunque l'altezza minima schermo */
+                padding-bottom: 160px; /* Spazio abbondante per evitare che il footer copra il bottone */
             }
 
-            .subtitle {
-                margin-bottom: 1rem;
-                font-size: 0.9rem;
-            }
+            .subtitle { font-size: 0.8rem; letter-spacing: 3px; }
 
-            .intro-text {
-                font-size: 1rem;
-                margin-bottom: 2rem;
+            p.intro-text {
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+                padding: 0 15px;
             }
 
             .cta-container { 
                 flex-direction: column; 
                 gap: 1rem; 
                 width: 100%;
+                max-width: 350px;
             }
             
-            .btn { width: 100%; }
-
-            footer {
-                position: relative;
-                background: #0b0b0b;
-                padding: 2rem 1rem;
-                margin-top: auto;
-            }
+            .btn { width: 100%; padding: 1rem; }
 
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
-                font-size: 0.9rem;
+            }
+            
+            footer {
+                padding-bottom: 2.5rem; /* Un po' più di spazio dal bordo inferiore */
             }
         }
     </style>
@@ -290,45 +378,45 @@
 <body>
 
     <nav>
-        <a href="index.html" class="logo-link">
+        <a href="index.html" class="logo-link" aria-label="Arconti 31 Home">
             <div class="logo">
-                <img src="images/loghi/logo_arconti31.png" alt="Arconti 31 Logo">
-                ARCONTI 31
+                <img src="images/loghi/logo_arconti31.png" alt="Logo Arconti 31 Pub Gallarate">
+                Arconti 31
             </div>
         </a>
     </nav>
 
     <header class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg" role="img" aria-label="Atmosfera interna pub Arconti 31"></div>
         <div class="hero-overlay"></div>
+        
         <div class="hero-content">
-            <span class="subtitle">Pub & Food</span>
-            <h1>Il Gusto Autentico <br>a Gallarate</h1>
+            <span class="subtitle">Est. 2025 &bull; Gallarate</span>
+            <h1>Il Tuo <span>Pub</span>.<br>La Tua Storia.</h1>
             <p class="intro-text">
-                Un'esperienza culinaria unica dove la tradizione incontra la qualità. 
-                Dagli hamburger gourmet alle birre artigianali selezionate.
+                Un luogo dove il gusto incontra lo stile. Hamburger gourmet, birre ricercate e cocktail indimenticabili. 
+                Vivi l'esperienza <strong>Arconti 31</strong>.
             </p>
             
             <div class="cta-container">
-                <!-- Link al Menù Digitale (che ora è menu.html) -->
+                <!-- Primary Action: Menu -->
                 <a href="menu.html" class="btn btn-primary">
-                    Visualizza Menù Digitale
-                </a>
-                
-                <!-- Link a GoLocal (Placeholder come richiesto) -->
-                <a href="#" class="btn btn-secondary">
-                    Prenota su GoLocal
+                    Scopri il Menù
                 </a>
             </div>
         </div>
     </header>
 
     <footer>
-            <div class="footer-links">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Vittorio+Arconti,+31,+21013+Gallarate+VA" target="_blank">📍 Via Vittorio Arconti 31, Gallarate</a>
-                <a href="tel:03311830845">📞 Contattaci</a>
-            </div>
-        <p>&copy; 2025 Arconti 31. Tutti i diritti riservati.</p>
+        <div class="footer-links">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Vittorio+Arconti,+31,+21013+Gallarate+VA" target="_blank" rel="noopener noreferrer">
+                📍 Via Vittorio Arconti 31, Gallarate
+            </a>
+            <a href="tel:03311830845">
+                📞 0331 183 0845
+            </a>
+        </div>
+        <p>&copy; 2025 Arconti 31. Pura Passione, Puro Gusto.</p>
     </footer>
 
     <script>
