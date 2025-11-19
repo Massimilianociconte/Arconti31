@@ -256,6 +256,26 @@
             transform: translateY(-3px);
         }
 
+        /* --- WEB NOVIS LINK (Home Specific) --- */
+        .webnovis-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+        }
+
+        .webnovis-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
         /* --- FOOTER --- */
         footer {
             position: absolute;
@@ -405,6 +425,8 @@
                     Scopri il Menù
                 </a>
             </div>
+            
+            <a href="https://www.webnovis.com" target="_blank" class="webnovis-link">Creato da Web Novis</a>
         </div>
     </header>
 
@@ -416,6 +438,7 @@
             <a href="tel:03311830845">
                 📞 0331 183 0845
             </a>
+            <a href="https://www.webnovis.com" target="_blank" class="webnovis-link">Creato da Web Novis</a>
         </div>
         <p>&copy; 2025 Arconti 31. Pura Passione, Puro Gusto.</p>
     </footer>

@@ -145,6 +145,9 @@ function showCategoriesView() {
         });
         
         html += '</div>';
+
+        // Web Novis Link Central
+        html += '<div class="webnovis-center-wrapper"><a href="https://www.webnovis.com" target="_blank" class="webnovis-link">Creato da Web Novis</a></div>';
     
     categoriesView.innerHTML = html;
 }
@@ -204,6 +207,11 @@ function showCategory(categoryName, type) {
                 .filter(item => item.disponibile) // Filtra solo i prodotti disponibili
                 .map((item, index) => renderCard(item, index, type))
                 .join('')}
+        </div>
+        
+        <!-- Web Novis Link Central Subsection -->
+        <div class="webnovis-center-wrapper">
+            <a href="https://www.webnovis.com" target="_blank" class="webnovis-link">Creato da Web Novis</a>
         </div>
     `;
     
@@ -358,6 +366,7 @@ function openModal(index, type, itemName) {
         </div>
         <div class="modal-close-btn-wrapper">
             <button onclick="closeModal()" class="modal-close-action">Chiudi</button>
+            <a href="https://www.webnovis.com" target="_blank" class="webnovis-link" style="margin-top: 10px;">Creato da Web Novis</a>
         </div>
     `;
     

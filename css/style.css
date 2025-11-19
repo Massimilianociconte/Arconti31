@@ -629,6 +629,11 @@ header {
     background: #121212;
     border-top: 1px solid var(--bg-card-border);
     flex-shrink: 0;
+    /* Added for webnovis link */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .modal-close-action {
@@ -645,6 +650,34 @@ header {
 
 .modal-close-action:hover { background: white; }
 
+/* --- WEB NOVIS LINK --- */
+.webnovis-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+.webnovis-link:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* Center alignment wrapper for injected links */
+.webnovis-center-wrapper {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    clear: both;
+}
+
 /* --- ANIMATIONS --- */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -659,13 +692,13 @@ header {
     background: transparent;
 }
 
-.site-footer a {
+.site-footer a.footer-link {
     color: var(--text-secondary);
     text-decoration: none;
     border-bottom: 1px solid transparent;
 }
 
-.site-footer a:hover {
+.site-footer a.footer-link:hover {
     color: var(--accent-gold);
     border-color: var(--accent-gold);
 }
