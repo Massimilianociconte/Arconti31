@@ -1,76 +1,1064 @@
 {
+  "food": [
+    {
+      "nome": "Arconti 31",
+      "prezzo": 9,
+      "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
+      "tags": [
+        "Piccante"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 0
+    },
+    {
+      "nome": "Bacon burger",
+      "prezzo": 13,
+      "descrizione": "Fassona 220gr con pancetta stufata, cheddar, salsa pepe nero, patatine",
+      "tags": [
+        "Più venduto",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 0
+    },
+    {
+      "nome": "Cedratese",
+      "prezzo": 8,
+      "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Piadine",
+      "order": 0
+    },
+    {
+      "nome": "Hamburger F1 Bufala",
+      "prezzo": 15,
+      "descrizione": "Bufala 220gr con tomino, speck, salsa rosa, patatine fritte",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Hamburger di bufala",
+      "order": 0
+    },
+    {
+      "nome": "Mezzo polletto grigliato",
+      "prezzo": 15,
+      "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
+      "tags": [
+        "Specialità",
+        "Di stagione"
+      ],
+      "disponibile": true,
+      "category": "OKTOBERFEST",
+      "order": 0
+    },
+    {
+      "nome": "Piatto classico",
+      "prezzo": 10,
+      "descrizione": "Bufala 200gr grigliato, balsamico, salsa pomodorini gialli, patatine",
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 0
+    },
+    {
+      "nome": "Picanha",
+      "prezzo": 19,
+      "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
+      "tags": [
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Griglieria",
+      "order": 0
+    },
+    {
+      "nome": "Rosti di patate e speck",
+      "prezzo": 6,
+      "descrizione": "Forma particolare, patate, speck",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 0
+    },
+    {
+      "nome": "Tagliere aperitivo",
+      "prezzo": 10,
+      "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
+      "disponibile": true,
+      "category": "Aperitivo",
+      "order": 0
+    },
+    {
+      "nome": "Tiramisù al bicchiere",
+      "prezzo": 6,
+      "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 0
+    },
+    {
+      "nome": "Azalee",
+      "prezzo": 9,
+      "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
+      "disponibile": true,
+      "category": "Panini",
+      "order": 1
+    },
+    {
+      "nome": "Chili cheese",
+      "prezzo": 6,
+      "descrizione": "Crocchette fritte artigianali con formaggio e chili",
+      "tags": [
+        "Piccante",
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 1
+    },
+    {
+      "nome": "Gallaratese",
+      "prezzo": 8,
+      "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
+      "disponibile": true,
+      "category": "Piadine",
+      "order": 1
+    },
+    {
+      "nome": "Hamburger F1",
+      "prezzo": 13,
+      "descrizione": "Fassona 220gr con tomino, speck, salsa rosa, patatine",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 1
+    },
+    {
+      "nome": "Hamburger F2 bufala",
+      "prezzo": 14,
+      "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine fritte",
+      "disponibile": true,
+      "category": "Hamburger di bufala",
+      "order": 1
+    },
+    {
+      "nome": "Piada alla nutella",
+      "prezzo": 5,
+      "descrizione": "Romagnola con nutella, zucchero velo, panna montata, topino",
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 1
+    },
+    {
+      "nome": "Piatto cotoletta",
+      "prezzo": 10,
+      "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 1
+    },
+    {
+      "nome": "Tagliata di manzo",
+      "prezzo": 19,
+      "descrizione": "Manzo 250/300gr alla piastra, verdure fresche tagliate o patatine fritte",
+      "disponibile": true,
+      "category": "Griglieria",
+      "order": 1
+    },
+    {
+      "nome": "Tagliere affettati e formaggi",
+      "prezzo": 20,
+      "descrizione": "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30",
+      "tags": [
+        "Di stagione"
+      ],
+      "disponibile": true,
+      "category": "Aperitivo",
+      "order": 1
+    },
+    {
+      "nome": "Tris di würstel Brema bavaresi ripieni",
+      "prezzo": 15,
+      "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+      "tags": [
+        "Novità",
+        "Specialità",
+        "Di stagione"
+      ],
+      "disponibile": true,
+      "category": "OKTOBERFEST",
+      "order": 1
+    },
+    {
+      "nome": "Bettolino",
+      "prezzo": 9,
+      "descrizione": "Ciabatta 180gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
+      "disponibile": true,
+      "category": "Panini",
+      "order": 2
+    },
+    {
+      "nome": "Crocchette di filetto di pollo",
+      "prezzo": 7,
+      "descrizione": "Filetto di pollo fritto artigianale",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 2
+    },
+    {
+      "nome": "Hamburger F2",
+      "prezzo": 12,
+      "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine",
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 2
+    },
+    {
+      "nome": "Hamburger F3 bufala",
+      "prezzo": 16,
+      "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina, patatine",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Hamburger di bufala",
+      "order": 2
+    },
+    {
+      "nome": "Ronchi",
+      "prezzo": 9,
+      "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Piadine",
+      "order": 2
+    },
+    {
+      "nome": "Salame al cioccolato",
+      "prezzo": 6,
+      "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+      "tags": [
+        "Più venduto",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 2
+    },
+    {
+      "nome": "Stinco di maiale al forno",
+      "prezzo": 16,
+      "descrizione": "Cottura bassa temperatura, patate forno, cavolo viola",
+      "tags": [
+        "Novità",
+        "Di stagione"
+      ],
+      "disponibile": true,
+      "category": "OKTOBERFEST",
+      "order": 2
+    },
+    {
+      "nome": "Tartare di manzo battuta a coltello",
+      "prezzo": 18,
+      "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
+      "tags": [
+        "Specialità",
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 2
+    },
+    {
+      "nome": "Broletto",
+      "prezzo": 8,
+      "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 3
+    },
+    {
+      "nome": "Carbo-burger",
+      "prezzo": 15,
+      "descrizione": "Pane sesamo, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, patatine stick",
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 3
+    },
+    {
+      "nome": "Hamburger F3",
+      "prezzo": 14,
+      "descrizione": "Fassona 220gr con pancetta stufata, tuorlo, zucchine grigliate, salsa bbq, fontina, patatine",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 3
+    },
+    {
+      "nome": "Hamburger F4 bufala",
+      "prezzo": 15,
+      "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine",
+      "disponibile": true,
+      "category": "Hamburger di bufala",
+      "order": 3
+    },
+    {
+      "nome": "Olive ascolane",
+      "prezzo": 6,
+      "descrizione": "Fritte ripiene con carne trita",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 3
+    },
+    {
+      "nome": "Tortino con cuore morbido al cioccolato",
+      "prezzo": 6,
+      "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 3
+    },
+    {
+      "nome": "Cajello",
+      "prezzo": 9,
+      "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
+      "tags": [
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 4
+    },
+    {
+      "nome": "Hamburger F4",
+      "prezzo": 13,
+      "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine",
+      "tags": [
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 4
+    },
+    {
+      "nome": "Onion rings",
+      "prezzo": 5,
+      "descrizione": "Anelli cipolla fritti",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 4
+    },
+    {
+      "nome": "Sex on the meat",
+      "prezzo": 16,
+      "descrizione": "Pane sesamo, picanha fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, patatine stick",
+      "tags": [
+        "Più venduto",
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 4
+    },
+    {
+      "nome": "Strudel di mele",
+      "prezzo": 6,
+      "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
+      "tags": [
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 4
+    },
+    {
+      "nome": "Cascinetta",
+      "prezzo": 9,
+      "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
+      "disponibile": true,
+      "category": "Panini",
+      "order": 5
+    },
+    {
+      "nome": "Patatine fritte",
+      "prezzo": 5,
+      "descrizione": "Rustiche fritte",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 5
+    },
+    {
+      "nome": "Pulled Pork",
+      "prezzo": 14,
+      "descrizione": "Pane hamburger con spalla maiale 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, patatine",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 5
+    },
+    {
+      "nome": "Salame al cioccolato bianco",
+      "prezzo": 6,
+      "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+      "disponibile": true,
+      "category": "Dolci",
+      "order": 5
+    },
+    {
+      "nome": "Smash Burger",
+      "prezzo": 8,
+      "descrizione": "Lattuga fresca, carpaccio pomodoro, cheddar, bacon. Opzioni: 1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "category": "Piatti Speciali",
+      "order": 5
+    },
+    {
+      "nome": "Cedrate",
+      "prezzo": 8,
+      "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 6
+    },
+    {
+      "nome": "Patatine fritte twist",
+      "prezzo": 6,
+      "descrizione": "Rustiche fritte twist",
+      "disponibile": true,
+      "category": "Fritti",
+      "order": 6
+    },
+    {
+      "nome": "Porchettara",
+      "prezzo": 15,
+      "descrizione": "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine",
+      "tags": [
+        "Specialità",
+        "Novità"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 6
+    },
+    {
+      "nome": "Crenna",
+      "prezzo": 8,
+      "descrizione": "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 7
+    },
+    {
+      "nome": "Hamburger Autunnale",
+      "prezzo": 15,
+      "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana, chips zucca, patatine",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "category": "Hamburger Fassona e Street food",
+      "order": 7
+    },
+    {
+      "nome": "Varesina",
+      "prezzo": 8,
+      "descrizione": "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella",
+      "tags": [
+        "Più venduto",
+        "Specialità",
+        "Novità"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 8
+    },
+    {
+      "nome": "Cajello vegano",
+      "prezzo": 8,
+      "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
+      "tags": [
+        "Vegano"
+      ],
+      "disponibile": true,
+      "category": "Panini",
+      "order": 9
+    }
+  ],
   "foodByCategory": {
-    "Hamburger di bufala": [
-        { "nome": "Hamburger F1 Bufala", "prezzo": "15,50", "descrizione": "Bufala 220gr con tomino, speck, salsa rosa, patatine fritte", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Hamburger F2 bufala", "prezzo": "14,50", "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine fritte", "disponibile": true },
-        { "nome": "Hamburger F3 bufala", "prezzo": "16,00", "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina, patatine", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Hamburger F4 bufala", "prezzo": "15,50", "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine", "disponibile": true }
-    ],
-    "OKTOBERFEST": [
-        { "nome": "Mezzo polletto grigliato", "prezzo": "15,00", "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola", "tags": ["Specialità", "Di stagione"], "disponibile": true },
-        { "nome": "Tris di würstel Brema bavaresi ripieni", "prezzo": "15,00", "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola", "tags": ["Novità", "Specialità", "Di stagione"], "disponibile": true },
-        { "nome": "Stinco di maiale al forno", "prezzo": "16,00", "descrizione": "Cottura bassa temperatura, patate forno, cavolo viola", "tags": ["Novità", "Di stagione"], "disponibile": true }
+    "Panini": [
+      {
+        "nome": "Arconti 31",
+        "prezzo": 9,
+        "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
+        "tags": [
+          "Piccante"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 0
+      },
+      {
+        "nome": "Azalee",
+        "prezzo": 9,
+        "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
+        "disponibile": true,
+        "category": "Panini",
+        "order": 1
+      },
+      {
+        "nome": "Bettolino",
+        "prezzo": 9,
+        "descrizione": "Ciabatta 180gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
+        "disponibile": true,
+        "category": "Panini",
+        "order": 2
+      },
+      {
+        "nome": "Broletto",
+        "prezzo": 8,
+        "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 3
+      },
+      {
+        "nome": "Cajello",
+        "prezzo": 9,
+        "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
+        "tags": [
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 4
+      },
+      {
+        "nome": "Cascinetta",
+        "prezzo": 9,
+        "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
+        "disponibile": true,
+        "category": "Panini",
+        "order": 5
+      },
+      {
+        "nome": "Cedrate",
+        "prezzo": 8,
+        "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 6
+      },
+      {
+        "nome": "Crenna",
+        "prezzo": 8,
+        "descrizione": "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 7
+      },
+      {
+        "nome": "Varesina",
+        "prezzo": 8,
+        "descrizione": "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella",
+        "tags": [
+          "Più venduto",
+          "Specialità",
+          "Novità"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 8
+      },
+      {
+        "nome": "Cajello vegano",
+        "prezzo": 8,
+        "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
+        "tags": [
+          "Vegano"
+        ],
+        "disponibile": true,
+        "category": "Panini",
+        "order": 9
+      }
     ],
     "Hamburger Fassona e Street food": [
-        { "nome": "Bacon burger", "prezzo": "13,50", "descrizione": "Fassona 220gr con pancetta stufata, cheddar, salsa pepe nero, patatine", "tags": ["Più venduto", "Specialità"], "disponibile": true },
-        { "nome": "Hamburger F1", "prezzo": "13,50", "descrizione": "Fassona 220gr con tomino, speck, salsa rosa, patatine", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Hamburger F2", "prezzo": "12,50", "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine", "disponibile": true },
-        { "nome": "Hamburger F3", "prezzo": "14,00", "descrizione": "Fassona 220gr con pancetta stufata, tuorlo, zucchine grigliate, salsa bbq, fontina, patatine", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Hamburger F4", "prezzo": "13,50", "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine", "tags": ["Specialità"], "disponibile": true },
-        { "nome": "Pulled Pork", "prezzo": "14,50", "descrizione": "Pane hamburger con spalla maiale 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, patatine", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Porchettara", "prezzo": "15,00", "descrizione": "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine", "tags": ["Specialità", "Novità"], "disponibile": true },
-        { "nome": "Hamburger Autunnale", "prezzo": "15,00", "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana, chips zucca, patatine", "tags": ["Novità"], "disponibile": true }
-    ],
-    "Panini": [
-        { "nome": "Arconti 31", "prezzo": "9,50", "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese", "tags": ["Piccante"], "disponibile": true },
-        { "nome": "Azalee", "prezzo": "9,00", "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola", "disponibile": true },
-        { "nome": "Bettolino", "prezzo": "9,50", "descrizione": "Ciabatta 180gr con cotoletta pollo homemade, lattuga, pomodoro, maionese", "disponibile": true },
-        { "nome": "Broletto", "prezzo": "8,50", "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Cajello", "prezzo": "9,00", "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato", "tags": ["Vegetariano"], "disponibile": true },
-        { "nome": "Cascinetta", "prezzo": "9,50", "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli", "disponibile": true },
-        { "nome": "Cedrate", "prezzo": "8,00", "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Crenna", "prezzo": "8,50", "descrizione": "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Varesina", "prezzo": "8,00", "descrizione": "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella", "tags": ["Più venduto", "Specialità", "Novità"], "disponibile": true },
-        { "nome": "Cajello vegano", "prezzo": "8,00", "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione", "tags": ["Vegano"], "disponibile": true }
-    ],
-    "Griglieria": [
-        { "nome": "Picanha", "prezzo": "19,50", "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure", "tags": ["Specialità"], "disponibile": true },
-        { "nome": "Tagliata di manzo", "prezzo": "19,50", "descrizione": "Manzo 250/300gr alla piastra, verdure fresche tagliate o patatine fritte", "disponibile": true }
-    ],
-    "Piatti Speciali": [
-        { "nome": "Piatto classico", "prezzo": "10,00", "descrizione": "Bufala 200gr grigliato, balsamico, salsa pomodorini gialli, patatine", "disponibile": true },
-        { "nome": "Piatto cotoletta", "prezzo": "10,00", "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse", "disponibile": true },
-        { "nome": "Tartare di manzo battuta a coltello", "prezzo": "18,50", "descrizione": "Manzo 250gr, olio, senape, verdure stagione", "tags": ["Specialità", "Più venduto"], "disponibile": true },
-        { "nome": "Carbo-burger", "prezzo": "15,00", "descrizione": "Pane sesamo, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, patatine stick", "tags": ["Novità", "Specialità"], "disponibile": true },
-        { "nome": "Sex on the meat", "prezzo": "16,00", "descrizione": "Pane sesamo, picanha fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, patatine stick", "tags": ["Più venduto", "Novità", "Specialità"], "disponibile": true },
-        { "nome": "Smash Burger", "prezzo": "8,00", "descrizione": "Lattuga fresca, carpaccio pomodoro, cheddar, bacon. Opzioni: 1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€", "tags": ["Novità", "Specialità"], "disponibile": true }
+      {
+        "nome": "Bacon burger",
+        "prezzo": 13,
+        "descrizione": "Fassona 220gr con pancetta stufata, cheddar, salsa pepe nero, patatine",
+        "tags": [
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 0
+      },
+      {
+        "nome": "Hamburger F1",
+        "prezzo": 13,
+        "descrizione": "Fassona 220gr con tomino, speck, salsa rosa, patatine",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 1
+      },
+      {
+        "nome": "Hamburger F2",
+        "prezzo": 12,
+        "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine",
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 2
+      },
+      {
+        "nome": "Hamburger F3",
+        "prezzo": 14,
+        "descrizione": "Fassona 220gr con pancetta stufata, tuorlo, zucchine grigliate, salsa bbq, fontina, patatine",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 3
+      },
+      {
+        "nome": "Hamburger F4",
+        "prezzo": 13,
+        "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 4
+      },
+      {
+        "nome": "Pulled Pork",
+        "prezzo": 14,
+        "descrizione": "Pane hamburger con spalla maiale 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, patatine",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 5
+      },
+      {
+        "nome": "Porchettara",
+        "prezzo": 15,
+        "descrizione": "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine",
+        "tags": [
+          "Specialità",
+          "Novità"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 6
+      },
+      {
+        "nome": "Hamburger Autunnale",
+        "prezzo": 15,
+        "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana, chips zucca, patatine",
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "category": "Hamburger Fassona e Street food",
+        "order": 7
+      }
     ],
     "Piadine": [
-        { "nome": "Cedratese", "prezzo": "8,00", "descrizione": "Romagnola con squaquerone fresco, cotto, rucola", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Gallaratese", "prezzo": "8,00", "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate", "disponibile": true },
-        { "nome": "Ronchi", "prezzo": "9,00", "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate", "tags": ["Più venduto"], "disponibile": true }
+      {
+        "nome": "Cedratese",
+        "prezzo": 8,
+        "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Piadine",
+        "order": 0
+      },
+      {
+        "nome": "Gallaratese",
+        "prezzo": 8,
+        "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
+        "disponibile": true,
+        "category": "Piadine",
+        "order": 1
+      },
+      {
+        "nome": "Ronchi",
+        "prezzo": 9,
+        "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Piadine",
+        "order": 2
+      }
+    ],
+    "Hamburger di bufala": [
+      {
+        "nome": "Hamburger F1 Bufala",
+        "prezzo": 15,
+        "descrizione": "Bufala 220gr con tomino, speck, salsa rosa, patatine fritte",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Hamburger di bufala",
+        "order": 0
+      },
+      {
+        "nome": "Hamburger F2 bufala",
+        "prezzo": 14,
+        "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, patatine fritte",
+        "disponibile": true,
+        "category": "Hamburger di bufala",
+        "order": 1
+      },
+      {
+        "nome": "Hamburger F3 bufala",
+        "prezzo": 16,
+        "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina, patatine",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Hamburger di bufala",
+        "order": 2
+      },
+      {
+        "nome": "Hamburger F4 bufala",
+        "prezzo": 15,
+        "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, patatine",
+        "disponibile": true,
+        "category": "Hamburger di bufala",
+        "order": 3
+      }
+    ],
+    "OKTOBERFEST": [
+      {
+        "nome": "Mezzo polletto grigliato",
+        "prezzo": 15,
+        "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
+        "tags": [
+          "Specialità",
+          "Di stagione"
+        ],
+        "disponibile": true,
+        "category": "OKTOBERFEST",
+        "order": 0
+      },
+      {
+        "nome": "Tris di würstel Brema bavaresi ripieni",
+        "prezzo": 15,
+        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+        "tags": [
+          "Novità",
+          "Specialità",
+          "Di stagione"
+        ],
+        "disponibile": true,
+        "category": "OKTOBERFEST",
+        "order": 1
+      },
+      {
+        "nome": "Stinco di maiale al forno",
+        "prezzo": 16,
+        "descrizione": "Cottura bassa temperatura, patate forno, cavolo viola",
+        "tags": [
+          "Novità",
+          "Di stagione"
+        ],
+        "disponibile": true,
+        "category": "OKTOBERFEST",
+        "order": 2
+      }
+    ],
+    "Piatti Speciali": [
+      {
+        "nome": "Piatto classico",
+        "prezzo": 10,
+        "descrizione": "Bufala 200gr grigliato, balsamico, salsa pomodorini gialli, patatine",
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 0
+      },
+      {
+        "nome": "Piatto cotoletta",
+        "prezzo": 10,
+        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 1
+      },
+      {
+        "nome": "Tartare di manzo battuta a coltello",
+        "prezzo": 18,
+        "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
+        "tags": [
+          "Specialità",
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 2
+      },
+      {
+        "nome": "Carbo-burger",
+        "prezzo": 15,
+        "descrizione": "Pane sesamo, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, patatine stick",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 3
+      },
+      {
+        "nome": "Sex on the meat",
+        "prezzo": 16,
+        "descrizione": "Pane sesamo, picanha fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, patatine stick",
+        "tags": [
+          "Più venduto",
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 4
+      },
+      {
+        "nome": "Smash Burger",
+        "prezzo": 8,
+        "descrizione": "Lattuga fresca, carpaccio pomodoro, cheddar, bacon. Opzioni: 1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Piatti Speciali",
+        "order": 5
+      }
+    ],
+    "Griglieria": [
+      {
+        "nome": "Picanha",
+        "prezzo": 19,
+        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Griglieria",
+        "order": 0
+      },
+      {
+        "nome": "Tagliata di manzo",
+        "prezzo": 19,
+        "descrizione": "Manzo 250/300gr alla piastra, verdure fresche tagliate o patatine fritte",
+        "disponibile": true,
+        "category": "Griglieria",
+        "order": 1
+      }
     ],
     "Fritti": [
-        { "nome": "Rosti di patate e speck", "prezzo": "6,00", "descrizione": "Forma particolare, patate, speck", "disponibile": true },
-        { "nome": "Chili cheese", "prezzo": "6,00", "descrizione": "Crocchette fritte artigianali con formaggio e chili", "tags": ["Piccante", "Più venduto"], "disponibile": true },
-        { "nome": "Crocchette di filetto di pollo", "prezzo": "7,00", "descrizione": "Filetto di pollo fritto artigianale", "disponibile": true },
-        { "nome": "Olive ascolane", "prezzo": "6,00", "descrizione": "Fritte ripiene con carne trita", "disponibile": true },
-        { "nome": "Onion rings", "prezzo": "5,50", "descrizione": "Anelli cipolla fritti", "disponibile": true },
-        { "nome": "Patatine fritte", "prezzo": "5,00", "descrizione": "Rustiche fritte", "disponibile": true },
-        { "nome": "Patatine fritte twist", "prezzo": "6,00", "descrizione": "Rustiche fritte twist", "disponibile": true }
-    ],
-    "Dolci": [
-        { "nome": "Tiramisù al bicchiere", "prezzo": "6,00", "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè", "tags": ["Novità"], "disponibile": true },
-        { "nome": "Piada alla nutella", "prezzo": "5,00", "descrizione": "Romagnola con nutella, zucchero velo, panna montata, topino", "disponibile": true },
-        { "nome": "Salame al cioccolato", "prezzo": "6,00", "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata", "tags": ["Più venduto", "Specialità"], "disponibile": true },
-        { "nome": "Tortino con cuore morbido al cioccolato", "prezzo": "6,00", "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata", "tags": ["Più venduto"], "disponibile": true },
-        { "nome": "Strudel di mele", "prezzo": "6,00", "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping", "tags": ["Specialità"], "disponibile": true },
-        { "nome": "Salame al cioccolato bianco", "prezzo": "6,00", "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata", "disponibile": true }
+      {
+        "nome": "Rosti di patate e speck",
+        "prezzo": 6,
+        "descrizione": "Forma particolare, patate, speck",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 0
+      },
+      {
+        "nome": "Chili cheese",
+        "prezzo": 6,
+        "descrizione": "Crocchette fritte artigianali con formaggio e chili",
+        "tags": [
+          "Piccante",
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 1
+      },
+      {
+        "nome": "Crocchette di filetto di pollo",
+        "prezzo": 7,
+        "descrizione": "Filetto di pollo fritto artigianale",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 2
+      },
+      {
+        "nome": "Olive ascolane",
+        "prezzo": 6,
+        "descrizione": "Fritte ripiene con carne trita",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 3
+      },
+      {
+        "nome": "Onion rings",
+        "prezzo": 5,
+        "descrizione": "Anelli cipolla fritti",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 4
+      },
+      {
+        "nome": "Patatine fritte",
+        "prezzo": 5,
+        "descrizione": "Rustiche fritte",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 5
+      },
+      {
+        "nome": "Patatine fritte twist",
+        "prezzo": 6,
+        "descrizione": "Rustiche fritte twist",
+        "disponibile": true,
+        "category": "Fritti",
+        "order": 6
+      }
     ],
     "Aperitivo": [
-        { "nome": "Tagliere aperitivo", "prezzo": "10,00", "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie", "disponibile": true },
-        { "nome": "Tagliere affettati e formaggi", "prezzo": "20,00", "descrizione": "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30", "tags": ["Di stagione"], "disponibile": true }
+      {
+        "nome": "Tagliere aperitivo",
+        "prezzo": 10,
+        "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
+        "disponibile": true,
+        "category": "Aperitivo",
+        "order": 0
+      },
+      {
+        "nome": "Tagliere affettati e formaggi",
+        "prezzo": 20,
+        "descrizione": "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30",
+        "tags": [
+          "Di stagione"
+        ],
+        "disponibile": true,
+        "category": "Aperitivo",
+        "order": 1
+      }
+    ],
+    "Dolci": [
+      {
+        "nome": "Tiramisù al bicchiere",
+        "prezzo": 6,
+        "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 0
+      },
+      {
+        "nome": "Piada alla nutella",
+        "prezzo": 5,
+        "descrizione": "Romagnola con nutella, zucchero velo, panna montata, topino",
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 1
+      },
+      {
+        "nome": "Salame al cioccolato",
+        "prezzo": 6,
+        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+        "tags": [
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 2
+      },
+      {
+        "nome": "Tortino con cuore morbido al cioccolato",
+        "prezzo": 6,
+        "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 3
+      },
+      {
+        "nome": "Strudel di mele",
+        "prezzo": 6,
+        "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 4
+      },
+      {
+        "nome": "Salame al cioccolato bianco",
+        "prezzo": 6,
+        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+        "disponibile": true,
+        "category": "Dolci",
+        "order": 5
+      }
     ]
   }
 }
-

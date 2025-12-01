@@ -12,7 +12,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://arconti31.it/">
+    <meta property="og:url" content="https://arconti31.com/">
     <meta property="og:title" content="Arconti 31 - Il Miglior Pub a Gallarate">
     <meta property="og:description" content="Non il solito pub. Un'esperienza di gusto e atmosfera unica a Gallarate.">
     <meta property="og:image" content="images/loghi/sfondo-homepage-arconti31.png">
@@ -193,9 +193,10 @@
         /* --- SPECTACULAR BUTTONS --- */
         .cta-container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 2rem;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .btn {
@@ -203,7 +204,7 @@
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-radius: 0; /* Sharp elegant edges */
+            border-radius: 50px; /* Rounded */
             font-weight: 600;
             cursor: pointer;
             transition: all 0.4s var(--transition);
@@ -256,6 +257,47 @@
             color: var(--accent);
             background: rgba(0,0,0,0.5);
             transform: translateY(-3px);
+        }
+
+        /* --- GoLocal Button (Glassmorphism) --- */
+        .btn-golocal {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-radius: 50px;
+        }
+
+        .btn-golocal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .golocal-icon {
+            height: 24px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .golocal-subtext {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-align: center;
+            max-width: 240px;
+            animation: fadeUp 1s ease forwards 0.5s;
+            opacity: 0;
+            transform: translateY(10px);
         }
 
         /* --- WEB NOVIS LINK (Home Specific) --- */
@@ -476,6 +518,15 @@
                 <a href="menu.html" class="btn btn-primary">
                     Scopri il Menù
                 </a>
+
+                <!-- GoLocal Section -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <a href="#" class="btn btn-golocal">
+                        <img src="images/loghi/golocal-logo.png" alt="GoLocal" class="golocal-icon">
+                        Visitaci su GoLocal
+                    </a>
+                    <span class="golocal-subtext">prossimamente su GoLocal, rimanete aggiornati!</span>
+                </div>
             </div>
         </div>
     </header>
