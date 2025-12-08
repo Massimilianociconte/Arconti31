@@ -94,8 +94,9 @@
 
         /* --- CINEMATIC HERO SECTION --- */
         .hero {
-            height: 100vh; /* Fullscreen experience */
             min-height: 600px;
+            min-height: 100vh; /* Copre almeno l'area visibile */
+            height: auto; /* Si estende se il contenuto richiede più spazio (es. iPad) */
             position: relative;
             display: flex;
             flex-direction: column;
@@ -104,7 +105,13 @@
             overflow: hidden;
             text-align: center;
             /* Aumentato padding-top per evitare che la navbar copra il contenuto su desktop */
-            padding: 100px 20px 0 20px; 
+            padding: 100px 20px 80px 20px; /* Extra spazio in basso per ombre/golocal */
+        }
+
+        @supports (height: 100svh) {
+            .hero {
+                min-height: 100svh; /* Gestisce correttamente la viewport su Safari/iPad */
+            }
         }
 
         .hero-bg {
