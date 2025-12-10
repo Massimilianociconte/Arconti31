@@ -346,20 +346,21 @@ function toast(message, type = 'info') {
 
 
 // ========================================
-// DATA LOADING
+// DATA LOADING (via Netlify Function to avoid rate limits)
 // ========================================
 
 async function loadCategories() {
   try {
-    const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/categorie`;
-    const res = await fetch(url);
+    const res = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: 'categorie' })
+    });
+    
     if (!res.ok) { state.categories = []; return; }
-    const files = await res.json();
-    const mdFiles = files.filter(f => f.name.endsWith('.md'));
-    const categories = await Promise.all(mdFiles.map(async file => {
-      const content = await (await fetch(file.download_url)).text();
-      return parseMarkdown(content, file.name, file.sha);
-    }));
+    
+    const data = await res.json();
+    const categories = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
     state.categories = categories.filter(c => c.visibile !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
   } catch (e) {
     console.error('Error loading categories:', e);
@@ -371,15 +372,16 @@ async function loadItems(collectionName) {
   showLoading();
   const collection = COLLECTIONS[collectionName];
   try {
-    const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
-    const res = await fetch(url);
+    const res = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: collection.folder })
+    });
+    
     if (!res.ok) throw new Error('Errore caricamento');
-    const files = await res.json();
-    const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
-    const items = await Promise.all(mdFiles.map(async file => {
-      const content = await (await fetch(file.download_url)).text();
-      return parseMarkdown(content, file.name, file.sha);
-    }));
+    
+    const data = await res.json();
+    const items = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
     renderItems();
   } catch (e) {
