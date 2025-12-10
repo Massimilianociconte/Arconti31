@@ -125,12 +125,15 @@ Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratui
 1. Vai su [Netlify Dashboard](https://app.netlify.com)
 2. Seleziona **Arconti31**
 3. **Site configuration** → **Environment variables**
-4. Aggiungi/modifica:
+4. Aggiungi queste 3 variabili:
 
 | Nome | Valore |
 |------|--------|
 | `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name (es: `ducwsodfw`) |
-| `CLOUDINARY_UPLOAD_PRESET` | `arconti31_unsigned` |
+| `CLOUDINARY_API_KEY` | La tua API Key (es: `184436174763774`) |
+| `CLOUDINARY_API_SECRET` | Il tuo API Secret |
+
+> ⚠️ L'API Secret è sicuro perché resta sul server Netlify, non viene mai esposto al browser.
 
 5. Clicca **Save**
 

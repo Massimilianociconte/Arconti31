@@ -700,43 +700,49 @@ async function handleImageUpload(e, fieldName) {
   const urlInput = form.querySelector(`[name="${fieldName}_url"]`);
   const removeBtn = container.querySelector('.image-remove-btn');
   
-  // Show local preview
-  const reader = new FileReader();
-  reader.onload = (evt) => {
-    preview.innerHTML = `<img src="${evt.target.result}" alt="Preview" class="image-preview-img">`;
-    removeBtn.style.display = 'inline-flex';
-  };
-  reader.readAsDataURL(file);
+  // Show loading
+  preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
   
-  // Try Cloudinary upload if configured
-  if (state.cloudinaryConfigured && CONFIG.cloudinary.cloudName && CONFIG.cloudinary.uploadPreset) {
+  // Convert file to base64
+  const reader = new FileReader();
+  reader.onload = async (evt) => {
+    const base64Data = evt.target.result;
+    
+    // Show preview immediately
+    preview.innerHTML = `<img src="${base64Data}" alt="Preview" class="image-preview-img">`;
+    removeBtn.style.display = 'inline-flex';
+    
+    // Try upload via Netlify Function (signed upload)
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CONFIG.cloudinary.uploadPreset);
-      
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`, {
+      const res = await fetch('/.netlify/functions/upload-image', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: state.token,
+          file: base64Data
+        })
       });
       
       const responseData = await res.json();
       
-      if (res.ok && responseData.secure_url) {
-        const imageUrl = responseData.secure_url;
+      if (res.ok && responseData.url) {
+        const imageUrl = responseData.url;
         input.value = imageUrl;
         if (urlInput) urlInput.value = imageUrl;
         preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
-        toast('✅ Immagine caricata su Cloudinary!', 'success');
+        toast('✅ Immagine caricata!', 'success');
         return;
+      } else {
+        // Show error but keep preview
+        console.error('Upload error:', responseData.error);
+        toast(`⚠️ ${responseData.error || 'Errore upload'}. Usa URL manuale.`, 'error');
       }
     } catch (err) {
-      console.log('Cloudinary upload failed, using local preview');
+      console.error('Upload failed:', err);
+      toast('⚠️ Upload fallito. Incolla URL manuale.', 'error');
     }
-  }
-  
-  // Fallback: show message to paste URL
-  toast('📋 Incolla URL immagine nel campo sotto', 'info');
+  };
+  reader.readAsDataURL(file);
 }
 
 function escapeHtml(text) {
