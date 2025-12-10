@@ -214,34 +214,32 @@ function generateMarkdown(data) {
 
 // Password comparison is now done directly (no hashing needed)
 
-function githubRequest(method, path, body, token) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      hostname: 'api.github.com',
-      path: path,
-      method: method,
-      headers: {
-        'Authorization': `token ${token}`,
-        'User-Agent': 'Arconti31-CMS',
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(data ? JSON.parse(data) : {});
-        } else {
-          reject(new Error(`GitHub API error: ${res.statusCode} - ${data}`));
-        }
-      });
-    });
-
-    req.on('error', reject);
-    if (body) req.write(JSON.stringify(body));
-    req.end();
-  });
+async function githubRequest(method, path, body, token) {
+  const url = `https://api.github.com${path}`;
+  
+  const options = {
+    method: method,
+    headers: {
+      'Authorization': `token ${token}`,
+      'User-Agent': 'Arconti31-CMS',
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  };
+  
+  // For DELETE and other methods that need a body
+  if (body) {
+    options.body = JSON.stringify(body);
+  }
+  
+  console.log(`GitHub ${method} ${path}`, body ? JSON.stringify(body) : 'no body');
+  
+  const response = await fetch(url, options);
+  const data = await response.text();
+  
+  if (response.ok) {
+    return data ? JSON.parse(data) : {};
+  } else {
+    throw new Error(`GitHub API error: ${response.status} - ${data}`);
+  }
 }
