@@ -1,10 +1,10 @@
 ---
 nome: "Bianchi fermi"
-slug: bianchi-fermi
-tipo_menu: beverage
+slug: "bianchi-fermi"
+tipo_menu: "beverage"
 icona: "🍷"
 immagine: "images/minicard sezioni/bianchi-fermi.png"
-descrizione: Vini bianchi fermi
-visibile: true
+descrizione: "Vini bianchi fermi"
+visibile: false
 order: 31
 ---
