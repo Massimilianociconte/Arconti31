@@ -4,6 +4,8 @@
 
 Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify.
 
+> **NOTA**: Il menù digitale si aggiorna automaticamente quando salvi dal CMS! Non serve più rigenerare JSON o fare redeploy.
+
 ---
 
 ## Passo 1: Crea un Token GitHub (CLASSIC)
@@ -75,3 +77,35 @@ Dopo aver salvato le variabili:
 - **Password CMS**: `arconti31admin`
 - **Repository**: `Massimilianociconte/Arconti31`
 - **Branch**: `main`
+
+---
+
+## (Opzionale) Upload Immagini con Cloudinary
+
+Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratuito fino a 25GB):
+
+### 1. Crea account Cloudinary
+1. Vai su https://cloudinary.com e registrati (gratuito)
+2. Dalla Dashboard, copia il **Cloud Name**
+
+### 2. Crea Upload Preset
+1. Vai su Settings → Upload → Upload presets
+2. Clicca "Add upload preset"
+3. Imposta:
+   - **Preset name**: `arconti31_unsigned`
+   - **Signing Mode**: `Unsigned`
+   - **Folder**: `arconti31`
+4. Salva
+
+### 3. Aggiungi variabili su Netlify
+Aggiungi queste variabili d'ambiente:
+
+| Nome | Valore |
+|------|--------|
+| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name (es: `dxxxxxx`) |
+| `CLOUDINARY_UPLOAD_PRESET` | `arconti31_unsigned` |
+
+### 4. Redeploy
+Fai un nuovo deploy su Netlify.
+
+**Senza Cloudinary**: Puoi comunque inserire URL di immagini già online (es: da Google Drive, Imgur, ecc.)

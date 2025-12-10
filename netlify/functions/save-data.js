@@ -9,8 +9,20 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // Verifica password
-  const { password, action, collection, filename, data, sha } = JSON.parse(event.body);
+  const body = JSON.parse(event.body);
+  const { password, action, collection, filename, data, sha } = body;
+  
+  // Return Cloudinary config (no auth needed)
+  if (action === 'get-cloudinary-config') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
+        uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || ''
+      })
+    };
+  }
   
   // Password in chiaro (semplice ma efficace per questo uso)
   // Puoi cambiarla nelle variabili d'ambiente Netlify

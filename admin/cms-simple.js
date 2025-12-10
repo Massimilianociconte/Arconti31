@@ -1,12 +1,18 @@
 /* ========================================
-   ARCONTI31 CMS - VERSIONE SEMPLIFICATA
-   Autenticazione con password locale
+   ARCONTI31 CMS - CON UPLOAD IMMAGINI
+   Sincronizzazione diretta con GitHub
+   Upload immagini via Cloudinary
    ======================================== */
 
 const CONFIG = {
   owner: 'Massimilianociconte',
   repo: 'Arconti31',
-  branch: 'main'
+  branch: 'main',
+  // Cloudinary config - GRATUITO fino a 25GB
+  cloudinary: {
+    cloudName: '', // Da configurare
+    uploadPreset: '' // Da configurare
+  }
 };
 
 const DEFAULT_FOOD_CATEGORIES = [
@@ -24,7 +30,8 @@ const COLLECTIONS = {
       { name: 'category', label: 'Categoria', type: 'dynamic-select', categoryType: 'food' },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
-      { name: 'immagine', label: 'Immagine', type: 'text', hint: 'Percorso immagine' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image', hint: 'Immagine grande del piatto' },
+      { name: 'immagine_avatar', label: 'Immagine Avatar', type: 'image', hint: 'Icona piccola (opzionale)' },
       { name: 'allergeni', label: 'Allergeni', type: 'tags', options: ['Glutine', 'Lattosio', 'Uova', 'Frutta a Guscio', 'Pesce', 'Soia'] },
       { name: 'tags', label: 'Tag Speciali', type: 'tags', options: ['Novità', 'Vegetariano', 'Vegano', 'Piccante', 'Più venduto', 'Specialità'] },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
@@ -39,6 +46,8 @@ const COLLECTIONS = {
       { name: 'sezione', label: 'Sezione', type: 'select', options: ['Birre artigianali alla spina a rotazione', 'Birre alla spina', 'Birre speciali in bottiglia', 'Frigo Birre'] },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
+      { name: 'immagine_avatar', label: 'Logo/Avatar', type: 'image' },
       { name: 'formato', label: 'Formato', type: 'text', hint: 'Es: 50cl' },
       { name: 'gradazione', label: 'Gradazione (%)', type: 'text' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
@@ -52,6 +61,8 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
+      { name: 'immagine_avatar', label: 'Avatar', type: 'image' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
@@ -63,6 +74,8 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
+      { name: 'immagine_avatar', label: 'Avatar', type: 'image' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
@@ -74,6 +87,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
@@ -85,6 +99,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
@@ -96,6 +111,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine', type: 'image' },
       { name: 'formato', label: 'Formato', type: 'text' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
@@ -108,6 +124,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine', type: 'image' },
       { name: 'formato', label: 'Formato', type: 'text' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
@@ -120,6 +137,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome', type: 'text', required: true },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+      { name: 'immagine_copertina', label: 'Immagine', type: 'image' },
       { name: 'formato', label: 'Formato', type: 'text' },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
@@ -133,13 +151,14 @@ const COLLECTIONS = {
       { name: 'slug', label: 'Slug', type: 'text', required: true, hint: 'ID univoco', autoSlug: true },
       { name: 'tipo_menu', label: 'Tipo Menù', type: 'select', options: ['food', 'beverage'], required: true },
       { name: 'icona', label: 'Icona', type: 'text', hint: 'Es: 🍔 🍺' },
-      { name: 'immagine', label: 'Immagine Sfondo', type: 'text', hint: 'Es: images/minicard sezioni/nome.jpg' },
+      { name: 'immagine', label: 'Immagine Sfondo', type: 'image', hint: 'Sfondo della card categoria' },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
       { name: 'visibile', label: 'Visibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
   }
 };
+
 
 // State
 let state = {
@@ -149,7 +168,8 @@ let state = {
   items: [],
   categories: [],
   currentItem: null,
-  isNew: false
+  isNew: false,
+  cloudinaryConfigured: false
 };
 
 // DOM helpers
@@ -160,9 +180,9 @@ const $$ = sel => document.querySelectorAll(sel);
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+  checkCloudinaryConfig();
   setupEventListeners();
   
-  // Auto-login se password salvata
   if (state.password) {
     state.isLoggedIn = true;
     showMainApp();
@@ -170,11 +190,28 @@ function init() {
   }
 }
 
+async function checkCloudinaryConfig() {
+  try {
+    const res = await fetch('/.netlify/functions/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'get-cloudinary-config' })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.cloudName && data.uploadPreset) {
+        CONFIG.cloudinary.cloudName = data.cloudName;
+        CONFIG.cloudinary.uploadPreset = data.uploadPreset;
+        state.cloudinaryConfigured = true;
+      }
+    }
+  } catch (e) {
+    console.log('Cloudinary not configured, using URL input');
+  }
+}
+
 function setupEventListeners() {
-  // Login
   $('#login-form').addEventListener('submit', handleLogin);
-  
-  // Sidebar
   $('#menu-toggle').addEventListener('click', toggleSidebar);
   $$('.nav-item').forEach(item => {
     item.addEventListener('click', e => {
@@ -183,8 +220,6 @@ function setupEventListeners() {
       closeSidebar();
     });
   });
-  
-  // Actions
   $('#add-new-btn').addEventListener('click', createNew);
   $('#back-btn').addEventListener('click', showListView);
   $('#save-btn').addEventListener('click', saveItem);
@@ -193,12 +228,11 @@ function setupEventListeners() {
     loadCategories().then(() => loadItems(state.currentCollection));
   });
   $('#logout-btn').addEventListener('click', logout);
-  
-  // Filters
   $('#search-input').addEventListener('input', filterItems);
   $('#filter-category').addEventListener('change', filterItems);
   $('#filter-status').addEventListener('change', filterItems);
 }
+
 
 // ========================================
 // AUTH
@@ -207,16 +241,10 @@ function setupEventListeners() {
 function handleLogin(e) {
   e.preventDefault();
   const password = $('#password-input').value;
-  
-  if (!password) {
-    toast('Inserisci la password', 'error');
-    return;
-  }
-  
+  if (!password) { toast('Inserisci la password', 'error'); return; }
   state.password = password;
   sessionStorage.setItem('cms_password', password);
   state.isLoggedIn = true;
-  
   showMainApp();
   loadCategories().then(() => loadItems(state.currentCollection));
 }
@@ -227,7 +255,6 @@ function logout() {
   sessionStorage.removeItem('cms_password');
   showLoginScreen();
 }
-
 
 // ========================================
 // UI
@@ -271,13 +298,8 @@ function closeSidebar() {
   if (overlay) overlay.classList.remove('active');
 }
 
-function showLoading() {
-  $('#loading-overlay').classList.add('active');
-}
-
-function hideLoading() {
-  $('#loading-overlay').classList.remove('active');
-}
+function showLoading() { $('#loading-overlay').classList.add('active'); }
+function hideLoading() { $('#loading-overlay').classList.remove('active'); }
 
 function toast(message, type = 'info') {
   const container = $('#toast-container');
@@ -288,28 +310,22 @@ function toast(message, type = 'info') {
   setTimeout(() => t.remove(), 3000);
 }
 
+
 // ========================================
-// DATA LOADING (GitHub API - no auth needed for public repos)
+// DATA LOADING
 // ========================================
 
 async function loadCategories() {
   try {
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/categorie`;
     const res = await fetch(url);
-    
-    if (!res.ok) {
-      state.categories = [];
-      return;
-    }
-    
+    if (!res.ok) { state.categories = []; return; }
     const files = await res.json();
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
-    
     const categories = await Promise.all(mdFiles.map(async file => {
       const content = await (await fetch(file.download_url)).text();
       return parseMarkdown(content, file.name, file.sha);
     }));
-    
     state.categories = categories.filter(c => c.visibile !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
   } catch (e) {
     console.error('Error loading categories:', e);
@@ -320,21 +336,16 @@ async function loadCategories() {
 async function loadItems(collectionName) {
   showLoading();
   const collection = COLLECTIONS[collectionName];
-  
   try {
     const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
     const res = await fetch(url);
-    
     if (!res.ok) throw new Error('Errore caricamento');
-    
     const files = await res.json();
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
-    
     const items = await Promise.all(mdFiles.map(async file => {
       const content = await (await fetch(file.download_url)).text();
       return parseMarkdown(content, file.name, file.sha);
     }));
-    
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
     renderItems();
   } catch (e) {
@@ -348,28 +359,19 @@ async function loadItems(collectionName) {
 function parseMarkdown(content, filename, sha) {
   const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return { filename, sha };
-  
   const data = { filename, sha };
-  let currentKey = null;
-  let inArray = false;
-  let arrayValues = [];
-  
+  let currentKey = null, inArray = false, arrayValues = [];
   match[1].split('\n').forEach(line => {
     line = line.replace(/\r$/, '');
     if (line.startsWith('  - ')) {
       arrayValues.push(line.replace('  - ', '').replace(/"/g, '').trim());
     } else if (line.includes(':')) {
-      if (currentKey && inArray) {
-        data[currentKey] = arrayValues;
-        arrayValues = [];
-        inArray = false;
-      }
+      if (currentKey && inArray) { data[currentKey] = arrayValues; arrayValues = []; inArray = false; }
       const [key, ...rest] = line.split(':');
       const value = rest.join(':').trim();
       currentKey = key.trim();
-      if (value === '') {
-        inArray = true;
-      } else {
+      if (value === '') { inArray = true; }
+      else {
         let parsed = value.replace(/^["']|["']$/g, '');
         if (parsed === 'true') parsed = true;
         else if (parsed === 'false') parsed = false;
@@ -378,10 +380,10 @@ function parseMarkdown(content, filename, sha) {
       }
     }
   });
-  
   if (currentKey && inArray) data[currentKey] = arrayValues;
   return data;
 }
+
 
 // ========================================
 // COLLECTION & RENDERING
@@ -399,10 +401,8 @@ function selectCollection(name) {
 function updateCategoryFilter(name) {
   const select = $('#filter-category');
   select.innerHTML = '<option value="">Tutte</option>';
-  
   const collection = COLLECTIONS[name];
   const field = collection.fields.find(f => f.type === 'dynamic-select' || f.name === 'category' || f.name === 'sezione');
-  
   if (field) {
     const options = field.type === 'dynamic-select' ? getCategoriesForType(field.categoryType) : field.options;
     if (options) options.forEach(opt => select.innerHTML += `<option value="${opt}">${opt}</option>`);
@@ -418,63 +418,55 @@ function getCategoriesForType(type) {
 function renderItems() {
   const list = $('#items-list');
   const items = getFilteredItems();
-  
   if (!items.length) {
     list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca "Nuovo" per aggiungere</p></div>';
     return;
   }
-  
   const collection = COLLECTIONS[state.currentCollection];
-  
   if (collection.groupByCategory && state.currentCollection === 'food') {
     renderGroupedItems(items);
   } else {
     list.innerHTML = items.map(renderItemCard).join('');
   }
-  
   $$('.item-card').forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
 }
 
 function renderGroupedItems(items) {
   const list = $('#items-list');
   const grouped = {};
-  
   items.forEach(item => {
     const cat = item.category || 'Altro';
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(item);
   });
-  
   let html = '';
   Object.keys(grouped).sort().forEach(cat => {
     const catData = state.categories.find(c => c.nome === cat);
-    html += `
-      <div class="category-group">
-        <div class="category-header">
-          <span class="category-icon">${catData?.icona || '📦'}</span>
-          <span class="category-name">${cat}</span>
-          <span class="category-count">${grouped[cat].length}</span>
-        </div>
-        <div class="category-items">${grouped[cat].map(renderItemCard).join('')}</div>
+    html += `<div class="category-group">
+      <div class="category-header">
+        <span class="category-icon">${catData?.icona || '📦'}</span>
+        <span class="category-name">${cat}</span>
+        <span class="category-count">${grouped[cat].length}</span>
       </div>
-    `;
+      <div class="category-items">${grouped[cat].map(renderItemCard).join('')}</div>
+    </div>`;
   });
-  
   list.innerHTML = html;
 }
 
 function renderItemCard(item) {
-  return `
-    <div class="item-card ${item.disponibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
-      <div class="item-info">
-        <div class="item-name">${item.nome || 'Senza nome'}</div>
-        <div class="item-meta">
-          <span class="item-price">€${item.prezzo || '0'}</span>
-          <span class="status-dot ${item.disponibile !== false ? 'available' : 'unavailable'}"></span>
-        </div>
+  const thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
+  const thumbHtml = thumb ? `<img src="${thumb}" class="item-thumb" alt="">` : '<div class="item-thumb-placeholder">📷</div>';
+  return `<div class="item-card ${item.disponibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
+    ${thumbHtml}
+    <div class="item-info">
+      <div class="item-name">${item.nome || 'Senza nome'}</div>
+      <div class="item-meta">
+        <span class="item-price">€${item.prezzo || '0'}</span>
+        <span class="status-dot ${item.disponibile !== false ? 'available' : 'unavailable'}"></span>
       </div>
     </div>
-  `;
+  </div>`;
 }
 
 function getFilteredItems() {
@@ -482,11 +474,9 @@ function getFilteredItems() {
   const search = $('#search-input').value.toLowerCase();
   const category = $('#filter-category').value;
   const status = $('#filter-status').value;
-  
   if (search) items = items.filter(i => (i.nome || '').toLowerCase().includes(search));
   if (category) items = items.filter(i => i.category === category || i.sezione === category);
   if (status !== '') items = items.filter(i => (i.disponibile !== false) === (status === 'true'));
-  
   return items;
 }
 
@@ -582,11 +572,14 @@ function renderEditForm(data) {
           </div>
         </div>`;
         
+      case 'image':
+        return renderImageField(field, value);
+        
       default: return '';
     }
   }).join('');
   
-  // Tag click handlers
+  // Event handlers
   $$('.tag-option').forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
   
   // Auto-slug
@@ -595,6 +588,108 @@ function renderEditForm(data) {
   if (nomeInput && slugInput && state.isNew) {
     nomeInput.addEventListener('input', () => slugInput.value = slugify(nomeInput.value));
   }
+  
+  // Image upload handlers
+  $$('.image-upload-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fieldName = btn.dataset.field;
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (e) => handleImageUpload(e, fieldName);
+      input.click();
+    });
+  });
+  
+  // Image remove handlers
+  $$('.image-remove-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fieldName = btn.dataset.field;
+      const container = form.querySelector(`[data-image-field="${fieldName}"]`);
+      const input = form.querySelector(`[name="${fieldName}"]`);
+      input.value = '';
+      container.querySelector('.image-preview').innerHTML = '<div class="image-placeholder">📷 Nessuna immagine</div>';
+      container.querySelector('.image-remove-btn').style.display = 'none';
+    });
+  });
+}
+
+
+function renderImageField(field, value) {
+  const hasImage = value && value.length > 0;
+  const previewHtml = hasImage 
+    ? `<img src="${value}" alt="Preview" class="image-preview-img">`
+    : '<div class="image-placeholder">📷 Nessuna immagine</div>';
+  
+  return `<div class="form-group">
+    <label class="form-label">${field.label}</label>
+    <div class="image-field" data-image-field="${field.name}">
+      <div class="image-preview">${previewHtml}</div>
+      <div class="image-actions">
+        <button type="button" class="btn btn-small image-upload-btn" data-field="${field.name}">
+          📤 ${state.cloudinaryConfigured ? 'Carica' : 'Scegli'} Immagine
+        </button>
+        <button type="button" class="btn btn-small btn-ghost image-remove-btn" data-field="${field.name}" style="display: ${hasImage ? 'inline-flex' : 'none'}">
+          🗑️ Rimuovi
+        </button>
+      </div>
+      <input type="hidden" name="${field.name}" value="${escapeHtml(value || '')}">
+      ${!state.cloudinaryConfigured ? `<input type="text" name="${field.name}_url" class="form-input image-url-input" placeholder="Oppure incolla URL immagine" value="${escapeHtml(value || '')}" style="margin-top: 8px;">` : ''}
+    </div>
+    ${field.hint ? `<div class="form-hint">${field.hint}</div>` : ''}
+  </div>`;
+}
+
+async function handleImageUpload(e, fieldName) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const form = $('#edit-form');
+  const container = form.querySelector(`[data-image-field="${fieldName}"]`);
+  const preview = container.querySelector('.image-preview');
+  const input = form.querySelector(`[name="${fieldName}"]`);
+  const removeBtn = container.querySelector('.image-remove-btn');
+  
+  // Show loading
+  preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
+  
+  if (state.cloudinaryConfigured) {
+    // Upload to Cloudinary
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', CONFIG.cloudinary.uploadPreset);
+      formData.append('folder', 'arconti31');
+      
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`, {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (!res.ok) throw new Error('Upload failed');
+      
+      const data = await res.json();
+      const imageUrl = data.secure_url;
+      
+      input.value = imageUrl;
+      preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
+      removeBtn.style.display = 'inline-flex';
+      toast('Immagine caricata!', 'success');
+    } catch (err) {
+      console.error('Upload error:', err);
+      preview.innerHTML = '<div class="image-placeholder">❌ Errore upload</div>';
+      toast('Errore nel caricamento', 'error');
+    }
+  } else {
+    // Local preview only - user needs to provide URL
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview-img">`;
+      removeBtn.style.display = 'inline-flex';
+      toast('Anteprima locale. Inserisci URL immagine nel campo sotto.', 'info');
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
 function escapeHtml(text) {
@@ -602,8 +697,9 @@ function escapeHtml(text) {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+
 // ========================================
-// SAVE & DELETE (via Netlify Function)
+// SAVE & DELETE
 // ========================================
 
 async function saveItem() {
@@ -620,6 +716,11 @@ async function saveItem() {
       data[field.name] = [...container.querySelectorAll('.tag-option.selected')].map(el => el.dataset.value);
     } else if (field.type === 'number') {
       data[field.name] = parseInt(formData.get(field.name)) || 0;
+    } else if (field.type === 'image') {
+      // Check URL input first (fallback), then hidden input
+      const urlInput = form.querySelector(`[name="${field.name}_url"]`);
+      const hiddenInput = form.querySelector(`[name="${field.name}"]`);
+      data[field.name] = (urlInput && urlInput.value) || (hiddenInput && hiddenInput.value) || '';
     } else {
       data[field.name] = formData.get(field.name) || '';
     }
@@ -651,12 +752,9 @@ async function saveItem() {
     });
     
     const result = await res.json();
+    if (!res.ok) throw new Error(result.error || 'Errore salvataggio');
     
-    if (!res.ok) {
-      throw new Error(result.error || 'Errore salvataggio');
-    }
-    
-    toast('Salvato!', 'success');
+    toast('Salvato! Il menù si aggiornerà automaticamente.', 'success');
     
     if (state.currentCollection === 'categorie') await loadCategories();
     await loadItems(state.currentCollection);
@@ -677,7 +775,6 @@ async function deleteItem() {
   
   try {
     const collection = COLLECTIONS[state.currentCollection];
-    
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -691,10 +788,7 @@ async function deleteItem() {
     });
     
     const result = await res.json();
-    
-    if (!res.ok) {
-      throw new Error(result.error || 'Errore eliminazione');
-    }
+    if (!res.ok) throw new Error(result.error || 'Errore eliminazione');
     
     toast('Eliminato!', 'success');
     
