@@ -45,17 +45,22 @@ exports.handler = async (event, context) => {
     const timestamp = Math.round(Date.now() / 1000);
     const folder = 'arconti31';
     
-    // Create signature string
+    // Create signature string (parameters must be in alphabetical order)
     const signatureString = `folder=${folder}&timestamp=${timestamp}${apiSecret}`;
     const signature = crypto.createHash('sha1').update(signatureString).digest('hex');
 
-    // Upload to Cloudinary
-    const formData = new URLSearchParams();
-    formData.append('file', file);
-    formData.append('api_key', apiKey);
-    formData.append('timestamp', timestamp);
-    formData.append('signature', signature);
-    formData.append('folder', folder);
+    // Upload to Cloudinary using multipart form
+    const boundary = '----CloudinaryBoundary' + Date.now();
+    
+    const parts = [];
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="file"\r\n\r\n${file}\r\n`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="api_key"\r\n\r\n${apiKey}\r\n`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="timestamp"\r\n\r\n${timestamp}\r\n`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="signature"\r\n\r\n${signature}\r\n`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="folder"\r\n\r\n${folder}\r\n`);
+    parts.push(`--${boundary}--\r\n`);
+    
+    const body = parts.join('');
 
     const response = await new Promise((resolve, reject) => {
       const req = https.request({
@@ -63,8 +68,8 @@ exports.handler = async (event, context) => {
         path: `/v1_1/${cloudName}/image/upload`,
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(formData.toString())
+          'Content-Type': `multipart/form-data; boundary=${boundary}`,
+          'Content-Length': Buffer.byteLength(body)
         }
       }, (res) => {
         let data = '';
@@ -73,13 +78,13 @@ exports.handler = async (event, context) => {
           try {
             resolve({ statusCode: res.statusCode, body: JSON.parse(data) });
           } catch (e) {
-            resolve({ statusCode: res.statusCode, body: data });
+            resolve({ statusCode: res.statusCode, body: { error: { message: data } } });
           }
         });
       });
 
       req.on('error', reject);
-      req.write(formData.toString());
+      req.write(body);
       req.end();
     });
 
