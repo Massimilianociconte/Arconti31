@@ -407,10 +407,60 @@ function toast(message, type = 'info') {
 
 
 // ========================================
-// DATA LOADING (via Netlify Function to avoid rate limits)
+// DATA LOADING - Prima prova JSON statici, poi fallback a GitHub API
+// Questo evita il rate limit di GitHub per la lettura
 // ========================================
 
+// Mappa collezioni -> file JSON
+const JSON_FILES = {
+  food: '../food/food.json',
+  beers: '../beers/beers.json',
+  categorie: '../categorie/categorie.json',
+  cocktails: '../cocktails/cocktails.json',
+  analcolici: '../analcolici/analcolici.json',
+  bibite: '../bibite/bibite.json',
+  caffetteria: '../caffetteria/caffetteria.json',
+  bollicine: '../bollicine/bollicine.json',
+  'bianchi-fermi': '../bianchi-fermi/bianchi-fermi.json',
+  'vini-rossi': '../vini-rossi/vini-rossi.json'
+};
+
+// Mappa JSON key per ogni collezione
+const JSON_KEYS = {
+  food: 'food',
+  beers: 'beers',
+  categorie: 'categories',
+  cocktails: 'cocktails',
+  analcolici: 'analcolici',
+  bibite: 'bibite',
+  caffetteria: 'caffetteria',
+  bollicine: 'bollicine',
+  'bianchi-fermi': 'bianchi-fermi',
+  'vini-rossi': 'vini-rossi'
+};
+
 async function loadCategories() {
+  try {
+    // Prima prova a caricare dal JSON statico (no rate limit)
+    const jsonUrl = JSON_FILES.categorie + '?t=' + Date.now(); // cache bust
+    const jsonRes = await fetch(jsonUrl);
+    
+    if (jsonRes.ok) {
+      const data = await jsonRes.json();
+      const categories = (data.categories || []).map((item, idx) => ({
+        ...item,
+        filename: (item.slug || item.nome.toLowerCase().replace(/\s+/g, '-')) + '.md',
+        _fromJson: true
+      }));
+      state.categories = categories.sort((a, b) => (a.order || 0) - (b.order || 0));
+      console.log('✅ Categorie caricate da JSON:', state.categories.length);
+      return;
+    }
+  } catch (e) {
+    console.warn('JSON categorie non disponibile, provo GitHub API...', e);
+  }
+  
+  // Fallback a GitHub API
   try {
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
@@ -422,8 +472,6 @@ async function loadCategories() {
     
     const data = await res.json();
     const categories = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
-    // Nel CMS mostra TUTTE le categorie (anche nascoste), ordinate
-    // Il filtro visibile serve solo per il frontend (menu.html)
     state.categories = categories.sort((a, b) => (a.order || 0) - (b.order || 0));
   } catch (e) {
     console.error('Error loading categories:', e);
@@ -434,7 +482,36 @@ async function loadCategories() {
 async function loadItems(collectionName, silent = false) {
   if (!silent) showLoading();
   const collection = COLLECTIONS[collectionName];
+  
   try {
+    // Prima prova a caricare dal JSON statico (no rate limit)
+    const jsonFile = JSON_FILES[collectionName];
+    const jsonKey = JSON_KEYS[collectionName];
+    
+    if (jsonFile) {
+      try {
+        const jsonUrl = jsonFile + '?t=' + Date.now(); // cache bust
+        const jsonRes = await fetch(jsonUrl);
+        
+        if (jsonRes.ok) {
+          const data = await jsonRes.json();
+          const items = (data[jsonKey] || []).map((item, idx) => ({
+            ...item,
+            filename: (item.slug || item.nome?.toLowerCase().replace(/\s+/g, '-') || `item-${idx}`) + '.md',
+            _fromJson: true
+          }));
+          state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
+          console.log(`✅ ${collectionName} caricati da JSON:`, state.items.length);
+          renderItems();
+          if (!silent) hideLoading();
+          return;
+        }
+      } catch (e) {
+        console.warn(`JSON ${collectionName} non disponibile, provo GitHub API...`);
+      }
+    }
+    
+    // Fallback a GitHub API
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -541,15 +618,31 @@ async function loadAllData(silent = false) {
     // Load categories first
     await loadCategories();
     
-    // Load all food items for tree counts
-    const res = await fetch('/.netlify/functions/read-data', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'food' })
-    });
-    if (res.ok) {
-      const data = await res.json();
-      state.allFood = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+    // Load all food items for tree counts - prima prova JSON
+    try {
+      const jsonUrl = JSON_FILES.food + '?t=' + Date.now();
+      const jsonRes = await fetch(jsonUrl);
+      if (jsonRes.ok) {
+        const data = await jsonRes.json();
+        state.allFood = (data.food || []).map((item, idx) => ({
+          ...item,
+          filename: (item.slug || item.nome?.toLowerCase().replace(/\s+/g, '-') || `item-${idx}`) + '.md',
+          _fromJson: true
+        }));
+        console.log('✅ Food per sidebar caricati da JSON:', state.allFood.length);
+      }
+    } catch (e) {
+      console.warn('JSON food non disponibile, provo GitHub API...');
+      // Fallback a GitHub API
+      const res = await fetch('/.netlify/functions/read-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ folder: 'food' })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        state.allFood = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+      }
     }
     
     // Clear cached items for global search to force refresh
