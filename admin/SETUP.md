@@ -28,12 +28,13 @@ Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify
 1. Vai su [Netlify Dashboard](https://app.netlify.com)
 2. Seleziona il sito **Arconti31**
 3. Vai su: **Site configuration** → **Environment variables**
-4. Aggiungi queste 2 variabili:
+4. Aggiungi queste variabili:
 
 | Nome | Valore |
 |------|--------|
 | `GITHUB_TOKEN` | Il token copiato (es: `ghp_xxxxxxxxxxxx`) |
-| `ADMIN_PASSWORD` | `arconti31admin` (o una password a tua scelta) |
+| `ADMIN_EMAIL` | La tua email (es: `admin@arconti31.com`) |
+| `ADMIN_PASSWORD` | Una password sicura (es: `MiaPassword123!`) |
 
 ---
 
@@ -74,9 +75,17 @@ Dopo aver salvato le variabili:
 
 ## Credenziali di Default
 
+- **Email CMS**: `admin@arconti31.com`
 - **Password CMS**: `arconti31admin`
 - **Repository**: `Massimilianociconte/Arconti31`
 - **Branch**: `main`
+
+## Sicurezza
+
+- ✅ Email e password validate lato server
+- ✅ Token generato per ogni sessione (non salvato in localStorage)
+- ✅ Logout automatico quando chiudi il browser
+- ✅ Nessun dato sensibile salvato localmente
 
 ---
 

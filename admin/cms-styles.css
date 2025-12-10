@@ -814,7 +814,12 @@ body {
   max-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+}
+
+.login-form .form-input {
+  padding: 12px 14px;
+  font-size: 15px;
 }
 
 .btn-full {

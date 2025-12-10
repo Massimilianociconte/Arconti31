@@ -162,7 +162,8 @@ const COLLECTIONS = {
 
 // State
 let state = {
-  password: sessionStorage.getItem('cms_password') || '',
+  token: null, // Session token (not stored locally)
+  email: null,
   isLoggedIn: false,
   currentCollection: 'food',
   items: [],
@@ -183,11 +184,8 @@ function init() {
   checkCloudinaryConfig();
   setupEventListeners();
   
-  if (state.password) {
-    state.isLoggedIn = true;
-    showMainApp();
-    loadCategories().then(() => loadItems(state.currentCollection));
-  }
+  // Non salvare il login - utente deve fare login ogni volta
+  showLoginScreen();
 }
 
 async function checkCloudinaryConfig() {
@@ -238,22 +236,55 @@ function setupEventListeners() {
 // AUTH
 // ========================================
 
-function handleLogin(e) {
+async function handleLogin(e) {
   e.preventDefault();
+  const email = $('#email-input').value.trim();
   const password = $('#password-input').value;
-  if (!password) { toast('Inserisci la password', 'error'); return; }
-  state.password = password;
-  sessionStorage.setItem('cms_password', password);
-  state.isLoggedIn = true;
-  showMainApp();
-  loadCategories().then(() => loadItems(state.currentCollection));
+  
+  if (!email) { toast('Inserisci email', 'error'); return; }
+  if (!password) { toast('Inserisci password', 'error'); return; }
+  
+  showLoading();
+  
+  try {
+    const res = await fetch('/.netlify/functions/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'login',
+        email: email,
+        password: password
+      })
+    });
+    
+    const result = await res.json();
+    
+    if (!res.ok) {
+      throw new Error(result.error || 'Errore login');
+    }
+    
+    // Store token in memory only (not localStorage)
+    state.token = result.token;
+    state.email = result.email;
+    state.isLoggedIn = true;
+    
+    toast('Accesso effettuato!', 'success');
+    showMainApp();
+    loadCategories().then(() => loadItems(state.currentCollection));
+  } catch (e) {
+    console.error(e);
+    toast(e.message || 'Errore login', 'error');
+  } finally {
+    hideLoading();
+  }
 }
 
 function logout() {
-  state.password = '';
+  state.token = null;
+  state.email = null;
   state.isLoggedIn = false;
-  sessionStorage.removeItem('cms_password');
   showLoginScreen();
+  toast('Logout effettuato', 'info');
 }
 
 // ========================================
@@ -742,7 +773,7 @@ async function saveItem() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        password: state.password,
+        token: state.token,
         action: 'save',
         collection: collection.folder,
         filename: filename,
@@ -779,7 +810,7 @@ async function deleteItem() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        password: state.password,
+        token: state.token,
         action: 'delete',
         collection: collection.folder,
         filename: state.currentItem.filename,

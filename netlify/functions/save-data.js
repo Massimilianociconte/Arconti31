@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   }
 
   const body = JSON.parse(event.body);
-  const { password, action, collection, filename, data, sha } = body;
+  const { email, password, action, collection, filename, data, sha, token } = body;
   
   // Return Cloudinary config (no auth needed)
   if (action === 'get-cloudinary-config') {
@@ -24,12 +24,48 @@ exports.handler = async (event, context) => {
     };
   }
   
-  // Password in chiaro (semplice ma efficace per questo uso)
-  // Puoi cambiarla nelle variabili d'ambiente Netlify
-  const validPassword = process.env.ADMIN_PASSWORD || 'arconti31admin';
+  // Login action - validate email/password and return token
+  if (action === 'login') {
+    const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    const validPassword = process.env.ADMIN_PASSWORD || 'arconti31admin';
+    
+    if (email !== validEmail || password !== validPassword) {
+      return { 
+        statusCode: 401, 
+        body: JSON.stringify({ error: 'Email o password non valida' }) 
+      };
+    }
+    
+    // Generate a simple token (in production use JWT)
+    const token = Buffer.from(`${email}:${Date.now()}`).toString('base64');
+    
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        success: true, 
+        token: token,
+        email: email
+      })
+    };
+  }
   
-  if (password !== validPassword) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Password non valida' }) };
+  // Validate token for other actions
+  if (!token) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'Non autenticato' }) };
+  }
+  
+  // Simple token validation (in production use JWT verification)
+  try {
+    const decoded = Buffer.from(token, 'base64').toString('utf-8');
+    const [tokenEmail] = decoded.split(':');
+    const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    
+    if (tokenEmail !== validEmail) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+    }
+  } catch (e) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
