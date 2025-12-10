@@ -302,8 +302,9 @@ function logout() {
 
 async function loadCategories() {
   try {
-    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/categorie`;
-    const headers = state.token ? { 'Authorization': `token ${state.token}` } : {};
+    // Use Netlify Git Gateway
+    const apiUrl = `/.netlify/git/github/contents/categorie`;
+    const headers = state.token ? { 'Authorization': `Bearer ${state.token}` } : {};
     
     const response = await fetch(apiUrl, { headers });
     
@@ -460,8 +461,9 @@ async function loadItems(collectionName) {
   const collection = COLLECTIONS[collectionName];
   
   try {
-    let apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
-    const headers = state.token ? { 'Authorization': `token ${state.token}` } : {};
+    // Use Netlify Git Gateway
+    let apiUrl = `/.netlify/git/github/contents/${collection.folder}`;
+    const headers = state.token ? { 'Authorization': `Bearer ${state.token}` } : {};
     
     const response = await fetch(apiUrl, { headers });
     
@@ -938,9 +940,10 @@ async function saveToGitHub(path, content, sha = null) {
     body.sha = sha;
   }
   
-  const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
+  // Use Netlify Git Gateway instead of GitHub API directly
+  const apiUrl = `/.netlify/git/github/contents/${path}`;
   const headers = {
-    'Authorization': `token ${state.token}`,
+    'Authorization': `Bearer ${state.token}`,
     'Content-Type': 'application/json'
   };
   
@@ -970,9 +973,10 @@ async function deleteItem() {
     const collection = COLLECTIONS[state.currentCollection];
     const path = `${collection.folder}/${state.currentItem.filename}`;
     
-    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
+    // Use Netlify Git Gateway
+    const apiUrl = `/.netlify/git/github/contents/${path}`;
     const headers = {
-      'Authorization': `token ${state.token}`,
+      'Authorization': `Bearer ${state.token}`,
       'Content-Type': 'application/json'
     };
     
