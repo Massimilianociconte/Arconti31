@@ -652,7 +652,7 @@ function renderEditForm(data) {
 function renderImageField(field, value) {
   const hasImage = value && value.length > 0;
   const previewHtml = hasImage 
-    ? `<img src="${value}" alt="Preview" class="image-preview-img">`
+    ? `<img src="${value}" alt="Preview" class="image-preview-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2214%22%3E❌ Errore%3C/text%3E%3C/svg%3E'">`
     : '<div class="image-placeholder">📷 Nessuna immagine</div>';
   
   return `<div class="form-group">
@@ -668,7 +668,7 @@ function renderImageField(field, value) {
         </button>
       </div>
       <input type="hidden" name="${field.name}" value="${escapeHtml(value || '')}">
-      ${!state.cloudinaryConfigured ? `<input type="text" name="${field.name}_url" class="form-input image-url-input" placeholder="Oppure incolla URL immagine" value="${escapeHtml(value || '')}" style="margin-top: 8px;">` : ''}
+      <input type="text" name="${field.name}_url" class="form-input image-url-input" placeholder="Incolla URL immagine (es: https://...)" value="${escapeHtml(value || '')}" style="margin-top: 8px;">
     </div>
     ${field.hint ? `<div class="form-hint">${field.hint}</div>` : ''}
   </div>`;
@@ -757,10 +757,12 @@ async function saveItem() {
     } else if (field.type === 'number') {
       data[field.name] = parseInt(formData.get(field.name)) || 0;
     } else if (field.type === 'image') {
-      // Check URL input first (fallback), then hidden input
+      // Priorità: URL input > hidden input (da upload Cloudinary)
       const urlInput = form.querySelector(`[name="${field.name}_url"]`);
       const hiddenInput = form.querySelector(`[name="${field.name}"]`);
-      data[field.name] = (urlInput && urlInput.value) || (hiddenInput && hiddenInput.value) || '';
+      const urlValue = (urlInput && urlInput.value) || '';
+      const hiddenValue = (hiddenInput && hiddenInput.value) || '';
+      data[field.name] = urlValue || hiddenValue || '';
     } else {
       data[field.name] = formData.get(field.name) || '';
     }

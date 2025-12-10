@@ -89,7 +89,18 @@ Dopo aver salvato le variabili:
 
 ---
 
-## (Opzionale) Upload Immagini con Cloudinary
+## Upload Immagini
+
+### Opzione 1: Senza Cloudinary (Semplice)
+
+Puoi incollare URL di immagini già online:
+- **Google Drive**: Condividi pubblicamente e copia il link
+- **Imgur**: Carica e copia il link diretto
+- **Qualsiasi URL pubblico**: Funziona!
+
+Nel CMS, nel campo "Immagine", incolla l'URL e salva. Fatto!
+
+### Opzione 2: Con Cloudinary (Upload diretto)
 
 Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratuito fino a 25GB):
 
@@ -136,4 +147,23 @@ Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratui
 - ✅ Verifica che le variabili su Netlify siano corrette
 - ✅ Fai un nuovo deploy dopo aver modificato le variabili
 
-**Senza Cloudinary**: Puoi comunque inserire URL di immagini già online (es: da Google Drive, Imgur, ecc.)
+---
+
+## Dove trovare URL di immagini
+
+### Google Drive
+1. Carica immagine su Google Drive
+2. Clicca destro → **Condividi**
+3. Cambia a "Chiunque abbia il link"
+4. Copia il link e modifica così:
+   - Da: `https://drive.google.com/file/d/FILE_ID/view`
+   - A: `https://drive.google.com/uc?export=view&id=FILE_ID`
+
+### Imgur
+1. Vai su https://imgur.com
+2. Carica immagine
+3. Clicca destro su immagine → **Copia link immagine**
+4. Incolla nel CMS
+
+### Qualsiasi URL pubblico
+Se hai un'immagine online (es: sito web, CDN), copia l'URL diretto e incolla nel CMS.
