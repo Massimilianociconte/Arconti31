@@ -162,12 +162,14 @@ const COLLECTIONS = {
 
 // State
 let state = {
-  token: null, // Session token (not stored locally)
+  token: null,
   email: null,
   isLoggedIn: false,
   currentCollection: 'food',
+  currentCategory: null,
   items: [],
   categories: [],
+  allFood: [],
   currentItem: null,
   isNew: false,
   cloudinaryConfigured: false
@@ -214,19 +216,13 @@ async function checkCloudinaryConfig() {
 function setupEventListeners() {
   $('#login-form').addEventListener('submit', handleLogin);
   $('#menu-toggle').addEventListener('click', toggleSidebar);
-  $$('.nav-item').forEach(item => {
-    item.addEventListener('click', e => {
-      e.preventDefault();
-      selectCollection(item.dataset.collection);
-      closeSidebar();
-    });
-  });
+  // Sidebar events are set up dynamically in setupSidebarEvents()
   $('#add-new-btn').addEventListener('click', createNew);
   $('#back-btn').addEventListener('click', showListView);
   $('#save-btn').addEventListener('click', saveItem);
   $('#delete-btn').addEventListener('click', deleteItem);
   $('#sync-btn').addEventListener('click', () => {
-    loadCategories().then(() => loadItems(state.currentCollection));
+    loadAllData();
   });
   $('#logout-btn').addEventListener('click', logout);
   $('#search-input').addEventListener('input', filterItems);
@@ -273,7 +269,7 @@ async function handleLogin(e) {
     
     toast('Accesso effettuato!', 'success');
     showMainApp();
-    loadCategories().then(() => loadItems(state.currentCollection));
+    loadAllData();
   } catch (e) {
     console.error(e);
     toast(e.message || 'Errore login', 'error');
@@ -425,13 +421,223 @@ function parseMarkdown(content, filename, sha) {
 // COLLECTION & RENDERING
 // ========================================
 
-function selectCollection(name) {
+function selectCollection(name, categoryFilter = null) {
   state.currentCollection = name;
-  $$('.nav-item').forEach(item => item.classList.toggle('active', item.dataset.collection === name));
-  $('#collection-title').textContent = COLLECTIONS[name].label;
+  state.currentCategory = categoryFilter;
+  $('#collection-title').textContent = categoryFilter || COLLECTIONS[name].label;
   updateCategoryFilter(name);
+  if (categoryFilter) {
+    $('#filter-category').value = categoryFilter;
+  }
   loadItems(name);
   showListView();
+}
+
+// ========================================
+// SIDEBAR TREE
+// ========================================
+
+async function loadAllData() {
+  showLoading();
+  try {
+    // Load categories first
+    await loadCategories();
+    
+    // Load all food items for tree counts
+    const res = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: 'food' })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      state.allFood = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+    }
+    
+    renderSidebar();
+    setupSidebarEvents();
+    
+    // Load current collection items
+    await loadItems(state.currentCollection);
+  } catch (e) {
+    console.error('Error loading data:', e);
+    toast('Errore caricamento dati', 'error');
+  } finally {
+    hideLoading();
+  }
+}
+
+function renderSidebar() {
+  const nav = $('#sidebar-nav');
+  const foodCategories = state.categories.filter(c => c.tipo_menu === 'food');
+  
+  // Count items per category
+  const foodCounts = {};
+  (state.allFood || []).forEach(item => {
+    const cat = item.category || 'Altro';
+    foodCounts[cat] = (foodCounts[cat] || 0) + 1;
+  });
+  
+  // Build tree HTML - struttura identica al frontend
+  let html = `
+    <!-- SEZIONE HEADER -->
+    <div class="tree-section-title">🍽️ FOOD</div>
+    
+    <!-- Piatti - mostra tutte le categorie food -->
+    <div class="tree-section">
+      <div class="tree-header expanded" data-collection="food" data-expandable="true">
+        <span class="tree-toggle">▶</span>
+        <span class="tree-icon">🍽️</span>
+        <span class="tree-label">Piatti</span>
+        <span class="tree-count">${state.allFood?.length || 0}</span>
+      </div>
+      <div class="tree-children">
+        ${foodCategories.map(cat => `
+          <div class="tree-item" data-collection="food" data-category="${cat.nome}">
+            <span class="tree-item-icon">${cat.icona || '📦'}</span>
+            <span class="tree-item-name">${cat.nome}</span>
+            <span class="tree-item-count">${foodCounts[cat.nome] || 0}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    
+    <div class="tree-divider"></div>
+    <div class="tree-section-title">🍺 BEVERAGE</div>
+    
+    <!-- Birre -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="beers">
+        <span class="tree-item-icon">🍺</span>
+        <span class="tree-item-name">Birre</span>
+      </div>
+    </div>
+    
+    <!-- Cocktails -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="cocktails">
+        <span class="tree-item-icon">🍸</span>
+        <span class="tree-item-name">Cocktails</span>
+      </div>
+    </div>
+    
+    <!-- Analcolici -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="analcolici">
+        <span class="tree-item-icon">🧃</span>
+        <span class="tree-item-name">Analcolici</span>
+      </div>
+    </div>
+    
+    <!-- Bibite -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="bibite">
+        <span class="tree-item-icon">🥤</span>
+        <span class="tree-item-name">Bibite</span>
+      </div>
+    </div>
+    
+    <!-- Caffetteria -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="caffetteria">
+        <span class="tree-item-icon">☕</span>
+        <span class="tree-item-name">Caffetteria</span>
+      </div>
+    </div>
+    
+    <!-- Bollicine -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="bollicine">
+        <span class="tree-item-icon">🥂</span>
+        <span class="tree-item-name">Bollicine</span>
+      </div>
+    </div>
+    
+    <!-- Vini Bianchi -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="bianchi-fermi">
+        <span class="tree-item-icon">🍾</span>
+        <span class="tree-item-name">Vini Bianchi</span>
+      </div>
+    </div>
+    
+    <!-- Vini Rossi -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="vini-rossi">
+        <span class="tree-item-icon">🍷</span>
+        <span class="tree-item-name">Vini Rossi</span>
+      </div>
+    </div>
+    
+    <div class="tree-divider"></div>
+    <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>
+    
+    <!-- Gestione Categorie -->
+    <div class="tree-section">
+      <div class="tree-item" data-collection="categorie">
+        <span class="tree-item-icon">📁</span>
+        <span class="tree-item-name">Categorie</span>
+      </div>
+    </div>
+  `;
+  
+  nav.innerHTML = html;
+}
+
+function setupSidebarEvents() {
+  // Expandable headers
+  $$('.tree-header[data-expandable]').forEach(header => {
+    header.addEventListener('click', (e) => {
+      e.stopPropagation();
+      header.classList.toggle('expanded');
+      
+      // If clicking on collection header, also select it
+      const collection = header.dataset.collection;
+      if (collection) {
+        selectTreeItem(collection, null);
+      }
+    });
+  });
+  
+  // Non-expandable headers (direct collection)
+  $$('.tree-header:not([data-expandable])').forEach(header => {
+    header.addEventListener('click', () => {
+      const collection = header.dataset.collection;
+      if (collection) {
+        selectTreeItem(collection, null);
+        closeSidebar();
+      }
+    });
+  });
+  
+  // Tree items (categories or collections)
+  $$('.tree-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const collection = item.dataset.collection;
+      const category = item.dataset.category || null;
+      selectTreeItem(collection, category);
+      closeSidebar();
+    });
+  });
+}
+
+function selectTreeItem(collection, category) {
+  // Remove all active states
+  $$('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
+  
+  // Set active state
+  if (category) {
+    const item = $(`.tree-item[data-collection="${collection}"][data-category="${category}"]`);
+    if (item) item.classList.add('active');
+  } else {
+    const header = $(`.tree-header[data-collection="${collection}"]`);
+    const item = $(`.tree-item[data-collection="${collection}"]:not([data-category])`);
+    if (header) header.classList.add('active');
+    if (item) item.classList.add('active');
+  }
+  
+  selectCollection(collection, category);
 }
 
 function updateCategoryFilter(name) {
@@ -666,8 +872,15 @@ function renderEditForm(data) {
 
 function renderImageField(field, value) {
   const hasImage = value && value.length > 0;
+  
+  // Fix relative paths for CMS (which is in /admin/)
+  let displayValue = value || '';
+  if (displayValue && !displayValue.startsWith('http') && !displayValue.startsWith('../') && !displayValue.startsWith('/')) {
+    displayValue = '../' + displayValue;
+  }
+  
   const previewHtml = hasImage 
-    ? `<img src="${value}" alt="Preview" class="image-preview-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2214%22%3E❌ Errore%3C/text%3E%3C/svg%3E'">`
+    ? `<img src="${displayValue}" alt="Preview" class="image-preview-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2214%22%3E❌ Errore%3C/text%3E%3C/svg%3E'">`
     : '<div class="image-placeholder">📷 Nessuna immagine</div>';
   
   return `<div class="form-group">
