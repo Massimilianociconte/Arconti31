@@ -804,3 +804,25 @@ body {
 .category-items .item-meta {
   font-size: 12px;
 }
+
+
+/* ========================================
+   LOGIN FORM
+   ======================================== */
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.login-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 24px;
+}
