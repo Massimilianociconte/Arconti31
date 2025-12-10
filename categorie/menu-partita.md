@@ -3,6 +3,6 @@ nome: "Menù Partita"
 slug: "menu-partita"
 tipo_menu: "food"
 icona: "⚽"
-visibile: true
+visibile: false
 order: 0
 ---
