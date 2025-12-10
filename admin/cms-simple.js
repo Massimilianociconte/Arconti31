@@ -491,15 +491,28 @@ function renderGroupedItems(items) {
 }
 
 function renderItemCard(item) {
-  const thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
-  const thumbHtml = thumb ? `<img src="${thumb}" class="item-thumb" alt="">` : '<div class="item-thumb-placeholder">📷</div>';
-  return `<div class="item-card ${item.disponibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
+  let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
+  
+  // Fix relative paths for CMS (which is in /admin/)
+  if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
+    thumb = '../' + thumb;
+  }
+  
+  const thumbHtml = thumb ? `<img src="${thumb}" class="item-thumb" alt="" onerror="this.style.display='none'">` : '<div class="item-thumb-placeholder">📷</div>';
+  
+  // For categories, show icon instead of price
+  const isCategory = state.currentCollection === 'categorie';
+  const metaHtml = isCategory 
+    ? `<span class="item-icon">${item.icona || '📦'}</span>`
+    : `<span class="item-price">€${item.prezzo || '0'}</span>`;
+  
+  return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
     ${thumbHtml}
     <div class="item-info">
       <div class="item-name">${item.nome || 'Senza nome'}</div>
       <div class="item-meta">
-        <span class="item-price">€${item.prezzo || '0'}</span>
-        <span class="status-dot ${item.disponibile !== false ? 'available' : 'unavailable'}"></span>
+        ${metaHtml}
+        <span class="status-dot ${(item.disponibile !== false && item.visibile !== false) ? 'available' : 'unavailable'}"></span>
       </div>
     </div>
   </div>`;
@@ -684,54 +697,46 @@ async function handleImageUpload(e, fieldName) {
   const container = form.querySelector(`[data-image-field="${fieldName}"]`);
   const preview = container.querySelector('.image-preview');
   const input = form.querySelector(`[name="${fieldName}"]`);
+  const urlInput = form.querySelector(`[name="${fieldName}_url"]`);
   const removeBtn = container.querySelector('.image-remove-btn');
   
-  // Show loading
-  preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
+  // Show local preview
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    preview.innerHTML = `<img src="${evt.target.result}" alt="Preview" class="image-preview-img">`;
+    removeBtn.style.display = 'inline-flex';
+  };
+  reader.readAsDataURL(file);
   
+  // Try Cloudinary upload if configured
   if (state.cloudinaryConfigured && CONFIG.cloudinary.cloudName && CONFIG.cloudinary.uploadPreset) {
-    // Upload to Cloudinary
     try {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', CONFIG.cloudinary.uploadPreset);
       
-      const url = `https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`;
-      console.log('Uploading to:', url);
-      console.log('Preset:', CONFIG.cloudinary.uploadPreset);
-      
-      const res = await fetch(url, {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`, {
         method: 'POST',
         body: formData
       });
       
       const responseData = await res.json();
       
-      if (!res.ok) {
-        throw new Error(responseData.error?.message || `Upload failed: ${res.status}`);
+      if (res.ok && responseData.secure_url) {
+        const imageUrl = responseData.secure_url;
+        input.value = imageUrl;
+        if (urlInput) urlInput.value = imageUrl;
+        preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
+        toast('✅ Immagine caricata su Cloudinary!', 'success');
+        return;
       }
-      
-      const imageUrl = responseData.secure_url;
-      
-      input.value = imageUrl;
-      preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
-      removeBtn.style.display = 'inline-flex';
-      toast('Immagine caricata!', 'success');
     } catch (err) {
-      console.error('Upload error:', err);
-      preview.innerHTML = '<div class="image-placeholder">❌ Errore upload</div>';
-      toast(`Errore: ${err.message}`, 'error');
+      console.log('Cloudinary upload failed, using local preview');
     }
-  } else {
-    // Local preview only - user needs to provide URL
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      preview.innerHTML = `<img src="${evt.target.result}" alt="Preview" class="image-preview-img">`;
-      removeBtn.style.display = 'inline-flex';
-      toast('Anteprima locale. Incolla URL immagine nel campo sotto.', 'info');
-    };
-    reader.readAsDataURL(file);
   }
+  
+  // Fallback: show message to paste URL
+  toast('📋 Incolla URL immagine nel campo sotto', 'info');
 }
 
 function escapeHtml(text) {
