@@ -428,8 +428,8 @@ async function loadCategories() {
   }
 }
 
-async function loadItems(collectionName) {
-  showLoading();
+async function loadItems(collectionName, silent = false) {
+  if (!silent) showLoading();
   const collection = COLLECTIONS[collectionName];
   try {
     const res = await fetch('/.netlify/functions/read-data', {
@@ -446,9 +446,9 @@ async function loadItems(collectionName) {
     renderItems();
   } catch (e) {
     console.error(e);
-    toast('Errore nel caricamento', 'error');
+    if (!silent) toast('Errore nel caricamento', 'error');
   } finally {
-    hideLoading();
+    if (!silent) hideLoading();
   }
 }
 
@@ -532,8 +532,8 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
 // SIDEBAR TREE
 // ========================================
 
-async function loadAllData() {
-  showLoading();
+async function loadAllData(silent = false) {
+  if (!silent) showLoading();
   try {
     // Load categories first
     await loadCategories();
@@ -549,16 +549,29 @@ async function loadAllData() {
       state.allFood = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
     }
     
+    // Clear cached items for global search to force refresh
+    state.allItems = {};
+    
     renderSidebar();
     setupSidebarEvents();
     
     // Load current collection items
-    await loadItems(state.currentCollection);
+    await loadItems(state.currentCollection, silent);
   } catch (e) {
     console.error('Error loading data:', e);
-    toast('Errore caricamento dati', 'error');
+    if (!silent) toast('Errore caricamento dati', 'error');
   } finally {
-    hideLoading();
+    if (!silent) hideLoading();
+  }
+}
+
+// Silent refresh - updates data without visual loading indicators
+async function silentRefresh() {
+  try {
+    await loadAllData(true);
+    console.log('✅ Silent refresh completed');
+  } catch (e) {
+    console.error('Silent refresh error:', e);
   }
 }
 
@@ -1303,15 +1316,17 @@ async function saveItem() {
     const result = await res.json();
     if (!res.ok) throw new Error(result.error || 'Errore salvataggio');
     
-    toast('Salvato! Il menù si aggiornerà automaticamente.', 'success');
+    toast('Salvato!', 'success');
     
-    if (state.currentCollection === 'categorie') await loadCategories();
-    await loadItems(state.currentCollection);
+    // Show list view first, then refresh silently in background
     showListView();
+    hideLoading();
+    
+    // Silent refresh to update all data and counters
+    await silentRefresh();
   } catch (e) {
     console.error(e);
     toast(e.message || 'Errore nel salvataggio', 'error');
-  } finally {
     hideLoading();
   }
 }
@@ -1373,13 +1388,15 @@ async function deleteItem() {
     
     toast('Eliminato!', 'success');
     
-    if (state.currentCollection === 'categorie') await loadCategories();
-    await loadItems(state.currentCollection);
+    // Show list view first, then refresh silently in background
     showListView();
+    hideLoading();
+    
+    // Silent refresh to update all data and counters
+    await silentRefresh();
   } catch (e) {
     console.error('Delete error:', e);
     toast(e.message || 'Errore eliminazione', 'error');
-  } finally {
     hideLoading();
   }
 }
