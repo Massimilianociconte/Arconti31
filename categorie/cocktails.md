@@ -1,11 +1,11 @@
 ---
 nome: "Cocktails"
-slug: cocktails
-tipo_menu: beverage
-sezione_beverage: Cocktails
+slug: "cocktails"
+tipo_menu: "beverage"
+sezione_beverage: "Cocktails"
 icona: "🍹"
 immagine: "images/minicard sezioni/cocktail.jpg"
-descrizione: I nostri cocktails classici e signature
-visibile: true
+descrizione: "I nostri cocktails classici e signature"
+visibile: false
 order: 20
 ---
