@@ -1,6 +1,14 @@
 {
   "categories": [
     {
+      "nome": "Menù Partita",
+      "slug": "menu-partita",
+      "tipo_menu": "food",
+      "icona": "⚽",
+      "visibile": true,
+      "order": 0
+    },
+    {
       "nome": "Hamburger di bufala",
       "slug": "hamburger-bufala",
       "tipo_menu": "food",
@@ -124,6 +132,14 @@
     }
   ],
   "foodCategories": [
+    {
+      "nome": "Menù Partita",
+      "slug": "menu-partita",
+      "tipo_menu": "food",
+      "icona": "⚽",
+      "visibile": true,
+      "order": 0
+    },
     {
       "nome": "Hamburger di bufala",
       "slug": "hamburger-bufala",

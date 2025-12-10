@@ -537,6 +537,7 @@
     }
   ],
   "foodByCategory": {
+    "Menù Partita": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
@@ -1094,6 +1095,7 @@
     ]
   },
   "categoryOrder": {
+    "Menù Partita": 0,
     "Hamburger di bufala": 1,
     "Hamburger Fassona e Street food": 2,
     "OKTOBERFEST": 3,
