@@ -1,5 +1,5 @@
 ---
-nome: Hamburger di Bufala
+nome: "Hamburger di bufala"
 slug: hamburger-bufala
 tipo_menu: food
 icona: "🍔"

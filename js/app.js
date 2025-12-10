@@ -57,23 +57,25 @@ const ICONS = {
 let beersData = null;
 let beveragesData = null;
 let foodData = null;
+let categoriesData = null;
 let currentView = 'home';
 
 // Carica tutte le bevande e il cibo
 async function loadAllBeverages() {
     try {
-        // Fetch con cache: 'no-cache' per assicurare che i dati siano sempre freschi (gestiti da ETag server-side)
         const fetchOptions = { cache: 'no-cache' };
         
-        const [beersResponse, beveragesResponse, foodResponse] = await Promise.all([
+        const [beersResponse, beveragesResponse, foodResponse, categoriesResponse] = await Promise.all([
             fetch('beers/beers.json', fetchOptions),
             fetch('beverages/beverages.json', fetchOptions).catch(() => ({ json: async () => ({ beverages: [], beveragesByType: {} }) })),
-            fetch('food/food.json', fetchOptions).catch(() => ({ json: async () => ({ food: [], foodByCategory: {} }) }))
+            fetch('food/food.json', fetchOptions).catch(() => ({ json: async () => ({ food: [], foodByCategory: {} }) })),
+            fetch('categorie/categorie.json', fetchOptions).catch(() => ({ json: async () => ({ categories: [], foodCategories: [] }) }))
         ]);
         
         beersData = await beersResponse.json();
         beveragesData = await beveragesResponse.json();
         foodData = await foodResponse.json();
+        categoriesData = await categoriesResponse.json();
         
         showCategoriesView();
     } catch (error) {
@@ -92,8 +94,8 @@ function showCategoriesView() {
     const categoriesView = document.getElementById('categories-view');
     let html = '';
     
-        // Sezioni Food
-        const foodOrder = [
+        // Sezioni Food - usa categorie dinamiche se disponibili
+        const defaultFoodOrder = [
             { name: 'Hamburger di bufala', icon: '🍔' },
             { name: 'OKTOBERFEST', icon: '🥨' },
             { name: 'Hamburger Fassona e Street food', icon: '🥩' },
@@ -106,12 +108,31 @@ function showCategoriesView() {
             { name: 'Aperitivo', icon: '🥜' }
         ];
         
+        // Usa categorie dinamiche se disponibili, altrimenti default
+        let foodOrder = defaultFoodOrder;
+        if (categoriesData && categoriesData.foodCategories && categoriesData.foodCategories.length > 0) {
+            foodOrder = categoriesData.foodCategories.map(cat => ({
+                name: cat.nome,
+                icon: cat.icona || '📦'
+            }));
+            // Aggiungi categorie esistenti nei dati che non sono nelle categorie dinamiche
+            if (foodData && foodData.foodByCategory) {
+                Object.keys(foodData.foodByCategory).forEach(catName => {
+                    if (!foodOrder.find(c => c.name === catName)) {
+                        foodOrder.push({ name: catName, icon: '📦' });
+                    }
+                });
+            }
+        }
+        
         html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
         foodOrder.forEach(cat => {
-            // Count items even if undefined (0)
             const items = (foodData && foodData.foodByCategory && foodData.foodByCategory[cat.name]) ? foodData.foodByCategory[cat.name] : [];
-            // Always show card, pass 0 if empty
-            html += createCategoryCard(cat.name, items.length, cat.icon, 'food');
+            // Mostra solo categorie con prodotti o categorie dinamiche visibili
+            const dynamicCat = categoriesData?.foodCategories?.find(c => c.nome === cat.name);
+            if (items.length > 0 || dynamicCat) {
+                html += createCategoryCard(cat.name, items.length, cat.icon, 'food');
+            }
         });
         html += '</div>';
     

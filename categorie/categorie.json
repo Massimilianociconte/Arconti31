@@ -1,0 +1,228 @@
+{
+  "categories": [
+    {
+      "nome": "Hamburger di bufala",
+      "slug": "hamburger-bufala",
+      "tipo_menu": "food",
+      "icona": "🍔",
+      "descrizione": "I nostri hamburger con carne di bufala selezionata",
+      "visibile": true,
+      "order": 1
+    },
+    {
+      "nome": "Hamburger Fassona e Street food",
+      "slug": "hamburger-fassona",
+      "tipo_menu": "food",
+      "icona": "🍔",
+      "descrizione": "Hamburger di Fassona piemontese e street food",
+      "visibile": true,
+      "order": 2
+    },
+    {
+      "nome": "OKTOBERFEST",
+      "slug": "oktoberfest",
+      "tipo_menu": "food",
+      "icona": "🥨",
+      "descrizione": "Specialità bavaresi per l'Oktoberfest",
+      "visibile": true,
+      "order": 3
+    },
+    {
+      "nome": "Panini",
+      "slug": "panini",
+      "tipo_menu": "food",
+      "icona": "🥪",
+      "descrizione": "I nostri panini farciti",
+      "visibile": true,
+      "order": 4
+    },
+    {
+      "nome": "Griglieria",
+      "slug": "griglieria",
+      "tipo_menu": "food",
+      "icona": "🔥",
+      "descrizione": "Carni alla griglia",
+      "visibile": true,
+      "order": 5
+    },
+    {
+      "nome": "Piatti Speciali",
+      "slug": "piatti-speciali",
+      "tipo_menu": "food",
+      "icona": "🍽️",
+      "descrizione": "Le nostre specialità della casa",
+      "visibile": true,
+      "order": 6
+    },
+    {
+      "nome": "Piadine",
+      "slug": "piadine",
+      "tipo_menu": "food",
+      "icona": "🥯",
+      "descrizione": "Piadine romagnole farcite",
+      "visibile": true,
+      "order": 7
+    },
+    {
+      "nome": "Fritti",
+      "slug": "fritti",
+      "tipo_menu": "food",
+      "icona": "🍟",
+      "descrizione": "Fritti e contorni",
+      "visibile": true,
+      "order": 8
+    },
+    {
+      "nome": "Dolci",
+      "slug": "dolci",
+      "tipo_menu": "food",
+      "icona": "🍰",
+      "descrizione": "I nostri dolci fatti in casa",
+      "visibile": true,
+      "order": 9
+    },
+    {
+      "nome": "Aperitivo",
+      "slug": "aperitivo",
+      "tipo_menu": "food",
+      "icona": "🥜",
+      "descrizione": "Stuzzichini per l'aperitivo",
+      "visibile": true,
+      "order": 10
+    },
+    {
+      "nome": "Birre artigianali alla spina",
+      "slug": "birre-artigianali",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Birre",
+      "icona": "🍺",
+      "descrizione": "Selezione di birre artigianali a rotazione",
+      "visibile": true,
+      "order": 10
+    },
+    {
+      "nome": "Cocktails",
+      "slug": "cocktails",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Cocktails",
+      "icona": "🍹",
+      "descrizione": "I nostri cocktails classici e signature",
+      "visibile": true,
+      "order": 20
+    }
+  ],
+  "foodCategories": [
+    {
+      "nome": "Hamburger di bufala",
+      "slug": "hamburger-bufala",
+      "tipo_menu": "food",
+      "icona": "🍔",
+      "descrizione": "I nostri hamburger con carne di bufala selezionata",
+      "visibile": true,
+      "order": 1
+    },
+    {
+      "nome": "Hamburger Fassona e Street food",
+      "slug": "hamburger-fassona",
+      "tipo_menu": "food",
+      "icona": "🍔",
+      "descrizione": "Hamburger di Fassona piemontese e street food",
+      "visibile": true,
+      "order": 2
+    },
+    {
+      "nome": "OKTOBERFEST",
+      "slug": "oktoberfest",
+      "tipo_menu": "food",
+      "icona": "🥨",
+      "descrizione": "Specialità bavaresi per l'Oktoberfest",
+      "visibile": true,
+      "order": 3
+    },
+    {
+      "nome": "Panini",
+      "slug": "panini",
+      "tipo_menu": "food",
+      "icona": "🥪",
+      "descrizione": "I nostri panini farciti",
+      "visibile": true,
+      "order": 4
+    },
+    {
+      "nome": "Griglieria",
+      "slug": "griglieria",
+      "tipo_menu": "food",
+      "icona": "🔥",
+      "descrizione": "Carni alla griglia",
+      "visibile": true,
+      "order": 5
+    },
+    {
+      "nome": "Piatti Speciali",
+      "slug": "piatti-speciali",
+      "tipo_menu": "food",
+      "icona": "🍽️",
+      "descrizione": "Le nostre specialità della casa",
+      "visibile": true,
+      "order": 6
+    },
+    {
+      "nome": "Piadine",
+      "slug": "piadine",
+      "tipo_menu": "food",
+      "icona": "🥯",
+      "descrizione": "Piadine romagnole farcite",
+      "visibile": true,
+      "order": 7
+    },
+    {
+      "nome": "Fritti",
+      "slug": "fritti",
+      "tipo_menu": "food",
+      "icona": "🍟",
+      "descrizione": "Fritti e contorni",
+      "visibile": true,
+      "order": 8
+    },
+    {
+      "nome": "Dolci",
+      "slug": "dolci",
+      "tipo_menu": "food",
+      "icona": "🍰",
+      "descrizione": "I nostri dolci fatti in casa",
+      "visibile": true,
+      "order": 9
+    },
+    {
+      "nome": "Aperitivo",
+      "slug": "aperitivo",
+      "tipo_menu": "food",
+      "icona": "🥜",
+      "descrizione": "Stuzzichini per l'aperitivo",
+      "visibile": true,
+      "order": 10
+    }
+  ],
+  "beverageCategories": [
+    {
+      "nome": "Birre artigianali alla spina",
+      "slug": "birre-artigianali",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Birre",
+      "icona": "🍺",
+      "descrizione": "Selezione di birre artigianali a rotazione",
+      "visibile": true,
+      "order": 10
+    },
+    {
+      "nome": "Cocktails",
+      "slug": "cocktails",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Cocktails",
+      "icona": "🍹",
+      "descrizione": "I nostri cocktails classici e signature",
+      "visibile": true,
+      "order": 20
+    }
+  ]
+}

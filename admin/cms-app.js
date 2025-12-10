@@ -11,17 +11,21 @@ const CONFIG = {
   gitGatewayUrl: '/.netlify/git/github'
 };
 
-// Collection schemas
+// Default categories (will be merged with dynamic ones)
+const DEFAULT_FOOD_CATEGORIES = [
+  'Hamburger di bufala', 'Hamburger Fassona e Street food', 'OKTOBERFEST',
+  'Panini', 'Griglieria', 'Piatti Speciali', 'Piadine', 'Fritti', 'Dolci', 'Aperitivo'
+];
+
+// Collection schemas - categories will be loaded dynamically
 const COLLECTIONS = {
   food: {
     label: 'Piatti',
     folder: 'food',
+    groupByCategory: true,
     fields: [
       { name: 'nome', label: 'Nome Piatto', type: 'text', required: true },
-      { name: 'category', label: 'Categoria', type: 'select', options: [
-        'Hamburger di bufala', 'Hamburger Fassona e Street food', 'OKTOBERFEST',
-        'Panini', 'Griglieria', 'Piatti Speciali', 'Piadine', 'Fritti', 'Dolci', 'Aperitivo'
-      ]},
+      { name: 'category', label: 'Categoria', type: 'dynamic-select', categoryType: 'food' },
       { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
       { name: 'immagine', label: 'Immagine', type: 'text', hint: 'Percorso immagine' },
@@ -171,12 +175,12 @@ const COLLECTIONS = {
     folder: 'categorie',
     fields: [
       { name: 'nome', label: 'Nome Categoria', type: 'text', required: true },
-      { name: 'slug', label: 'Slug', type: 'text', required: true, hint: 'ID univoco (es: hamburger-bufala)' },
-      { name: 'tipo_menu', label: 'Tipo Menù', type: 'select', options: ['food', 'beverage'] },
+      { name: 'slug', label: 'Slug', type: 'text', required: true, hint: 'ID univoco (es: hamburger-bufala)', autoSlug: true },
+      { name: 'tipo_menu', label: 'Tipo Menù', type: 'select', options: ['food', 'beverage'], required: true },
       { name: 'icona', label: 'Icona', type: 'text', hint: 'Es: 🍔 🍺 🍷' },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
-      { name: 'colore', label: 'Colore', type: 'text', hint: 'Es: #FF5733' },
-      { name: 'visibile', label: 'Visibile', type: 'toggle', default: true },
+      { name: 'colore', label: 'Colore', type: 'text', hint: 'Es: #d4a853' },
+      { name: 'visibile', label: 'Visibile nel menù', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
     ]
   }
@@ -188,6 +192,7 @@ let state = {
   user: null,
   currentCollection: 'food',
   items: [],
+  categories: [], // Dynamic categories loaded from files
   currentItem: null,
   isNew: false
 };
@@ -228,7 +233,6 @@ function initNetlifyIdentity() {
       toast('Errore di autenticazione', 'error');
     });
 
-    // Initialize the widget
     window.netlifyIdentity.init();
   } else {
     console.error('Netlify Identity widget not loaded');
@@ -236,21 +240,23 @@ function initNetlifyIdentity() {
   }
 }
 
-function handleLogin(user) {
+async function handleLogin(user) {
   state.user = user;
   state.token = user.token.access_token;
   showMainApp();
+  // Load categories first, then items
+  await loadCategories();
   loadItems(state.currentCollection);
 }
 
 function handleLogout() {
   state.user = null;
   state.token = null;
+  state.categories = [];
   showLoginScreen();
 }
 
 function setupEventListeners() {
-  // Login button - opens Netlify Identity modal
   const loginBtn = $('#netlify-login');
   if (loginBtn) {
     loginBtn.addEventListener('click', () => {
@@ -260,7 +266,6 @@ function setupEventListeners() {
     });
   }
   
-  // Sidebar
   $('#menu-toggle').addEventListener('click', toggleSidebar);
   $$('.nav-item').forEach(item => {
     item.addEventListener('click', (e) => {
@@ -270,15 +275,16 @@ function setupEventListeners() {
     });
   });
   
-  // Actions
   $('#add-new-btn').addEventListener('click', createNew);
   $('#back-btn').addEventListener('click', showListView);
   $('#save-btn').addEventListener('click', saveItem);
   $('#delete-btn').addEventListener('click', deleteItem);
-  $('#sync-btn').addEventListener('click', () => loadItems(state.currentCollection));
+  $('#sync-btn').addEventListener('click', async () => {
+    await loadCategories();
+    loadItems(state.currentCollection);
+  });
   $('#logout-btn').addEventListener('click', logout);
   
-  // Filters
   $('#search-input').addEventListener('input', filterItems);
   $('#filter-category').addEventListener('change', filterItems);
   $('#filter-status').addEventListener('change', filterItems);
@@ -288,6 +294,54 @@ function logout() {
   if (window.netlifyIdentity) {
     window.netlifyIdentity.logout();
   }
+}
+
+// ========================================
+// CATEGORIES MANAGEMENT
+// ========================================
+
+async function loadCategories() {
+  try {
+    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/categorie`;
+    const headers = state.token ? { 'Authorization': `token ${state.token}` } : {};
+    
+    const response = await fetch(apiUrl, { headers });
+    
+    if (!response.ok) {
+      console.log('No categories folder found, using defaults');
+      state.categories = [];
+      return;
+    }
+    
+    const files = await response.json();
+    const mdFiles = files.filter(f => f.name.endsWith('.md'));
+    
+    const categories = await Promise.all(mdFiles.map(async file => {
+      const contentRes = await fetch(file.download_url);
+      const content = await contentRes.text();
+      return parseMarkdown(content, file.name, file.sha);
+    }));
+    
+    state.categories = categories.filter(c => c.visibile !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
+    console.log('Loaded categories:', state.categories);
+  } catch (error) {
+    console.error('Error loading categories:', error);
+    state.categories = [];
+  }
+}
+
+function getCategoriesForType(type) {
+  const dynamicCats = state.categories
+    .filter(c => c.tipo_menu === type)
+    .map(c => c.nome);
+  
+  if (type === 'food') {
+    // Merge with defaults, avoiding duplicates
+    const allCats = [...new Set([...dynamicCats, ...DEFAULT_FOOD_CATEGORIES])];
+    return allCats;
+  }
+  
+  return dynamicCats;
 }
 
 
@@ -374,6 +428,18 @@ function updateCategoryFilter(collectionName) {
   select.innerHTML = '<option value="">Tutte le categorie</option>';
   
   const collection = COLLECTIONS[collectionName];
+  
+  // Check for dynamic-select field
+  const dynamicField = collection.fields.find(f => f.type === 'dynamic-select');
+  if (dynamicField) {
+    const categories = getCategoriesForType(dynamicField.categoryType);
+    categories.forEach(opt => {
+      select.innerHTML += `<option value="${opt}">${opt}</option>`;
+    });
+    return;
+  }
+  
+  // Fallback to static options
   const categoryField = collection.fields.find(f => 
     f.name === 'category' || f.name === 'sezione' || f.name === 'categoria'
   );
@@ -394,35 +460,14 @@ async function loadItems(collectionName) {
   const collection = COLLECTIONS[collectionName];
   
   try {
-    let apiUrl, headers = {};
-    
-    if (CONFIG.useGitGateway && state.token) {
-      apiUrl = `${CONFIG.gitGatewayUrl}/contents/${collection.folder}`;
-      headers = { 'Authorization': `Bearer ${state.token}` };
-    } else {
-      apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
-      if (state.token) headers = { 'Authorization': `token ${state.token}` };
-    }
+    let apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
+    const headers = state.token ? { 'Authorization': `token ${state.token}` } : {};
     
     const response = await fetch(apiUrl, { headers });
     
-    let files;
-    if (!response.ok) {
-      if (CONFIG.useGitGateway) {
-        console.log('Git Gateway failed, trying GitHub API...');
-        const fallbackRes = await fetch(
-          `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`,
-          { headers: state.token ? { 'Authorization': `token ${state.token}` } : {} }
-        );
-        if (!fallbackRes.ok) throw new Error('Errore caricamento');
-        files = await fallbackRes.json();
-      } else {
-        throw new Error('Errore caricamento');
-      }
-    } else {
-      files = await response.json();
-    }
+    if (!response.ok) throw new Error('Errore caricamento');
     
+    const files = await response.json();
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
     
     const items = await Promise.all(mdFiles.map(async file => {
@@ -492,6 +537,7 @@ function parseMarkdown(content, filename, sha) {
 function renderItems() {
   const list = $('#items-list');
   const items = getFilteredItems();
+  const collection = COLLECTIONS[state.currentCollection];
   
   if (items.length === 0) {
     list.innerHTML = `
@@ -504,7 +550,73 @@ function renderItems() {
     return;
   }
   
-  list.innerHTML = items.map(item => `
+  // Group by category for food collection
+  if (collection.groupByCategory && state.currentCollection === 'food') {
+    renderGroupedItems(items);
+  } else {
+    renderFlatItems(items);
+  }
+  
+  // Add click handlers
+  $$('.item-card').forEach(card => {
+    card.addEventListener('click', () => editItem(card.dataset.filename));
+  });
+}
+
+function renderGroupedItems(items) {
+  const list = $('#items-list');
+  
+  // Group items by category
+  const grouped = {};
+  items.forEach(item => {
+    const cat = item.category || 'Senza categoria';
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(item);
+  });
+  
+  // Get category order from state.categories
+  const categoryOrder = {};
+  state.categories.forEach((cat, idx) => {
+    categoryOrder[cat.nome] = cat.order || idx;
+  });
+  
+  // Sort categories
+  const sortedCategories = Object.keys(grouped).sort((a, b) => {
+    const orderA = categoryOrder[a] ?? 999;
+    const orderB = categoryOrder[b] ?? 999;
+    return orderA - orderB;
+  });
+  
+  let html = '';
+  sortedCategories.forEach(category => {
+    const categoryData = state.categories.find(c => c.nome === category);
+    const icon = categoryData?.icona || '📦';
+    const color = categoryData?.colore || '#d4a853';
+    
+    html += `
+      <div class="category-group">
+        <div class="category-header" style="border-left-color: ${color}">
+          <span class="category-icon">${icon}</span>
+          <span class="category-name">${category}</span>
+          <span class="category-count">${grouped[category].length}</span>
+        </div>
+        <div class="category-items">
+          ${grouped[category].map(item => renderItemCard(item)).join('')}
+        </div>
+      </div>
+    `;
+  });
+  
+  list.innerHTML = html;
+}
+
+function renderFlatItems(items) {
+  const list = $('#items-list');
+  list.innerHTML = items.map(item => renderItemCard(item)).join('');
+}
+
+function renderItemCard(item) {
+  return `
     <div class="item-card ${item.disponibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
       ${item.immagine ? `<img src="${item.immagine}" class="item-image" alt="">` : 
         `<div class="item-image"></div>`}
@@ -514,10 +626,8 @@ function renderItems() {
           <span class="item-price">€${item.prezzo || '0'}</span>
           <span class="item-status">
             <span class="status-dot ${item.disponibile !== false ? 'available' : 'unavailable'}"></span>
-            ${item.disponibile !== false ? 'Disponibile' : 'Non disponibile'}
+            ${item.disponibile !== false ? 'Disp.' : 'Non disp.'}
           </span>
-          ${item.category || item.sezione || item.categoria ? 
-            `<span>${item.category || item.sezione || item.categoria}</span>` : ''}
         </div>
         ${item.tags && item.tags.length ? `
           <div class="item-tags">
@@ -526,11 +636,7 @@ function renderItems() {
         ` : ''}
       </div>
     </div>
-  `).join('');
-  
-  $$('.item-card').forEach(card => {
-    card.addEventListener('click', () => editItem(card.dataset.filename));
-  });
+  `;
 }
 
 function getFilteredItems() {
@@ -604,7 +710,8 @@ function renderEditForm(data) {
           <div class="form-group">
             <label class="form-label">${field.label}${field.required ? ' *' : ''}</label>
             <input type="text" name="${field.name}" class="form-input" 
-              value="${escapeHtml(value)}" ${field.required ? 'required' : ''}>
+              value="${escapeHtml(value)}" ${field.required ? 'required' : ''}
+              ${field.autoSlug ? 'data-auto-slug="true"' : ''}>
             ${field.hint ? `<div class="form-hint">${field.hint}</div>` : ''}
           </div>
         `;
@@ -628,13 +735,28 @@ function renderEditForm(data) {
       case 'select':
         return `
           <div class="form-group">
-            <label class="form-label">${field.label}</label>
-            <select name="${field.name}" class="form-select">
+            <label class="form-label">${field.label}${field.required ? ' *' : ''}</label>
+            <select name="${field.name}" class="form-select" ${field.required ? 'required' : ''}>
               <option value="">-- Seleziona --</option>
               ${field.options.map(opt => 
                 `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`
               ).join('')}
             </select>
+          </div>
+        `;
+      
+      case 'dynamic-select':
+        const categories = getCategoriesForType(field.categoryType);
+        return `
+          <div class="form-group">
+            <label class="form-label">${field.label}</label>
+            <select name="${field.name}" class="form-select">
+              <option value="">-- Seleziona --</option>
+              ${categories.map(opt => 
+                `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`
+              ).join('')}
+            </select>
+            <div class="form-hint">Le categorie si gestiscono dalla sezione "Categorie"</div>
           </div>
         `;
         
@@ -671,11 +793,21 @@ function renderEditForm(data) {
     }
   }).join('');
   
+  // Add tag click handlers
   $$('.tag-option').forEach(tag => {
     tag.addEventListener('click', () => {
       tag.classList.toggle('selected');
     });
   });
+  
+  // Auto-slug for categories
+  const nomeInput = form.querySelector('[name="nome"]');
+  const slugInput = form.querySelector('[data-auto-slug="true"]');
+  if (nomeInput && slugInput && state.isNew) {
+    nomeInput.addEventListener('input', () => {
+      slugInput.value = slugify(nomeInput.value);
+    });
+  }
 }
 
 function escapeHtml(text) {
@@ -722,7 +854,7 @@ async function saveItem() {
   
   let filename;
   if (state.isNew) {
-    const slug = slugify(data.nome);
+    const slug = slugify(data.nome || data.slug);
     filename = `${slug}.md`;
   } else {
     filename = state.currentItem.filename;
@@ -737,6 +869,11 @@ async function saveItem() {
     const sha = state.isNew ? null : state.currentItem.sha;
     
     await saveToGitHub(path, content, sha);
+    
+    // Reload categories if we saved a category
+    if (state.currentCollection === 'categorie') {
+      await loadCategories();
+    }
     
     toast('Salvato con successo!', 'success');
     await loadItems(state.currentCollection);
@@ -774,6 +911,7 @@ function generateMarkdown(data) {
 }
 
 function slugify(text) {
+  if (!text) return '';
   return text
     .toString()
     .toLowerCase()
@@ -800,21 +938,11 @@ async function saveToGitHub(path, content, sha = null) {
     body.sha = sha;
   }
   
-  let apiUrl, headers;
-  
-  if (CONFIG.useGitGateway && state.token) {
-    apiUrl = `${CONFIG.gitGatewayUrl}/contents/${path}`;
-    headers = {
-      'Authorization': `Bearer ${state.token}`,
-      'Content-Type': 'application/json'
-    };
-  } else {
-    apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
-    headers = {
-      'Authorization': `token ${state.token}`,
-      'Content-Type': 'application/json'
-    };
-  }
+  const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
+  const headers = {
+    'Authorization': `token ${state.token}`,
+    'Content-Type': 'application/json'
+  };
   
   const response = await fetch(apiUrl, {
     method: 'PUT',
@@ -842,21 +970,11 @@ async function deleteItem() {
     const collection = COLLECTIONS[state.currentCollection];
     const path = `${collection.folder}/${state.currentItem.filename}`;
     
-    let apiUrl, headers;
-    
-    if (CONFIG.useGitGateway && state.token) {
-      apiUrl = `${CONFIG.gitGatewayUrl}/contents/${path}`;
-      headers = {
-        'Authorization': `Bearer ${state.token}`,
-        'Content-Type': 'application/json'
-      };
-    } else {
-      apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
-      headers = {
-        'Authorization': `token ${state.token}`,
-        'Content-Type': 'application/json'
-      };
-    }
+    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
+    const headers = {
+      'Authorization': `token ${state.token}`,
+      'Content-Type': 'application/json'
+    };
     
     const response = await fetch(apiUrl, {
       method: 'DELETE',
@@ -869,6 +987,11 @@ async function deleteItem() {
     });
     
     if (!response.ok) throw new Error('Errore eliminazione');
+    
+    // Reload categories if we deleted a category
+    if (state.currentCollection === 'categorie') {
+      await loadCategories();
+    }
     
     toast('Eliminato con successo!', 'success');
     await loadItems(state.currentCollection);

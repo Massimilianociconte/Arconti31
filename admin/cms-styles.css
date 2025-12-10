@@ -737,3 +737,70 @@ body {
   gap: 12px;
   justify-content: center;
 }
+
+
+/* ========================================
+   CATEGORY GROUPS
+   ======================================== */
+.category-group {
+  margin-bottom: 24px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--primary);
+  margin-bottom: 12px;
+}
+
+.category-icon {
+  font-size: 20px;
+}
+
+.category-name {
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.category-count {
+  background: var(--bg-input);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.category-items {
+  display: grid;
+  gap: 10px;
+  padding-left: 8px;
+}
+
+@media (min-width: 768px) {
+  .category-items {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+/* Compact item cards in grouped view */
+.category-items .item-card {
+  padding: 12px;
+}
+
+.category-items .item-image {
+  width: 50px;
+  height: 50px;
+}
+
+.category-items .item-name {
+  font-size: 14px;
+}
+
+.category-items .item-meta {
+  font-size: 12px;
+}
