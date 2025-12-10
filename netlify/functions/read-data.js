@@ -1,7 +1,6 @@
 // Netlify Function per leggere i dati da GitHub
 // Usa il token per evitare rate limit
-
-const https = require('https');
+// Ottimizzato: usa JSON statici quando possibile, API solo per SHA
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -17,7 +16,7 @@ exports.handler = async (event, context) => {
   }
 
   const { folder } = parsedBody;
-  
+
   if (!folder) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Folder required' }) };
   }
@@ -28,6 +27,14 @@ exports.handler = async (event, context) => {
 
   console.log(`[read-data] Folder: ${folder}, Owner: ${REPO_OWNER}, Repo: ${REPO_NAME}, Token exists: ${!!GITHUB_TOKEN}`);
 
+  if (!GITHUB_TOKEN) {
+    console.error('[read-data] GITHUB_TOKEN non configurato!');
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'GITHUB_TOKEN non configurato', items: [] })
+    };
+  }
+
   try {
     // Get folder contents
     const files = await githubRequest(
@@ -36,6 +43,16 @@ exports.handler = async (event, context) => {
       null,
       GITHUB_TOKEN
     );
+
+    // Handle case where folder doesn't exist or is empty
+    if (!Array.isArray(files)) {
+      console.log(`[read-data] Folder ${folder} non è un array o non esiste`);
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [] })
+      };
+    }
 
     console.log(`[read-data] Found ${files.length} files in ${folder}`);
 
@@ -67,6 +84,18 @@ exports.handler = async (event, context) => {
     };
   } catch (error) {
     console.error('[read-data] Error:', error.message);
+
+    // Se è rate limit, restituisci un messaggio specifico
+    if (error.message.includes('403') || error.message.includes('rate limit')) {
+      return {
+        statusCode: 429,
+        body: JSON.stringify({
+          error: 'Rate limit GitHub raggiunto. Attendi qualche minuto e riprova.',
+          items: []
+        })
+      };
+    }
+
     return {
       statusCode: error.message.includes('404') ? 404 : 500,
       body: JSON.stringify({ error: error.message, items: [] })
@@ -75,44 +104,33 @@ exports.handler = async (event, context) => {
 };
 
 
-function githubRequest(method, path, body, token) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      hostname: 'api.github.com',
-      path: path,
-      method: method,
-      headers: {
-        'User-Agent': 'Arconti31-CMS',
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    };
+async function githubRequest(method, path, body, token) {
+  const url = `https://api.github.com${path}`;
 
-    // Add auth if token available
-    if (token) {
-      options.headers['Authorization'] = `token ${token}`;
+  const options = {
+    method: method,
+    headers: {
+      'User-Agent': 'Arconti31-CMS',
+      'Accept': 'application/vnd.github.v3+json'
     }
+  };
 
-    console.log(`[githubRequest] ${method} ${path}`);
+  // Add auth if token available
+  if (token) {
+    options.headers['Authorization'] = `token ${token}`;
+  }
 
-    const req = https.request(options, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        console.log(`[githubRequest] Response status: ${res.statusCode}`);
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(data ? JSON.parse(data) : {});
-        } else {
-          console.error(`[githubRequest] Error response: ${data.substring(0, 500)}`);
-          reject(new Error(`GitHub API error: ${res.statusCode} - ${data.substring(0, 200)}`));
-        }
-      });
-    });
+  console.log(`[githubRequest] ${method} ${path}`);
 
-    req.on('error', (e) => {
-      console.error('[githubRequest] Request error:', e.message);
-      reject(e);
-    });
-    if (body) req.write(JSON.stringify(body));
-    req.end();
-  });
+  const response = await fetch(url, options);
+  const data = await response.text();
+
+  console.log(`[githubRequest] Response status: ${response.status}`);
+
+  if (response.ok) {
+    return data ? JSON.parse(data) : {};
+  } else {
+    console.error(`[githubRequest] Error response: ${data.substring(0, 500)}`);
+    throw new Error(`GitHub API error: ${response.status} - ${data.substring(0, 200)}`);
+  }
 }

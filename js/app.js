@@ -1,6 +1,6 @@
 // ========================================
 // ARCONTI31 - MENU DIGITALE
-// Sincronizzazione diretta con GitHub
+// Lettura da JSON statici (zero rate limiting)
 // ========================================
 
 const CONFIG = {
@@ -69,71 +69,26 @@ let beveragesData = [];
 let currentView = 'home';
 
 // ========================================
-// GITHUB API - Lettura diretta
+// CARICAMENTO DATI DA JSON STATICI
 // ========================================
 
-async function fetchFromGitHub(folder) {
+/**
+ * Carica un file JSON con cache buster per avere sempre dati freschi
+ */
+async function loadFromJSON(jsonPath) {
   try {
-    const url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${folder}`;
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    
-    const files = await res.json();
-    const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
-    
-    const items = await Promise.all(mdFiles.map(async file => {
-      try {
-        const content = await (await fetch(file.download_url)).text();
-        return parseMarkdown(content, file.name);
-      } catch (e) {
-        console.error(`Error loading ${file.name}:`, e);
-        return null;
-      }
-    }));
-    
-    return items.filter(i => i !== null);
-  } catch (e) {
-    console.error(`Error fetching ${folder}:`, e);
-    return [];
-  }
-}
-
-function parseMarkdown(content, filename) {
-  const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
-  
-  const data = { filename };
-  let currentKey = null;
-  let inArray = false;
-  let arrayValues = [];
-  
-  match[1].split('\n').forEach(line => {
-    line = line.replace(/\r$/, '');
-    if (line.startsWith('  - ')) {
-      arrayValues.push(line.replace('  - ', '').replace(/"/g, '').trim());
-    } else if (line.includes(':')) {
-      if (currentKey && inArray) {
-        data[currentKey] = arrayValues;
-        arrayValues = [];
-        inArray = false;
-      }
-      const [key, ...rest] = line.split(':');
-      const value = rest.join(':').trim();
-      currentKey = key.trim();
-      if (value === '') {
-        inArray = true;
-      } else {
-        let parsed = value.replace(/^["']|["']$/g, '');
-        if (parsed === 'true') parsed = true;
-        else if (parsed === 'false') parsed = false;
-        else if (!isNaN(parsed) && parsed !== '') parsed = Number(parsed);
-        data[currentKey] = parsed;
-      }
+    // Cache buster per evitare dati stantii
+    const cacheBuster = `?t=${Date.now()}`;
+    const res = await fetch(jsonPath + cacheBuster);
+    if (!res.ok) {
+      console.warn(`⚠️ Errore caricamento ${jsonPath}: ${res.status}`);
+      return null;
     }
-  });
-  
-  if (currentKey && inArray) data[currentKey] = arrayValues;
-  return data;
+    return await res.json();
+  } catch (e) {
+    console.error(`❌ Errore fetch ${jsonPath}:`, e);
+    return null;
+  }
 }
 
 // ========================================
@@ -142,48 +97,36 @@ function parseMarkdown(content, filename) {
 
 async function loadAllData() {
   showLoading();
-  
+
   try {
-    // Carica tutto in parallelo direttamente da GitHub
-    const [categories, food, beers, cocktails, analcolici, bibite, caffetteria, bollicine, bianchi, rossi] = await Promise.all([
-      fetchFromGitHub('categorie'),
-      fetchFromGitHub('food'),
-      fetchFromGitHub('beers'),
-      fetchFromGitHub('cocktails'),
-      fetchFromGitHub('analcolici'),
-      fetchFromGitHub('bibite'),
-      fetchFromGitHub('caffetteria'),
-      fetchFromGitHub('bollicine'),
-      fetchFromGitHub('bianchi-fermi'),
-      fetchFromGitHub('vini-rossi')
+    // Carica tutti i JSON in parallelo (velocissimo, zero rate limiting!)
+    const [categoriesRes, foodRes, beersRes, beveragesRes] = await Promise.all([
+      loadFromJSON('/categorie/categorie.json'),
+      loadFromJSON('/food/food.json'),
+      loadFromJSON('/beers/beers.json'),
+      loadFromJSON('/beverages/beverages.json')
     ]);
-    
-    // Filtra categorie visibili e ordina
-    categoriesData = categories
+
+    // Estrai dati dalle risposte JSON
+    categoriesData = (categoriesRes?.categories || [])
       .filter(c => c.visibile !== false)
       .sort((a, b) => (a.order || 0) - (b.order || 0));
-    
-    // Food
-    foodData = food.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
-    // Beers
-    beersData = beers.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
-    // Beverages - combina tutte le categorie
-    beveragesData = [
-      ...cocktails.map(i => ({ ...i, tipo: 'Cocktails' })),
-      ...analcolici.map(i => ({ ...i, tipo: 'Analcolici' })),
-      ...bibite.map(i => ({ ...i, tipo: 'Bibite' })),
-      ...caffetteria.map(i => ({ ...i, tipo: 'Caffetteria' })),
-      ...bollicine.map(i => ({ ...i, tipo: 'Bollicine' })),
-      ...bianchi.map(i => ({ ...i, tipo: 'Bianchi fermi' })),
-      ...rossi.map(i => ({ ...i, tipo: 'Vini rossi' }))
-    ].sort((a, b) => (a.order || 0) - (b.order || 0));
-    
+
+    foodData = (foodRes?.food || [])
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    beersData = (beersRes?.beers || [])
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    beveragesData = (beveragesRes?.beverages || [])
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    console.log(`✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande`);
+
     showCategoriesView();
   } catch (error) {
     console.error('Errore nel caricamento:', error);
-    document.getElementById('categories-view').innerHTML = 
+    document.getElementById('categories-view').innerHTML =
       '<p class="loading">Errore nel caricamento. Riprova più tardi.</p>';
   } finally {
     hideLoading();
@@ -191,7 +134,7 @@ async function loadAllData() {
 }
 
 function showLoading() {
-  document.getElementById('categories-view').innerHTML = 
+  document.getElementById('categories-view').innerHTML =
     '<div class="loading">Caricamento Menù...</div>';
 }
 
@@ -208,13 +151,13 @@ function showCategoriesView() {
   document.getElementById('breadcrumb').style.display = 'none';
   document.getElementById('categories-view').style.display = 'block';
   document.getElementById('detail-view').style.display = 'none';
-  
+
   const categoriesView = document.getElementById('categories-view');
   let html = '';
-  
+
   // Food Categories
   const foodCategories = categoriesData.filter(c => c.tipo_menu === 'food');
-  
+
   // Se non ci sono categorie dinamiche, usa default
   const defaultFoodOrder = [
     { nome: 'Hamburger di bufala', icona: '🍔' },
@@ -228,9 +171,9 @@ function showCategoriesView() {
     { nome: 'Dolci', icona: '🍰' },
     { nome: 'Aperitivo', icona: '🥜' }
   ];
-  
+
   const foodOrder = foodCategories.length > 0 ? foodCategories : defaultFoodOrder;
-  
+
   html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
   foodOrder.forEach(cat => {
     const items = foodData.filter(f => f.category === cat.nome && f.disponibile !== false);
@@ -240,24 +183,24 @@ function showCategoriesView() {
     }
   });
   html += '</div>';
-  
+
   // Beer Categories
   html += '<h2 class="section-header">Beverage</h2><div class="categories-grid">';
-  
+
   const beerSections = [
     { nome: 'Birre artigianali alla spina a rotazione', icona: '🍺' },
     { nome: 'Birre alla spina', icona: '🍻' },
     { nome: 'Birre speciali in bottiglia', icona: '🍾' },
     { nome: 'Frigo Birre', icona: '❄️' }
   ];
-  
+
   beerSections.forEach(section => {
     const items = beersData.filter(b => b.sezione === section.nome && b.disponibile !== false);
     if (items.length > 0) {
       html += createCategoryCard(section, items.length, 'beer');
     }
   });
-  
+
   // Other Beverages
   const beverageTypes = [
     { nome: 'Cocktails', icona: '🍹' },
@@ -268,7 +211,7 @@ function showCategoriesView() {
     { nome: 'Bianchi fermi', icona: '🍷' },
     { nome: 'Vini rossi', icona: '🍷' }
   ];
-  
+
   beverageTypes.forEach(type => {
     const items = beveragesData.filter(b => b.tipo === type.nome && b.disponibile !== false);
     if (items.length > 0) {
@@ -278,19 +221,19 @@ function showCategoriesView() {
       html += createCategoryCard(catData, items.length, 'beverage');
     }
   });
-  
+
   html += '</div>';
-  
+
   categoriesView.innerHTML = html;
 }
 
 function createCategoryCard(cat, count, type) {
   // Priorità: immagine dalla categoria dinamica > fallback hardcoded
   let imageUrl = cat.immagine || DEFAULT_CATEGORY_IMAGES[cat.nome] || null;
-  
+
   const hasImageClass = imageUrl ? 'has-bg-image' : '';
-  const imageHtml = imageUrl 
-    ? `<img src="${imageUrl}" alt="${cat.nome}" class="category-bg-img" loading="lazy" decoding="async">` 
+  const imageHtml = imageUrl
+    ? `<img src="${imageUrl}" alt="${cat.nome}" class="category-bg-img" loading="lazy" decoding="async">`
     : '';
 
   return `
@@ -313,9 +256,9 @@ function showCategory(categoryName, type) {
   document.getElementById('breadcrumb').style.display = 'flex';
   document.getElementById('categories-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
-  
+
   let items = [];
-  
+
   if (type === 'beer') {
     items = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
   } else if (type === 'beverage') {
@@ -323,10 +266,10 @@ function showCategory(categoryName, type) {
   } else if (type === 'food') {
     items = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
   }
-  
+
   // Ordina per order
   items.sort((a, b) => (a.order || 0) - (b.order || 0));
-  
+
   const detailContent = document.getElementById('detail-content');
   detailContent.innerHTML = `
     <h2 class="section-title">${categoryName}</h2>
@@ -334,7 +277,7 @@ function showCategory(categoryName, type) {
       ${items.map((item, index) => renderCard(item, index, type)).join('')}
     </div>
   `;
-  
+
   window.scrollTo(0, 0);
 }
 
@@ -351,21 +294,21 @@ function renderCard(item, index, type) {
   // Immagine copertina (opzionale)
   const hasImage = item.immagine || item.immagine_copertina;
   const imageUrl = item.immagine_copertina || item.immagine;
-  
-  const imageHtml = hasImage 
+
+  const imageHtml = hasImage
     ? `<div class="card-image-container"><img src="${imageUrl}" alt="${item.nome}" class="beer-image" loading="lazy" decoding="async"></div>`
     : '';
-  
+
   const noImageClass = !hasImage ? 'no-image-card' : '';
-  
+
   // Avatar/Logo (opzionale)
   const logoUrl = item.immagine_avatar || item.logo;
-  const logoHtml = logoUrl 
+  const logoHtml = logoUrl
     ? `<img src="${logoUrl}" alt="${item.nome}" class="beer-logo">`
     : '';
-  
+
   const categoryLabel = type === 'beer' ? item.sezione : (type === 'food' ? item.category : item.tipo);
-  
+
   // Tags
   let tagsHtml = '';
   if (item.tags) {
@@ -374,16 +317,16 @@ function renderCard(item, index, type) {
     if (tagsList.length > 0) {
       tagsHtml = `<div class="card-badges">
         ${tagsList.map(tag => {
-          const icon = ICONS.tags[tag] || ICONS.tags['default'];
-          const className = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          return `<span class="badge badge-${className}">${icon} ${tag}</span>`;
-        }).join('')}
+        const icon = ICONS.tags[tag] || ICONS.tags['default'];
+        const className = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return `<span class="badge badge-${className}">${icon} ${tag}</span>`;
+      }).join('')}
       </div>`;
     }
   }
 
   const description = item.descrizione ? `<p class="beer-description">${item.descrizione}</p>` : '';
-  
+
   return `
     <div class="beer-card ${noImageClass}" style="animation-delay: ${(index % 10) * 0.05}s" onclick="openModal('${item.nome.replace(/'/g, "\\'")}', '${type}')">
       ${imageHtml}
@@ -417,21 +360,21 @@ function openModal(itemName, type) {
   if (type === 'beer') allItems = beersData;
   else if (type === 'beverage') allItems = beveragesData;
   else if (type === 'food') allItems = foodData;
-  
+
   const item = allItems.find(i => i.nome === itemName.replace(/\\'/g, "'"));
   if (!item) return;
-  
+
   const modal = document.getElementById('beer-modal');
   const modalBody = document.getElementById('modal-body');
-  
+
   // Immagine copertina
   const imageUrl = item.immagine_copertina || item.immagine;
   const imageHtml = imageUrl ? `<div class="modal-hero-wrapper"><img src="${imageUrl}" class="modal-hero-img"></div>` : '';
-  
+
   // Avatar
   const avatarUrl = item.immagine_avatar || item.logo;
   const avatarHtml = avatarUrl ? `<img src="${avatarUrl}" class="modal-logo-small" alt="Logo">` : '';
-  
+
   // Tags
   let tagsHtml = '';
   if (item.tags) {
@@ -440,9 +383,9 @@ function openModal(itemName, type) {
     if (tagsList.length > 0) {
       tagsHtml = `<div class="modal-tags-list">
         ${tagsList.map(tag => {
-          const icon = ICONS.tags[tag] || ICONS.tags['default'];
-          return `<span class="modal-tag">${icon} ${tag}</span>`;
-        }).join('')}
+        const icon = ICONS.tags[tag] || ICONS.tags['default'];
+        return `<span class="modal-tag">${icon} ${tag}</span>`;
+      }).join('')}
       </div>`;
     }
   }
@@ -458,14 +401,14 @@ function openModal(itemName, type) {
           <h4>Allergeni</h4>
           <div class="allergens-grid">
             ${allList.map(a => {
-              const icon = ICONS.allergeni[a] || ICONS.allergeni['default'];
-              return `<div class="allergen-item"><span class="allergen-icon">${icon}</span> ${a}</div>`;
-            }).join('')}
+        const icon = ICONS.allergeni[a] || ICONS.allergeni['default'];
+        return `<div class="allergen-item"><span class="allergen-icon">${icon}</span> ${a}</div>`;
+      }).join('')}
           </div>
         </div>`;
     }
   }
-  
+
   modalBody.innerHTML = `
     ${imageHtml}
     <div class="modal-content-scroll">
@@ -488,7 +431,7 @@ function openModal(itemName, type) {
       <button onclick="closeModal()" class="modal-close-action">Chiudi</button>
     </div>
   `;
-  
+
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
