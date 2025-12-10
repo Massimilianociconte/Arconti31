@@ -1694,8 +1694,21 @@ function setupGlobalSearch() {
   
   closeBtn.addEventListener('click', closeGlobalSearch);
   
+  // Event listeners multipli per supporto iPad/tablet
   input.addEventListener('input', handleGlobalSearchInput);
+  input.addEventListener('keyup', handleGlobalSearchChange); // Fallback per iPad
   input.addEventListener('keydown', handleGlobalSearchKeydown);
+  input.addEventListener('change', handleGlobalSearchChange); // Per autocomplete
+  
+  // Touch-specific: su iPad a volte serve questo
+  input.addEventListener('touchend', () => {
+    // Piccolo delay per permettere l'aggiornamento del valore
+    setTimeout(() => {
+      if (input.value.trim().length >= 2) {
+        performGlobalSearch(input.value.trim());
+      }
+    }, 50);
+  });
   
   // Close when clicking outside
   document.addEventListener('click', (e) => {
@@ -1725,10 +1738,16 @@ function handleGlobalSearchInput(e) {
     return;
   }
   
-  // Ridotto timeout per risposta più veloce - 150ms invece di 300ms
+  // Timeout breve per risposta rapida
   state.globalSearchTimeout = setTimeout(() => {
     performGlobalSearch(query);
-  }, 150);
+  }, 100);
+}
+
+// Handler separato per iPad/touch - input event a volte non triggerato
+function handleGlobalSearchChange(e) {
+  // Chiama direttamente handleGlobalSearchInput
+  handleGlobalSearchInput(e);
 }
 
 function handleGlobalSearchKeydown(e) {
