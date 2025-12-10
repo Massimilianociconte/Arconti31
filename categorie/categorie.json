@@ -5,6 +5,7 @@
       "slug": "hamburger-bufala",
       "tipo_menu": "food",
       "icona": "🍔",
+      "immagine": "images/minicard sezioni/hamburger-bufala.png",
       "descrizione": "I nostri hamburger con carne di bufala selezionata",
       "visibile": true,
       "order": 1
@@ -14,6 +15,7 @@
       "slug": "hamburger-fassona",
       "tipo_menu": "food",
       "icona": "🍔",
+      "immagine": "images/minicard sezioni/bufala-streetfood.png",
       "descrizione": "Hamburger di Fassona piemontese e street food",
       "visibile": true,
       "order": 2
@@ -23,6 +25,7 @@
       "slug": "oktoberfest",
       "tipo_menu": "food",
       "icona": "🥨",
+      "immagine": "images/minicard sezioni/oktoberfest.jpg",
       "descrizione": "Specialità bavaresi per l'Oktoberfest",
       "visibile": true,
       "order": 3
@@ -32,6 +35,7 @@
       "slug": "panini",
       "tipo_menu": "food",
       "icona": "🥪",
+      "immagine": "images/minicard sezioni/panini.jpg",
       "descrizione": "I nostri panini farciti",
       "visibile": true,
       "order": 4
@@ -41,6 +45,7 @@
       "slug": "griglieria",
       "tipo_menu": "food",
       "icona": "🔥",
+      "immagine": "images/minicard sezioni/picanha.jpg",
       "descrizione": "Carni alla griglia",
       "visibile": true,
       "order": 5
@@ -50,6 +55,7 @@
       "slug": "piatti-speciali",
       "tipo_menu": "food",
       "icona": "🍽️",
+      "immagine": "images/minicard sezioni/piatti-speciali.jpg",
       "descrizione": "Le nostre specialità della casa",
       "visibile": true,
       "order": 6
@@ -59,6 +65,7 @@
       "slug": "piadine",
       "tipo_menu": "food",
       "icona": "🥯",
+      "immagine": "images/minicard sezioni/piadine.jpg",
       "descrizione": "Piadine romagnole farcite",
       "visibile": true,
       "order": 7
@@ -68,6 +75,7 @@
       "slug": "fritti",
       "tipo_menu": "food",
       "icona": "🍟",
+      "immagine": "images/minicard sezioni/fritti.jpg",
       "descrizione": "Fritti e contorni",
       "visibile": true,
       "order": 8
@@ -77,6 +85,7 @@
       "slug": "dolci",
       "tipo_menu": "food",
       "icona": "🍰",
+      "immagine": "images/minicard sezioni/dolci.jpg",
       "descrizione": "I nostri dolci fatti in casa",
       "visibile": true,
       "order": 9
@@ -86,6 +95,7 @@
       "slug": "aperitivo",
       "tipo_menu": "food",
       "icona": "🥜",
+      "immagine": "images/minicard sezioni/aperitivo.jpg",
       "descrizione": "Stuzzichini per l'aperitivo",
       "visibile": true,
       "order": 10
@@ -96,6 +106,7 @@
       "tipo_menu": "beverage",
       "sezione_beverage": "Birre",
       "icona": "🍺",
+      "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
       "order": 10
@@ -106,6 +117,7 @@
       "tipo_menu": "beverage",
       "sezione_beverage": "Cocktails",
       "icona": "🍹",
+      "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
       "order": 20
@@ -117,6 +129,7 @@
       "slug": "hamburger-bufala",
       "tipo_menu": "food",
       "icona": "🍔",
+      "immagine": "images/minicard sezioni/hamburger-bufala.png",
       "descrizione": "I nostri hamburger con carne di bufala selezionata",
       "visibile": true,
       "order": 1
@@ -126,6 +139,7 @@
       "slug": "hamburger-fassona",
       "tipo_menu": "food",
       "icona": "🍔",
+      "immagine": "images/minicard sezioni/bufala-streetfood.png",
       "descrizione": "Hamburger di Fassona piemontese e street food",
       "visibile": true,
       "order": 2
@@ -135,6 +149,7 @@
       "slug": "oktoberfest",
       "tipo_menu": "food",
       "icona": "🥨",
+      "immagine": "images/minicard sezioni/oktoberfest.jpg",
       "descrizione": "Specialità bavaresi per l'Oktoberfest",
       "visibile": true,
       "order": 3
@@ -144,6 +159,7 @@
       "slug": "panini",
       "tipo_menu": "food",
       "icona": "🥪",
+      "immagine": "images/minicard sezioni/panini.jpg",
       "descrizione": "I nostri panini farciti",
       "visibile": true,
       "order": 4
@@ -153,6 +169,7 @@
       "slug": "griglieria",
       "tipo_menu": "food",
       "icona": "🔥",
+      "immagine": "images/minicard sezioni/picanha.jpg",
       "descrizione": "Carni alla griglia",
       "visibile": true,
       "order": 5
@@ -162,6 +179,7 @@
       "slug": "piatti-speciali",
       "tipo_menu": "food",
       "icona": "🍽️",
+      "immagine": "images/minicard sezioni/piatti-speciali.jpg",
       "descrizione": "Le nostre specialità della casa",
       "visibile": true,
       "order": 6
@@ -171,6 +189,7 @@
       "slug": "piadine",
       "tipo_menu": "food",
       "icona": "🥯",
+      "immagine": "images/minicard sezioni/piadine.jpg",
       "descrizione": "Piadine romagnole farcite",
       "visibile": true,
       "order": 7
@@ -180,6 +199,7 @@
       "slug": "fritti",
       "tipo_menu": "food",
       "icona": "🍟",
+      "immagine": "images/minicard sezioni/fritti.jpg",
       "descrizione": "Fritti e contorni",
       "visibile": true,
       "order": 8
@@ -189,6 +209,7 @@
       "slug": "dolci",
       "tipo_menu": "food",
       "icona": "🍰",
+      "immagine": "images/minicard sezioni/dolci.jpg",
       "descrizione": "I nostri dolci fatti in casa",
       "visibile": true,
       "order": 9
@@ -198,6 +219,7 @@
       "slug": "aperitivo",
       "tipo_menu": "food",
       "icona": "🥜",
+      "immagine": "images/minicard sezioni/aperitivo.jpg",
       "descrizione": "Stuzzichini per l'aperitivo",
       "visibile": true,
       "order": 10
@@ -210,6 +232,7 @@
       "tipo_menu": "beverage",
       "sezione_beverage": "Birre",
       "icona": "🍺",
+      "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
       "order": 10
@@ -220,6 +243,7 @@
       "tipo_menu": "beverage",
       "sezione_beverage": "Cocktails",
       "icona": "🍹",
+      "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
       "order": 20

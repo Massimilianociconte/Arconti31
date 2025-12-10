@@ -133,6 +133,7 @@ const COLLECTIONS = {
       { name: 'slug', label: 'Slug', type: 'text', required: true, hint: 'ID univoco', autoSlug: true },
       { name: 'tipo_menu', label: 'Tipo Menù', type: 'select', options: ['food', 'beverage'], required: true },
       { name: 'icona', label: 'Icona', type: 'text', hint: 'Es: 🍔 🍺' },
+      { name: 'immagine', label: 'Immagine Sfondo', type: 'text', hint: 'Es: images/minicard sezioni/nome.jpg' },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
       { name: 'visibile', label: 'Visibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }

@@ -174,11 +174,22 @@ function showCategoriesView() {
 }
 
 function createCategoryCard(name, count, icon, type) {
-    // Cerca immagine nel mapping o usa un placeholder generico se non esiste il file specifico
-    // Nota: In un caso reale verificheremmo l'esistenza, qui usiamo il mapping.
-    // Se l'immagine non è definita nel mapping, l'elemento background sarà vuoto (colore di fallback CSS)
-    const imageUrl = ICONS.categories[name]; 
-    // const bgStyle = imageUrl ? `background-image: url('${imageUrl}');` : ''; // OLD
+    // Prima cerca immagine nella categoria dinamica, poi nel mapping hardcoded
+    let imageUrl = null;
+    
+    // Cerca nelle categorie dinamiche
+    if (categoriesData && categoriesData.categories) {
+        const dynamicCat = categoriesData.categories.find(c => c.nome === name);
+        if (dynamicCat && dynamicCat.immagine) {
+            imageUrl = dynamicCat.immagine;
+        }
+    }
+    
+    // Fallback al mapping hardcoded
+    if (!imageUrl) {
+        imageUrl = ICONS.categories[name];
+    }
+    
     const hasImageClass = imageUrl ? 'has-bg-image' : '';
 
     const imageHtml = imageUrl 
