@@ -302,11 +302,10 @@ function logout() {
 
 async function loadCategories() {
   try {
-    // Use Netlify Git Gateway
-    const apiUrl = `/.netlify/git/github/contents/categorie`;
-    const headers = state.token ? { 'Authorization': `Bearer ${state.token}` } : {};
+    // Use GitHub API for reading (public repos don't need auth)
+    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/categorie`;
     
-    const response = await fetch(apiUrl, { headers });
+    const response = await fetch(apiUrl);
     
     if (!response.ok) {
       console.log('No categories folder found, using defaults');
@@ -461,11 +460,10 @@ async function loadItems(collectionName) {
   const collection = COLLECTIONS[collectionName];
   
   try {
-    // Use Netlify Git Gateway
-    let apiUrl = `/.netlify/git/github/contents/${collection.folder}`;
-    const headers = state.token ? { 'Authorization': `Bearer ${state.token}` } : {};
+    // Use GitHub API for reading (public repos don't need auth)
+    let apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${collection.folder}`;
     
-    const response = await fetch(apiUrl, { headers });
+    const response = await fetch(apiUrl);
     
     if (!response.ok) throw new Error('Errore caricamento');
     
