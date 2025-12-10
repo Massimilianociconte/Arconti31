@@ -678,7 +678,6 @@ function renderSidebar() {
         </div>
       </div>`;
     }).join('')}
-    }).join('')}
     
     <div class="tree-divider"></div>
     <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>
