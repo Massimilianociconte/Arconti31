@@ -4,7 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Arconti31 - Gestione Menù</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="description" content="CMS per la gestione del menù Arconti31">
+  <meta name="theme-color" content="#d4af37">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Arconti31 CMS">
+  <meta name="application-name" content="Arconti31 CMS">
+  <meta name="msapplication-TileColor" content="#1a1a2e">
+  <meta name="msapplication-config" content="none">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Icons -->
   <link rel="icon" type="image/png" href="../images/loghi/logo_arconti31.png">
+  <link rel="apple-touch-icon" href="../images/loghi/logo_arconti31.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../images/loghi/logo_arconti31.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/loghi/logo_arconti31.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="../images/loghi/logo_arconti31.png">
+  
+  <!-- Splash Screens for iOS -->
+  <link rel="apple-touch-startup-image" href="../images/loghi/logo_arconti31.png">
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cms-styles.css">
 </head>
@@ -136,5 +160,82 @@
   </div>
 
   <script src="cms-simple.js"></script>
+  
+  <!-- PWA Service Worker Registration -->
+  <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(registration => {
+            console.log('✅ Service Worker registrato:', registration.scope);
+            
+            // Check for updates
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New version available
+                  if (confirm('🔄 Nuova versione disponibile! Vuoi aggiornare?')) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    window.location.reload();
+                  }
+                }
+              });
+            });
+          })
+          .catch(err => console.log('❌ Service Worker registration failed:', err));
+      });
+      
+      // Handle SW messages
+      navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data && event.data.type === 'SYNC_COMPLETE') {
+          console.log('✅ Sincronizzazione completata');
+        }
+      });
+    }
+    
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Show install button after login
+      setTimeout(() => {
+        const header = document.querySelector('.app-header .header-actions');
+        if (header && !document.getElementById('install-pwa-btn')) {
+          const installBtn = document.createElement('button');
+          installBtn.id = 'install-pwa-btn';
+          installBtn.className = 'btn-icon';
+          installBtn.title = 'Installa App';
+          installBtn.innerHTML = `<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>`;
+          installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+              deferredPrompt.prompt();
+              const { outcome } = await deferredPrompt.userChoice;
+              console.log('Install outcome:', outcome);
+              deferredPrompt = null;
+              installBtn.style.display = 'none';
+            }
+          });
+          header.insertBefore(installBtn, header.firstChild);
+        }
+      }, 2000);
+    });
+    
+    // Detect if running as PWA
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ PWA installata con successo!');
+      deferredPrompt = null;
+    });
+    
+    // iOS PWA detection
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+    if (isInStandaloneMode()) {
+      console.log('📱 Running as iOS PWA');
+      document.body.classList.add('ios-pwa');
+    }
+  </script>
 </body>
 </html>

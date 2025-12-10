@@ -560,12 +560,42 @@ async function loadAllData(silent = false) {
     
     // Load current collection items
     await loadItems(state.currentCollection, silent);
+    
+    // Pre-carica dati per ricerca globale in background (non blocca UI)
+    preloadGlobalSearchData();
   } catch (e) {
     console.error('Error loading data:', e);
     if (!silent) toast('Errore caricamento dati', 'error');
   } finally {
     if (!silent) hideLoading();
   }
+}
+
+// Pre-carica tutti i dati per la ricerca globale in background
+async function preloadGlobalSearchData() {
+  const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
+  
+  // Carica tutte le collezioni in parallelo in background
+  const fetchPromises = searchCollections
+    .filter(collName => !state.allItems[collName])
+    .map(async (collName) => {
+      try {
+        const res = await fetch('/.netlify/functions/read-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ folder: COLLECTIONS[collName].folder })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          state.allItems[collName] = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+        }
+      } catch (e) {
+        console.error(`Preload error ${collName}:`, e);
+      }
+    });
+  
+  await Promise.all(fetchPromises);
+  console.log('✅ Dati ricerca globale pre-caricati');
 }
 
 // Silent refresh - updates data without visual loading indicators
@@ -737,12 +767,18 @@ function selectTreeItem(collection, category, beerSection = null) {
   document.querySelectorAll('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
   
   // Set active state
-  if (category) {
+  if (beerSection) {
+    // Per le sottocategorie birre (usa data-beer-section)
+    const item = $(`.tree-item[data-collection="${collection}"][data-beer-section="${beerSection}"]`);
+    if (item) item.classList.add('active');
+  } else if (category) {
+    // Per le categorie food (usa data-category)
     const item = $(`.tree-item[data-collection="${collection}"][data-category="${category}"]`);
     if (item) item.classList.add('active');
   } else {
+    // Per le collezioni principali senza sottocategoria
     const header = $(`.tree-header[data-collection="${collection}"]`);
-    const item = $(`.tree-item[data-collection="${collection}"]:not([data-category])`);
+    const item = $(`.tree-item[data-collection="${collection}"]:not([data-category]):not([data-beer-section])`);
     if (header) header.classList.add('active');
     if (item) item.classList.add('active');
   }
@@ -1178,74 +1214,81 @@ async function bulkSetVisibility(visible) {
   
   showLoading();
   
-  let success = 0;
-  let errors = 0;
-  
-  for (const filename of state.selectedItems) {
-    try {
-      // Find the item
-      const item = state.items.find(i => i.filename === filename);
-      if (!item) continue;
-      
-      // Update visibility
-      const updatedData = { ...item };
-      delete updatedData.filename;
-      delete updatedData.sha;
-      updatedData.visibile = visible;
-      
-      // Get fresh SHA
-      let sha = item.sha;
-      if (!sha) {
-        const fetchRes = await fetch('/.netlify/functions/read-data', {
+  try {
+    // Prima ottieni tutti gli SHA freschi in un'unica chiamata
+    const fetchRes = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: 'categorie' })
+    });
+    
+    let freshData = [];
+    if (fetchRes.ok) {
+      const data = await fetchRes.json();
+      freshData = data.items;
+    }
+    
+    // Prepara tutte le richieste di salvataggio
+    const savePromises = state.selectedItems.map(async (filename) => {
+      try {
+        // Find the item
+        const item = state.items.find(i => i.filename === filename);
+        if (!item) return { success: false, filename };
+        
+        // Trova SHA fresco
+        const freshItem = freshData.find(i => i.filename === filename);
+        const sha = freshItem?.sha || item.sha;
+        
+        if (!sha) {
+          return { success: false, filename };
+        }
+        
+        // Update visibility
+        const updatedData = { ...item };
+        delete updatedData.filename;
+        delete updatedData.sha;
+        updatedData.visibile = visible;
+        
+        // Save
+        const res = await fetch('/.netlify/functions/save-data', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ folder: 'categorie' })
+          body: JSON.stringify({
+            token: state.token,
+            action: 'save',
+            collection: 'categorie',
+            filename: filename,
+            data: updatedData,
+            sha: sha
+          })
         });
-        if (fetchRes.ok) {
-          const data = await fetchRes.json();
-          const found = data.items.find(i => i.filename === filename);
-          if (found) sha = found.sha;
-        }
+        
+        return { success: res.ok, filename };
+      } catch (e) {
+        console.error(`Error updating ${filename}:`, e);
+        return { success: false, filename };
       }
-      
-      if (!sha) {
-        errors++;
-        continue;
-      }
-      
-      // Save
-      const res = await fetch('/.netlify/functions/save-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          token: state.token,
-          action: 'save',
-          collection: 'categorie',
-          filename: filename,
-          data: updatedData,
-          sha: sha
-        })
-      });
-      
-      if (res.ok) {
-        success++;
-      } else {
-        errors++;
-      }
-    } catch (e) {
-      console.error(`Error updating ${filename}:`, e);
-      errors++;
+    });
+    
+    // Esegui TUTTE le richieste in parallelo (molto più veloce!)
+    const results = await Promise.all(savePromises);
+    
+    const success = results.filter(r => r.success).length;
+    const errors = results.filter(r => !r.success).length;
+    
+    if (success > 0) {
+      toast(`${success} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
     }
+    if (errors > 0) {
+      toast(`${errors} errori durante l'aggiornamento`, 'error');
+    }
+    
+  } catch (e) {
+    console.error('Bulk operation error:', e);
+    toast('Errore durante l\'operazione', 'error');
   }
   
   hideLoading();
-  
-  if (success > 0) {
-    toast(`${success} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
-  }
-  if (errors > 0) {
-    toast(`${errors} errori durante l'aggiornamento`, 'error');
-  }
   
   // Clear selection and refresh
   clearBulkSelection();
@@ -1682,9 +1725,10 @@ function handleGlobalSearchInput(e) {
     return;
   }
   
+  // Ridotto timeout per risposta più veloce - 150ms invece di 300ms
   state.globalSearchTimeout = setTimeout(() => {
     performGlobalSearch(query);
-  }, 300);
+  }, 150);
 }
 
 function handleGlobalSearchKeydown(e) {
@@ -1725,56 +1769,74 @@ async function performGlobalSearch(query) {
   const results = $('#global-search-results');
   const q = query.toLowerCase();
   
+  // Mostra indicatore di caricamento
+  results.innerHTML = '<div class="global-search-loading">🔍 Ricerca in corso...</div>';
+  results.classList.add('active');
+  
   // Search across all collections
   const allMatches = [];
   
   // Define collections to search
   const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
   
-  for (const collName of searchCollections) {
+  // Trova collezioni che devono essere caricate
+  const collectionsToFetch = searchCollections.filter(c => !state.allItems[c]);
+  
+  // Carica tutte le collezioni mancanti IN PARALLELO (molto più veloce!)
+  if (collectionsToFetch.length > 0) {
     try {
-      // Use cached data if available, otherwise fetch
-      if (!state.allItems[collName]) {
-        const res = await fetch('/.netlify/functions/read-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ folder: COLLECTIONS[collName].folder })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          state.allItems[collName] = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
-        }
-      }
-      
-      const items = state.allItems[collName] || [];
-      items.forEach(item => {
-        const nome = String(item.nome || '').toLowerCase();
-        const desc = String(item.descrizione || '').toLowerCase();
-        const cat = String(item.category || item.sezione || '').toLowerCase();
-        const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
-        
-        if (nome.includes(q) || desc.includes(q) || cat.includes(q) || tags.includes(q)) {
-          allMatches.push({
-            ...item,
-            _collection: collName,
-            _collectionLabel: COLLECTIONS[collName].label
+      const fetchPromises = collectionsToFetch.map(async (collName) => {
+        try {
+          const res = await fetch('/.netlify/functions/read-data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ folder: COLLECTIONS[collName].folder })
           });
+          if (res.ok) {
+            const data = await res.json();
+            return { collName, items: data.items.map(item => parseMarkdown(item.content, item.filename, item.sha)) };
+          }
+        } catch (e) {
+          console.error(`Error fetching ${collName}:`, e);
         }
+        return { collName, items: [] };
+      });
+      
+      const fetchResults = await Promise.all(fetchPromises);
+      fetchResults.forEach(({ collName, items }) => {
+        state.allItems[collName] = items;
       });
     } catch (e) {
-      console.error(`Error searching ${collName}:`, e);
+      console.error('Error fetching collections:', e);
     }
   }
   
-  // Sort by relevance (name match first)
+  // Ora cerca nei dati cachati (sincrono, velocissimo)
+  for (const collName of searchCollections) {
+    const items = state.allItems[collName] || [];
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const nome = (item.nome || '').toLowerCase();
+      const desc = (item.descrizione || '').toLowerCase();
+      const cat = (item.category || item.sezione || '').toLowerCase();
+      const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
+      
+      // Ricerca ottimizzata con indexOf (più veloce di includes su mobile)
+      if (nome.indexOf(q) !== -1 || desc.indexOf(q) !== -1 || cat.indexOf(q) !== -1 || tags.indexOf(q) !== -1) {
+        allMatches.push({
+          ...item,
+          _collection: collName,
+          _collectionLabel: COLLECTIONS[collName].label,
+          _nameMatch: nome.indexOf(q) === 0 ? 2 : (nome.indexOf(q) !== -1 ? 1 : 0)
+        });
+      }
+    }
+  }
+  
+  // Sort by relevance (name starts with > name contains > other)
   allMatches.sort((a, b) => {
-    const aName = (a.nome || '').toLowerCase();
-    const bName = (b.nome || '').toLowerCase();
-    const aStartsWith = aName.startsWith(q);
-    const bStartsWith = bName.startsWith(q);
-    if (aStartsWith && !bStartsWith) return -1;
-    if (!aStartsWith && bStartsWith) return 1;
-    return aName.localeCompare(bName);
+    if (a._nameMatch !== b._nameMatch) return b._nameMatch - a._nameMatch;
+    return (a.nome || '').localeCompare(b.nome || '');
   });
   
   // Limit results
@@ -1782,23 +1844,30 @@ async function performGlobalSearch(query) {
   
   if (!limitedMatches.length) {
     results.innerHTML = '<div class="global-search-empty">Nessun risultato per "' + query + '"</div>';
-    results.classList.add('active');
     return;
   }
   
-  results.innerHTML = limitedMatches.map(item => {
+  // Usa DocumentFragment per rendering più veloce
+  const fragment = document.createDocumentFragment();
+  
+  limitedMatches.forEach(item => {
     let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
     if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
       thumb = '../' + thumb;
     }
     
+    const div = document.createElement('div');
+    div.className = 'global-result-item';
+    div.dataset.collection = item._collection;
+    div.dataset.filename = item.filename;
+    
     const thumbHtml = thumb 
-      ? `<img src="${thumb}" class="global-result-thumb" alt="" onerror="this.style.display='none'">`
+      ? `<img src="${thumb}" class="global-result-thumb" alt="" loading="lazy" onerror="this.style.display='none'">`
       : '<div class="global-result-placeholder">📷</div>';
     
     const price = item.prezzo ? `€${item.prezzo}` : '';
     
-    return `<div class="global-result-item" data-collection="${item._collection}" data-filename="${item.filename}">
+    div.innerHTML = `
       ${thumbHtml}
       <div class="global-result-info">
         <div class="global-result-name">${item.nome || 'Senza nome'}</div>
@@ -1807,28 +1876,31 @@ async function performGlobalSearch(query) {
           ${price ? ` · ${price}` : ''}
         </div>
       </div>
-    </div>`;
-  }).join('');
-  
-  // Add click handlers
-  results.querySelectorAll('.global-result-item').forEach(el => {
-    el.addEventListener('click', async () => {
-      const collection = el.dataset.collection;
-      const filename = el.dataset.filename;
-      
-      // Switch to the collection and load items
-      state.currentCollection = collection;
-      await loadItems(collection);
-      
-      // Find and edit the item
-      const item = state.items.find(i => i.filename === filename);
-      if (item) {
-        editItem(filename);
-      }
-      
-      closeGlobalSearch();
+    `;
+    
+    // Event listener diretto (più efficiente della delegazione per pochi elementi)
+    div.addEventListener('click', () => {
+      openGlobalSearchResult(item._collection, item.filename);
     });
+    
+    fragment.appendChild(div);
   });
   
-  results.classList.add('active');
+  results.innerHTML = '';
+  results.appendChild(fragment);
+}
+
+// Funzione separata per apertura risultato (evita ricreazione closure)
+async function openGlobalSearchResult(collection, filename) {
+  closeGlobalSearch();
+  
+  // Switch to the collection and load items
+  state.currentCollection = collection;
+  await loadItems(collection);
+  
+  // Find and edit the item
+  const item = state.items.find(i => i.filename === filename);
+  if (item) {
+    editItem(filename);
+  }
 }

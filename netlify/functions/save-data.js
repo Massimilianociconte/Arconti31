@@ -26,10 +26,16 @@ exports.handler = async (event, context) => {
   
   // Login action - validate email/password and return token
   if (action === 'login') {
-    const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    // Supporto per email multiple separate da virgola
+    // Es: ADMIN_EMAIL = "email1@gmail.com,email2@gmail.com,email3@gmail.com"
+    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
     const validPassword = process.env.ADMIN_PASSWORD || 'arconti31admin';
     
-    if (email !== validEmail || password !== validPassword) {
+    const emailLower = email.toLowerCase().trim();
+    const isValidEmail = validEmails.includes(emailLower);
+    
+    if (!isValidEmail || password !== validPassword) {
       return { 
         statusCode: 401, 
         body: JSON.stringify({ error: 'Email o password non valida' }) 
@@ -37,7 +43,7 @@ exports.handler = async (event, context) => {
     }
     
     // Generate a simple token (in production use JWT)
-    const newToken = Buffer.from(`${email}:${Date.now()}`).toString('base64');
+    const newToken = Buffer.from(`${emailLower}:${Date.now()}`).toString('base64');
     
     return {
       statusCode: 200,
@@ -45,7 +51,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ 
         success: true, 
         token: newToken,
-        email: email
+        email: emailLower
       })
     };
   }
@@ -59,9 +65,12 @@ exports.handler = async (event, context) => {
     try {
       const decoded = Buffer.from(token, 'base64').toString('utf-8');
       const [tokenEmail, timestamp] = decoded.split(':');
-      const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
       
-      if (tokenEmail !== validEmail) {
+      // Supporto per email multiple
+      const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+      const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
+      
+      if (!validEmails.includes(tokenEmail.toLowerCase())) {
         return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
       }
       
@@ -92,9 +101,12 @@ exports.handler = async (event, context) => {
   try {
     const decoded = Buffer.from(token, 'base64').toString('utf-8');
     const [tokenEmail] = decoded.split(':');
-    const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
     
-    if (tokenEmail !== validEmail) {
+    // Supporto per email multiple
+    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
+    
+    if (!validEmails.includes(tokenEmail.toLowerCase())) {
       return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
     }
   } catch (e) {

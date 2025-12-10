@@ -1,0 +1,70 @@
+{
+  "name": "Arconti31 CMS",
+  "short_name": "Arconti31",
+  "description": "Gestione Menù Arconti31 - CMS per ristoranti",
+  "start_url": "/admin/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#d4af37",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/images/loghi/logo_arconti31.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/loghi/logo_arconti31.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/loghi/sfondo-homepage-arconti31.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dashboard CMS"
+    },
+    {
+      "src": "/images/loghi/logo_arconti31.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "App CMS Mobile"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "it-IT",
+  "dir": "ltr",
+  "scope": "/admin/",
+  "id": "/admin/",
+  "shortcuts": [
+    {
+      "name": "Piatti",
+      "short_name": "Piatti",
+      "description": "Gestisci i piatti del menù",
+      "url": "/admin/?collection=food",
+      "icons": [{ "src": "/images/loghi/logo_arconti31.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Birre",
+      "short_name": "Birre",
+      "description": "Gestisci le birre",
+      "url": "/admin/?collection=beers",
+      "icons": [{ "src": "/images/loghi/logo_arconti31.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Cocktails",
+      "short_name": "Cocktails",
+      "description": "Gestisci i cocktails",
+      "url": "/admin/?collection=cocktails",
+      "icons": [{ "src": "/images/loghi/logo_arconti31.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
+}
