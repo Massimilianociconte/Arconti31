@@ -1677,3 +1677,118 @@ body {
   height: 24px;
   font-size: 12px;
 }
+
+
+/* ========================================
+   BULK SELECTION (Categories)
+   ======================================== */
+.bulk-select-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.bulk-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.bulk-checkbox-label:hover {
+  color: var(--text-primary);
+}
+
+.bulk-checkbox,
+.item-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.item-card .item-checkbox {
+  margin-right: 8px;
+}
+
+/* Bulk Actions Bar */
+.bulk-actions-bar {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  z-index: 100;
+  transition: bottom 0.3s ease;
+}
+
+.bulk-actions-bar.active {
+  bottom: 24px;
+}
+
+.bulk-info {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.bulk-count {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.bulk-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 639px) {
+  .bulk-actions-bar {
+    left: 16px;
+    right: 16px;
+    transform: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .bulk-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .bulk-buttons .btn {
+    flex: 1;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+/* Sidebar adjustments for bulk bar */
+@media (min-width: 1024px) {
+  .bulk-actions-bar {
+    left: calc(280px + 50%);
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .bulk-actions-bar {
+    left: calc(240px + 50%);
+    transform: translateX(-50%);
+  }
+}

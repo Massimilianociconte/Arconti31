@@ -177,7 +177,8 @@ let state = {
   cloudinaryConfigured: false,
   searchTimeout: null,
   globalSearchTimeout: null,
-  categoryFilters: { tipo: null, image: null }
+  categoryFilters: { tipo: null, image: null },
+  selectedItems: [] // For bulk selection
 };
 
 // DOM helpers
@@ -761,17 +762,67 @@ function getCategoriesForType(type) {
 function renderItems() {
   const list = $('#items-list');
   const items = getFilteredItems();
+  
+  // Clear selection state
+  state.selectedItems = [];
+  updateBulkActionsBar();
+  
   if (!items.length) {
     list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca "Nuovo" per aggiungere</p></div>';
     return;
   }
   const collection = COLLECTIONS[state.currentCollection];
+  const isCategorie = state.currentCollection === 'categorie';
+  
   if (collection.groupByCategory && state.currentCollection === 'food') {
     renderGroupedItems(items);
   } else {
-    list.innerHTML = items.map(renderItemCard).join('');
+    // Add bulk selection header for categories
+    let html = '';
+    if (isCategorie) {
+      html += `<div class="bulk-select-header">
+        <label class="bulk-checkbox-label">
+          <input type="checkbox" id="select-all-items" class="bulk-checkbox">
+          <span>Seleziona tutto</span>
+        </label>
+      </div>`;
+    }
+    html += items.map(item => renderItemCard(item, isCategorie)).join('');
+    list.innerHTML = html;
+    
+    // Setup select all checkbox
+    if (isCategorie) {
+      const selectAll = $('#select-all-items');
+      if (selectAll) {
+        selectAll.addEventListener('change', (e) => {
+          const checkboxes = document.querySelectorAll('.item-checkbox');
+          checkboxes.forEach(cb => {
+            cb.checked = e.target.checked;
+            toggleItemSelection(cb.dataset.filename, e.target.checked);
+          });
+        });
+      }
+    }
   }
-  document.querySelectorAll('.item-card').forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
+  
+  // Setup click handlers
+  document.querySelectorAll('.item-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't trigger edit if clicking on checkbox
+      if (e.target.classList.contains('item-checkbox')) return;
+      editItem(card.dataset.filename);
+    });
+  });
+  
+  // Setup checkbox handlers for categories
+  if (isCategorie) {
+    document.querySelectorAll('.item-checkbox').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        e.stopPropagation();
+        toggleItemSelection(cb.dataset.filename, cb.checked);
+      });
+    });
+  }
 }
 
 function renderGroupedItems(items) {
@@ -797,7 +848,7 @@ function renderGroupedItems(items) {
   list.innerHTML = html;
 }
 
-function renderItemCard(item) {
+function renderItemCard(item, showCheckbox = false) {
   let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
   
   // Fix relative paths for CMS (which is in /admin/)
@@ -813,7 +864,13 @@ function renderItemCard(item) {
     ? `<span class="item-icon">${item.icona || '📦'}</span>`
     : `<span class="item-price">€${item.prezzo || '0'}</span>`;
   
+  // Checkbox for bulk selection (categories only)
+  const checkboxHtml = showCheckbox 
+    ? `<input type="checkbox" class="item-checkbox" data-filename="${item.filename}" onclick="event.stopPropagation()">`
+    : '';
+  
   return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
+    ${checkboxHtml}
     ${thumbHtml}
     <div class="item-info">
       <div class="item-name">${item.nome || 'Senza nome'}</div>
@@ -1027,8 +1084,164 @@ function toggleCategoryFilter(chip) {
 
 function resetCategoryFilters() {
   state.categoryFilters = { tipo: null, image: null };
-  $$('.filter-chip').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   filterItems();
+}
+
+
+// ========================================
+// BULK SELECTION & ACTIONS (for Categories)
+// ========================================
+
+function toggleItemSelection(filename, selected) {
+  if (selected) {
+    if (!state.selectedItems.includes(filename)) {
+      state.selectedItems.push(filename);
+    }
+  } else {
+    state.selectedItems = state.selectedItems.filter(f => f !== filename);
+  }
+  updateBulkActionsBar();
+}
+
+function updateBulkActionsBar() {
+  let bar = $('#bulk-actions-bar');
+  const count = state.selectedItems.length;
+  
+  // Only show for categories section
+  if (state.currentCollection !== 'categorie') {
+    if (bar) bar.remove();
+    return;
+  }
+  
+  if (count === 0) {
+    if (bar) bar.classList.remove('active');
+    return;
+  }
+  
+  // Create bar if doesn't exist
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'bulk-actions-bar';
+    bar.className = 'bulk-actions-bar';
+    bar.innerHTML = `
+      <div class="bulk-info">
+        <span class="bulk-count">0</span> selezionati
+      </div>
+      <div class="bulk-buttons">
+        <button type="button" class="btn btn-small" id="bulk-enable-btn">
+          ✅ Rendi visibili
+        </button>
+        <button type="button" class="btn btn-small btn-ghost" id="bulk-disable-btn">
+          🚫 Nascondi
+        </button>
+        <button type="button" class="btn btn-small btn-ghost" id="bulk-clear-btn">
+          ✕ Deseleziona
+        </button>
+      </div>
+    `;
+    document.querySelector('.main-content').appendChild(bar);
+    
+    // Add event listeners
+    $('#bulk-enable-btn').addEventListener('click', () => bulkSetVisibility(true));
+    $('#bulk-disable-btn').addEventListener('click', () => bulkSetVisibility(false));
+    $('#bulk-clear-btn').addEventListener('click', clearBulkSelection);
+  }
+  
+  // Update count
+  bar.querySelector('.bulk-count').textContent = count;
+  bar.classList.add('active');
+}
+
+function clearBulkSelection() {
+  state.selectedItems = [];
+  document.querySelectorAll('.item-checkbox').forEach(cb => cb.checked = false);
+  const selectAll = $('#select-all-items');
+  if (selectAll) selectAll.checked = false;
+  updateBulkActionsBar();
+}
+
+async function bulkSetVisibility(visible) {
+  const count = state.selectedItems.length;
+  if (count === 0) return;
+  
+  const action = visible ? 'rendere visibili' : 'nascondere';
+  if (!confirm(`Vuoi ${action} ${count} categorie?`)) return;
+  
+  showLoading();
+  
+  let success = 0;
+  let errors = 0;
+  
+  for (const filename of state.selectedItems) {
+    try {
+      // Find the item
+      const item = state.items.find(i => i.filename === filename);
+      if (!item) continue;
+      
+      // Update visibility
+      const updatedData = { ...item };
+      delete updatedData.filename;
+      delete updatedData.sha;
+      updatedData.visibile = visible;
+      
+      // Get fresh SHA
+      let sha = item.sha;
+      if (!sha) {
+        const fetchRes = await fetch('/.netlify/functions/read-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ folder: 'categorie' })
+        });
+        if (fetchRes.ok) {
+          const data = await fetchRes.json();
+          const found = data.items.find(i => i.filename === filename);
+          if (found) sha = found.sha;
+        }
+      }
+      
+      if (!sha) {
+        errors++;
+        continue;
+      }
+      
+      // Save
+      const res = await fetch('/.netlify/functions/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: state.token,
+          action: 'save',
+          collection: 'categorie',
+          filename: filename,
+          data: updatedData,
+          sha: sha
+        })
+      });
+      
+      if (res.ok) {
+        success++;
+      } else {
+        errors++;
+      }
+    } catch (e) {
+      console.error(`Error updating ${filename}:`, e);
+      errors++;
+    }
+  }
+  
+  hideLoading();
+  
+  if (success > 0) {
+    toast(`${success} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
+  }
+  if (errors > 0) {
+    toast(`${errors} errori durante l'aggiornamento`, 'error');
+  }
+  
+  // Clear selection and refresh
+  clearBulkSelection();
+  await silentRefresh();
 }
 
 
