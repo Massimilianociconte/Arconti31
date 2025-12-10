@@ -172,7 +172,9 @@ let state = {
   allFood: [],
   currentItem: null,
   isNew: false,
-  cloudinaryConfigured: false
+  cloudinaryConfigured: false,
+  searchTimeout: null,
+  categoryFilters: { tipo: null, image: null }
 };
 
 // DOM helpers
@@ -186,7 +188,31 @@ async function init() {
   await checkCloudinaryConfig();
   setupEventListeners();
   
-  // Non salvare il login - utente deve fare login ogni volta
+  // Check for saved session (Ricordami)
+  const savedSession = localStorage.getItem('cms_session');
+  if (savedSession) {
+    try {
+      const session = JSON.parse(savedSession);
+      const res = await fetch('/.netlify/functions/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify-token', token: session.token })
+      });
+      if (res.ok) {
+        state.token = session.token;
+        state.email = session.email;
+        state.isLoggedIn = true;
+        state.currentCollection = session.lastCollection || 'food';
+        showMainApp();
+        loadAllData();
+        toast('Bentornato!', 'success');
+        return;
+      }
+    } catch (e) {
+      localStorage.removeItem('cms_session');
+    }
+  }
+  
   showLoginScreen();
 }
 
@@ -225,9 +251,30 @@ function setupEventListeners() {
     loadAllData();
   });
   $('#logout-btn').addEventListener('click', logout);
-  $('#search-input').addEventListener('input', filterItems);
+  
+  // Search with live suggestions
+  $('#search-input').addEventListener('input', handleSearchInput);
+  $('#search-input').addEventListener('keydown', handleSearchKeydown);
+  $('#search-input').addEventListener('focus', () => {
+    if ($('#search-input').value.length >= 2) showSearchSuggestions();
+  });
+  $('#search-clear').addEventListener('click', clearSearch);
+  
+  // Close suggestions when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrapper')) {
+      hideSearchSuggestions();
+    }
+  });
+  
   $('#filter-category').addEventListener('change', filterItems);
   $('#filter-status').addEventListener('change', filterItems);
+  
+  // Category filters (for Categorie section)
+  $$('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => toggleCategoryFilter(chip));
+  });
+  $('#filters-reset')?.addEventListener('click', resetCategoryFilters);
 }
 
 
@@ -262,10 +309,20 @@ async function handleLogin(e) {
       throw new Error(result.error || 'Errore login');
     }
     
-    // Store token in memory only (not localStorage)
+    // Store token
     state.token = result.token;
     state.email = result.email;
     state.isLoggedIn = true;
+    
+    // Save session if "Ricordami" is checked
+    const rememberMe = $('#remember-me')?.checked;
+    if (rememberMe) {
+      localStorage.setItem('cms_session', JSON.stringify({
+        token: result.token,
+        email: result.email,
+        lastCollection: state.currentCollection
+      }));
+    }
     
     toast('Accesso effettuato!', 'success');
     showMainApp();
@@ -282,6 +339,7 @@ function logout() {
   state.token = null;
   state.email = null;
   state.isLoggedIn = false;
+  localStorage.removeItem('cms_session');
   showLoginScreen();
   toast('Logout effettuato', 'info');
 }
@@ -429,6 +487,29 @@ function selectCollection(name, categoryFilter = null) {
   if (categoryFilter) {
     $('#filter-category').value = categoryFilter;
   }
+  
+  // Show/hide category-specific filters
+  const catFilters = $('#category-filters');
+  if (catFilters) {
+    catFilters.style.display = name === 'categorie' ? 'flex' : 'none';
+  }
+  
+  // Reset category filters when switching
+  if (name !== 'categorie') {
+    state.categoryFilters = { tipo: null, image: null };
+    $$('.filter-chip').forEach(c => c.classList.remove('active'));
+  }
+  
+  // Save last collection for session restore
+  const savedSession = localStorage.getItem('cms_session');
+  if (savedSession) {
+    try {
+      const session = JSON.parse(savedSession);
+      session.lastCollection = name;
+      localStorage.setItem('cms_session', JSON.stringify(session));
+    } catch (e) {}
+  }
+  
   loadItems(name);
   showListView();
 }
@@ -693,13 +774,201 @@ function getFilteredItems() {
   const search = $('#search-input').value.toLowerCase();
   const category = $('#filter-category').value;
   const status = $('#filter-status').value;
-  if (search) items = items.filter(i => (i.nome || '').toLowerCase().includes(search));
+  
+  // Text search
+  if (search) {
+    items = items.filter(i => {
+      const nome = (i.nome || '').toLowerCase();
+      const desc = (i.descrizione || '').toLowerCase();
+      const tags = Array.isArray(i.tags) ? i.tags.join(' ').toLowerCase() : '';
+      return nome.includes(search) || desc.includes(search) || tags.includes(search);
+    });
+  }
+  
+  // Category/section filter
   if (category) items = items.filter(i => i.category === category || i.sezione === category);
+  
+  // Status filter
   if (status !== '') items = items.filter(i => (i.disponibile !== false) === (status === 'true'));
+  
+  // Category-specific filters (for Categorie section)
+  if (state.currentCollection === 'categorie') {
+    if (state.categoryFilters.tipo) {
+      items = items.filter(i => i.tipo_menu === state.categoryFilters.tipo);
+    }
+    if (state.categoryFilters.image === 'yes') {
+      items = items.filter(i => i.immagine && i.immagine.length > 0);
+    } else if (state.categoryFilters.image === 'no') {
+      items = items.filter(i => !i.immagine || i.immagine.length === 0);
+    }
+  }
+  
   return items;
 }
 
 function filterItems() { renderItems(); }
+
+// ========================================
+// SEARCH LIVE SUGGESTIONS
+// ========================================
+
+function handleSearchInput(e) {
+  const query = e.target.value;
+  
+  // Show/hide clear button
+  const clearBtn = $('#search-clear');
+  clearBtn.classList.toggle('visible', query.length > 0);
+  
+  // Debounce search
+  clearTimeout(state.searchTimeout);
+  
+  if (query.length < 2) {
+    hideSearchSuggestions();
+    filterItems();
+    return;
+  }
+  
+  state.searchTimeout = setTimeout(() => {
+    showSearchSuggestions();
+    filterItems();
+  }, 250);
+}
+
+function handleSearchKeydown(e) {
+  const suggestions = $('#search-suggestions');
+  const items = suggestions.querySelectorAll('.suggestion-item');
+  const highlighted = suggestions.querySelector('.suggestion-item.highlighted');
+  
+  if (e.key === 'Escape') {
+    hideSearchSuggestions();
+    return;
+  }
+  
+  if (e.key === 'Enter') {
+    if (highlighted) {
+      e.preventDefault();
+      highlighted.click();
+    }
+    return;
+  }
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!items.length) return;
+    
+    let idx = [...items].indexOf(highlighted);
+    if (highlighted) highlighted.classList.remove('highlighted');
+    
+    if (e.key === 'ArrowDown') {
+      idx = idx < items.length - 1 ? idx + 1 : 0;
+    } else {
+      idx = idx > 0 ? idx - 1 : items.length - 1;
+    }
+    
+    items[idx].classList.add('highlighted');
+    items[idx].scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function showSearchSuggestions() {
+  const query = $('#search-input').value.toLowerCase();
+  const suggestions = $('#search-suggestions');
+  
+  if (query.length < 2) {
+    hideSearchSuggestions();
+    return;
+  }
+  
+  // Search in current items
+  const matches = state.items.filter(item => {
+    const nome = (item.nome || '').toLowerCase();
+    const desc = (item.descrizione || '').toLowerCase();
+    const cat = (item.category || item.sezione || '').toLowerCase();
+    const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
+    return nome.includes(query) || desc.includes(query) || cat.includes(query) || tags.includes(query);
+  }).slice(0, 8);
+  
+  if (!matches.length) {
+    suggestions.innerHTML = '<div class="search-no-results">Nessun risultato per "' + query + '"</div>';
+    suggestions.classList.add('active');
+    return;
+  }
+  
+  suggestions.innerHTML = matches.map(item => {
+    let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
+    if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
+      thumb = '../' + thumb;
+    }
+    const thumbHtml = thumb 
+      ? `<img src="${thumb}" class="suggestion-thumb" alt="" onerror="this.style.display='none'">`
+      : '<div class="suggestion-thumb-placeholder">📷</div>';
+    
+    const cat = item.category || item.sezione || item.tipo_menu || '';
+    const price = item.prezzo ? `€${item.prezzo}` : '';
+    
+    return `<div class="suggestion-item" data-filename="${item.filename}">
+      ${thumbHtml}
+      <div class="suggestion-info">
+        <div class="suggestion-name">${item.nome || 'Senza nome'}</div>
+        <div class="suggestion-meta">
+          ${cat ? `<span class="suggestion-category">${cat}</span>` : ''}
+          ${price ? `<span class="suggestion-price">${price}</span>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  
+  // Add click handlers
+  suggestions.querySelectorAll('.suggestion-item').forEach(el => {
+    el.addEventListener('click', () => {
+      editItem(el.dataset.filename);
+      hideSearchSuggestions();
+      $('#search-input').value = '';
+      $('#search-clear').classList.remove('visible');
+    });
+  });
+  
+  suggestions.classList.add('active');
+}
+
+function hideSearchSuggestions() {
+  $('#search-suggestions').classList.remove('active');
+}
+
+function clearSearch() {
+  $('#search-input').value = '';
+  $('#search-clear').classList.remove('visible');
+  hideSearchSuggestions();
+  filterItems();
+}
+
+// ========================================
+// CATEGORY FILTERS (for Categorie section)
+// ========================================
+
+function toggleCategoryFilter(chip) {
+  const filterType = chip.dataset.filter;
+  const filterValue = chip.dataset.value;
+  
+  // Toggle active state
+  if (chip.classList.contains('active')) {
+    chip.classList.remove('active');
+    state.categoryFilters[filterType] = null;
+  } else {
+    // Deselect other chips of same type
+    $$(`.filter-chip[data-filter="${filterType}"]`).forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    state.categoryFilters[filterType] = filterValue;
+  }
+  
+  filterItems();
+}
+
+function resetCategoryFilters() {
+  state.categoryFilters = { tipo: null, image: null };
+  $$('.filter-chip').forEach(c => c.classList.remove('active'));
+  filterItems();
+}
 
 
 // ========================================

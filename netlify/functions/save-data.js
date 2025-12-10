@@ -37,17 +37,50 @@ exports.handler = async (event, context) => {
     }
     
     // Generate a simple token (in production use JWT)
-    const token = Buffer.from(`${email}:${Date.now()}`).toString('base64');
+    const newToken = Buffer.from(`${email}:${Date.now()}`).toString('base64');
     
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         success: true, 
-        token: token,
+        token: newToken,
         email: email
       })
     };
+  }
+  
+  // Verify token action - for session restore
+  if (action === 'verify-token') {
+    if (!token) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Token mancante' }) };
+    }
+    
+    try {
+      const decoded = Buffer.from(token, 'base64').toString('utf-8');
+      const [tokenEmail, timestamp] = decoded.split(':');
+      const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+      
+      if (tokenEmail !== validEmail) {
+        return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+      }
+      
+      // Token expires after 7 days
+      const tokenAge = Date.now() - parseInt(timestamp);
+      const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+      
+      if (tokenAge > maxAge) {
+        return { statusCode: 401, body: JSON.stringify({ error: 'Token scaduto' }) };
+      }
+      
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ valid: true, email: tokenEmail })
+      };
+    } catch (e) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+    }
   }
   
   // Validate token for other actions

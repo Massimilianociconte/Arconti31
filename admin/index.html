@@ -19,6 +19,10 @@
         <form id="login-form" class="login-form">
           <input type="email" id="email-input" name="email" class="form-input" placeholder="Email" required autofocus autocomplete="email">
           <input type="password" id="password-input" name="password" class="form-input" placeholder="Password" required autocomplete="current-password">
+          <div class="remember-me">
+            <input type="checkbox" id="remember-me" name="remember">
+            <label for="remember-me">Ricordami su questo dispositivo</label>
+          </div>
           <button type="submit" class="btn btn-primary btn-large btn-full">
             Accedi
           </button>
@@ -64,7 +68,13 @@
             </button>
           </div>
           <div class="filters">
-            <input type="text" id="search-input" placeholder="Cerca..." class="search-input">
+            <div class="search-wrapper">
+              <div class="search-input-container">
+                <input type="text" id="search-input" placeholder="Cerca per nome, tag, ingredienti..." class="search-input" autocomplete="off">
+                <button type="button" id="search-clear" class="search-clear">×</button>
+              </div>
+              <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
             <select id="filter-category" class="filter-select">
               <option value="">Tutte le categorie</option>
             </select>
@@ -73,6 +83,14 @@
               <option value="true">Disponibili</option>
               <option value="false">Non disponibili</option>
             </select>
+          </div>
+          <!-- Filtri aggiuntivi per Categorie -->
+          <div id="category-filters" class="filters-row" style="display: none;">
+            <button type="button" class="filter-chip" data-filter="tipo" data-value="food">🍽️ Food</button>
+            <button type="button" class="filter-chip" data-filter="tipo" data-value="beverage">🍺 Beverage</button>
+            <button type="button" class="filter-chip" data-filter="image" data-value="yes">🖼️ Con immagine</button>
+            <button type="button" class="filter-chip" data-filter="image" data-value="no">📷 Senza immagine</button>
+            <button type="button" class="filters-reset" id="filters-reset">↺ Reset filtri</button>
           </div>
           <div id="items-list" class="items-list"></div>
         </div>
