@@ -1324,6 +1324,29 @@ async function deleteItem() {
   
   try {
     const collection = COLLECTIONS[state.currentCollection];
+    let sha = state.currentItem.sha;
+    
+    // If sha is missing, fetch it from GitHub
+    if (!sha) {
+      console.log('SHA mancante, recupero dal server...');
+      const fetchRes = await fetch('/.netlify/functions/read-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ folder: collection.folder })
+      });
+      if (fetchRes.ok) {
+        const data = await fetchRes.json();
+        const found = data.items.find(i => i.filename === state.currentItem.filename);
+        if (found) {
+          sha = found.sha;
+        }
+      }
+    }
+    
+    if (!sha) {
+      throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
+    }
+    
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1332,7 +1355,7 @@ async function deleteItem() {
         action: 'delete',
         collection: collection.folder,
         filename: state.currentItem.filename,
-        sha: state.currentItem.sha
+        sha: sha
       })
     });
     
@@ -1478,9 +1501,9 @@ async function performGlobalSearch(query) {
       
       const items = state.allItems[collName] || [];
       items.forEach(item => {
-        const nome = (item.nome || '').toLowerCase();
-        const desc = (item.descrizione || '').toLowerCase();
-        const cat = (item.category || item.sezione || '').toLowerCase();
+        const nome = String(item.nome || '').toLowerCase();
+        const desc = String(item.descrizione || '').toLowerCase();
+        const cat = String(item.category || item.sezione || '').toLowerCase();
         const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
         
         if (nome.includes(q) || desc.includes(q) || cat.includes(q) || tags.includes(q)) {
