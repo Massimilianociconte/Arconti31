@@ -1,10 +1,10 @@
 ---
 nome: "Dolci"
-slug: dolci
-tipo_menu: food
+slug: "dolci"
+tipo_menu: "food"
 icona: "🍰"
 immagine: "images/minicard sezioni/dolci.jpg"
-descrizione: I nostri dolci fatti in casa
-visibile: true
+descrizione: "I nostri dolci fatti in casa"
+visibile: false
 order: 9
 ---
