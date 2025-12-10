@@ -274,10 +274,13 @@ function setupEventListeners() {
   $('#filter-status').addEventListener('change', filterItems);
   
   // Category filters (for Categorie section)
-  $$('.filter-chip').forEach(chip => {
+  document.querySelectorAll('.filter-chip').forEach(chip => {
     chip.addEventListener('click', () => toggleCategoryFilter(chip));
   });
   $('#filters-reset')?.addEventListener('click', resetCategoryFilters);
+  
+  // Global search in navbar
+  setupGlobalSearch();
 }
 
 
@@ -755,7 +758,7 @@ function renderItems() {
   } else {
     list.innerHTML = items.map(renderItemCard).join('');
   }
-  $.item-card.forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
+  document.querySelectorAll('.item-card').forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
 }
 
 function renderGroupedItems(items) {
@@ -1113,7 +1116,7 @@ function renderEditForm(data) {
   }).join('');
   
   // Event handlers
-  $.tag-option.forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
+  document.querySelectorAll('.tag-option').forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
   
   // Auto-slug
   const nomeInput = form.querySelector('[name="nome"]');
@@ -1123,7 +1126,7 @@ function renderEditForm(data) {
   }
   
   // Image upload handlers
-  $.image-upload-btn.forEach(btn => {
+  document.querySelectorAll('.image-upload-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const fieldName = btn.dataset.field;
       const input = document.createElement('input');
@@ -1135,7 +1138,7 @@ function renderEditForm(data) {
   });
   
   // Image remove handlers
-  $.image-remove-btn.forEach(btn => {
+  document.querySelectorAll('.image-remove-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const fieldName = btn.dataset.field;
       const container = form.querySelector(`[data-image-field="${fieldName}"]`);
