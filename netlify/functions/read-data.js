@@ -1,6 +1,5 @@
-// Netlify Function per leggere i dati da GitHub
-// Usa il token per evitare rate limit
-// Ottimizzato: usa JSON statici quando possibile, API solo per SHA
+// Netlify Function per leggere i dati
+// OTTIMIZZATO: Usa JSON statici quando possibile, API GitHub solo per SHA
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -15,7 +14,7 @@ exports.handler = async (event, context) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const { folder } = parsedBody;
+  const { folder, mode } = parsedBody;
 
   if (!folder) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Folder required' }) };
@@ -25,7 +24,23 @@ exports.handler = async (event, context) => {
   const REPO_OWNER = process.env.REPO_OWNER || 'Massimilianociconte';
   const REPO_NAME = process.env.REPO_NAME || 'Arconti31';
 
-  console.log(`[read-data] Folder: ${folder}, Owner: ${REPO_OWNER}, Repo: ${REPO_NAME}, Token exists: ${!!GITHUB_TOKEN}`);
+  console.log(`[read-data] Folder: ${folder}, Mode: ${mode || 'auto'}`);
+
+  // NUOVO: Se mode='json' o non specificato, prova prima a leggere dal JSON statico
+  if (mode !== 'api') {
+    const jsonResult = await tryReadFromJSON(folder, REPO_OWNER, REPO_NAME);
+    if (jsonResult) {
+      console.log(`[read-data] ✅ Dati caricati da JSON statico per ${folder}`);
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: jsonResult, source: 'json' })
+      };
+    }
+  }
+
+  // Fallback: usa API GitHub (necessario per ottenere SHA per modifiche)
+  console.log(`[read-data] Usando API GitHub per ${folder}`);
 
   if (!GITHUB_TOKEN) {
     console.error('[read-data] GITHUB_TOKEN non configurato!');
@@ -36,7 +51,6 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Get folder contents
     const files = await githubRequest(
       'GET',
       `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folder}`,
@@ -44,22 +58,16 @@ exports.handler = async (event, context) => {
       GITHUB_TOKEN
     );
 
-    // Handle case where folder doesn't exist or is empty
     if (!Array.isArray(files)) {
-      console.log(`[read-data] Folder ${folder} non è un array o non esiste`);
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: [] })
+        body: JSON.stringify({ items: [], source: 'api' })
       };
     }
 
-    console.log(`[read-data] Found ${files.length} files in ${folder}`);
-
-    // Filter markdown files
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
 
-    // Get content of each file
     const items = await Promise.all(mdFiles.map(async file => {
       try {
         const fileData = await githubRequest(
@@ -69,7 +77,6 @@ exports.handler = async (event, context) => {
           GITHUB_TOKEN
         );
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-        // Use fileData.sha which is the actual SHA of the file content
         return { content, filename: file.name, sha: fileData.sha };
       } catch (e) {
         console.error(`Error loading ${file.name}:`, e);
@@ -80,17 +87,27 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: items.filter(i => i !== null) })
+      body: JSON.stringify({ items: items.filter(i => i !== null), source: 'api' })
     };
   } catch (error) {
     console.error('[read-data] Error:', error.message);
 
-    // Se è rate limit, restituisci un messaggio specifico
     if (error.message.includes('403') || error.message.includes('rate limit')) {
+      // Se rate limit, prova COMUNQUE a leggere dal JSON
+      const jsonFallback = await tryReadFromJSON(folder, REPO_OWNER, REPO_NAME);
+      if (jsonFallback) {
+        console.log(`[read-data] ✅ Fallback a JSON per rate limit`);
+        return {
+          statusCode: 200,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: jsonFallback, source: 'json-fallback' })
+        };
+      }
+
       return {
         statusCode: 429,
         body: JSON.stringify({
-          error: 'Rate limit GitHub raggiunto. Attendi qualche minuto e riprova.',
+          error: 'Rate limit GitHub raggiunto. Attendi qualche minuto.',
           items: []
         })
       };
@@ -103,6 +120,102 @@ exports.handler = async (event, context) => {
   }
 };
 
+// ========================================
+// LETTURA DA JSON STATICI
+// ========================================
+
+async function tryReadFromJSON(folder, owner, repo) {
+  // Mapping folder -> JSON file e campo dati
+  const JSON_MAP = {
+    'food': { file: 'food/food.json', field: 'food' },
+    'beers': { file: 'beers/beers.json', field: 'beers' },
+    'categorie': { file: 'categorie/categorie.json', field: 'categories' },
+    'cocktails': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Cocktails' },
+    'analcolici': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Analcolici' },
+    'bibite': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Bibite' },
+    'caffetteria': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Caffetteria' },
+    'bollicine': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Bollicine' },
+    'bianchi-fermi': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Bianchi fermi' },
+    'vini-rossi': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Vini rossi' }
+  };
+
+  const config = JSON_MAP[folder];
+  if (!config) {
+    console.log(`[tryReadFromJSON] Nessun mapping per ${folder}`);
+    return null;
+  }
+
+  try {
+    // Legge il JSON dal repository raw di GitHub (non conta verso rate limit API!)
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${config.file}`;
+    console.log(`[tryReadFromJSON] Fetching ${rawUrl}`);
+
+    const response = await fetch(rawUrl);
+    if (!response.ok) {
+      console.log(`[tryReadFromJSON] File non trovato: ${response.status}`);
+      return null;
+    }
+
+    const jsonData = await response.json();
+    let items = jsonData[config.field] || [];
+
+    // Filtra per tipo se necessario (per beverages)
+    if (config.filter) {
+      items = items.filter(item => item.tipo === config.filter);
+    }
+
+    // Converti in formato compatibile con l'admin (simula contenuto MD)
+    return items.map(item => {
+      const content = generateMarkdownFromItem(item);
+      // Genera un filename basato sul nome
+      const filename = slugify(item.nome) + '.md';
+      // SHA non disponibile da JSON, l'admin dovrà recuperarlo se vuole modificare
+      return { content, filename, sha: null, fromJSON: true, item };
+    });
+  } catch (e) {
+    console.error(`[tryReadFromJSON] Errore:`, e.message);
+    return null;
+  }
+}
+
+function generateMarkdownFromItem(item) {
+  let yaml = '---\n';
+
+  for (const [key, value] of Object.entries(item)) {
+    if (Array.isArray(value)) {
+      if (value.length > 0) {
+        yaml += `${key}:\n`;
+        value.forEach(v => {
+          yaml += `  - "${v}"\n`;
+        });
+      }
+    } else if (typeof value === 'boolean') {
+      yaml += `${key}: ${value}\n`;
+    } else if (typeof value === 'number') {
+      yaml += `${key}: ${value}\n`;
+    } else if (value !== null && value !== undefined) {
+      yaml += `${key}: "${value}"\n`;
+    }
+  }
+
+  yaml += '---\n';
+  return yaml;
+}
+
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .substring(0, 50);
+}
+
+// ========================================
+// GITHUB API
+// ========================================
 
 async function githubRequest(method, path, body, token) {
   const url = `https://api.github.com${path}`;
@@ -115,22 +228,16 @@ async function githubRequest(method, path, body, token) {
     }
   };
 
-  // Add auth if token available
   if (token) {
     options.headers['Authorization'] = `token ${token}`;
   }
 
-  console.log(`[githubRequest] ${method} ${path}`);
-
   const response = await fetch(url, options);
   const data = await response.text();
-
-  console.log(`[githubRequest] Response status: ${response.status}`);
 
   if (response.ok) {
     return data ? JSON.parse(data) : {};
   } else {
-    console.error(`[githubRequest] Error response: ${data.substring(0, 500)}`);
     throw new Error(`GitHub API error: ${response.status} - ${data.substring(0, 200)}`);
   }
 }
