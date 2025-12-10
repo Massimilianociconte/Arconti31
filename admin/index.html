@@ -2,19 +2,131 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pannello Amministrazione - Menù Birre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pannello Amministrazione - Arconti31</title>
   <link rel="icon" type="image/png" href="../images/loghi/logo_arconti31.png">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* CSS Custom per responsività mobile migliorata */
+    
+    /* Reset e base */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Sidebar mobile */
+    @media (max-width: 768px) {
+      /* Sidebar più stretta su mobile */
+      [class*="SidebarContainer"] {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      /* Header compatto */
+      [class*="AppHeader"] {
+        padding: 8px 12px !important;
+        flex-wrap: wrap;
+      }
+      
+      /* Menu collections più touch-friendly */
+      [class*="SidebarNavList"] a {
+        padding: 14px 16px !important;
+        font-size: 16px !important;
+        min-height: 48px;
+      }
+      
+      /* Editor form più largo */
+      [class*="EditorContainer"],
+      [class*="ControlPaneContainer"] {
+        padding: 12px !important;
+      }
+      
+      /* Campi input più grandi per touch */
+      input, select, textarea {
+        font-size: 16px !important;
+        min-height: 44px !important;
+        padding: 10px 12px !important;
+      }
+      
+      /* Bottoni più grandi */
+      button {
+        min-height: 44px !important;
+        padding: 10px 16px !important;
+        font-size: 14px !important;
+      }
+      
+      /* Lista entries più spaziata */
+      [class*="ListCard"],
+      [class*="EntryCard"] {
+        padding: 16px !important;
+        margin-bottom: 8px !important;
+      }
+      
+      /* Toolbar editor */
+      [class*="ToolbarContainer"] {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      
+      /* Widget select migliorato */
+      [class*="SelectWidget"] select {
+        width: 100% !important;
+      }
+      
+      /* Immagini preview */
+      [class*="ImagePreview"] img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+    }
+
+    /* Tablet */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      [class*="SidebarContainer"] {
+        width: 220px !important;
+      }
+      
+      input, select, textarea {
+        font-size: 15px !important;
+      }
+    }
+
+    /* Touch improvements generali */
+    @media (pointer: coarse) {
+      /* Dispositivi touch */
+      a, button, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      /* Checkbox e toggle più grandi */
+      [class*="Toggle"],
+      input[type="checkbox"] {
+        transform: scale(1.2);
+      }
+    }
+
+    /* Fix per iOS Safari */
+    @supports (-webkit-touch-callout: none) {
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
-    // Script per generare automaticamente il file JSON
     CMS.registerEventListener({
       name: 'postSave',
       handler: async ({ entry }) => {
-        console.log('Birra salvata:', entry);
+        console.log('Elemento salvato:', entry);
       }
     });
   </script>

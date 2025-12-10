@@ -6,6 +6,27 @@ media_folder: "images/beverages"
 public_folder: "/images/beverages"
 
 collections:
+  # GESTIONE CATEGORIE
+  - name: "categorie"
+    label: "⚙️ Gestione Categorie"
+    folder: "categorie"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    sortable_fields: ['order', 'nome']
+    fields:
+      - {label: "Nome Categoria", name: "nome", widget: "string"}
+      - {label: "Slug (ID univoco)", name: "slug", widget: "string", hint: "Es: hamburger-bufala, birre-artigianali (senza spazi, minuscolo)"}
+      - {label: "Tipo Menù", name: "tipo_menu", widget: "select", options: ["food", "beverage"], default: "food"}
+      - {label: "Sezione Beverage", name: "sezione_beverage", widget: "select", options: ["Birre", "Cocktails", "Analcolici", "Bibite", "Caffetteria", "Bollicine", "Vini Bianchi", "Vini Rossi"], required: false, hint: "Solo per tipo beverage"}
+      - {label: "Icona", name: "icona", widget: "string", required: false, hint: "Es: 🍔 🍺 🍷 🥤 ☕"}
+      - {label: "Immagine Categoria", name: "immagine", widget: "image", required: false}
+      - {label: "Descrizione", name: "descrizione", widget: "text", required: false, pattern: ['.{0,300}', "Massimo 300 caratteri"]}
+      - {label: "Colore Sfondo", name: "colore", widget: "string", required: false, hint: "Es: #FF5733 o gold"}
+      - {label: "Visibile", name: "visibile", widget: "boolean", default: true, hint: "Disattiva per nascondere la categoria dal menù"}
+      - {label: "Ordine", name: "order", widget: "number", default: 0, value_type: "int", hint: "Numero più basso = appare prima"}
+
   # NUOVO MENÙ FOOD
   - name: "food"
     label: "Menù Food"
@@ -16,7 +37,7 @@ collections:
       preview: false
     fields:
       - {label: "Nome Piatto", name: "nome", widget: "string"}
-      - {label: "Categoria", name: "category", widget: "select", options: ["Hamburger di bufala", "Hamburger Fassona e Street food", "OKTOBERFEST", "Panini", "Griglieria", "Piatti Speciali", "Piadine", "Fritti", "Dolci", "Aperitivo"]}
+      - {label: "Categoria", name: "category", widget: "relation", collection: "categorie", search_fields: ["nome"], value_field: "slug", display_fields: ["nome", "icona"], filter: {field: "tipo_menu", value: "food"}}
       - {label: "Immagine", name: "immagine", widget: "image", required: false}
       - {label: "Descrizione", name: "descrizione", widget: "text", required: false, pattern: ['.{0,1000}', "Massimo 1000 caratteri"]}
       - {label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "float", min: 0, step: 0.5}
