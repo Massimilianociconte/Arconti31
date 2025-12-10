@@ -422,7 +422,9 @@ async function loadCategories() {
     
     const data = await res.json();
     const categories = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
-    state.categories = categories.filter(c => c.visibile !== false).sort((a, b) => (a.order || 0) - (b.order || 0));
+    // Nel CMS mostra TUTTE le categorie (anche nascoste), ordinate
+    // Il filtro visibile serve solo per il frontend (menu.html)
+    state.categories = categories.sort((a, b) => (a.order || 0) - (b.order || 0));
   } catch (e) {
     console.error('Error loading categories:', e);
     state.categories = [];
@@ -607,6 +609,9 @@ function renderSidebar() {
       : `<div class="tree-item-thumb-placeholder">${cat.icona || '📦'}</div>`;
   };
   
+  // Helper per indicare se una categoria è nascosta nel frontend
+  const hiddenBadge = (cat) => cat.visibile === false ? '<span class="hidden-badge" title="Nascosto nel menu">👁️‍🗨️</span>' : '';
+  
   // Build tree HTML
   let html = `
     <!-- SEZIONE FOOD -->
@@ -621,9 +626,10 @@ function renderSidebar() {
       </div>
       <div class="tree-children">
         ${foodCategories.map(cat => `
-          <div class="tree-item" data-collection="food" data-category="${cat.nome}">
+          <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="food" data-category="${cat.nome}">
             ${renderCatThumb(cat)}
             <span class="tree-item-name">${cat.nome}</span>
+            ${hiddenBadge(cat)}
             <span class="tree-item-count">${foodCounts[cat.nome] || 0}</span>
           </div>
         `).join('')}
@@ -642,9 +648,10 @@ function renderSidebar() {
       </div>
       <div class="tree-children tree-subsection">
         ${beerCategories.map(cat => `
-          <div class="tree-item" data-collection="beers" data-beer-section="${cat.nome}">
+          <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="beers" data-beer-section="${cat.nome}">
             ${renderCatThumb(cat)}
             <span class="tree-item-name">${cat.nome}</span>
+            ${hiddenBadge(cat)}
           </div>
         `).join('')}
       </div>
@@ -664,11 +671,13 @@ function renderSidebar() {
       const collection = collectionMap[cat.nome] || cat.slug;
       return `
       <div class="tree-section">
-        <div class="tree-item" data-collection="${collection}">
+        <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="${collection}">
           ${renderCatThumb(cat)}
           <span class="tree-item-name">${cat.nome}</span>
+          ${hiddenBadge(cat)}
         </div>
       </div>`;
+    }).join('')}
     }).join('')}
     
     <div class="tree-divider"></div>

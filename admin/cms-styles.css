@@ -1678,6 +1678,19 @@ body {
   font-size: 12px;
 }
 
+/* Categorie nascoste nel frontend (visibile: false) */
+.tree-item.is-hidden {
+  opacity: 0.5;
+}
+.tree-item.is-hidden:hover {
+  opacity: 0.75;
+}
+.hidden-badge {
+  margin-left: 4px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
 
 /* ========================================
    BULK SELECTION (Categories)
