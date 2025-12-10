@@ -1816,9 +1816,11 @@ async function performGlobalSearch(query) {
     const items = state.allItems[collName] || [];
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      const nome = (item.nome || '').toLowerCase();
-      const desc = (item.descrizione || '').toLowerCase();
-      const cat = (item.category || item.sezione || '').toLowerCase();
+      const nome = String(item.nome || '').toLowerCase();
+      // descrizione può essere stringa o array
+      const descRaw = item.descrizione;
+      const desc = (Array.isArray(descRaw) ? descRaw.join(' ') : String(descRaw || '')).toLowerCase();
+      const cat = String(item.category || item.sezione || '').toLowerCase();
       const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
       
       // Ricerca ottimizzata con indexOf (più veloce di includes su mobile)

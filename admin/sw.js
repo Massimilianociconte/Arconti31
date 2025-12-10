@@ -59,6 +59,11 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET') {
     return;
   }
+  
+  // Skip non-http(s) requests (chrome-extension, etc.)
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
 
   // API calls - Network only (no cache for dynamic data)
   if (url.pathname.includes('/.netlify/functions/') || 
@@ -128,7 +133,9 @@ async function networkOnly(request) {
 async function fetchAndCache(request) {
   try {
     const response = await fetch(request);
-    if (response.ok) {
+    // Solo cache per richieste http/https
+    const url = new URL(request.url);
+    if (response.ok && url.protocol.startsWith('http')) {
       const cache = await caches.open(STATIC_CACHE);
       cache.put(request, response.clone());
     }
