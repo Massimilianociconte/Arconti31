@@ -12,11 +12,11 @@ exports.handler = async (event, context) => {
   // Verifica password
   const { password, action, collection, filename, data, sha } = JSON.parse(event.body);
   
-  // Hash semplice della password (in produzione usa bcrypt)
-  const hash = simpleHash(password);
-  const validHash = process.env.ADMIN_PASSWORD_HASH || '5e884898da28047d9169e1809a8a3b9b8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e';
+  // Password in chiaro (semplice ma efficace per questo uso)
+  // Puoi cambiarla nelle variabili d'ambiente Netlify
+  const validPassword = process.env.ADMIN_PASSWORD || 'arconti31admin';
   
-  if (hash !== validHash) {
+  if (password !== validPassword) {
     return { statusCode: 401, body: JSON.stringify({ error: 'Password non valida' }) };
   }
 
@@ -119,16 +119,7 @@ function generateMarkdown(data) {
   return yaml;
 }
 
-function simpleHash(str) {
-  // Hash semplice - in produzione usa crypto
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(16).padStart(16, '0');
-}
+// Password comparison is now done directly (no hashing needed)
 
 function githubRequest(method, path, body, token) {
   return new Promise((resolve, reject) => {
