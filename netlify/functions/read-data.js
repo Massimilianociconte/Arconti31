@@ -40,8 +40,10 @@ exports.handler = async (event, context) => {
           GITHUB_TOKEN
         );
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-        return { content, filename: file.name, sha: file.sha };
+        // Use fileData.sha which is the actual SHA of the file content
+        return { content, filename: file.name, sha: fileData.sha };
       } catch (e) {
+        console.error(`Error loading ${file.name}:`, e);
         return null;
       }
     }));

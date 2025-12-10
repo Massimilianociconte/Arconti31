@@ -167,13 +167,16 @@ let state = {
   isLoggedIn: false,
   currentCollection: 'food',
   currentCategory: null,
+  currentBeerSection: null,
   items: [],
   categories: [],
   allFood: [],
+  allItems: {}, // Cache for global search
   currentItem: null,
   isNew: false,
   cloudinaryConfigured: false,
   searchTimeout: null,
+  globalSearchTimeout: null,
   categoryFilters: { tipo: null, image: null }
 };
 
@@ -479,10 +482,18 @@ function parseMarkdown(content, filename, sha) {
 // COLLECTION & RENDERING
 // ========================================
 
-function selectCollection(name, categoryFilter = null) {
+function selectCollection(name, categoryFilter = null, beerSection = null) {
   state.currentCollection = name;
   state.currentCategory = categoryFilter;
-  $('#collection-title').textContent = categoryFilter || COLLECTIONS[name].label;
+  state.currentBeerSection = beerSection;
+  // Set title based on context
+  let title = COLLECTIONS[name].label;
+  if (beerSection) {
+    title = beerSection;
+  } else if (categoryFilter) {
+    title = categoryFilter;
+  }
+  $('#collection-title').textContent = title;
   updateCategoryFilter(name);
   if (categoryFilter) {
     $('#filter-category').value = categoryFilter;
@@ -553,6 +564,14 @@ function renderSidebar() {
   const foodCategories = state.categories.filter(c => c.tipo_menu === 'food');
   const beverageCategories = state.categories.filter(c => c.tipo_menu === 'beverage');
   
+  // Separate beer categories from other beverages
+  const beerCategories = beverageCategories.filter(c => 
+    c.nome.toLowerCase().includes('birr') || c.nome.toLowerCase().includes('frigo')
+  );
+  const otherBeverages = beverageCategories.filter(c => 
+    !c.nome.toLowerCase().includes('birr') && !c.nome.toLowerCase().includes('frigo')
+  );
+  
   // Count items per category
   const foodCounts = {};
   (state.allFood || []).forEach(item => {
@@ -560,27 +579,22 @@ function renderSidebar() {
     foodCounts[cat] = (foodCounts[cat] || 0) + 1;
   });
   
-  // Mapping categorie beverage -> collection CMS
-  const beverageCollectionMap = {
-    'Birre artigianali alla spina a rotazione': 'beers',
-    'Birre alla spina': 'beers',
-    'Birre speciali in bottiglia': 'beers',
-    'Frigo Birre': 'beers',
-    'Cocktails': 'cocktails',
-    'Analcolici': 'analcolici',
-    'Bibite': 'bibite',
-    'Caffetteria': 'caffetteria',
-    'Bollicine': 'bollicine',
-    'Bianchi fermi': 'bianchi-fermi',
-    'Vini rossi': 'vini-rossi'
+  // Helper to render category image
+  const renderCatThumb = (cat) => {
+    let img = cat.immagine || '';
+    if (img && !img.startsWith('http') && !img.startsWith('../')) {
+      img = '../' + img;
+    }
+    return img 
+      ? `<img src="${img}" class="tree-item-thumb" alt="" onerror="this.outerHTML='<div class=\\'tree-item-thumb-placeholder\\'>${cat.icona || '📦'}</div>'">`
+      : `<div class="tree-item-thumb-placeholder">${cat.icona || '📦'}</div>`;
   };
   
-  // Build tree HTML - struttura identica al frontend
+  // Build tree HTML
   let html = `
-    <!-- SEZIONE HEADER -->
+    <!-- SEZIONE FOOD -->
     <div class="tree-section-title">🍽️ FOOD</div>
     
-    <!-- Piatti - mostra tutte le categorie food -->
     <div class="tree-section">
       <div class="tree-header expanded" data-collection="food" data-expandable="true">
         <span class="tree-toggle">▶</span>
@@ -591,7 +605,7 @@ function renderSidebar() {
       <div class="tree-children">
         ${foodCategories.map(cat => `
           <div class="tree-item" data-collection="food" data-category="${cat.nome}">
-            <span class="tree-item-icon">${cat.icona || '📦'}</span>
+            ${renderCatThumb(cat)}
             <span class="tree-item-name">${cat.nome}</span>
             <span class="tree-item-count">${foodCounts[cat.nome] || 0}</span>
           </div>
@@ -602,13 +616,39 @@ function renderSidebar() {
     <div class="tree-divider"></div>
     <div class="tree-section-title">🍺 BEVERAGE</div>
     
-    <!-- Beverage categories - dinamiche da categorie/ -->
-    ${beverageCategories.map(cat => {
-      const collection = beverageCollectionMap[cat.nome] || cat.slug;
+    <!-- Birre con sottosezioni -->
+    <div class="tree-section">
+      <div class="tree-header" data-collection="beers" data-expandable="true">
+        <span class="tree-toggle">▶</span>
+        <span class="tree-icon">🍺</span>
+        <span class="tree-label">Birre</span>
+      </div>
+      <div class="tree-children tree-subsection">
+        ${beerCategories.map(cat => `
+          <div class="tree-item" data-collection="beers" data-beer-section="${cat.nome}">
+            ${renderCatThumb(cat)}
+            <span class="tree-item-name">${cat.nome}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    
+    <!-- Altre bevande -->
+    ${otherBeverages.map(cat => {
+      const collectionMap = {
+        'Cocktails': 'cocktails',
+        'Analcolici': 'analcolici',
+        'Bibite': 'bibite',
+        'Caffetteria': 'caffetteria',
+        'Bollicine': 'bollicine',
+        'Bianchi fermi': 'bianchi-fermi',
+        'Vini rossi': 'vini-rossi'
+      };
+      const collection = collectionMap[cat.nome] || cat.slug;
       return `
       <div class="tree-section">
         <div class="tree-item" data-collection="${collection}">
-          <span class="tree-item-icon">${cat.icona || '🍺'}</span>
+          ${renderCatThumb(cat)}
           <span class="tree-item-name">${cat.nome}</span>
         </div>
       </div>`;
@@ -617,10 +657,9 @@ function renderSidebar() {
     <div class="tree-divider"></div>
     <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>
     
-    <!-- Gestione Categorie -->
     <div class="tree-section">
       <div class="tree-item" data-collection="categorie">
-        <span class="tree-item-icon">📁</span>
+        <div class="tree-item-thumb-placeholder">📁</div>
         <span class="tree-item-name">Categorie</span>
       </div>
     </div>
@@ -631,7 +670,7 @@ function renderSidebar() {
 
 function setupSidebarEvents() {
   // Expandable headers
-  $$('.tree-header[data-expandable]').forEach(header => {
+  document.querySelectorAll('.tree-header[data-expandable]').forEach(header => {
     header.addEventListener('click', (e) => {
       e.stopPropagation();
       header.classList.toggle('expanded');
@@ -645,7 +684,7 @@ function setupSidebarEvents() {
   });
   
   // Non-expandable headers (direct collection)
-  $$('.tree-header:not([data-expandable])').forEach(header => {
+  document.querySelectorAll('.tree-header:not([data-expandable])').forEach(header => {
     header.addEventListener('click', () => {
       const collection = header.dataset.collection;
       if (collection) {
@@ -656,20 +695,21 @@ function setupSidebarEvents() {
   });
   
   // Tree items (categories or collections)
-  $$('.tree-item').forEach(item => {
+  document.querySelectorAll('.tree-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.stopPropagation();
       const collection = item.dataset.collection;
       const category = item.dataset.category || null;
-      selectTreeItem(collection, category);
+      const beerSection = item.dataset.beerSection || null;
+      selectTreeItem(collection, category, beerSection);
       closeSidebar();
     });
   });
 }
 
-function selectTreeItem(collection, category) {
+function selectTreeItem(collection, category, beerSection = null) {
   // Remove all active states
-  $$('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
   
   // Set active state
   if (category) {
@@ -682,7 +722,7 @@ function selectTreeItem(collection, category) {
     if (item) item.classList.add('active');
   }
   
-  selectCollection(collection, category);
+  selectCollection(collection, category, beerSection);
 }
 
 function updateCategoryFilter(name) {
@@ -715,7 +755,7 @@ function renderItems() {
   } else {
     list.innerHTML = items.map(renderItemCard).join('');
   }
-  $$('.item-card').forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
+  $.item-card.forEach(card => card.addEventListener('click', () => editItem(card.dataset.filename)));
 }
 
 function renderGroupedItems(items) {
@@ -787,6 +827,11 @@ function getFilteredItems() {
   
   // Category/section filter
   if (category) items = items.filter(i => i.category === category || i.sezione === category);
+  
+  // Beer section filter (for beer subsections in sidebar)
+  if (state.currentBeerSection && state.currentCollection === 'beers') {
+    items = items.filter(i => i.sezione === state.currentBeerSection);
+  }
   
   // Status filter
   if (status !== '') items = items.filter(i => (i.disponibile !== false) === (status === 'true'));
@@ -1068,7 +1113,7 @@ function renderEditForm(data) {
   }).join('');
   
   // Event handlers
-  $$('.tag-option').forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
+  $.tag-option.forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
   
   // Auto-slug
   const nomeInput = form.querySelector('[name="nome"]');
@@ -1078,7 +1123,7 @@ function renderEditForm(data) {
   }
   
   // Image upload handlers
-  $$('.image-upload-btn').forEach(btn => {
+  $.image-upload-btn.forEach(btn => {
     btn.addEventListener('click', () => {
       const fieldName = btn.dataset.field;
       const input = document.createElement('input');
@@ -1090,7 +1135,7 @@ function renderEditForm(data) {
   });
   
   // Image remove handlers
-  $$('.image-remove-btn').forEach(btn => {
+  $.image-remove-btn.forEach(btn => {
     btn.addEventListener('click', () => {
       const fieldName = btn.dataset.field;
       const container = form.querySelector(`[data-image-field="${fieldName}"]`);
@@ -1311,4 +1356,206 @@ function slugify(text) {
     .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
     .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
     .replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').substring(0, 50);
+}
+
+
+// ========================================
+// GLOBAL SEARCH (Navbar)
+// ========================================
+
+function setupGlobalSearch() {
+  const toggle = $('#global-search-toggle');
+  const box = $('#global-search-box');
+  const input = $('#global-search-input');
+  const closeBtn = $('#global-search-close');
+  
+  if (!toggle || !box || !input) return;
+  
+  toggle.addEventListener('click', () => {
+    box.classList.add('active');
+    input.focus();
+  });
+  
+  closeBtn.addEventListener('click', closeGlobalSearch);
+  
+  input.addEventListener('input', handleGlobalSearchInput);
+  input.addEventListener('keydown', handleGlobalSearchKeydown);
+  
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#global-search-wrapper') && !e.target.closest('#global-search-toggle')) {
+      closeGlobalSearch();
+    }
+  });
+}
+
+function closeGlobalSearch() {
+  const box = $('#global-search-box');
+  const input = $('#global-search-input');
+  const results = $('#global-search-results');
+  
+  box.classList.remove('active');
+  results.classList.remove('active');
+  input.value = '';
+}
+
+function handleGlobalSearchInput(e) {
+  const query = e.target.value.trim();
+  
+  clearTimeout(state.globalSearchTimeout);
+  
+  if (query.length < 2) {
+    $('#global-search-results').classList.remove('active');
+    return;
+  }
+  
+  state.globalSearchTimeout = setTimeout(() => {
+    performGlobalSearch(query);
+  }, 300);
+}
+
+function handleGlobalSearchKeydown(e) {
+  const results = $('#global-search-results');
+  const items = results.querySelectorAll('.global-result-item');
+  const highlighted = results.querySelector('.global-result-item.highlighted');
+  
+  if (e.key === 'Escape') {
+    closeGlobalSearch();
+    return;
+  }
+  
+  if (e.key === 'Enter' && highlighted) {
+    e.preventDefault();
+    highlighted.click();
+    return;
+  }
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!items.length) return;
+    
+    let idx = [...items].indexOf(highlighted);
+    if (highlighted) highlighted.classList.remove('highlighted');
+    
+    if (e.key === 'ArrowDown') {
+      idx = idx < items.length - 1 ? idx + 1 : 0;
+    } else {
+      idx = idx > 0 ? idx - 1 : items.length - 1;
+    }
+    
+    items[idx].classList.add('highlighted');
+    items[idx].scrollIntoView({ block: 'nearest' });
+  }
+}
+
+async function performGlobalSearch(query) {
+  const results = $('#global-search-results');
+  const q = query.toLowerCase();
+  
+  // Search across all collections
+  const allMatches = [];
+  
+  // Define collections to search
+  const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
+  
+  for (const collName of searchCollections) {
+    try {
+      // Use cached data if available, otherwise fetch
+      if (!state.allItems[collName]) {
+        const res = await fetch('/.netlify/functions/read-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ folder: COLLECTIONS[collName].folder })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          state.allItems[collName] = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+        }
+      }
+      
+      const items = state.allItems[collName] || [];
+      items.forEach(item => {
+        const nome = (item.nome || '').toLowerCase();
+        const desc = (item.descrizione || '').toLowerCase();
+        const cat = (item.category || item.sezione || '').toLowerCase();
+        const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
+        
+        if (nome.includes(q) || desc.includes(q) || cat.includes(q) || tags.includes(q)) {
+          allMatches.push({
+            ...item,
+            _collection: collName,
+            _collectionLabel: COLLECTIONS[collName].label
+          });
+        }
+      });
+    } catch (e) {
+      console.error(`Error searching ${collName}:`, e);
+    }
+  }
+  
+  // Sort by relevance (name match first)
+  allMatches.sort((a, b) => {
+    const aName = (a.nome || '').toLowerCase();
+    const bName = (b.nome || '').toLowerCase();
+    const aStartsWith = aName.startsWith(q);
+    const bStartsWith = bName.startsWith(q);
+    if (aStartsWith && !bStartsWith) return -1;
+    if (!aStartsWith && bStartsWith) return 1;
+    return aName.localeCompare(bName);
+  });
+  
+  // Limit results
+  const limitedMatches = allMatches.slice(0, 15);
+  
+  if (!limitedMatches.length) {
+    results.innerHTML = '<div class="global-search-empty">Nessun risultato per "' + query + '"</div>';
+    results.classList.add('active');
+    return;
+  }
+  
+  results.innerHTML = limitedMatches.map(item => {
+    let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
+    if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
+      thumb = '../' + thumb;
+    }
+    
+    const thumbHtml = thumb 
+      ? `<img src="${thumb}" class="global-result-thumb" alt="" onerror="this.style.display='none'">`
+      : '<div class="global-result-placeholder">📷</div>';
+    
+    const price = item.prezzo ? `€${item.prezzo}` : '';
+    
+    return `<div class="global-result-item" data-collection="${item._collection}" data-filename="${item.filename}">
+      ${thumbHtml}
+      <div class="global-result-info">
+        <div class="global-result-name">${item.nome || 'Senza nome'}</div>
+        <div class="global-result-meta">
+          <span class="global-result-section">${item._collectionLabel}</span>
+          ${price ? ` · ${price}` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  
+  // Add click handlers
+  results.querySelectorAll('.global-result-item').forEach(el => {
+    el.addEventListener('click', async () => {
+      const collection = el.dataset.collection;
+      const filename = el.dataset.filename;
+      
+      // Switch to the collection and load items
+      state.currentCollection = collection;
+      await loadItems(collection);
+      
+      // Find and edit the item
+      const item = state.items.find(i => i.filename === filename);
+      if (item) {
+        editItem(filename);
+      }
+      
+      closeGlobalSearch();
+    });
+  });
+  
+  results.classList.add('active');
 }
