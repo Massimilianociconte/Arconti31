@@ -1326,26 +1326,34 @@ async function deleteItem() {
     const collection = COLLECTIONS[state.currentCollection];
     let sha = state.currentItem.sha;
     
-    // If sha is missing, fetch it from GitHub
-    if (!sha) {
-      console.log('SHA mancante, recupero dal server...');
-      const fetchRes = await fetch('/.netlify/functions/read-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ folder: collection.folder })
-      });
-      if (fetchRes.ok) {
-        const data = await fetchRes.json();
-        const found = data.items.find(i => i.filename === state.currentItem.filename);
-        if (found) {
-          sha = found.sha;
-        }
+    console.log('Delete item - Initial SHA:', sha, 'Filename:', state.currentItem.filename);
+    
+    // Always fetch fresh SHA from GitHub to ensure it's current
+    console.log('Recupero SHA aggiornato dal server...');
+    const fetchRes = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: collection.folder })
+    });
+    
+    if (fetchRes.ok) {
+      const data = await fetchRes.json();
+      console.log('Items received:', data.items?.length);
+      const found = data.items.find(i => i.filename === state.currentItem.filename);
+      console.log('Found item:', found);
+      if (found && found.sha) {
+        sha = found.sha;
+        console.log('Using fresh SHA:', sha);
       }
+    } else {
+      console.error('Failed to fetch items:', fetchRes.status);
     }
     
     if (!sha) {
       throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
     }
+    
+    console.log('Sending delete request with SHA:', sha);
     
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
@@ -1360,6 +1368,7 @@ async function deleteItem() {
     });
     
     const result = await res.json();
+    console.log('Delete response:', result);
     if (!res.ok) throw new Error(result.error || 'Errore eliminazione');
     
     toast('Eliminato!', 'success');
@@ -1368,7 +1377,7 @@ async function deleteItem() {
     await loadItems(state.currentCollection);
     showListView();
   } catch (e) {
-    console.error(e);
+    console.error('Delete error:', e);
     toast(e.message || 'Errore eliminazione', 'error');
   } finally {
     hideLoading();
