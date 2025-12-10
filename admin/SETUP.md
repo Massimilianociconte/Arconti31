@@ -1,39 +1,77 @@
 # Setup CMS Arconti31
 
-## Configurazione Netlify
+## ⚠️ IMPORTANTE: Configurazione Netlify
 
-Per far funzionare il CMS devi configurare 2 variabili d'ambiente su Netlify:
+Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify.
 
-### 1. Vai su Netlify Dashboard
-- Site settings → Environment variables
+---
 
-### 2. Aggiungi queste variabili:
+## Passo 1: Crea un Token GitHub (CLASSIC)
+
+> ⚠️ **ATTENZIONE**: Devi creare un token **CLASSIC**, NON "Fine-grained"!
+
+1. Vai su: https://github.com/settings/tokens
+2. Clicca **"Generate new token"** → **"Generate new token (classic)"**
+3. Compila:
+   - **Note**: `Arconti31 CMS`
+   - **Expiration**: `No expiration` (o scegli una durata)
+   - **Scopes**: Seleziona SOLO ✅ `repo` (Full control of private repositories)
+4. Clicca **"Generate token"**
+5. **COPIA SUBITO IL TOKEN** (inizia con `ghp_...`) - lo vedrai solo una volta!
+
+---
+
+## Passo 2: Configura le Variabili su Netlify
+
+1. Vai su [Netlify Dashboard](https://app.netlify.com)
+2. Seleziona il sito **Arconti31**
+3. Vai su: **Site configuration** → **Environment variables**
+4. Aggiungi queste 2 variabili:
 
 | Nome | Valore |
 |------|--------|
-| `GITHUB_TOKEN` | Il tuo Personal Access Token di GitHub |
-| `ADMIN_PASSWORD_HASH` | Hash della password (opzionale, default: "password") |
+| `GITHUB_TOKEN` | Il token copiato (es: `ghp_xxxxxxxxxxxx`) |
+| `ADMIN_PASSWORD` | `arconti31admin` (o una password a tua scelta) |
 
-### Come creare il GITHUB_TOKEN:
+---
 
-1. Vai su GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
-2. Clicca "Generate new token (classic)"
-3. Nome: "Arconti31 CMS"
-4. Scadenza: scegli quanto vuoi (o "No expiration")
-5. Permessi: seleziona solo `repo` (Full control of private repositories)
-6. Clicca "Generate token"
-7. **COPIA IL TOKEN** (lo vedrai solo una volta!)
-8. Incollalo come valore di `GITHUB_TOKEN` su Netlify
+## Passo 3: Fai un Nuovo Deploy
 
-### Password di default
+Dopo aver salvato le variabili:
 
-La password di default è: `password`
+1. Vai su **Deploys** nel menu Netlify
+2. Clicca **"Trigger deploy"** → **"Deploy site"**
+3. Aspetta che il deploy finisca (1-2 minuti)
 
-Per cambiarla, genera un nuovo hash e mettilo in `ADMIN_PASSWORD_HASH`.
+---
 
-## Dopo la configurazione
+## Passo 4: Accedi al CMS
 
-1. Fai un nuovo deploy su Netlify (o aspetta il deploy automatico)
-2. Vai su `tuosito.com/admin/`
-3. Inserisci la password
-4. Inizia a gestire il menù!
+1. Vai su: `https://arconti31.com/admin/`
+2. Inserisci la password: `arconti31admin` (o quella che hai scelto)
+3. Inizia a gestire il menù!
+
+---
+
+## Risoluzione Problemi
+
+### Errore "Password non valida"
+- Verifica che la variabile `ADMIN_PASSWORD` su Netlify sia esattamente uguale alla password che inserisci
+- Dopo aver modificato le variabili, fai sempre un nuovo deploy
+
+### Errore "Bad credentials" o "401"
+- Hai creato un token **Fine-grained** invece di **Classic** → Ricrea il token seguendo le istruzioni sopra
+- Il token è scaduto → Creane uno nuovo
+- Non hai selezionato il permesso `repo` → Ricrea il token con il permesso corretto
+
+### Errore "GITHUB_TOKEN non configurato"
+- La variabile `GITHUB_TOKEN` non è stata salvata su Netlify
+- Verifica di aver fatto il deploy dopo aver aggiunto la variabile
+
+---
+
+## Credenziali di Default
+
+- **Password CMS**: `arconti31admin`
+- **Repository**: `Massimilianociconte/Arconti31`
+- **Branch**: `main`
