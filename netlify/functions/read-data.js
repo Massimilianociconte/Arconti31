@@ -8,7 +8,15 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const { folder } = JSON.parse(event.body);
+  let parsedBody;
+  try {
+    parsedBody = JSON.parse(event.body);
+  } catch (e) {
+    console.error('Invalid JSON body:', event.body);
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
+  }
+
+  const { folder } = parsedBody;
   
   if (!folder) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Folder required' }) };
@@ -18,6 +26,8 @@ exports.handler = async (event, context) => {
   const REPO_OWNER = process.env.REPO_OWNER || 'Massimilianociconte';
   const REPO_NAME = process.env.REPO_NAME || 'Arconti31';
 
+  console.log(`[read-data] Folder: ${folder}, Owner: ${REPO_OWNER}, Repo: ${REPO_NAME}, Token exists: ${!!GITHUB_TOKEN}`);
+
   try {
     // Get folder contents
     const files = await githubRequest(
@@ -26,6 +36,8 @@ exports.handler = async (event, context) => {
       null,
       GITHUB_TOKEN
     );
+
+    console.log(`[read-data] Found ${files.length} files in ${folder}`);
 
     // Filter markdown files
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
@@ -54,7 +66,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ items: items.filter(i => i !== null) })
     };
   } catch (error) {
-    console.error('Error:', error);
+    console.error('[read-data] Error:', error.message);
     return {
       statusCode: error.message.includes('404') ? 404 : 500,
       body: JSON.stringify({ error: error.message, items: [] })
@@ -80,19 +92,26 @@ function githubRequest(method, path, body, token) {
       options.headers['Authorization'] = `token ${token}`;
     }
 
+    console.log(`[githubRequest] ${method} ${path}`);
+
     const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
+        console.log(`[githubRequest] Response status: ${res.statusCode}`);
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(data ? JSON.parse(data) : {});
         } else {
-          reject(new Error(`GitHub API error: ${res.statusCode}`));
+          console.error(`[githubRequest] Error response: ${data.substring(0, 500)}`);
+          reject(new Error(`GitHub API error: ${res.statusCode} - ${data.substring(0, 200)}`));
         }
       });
     });
 
-    req.on('error', reject);
+    req.on('error', (e) => {
+      console.error('[githubRequest] Request error:', e.message);
+      reject(e);
+    });
     if (body) req.write(JSON.stringify(body));
     req.end();
   });
