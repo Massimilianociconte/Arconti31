@@ -1,134 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Pannello Amministrazione - Arconti31</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Arconti31 - Gestione Menù</title>
   <link rel="icon" type="image/png" href="../images/loghi/logo_arconti31.png">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    /* CSS Custom per responsività mobile migliorata */
-    
-    /* Reset e base */
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    /* Sidebar mobile */
-    @media (max-width: 768px) {
-      /* Sidebar più stretta su mobile */
-      [class*="SidebarContainer"] {
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-      
-      /* Header compatto */
-      [class*="AppHeader"] {
-        padding: 8px 12px !important;
-        flex-wrap: wrap;
-      }
-      
-      /* Menu collections più touch-friendly */
-      [class*="SidebarNavList"] a {
-        padding: 14px 16px !important;
-        font-size: 16px !important;
-        min-height: 48px;
-      }
-      
-      /* Editor form più largo */
-      [class*="EditorContainer"],
-      [class*="ControlPaneContainer"] {
-        padding: 12px !important;
-      }
-      
-      /* Campi input più grandi per touch */
-      input, select, textarea {
-        font-size: 16px !important;
-        min-height: 44px !important;
-        padding: 10px 12px !important;
-      }
-      
-      /* Bottoni più grandi */
-      button {
-        min-height: 44px !important;
-        padding: 10px 16px !important;
-        font-size: 14px !important;
-      }
-      
-      /* Lista entries più spaziata */
-      [class*="ListCard"],
-      [class*="EntryCard"] {
-        padding: 16px !important;
-        margin-bottom: 8px !important;
-      }
-      
-      /* Toolbar editor */
-      [class*="ToolbarContainer"] {
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      
-      /* Widget select migliorato */
-      [class*="SelectWidget"] select {
-        width: 100% !important;
-      }
-      
-      /* Immagini preview */
-      [class*="ImagePreview"] img {
-        max-width: 100% !important;
-        height: auto !important;
-      }
-    }
-
-    /* Tablet */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      [class*="SidebarContainer"] {
-        width: 220px !important;
-      }
-      
-      input, select, textarea {
-        font-size: 15px !important;
-      }
-    }
-
-    /* Touch improvements generali */
-    @media (pointer: coarse) {
-      /* Dispositivi touch */
-      a, button, [role="button"] {
-        min-height: 44px;
-        min-width: 44px;
-      }
-      
-      /* Checkbox e toggle più grandi */
-      [class*="Toggle"],
-      input[type="checkbox"] {
-        transform: scale(1.2);
-      }
-    }
-
-    /* Fix per iOS Safari */
-    @supports (-webkit-touch-callout: none) {
-      input, textarea, select {
-        font-size: 16px !important;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cms-styles.css">
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  <script>
-    CMS.registerEventListener({
-      name: 'postSave',
-      handler: async ({ entry }) => {
-        console.log('Elemento salvato:', entry);
-      }
-    });
-  </script>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="login-container">
+        <img src="../images/loghi/logo_arconti31.png" alt="Arconti31" class="login-logo">
+        <h1>Gestione Menù</h1>
+        <p>Accedi con il tuo account GitHub</p>
+        <button id="github-login" class="btn btn-primary btn-large">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Accedi con GitHub
+        </button>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="screen">
+      <!-- Header -->
+      <header class="app-header">
+        <button id="menu-toggle" class="btn-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+        <h1 class="header-title">Arconti31</h1>
+        <div class="header-actions">
+          <button id="sync-btn" class="btn-icon" title="Sincronizza">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+          </button>
+          <button id="logout-btn" class="btn-icon" title="Esci">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar">
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <h3>🍔 Food</h3>
+            <a href="#" data-collection="food" class="nav-item active">Piatti</a>
+          </div>
+          <div class="nav-section">
+            <h3>🍺 Beverage</h3>
+            <a href="#" data-collection="beers" class="nav-item">Birre</a>
+            <a href="#" data-collection="cocktails" class="nav-item">Cocktails</a>
+            <a href="#" data-collection="analcolici" class="nav-item">Analcolici</a>
+            <a href="#" data-collection="bibite" class="nav-item">Bibite</a>
+            <a href="#" data-collection="caffetteria" class="nav-item">Caffetteria</a>
+            <a href="#" data-collection="bollicine" class="nav-item">Bollicine</a>
+            <a href="#" data-collection="bianchi-fermi" class="nav-item">Vini Bianchi</a>
+            <a href="#" data-collection="vini-rossi" class="nav-item">Vini Rossi</a>
+          </div>
+          <div class="nav-section">
+            <h3>⚙️ Impostazioni</h3>
+            <a href="#" data-collection="categorie" class="nav-item">Categorie</a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- List View -->
+        <div id="list-view" class="view active">
+          <div class="view-header">
+            <h2 id="collection-title">Piatti</h2>
+            <button id="add-new-btn" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              Nuovo
+            </button>
+          </div>
+          <div class="filters">
+            <input type="text" id="search-input" placeholder="Cerca..." class="search-input">
+            <select id="filter-category" class="filter-select">
+              <option value="">Tutte le categorie</option>
+            </select>
+            <select id="filter-status" class="filter-select">
+              <option value="">Tutti</option>
+              <option value="true">Disponibili</option>
+              <option value="false">Non disponibili</option>
+            </select>
+          </div>
+          <div id="items-list" class="items-list">
+            <!-- Items will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Edit View -->
+        <div id="edit-view" class="view">
+          <div class="view-header">
+            <button id="back-btn" class="btn btn-ghost">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+              Indietro
+            </button>
+            <div class="header-actions">
+              <button id="delete-btn" class="btn btn-danger">Elimina</button>
+              <button id="save-btn" class="btn btn-primary">Salva</button>
+            </div>
+          </div>
+          <form id="edit-form" class="edit-form">
+            <!-- Form fields will be generated dynamically -->
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <p>Caricamento...</p>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div id="confirm-dialog" class="confirm-dialog">
+      <div class="confirm-content">
+        <h3>Conferma eliminazione</h3>
+        <p>Sei sicuro di voler eliminare questo elemento?</p>
+        <div class="confirm-actions">
+          <button class="btn btn-ghost" id="confirm-cancel">Annulla</button>
+          <button class="btn btn-danger" id="confirm-delete">Elimina</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="cms-app.js"></script>
 </body>
 </html>
