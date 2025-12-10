@@ -1,10 +1,10 @@
 ---
 nome: "Piadine"
-slug: piadine
-tipo_menu: food
+slug: "piadine"
+tipo_menu: "food"
 icona: "🥯"
 immagine: "images/minicard sezioni/piadine.jpg"
-descrizione: Piadine romagnole farcite
-visibile: true
+descrizione: "Piadine romagnole farcite"
+visibile: false
 order: 7
 ---
