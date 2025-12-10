@@ -1792,3 +1792,320 @@ body {
     transform: translateX(-50%);
   }
 }
+
+
+/* ========================================
+   CATEGORIES SECTION - MOBILE RESPONSIVE
+   ======================================== */
+
+/* Category cards grid */
+.items-list {
+  display: grid;
+  gap: 10px;
+}
+
+/* Category item card improvements */
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  min-height: 60px;
+}
+
+.item-card .item-checkbox {
+  flex-shrink: 0;
+}
+
+.item-card .item-thumb,
+.item-card .item-thumb-placeholder {
+  flex-shrink: 0;
+}
+
+.item-card .item-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.item-card .item-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.item-card .item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Mobile specific - Categories */
+@media (max-width: 639px) {
+  /* Bulk select header */
+  .bulk-select-header {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  
+  .bulk-checkbox-label {
+    font-size: 13px;
+  }
+  
+  /* Category filters row */
+  .filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .filter-chip {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .filters-reset {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  /* Item cards on mobile */
+  .items-list {
+    gap: 6px;
+  }
+  
+  .item-card {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .item-card .item-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .item-card .item-thumb,
+  .item-card .item-thumb-placeholder {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .item-card .item-name {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  
+  .item-card .item-meta {
+    font-size: 11px;
+    gap: 6px;
+  }
+  
+  .item-card .item-icon {
+    font-size: 14px;
+  }
+  
+  .item-card .status-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  /* Filters section */
+  .filters {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .search-input,
+  .filter-select {
+    padding: 10px 12px;
+    font-size: 14px;
+    min-height: 42px;
+  }
+  
+  /* View header */
+  .view-header {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+  
+  .view-header h2 {
+    font-size: 16px;
+  }
+  
+  /* Add new button */
+  #add-new-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  #add-new-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Category filters chips - scrollable on mobile */
+  #category-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #category-filters .filter-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .items-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .item-card {
+    padding: 12px;
+  }
+  
+  .item-card .item-thumb,
+  .item-card .item-thumb-placeholder {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Desktop - larger cards */
+@media (min-width: 1024px) {
+  .items-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Unavailable items styling */
+.item-card.unavailable {
+  opacity: 0.5;
+  background: rgba(244, 67, 54, 0.05);
+  border-color: rgba(244, 67, 54, 0.3);
+}
+
+.item-card.unavailable .item-name {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* Touch-friendly checkboxes */
+@media (hover: none) and (pointer: coarse) {
+  .item-checkbox,
+  .bulk-checkbox {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .item-card {
+    min-height: 56px;
+  }
+}
+
+/* Edit form mobile improvements */
+@media (max-width: 639px) {
+  .edit-form {
+    padding: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .form-select {
+    padding: 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .form-hint {
+    font-size: 11px;
+  }
+  
+  .toggle-wrapper {
+    padding: 8px 0;
+  }
+  
+  .toggle {
+    width: 50px;
+    height: 28px;
+  }
+  
+  .toggle-slider:before {
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+  }
+  
+  .toggle input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+  }
+  
+  .toggle-label {
+    font-size: 14px;
+  }
+  
+  /* Tags input */
+  .tags-input {
+    padding: 10px;
+    gap: 6px;
+  }
+  
+  .tag-option {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  /* Image field */
+  .image-field {
+    padding: 12px;
+  }
+  
+  .image-preview {
+    height: 150px;
+  }
+  
+  .image-actions {
+    flex-direction: column;
+  }
+  
+  .image-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Smooth transitions */
+.item-card,
+.filter-chip,
+.bulk-actions-bar {
+  transition: all 0.2s ease;
+}
+
+/* Better focus states for accessibility */
+.item-checkbox:focus,
+.bulk-checkbox:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.item-card:focus-within {
+  border-color: var(--primary);
+}
