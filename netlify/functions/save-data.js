@@ -144,16 +144,28 @@ exports.handler = async (event, context) => {
       };
       
     } else if (action === 'delete') {
-      const body = {
+      console.log('Delete action - received sha:', sha, 'filename:', filename);
+      
+      if (!sha) {
+        return {
+          statusCode: 400,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ error: 'SHA mancante per eliminazione' })
+        };
+      }
+      
+      const deleteBody = {
         message: `CMS: Delete ${path}`,
         sha: sha,
         branch: 'main'
       };
       
+      console.log('Sending to GitHub:', JSON.stringify(deleteBody));
+      
       await githubRequest(
         'DELETE',
         `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
-        body,
+        deleteBody,
         GITHUB_TOKEN
       );
       
