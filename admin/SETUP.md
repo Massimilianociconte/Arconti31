@@ -95,26 +95,45 @@ Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratui
 
 ### 1. Crea account Cloudinary
 1. Vai su https://cloudinary.com e registrati (gratuito)
-2. Dalla Dashboard, copia il **Cloud Name**
+2. Dalla Dashboard, copia il **Cloud Name** (es: `ducwsodfw`)
 
-### 2. Crea Upload Preset
-1. Vai su Settings → Upload → Upload presets
-2. Clicca "Add upload preset"
-3. Imposta:
+### 2. Crea Upload Preset UNSIGNED
+⚠️ **IMPORTANTE**: Deve essere UNSIGNED (non Signed)
+
+1. Vai su **Settings** (icona ingranaggio in basso a sinistra)
+2. Clicca su **Upload** nel menu a sinistra
+3. Scorri fino a **Upload presets**
+4. Clicca **"Add upload preset"** (pulsante blu in alto a destra)
+5. Compila:
    - **Preset name**: `arconti31_unsigned`
-   - **Signing Mode**: `Unsigned`
-   - **Folder**: `arconti31`
-4. Salva
+   - **Signing Mode**: Cambia da "Signed" a **"Unsigned"** ⚠️
+   - **Folder**: `arconti31` (opzionale)
+6. Clicca **"Save"**
 
 ### 3. Aggiungi variabili su Netlify
-Aggiungi queste variabili d'ambiente:
+1. Vai su [Netlify Dashboard](https://app.netlify.com)
+2. Seleziona **Arconti31**
+3. **Site configuration** → **Environment variables**
+4. Aggiungi/modifica:
 
 | Nome | Valore |
 |------|--------|
-| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name (es: `dxxxxxx`) |
+| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name (es: `ducwsodfw`) |
 | `CLOUDINARY_UPLOAD_PRESET` | `arconti31_unsigned` |
 
+5. Clicca **Save**
+
 ### 4. Redeploy
-Fai un nuovo deploy su Netlify.
+1. Vai su **Deploys**
+2. Clicca **"Trigger deploy"** → **"Deploy site"**
+3. Aspetta che finisca (1-2 minuti)
+
+### Troubleshooting
+
+**Errore 401 (Unauthorized)**:
+- ✅ Verifica che il preset sia **UNSIGNED** (non Signed)
+- ✅ Verifica che il nome del preset sia esattamente `arconti31_unsigned`
+- ✅ Verifica che le variabili su Netlify siano corrette
+- ✅ Fai un nuovo deploy dopo aver modificato le variabili
 
 **Senza Cloudinary**: Puoi comunque inserire URL di immagini già online (es: da Google Drive, Imgur, ecc.)

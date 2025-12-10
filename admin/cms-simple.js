@@ -180,8 +180,8 @@ const $$ = sel => document.querySelectorAll(sel);
 // Init
 document.addEventListener('DOMContentLoaded', init);
 
-function init() {
-  checkCloudinaryConfig();
+async function init() {
+  await checkCloudinaryConfig();
   setupEventListeners();
   
   // Non salvare il login - utente deve fare login ogni volta
@@ -201,10 +201,13 @@ async function checkCloudinaryConfig() {
         CONFIG.cloudinary.cloudName = data.cloudName;
         CONFIG.cloudinary.uploadPreset = data.uploadPreset;
         state.cloudinaryConfigured = true;
+        console.log('✅ Cloudinary configurato:', data.cloudName);
+      } else {
+        console.log('⚠️ Cloudinary non configurato - usa URL immagini');
       }
     }
   } catch (e) {
-    console.log('Cloudinary not configured, using URL input');
+    console.log('⚠️ Cloudinary non disponibile - usa URL immagini');
   }
 }
 
@@ -684,23 +687,29 @@ async function handleImageUpload(e, fieldName) {
   // Show loading
   preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
   
-  if (state.cloudinaryConfigured) {
+  if (state.cloudinaryConfigured && CONFIG.cloudinary.cloudName && CONFIG.cloudinary.uploadPreset) {
     // Upload to Cloudinary
     try {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', CONFIG.cloudinary.uploadPreset);
-      formData.append('folder', 'arconti31');
       
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`, {
+      const url = `https://api.cloudinary.com/v1_1/${CONFIG.cloudinary.cloudName}/image/upload`;
+      console.log('Uploading to:', url);
+      console.log('Preset:', CONFIG.cloudinary.uploadPreset);
+      
+      const res = await fetch(url, {
         method: 'POST',
         body: formData
       });
       
-      if (!res.ok) throw new Error('Upload failed');
+      const responseData = await res.json();
       
-      const data = await res.json();
-      const imageUrl = data.secure_url;
+      if (!res.ok) {
+        throw new Error(responseData.error?.message || `Upload failed: ${res.status}`);
+      }
+      
+      const imageUrl = responseData.secure_url;
       
       input.value = imageUrl;
       preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
@@ -709,15 +718,15 @@ async function handleImageUpload(e, fieldName) {
     } catch (err) {
       console.error('Upload error:', err);
       preview.innerHTML = '<div class="image-placeholder">❌ Errore upload</div>';
-      toast('Errore nel caricamento', 'error');
+      toast(`Errore: ${err.message}`, 'error');
     }
   } else {
     // Local preview only - user needs to provide URL
     const reader = new FileReader();
-    reader.onload = (e) => {
-      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview-img">`;
+    reader.onload = (evt) => {
+      preview.innerHTML = `<img src="${evt.target.result}" alt="Preview" class="image-preview-img">`;
       removeBtn.style.display = 'inline-flex';
-      toast('Anteprima locale. Inserisci URL immagine nel campo sotto.', 'info');
+      toast('Anteprima locale. Incolla URL immagine nel campo sotto.', 'info');
     };
     reader.readAsDataURL(file);
   }
