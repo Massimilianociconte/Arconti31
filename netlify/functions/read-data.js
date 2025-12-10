@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
   if (mode !== 'api') {
     const jsonResult = await tryReadFromJSON(folder, REPO_OWNER, REPO_NAME);
     if (jsonResult) {
-      console.log(`[read-data] ✅ Dati caricati da JSON statico per ${folder}`);
+      console.log(`[read-data] ✅ Dati caricati da JSON statico per ${folder} (${jsonResult.length} items)`);
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
@@ -164,13 +164,23 @@ async function tryReadFromJSON(folder, owner, repo) {
       items = items.filter(item => item.tipo === config.filter);
     }
 
-    // Converti in formato compatibile con l'admin (simula contenuto MD)
+    // IMPORTANTE: Restituisce i dati in un formato che il CMS può usare direttamente
+    // Genera sia il content markdown (per compatibilità) che passa l'item diretto
     return items.map(item => {
+      // Genera un filename dallo slug o dal nome
+      const filename = (item.slug || slugify(item.nome)) + '.md';
+
+      // Genera contenuto markdown per compatibilità con parseMarkdown
       const content = generateMarkdownFromItem(item);
-      // Genera un filename basato sul nome
-      const filename = slugify(item.nome) + '.md';
-      // SHA non disponibile da JSON, l'admin dovrà recuperarlo se vuole modificare
-      return { content, filename, sha: null, fromJSON: true, item };
+
+      return {
+        content,
+        filename,
+        sha: null,
+        fromJSON: true,
+        // NUOVO: passa anche l'item diretto per evitare parsing
+        parsedItem: item
+      };
     });
   } catch (e) {
     console.error(`[tryReadFromJSON] Errore:`, e.message);
@@ -194,7 +204,9 @@ function generateMarkdownFromItem(item) {
     } else if (typeof value === 'number') {
       yaml += `${key}: ${value}\n`;
     } else if (value !== null && value !== undefined) {
-      yaml += `${key}: "${value}"\n`;
+      // Escape quotes in string values
+      const escaped = String(value).replace(/"/g, '\\"');
+      yaml += `${key}: "${escaped}"\n`;
     }
   }
 
@@ -203,6 +215,7 @@ function generateMarkdownFromItem(item) {
 }
 
 function slugify(text) {
+  if (!text) return 'item-' + Date.now();
   return text
     .toString()
     .toLowerCase()

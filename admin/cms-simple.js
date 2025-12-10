@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', init);
 async function init() {
   await checkCloudinaryConfig();
   setupEventListeners();
-  
+
   // Check for saved session (Ricordami)
   const savedSession = localStorage.getItem('cms_session');
   if (savedSession) {
@@ -216,7 +216,7 @@ async function init() {
       localStorage.removeItem('cms_session');
     }
   }
-  
+
   showLoginScreen();
 }
 
@@ -255,7 +255,7 @@ function setupEventListeners() {
     loadAllData();
   });
   $('#logout-btn').addEventListener('click', logout);
-  
+
   // Search with live suggestions
   $('#search-input').addEventListener('input', handleSearchInput);
   $('#search-input').addEventListener('keydown', handleSearchKeydown);
@@ -263,23 +263,23 @@ function setupEventListeners() {
     if ($('#search-input').value.length >= 2) showSearchSuggestions();
   });
   $('#search-clear').addEventListener('click', clearSearch);
-  
+
   // Close suggestions when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrapper')) {
       hideSearchSuggestions();
     }
   });
-  
+
   $('#filter-category').addEventListener('change', filterItems);
   $('#filter-status').addEventListener('change', filterItems);
-  
+
   // Category filters (for Categorie section)
   document.querySelectorAll('.filter-chip').forEach(chip => {
     chip.addEventListener('click', () => toggleCategoryFilter(chip));
   });
   $('#filters-reset')?.addEventListener('click', resetCategoryFilters);
-  
+
   // Global search in navbar
   setupGlobalSearch();
 }
@@ -293,12 +293,12 @@ async function handleLogin(e) {
   e.preventDefault();
   const email = $('#email-input').value.trim();
   const password = $('#password-input').value;
-  
+
   if (!email) { toast('Inserisci email', 'error'); return; }
   if (!password) { toast('Inserisci password', 'error'); return; }
-  
+
   showLoading();
-  
+
   try {
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
@@ -309,18 +309,18 @@ async function handleLogin(e) {
         password: password
       })
     });
-    
+
     const result = await res.json();
-    
+
     if (!res.ok) {
       throw new Error(result.error || 'Errore login');
     }
-    
+
     // Store token
     state.token = result.token;
     state.email = result.email;
     state.isLoggedIn = true;
-    
+
     // Save session if "Ricordami" is checked
     const rememberMe = $('#remember-me')?.checked;
     if (rememberMe) {
@@ -330,7 +330,7 @@ async function handleLogin(e) {
         lastCollection: state.currentCollection
       }));
     }
-    
+
     toast('Accesso effettuato!', 'success');
     showMainApp();
     loadAllData();
@@ -417,11 +417,16 @@ async function loadCategories() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ folder: 'categorie' })
     });
-    
+
     if (!res.ok) { state.categories = []; return; }
-    
+
     const data = await res.json();
-    const categories = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+    // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
+    const categories = data.items.map(item =>
+      item.parsedItem
+        ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
+        : parseMarkdown(item.content, item.filename, item.sha)
+    );
     // Nel CMS mostra TUTTE le categorie (anche nascoste), ordinate
     // Il filtro visibile serve solo per il frontend (menu.html)
     state.categories = categories.sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -440,11 +445,16 @@ async function loadItems(collectionName, silent = false) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ folder: collection.folder })
     });
-    
+
     if (!res.ok) throw new Error('Errore caricamento');
-    
+
     const data = await res.json();
-    const items = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+    // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
+    const items = data.items.map(item =>
+      item.parsedItem
+        ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
+        : parseMarkdown(item.content, item.filename, item.sha)
+    );
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
     renderItems();
   } catch (e) {
@@ -504,19 +514,19 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
   if (categoryFilter) {
     $('#filter-category').value = categoryFilter;
   }
-  
+
   // Show/hide category-specific filters
   const catFilters = $('#category-filters');
   if (catFilters) {
     catFilters.style.display = name === 'categorie' ? 'flex' : 'none';
   }
-  
+
   // Reset category filters when switching
   if (name !== 'categorie') {
     state.categoryFilters = { tipo: null, image: null };
     $$('.filter-chip').forEach(c => c.classList.remove('active'));
   }
-  
+
   // Save last collection for session restore
   const savedSession = localStorage.getItem('cms_session');
   if (savedSession) {
@@ -524,9 +534,9 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
       const session = JSON.parse(savedSession);
       session.lastCollection = name;
       localStorage.setItem('cms_session', JSON.stringify(session));
-    } catch (e) {}
+    } catch (e) { }
   }
-  
+
   loadItems(name);
   showListView();
 }
@@ -540,7 +550,7 @@ async function loadAllData(silent = false) {
   try {
     // Load categories first
     await loadCategories();
-    
+
     // Load all food items for tree counts
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
@@ -549,18 +559,23 @@ async function loadAllData(silent = false) {
     });
     if (res.ok) {
       const data = await res.json();
-      state.allFood = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+      // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
+      state.allFood = data.items.map(item =>
+        item.parsedItem
+          ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
+          : parseMarkdown(item.content, item.filename, item.sha)
+      );
     }
-    
+
     // Clear cached items for global search to force refresh
     state.allItems = {};
-    
+
     renderSidebar();
     setupSidebarEvents();
-    
+
     // Load current collection items
     await loadItems(state.currentCollection, silent);
-    
+
     // Pre-carica dati per ricerca globale in background (non blocca UI)
     preloadGlobalSearchData();
   } catch (e) {
@@ -574,7 +589,7 @@ async function loadAllData(silent = false) {
 // Pre-carica tutti i dati per la ricerca globale in background
 async function preloadGlobalSearchData() {
   const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
-  
+
   // Carica tutte le collezioni in parallelo in background
   const fetchPromises = searchCollections
     .filter(collName => !state.allItems[collName])
@@ -587,13 +602,18 @@ async function preloadGlobalSearchData() {
         });
         if (res.ok) {
           const data = await res.json();
-          state.allItems[collName] = data.items.map(item => parseMarkdown(item.content, item.filename, item.sha));
+          // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
+          state.allItems[collName] = data.items.map(item =>
+            item.parsedItem
+              ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
+              : parseMarkdown(item.content, item.filename, item.sha)
+          );
         }
       } catch (e) {
         console.error(`Preload error ${collName}:`, e);
       }
     });
-  
+
   await Promise.all(fetchPromises);
   console.log('✅ Dati ricerca globale pre-caricati');
 }
@@ -612,36 +632,36 @@ function renderSidebar() {
   const nav = $('#sidebar-nav');
   const foodCategories = state.categories.filter(c => c.tipo_menu === 'food');
   const beverageCategories = state.categories.filter(c => c.tipo_menu === 'beverage');
-  
+
   // Separate beer categories from other beverages
-  const beerCategories = beverageCategories.filter(c => 
+  const beerCategories = beverageCategories.filter(c =>
     c.nome.toLowerCase().includes('birr') || c.nome.toLowerCase().includes('frigo')
   );
-  const otherBeverages = beverageCategories.filter(c => 
+  const otherBeverages = beverageCategories.filter(c =>
     !c.nome.toLowerCase().includes('birr') && !c.nome.toLowerCase().includes('frigo')
   );
-  
+
   // Count items per category
   const foodCounts = {};
   (state.allFood || []).forEach(item => {
     const cat = item.category || 'Altro';
     foodCounts[cat] = (foodCounts[cat] || 0) + 1;
   });
-  
+
   // Helper to render category image
   const renderCatThumb = (cat) => {
     let img = cat.immagine || '';
     if (img && !img.startsWith('http') && !img.startsWith('../')) {
       img = '../' + img;
     }
-    return img 
+    return img
       ? `<img src="${img}" class="tree-item-thumb" alt="" onerror="this.outerHTML='<div class=\\'tree-item-thumb-placeholder\\'>${cat.icona || '📦'}</div>'">`
       : `<div class="tree-item-thumb-placeholder">${cat.icona || '📦'}</div>`;
   };
-  
+
   // Helper per indicare se una categoria è nascosta nel frontend
   const hiddenBadge = (cat) => cat.visibile === false ? '<span class="hidden-badge" title="Nascosto nel menu">👁️‍🗨️</span>' : '';
-  
+
   // Build tree HTML
   let html = `
     <!-- SEZIONE FOOD -->
@@ -689,17 +709,17 @@ function renderSidebar() {
     
     <!-- Altre bevande -->
     ${otherBeverages.map(cat => {
-      const collectionMap = {
-        'Cocktails': 'cocktails',
-        'Analcolici': 'analcolici',
-        'Bibite': 'bibite',
-        'Caffetteria': 'caffetteria',
-        'Bollicine': 'bollicine',
-        'Bianchi fermi': 'bianchi-fermi',
-        'Vini rossi': 'vini-rossi'
-      };
-      const collection = collectionMap[cat.nome] || cat.slug;
-      return `
+    const collectionMap = {
+      'Cocktails': 'cocktails',
+      'Analcolici': 'analcolici',
+      'Bibite': 'bibite',
+      'Caffetteria': 'caffetteria',
+      'Bollicine': 'bollicine',
+      'Bianchi fermi': 'bianchi-fermi',
+      'Vini rossi': 'vini-rossi'
+    };
+    const collection = collectionMap[cat.nome] || cat.slug;
+    return `
       <div class="tree-section">
         <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="${collection}">
           ${renderCatThumb(cat)}
@@ -707,7 +727,7 @@ function renderSidebar() {
           ${hiddenBadge(cat)}
         </div>
       </div>`;
-    }).join('')}
+  }).join('')}
     
     <div class="tree-divider"></div>
     <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>
@@ -719,7 +739,7 @@ function renderSidebar() {
       </div>
     </div>
   `;
-  
+
   nav.innerHTML = html;
 }
 
@@ -729,7 +749,7 @@ function setupSidebarEvents() {
     header.addEventListener('click', (e) => {
       e.stopPropagation();
       header.classList.toggle('expanded');
-      
+
       // If clicking on collection header, also select it
       const collection = header.dataset.collection;
       if (collection) {
@@ -737,7 +757,7 @@ function setupSidebarEvents() {
       }
     });
   });
-  
+
   // Non-expandable headers (direct collection)
   document.querySelectorAll('.tree-header:not([data-expandable])').forEach(header => {
     header.addEventListener('click', () => {
@@ -748,7 +768,7 @@ function setupSidebarEvents() {
       }
     });
   });
-  
+
   // Tree items (categories or collections)
   document.querySelectorAll('.tree-item').forEach(item => {
     item.addEventListener('click', (e) => {
@@ -765,7 +785,7 @@ function setupSidebarEvents() {
 function selectTreeItem(collection, category, beerSection = null) {
   // Remove all active states
   document.querySelectorAll('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
-  
+
   // Set active state
   if (beerSection) {
     // Per le sottocategorie birre (usa data-beer-section)
@@ -782,7 +802,7 @@ function selectTreeItem(collection, category, beerSection = null) {
     if (header) header.classList.add('active');
     if (item) item.classList.add('active');
   }
-  
+
   selectCollection(collection, category, beerSection);
 }
 
@@ -806,18 +826,18 @@ function getCategoriesForType(type) {
 function renderItems() {
   const list = $('#items-list');
   const items = getFilteredItems();
-  
+
   // Clear selection state
   state.selectedItems = [];
   updateBulkActionsBar();
-  
+
   if (!items.length) {
     list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca "Nuovo" per aggiungere</p></div>';
     return;
   }
   const collection = COLLECTIONS[state.currentCollection];
   const isCategorie = state.currentCollection === 'categorie';
-  
+
   if (collection.groupByCategory && state.currentCollection === 'food') {
     renderGroupedItems(items);
   } else {
@@ -833,7 +853,7 @@ function renderItems() {
     }
     html += items.map(item => renderItemCard(item, isCategorie)).join('');
     list.innerHTML = html;
-    
+
     // Setup select all checkbox
     if (isCategorie) {
       const selectAll = $('#select-all-items');
@@ -848,7 +868,7 @@ function renderItems() {
       }
     }
   }
-  
+
   // Setup click handlers
   document.querySelectorAll('.item-card').forEach(card => {
     card.addEventListener('click', (e) => {
@@ -857,7 +877,7 @@ function renderItems() {
       editItem(card.dataset.filename);
     });
   });
-  
+
   // Setup checkbox handlers for categories
   if (isCategorie) {
     document.querySelectorAll('.item-checkbox').forEach(cb => {
@@ -894,25 +914,25 @@ function renderGroupedItems(items) {
 
 function renderItemCard(item, showCheckbox = false) {
   let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
-  
+
   // Fix relative paths for CMS (which is in /admin/)
   if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
     thumb = '../' + thumb;
   }
-  
+
   const thumbHtml = thumb ? `<img src="${thumb}" class="item-thumb" alt="" onerror="this.style.display='none'">` : '<div class="item-thumb-placeholder">📷</div>';
-  
+
   // For categories, show icon instead of price
   const isCategory = state.currentCollection === 'categorie';
-  const metaHtml = isCategory 
+  const metaHtml = isCategory
     ? `<span class="item-icon">${item.icona || '📦'}</span>`
     : `<span class="item-price">€${item.prezzo || '0'}</span>`;
-  
+
   // Checkbox for bulk selection (categories only)
-  const checkboxHtml = showCheckbox 
+  const checkboxHtml = showCheckbox
     ? `<input type="checkbox" class="item-checkbox" data-filename="${item.filename}" onclick="event.stopPropagation()">`
     : '';
-  
+
   return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
     ${checkboxHtml}
     ${thumbHtml}
@@ -931,7 +951,7 @@ function getFilteredItems() {
   const search = $('#search-input').value.toLowerCase();
   const category = $('#filter-category').value;
   const status = $('#filter-status').value;
-  
+
   // Text search
   if (search) {
     items = items.filter(i => {
@@ -941,18 +961,18 @@ function getFilteredItems() {
       return nome.includes(search) || desc.includes(search) || tags.includes(search);
     });
   }
-  
+
   // Category/section filter
   if (category) items = items.filter(i => i.category === category || i.sezione === category);
-  
+
   // Beer section filter (for beer subsections in sidebar)
   if (state.currentBeerSection && state.currentCollection === 'beers') {
     items = items.filter(i => i.sezione === state.currentBeerSection);
   }
-  
+
   // Status filter
   if (status !== '') items = items.filter(i => (i.disponibile !== false) === (status === 'true'));
-  
+
   // Category-specific filters (for Categorie section)
   if (state.currentCollection === 'categorie') {
     if (state.categoryFilters.tipo) {
@@ -964,7 +984,7 @@ function getFilteredItems() {
       items = items.filter(i => !i.immagine || i.immagine.length === 0);
     }
   }
-  
+
   return items;
 }
 
@@ -976,20 +996,20 @@ function filterItems() { renderItems(); }
 
 function handleSearchInput(e) {
   const query = e.target.value;
-  
+
   // Show/hide clear button
   const clearBtn = $('#search-clear');
   clearBtn.classList.toggle('visible', query.length > 0);
-  
+
   // Debounce search
   clearTimeout(state.searchTimeout);
-  
+
   if (query.length < 2) {
     hideSearchSuggestions();
     filterItems();
     return;
   }
-  
+
   state.searchTimeout = setTimeout(() => {
     showSearchSuggestions();
     filterItems();
@@ -1000,12 +1020,12 @@ function handleSearchKeydown(e) {
   const suggestions = $('#search-suggestions');
   const items = suggestions.querySelectorAll('.suggestion-item');
   const highlighted = suggestions.querySelector('.suggestion-item.highlighted');
-  
+
   if (e.key === 'Escape') {
     hideSearchSuggestions();
     return;
   }
-  
+
   if (e.key === 'Enter') {
     if (highlighted) {
       e.preventDefault();
@@ -1013,20 +1033,20 @@ function handleSearchKeydown(e) {
     }
     return;
   }
-  
+
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.preventDefault();
     if (!items.length) return;
-    
+
     let idx = [...items].indexOf(highlighted);
     if (highlighted) highlighted.classList.remove('highlighted');
-    
+
     if (e.key === 'ArrowDown') {
       idx = idx < items.length - 1 ? idx + 1 : 0;
     } else {
       idx = idx > 0 ? idx - 1 : items.length - 1;
     }
-    
+
     items[idx].classList.add('highlighted');
     items[idx].scrollIntoView({ block: 'nearest' });
   }
@@ -1035,12 +1055,12 @@ function handleSearchKeydown(e) {
 function showSearchSuggestions() {
   const query = $('#search-input').value.toLowerCase();
   const suggestions = $('#search-suggestions');
-  
+
   if (query.length < 2) {
     hideSearchSuggestions();
     return;
   }
-  
+
   // Search in current items
   const matches = state.items.filter(item => {
     const nome = (item.nome || '').toLowerCase();
@@ -1049,25 +1069,25 @@ function showSearchSuggestions() {
     const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
     return nome.includes(query) || desc.includes(query) || cat.includes(query) || tags.includes(query);
   }).slice(0, 8);
-  
+
   if (!matches.length) {
     suggestions.innerHTML = '<div class="search-no-results">Nessun risultato per "' + query + '"</div>';
     suggestions.classList.add('active');
     return;
   }
-  
+
   suggestions.innerHTML = matches.map(item => {
     let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
     if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
       thumb = '../' + thumb;
     }
-    const thumbHtml = thumb 
+    const thumbHtml = thumb
       ? `<img src="${thumb}" class="suggestion-thumb" alt="" onerror="this.style.display='none'">`
       : '<div class="suggestion-thumb-placeholder">📷</div>';
-    
+
     const cat = item.category || item.sezione || item.tipo_menu || '';
     const price = item.prezzo ? `€${item.prezzo}` : '';
-    
+
     return `<div class="suggestion-item" data-filename="${item.filename}">
       ${thumbHtml}
       <div class="suggestion-info">
@@ -1079,7 +1099,7 @@ function showSearchSuggestions() {
       </div>
     </div>`;
   }).join('');
-  
+
   // Add click handlers
   suggestions.querySelectorAll('.suggestion-item').forEach(el => {
     el.addEventListener('click', () => {
@@ -1089,7 +1109,7 @@ function showSearchSuggestions() {
       $('#search-clear').classList.remove('visible');
     });
   });
-  
+
   suggestions.classList.add('active');
 }
 
@@ -1111,7 +1131,7 @@ function clearSearch() {
 function toggleCategoryFilter(chip) {
   const filterType = chip.dataset.filter;
   const filterValue = chip.dataset.value;
-  
+
   // Toggle active state
   if (chip.classList.contains('active')) {
     chip.classList.remove('active');
@@ -1122,7 +1142,7 @@ function toggleCategoryFilter(chip) {
     chip.classList.add('active');
     state.categoryFilters[filterType] = filterValue;
   }
-  
+
   filterItems();
 }
 
@@ -1151,18 +1171,18 @@ function toggleItemSelection(filename, selected) {
 function updateBulkActionsBar() {
   let bar = $('#bulk-actions-bar');
   const count = state.selectedItems.length;
-  
+
   // Only show for categories section
   if (state.currentCollection !== 'categorie') {
     if (bar) bar.remove();
     return;
   }
-  
+
   if (count === 0) {
     if (bar) bar.classList.remove('active');
     return;
   }
-  
+
   // Create bar if doesn't exist
   if (!bar) {
     bar = document.createElement('div');
@@ -1185,13 +1205,13 @@ function updateBulkActionsBar() {
       </div>
     `;
     document.querySelector('.main-content').appendChild(bar);
-    
+
     // Add event listeners
     $('#bulk-enable-btn').addEventListener('click', () => bulkSetVisibility(true));
     $('#bulk-disable-btn').addEventListener('click', () => bulkSetVisibility(false));
     $('#bulk-clear-btn').addEventListener('click', clearBulkSelection);
   }
-  
+
   // Update count
   bar.querySelector('.bulk-count').textContent = count;
   bar.classList.add('active');
@@ -1208,12 +1228,12 @@ function clearBulkSelection() {
 async function bulkSetVisibility(visible) {
   const count = state.selectedItems.length;
   if (count === 0) return;
-  
+
   const action = visible ? 'rendere visibili' : 'nascondere';
   if (!confirm(`Vuoi ${action} ${count} categorie?`)) return;
-  
+
   showLoading();
-  
+
   try {
     // Prima ottieni tutti gli SHA freschi in un'unica chiamata
     const fetchRes = await fetch('/.netlify/functions/read-data', {
@@ -1221,34 +1241,34 @@ async function bulkSetVisibility(visible) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ folder: 'categorie' })
     });
-    
+
     let freshData = [];
     if (fetchRes.ok) {
       const data = await fetchRes.json();
       freshData = data.items;
     }
-    
+
     // Prepara tutte le richieste di salvataggio
     const savePromises = state.selectedItems.map(async (filename) => {
       try {
         // Find the item
         const item = state.items.find(i => i.filename === filename);
         if (!item) return { success: false, filename };
-        
+
         // Trova SHA fresco
         const freshItem = freshData.find(i => i.filename === filename);
         const sha = freshItem?.sha || item.sha;
-        
+
         if (!sha) {
           return { success: false, filename };
         }
-        
+
         // Update visibility
         const updatedData = { ...item };
         delete updatedData.filename;
         delete updatedData.sha;
         updatedData.visibile = visible;
-        
+
         // Save
         const res = await fetch('/.netlify/functions/save-data', {
           method: 'POST',
@@ -1262,34 +1282,34 @@ async function bulkSetVisibility(visible) {
             sha: sha
           })
         });
-        
+
         return { success: res.ok, filename };
       } catch (e) {
         console.error(`Error updating ${filename}:`, e);
         return { success: false, filename };
       }
     });
-    
+
     // Esegui TUTTE le richieste in parallelo (molto più veloce!)
     const results = await Promise.all(savePromises);
-    
+
     const success = results.filter(r => r.success).length;
     const errors = results.filter(r => !r.success).length;
-    
+
     if (success > 0) {
       toast(`${success} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
     }
     if (errors > 0) {
       toast(`${errors} errori durante l'aggiornamento`, 'error');
     }
-    
+
   } catch (e) {
     console.error('Bulk operation error:', e);
     toast('Errore durante l\'operazione', 'error');
   }
-  
+
   hideLoading();
-  
+
   // Clear selection and refresh
   clearBulkSelection();
   await silentRefresh();
@@ -1321,10 +1341,10 @@ function editItem(filename) {
 function renderEditForm(data) {
   const collection = COLLECTIONS[state.currentCollection];
   const form = $('#edit-form');
-  
+
   form.innerHTML = collection.fields.map(field => {
     const value = data[field.name] ?? field.default ?? '';
-    
+
     switch (field.type) {
       case 'text':
         return `<div class="form-group">
@@ -1332,19 +1352,19 @@ function renderEditForm(data) {
           <input type="text" name="${field.name}" class="form-input" value="${escapeHtml(value)}" ${field.autoSlug ? 'data-auto-slug="true"' : ''}>
           ${field.hint ? `<div class="form-hint">${field.hint}</div>` : ''}
         </div>`;
-        
+
       case 'number':
         return `<div class="form-group">
           <label class="form-label">${field.label}</label>
           <input type="number" name="${field.name}" class="form-input" value="${value}">
         </div>`;
-        
+
       case 'textarea':
         return `<div class="form-group">
           <label class="form-label">${field.label}</label>
           <textarea name="${field.name}" class="form-textarea">${escapeHtml(value)}</textarea>
         </div>`;
-        
+
       case 'select':
         return `<div class="form-group">
           <label class="form-label">${field.label}</label>
@@ -1353,7 +1373,7 @@ function renderEditForm(data) {
             ${field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('')}
           </select>
         </div>`;
-        
+
       case 'dynamic-select':
         const cats = getCategoriesForType(field.categoryType);
         return `<div class="form-group">
@@ -1363,7 +1383,7 @@ function renderEditForm(data) {
             ${cats.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('')}
           </select>
         </div>`;
-        
+
       case 'toggle':
         const checked = value === true || value === 'true' || (value === '' && field.default);
         return `<div class="form-group">
@@ -1375,7 +1395,7 @@ function renderEditForm(data) {
             <span class="toggle-label">${field.label}</span>
           </div>
         </div>`;
-        
+
       case 'tags':
         const selected = Array.isArray(value) ? value : [];
         return `<div class="form-group">
@@ -1384,24 +1404,24 @@ function renderEditForm(data) {
             ${field.options.map(opt => `<span class="tag-option ${selected.includes(opt) ? 'selected' : ''}" data-value="${opt}">${opt}</span>`).join('')}
           </div>
         </div>`;
-        
+
       case 'image':
         return renderImageField(field, value);
-        
+
       default: return '';
     }
   }).join('');
-  
+
   // Event handlers
   document.querySelectorAll('.tag-option').forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
-  
+
   // Auto-slug
   const nomeInput = form.querySelector('[name="nome"]');
   const slugInput = form.querySelector('[data-auto-slug="true"]');
   if (nomeInput && slugInput && state.isNew) {
     nomeInput.addEventListener('input', () => slugInput.value = slugify(nomeInput.value));
   }
-  
+
   // Image upload handlers
   document.querySelectorAll('.image-upload-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1413,7 +1433,7 @@ function renderEditForm(data) {
       input.click();
     });
   });
-  
+
   // Image remove handlers
   document.querySelectorAll('.image-remove-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1430,17 +1450,17 @@ function renderEditForm(data) {
 
 function renderImageField(field, value) {
   const hasImage = value && value.length > 0;
-  
+
   // Fix relative paths for CMS (which is in /admin/)
   let displayValue = value || '';
   if (displayValue && !displayValue.startsWith('http') && !displayValue.startsWith('../') && !displayValue.startsWith('/')) {
     displayValue = '../' + displayValue;
   }
-  
-  const previewHtml = hasImage 
+
+  const previewHtml = hasImage
     ? `<img src="${displayValue}" alt="Preview" class="image-preview-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2214%22%3E❌ Errore%3C/text%3E%3C/svg%3E'">`
     : '<div class="image-placeholder">📷 Nessuna immagine</div>';
-  
+
   return `<div class="form-group">
     <label class="form-label">${field.label}</label>
     <div class="image-field" data-image-field="${field.name}">
@@ -1463,26 +1483,26 @@ function renderImageField(field, value) {
 async function handleImageUpload(e, fieldName) {
   const file = e.target.files[0];
   if (!file) return;
-  
+
   const form = $('#edit-form');
   const container = form.querySelector(`[data-image-field="${fieldName}"]`);
   const preview = container.querySelector('.image-preview');
   const input = form.querySelector(`[name="${fieldName}"]`);
   const urlInput = form.querySelector(`[name="${fieldName}_url"]`);
   const removeBtn = container.querySelector('.image-remove-btn');
-  
+
   // Show loading
   preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
-  
+
   // Convert file to base64
   const reader = new FileReader();
   reader.onload = async (evt) => {
     const base64Data = evt.target.result;
-    
+
     // Show preview immediately
     preview.innerHTML = `<img src="${base64Data}" alt="Preview" class="image-preview-img">`;
     removeBtn.style.display = 'inline-flex';
-    
+
     // Try upload via Netlify Function (signed upload)
     try {
       const res = await fetch('/.netlify/functions/upload-image', {
@@ -1493,9 +1513,9 @@ async function handleImageUpload(e, fieldName) {
           file: base64Data
         })
       });
-      
+
       const responseData = await res.json();
-      
+
       if (res.ok && responseData.url) {
         const imageUrl = responseData.url;
         input.value = imageUrl;
@@ -1530,7 +1550,7 @@ async function saveItem() {
   const collection = COLLECTIONS[state.currentCollection];
   const form = $('#edit-form');
   const formData = new FormData(form);
-  
+
   const data = {};
   collection.fields.forEach(field => {
     if (field.type === 'toggle') {
@@ -1551,18 +1571,18 @@ async function saveItem() {
       data[field.name] = formData.get(field.name) || '';
     }
   });
-  
+
   // Validate
   const missing = collection.fields.filter(f => f.required && !data[f.name]).map(f => f.label);
   if (missing.length) {
     toast(`Compila: ${missing.join(', ')}`, 'error');
     return;
   }
-  
+
   const filename = state.isNew ? `${slugify(data.nome || data.slug)}.md` : state.currentItem.filename;
-  
+
   showLoading();
-  
+
   try {
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
@@ -1576,16 +1596,16 @@ async function saveItem() {
         sha: state.isNew ? null : state.currentItem.sha
       })
     });
-    
+
     const result = await res.json();
     if (!res.ok) throw new Error(result.error || 'Errore salvataggio');
-    
+
     toast('Salvato!', 'success');
-    
+
     // Show list view first, then refresh silently in background
     showListView();
     hideLoading();
-    
+
     // Silent refresh to update all data and counters
     await silentRefresh();
   } catch (e) {
@@ -1598,15 +1618,15 @@ async function saveItem() {
 async function deleteItem() {
   if (!state.currentItem) return;
   if (!confirm(`Eliminare "${state.currentItem.nome}"?`)) return;
-  
+
   showLoading();
-  
+
   try {
     const collection = COLLECTIONS[state.currentCollection];
     let sha = state.currentItem.sha;
-    
+
     console.log('Delete item - Initial SHA:', sha, 'Filename:', state.currentItem.filename);
-    
+
     // Always fetch fresh SHA from GitHub to ensure it's current
     console.log('Recupero SHA aggiornato dal server...');
     const fetchRes = await fetch('/.netlify/functions/read-data', {
@@ -1614,7 +1634,7 @@ async function deleteItem() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ folder: collection.folder })
     });
-    
+
     if (fetchRes.ok) {
       const data = await fetchRes.json();
       console.log('Items received:', data.items?.length);
@@ -1627,13 +1647,13 @@ async function deleteItem() {
     } else {
       console.error('Failed to fetch items:', fetchRes.status);
     }
-    
+
     if (!sha) {
       throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
     }
-    
+
     console.log('Sending delete request with SHA:', sha);
-    
+
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1645,17 +1665,17 @@ async function deleteItem() {
         sha: sha
       })
     });
-    
+
     const result = await res.json();
     console.log('Delete response:', result);
     if (!res.ok) throw new Error(result.error || 'Errore eliminazione');
-    
+
     toast('Eliminato!', 'success');
-    
+
     // Show list view first, then refresh silently in background
     showListView();
     hideLoading();
-    
+
     // Silent refresh to update all data and counters
     await silentRefresh();
   } catch (e) {
@@ -1684,22 +1704,22 @@ function setupGlobalSearch() {
   const box = $('#global-search-box');
   const input = $('#global-search-input');
   const closeBtn = $('#global-search-close');
-  
+
   if (!toggle || !box || !input) return;
-  
+
   toggle.addEventListener('click', () => {
     box.classList.add('active');
     input.focus();
   });
-  
+
   closeBtn.addEventListener('click', closeGlobalSearch);
-  
+
   // Event listeners multipli per supporto iPad/tablet
   input.addEventListener('input', handleGlobalSearchInput);
   input.addEventListener('keyup', handleGlobalSearchChange); // Fallback per iPad
   input.addEventListener('keydown', handleGlobalSearchKeydown);
   input.addEventListener('change', handleGlobalSearchChange); // Per autocomplete
-  
+
   // Touch-specific: su iPad a volte serve questo
   input.addEventListener('touchend', () => {
     // Piccolo delay per permettere l'aggiornamento del valore
@@ -1709,7 +1729,7 @@ function setupGlobalSearch() {
       }
     }, 50);
   });
-  
+
   // Close when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#global-search-wrapper') && !e.target.closest('#global-search-toggle')) {
@@ -1722,7 +1742,7 @@ function closeGlobalSearch() {
   const box = $('#global-search-box');
   const input = $('#global-search-input');
   const results = $('#global-search-results');
-  
+
   box.classList.remove('active');
   results.classList.remove('active');
   input.value = '';
@@ -1730,14 +1750,14 @@ function closeGlobalSearch() {
 
 function handleGlobalSearchInput(e) {
   const query = e.target.value.trim();
-  
+
   clearTimeout(state.globalSearchTimeout);
-  
+
   if (query.length < 2) {
     $('#global-search-results').classList.remove('active');
     return;
   }
-  
+
   // Timeout breve per risposta rapida
   state.globalSearchTimeout = setTimeout(() => {
     performGlobalSearch(query);
@@ -1754,31 +1774,31 @@ function handleGlobalSearchKeydown(e) {
   const results = $('#global-search-results');
   const items = results.querySelectorAll('.global-result-item');
   const highlighted = results.querySelector('.global-result-item.highlighted');
-  
+
   if (e.key === 'Escape') {
     closeGlobalSearch();
     return;
   }
-  
+
   if (e.key === 'Enter' && highlighted) {
     e.preventDefault();
     highlighted.click();
     return;
   }
-  
+
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.preventDefault();
     if (!items.length) return;
-    
+
     let idx = [...items].indexOf(highlighted);
     if (highlighted) highlighted.classList.remove('highlighted');
-    
+
     if (e.key === 'ArrowDown') {
       idx = idx < items.length - 1 ? idx + 1 : 0;
     } else {
       idx = idx > 0 ? idx - 1 : items.length - 1;
     }
-    
+
     items[idx].classList.add('highlighted');
     items[idx].scrollIntoView({ block: 'nearest' });
   }
@@ -1787,20 +1807,20 @@ function handleGlobalSearchKeydown(e) {
 async function performGlobalSearch(query) {
   const results = $('#global-search-results');
   const q = query.toLowerCase();
-  
+
   // Mostra indicatore di caricamento
   results.innerHTML = '<div class="global-search-loading">🔍 Ricerca in corso...</div>';
   results.classList.add('active');
-  
+
   // Search across all collections
   const allMatches = [];
-  
+
   // Define collections to search
   const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
-  
+
   // Trova collezioni che devono essere caricate
   const collectionsToFetch = searchCollections.filter(c => !state.allItems[c]);
-  
+
   // Carica tutte le collezioni mancanti IN PARALLELO (molto più veloce!)
   if (collectionsToFetch.length > 0) {
     try {
@@ -1813,14 +1833,21 @@ async function performGlobalSearch(query) {
           });
           if (res.ok) {
             const data = await res.json();
-            return { collName, items: data.items.map(item => parseMarkdown(item.content, item.filename, item.sha)) };
+            // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
+            return {
+              collName, items: data.items.map(item =>
+                item.parsedItem
+                  ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
+                  : parseMarkdown(item.content, item.filename, item.sha)
+              )
+            };
           }
         } catch (e) {
           console.error(`Error fetching ${collName}:`, e);
         }
         return { collName, items: [] };
       });
-      
+
       const fetchResults = await Promise.all(fetchPromises);
       fetchResults.forEach(({ collName, items }) => {
         state.allItems[collName] = items;
@@ -1829,7 +1856,7 @@ async function performGlobalSearch(query) {
       console.error('Error fetching collections:', e);
     }
   }
-  
+
   // Ora cerca nei dati cachati (sincrono, velocissimo)
   for (const collName of searchCollections) {
     const items = state.allItems[collName] || [];
@@ -1841,7 +1868,7 @@ async function performGlobalSearch(query) {
       const desc = (Array.isArray(descRaw) ? descRaw.join(' ') : String(descRaw || '')).toLowerCase();
       const cat = String(item.category || item.sezione || '').toLowerCase();
       const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
-      
+
       // Ricerca ottimizzata con indexOf (più veloce di includes su mobile)
       if (nome.indexOf(q) !== -1 || desc.indexOf(q) !== -1 || cat.indexOf(q) !== -1 || tags.indexOf(q) !== -1) {
         allMatches.push({
@@ -1853,41 +1880,41 @@ async function performGlobalSearch(query) {
       }
     }
   }
-  
+
   // Sort by relevance (name starts with > name contains > other)
   allMatches.sort((a, b) => {
     if (a._nameMatch !== b._nameMatch) return b._nameMatch - a._nameMatch;
     return (a.nome || '').localeCompare(b.nome || '');
   });
-  
+
   // Limit results
   const limitedMatches = allMatches.slice(0, 15);
-  
+
   if (!limitedMatches.length) {
     results.innerHTML = '<div class="global-search-empty">Nessun risultato per "' + query + '"</div>';
     return;
   }
-  
+
   // Usa DocumentFragment per rendering più veloce
   const fragment = document.createDocumentFragment();
-  
+
   limitedMatches.forEach(item => {
     let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
     if (thumb && !thumb.startsWith('http') && !thumb.startsWith('../')) {
       thumb = '../' + thumb;
     }
-    
+
     const div = document.createElement('div');
     div.className = 'global-result-item';
     div.dataset.collection = item._collection;
     div.dataset.filename = item.filename;
-    
-    const thumbHtml = thumb 
+
+    const thumbHtml = thumb
       ? `<img src="${thumb}" class="global-result-thumb" alt="" loading="lazy" onerror="this.style.display='none'">`
       : '<div class="global-result-placeholder">📷</div>';
-    
+
     const price = item.prezzo ? `€${item.prezzo}` : '';
-    
+
     div.innerHTML = `
       ${thumbHtml}
       <div class="global-result-info">
@@ -1898,15 +1925,15 @@ async function performGlobalSearch(query) {
         </div>
       </div>
     `;
-    
+
     // Event listener diretto (più efficiente della delegazione per pochi elementi)
     div.addEventListener('click', () => {
       openGlobalSearchResult(item._collection, item.filename);
     });
-    
+
     fragment.appendChild(div);
   });
-  
+
   results.innerHTML = '';
   results.appendChild(fragment);
 }
@@ -1914,11 +1941,11 @@ async function performGlobalSearch(query) {
 // Funzione separata per apertura risultato (evita ricreazione closure)
 async function openGlobalSearchResult(collection, filename) {
   closeGlobalSearch();
-  
+
   // Switch to the collection and load items
   state.currentCollection = collection;
   await loadItems(collection);
-  
+
   // Find and edit the item
   const item = state.items.find(i => i.filename === filename);
   if (item) {
