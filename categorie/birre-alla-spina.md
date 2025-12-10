@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🍻"
 immagine: "images/minicard sezioni/birra-spina.png"
 descrizione: "Birre alla spina classiche"
-visibile: false
+visibile: true
 order: 12
 ---
