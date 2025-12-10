@@ -7,7 +7,6 @@ const CONFIG = {
   owner: 'Massimilianociconte',
   repo: 'Arconti31',
   branch: 'main',
-  // Use Netlify Git Gateway to avoid GitHub rate limits
   useGitGateway: true,
   gitGatewayUrl: '/.netlify/git/github'
 };
@@ -185,7 +184,8 @@ const COLLECTIONS = {
 
 // App State
 let state = {
-  token: localStorage.getItem('github_token'),
+  token: null,
+  user: null,
   currentCollection: 'food',
   items: [],
   currentItem: null,
@@ -200,13 +200,65 @@ const $$ = (sel) => document.querySelectorAll(sel);
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+  initNetlifyIdentity();
   setupEventListeners();
-  checkAuth();
+}
+
+function initNetlifyIdentity() {
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (user) {
+        handleLogin(user);
+      } else {
+        showLoginScreen();
+      }
+    });
+
+    window.netlifyIdentity.on('login', user => {
+      handleLogin(user);
+      window.netlifyIdentity.close();
+    });
+
+    window.netlifyIdentity.on('logout', () => {
+      handleLogout();
+    });
+
+    window.netlifyIdentity.on('error', err => {
+      console.error('Netlify Identity Error:', err);
+      toast('Errore di autenticazione', 'error');
+    });
+
+    // Initialize the widget
+    window.netlifyIdentity.init();
+  } else {
+    console.error('Netlify Identity widget not loaded');
+    toast('Errore: widget di login non caricato', 'error');
+  }
+}
+
+function handleLogin(user) {
+  state.user = user;
+  state.token = user.token.access_token;
+  showMainApp();
+  loadItems(state.currentCollection);
+}
+
+function handleLogout() {
+  state.user = null;
+  state.token = null;
+  showLoginScreen();
 }
 
 function setupEventListeners() {
-  // Login
-  $('#github-login').addEventListener('click', startOAuth);
+  // Login button - opens Netlify Identity modal
+  const loginBtn = $('#netlify-login');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.open('login');
+      }
+    });
+  }
   
   // Sidebar
   $('#menu-toggle').addEventListener('click', toggleSidebar);
@@ -230,77 +282,14 @@ function setupEventListeners() {
   $('#search-input').addEventListener('input', filterItems);
   $('#filter-category').addEventListener('change', filterItems);
   $('#filter-status').addEventListener('change', filterItems);
-  
-  // Handle OAuth callback
-  handleOAuthCallback();
-}
-
-
-// ========================================
-// AUTHENTICATION
-// ========================================
-
-function checkAuth() {
-  if (state.token) {
-    showMainApp();
-    loadItems(state.currentCollection);
-  } else {
-    showLoginScreen();
-  }
-}
-
-function startOAuth() {
-  // Use Netlify Identity for authentication
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.open();
-  } else {
-    // Fallback: redirect to GitHub OAuth
-    const redirectUri = window.location.origin + '/admin/';
-    const scope = 'repo';
-    // For production, use Netlify Functions for OAuth
-    toast('Configura Netlify Identity per il login', 'error');
-  }
-}
-
-function handleOAuthCallback() {
-  // Check for Netlify Identity
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('login', user => {
-      // Get GitHub token from Netlify Identity
-      state.token = user.token.access_token;
-      localStorage.setItem('github_token', state.token);
-      showMainApp();
-      loadItems(state.currentCollection);
-    });
-    
-    window.netlifyIdentity.on('logout', () => {
-      logout();
-    });
-  }
-  
-  // Check URL for token (OAuth callback)
-  const hash = window.location.hash;
-  if (hash.includes('access_token')) {
-    const params = new URLSearchParams(hash.substring(1));
-    const token = params.get('access_token');
-    if (token) {
-      state.token = token;
-      localStorage.setItem('github_token', token);
-      window.location.hash = '';
-      showMainApp();
-      loadItems(state.currentCollection);
-    }
-  }
 }
 
 function logout() {
-  state.token = null;
-  localStorage.removeItem('github_token');
   if (window.netlifyIdentity) {
     window.netlifyIdentity.logout();
   }
-  showLoginScreen();
 }
+
 
 // ========================================
 // UI HELPERS
@@ -354,11 +343,11 @@ function hideLoading() {
 
 function toast(message, type = 'info') {
   const container = $('#toast-container');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.textContent = message;
-  container.appendChild(toast);
-  setTimeout(() => toast.remove(), 3000);
+  const toastEl = document.createElement('div');
+  toastEl.className = `toast ${type}`;
+  toastEl.textContent = message;
+  container.appendChild(toastEl);
+  setTimeout(() => toastEl.remove(), 3000);
 }
 
 // ========================================
@@ -368,19 +357,14 @@ function toast(message, type = 'info') {
 function selectCollection(collectionName) {
   state.currentCollection = collectionName;
   
-  // Update nav
   $$('.nav-item').forEach(item => {
     item.classList.toggle('active', item.dataset.collection === collectionName);
   });
   
-  // Update title
   const collection = COLLECTIONS[collectionName];
   $('#collection-title').textContent = collection.label;
   
-  // Update category filter
   updateCategoryFilter(collectionName);
-  
-  // Load items
   loadItems(collectionName);
   showListView();
 }
@@ -410,7 +394,6 @@ async function loadItems(collectionName) {
   const collection = COLLECTIONS[collectionName];
   
   try {
-    // Try Git Gateway first, fallback to GitHub API
     let apiUrl, headers = {};
     
     if (CONFIG.useGitGateway && state.token) {
@@ -423,8 +406,8 @@ async function loadItems(collectionName) {
     
     const response = await fetch(apiUrl, { headers });
     
+    let files;
     if (!response.ok) {
-      // Fallback to GitHub API if Git Gateway fails
       if (CONFIG.useGitGateway) {
         console.log('Git Gateway failed, trying GitHub API...');
         const fallbackRes = await fetch(
@@ -432,17 +415,16 @@ async function loadItems(collectionName) {
           { headers: state.token ? { 'Authorization': `token ${state.token}` } : {} }
         );
         if (!fallbackRes.ok) throw new Error('Errore caricamento');
-        var files = await fallbackRes.json();
+        files = await fallbackRes.json();
       } else {
         throw new Error('Errore caricamento');
       }
     } else {
-      var files = await response.json();
+      files = await response.json();
     }
     
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
     
-    // Load each file content
     const items = await Promise.all(mdFiles.map(async file => {
       const contentRes = await fetch(file.download_url);
       const content = await contentRes.text();
@@ -466,17 +448,14 @@ function parseMarkdown(content, filename, sha) {
   const frontmatter = match[1];
   const data = { filename, sha };
   
-  // Parse YAML frontmatter
   let currentKey = null;
   let inArray = false;
   let arrayValues = [];
   
   frontmatter.split('\n').forEach(line => {
     if (line.startsWith('  - ')) {
-      // Array item
       arrayValues.push(line.replace('  - ', '').replace(/"/g, '').trim());
     } else if (line.includes(':')) {
-      // Save previous array if exists
       if (currentKey && inArray) {
         data[currentKey] = arrayValues;
         arrayValues = [];
@@ -490,7 +469,6 @@ function parseMarkdown(content, filename, sha) {
       if (value === '') {
         inArray = true;
       } else {
-        // Parse value
         let parsed = value.replace(/^["']|["']$/g, '');
         if (parsed === 'true') parsed = true;
         else if (parsed === 'false') parsed = false;
@@ -500,7 +478,6 @@ function parseMarkdown(content, filename, sha) {
     }
   });
   
-  // Save last array if exists
   if (currentKey && inArray) {
     data[currentKey] = arrayValues;
   }
@@ -551,7 +528,6 @@ function renderItems() {
     </div>
   `).join('');
   
-  // Add click handlers
   $$('.item-card').forEach(card => {
     card.addEventListener('click', () => editItem(card.dataset.filename));
   });
@@ -695,7 +671,6 @@ function renderEditForm(data) {
     }
   }).join('');
   
-  // Add tag click handlers
   $$('.tag-option').forEach(tag => {
     tag.addEventListener('click', () => {
       tag.classList.toggle('selected');
@@ -721,7 +696,6 @@ async function saveItem() {
   const form = $('#edit-form');
   const formData = new FormData(form);
   
-  // Build data object
   const data = {};
   collection.fields.forEach(field => {
     if (field.type === 'toggle') {
@@ -737,7 +711,6 @@ async function saveItem() {
     }
   });
   
-  // Validate required fields
   const missingFields = collection.fields
     .filter(f => f.required && !data[f.name])
     .map(f => f.label);
@@ -747,7 +720,6 @@ async function saveItem() {
     return;
   }
   
-  // Generate filename
   let filename;
   if (state.isNew) {
     const slug = slugify(data.nome);
@@ -756,7 +728,6 @@ async function saveItem() {
     filename = state.currentItem.filename;
   }
   
-  // Generate markdown content
   const content = generateMarkdown(data);
   
   showLoading();
@@ -829,7 +800,6 @@ async function saveToGitHub(path, content, sha = null) {
     body.sha = sha;
   }
   
-  // Try Git Gateway first
   let apiUrl, headers;
   
   if (CONFIG.useGitGateway && state.token) {
@@ -872,7 +842,6 @@ async function deleteItem() {
     const collection = COLLECTIONS[state.currentCollection];
     const path = `${collection.folder}/${state.currentItem.filename}`;
     
-    // Try Git Gateway first
     let apiUrl, headers;
     
     if (CONFIG.useGitGateway && state.token) {
@@ -906,27 +875,8 @@ async function deleteItem() {
     showListView();
   } catch (error) {
     console.error(error);
-    toast('Errore nell\'eliminazione', 'error');
+    toast("Errore nell'eliminazione", 'error');
   } finally {
     hideLoading();
   }
 }
-
-// ========================================
-// NETLIFY IDENTITY INTEGRATION
-// ========================================
-
-// Load Netlify Identity widget
-(function() {
-  const script = document.createElement('script');
-  script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
-  script.onload = () => {
-    window.netlifyIdentity.on('init', user => {
-      if (user) {
-        state.token = user.token.access_token;
-        localStorage.setItem('github_token', state.token);
-      }
-    });
-  };
-  document.head.appendChild(script);
-})();
