@@ -470,6 +470,7 @@ async function loadAllData() {
 function renderSidebar() {
   const nav = $('#sidebar-nav');
   const foodCategories = state.categories.filter(c => c.tipo_menu === 'food');
+  const beverageCategories = state.categories.filter(c => c.tipo_menu === 'beverage');
   
   // Count items per category
   const foodCounts = {};
@@ -477,6 +478,21 @@ function renderSidebar() {
     const cat = item.category || 'Altro';
     foodCounts[cat] = (foodCounts[cat] || 0) + 1;
   });
+  
+  // Mapping categorie beverage -> collection CMS
+  const beverageCollectionMap = {
+    'Birre artigianali alla spina a rotazione': 'beers',
+    'Birre alla spina': 'beers',
+    'Birre speciali in bottiglia': 'beers',
+    'Frigo Birre': 'beers',
+    'Cocktails': 'cocktails',
+    'Analcolici': 'analcolici',
+    'Bibite': 'bibite',
+    'Caffetteria': 'caffetteria',
+    'Bollicine': 'bollicine',
+    'Bianchi fermi': 'bianchi-fermi',
+    'Vini rossi': 'vini-rossi'
+  };
   
   // Build tree HTML - struttura identica al frontend
   let html = `
@@ -505,69 +521,17 @@ function renderSidebar() {
     <div class="tree-divider"></div>
     <div class="tree-section-title">🍺 BEVERAGE</div>
     
-    <!-- Birre -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="beers">
-        <span class="tree-item-icon">🍺</span>
-        <span class="tree-item-name">Birre</span>
-      </div>
-    </div>
-    
-    <!-- Cocktails -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="cocktails">
-        <span class="tree-item-icon">🍸</span>
-        <span class="tree-item-name">Cocktails</span>
-      </div>
-    </div>
-    
-    <!-- Analcolici -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="analcolici">
-        <span class="tree-item-icon">🧃</span>
-        <span class="tree-item-name">Analcolici</span>
-      </div>
-    </div>
-    
-    <!-- Bibite -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="bibite">
-        <span class="tree-item-icon">🥤</span>
-        <span class="tree-item-name">Bibite</span>
-      </div>
-    </div>
-    
-    <!-- Caffetteria -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="caffetteria">
-        <span class="tree-item-icon">☕</span>
-        <span class="tree-item-name">Caffetteria</span>
-      </div>
-    </div>
-    
-    <!-- Bollicine -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="bollicine">
-        <span class="tree-item-icon">🥂</span>
-        <span class="tree-item-name">Bollicine</span>
-      </div>
-    </div>
-    
-    <!-- Vini Bianchi -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="bianchi-fermi">
-        <span class="tree-item-icon">🍾</span>
-        <span class="tree-item-name">Vini Bianchi</span>
-      </div>
-    </div>
-    
-    <!-- Vini Rossi -->
-    <div class="tree-section">
-      <div class="tree-item" data-collection="vini-rossi">
-        <span class="tree-item-icon">🍷</span>
-        <span class="tree-item-name">Vini Rossi</span>
-      </div>
-    </div>
+    <!-- Beverage categories - dinamiche da categorie/ -->
+    ${beverageCategories.map(cat => {
+      const collection = beverageCollectionMap[cat.nome] || cat.slug;
+      return `
+      <div class="tree-section">
+        <div class="tree-item" data-collection="${collection}">
+          <span class="tree-item-icon">${cat.icona || '🍺'}</span>
+          <span class="tree-item-name">${cat.nome}</span>
+        </div>
+      </div>`;
+    }).join('')}
     
     <div class="tree-divider"></div>
     <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>

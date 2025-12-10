@@ -1,11 +1,10 @@
 ---
-nome: "Birre artigianali alla spina"
+nome: "Birre artigianali alla spina a rotazione"
 slug: birre-artigianali
 tipo_menu: beverage
-sezione_beverage: Birre
 icona: "🍺"
 immagine: "images/minicard sezioni/birre-spina-rotazione.png"
 descrizione: Selezione di birre artigianali a rotazione
 visibile: true
-order: 10
+order: 11
 ---
