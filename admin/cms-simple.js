@@ -436,14 +436,20 @@ async function loadCategories() {
   }
 }
 
-async function loadItems(collectionName, silent = false) {
+async function loadItems(collectionName, silent = false, forceApi = false) {
   if (!silent) showLoading();
   const collection = COLLECTIONS[collectionName];
   try {
+    // Se forceApi=true, usa API GitHub per avere dati freschi (dopo salvataggio)
+    const requestBody = { folder: collection.folder };
+    if (forceApi) {
+      requestBody.mode = 'api';
+    }
+    
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: collection.folder })
+      body: JSON.stringify(requestBody)
     });
 
     if (!res.ok) throw new Error('Errore caricamento');
@@ -545,17 +551,20 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
 // SIDEBAR TREE
 // ========================================
 
-async function loadAllData(silent = false) {
+async function loadAllData(silent = false, forceApi = false) {
   if (!silent) showLoading();
   try {
     // Load categories first
     await loadCategories();
 
     // Load all food items for tree counts
+    const requestBody = { folder: 'food' };
+    if (forceApi) requestBody.mode = 'api';
+    
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'food' })
+      body: JSON.stringify(requestBody)
     });
     if (res.ok) {
       const data = await res.json();
@@ -573,8 +582,8 @@ async function loadAllData(silent = false) {
     renderSidebar();
     setupSidebarEvents();
 
-    // Load current collection items
-    await loadItems(state.currentCollection, silent);
+    // Load current collection items (passa forceApi)
+    await loadItems(state.currentCollection, silent, forceApi);
 
     // Pre-carica dati per ricerca globale in background (non blocca UI)
     preloadGlobalSearchData();
@@ -619,10 +628,11 @@ async function preloadGlobalSearchData() {
 }
 
 // Silent refresh - updates data without visual loading indicators
-async function silentRefresh() {
+// forceApi=true forza il caricamento da GitHub API (dopo salvataggi)
+async function silentRefresh(forceApi = false) {
   try {
-    await loadAllData(true);
-    console.log('✅ Silent refresh completed');
+    await loadAllData(true, forceApi);
+    console.log('✅ Silent refresh completed' + (forceApi ? ' (da API)' : ''));
   } catch (e) {
     console.error('Silent refresh error:', e);
   }
@@ -1310,9 +1320,9 @@ async function bulkSetVisibility(visible) {
 
   hideLoading();
 
-  // Clear selection and refresh
+  // Clear selection and refresh con forceApi=true
   clearBulkSelection();
-  await silentRefresh();
+  await silentRefresh(true);
 }
 
 
@@ -1661,8 +1671,8 @@ async function saveItem() {
     showListView();
     hideLoading();
 
-    // Silent refresh to update all data and counters
-    await silentRefresh();
+    // Silent refresh con forceApi=true per avere dati freschi da GitHub
+    await silentRefresh(true);
   } catch (e) {
     console.error(e);
     toast(e.message || 'Errore nel salvataggio', 'error');
@@ -1731,8 +1741,8 @@ async function deleteItem() {
     showListView();
     hideLoading();
 
-    // Silent refresh to update all data and counters
-    await silentRefresh();
+    // Silent refresh con forceApi=true per avere dati freschi
+    await silentRefresh(true);
   } catch (e) {
     console.error('Delete error:', e);
     toast(e.message || 'Errore eliminazione', 'error');
