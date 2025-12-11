@@ -16,12 +16,16 @@ exports.handler = async (event, context) => {
     return { statusCode: 401, body: JSON.stringify({ error: 'Non autenticato' }) };
   }
 
-  // Validate token
+  // Validate token - supporto per email multiple separate da virgola
   try {
     const decoded = Buffer.from(token, 'base64').toString('utf-8');
     const [tokenEmail] = decoded.split(':');
-    const validEmail = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
-    if (tokenEmail !== validEmail) {
+    
+    // Supporto per email multiple (es: "email1@gmail.com,email2@gmail.com")
+    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
+    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
+    
+    if (!validEmails.includes(tokenEmail.toLowerCase())) {
       return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
     }
   } catch (e) {
