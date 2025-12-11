@@ -1584,6 +1584,31 @@ async function saveItem() {
   showLoading();
 
   try {
+    // Per file esistenti, recupera SHA fresco per evitare conflitti
+    let sha = null;
+    if (!state.isNew && state.currentItem) {
+      // Prova prima con SHA in memoria
+      sha = state.currentItem.sha;
+      
+      // Se non c'è SHA o potrebbe essere stale, recuperalo fresh
+      if (!sha) {
+        console.log('SHA mancante, recupero fresh...');
+        const freshRes = await fetch('/.netlify/functions/read-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ folder: collection.folder })
+        });
+        if (freshRes.ok) {
+          const freshData = await freshRes.json();
+          const freshItem = freshData.items.find(i => i.filename === filename);
+          if (freshItem) {
+            sha = freshItem.sha;
+            console.log('SHA recuperato:', sha);
+          }
+        }
+      }
+    }
+
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1593,7 +1618,7 @@ async function saveItem() {
         collection: collection.folder,
         filename: filename,
         data: data,
-        sha: state.isNew ? null : state.currentItem.sha
+        sha: sha
       })
     });
 
