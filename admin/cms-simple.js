@@ -1584,28 +1584,38 @@ async function saveItem() {
   showLoading();
 
   try {
-    // Per file esistenti, recupera SHA fresco per evitare conflitti
+    // Per file esistenti, SEMPRE recupera SHA fresco via API GitHub (non JSON!)
     let sha = null;
     if (!state.isNew && state.currentItem) {
-      // Prova prima con SHA in memoria
-      sha = state.currentItem.sha;
+      console.log('Recupero SHA per:', filename, 'in folder:', collection.folder);
       
-      // Se non c'è SHA o potrebbe essere stale, recuperalo fresh
-      if (!sha) {
-        console.log('SHA mancante, recupero fresh...');
-        const freshRes = await fetch('/.netlify/functions/read-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ folder: collection.folder })
-        });
-        if (freshRes.ok) {
-          const freshData = await freshRes.json();
-          const freshItem = freshData.items.find(i => i.filename === filename);
-          if (freshItem) {
-            sha = freshItem.sha;
-            console.log('SHA recuperato:', sha);
-          }
+      // IMPORTANTE: usa mode=api per forzare GitHub API e ottenere SHA
+      const freshRes = await fetch('/.netlify/functions/read-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ folder: collection.folder, mode: 'api' })
+      });
+      
+      if (freshRes.ok) {
+        const freshData = await freshRes.json();
+        console.log('Source:', freshData.source, '- Items trovati:', freshData.items?.length);
+        
+        const freshItem = freshData.items?.find(i => i.filename === filename);
+        if (freshItem && freshItem.sha) {
+          sha = freshItem.sha;
+          console.log('SHA trovato:', sha);
+        } else {
+          console.log('File non trovato o SHA mancante, provo con SHA in memoria');
+          sha = state.currentItem.sha;
         }
+      } else {
+        // Fallback a SHA in memoria
+        sha = state.currentItem.sha;
+        console.log('Fetch fallito, uso SHA in memoria:', sha);
+      }
+      
+      if (!sha) {
+        throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
       }
     }
 
