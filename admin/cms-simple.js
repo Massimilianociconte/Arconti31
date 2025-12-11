@@ -1486,10 +1486,19 @@ async function handleImageUpload(e, fieldName) {
 
   const form = $('#edit-form');
   const container = form.querySelector(`[data-image-field="${fieldName}"]`);
+  if (!container) {
+    console.error('Container non trovato per:', fieldName);
+    return;
+  }
+  
   const preview = container.querySelector('.image-preview');
-  const input = form.querySelector(`[name="${fieldName}"]`);
-  const urlInput = form.querySelector(`[name="${fieldName}_url"]`);
+  const hiddenInput = container.querySelector(`input[type="hidden"][name="${fieldName}"]`);
+  const urlInput = container.querySelector(`input[name="${fieldName}_url"]`);
   const removeBtn = container.querySelector('.image-remove-btn');
+
+  console.log('Upload image per campo:', fieldName);
+  console.log('Hidden input trovato:', !!hiddenInput);
+  console.log('URL input trovato:', !!urlInput);
 
   // Show loading
   preview.innerHTML = '<div class="image-loading">⏳ Caricamento...</div>';
@@ -1501,7 +1510,7 @@ async function handleImageUpload(e, fieldName) {
 
     // Show preview immediately
     preview.innerHTML = `<img src="${base64Data}" alt="Preview" class="image-preview-img">`;
-    removeBtn.style.display = 'inline-flex';
+    if (removeBtn) removeBtn.style.display = 'inline-flex';
 
     // Try upload via Netlify Function (signed upload)
     try {
@@ -1518,8 +1527,19 @@ async function handleImageUpload(e, fieldName) {
 
       if (res.ok && responseData.url) {
         const imageUrl = responseData.url;
-        input.value = imageUrl;
-        if (urlInput) urlInput.value = imageUrl;
+        console.log('✅ URL Cloudinary ricevuto:', imageUrl);
+        
+        // Aggiorna ENTRAMBI gli input
+        if (hiddenInput) {
+          hiddenInput.value = imageUrl;
+          console.log('Hidden input aggiornato:', hiddenInput.value);
+        }
+        if (urlInput) {
+          urlInput.value = imageUrl;
+          console.log('URL input aggiornato:', urlInput.value);
+        }
+        
+        // Aggiorna preview con URL Cloudinary
         preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
         toast('✅ Immagine caricata!', 'success');
         return;
