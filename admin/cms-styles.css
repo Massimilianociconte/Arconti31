@@ -1509,18 +1509,19 @@ body.ios-pwa .main-content {
   transform: translateY(-50%);
   width: 0;
   opacity: 0;
-  overflow: hidden;
   transition: all 0.3s ease;
   background: var(--bg-card);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
+  /* IMPORTANTE: overflow visible per mostrare i risultati */
 }
 
 .global-search-box.active {
   width: 300px;
   opacity: 1;
   border: 1px solid var(--border);
+  overflow: visible;
 }
 
 .global-search-box input {
