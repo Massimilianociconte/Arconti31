@@ -161,6 +161,16 @@
       "order": 20
     },
     {
+      "nome": "Analcolici",
+      "slug": "analcolici",
+      "tipo_menu": "beverage",
+      "icona": "🥤",
+      "immagine": "images/minicard sezioni/analcolici.jpg",
+      "descrizione": "Bevande analcoliche",
+      "visibile": true,
+      "order": 22
+    },
+    {
       "nome": "Bibite",
       "slug": "bibite",
       "tipo_menu": "beverage",
@@ -373,6 +383,16 @@
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
       "order": 20
+    },
+    {
+      "nome": "Analcolici",
+      "slug": "analcolici",
+      "tipo_menu": "beverage",
+      "icona": "🥤",
+      "immagine": "images/minicard sezioni/analcolici.jpg",
+      "descrizione": "Bevande analcoliche",
+      "visibile": true,
+      "order": 22
     },
     {
       "nome": "Bibite",
