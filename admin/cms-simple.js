@@ -1315,6 +1315,9 @@ async function bulkSetVisibility(visible) {
 
     for (const { filename, item, sha } of itemsToUpdate) {
       try {
+        // Add delay to avoid rate limits
+        await new Promise(resolve => setTimeout(resolve, 500));
+
         const updatedData = { ...item };
         delete updatedData.filename;
         delete updatedData.sha;
