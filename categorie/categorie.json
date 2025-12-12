@@ -40,16 +40,6 @@
       "order": 4
     },
     {
-      "nome": "Griglieria",
-      "slug": "griglieria",
-      "tipo_menu": "food",
-      "icona": "🔥",
-      "immagine": "images/minicard sezioni/picanha.jpg",
-      "descrizione": "Carni alla griglia",
-      "visibile": true,
-      "order": 5
-    },
-    {
       "nome": "Piatti Speciali",
       "slug": "piatti-speciali",
       "tipo_menu": "food",
@@ -118,16 +108,6 @@
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
       "order": 12
-    },
-    {
-      "nome": "Birre speciali in bottiglia",
-      "slug": "birre-speciali-bottiglia",
-      "tipo_menu": "beverage",
-      "icona": "🍾",
-      "immagine": "images/minicard sezioni/speciali-bottiglia.png",
-      "descrizione": "Birre speciali in bottiglia",
-      "visibile": true,
-      "order": 13
     },
     {
       "nome": "Frigo Birre",
@@ -252,16 +232,6 @@
       "order": 4
     },
     {
-      "nome": "Griglieria",
-      "slug": "griglieria",
-      "tipo_menu": "food",
-      "icona": "🔥",
-      "immagine": "images/minicard sezioni/picanha.jpg",
-      "descrizione": "Carni alla griglia",
-      "visibile": true,
-      "order": 5
-    },
-    {
       "nome": "Piatti Speciali",
       "slug": "piatti-speciali",
       "tipo_menu": "food",
@@ -332,16 +302,6 @@
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
       "order": 12
-    },
-    {
-      "nome": "Birre speciali in bottiglia",
-      "slug": "birre-speciali-bottiglia",
-      "tipo_menu": "beverage",
-      "icona": "🍾",
-      "immagine": "images/minicard sezioni/speciali-bottiglia.png",
-      "descrizione": "Birre speciali in bottiglia",
-      "visibile": true,
-      "order": 13
     },
     {
       "nome": "Frigo Birre",
