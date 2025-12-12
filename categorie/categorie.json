@@ -182,6 +182,16 @@
       "order": 24
     },
     {
+      "nome": "Bollicine",
+      "slug": "bollicine",
+      "tipo_menu": "beverage",
+      "icona": "🥂",
+      "immagine": "images/minicard sezioni/bollicine.jpg",
+      "descrizione": "Spumanti e prosecchi",
+      "visibile": true,
+      "order": 30
+    },
+    {
       "nome": "Bianchi fermi",
       "slug": "bianchi-fermi",
       "tipo_menu": "beverage",
@@ -385,6 +395,16 @@
       "descrizione": "Caffè e bevande calde",
       "visibile": true,
       "order": 24
+    },
+    {
+      "nome": "Bollicine",
+      "slug": "bollicine",
+      "tipo_menu": "beverage",
+      "icona": "🥂",
+      "immagine": "images/minicard sezioni/bollicine.jpg",
+      "descrizione": "Spumanti e prosecchi",
+      "visibile": true,
+      "order": 30
     },
     {
       "nome": "Bianchi fermi",
