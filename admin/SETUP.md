@@ -2,9 +2,9 @@
 
 ## ⚠️ IMPORTANTE: Configurazione Netlify
 
-Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify.
+Per far funzionare il CMS devi configurare le **variabili d'ambiente** su Netlify.
 
-> **NOTA**: Il menù digitale si aggiorna automaticamente quando salvi dal CMS! Non serve più rigenerare JSON o fare redeploy.
+> **NOTA**: Il menù digitale si aggiorna automaticamente quando salvi dal CMS! I JSON vengono rigenerati automaticamente, non serve alcun intervento manuale.
 
 ---
 
@@ -16,8 +16,8 @@ Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify
 2. Clicca **"Generate new token"** → **"Generate new token (classic)"**
 3. Compila:
    - **Note**: `Arconti31 CMS`
-   - **Expiration**: `No expiration` (o scegli una durata)
-   - **Scopes**: Seleziona SOLO ✅ `repo` (Full control of private repositories)
+   - **Expiration**: `No expiration` (o scegli durata)
+   - **Scopes**: Seleziona ✅ `repo` (Full control of private repositories)
 4. Clicca **"Generate token"**
 5. **COPIA SUBITO IL TOKEN** (inizia con `ghp_...`) - lo vedrai solo una volta!
 
@@ -30,11 +30,20 @@ Per far funzionare il CMS devi configurare **2 variabili d'ambiente** su Netlify
 3. Vai su: **Site configuration** → **Environment variables**
 4. Aggiungi queste variabili:
 
-| Nome | Valore |
-|------|--------|
-| `GITHUB_TOKEN` | Il token copiato (es: `ghp_xxxxxxxxxxxx`) |
-| `ADMIN_EMAIL` | La tua email (es: `admin@arconti31.com`) |
-| `ADMIN_PASSWORD` | Una password sicura (es: `MiaPassword123!`) |
+### Variabili Obbligatorie
+
+| Nome | Valore | Esempio |
+|------|--------|---------|
+| `GITHUB_TOKEN` | Token GitHub Classic | `ghp_xxxxxxxxxxxx` |
+| `ADMIN_EMAIL` | Email ammesse (virgola-separate) | `admin@arconti31.com, staff@arconti31.com` |
+| `ADMIN_PASSWORD` | Password sicura | `MiaPassword123!` |
+
+### Variabili Opzionali (per upload immagini)
+
+| Nome | Valore | Note |
+|------|--------|------|
+| `CLOUDINARY_CLOUD_NAME` | Cloud Name Cloudinary | Es: `ducwsodfw` |
+| `CLOUDINARY_UPLOAD_PRESET` | Nome preset unsigned | Es: `arconti31_unsigned` |
 
 ---
 
@@ -50,123 +59,131 @@ Dopo aver salvato le variabili:
 
 ## Passo 4: Accedi al CMS
 
-1. Vai su: `https://arconti31.com/admin/`
-2. Inserisci la password: `arconti31admin` (o quella che hai scelto)
+1. Vai su: `https://arconti31.netlify.app/admin/`
+2. Inserisci email e password configurati
 3. Inizia a gestire il menù!
+
+---
+
+## Admin Multipli
+
+Per aggiungere più admin, separa le email con virgola:
+
+```
+ADMIN_EMAIL = admin@arconti31.com, manager@arconti31.com, staff@arconti31.com
+```
+
+Tutti gli utenti useranno la stessa password.
 
 ---
 
 ## Risoluzione Problemi
 
 ### Errore "Password non valida"
-- Verifica che la variabile `ADMIN_PASSWORD` su Netlify sia esattamente uguale alla password che inserisci
+- Verifica che `ADMIN_EMAIL` contenga la tua email (case-insensitive)
+- Verifica che `ADMIN_PASSWORD` sia esattamente uguale
 - Dopo aver modificato le variabili, fai sempre un nuovo deploy
 
 ### Errore "Bad credentials" o "401"
-- Hai creato un token **Fine-grained** invece di **Classic** → Ricrea il token seguendo le istruzioni sopra
+- Hai creato un token **Fine-grained** invece di **Classic** → Ricrea il token
 - Il token è scaduto → Creane uno nuovo
-- Non hai selezionato il permesso `repo` → Ricrea il token con il permesso corretto
+- Non hai selezionato il permesso `repo` → Ricrea il token
 
 ### Errore "GITHUB_TOKEN non configurato"
-- La variabile `GITHUB_TOKEN` non è stata salvata su Netlify
-- Verifica di aver fatto il deploy dopo aver aggiunto la variabile
+- La variabile non è stata salvata su Netlify
+- Fai un deploy dopo aver aggiunto la variabile
+
+### Modifiche non visibili
+- Attendi 30-60 secondi
+- Ricarica la pagina (Ctrl+F5)
+- Verifica che il JSON sia aggiornato su GitHub
 
 ---
 
-## Credenziali di Default
-
-- **Email CMS**: `admin@arconti31.com`
-- **Password CMS**: `arconti31admin`
-- **Repository**: `Massimilianociconte/Arconti31`
-- **Branch**: `main`
-
 ## Sicurezza
 
-- ✅ Email e password validate lato server
-- ✅ Token generato per ogni sessione (non salvato in localStorage)
-- ✅ Logout automatico quando chiudi il browser
-- ✅ Nessun dato sensibile salvato localmente
+- ✅ Credenziali in variabili ambiente (mai nel codice)
+- ✅ Token generato per sessione (sessionStorage)
+- ✅ Scadenza token dopo 7 giorni
+- ✅ GITHUB_TOKEN solo lato server
+- ✅ Logout automatico chiudendo il browser
 
 ---
 
 ## Upload Immagini
 
-### Opzione 1: Senza Cloudinary (Semplice)
+### Opzione 1: URL Esterni (Semplice)
 
 Puoi incollare URL di immagini già online:
-- **Google Drive**: Condividi pubblicamente e copia il link
-- **Imgur**: Carica e copia il link diretto
-- **Qualsiasi URL pubblico**: Funziona!
+- **Google Drive**: Condividi pubblicamente
+- **Imgur**: Carica e copia link
+- **Qualsiasi URL pubblico**
 
-Nel CMS, nel campo "Immagine", incolla l'URL e salva. Fatto!
+Nel CMS, nel campo "Immagine", incolla l'URL e salva.
 
-### Opzione 2: Con Cloudinary (Upload diretto)
+### Opzione 2: Cloudinary (Upload Diretto)
 
-Per abilitare l'upload diretto di immagini dal CMS, configura Cloudinary (gratuito fino a 25GB):
+Per abilitare upload diretto dal CMS:
 
-### 1. Crea account Cloudinary
+#### 1. Crea account Cloudinary
 1. Vai su https://cloudinary.com e registrati (gratuito)
-2. Dalla Dashboard, copia il **Cloud Name** (es: `ducwsodfw`)
+2. Dalla Dashboard, copia il **Cloud Name**
 
-### 2. Crea Upload Preset UNSIGNED
+#### 2. Crea Upload Preset UNSIGNED
 ⚠️ **IMPORTANTE**: Deve essere UNSIGNED (non Signed)
 
-1. Vai su **Settings** (icona ingranaggio in basso a sinistra)
-2. Clicca su **Upload** nel menu a sinistra
-3. Scorri fino a **Upload presets**
-4. Clicca **"Add upload preset"** (pulsante blu in alto a destra)
-5. Compila:
+1. Settings → Upload
+2. Upload presets → Add upload preset
+3. Compila:
    - **Preset name**: `arconti31_unsigned`
-   - **Signing Mode**: Cambia da "Signed" a **"Unsigned"** ⚠️
+   - **Signing Mode**: **Unsigned** ⚠️
    - **Folder**: `arconti31` (opzionale)
-6. Clicca **"Save"**
+4. Save
 
-### 3. Aggiungi variabili su Netlify
-1. Vai su [Netlify Dashboard](https://app.netlify.com)
-2. Seleziona **Arconti31**
-3. **Site configuration** → **Environment variables**
-4. Aggiungi queste 3 variabili:
+#### 3. Configura su Netlify
 
 | Nome | Valore |
 |------|--------|
-| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name (es: `ducwsodfw`) |
-| `CLOUDINARY_API_KEY` | La tua API Key (es: `184436174763774`) |
-| `CLOUDINARY_API_SECRET` | Il tuo API Secret |
+| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name |
+| `CLOUDINARY_UPLOAD_PRESET` | `arconti31_unsigned` |
 
-> ⚠️ L'API Secret è sicuro perché resta sul server Netlify, non viene mai esposto al browser.
+#### 4. Redeploy
+Fai un nuovo deploy dopo aver aggiunto le variabili.
 
-5. Clicca **Save**
-
-### 4. Redeploy
-1. Vai su **Deploys**
-2. Clicca **"Trigger deploy"** → **"Deploy site"**
-3. Aspetta che finisca (1-2 minuti)
-
-### Troubleshooting
+### Troubleshooting Upload
 
 **Errore 401 (Unauthorized)**:
-- ✅ Verifica che il preset sia **UNSIGNED** (non Signed)
-- ✅ Verifica che il nome del preset sia esattamente `arconti31_unsigned`
-- ✅ Verifica che le variabili su Netlify siano corrette
-- ✅ Fai un nuovo deploy dopo aver modificato le variabili
+- Verifica che il preset sia **UNSIGNED**
+- Verifica nome preset esatto
+- Verifica variabili su Netlify
+- Fai nuovo deploy
 
 ---
 
-## Dove trovare URL di immagini
+## Dove Trovare URL Immagini
 
 ### Google Drive
-1. Carica immagine su Google Drive
-2. Clicca destro → **Condividi**
-3. Cambia a "Chiunque abbia il link"
-4. Copia il link e modifica così:
+1. Carica immagine
+2. Clicca destro → Condividi → "Chiunque abbia il link"
+3. Modifica URL:
    - Da: `https://drive.google.com/file/d/FILE_ID/view`
    - A: `https://drive.google.com/uc?export=view&id=FILE_ID`
 
 ### Imgur
 1. Vai su https://imgur.com
 2. Carica immagine
-3. Clicca destro su immagine → **Copia link immagine**
-4. Incolla nel CMS
+3. Clicca destro → "Copia link immagine"
 
-### Qualsiasi URL pubblico
-Se hai un'immagine online (es: sito web, CDN), copia l'URL diretto e incolla nel CMS.
+---
+
+## Riepilogo Variabili Ambiente
+
+| Variabile | Obbligatoria | Descrizione |
+|-----------|--------------|-------------|
+| `GITHUB_TOKEN` | ✅ | Token Classic con permesso repo |
+| `ADMIN_EMAIL` | ✅ | Email ammesse (virgola-separate) |
+| `ADMIN_PASSWORD` | ✅ | Password accesso CMS |
+| `CLOUDINARY_CLOUD_NAME` | ❌ | Per upload immagini |
+| `CLOUDINARY_UPLOAD_PRESET` | ❌ | Preset unsigned Cloudinary |
+| `REPO_OWNER` | ❌ | Default: Massimilianociconte |
+| `REPO_NAME` | ❌ | Default: Arconti31 |

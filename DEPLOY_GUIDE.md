@@ -5,6 +5,7 @@
 - Account GitHub (gratuito)
 - Account Netlify (gratuito)
 - Browser moderno
+- (Opzionale) Account Cloudinary per upload immagini
 
 ## 📝 Step 1: Preparazione Repository GitHub
 
@@ -14,60 +15,52 @@
 2. Clicca "Sign up"
 3. Inserisci email, password, username
 4. Verifica email
-5. Completa setup
 
 ### 1.2 Crea Nuovo Repository
 
-1. Clicca il pulsante "+" in alto a destra
-2. Seleziona "New repository"
-3. Compila:
-   - **Repository name**: `menu-birre-ristorante`
-   - **Description**: "Menù birre con CMS"
-   - **Public**: Seleziona (necessario per free tier)
-   - **Initialize**: NON spuntare nulla
-4. Clicca "Create repository"
+1. Clicca il pulsante "+" → "New repository"
+2. Compila:
+   - **Repository name**: `arconti31`
+   - **Description**: "Menù digitale con CMS"
+   - **Public**: Seleziona
+3. Clicca "Create repository"
 
 ### 1.3 Carica i File
 
-**Opzione A: Via Web (Più Facile)**
-
-1. Nella pagina del repository, clicca "uploading an existing file"
-2. Trascina tutti i file e cartelle del progetto
-3. Scrivi commit message: "Initial commit"
+**Via Web:**
+1. Clicca "uploading an existing file"
+2. Trascina tutti i file e cartelle
+3. Commit message: "Initial commit"
 4. Clicca "Commit changes"
 
-**Opzione B: Via Git (Per Sviluppatori)**
+## 📝 Step 2: Crea Token GitHub (CLASSIC)
 
-```bash
-cd menu-birre-ristorante
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/TUO_USERNAME/menu-birre-ristorante.git
-git push -u origin main
-```
+> ⚠️ **IMPORTANTE**: Deve essere un token **CLASSIC**, NON "Fine-grained"!
 
-## 🌐 Step 2: Deploy su Netlify
+1. Vai su: https://github.com/settings/tokens
+2. Clicca **"Generate new token"** → **"Generate new token (classic)"**
+3. Compila:
+   - **Note**: `Arconti31 CMS`
+   - **Expiration**: `No expiration`
+   - **Scopes**: Seleziona ✅ `repo`
+4. Clicca **"Generate token"**
+5. **COPIA IL TOKEN** (inizia con `ghp_...`)
 
-### 2.1 Crea Account Netlify
+## 🌐 Step 3: Deploy su Netlify
+
+### 3.1 Crea Account Netlify
 
 1. Vai su [netlify.com](https://www.netlify.com)
-2. Clicca "Sign up"
-3. Scegli "Sign up with GitHub" (consigliato)
-4. Autorizza Netlify ad accedere a GitHub
+2. Clicca "Sign up with GitHub"
+3. Autorizza Netlify
 
-### 2.2 Importa Progetto
+### 3.2 Importa Progetto
 
-1. Nel dashboard Netlify, clicca "Add new site"
-2. Seleziona "Import an existing project"
-3. Clicca "Deploy with GitHub"
-4. Autorizza Netlify (se richiesto)
-5. Cerca e seleziona `menu-birre-ristorante`
+1. Clicca "Add new site" → "Import an existing project"
+2. Clicca "Deploy with GitHub"
+3. Seleziona il repository
 
-### 2.3 Configura Build
-
-Netlify dovrebbe rilevare automaticamente le impostazioni da `netlify.toml`, ma verifica:
+### 3.3 Configura Build
 
 - **Branch to deploy**: `main`
 - **Build command**: `npm run build`
@@ -75,213 +68,139 @@ Netlify dovrebbe rilevare automaticamente le impostazioni da `netlify.toml`, ma 
 
 Clicca "Deploy site"
 
-### 2.4 Attendi Deploy
+## ⚙️ Step 4: Configura Variabili Ambiente
 
-- Vedrai il log di build in tempo reale
-- Tempo stimato: 1-2 minuti
-- Quando vedi "Site is live", è pronto!
+### 4.1 Variabili Obbligatorie
 
-### 2.5 Verifica Sito
+1. In Netlify, vai su **Site configuration** → **Environment variables**
+2. Aggiungi queste variabili:
 
-1. Clicca sul link generato (es. `random-name-123.netlify.app`)
-2. Dovresti vedere la pagina delle birre
-3. Verifica che le birre di esempio siano visibili
+| Nome | Valore | Note |
+|------|--------|------|
+| `GITHUB_TOKEN` | `ghp_xxxx...` | Token Classic creato |
+| `ADMIN_EMAIL` | `admin@tuosito.com` | Email ammesse (virgola-separate) |
+| `ADMIN_PASSWORD` | `PasswordSicura123!` | Password per accesso CMS |
 
-## 🔐 Step 3: Configura Netlify Identity
+### 4.2 Variabili Opzionali (Cloudinary)
 
-### 3.1 Abilita Identity
+| Nome | Valore |
+|------|--------|
+| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name |
+| `CLOUDINARY_UPLOAD_PRESET` | Nome preset unsigned |
 
-1. Nel dashboard del sito, vai su "Identity"
-2. Clicca "Enable Identity"
-3. Attendi conferma (pochi secondi)
+### 4.3 Redeploy
 
-### 3.2 Configura Registrazione
+Dopo aver aggiunto le variabili:
+1. Vai su "Deploys"
+2. Clicca "Trigger deploy" → "Deploy site"
+3. Attendi 1-2 minuti
 
-1. Vai su "Identity" → "Settings and usage"
-2. In "Registration preferences":
-   - Seleziona "Invite only" (sicurezza)
-3. In "External providers":
-   - Abilita "GitHub" (opzionale ma consigliato)
-4. Salva modifiche
+## ✅ Step 5: Verifica e Test
 
-### 3.3 Abilita Git Gateway
+### 5.1 Testa il Sito
 
-1. Sempre in "Identity" → "Settings and usage"
-2. Scorri fino a "Services"
-3. Trova "Git Gateway"
-4. Clicca "Enable Git Gateway"
-5. Conferma
+1. Vai su `https://tuosito.netlify.app`
+2. Verifica che le categorie siano visibili
+3. Clicca su una categoria per vedere i prodotti
 
-### 3.4 Invita Te Stesso
+### 5.2 Testa il CMS
 
-1. Torna su "Identity" tab principale
-2. Clicca "Invite users"
-3. Inserisci la TUA email
-4. Clicca "Send"
-5. Controlla la tua casella email
+1. Vai su `https://tuosito.netlify.app/admin`
+2. Inserisci email e password configurati
+3. Dovresti vedere la sidebar con le collezioni:
+   - ⚙️ Gestione Categorie
+   - Menù Food
+   - Menù Beverage: Birre
+   - Menù Beverage: Cocktails
+   - E altre...
 
-### 3.5 Completa Registrazione
+### 5.3 Test Salvataggio
 
-1. Apri l'email di invito da Netlify
-2. Clicca "Accept the invite"
-3. Verrai reindirizzato al sito
-4. Crea una password sicura
-5. Conferma
+1. Modifica un prodotto
+2. Clicca "Salva"
+3. Attendi 30-60 secondi
+4. Verifica che il JSON sia aggiornato su GitHub
+5. Ricarica il frontend → modifica visibile!
 
-## 🎨 Step 4: Testa il Pannello Admin
+## 🎨 Step 6: Personalizzazione
 
-### 4.1 Accedi al CMS
+### 6.1 Cambia Nome Sito
 
-1. Vai su `https://tuo-sito.netlify.app/admin`
-2. Fai login con email e password
-3. Dovresti vedere "Birre" nella sidebar
-
-### 4.2 Aggiungi una Birra di Test
-
-1. Clicca "New Birre"
-2. Compila:
-   - Nome: "Birra Test"
-   - Descrizione: "Questa è una prova"
-   - Prezzo: 5.00
-   - Categoria: "Chiara"
-   - Disponibile: ✓
-   - Ordine: 99
-3. Clicca "Publish"
-4. Attendi 30-60 secondi
-5. Vai sulla homepage del sito
-6. Ricarica → Dovresti vedere la nuova birra!
-
-### 4.3 Carica un'Immagine
-
-1. Modifica la "Birra Test"
-2. Nel campo "Immagine", clicca o trascina una foto
-3. Attendi upload
-4. Clicca "Publish"
-5. Verifica sul sito
-
-## ✅ Step 5: Personalizzazione
-
-### 5.1 Cambia Nome Sito
-
-1. Nel dashboard Netlify, vai su "Site settings"
+1. In Netlify → "Site settings"
 2. Clicca "Change site name"
-3. Inserisci nome personalizzato (es. `ristorante-mario-birre`)
-4. Salva
-5. Ora il sito è su `ristorante-mario-birre.netlify.app`
+3. Inserisci nome (es. `arconti31`)
 
-### 5.2 Aggiungi Dominio Personalizzato (Opzionale)
+### 6.2 Dominio Personalizzato (Opzionale)
 
 1. Vai su "Domain settings"
 2. Clicca "Add custom domain"
-3. Inserisci il tuo dominio (es. `www.ristorantemario.it`)
-4. Segui le istruzioni per configurare DNS
-5. Netlify fornisce SSL gratuito automaticamente
+3. Segui istruzioni DNS
+4. SSL gratuito automatico
 
-### 5.3 Personalizza Contenuti
+### 6.3 Admin Multipli
 
-1. Modifica titolo in `index.html`
-2. Cambia colori in `css/style.css`
-3. Commit e push su GitHub
-4. Netlify rebuilda automaticamente
+Per aggiungere più admin, separa le email con virgola:
 
-## 🔄 Step 6: Workflow Quotidiano
+```
+ADMIN_EMAIL = admin@arconti31.com, manager@arconti31.com, staff@arconti31.com
+```
 
-### Per il Ristoratore
-
-1. Vai su `tuosito.netlify.app/admin`
-2. Login
-3. Gestisci birre
-4. Logout
-
-### Per Modifiche al Codice
-
-1. Modifica file localmente
-2. Commit su GitHub
-3. Netlify rebuilda automaticamente
-4. Sito aggiornato in 1-2 minuti
+Tutti useranno la stessa password.
 
 ## 🐛 Troubleshooting
 
-### Il sito non si carica
+### Errore "Password non valida"
 
-**Problema**: Errore 404 o pagina bianca
+- Verifica `ADMIN_EMAIL` e `ADMIN_PASSWORD` su Netlify
+- Fai un nuovo deploy dopo aver modificato le variabili
 
-**Soluzione**:
-1. Verifica che il deploy sia completato (Netlify dashboard)
-2. Controlla i log di build per errori
-3. Verifica che `index.html` sia nella root
+### Errore "Bad credentials" / 401
 
-### Non riesco ad accedere a /admin
-
-**Problema**: Errore "Unable to load config"
-
-**Soluzione**:
-1. Verifica che `admin/config.yml` esista
-2. Controlla che Identity sia abilitato
-3. Verifica che Git Gateway sia attivo
-4. Svuota cache browser (Ctrl+Shift+Del)
+- Hai creato un token **Fine-grained** invece di **Classic**
+- Il token è scaduto
+- Non hai selezionato il permesso `repo`
 
 ### Le modifiche non si vedono
 
-**Problema**: Modifico dal CMS ma il sito non cambia
-
-**Soluzione**:
-1. Attendi 1-2 minuti (tempo di build)
-2. Controlla deploy in corso su Netlify
+1. Attendi 1-2 minuti
+2. Controlla che il JSON sia aggiornato su GitHub
 3. Svuota cache browser (Ctrl+F5)
-4. Verifica che il commit sia su GitHub
-
-### Le immagini non si caricano
-
-**Problema**: Immagini rotte o non visibili
-
-**Soluzione**:
-1. Verifica che la cartella `images/beers` esista
-2. Controlla che `media_folder` in `config.yml` sia corretto
-3. Ricarica l'immagine dal CMS
-4. Verifica dimensione file (< 5MB)
 
 ### Build fallisce
 
-**Problema**: Deploy failed su Netlify
-
-**Soluzione**:
-1. Leggi i log di build
+1. Leggi i log di build su Netlify
 2. Verifica che `package.json` sia corretto
-3. Controlla che `scripts/generate-json.js` esista
-4. Prova a fare un nuovo deploy manualmente
+3. Controlla che tutte le cartelle esistano
+
+### Upload immagini non funziona
+
+- Verifica `CLOUDINARY_CLOUD_NAME` e `CLOUDINARY_UPLOAD_PRESET`
+- Il preset deve essere **UNSIGNED**
+- In alternativa, usa URL esterni
 
 ## 📊 Monitoring
 
 ### Verifica Deploy
 
 1. Dashboard Netlify → "Deploys"
-2. Vedi storia di tutti i deploy
-3. Clicca su uno per vedere log dettagliati
+2. Ogni deploy mostra stato e log
 
 ### Rollback
 
 Se qualcosa va storto:
-1. Vai su "Deploys"
-2. Trova un deploy funzionante
-3. Clicca "Publish deploy"
-4. Il sito torna alla versione precedente
+1. "Deploys" → trova deploy funzionante
+2. "Publish deploy"
+3. Sito ripristinato!
 
 ## 🎓 Prossimi Passi
 
-1. ✅ Elimina le birre di esempio
-2. ✅ Aggiungi le tue birre reali
+1. ✅ Configura le categorie desiderate
+2. ✅ Aggiungi prodotti reali
 3. ✅ Carica foto di qualità
-4. ✅ Personalizza colori e testi
+4. ✅ Personalizza colori in `css/style.css`
 5. ✅ Condividi il link con i clienti
 6. ✅ Forma il personale sull'uso del CMS
 
-## 📞 Supporto
-
-- **Netlify Status**: [status.netlify.com](https://status.netlify.com)
-- **Netlify Support**: [answers.netlify.com](https://answers.netlify.com)
-- **GitHub Support**: [support.github.com](https://support.github.com)
-
 ## 🎉 Congratulazioni!
 
-Il tuo sito è online e funzionante! Ora puoi gestire il menù birre in totale autonomia, senza costi e senza complicazioni.
+Il tuo menù digitale è online! Gestisci tutto in autonomia, senza costi e senza complicazioni.

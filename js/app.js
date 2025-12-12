@@ -95,8 +95,47 @@ async function loadFromJSON(jsonPath) {
 // DATA LOADING
 // ========================================
 
+// ========================================
+// DATA LOADING
+// ========================================
+
 async function loadAllData() {
   showLoading();
+
+  // Init SmartCache
+  if (window.SmartCache) {
+    await window.SmartCache.init();
+    
+    // Try to load from cache first
+    const cachedFood = await window.SmartCache.getAll('items');
+    if (cachedFood.length > 0) {
+      console.log('⚡ Loaded items from SmartCache');
+      processItems(cachedFood);
+      showCategoriesView();
+      hideLoading();
+    }
+
+    // Subscribe to updates
+    window.SmartCache.subscribe((changes) => {
+      console.log('🔄 SmartCache update received:', changes);
+      // Reload data from cache (which is now updated)
+      window.SmartCache.getAll('items').then(items => {
+        processItems(items);
+        // Re-render current view
+        if (currentView === 'home') showCategoriesView();
+        else if (currentView === 'detail') {
+          // Find current category name from DOM or state (simplified here)
+          const title = document.querySelector('.section-title')?.textContent;
+          if (title) {
+             // Determine type based on title/items
+             // This is a bit hacky, better to store currentCategory in state
+             // For now, just go home to be safe or try to refresh
+             goHome(); 
+          }
+        }
+      });
+    });
+  }
 
   try {
     // Carica tutti i JSON in parallelo (velocissimo, zero rate limiting!)
@@ -107,19 +146,24 @@ async function loadAllData() {
       loadFromJSON('/beverages/beverages.json')
     ]);
 
-    // Estrai dati dalle risposte JSON
-    categoriesData = (categoriesRes?.categories || [])
-      .filter(c => c.visibile !== false)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    // Process raw JSON data
+    let allItems = [];
+    if (categoriesRes?.categories) allItems = allItems.concat(categoriesRes.categories.map(i => ({...i, _collection: 'categorie'})));
+    if (foodRes?.food) allItems = allItems.concat(foodRes.food.map(i => ({...i, _collection: 'food'})));
+    if (beersRes?.beers) allItems = allItems.concat(beersRes.beers.map(i => ({...i, _collection: 'beers'})));
+    if (beveragesRes?.beverages) allItems = allItems.concat(beveragesRes.beverages.map(i => ({...i, _collection: 'beverages'})));
 
-    foodData = (foodRes?.food || [])
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    // Update SmartCache
+    if (window.SmartCache) {
+      // Sync each collection
+      if (categoriesRes?.categories) window.SmartCache.syncCollection(categoriesRes.categories, 'categorie');
+      if (foodRes?.food) window.SmartCache.syncCollection(foodRes.food, 'food');
+      if (beersRes?.beers) window.SmartCache.syncCollection(beersRes.beers, 'beers');
+      if (beveragesRes?.beverages) window.SmartCache.syncCollection(beveragesRes.beverages, 'beverages');
+    }
 
-    beersData = (beersRes?.beers || [])
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    beveragesData = (beveragesRes?.beverages || [])
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    // Process for UI
+    processItems(allItems);
 
     console.log(`✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande`);
 
@@ -131,6 +175,22 @@ async function loadAllData() {
   } finally {
     hideLoading();
   }
+}
+
+function processItems(items) {
+  // Filter by collection/type
+  categoriesData = items.filter(i => i._collection === 'categorie' || (!i._collection && i.tipo_menu))
+    .filter(c => c.visibile !== false)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+  foodData = items.filter(i => i._collection === 'food' || (!i._collection && i.category))
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+  beersData = items.filter(i => i._collection === 'beers' || (!i._collection && i.sezione))
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+  beveragesData = items.filter(i => i._collection === 'beverages' || (!i._collection && i.tipo))
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 function showLoading() {

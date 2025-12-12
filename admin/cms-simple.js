@@ -189,6 +189,23 @@ const $$ = sel => document.querySelectorAll(sel);
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
+  // Init SmartCache
+  if (window.SmartCache) {
+    await window.SmartCache.init();
+    // Subscribe to updates
+    window.SmartCache.subscribe((changes) => {
+      console.log('🔄 SmartCache update received:', changes);
+      if (changes.collection === state.currentCollection) {
+        // Refresh current view if collection matches
+        loadItems(state.currentCollection, true);
+      }
+      // Refresh sidebar counts if food changed
+      if (changes.collection === 'food') {
+        loadAllData(true);
+      }
+    });
+  }
+
   await checkCloudinaryConfig();
   setupEventListeners();
 
@@ -440,6 +457,21 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
   if (!silent) showLoading();
   const collection = COLLECTIONS[collectionName];
   try {
+    // 1. Try SmartCache first (instant load)
+    if (window.SmartCache && !forceApi) {
+      const cachedItems = await window.SmartCache.getAll('items');
+      const collectionItems = cachedItems.filter(i => i._collection === collectionName);
+      
+      if (collectionItems.length > 0) {
+        console.log(`⚡ Loaded ${collectionItems.length} items from SmartCache`);
+        state.items = collectionItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+        renderItems();
+        if (!silent) hideLoading();
+        // Continue to fetch fresh data in background...
+        silent = true; 
+      }
+    }
+
     // Se forceApi=true, usa API GitHub per avere dati freschi (dopo salvataggio)
     const requestBody = { folder: collection.folder };
     if (forceApi) {
@@ -462,6 +494,14 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
         : parseMarkdown(item.content, item.filename, item.sha)
     );
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
+    
+    // Update SmartCache with fresh data
+    if (window.SmartCache) {
+      window.SmartCache.syncCollection(state.items, collectionName).then(changes => {
+        if (changes) console.log('🔄 SmartCache synced:', changes);
+      });
+    }
+
     renderItems();
   } catch (e) {
     console.error(e);
@@ -1664,6 +1704,22 @@ async function saveItem() {
 
     toast('Salvato!', 'success');
 
+    // Update SmartCache immediately
+    if (window.SmartCache) {
+      const newItem = { ...data, filename, sha: result.sha, _collection: state.currentCollection };
+      await window.SmartCache.set('items', {
+        ...newItem,
+        id: filename,
+        _hash: window.SmartCache.generateHash(newItem),
+        _lastUpdated: Date.now()
+      });
+      // Notify other tabs
+      window.SmartCache.notifySubscribers({
+        collection: state.currentCollection,
+        updated: [newItem]
+      });
+    }
+
     // Show list view first
     showListView();
     hideLoading();
@@ -1733,6 +1789,16 @@ async function deleteItem() {
     if (!res.ok) throw new Error(result.error || 'Errore eliminazione');
 
     toast('Eliminato!', 'success');
+
+    // Update SmartCache immediately
+    if (window.SmartCache) {
+      await window.SmartCache.delete('items', state.currentItem.filename);
+      // Notify other tabs
+      window.SmartCache.notifySubscribers({
+        collection: state.currentCollection,
+        removed: [state.currentItem]
+      });
+    }
 
     // Show list view first
     showListView();
