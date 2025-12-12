@@ -141,17 +141,6 @@
       "order": 14
     },
     {
-      "nome": "Cocktails",
-      "slug": "cocktails",
-      "tipo_menu": "beverage",
-      "sezione_beverage": "Cocktails",
-      "icona": "🍹",
-      "immagine": "images/minicard sezioni/cocktail.jpg",
-      "descrizione": "I nostri cocktails classici e signature",
-      "visibile": true,
-      "order": 20
-    },
-    {
       "nome": "Analcolici",
       "slug": "analcolici",
       "tipo_menu": "beverage",
@@ -180,16 +169,6 @@
       "descrizione": "Caffè e bevande calde",
       "visibile": true,
       "order": 24
-    },
-    {
-      "nome": "Bollicine",
-      "slug": "bollicine",
-      "tipo_menu": "beverage",
-      "icona": "🥂",
-      "immagine": "images/minicard sezioni/bollicine.jpg",
-      "descrizione": "Spumanti e prosecchi",
-      "visibile": true,
-      "order": 30
     },
     {
       "nome": "Bianchi fermi",
@@ -356,17 +335,6 @@
       "order": 14
     },
     {
-      "nome": "Cocktails",
-      "slug": "cocktails",
-      "tipo_menu": "beverage",
-      "sezione_beverage": "Cocktails",
-      "icona": "🍹",
-      "immagine": "images/minicard sezioni/cocktail.jpg",
-      "descrizione": "I nostri cocktails classici e signature",
-      "visibile": true,
-      "order": 20
-    },
-    {
       "nome": "Analcolici",
       "slug": "analcolici",
       "tipo_menu": "beverage",
@@ -395,16 +363,6 @@
       "descrizione": "Caffè e bevande calde",
       "visibile": true,
       "order": 24
-    },
-    {
-      "nome": "Bollicine",
-      "slug": "bollicine",
-      "tipo_menu": "beverage",
-      "icona": "🥂",
-      "immagine": "images/minicard sezioni/bollicine.jpg",
-      "descrizione": "Spumanti e prosecchi",
-      "visibile": true,
-      "order": 30
     },
     {
       "nome": "Bianchi fermi",
