@@ -6,6 +6,6 @@ sezione_beverage: "Cocktails"
 icona: "🍹"
 immagine: "images/minicard sezioni/cocktail.jpg"
 descrizione: "I nostri cocktails classici e signature"
-visibile: false
+visibile: true
 order: 20
 ---
