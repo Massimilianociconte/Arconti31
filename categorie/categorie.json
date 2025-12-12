@@ -60,16 +60,6 @@
       "order": 5
     },
     {
-      "nome": "Piatti Speciali",
-      "slug": "piatti-speciali",
-      "tipo_menu": "food",
-      "icona": "🍽️",
-      "immagine": "images/minicard sezioni/piatti-speciali.jpg",
-      "descrizione": "Le nostre specialità della casa",
-      "visibile": true,
-      "order": 6
-    },
-    {
       "nome": "Piadine",
       "slug": "piadine",
       "tipo_menu": "food",
@@ -280,16 +270,6 @@
       "descrizione": "Carni alla griglia",
       "visibile": true,
       "order": 5
-    },
-    {
-      "nome": "Piatti Speciali",
-      "slug": "piatti-speciali",
-      "tipo_menu": "food",
-      "icona": "🍽️",
-      "immagine": "images/minicard sezioni/piatti-speciali.jpg",
-      "descrizione": "Le nostre specialità della casa",
-      "visibile": true,
-      "order": 6
     },
     {
       "nome": "Piadine",
