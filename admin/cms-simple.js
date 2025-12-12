@@ -505,9 +505,17 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     
     // Update SmartCache with fresh data
     if (window.SmartCache) {
-      window.SmartCache.syncCollection(state.items, collectionName).then(changes => {
-        if (changes) console.log('🔄 SmartCache synced:', changes);
-      });
+      // Sync remote items (which might be stale) with cache
+      // If cache has fresher local writes, they will be preserved
+      await window.SmartCache.syncCollection(state.items, collectionName, forceApi ? 'live' : 'static');
+      
+      // Now get the authoritative list from cache
+      const cachedItems = await window.SmartCache.getAll('items');
+      state.items = cachedItems
+        .filter(i => i._collection === collectionName && !i._deleted)
+        .sort((a, b) => (a.order || 0) - (b.order || 0));
+        
+      console.log('🔄 SmartCache synced & loaded. Items:', state.items.length);
     }
 
     renderItems();
@@ -1354,7 +1362,8 @@ async function bulkSetVisibility(visible) {
               ...newItem,
               id: filename,
               _hash: window.SmartCache.generateHash(newItem),
-              _lastUpdated: Date.now()
+              _lastUpdated: Date.now(),
+              _writeTime: Date.now() // Timestamp scrittura per protezione stale data
             });
           }
         } else {
@@ -1696,7 +1705,7 @@ async function saveItem() {
     return;
   }
 
-  const filename = state.isNew ? `${slugify(data.nome || data.slug)}.md` : state.currentItem.filename;
+  let filename = state.isNew ? `${slugify(data.nome || data.slug)}.md` : state.currentItem.filename;
 
   showLoading();
 
@@ -1736,20 +1745,56 @@ async function saveItem() {
       }
     }
 
-    const res = await fetch('/.netlify/functions/save-data', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token: state.token,
-        action: 'save',
-        collection: collection.folder,
-        filename: filename,
-        data: data,
-        sha: sha
-      })
-    });
+    // Helper per la richiesta di salvataggio
+    const performSave = async (fname) => {
+      return fetch('/.netlify/functions/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: state.token,
+          action: 'save',
+          collection: collection.folder,
+          filename: fname,
+          data: data,
+          sha: sha
+        })
+      });
+    };
 
-    const result = await res.json();
+    let res = await performSave(filename);
+    let result = await res.json();
+
+    // Gestione collisioni per nuovi item (Errore 422 da GitHub: "sha wasn't supplied")
+    // Se il file esiste già, GitHub richiede SHA. Se noi non l'abbiamo (perché è nuovo),
+    // significa che c'è un conflitto di nomi.
+    if (!res.ok && state.isNew && result.error && (result.error.includes('sha') || result.error.includes('422'))) {
+      console.log('⚠️ Collisione rilevata per', filename, '- Tento con suffisso...');
+      
+      let counter = 1;
+      const originalSlug = filename.replace('.md', '');
+      
+      // Riprova fino a 5 volte con suffissi incrementali
+      while (counter <= 10) {
+        const newFilename = `${originalSlug}-${counter}.md`;
+        console.log('🔄 Riprovo salvataggio con:', newFilename);
+        
+        res = await performSave(newFilename);
+        result = await res.json();
+        
+        if (res.ok) {
+          console.log('✅ Salvataggio riuscito con:', newFilename);
+          filename = newFilename; // Aggiorna il filename per la cache
+          break;
+        }
+        
+        // Se l'errore non è di collisione (es. 500 o altro), fermati
+        if (!result.error || (!result.error.includes('sha') && !result.error.includes('422'))) {
+          break;
+        }
+        counter++;
+      }
+    }
+
     if (!res.ok) throw new Error(result.error || 'Errore salvataggio');
 
     toast('Salvato!', 'success');
@@ -1761,7 +1806,8 @@ async function saveItem() {
         ...newItem,
         id: filename,
         _hash: window.SmartCache.generateHash(newItem),
-        _lastUpdated: Date.now()
+        _lastUpdated: Date.now(),
+        _writeTime: Date.now() // Timestamp scrittura per protezione stale data
       });
       // Notify other tabs
       window.SmartCache.notifySubscribers({
@@ -1843,7 +1889,13 @@ async function deleteItem() {
 
     // Update SmartCache immediately
     if (window.SmartCache) {
-      await window.SmartCache.delete('items', state.currentItem.filename);
+      // Use tombstone for soft delete to prevent stale data resurrection
+      await window.SmartCache.set('items', {
+        ...state.currentItem,
+        _deleted: true,
+        _writeTime: Date.now()
+      });
+      
       // Notify other tabs
       window.SmartCache.notifySubscribers({
         collection: state.currentCollection,

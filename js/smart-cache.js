@@ -103,8 +103,9 @@ class SmartCache {
    * Confronta i dati remoti con la cache locale e rileva le differenze
    * @param {Array} remoteItems - Lista di oggetti dal server
    * @param {String} collectionName - Nome della collezione (es. 'food')
+   * @param {String} source - 'static' (JSON) o 'live' (API/Broadcast)
    */
-  async syncCollection(remoteItems, collectionName) {
+  async syncCollection(remoteItems, collectionName, source = 'static') {
     const localItems = await this.getAll('items');
     const collectionItems = localItems.filter(i => i._collection === collectionName);
     
@@ -128,13 +129,23 @@ class SmartCache {
         id: id, // Assicura ID
         _collection: collectionName,
         _hash: this.generateHash(remoteItem),
-        _lastUpdated: Date.now()
+        _lastUpdated: Date.now(),
+        _writeTime: Date.now() // Timestamp scrittura
       };
 
       if (!localItem) {
         changes.added.push(itemToStore);
         await this.set('items', itemToStore);
       } else if (localItem._hash !== itemToStore._hash) {
+        // PROTEZIONE STALE DATA:
+        // Se la fonte è 'static' (JSON potenzialmente vecchio) e l'item locale è stato scritto
+        // molto recentemente (< 5 min), IGNORA l'aggiornamento remoto perché probabilmente
+        // è il JSON vecchio che non ha ancora recepito la nostra modifica locale.
+        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < 5 * 60 * 1000)) {
+          console.log(`🛡️ SmartCache: Ignorato aggiornamento stale per ${id} (modificato localmente di recente)`);
+          continue;
+        }
+
         changes.updated.push(itemToStore);
         await this.set('items', itemToStore);
       }
@@ -143,6 +154,13 @@ class SmartCache {
     // Rileva rimozioni
     for (const [id, localItem] of localMap) {
       if (!remoteMap.has(id)) {
+        // PROTEZIONE STALE DATA (Rimozioni):
+        // Se l'item locale è recente, non rimuoverlo solo perché manca nel JSON vecchio
+        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < 5 * 60 * 1000)) {
+           console.log(`🛡️ SmartCache: Ignorata rimozione stale per ${id}`);
+           continue;
+        }
+
         changes.removed.push(localItem);
         await this.delete('items', id);
       }
@@ -161,7 +179,7 @@ class SmartCache {
    */
   generateHash(item) {
     // Rimuovi campi volatili o interni
-    const { _lastUpdated, _hash, ...cleanItem } = item;
+    const { _lastUpdated, _hash, _writeTime, ...cleanItem } = item;
     return JSON.stringify(cleanItem).split('').reduce((a, b) => {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
@@ -199,7 +217,7 @@ class SmartCache {
           filename: i.filename || (i.slug || this.slugify(i.nome)) + '.md'
         }));
 
-        await this.syncCollection(items, coll);
+        await this.syncCollection(items, coll, 'static');
       }
     } catch (e) {
       console.error('SmartCache update check failed:', e);
