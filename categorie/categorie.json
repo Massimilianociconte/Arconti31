@@ -110,16 +110,6 @@
       "order": 11
     },
     {
-      "nome": "Birre alla spina",
-      "slug": "birre-alla-spina",
-      "tipo_menu": "beverage",
-      "icona": "🍻",
-      "immagine": "images/minicard sezioni/birra-spina.png",
-      "descrizione": "Birre alla spina classiche",
-      "visibile": true,
-      "order": 12
-    },
-    {
       "nome": "Birre speciali in bottiglia",
       "slug": "birre-speciali-bottiglia",
       "tipo_menu": "beverage",
@@ -322,16 +312,6 @@
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
       "order": 11
-    },
-    {
-      "nome": "Birre alla spina",
-      "slug": "birre-alla-spina",
-      "tipo_menu": "beverage",
-      "icona": "🍻",
-      "immagine": "images/minicard sezioni/birra-spina.png",
-      "descrizione": "Birre alla spina classiche",
-      "visibile": true,
-      "order": 12
     },
     {
       "nome": "Birre speciali in bottiglia",
