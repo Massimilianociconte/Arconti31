@@ -193,15 +193,23 @@ async function init() {
   if (window.SmartCache) {
     await window.SmartCache.init();
     // Subscribe to updates
-    window.SmartCache.subscribe((changes) => {
+    window.SmartCache.subscribe(async (changes) => {
       console.log('🔄 SmartCache update received:', changes);
       if (changes.collection === state.currentCollection) {
-        // Refresh current view if collection matches
-        loadItems(state.currentCollection, true);
+        // Refresh current view from CACHE ONLY (no network)
+        const cachedItems = await window.SmartCache.getAll('items');
+        const collectionItems = cachedItems.filter(i => i._collection === state.currentCollection);
+        if (collectionItems.length > 0) {
+          state.items = collectionItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+          renderItems();
+        }
       }
       // Refresh sidebar counts if food changed
       if (changes.collection === 'food') {
-        loadAllData(true);
+        // Update sidebar counts from cache
+        const cachedItems = await window.SmartCache.getAll('items');
+        state.allFood = cachedItems.filter(i => i._collection === 'food');
+        renderSidebar();
       }
     });
   }
@@ -1389,9 +1397,19 @@ async function bulkSetVisibility(visible) {
 
   hideLoading();
 
-  // Clear selection e ricarica SOLO collezione corrente
+  // Clear selection
   clearBulkSelection();
-  await loadItems(state.currentCollection, true, true);
+  
+  // Notify subscribers to refresh UI from cache
+  if (window.SmartCache) {
+    window.SmartCache.notifySubscribers({
+      collection: 'categorie',
+      updated: [] // Just trigger refresh
+    });
+  }
+  
+  // DO NOT reload from server immediately
+  // await loadItems(state.currentCollection, true, true);
 }
 
 
@@ -1756,8 +1774,9 @@ async function saveItem() {
     showListView();
     hideLoading();
 
-    // Ricarica SOLO la collezione corrente da API (non tutto per evitare rate limit)
-    await loadItems(state.currentCollection, true, true);
+    // DO NOT reload from server immediately to avoid stale data overwrite
+    // The UI is already updated via SmartCache subscription (triggered above)
+    // await loadItems(state.currentCollection, true, true);
   } catch (e) {
     console.error(e);
     toast(e.message || 'Errore nel salvataggio', 'error');
@@ -1836,8 +1855,8 @@ async function deleteItem() {
     showListView();
     hideLoading();
 
-    // Ricarica SOLO la collezione corrente da API
-    await loadItems(state.currentCollection, true, true);
+    // DO NOT reload from server immediately
+    // await loadItems(state.currentCollection, true, true);
   } catch (e) {
     console.error('Delete error:', e);
     toast(e.message || 'Errore eliminazione', 'error');
