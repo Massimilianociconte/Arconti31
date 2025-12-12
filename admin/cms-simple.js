@@ -208,8 +208,9 @@ async function init() {
       if (changes.collection === 'food') {
         // Update sidebar counts from cache
         const cachedItems = await window.SmartCache.getAll('items');
-        state.allFood = cachedItems.filter(i => i._collection === 'food');
+        state.allFood = cachedItems.filter(i => i._collection === 'food' && !i._deleted);
         renderSidebar();
+        setupSidebarEvents(); // Re-attach events after re-render
       }
     });
   }
