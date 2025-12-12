@@ -141,6 +141,17 @@
       "order": 14
     },
     {
+      "nome": "Cocktails",
+      "slug": "cocktails",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Cocktails",
+      "icona": "🍹",
+      "immagine": "images/minicard sezioni/cocktail.jpg",
+      "descrizione": "I nostri cocktails classici e signature",
+      "visibile": true,
+      "order": 20
+    },
+    {
       "nome": "Analcolici",
       "slug": "analcolici",
       "tipo_menu": "beverage",
@@ -333,6 +344,17 @@
       "descrizione": "Birre dal frigo",
       "visibile": true,
       "order": 14
+    },
+    {
+      "nome": "Cocktails",
+      "slug": "cocktails",
+      "tipo_menu": "beverage",
+      "sezione_beverage": "Cocktails",
+      "icona": "🍹",
+      "immagine": "images/minicard sezioni/cocktail.jpg",
+      "descrizione": "I nostri cocktails classici e signature",
+      "visibile": true,
+      "order": 20
     },
     {
       "nome": "Analcolici",
