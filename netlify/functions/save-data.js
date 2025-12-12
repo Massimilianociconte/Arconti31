@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
   }
 
   const body = JSON.parse(event.body);
-  const { email, password, action, collection, filename, data, sha, token } = body;
+  const { email, password, action, collection, filename, data, sha, token, skipRegeneration } = body;
   
   // Return Cloudinary config (no auth needed)
   if (action === 'get-cloudinary-config') {
@@ -147,9 +147,11 @@ exports.handler = async (event, context) => {
         GITHUB_TOKEN
       );
       
-      // ✨ NUOVO: Rigenera i JSON dopo il salvataggio
-      console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
-      await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      // ✨ NUOVO: Rigenera i JSON dopo il salvataggio (se non saltato)
+      if (!skipRegeneration) {
+        console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
+        await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      }
       
       return {
         statusCode: 200,
@@ -183,8 +185,19 @@ exports.handler = async (event, context) => {
         GITHUB_TOKEN
       );
       
-      // ✨ NUOVO: Rigenera i JSON dopo l'eliminazione
-      console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
+      // ✨ NUOVO: Rigenera i JSON dopo l'eliminazione (se non saltato)
+      if (!skipRegeneration) {
+        console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
+        await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      }
+      
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ success: true })
+      };
+    } else if (action === 'regenerate-json') {
+      console.log(`📦 Rigenerazione JSON manuale per collection: ${collection}`);
       await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
       
       return {

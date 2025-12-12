@@ -1295,28 +1295,31 @@ async function bulkSetVisibility(visible) {
       freshData = data.items;
     }
 
-    // Prepara tutte le richieste di salvataggio
-    const savePromises = state.selectedItems.map(async (filename) => {
+    // Prepara gli items da aggiornare
+    const itemsToUpdate = [];
+    for (const filename of state.selectedItems) {
+      const item = state.items.find(i => i.filename === filename);
+      if (!item) continue;
+
+      const freshItem = freshData.find(i => i.filename === filename);
+      const sha = freshItem?.sha || item.sha;
+
+      if (sha) {
+        itemsToUpdate.push({ filename, item, sha });
+      }
+    }
+
+    // Esegui le richieste SEQUENZIALMENTE per evitare conflitti git
+    let successCount = 0;
+    let errorCount = 0;
+
+    for (const { filename, item, sha } of itemsToUpdate) {
       try {
-        // Find the item
-        const item = state.items.find(i => i.filename === filename);
-        if (!item) return { success: false, filename };
-
-        // Trova SHA fresco
-        const freshItem = freshData.find(i => i.filename === filename);
-        const sha = freshItem?.sha || item.sha;
-
-        if (!sha) {
-          return { success: false, filename };
-        }
-
-        // Update visibility
         const updatedData = { ...item };
         delete updatedData.filename;
         delete updatedData.sha;
         updatedData.visibile = visible;
 
-        // Save
         const res = await fetch('/.netlify/functions/save-data', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1326,28 +1329,54 @@ async function bulkSetVisibility(visible) {
             collection: 'categorie',
             filename: filename,
             data: updatedData,
-            sha: sha
+            sha: sha,
+            skipRegeneration: true // Importante: salta rigenerazione JSON per ogni item
           })
         });
 
-        return { success: res.ok, filename };
+        if (res.ok) {
+          successCount++;
+          // Aggiorna cache locale
+          if (window.SmartCache) {
+            const newItem = { ...updatedData, filename, sha: (await res.json()).sha, _collection: 'categorie' };
+            await window.SmartCache.set('items', {
+              ...newItem,
+              id: filename,
+              _hash: window.SmartCache.generateHash(newItem),
+              _lastUpdated: Date.now()
+            });
+          }
+        } else {
+          errorCount++;
+        }
       } catch (e) {
         console.error(`Error updating ${filename}:`, e);
-        return { success: false, filename };
+        errorCount++;
       }
-    });
-
-    // Esegui TUTTE le richieste in parallelo (molto più veloce!)
-    const results = await Promise.all(savePromises);
-
-    const success = results.filter(r => r.success).length;
-    const errors = results.filter(r => !r.success).length;
-
-    if (success > 0) {
-      toast(`${success} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
     }
-    if (errors > 0) {
-      toast(`${errors} errori durante l'aggiornamento`, 'error');
+
+    // Rigenera JSON una sola volta alla fine
+    if (successCount > 0) {
+      try {
+        await fetch('/.netlify/functions/save-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token: state.token,
+            action: 'regenerate-json',
+            collection: 'categorie'
+          })
+        });
+      } catch (e) {
+        console.error('Error regenerating JSON:', e);
+      }
+    }
+
+    if (successCount > 0) {
+      toast(`${successCount} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
+    }
+    if (errorCount > 0) {
+      toast(`${errorCount} errori durante l'aggiornamento`, 'error');
     }
 
   } catch (e) {
