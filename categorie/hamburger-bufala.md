@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🍔"
 immagine: "images/minicard sezioni/hamburger-bufala.png"
 descrizione: "I nostri hamburger con carne di bufala selezionata"
-visibile: false
+visibile: true
 order: 1
 ---
