@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🍰"
 immagine: "images/minicard sezioni/dolci.jpg"
 descrizione: "I nostri dolci fatti in casa"
-visibile: false
+visibile: true
 order: 9
 ---
