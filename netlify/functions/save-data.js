@@ -479,15 +479,14 @@ async function generateBeersJSON(token, owner, repo) {
 async function generateCategoriesJSON(token, owner, repo) {
   const categories = await readCollectionFiles('categorie', token, owner, repo);
   
-  // Filtra visibili e ordina
-  const visibleCategories = categories
-    .filter(c => c.visibile !== false)
+  // Ordina (NON FILTRARE VISIBILI: il CMS deve vederle tutte!)
+  const allCategories = categories
     .sort((a, b) => (a.order || 0) - (b.order || 0));
   
   return {
-    categories: visibleCategories,
-    foodCategories: visibleCategories.filter(c => c.tipo_menu === 'food'),
-    beverageCategories: visibleCategories.filter(c => c.tipo_menu === 'beverage')
+    categories: allCategories,
+    foodCategories: allCategories.filter(c => c.tipo_menu === 'food'),
+    beverageCategories: allCategories.filter(c => c.tipo_menu === 'beverage')
   };
 }
 

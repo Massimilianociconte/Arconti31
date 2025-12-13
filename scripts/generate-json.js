@@ -16,9 +16,10 @@ function loadCategories() {
         const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
         if (match) {
           const cat = yaml.load(match[1]);
-          if (cat.visibile !== false) {
-            categories.push(cat);
-          }
+          // INCLUDE TUTTE LE CATEGORIE nel JSON
+          // Il filtro visibile deve essere fatto dal frontend (app.js), non qui.
+          // Altrimenti il CMS non vede le categorie nascoste e non può riattivarle.
+          categories.push(cat);
         }
       } catch (error) {
         console.error(`Errore nel processare categoria ${file}:`, error.message);
