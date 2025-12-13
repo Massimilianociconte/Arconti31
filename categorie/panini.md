@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🥪"
 immagine: "images/minicard sezioni/panini.jpg"
 descrizione: "I nostri panini farciti"
-visibile: false
+visibile: true
 order: 4
 ---
