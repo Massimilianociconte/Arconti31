@@ -106,6 +106,13 @@ class SmartCache {
    * @param {String} source - 'static' (JSON) o 'live' (API/Broadcast)
    */
   async syncCollection(remoteItems, collectionName, source = 'static') {
+    // Normalize items ensuring ID/filename exists
+    // Questo è fondamentale perché i JSON raw (es. food.json) non hanno filename/id
+    const normalizedRemoteItems = remoteItems.map(i => {
+      const id = i.filename || i.id || (i.slug || (i.nome ? this.slugify(i.nome) : 'unknown-' + Math.random().toString(36).substr(2, 9))) + '.md';
+      return { ...i, id: id, filename: id };
+    });
+
     const localItems = await this.getAll('items');
     const collectionItems = localItems.filter(i => i._collection === collectionName);
     
@@ -116,7 +123,7 @@ class SmartCache {
       collection: collectionName
     };
 
-    const remoteMap = new Map(remoteItems.map(i => [i.filename || i.id, i]));
+    const remoteMap = new Map(normalizedRemoteItems.map(i => [i.id, i]));
     const localMap = new Map(collectionItems.map(i => [i.id, i]));
 
     // Rileva aggiunte e modifiche
@@ -225,6 +232,7 @@ class SmartCache {
   }
 
   slugify(text) {
+    if (!text) return '';
     return text.toString().toLowerCase().trim()
       .replace(/\s+/g, '-')
       .replace(/[^\w\-]+/g, '')
