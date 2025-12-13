@@ -1335,9 +1335,18 @@ async function bulkSetVisibility(visible) {
         // Add delay to avoid rate limits
         await new Promise(resolve => setTimeout(resolve, 500));
 
-        const updatedData = { ...item };
-        delete updatedData.filename;
-        delete updatedData.sha;
+        // Clean up item to only include valid fields + visibile
+        // This prevents internal SmartCache fields (_collection, _hash, etc.) from polluting the YAML
+        const validFields = COLLECTIONS['categorie'].fields.map(f => f.name);
+        const updatedData = {};
+        
+        validFields.forEach(field => {
+          if (item[field] !== undefined) {
+            updatedData[field] = item[field];
+          }
+        });
+        
+        // Explicitly set visibility
         updatedData.visibile = visible;
 
         const res = await fetch('/.netlify/functions/save-data', {
