@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🔥"
 immagine: "images/minicard sezioni/picanha.jpg"
 descrizione: "Carni alla griglia"
-visibile: false
+visibile: true
 order: 5
 ---
