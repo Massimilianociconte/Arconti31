@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🥯"
 immagine: "images/minicard sezioni/piadine.jpg"
 descrizione: "Piadine romagnole farcite"
-visibile: true
+visibile: false
 order: 7
 ---
