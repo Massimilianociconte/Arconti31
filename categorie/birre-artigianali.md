@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🍺"
 immagine: "images/minicard sezioni/birre-spina-rotazione.png"
 descrizione: "Selezione di birre artigianali a rotazione"
-visibile: true
+visibile: false
 order: 11
 ---
