@@ -1299,11 +1299,11 @@ async function bulkSetVisibility(visible) {
   showLoading();
 
   try {
-    // Prima ottieni tutti gli SHA freschi in un'unica chiamata
+    // Prima ottieni tutti gli SHA freschi in un'unica chiamata (USARE API PER EVITARE DATI STALE)
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'categorie' })
+      body: JSON.stringify({ folder: 'categorie', mode: 'api' })
     });
 
     let freshData = [];
