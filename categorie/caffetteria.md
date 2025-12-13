@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "☕"
 immagine: "images/minicard sezioni/caffetteria.jpg"
 descrizione: "Caffè e bevande calde"
-visibile: false
+visibile: true
 order: 24
 ---
