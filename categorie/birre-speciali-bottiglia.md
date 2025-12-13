@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🍾"
 immagine: "images/minicard sezioni/speciali-bottiglia.png"
 descrizione: "Birre speciali in bottiglia"
-visibile: true
+visibile: false
 order: 13
 ---
