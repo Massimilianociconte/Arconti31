@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🍷"
 immagine: "images/minicard sezioni/bianchi-fermi.png"
 descrizione: "Vini bianchi fermi"
-visibile: false
+visibile: true
 order: 31
 ---
