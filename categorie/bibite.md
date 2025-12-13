@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🥫"
 immagine: "images/minicard sezioni/bevande.jpg"
 descrizione: "Bibite e soft drinks"
-visibile: false
+visibile: true
 order: 23
 ---
