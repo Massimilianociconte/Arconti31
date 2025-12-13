@@ -5,6 +5,6 @@ tipo_menu: "food"
 icona: "🍔"
 immagine: "images/minicard sezioni/bufala-streetfood.png"
 descrizione: "Hamburger di Fassona piemontese e street food"
-visibile: false
+visibile: true
 order: 2
 ---
