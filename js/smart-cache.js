@@ -136,8 +136,9 @@ class SmartCache {
         id: id, // Assicura ID
         _collection: collectionName,
         _hash: this.generateHash(remoteItem),
-        _lastUpdated: Date.now(),
-        _writeTime: Date.now() // Timestamp scrittura
+        _lastUpdated: Date.now()
+        // NOTA: Non sovrascriviamo _writeTime qui se viene dal server (static), 
+        // perché _writeTime deve riflettere l'ultima modifica LOCALE.
       };
 
       if (!localItem) {
@@ -153,8 +154,13 @@ class SmartCache {
           continue;
         }
 
-        changes.updated.push(itemToStore);
+        // Se accettiamo l'aggiornamento remoto, preserviamo il _writeTime locale se esiste?
+        // No, se accettiamo il remoto significa che è più nuovo o che il locale è vecchio.
+        // Ma se è un aggiornamento 'static' che stiamo accettando (perché il locale è vecchio o non ha writeTime),
+        // non dovremmo settare un nuovo _writeTime.
+        
         await this.set('items', itemToStore);
+        changes.updated.push(itemToStore);
       }
     }
 
@@ -235,9 +241,9 @@ class SmartCache {
     if (!text) return '';
     return text.toString().toLowerCase().trim()
       .replace(/\s+/g, '-')
-      .replace(/[^\w\-]+/g, '')
-      .replace(/\-\-+/g, '-')
-      .substring(0, 50);
+      .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+      .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
+      .replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').substring(0, 50);
   }
 
   // ==========================================

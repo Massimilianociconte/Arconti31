@@ -221,74 +221,46 @@ function showCategoriesView() {
   const categoriesView = document.getElementById('categories-view');
   let html = '';
 
-  // Food Categories
+  // 1. CUCINA (Food)
+  // Usa SOLO le categorie dinamiche caricate (che sono già filtrate per visibilità)
   const foodCategories = categoriesData.filter(c => c.tipo_menu === 'food');
-
-  // Se non ci sono categorie dinamiche, usa default
-  const defaultFoodOrder = [
-    { nome: 'Hamburger di bufala', icona: '🍔' },
-    { nome: 'OKTOBERFEST', icona: '🥨' },
-    { nome: 'Hamburger Fassona e Street food', icona: '🥩' },
-    { nome: 'Panini', icona: '🥪' },
-    { nome: 'Griglieria', icona: '🔥' },
-    { nome: 'Piatti Speciali', icona: '🍽️' },
-    { nome: 'Piadine', icona: '🥯' },
-    { nome: 'Fritti', icona: '🍟' },
-    { nome: 'Dolci', icona: '🍰' },
-    { nome: 'Aperitivo', icona: '🥜' }
-  ];
-
-  const foodOrder = foodCategories.length > 0 ? foodCategories : defaultFoodOrder;
-
-  html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
-  foodOrder.forEach(cat => {
-    const items = foodData.filter(f => f.category === cat.nome && f.disponibile !== false);
-    // Mostra categoria se ha prodotti o è definita dinamicamente
-    if (items.length > 0 || foodCategories.find(c => c.nome === cat.nome)) {
+  
+  if (foodCategories.length > 0) {
+    html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
+    foodCategories.forEach(cat => {
+      const items = foodData.filter(f => f.category === cat.nome && f.disponibile !== false);
       html += createCategoryCard(cat, items.length, 'food');
-    }
-  });
-  html += '</div>';
+    });
+    html += '</div>';
+  }
 
-  // Beer Categories
-  html += '<h2 class="section-header">Beverage</h2><div class="categories-grid">';
-
-  const beerSections = [
-    { nome: 'Birre artigianali alla spina a rotazione', icona: '🍺' },
-    { nome: 'Birre alla spina', icona: '🍻' },
-    { nome: 'Birre speciali in bottiglia', icona: '🍾' },
-    { nome: 'Frigo Birre', icona: '❄️' }
-  ];
-
-  beerSections.forEach(section => {
-    const items = beersData.filter(b => b.sezione === section.nome && b.disponibile !== false);
-    if (items.length > 0) {
-      html += createCategoryCard(section, items.length, 'beer');
-    }
-  });
-
-  // Other Beverages
-  const beverageTypes = [
-    { nome: 'Cocktails', icona: '🍹' },
-    { nome: 'Analcolici', icona: '🥤' },
-    { nome: 'Bibite', icona: '🥫' },
-    { nome: 'Caffetteria', icona: '☕' },
-    { nome: 'Bollicine', icona: '🥂' },
-    { nome: 'Bianchi fermi', icona: '🍷' },
-    { nome: 'Vini rossi', icona: '🍷' }
-  ];
-
-  beverageTypes.forEach(type => {
-    const items = beveragesData.filter(b => b.tipo === type.nome && b.disponibile !== false);
-    if (items.length > 0) {
-      // Cerca categoria dinamica per immagine
-      const dynamicCat = categoriesData.find(c => c.nome === type.nome);
-      const catData = dynamicCat || type;
-      html += createCategoryCard(catData, items.length, 'beverage');
-    }
-  });
-
-  html += '</div>';
+  // 2. BEVERAGE (Beers + Beverages)
+  const beverageCategories = categoriesData.filter(c => c.tipo_menu === 'beverage');
+  
+  if (beverageCategories.length > 0) {
+    html += '<h2 class="section-header">Beverage</h2><div class="categories-grid">';
+    
+    beverageCategories.forEach(cat => {
+      // Cerca in birre
+      let items = beersData.filter(b => b.sezione === cat.nome && b.disponibile !== false);
+      let type = 'beer';
+      
+      // Se non trovato, cerca in beverages
+      if (items.length === 0) {
+        items = beveragesData.filter(b => b.tipo === cat.nome && b.disponibile !== false);
+        type = 'beverage';
+      }
+      
+      html += createCategoryCard(cat, items.length, type);
+    });
+    
+    html += '</div>';
+  }
+  
+  // Fallback se non ci sono categorie caricate (es. errore o tutto nascosto)
+  if (foodCategories.length === 0 && beverageCategories.length === 0) {
+     html = '<div class="empty-state" style="text-align:center; padding: 2rem;">Nessuna categoria disponibile al momento.</div>';
+  }
 
   categoriesView.innerHTML = html;
 }
