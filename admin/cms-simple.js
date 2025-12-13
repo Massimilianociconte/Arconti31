@@ -438,10 +438,13 @@ function toast(message, type = 'info') {
 
 async function loadCategories() {
   try {
+    // USARE SEMPRE API PER CATEGORIE NEL CMS
+    // Questo garantisce che vediamo tutte le categorie (anche nascoste) e bypassiamo
+    // eventuali JSON non aggiornati o filtrati.
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'categorie' })
+      body: JSON.stringify({ folder: 'categorie', mode: 'api' })
     });
 
     if (!res.ok) { state.categories = []; return; }
@@ -454,7 +457,6 @@ async function loadCategories() {
         : parseMarkdown(item.content, item.filename, item.sha)
     );
     // Nel CMS mostra TUTTE le categorie (anche nascoste), ordinate
-    // Il filtro visibile serve solo per il frontend (menu.html)
     state.categories = categories.sort((a, b) => (a.order || 0) - (b.order || 0));
   } catch (e) {
     console.error('Error loading categories:', e);
@@ -482,8 +484,9 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     }
 
     // Se forceApi=true, usa API GitHub per avere dati freschi (dopo salvataggio)
+    // Per le CATEGORIE, usiamo SEMPRE API per evitare problemi di sync con JSON parziali
     const requestBody = { folder: collection.folder };
-    if (forceApi) {
+    if (forceApi || collectionName === 'categorie') {
       requestBody.mode = 'api';
     }
     
