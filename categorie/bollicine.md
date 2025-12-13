@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🥂"
 immagine: "images/minicard sezioni/bollicine.jpg"
 descrizione: "Spumanti e prosecchi"
-visibile: false
+visibile: true
 order: 30
 ---
