@@ -5,6 +5,6 @@ tipo_menu: "beverage"
 icona: "🍷"
 immagine: "images/minicard sezioni/rossi.jpg"
 descrizione: "Vini rossi"
-visibile: true
+visibile: false
 order: 32
 ---
