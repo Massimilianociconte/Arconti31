@@ -156,10 +156,16 @@ async function loadAllData() {
     // Update SmartCache
     if (window.SmartCache) {
       // Sync each collection
-      if (categoriesRes?.categories) window.SmartCache.syncCollection(categoriesRes.categories, 'categorie');
-      if (foodRes?.food) window.SmartCache.syncCollection(foodRes.food, 'food');
-      if (beersRes?.beers) window.SmartCache.syncCollection(beersRes.beers, 'beers');
-      if (beveragesRes?.beverages) window.SmartCache.syncCollection(beveragesRes.beverages, 'beverages');
+      if (categoriesRes?.categories) await window.SmartCache.syncCollection(categoriesRes.categories, 'categorie');
+      if (foodRes?.food) await window.SmartCache.syncCollection(foodRes.food, 'food');
+      if (beersRes?.beers) await window.SmartCache.syncCollection(beersRes.beers, 'beers');
+      if (beveragesRes?.beverages) await window.SmartCache.syncCollection(beveragesRes.beverages, 'beverages');
+      
+      // RE-FETCH from SmartCache to get the authoritative version (including local edits)
+      // This ensures that if we have local changes (protected by stale data check),
+      // we use THOSE instead of the stale JSON we just downloaded.
+      const cachedItems = await window.SmartCache.getAll('items');
+      allItems = cachedItems.filter(i => !i._deleted);
     }
 
     // Process for UI
