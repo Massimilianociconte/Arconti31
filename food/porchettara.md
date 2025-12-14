@@ -1,11 +1,11 @@
 ---
 nome: "Porchettara"
-prezzo: "15,00"
+category: "Hamburger Fassona e Street food"
+prezzo: "15"
 descrizione: "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine"
 tags:
-  - "Specialità"
   - "Novità"
+  - "Specialità"
 disponibile: true
-category: "Hamburger Fassona e Street food"
 order: 6
 ---
