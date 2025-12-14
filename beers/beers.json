@@ -96,11 +96,12 @@
     },
     {
       "nome": "Leffe Rouge",
-      "prezzo": "6,00",
-      "descrizione": "Birra belga doppio malto rossa",
+      "sezione": "Birre alla spina",
+      "prezzo": 6,
+      "descrizione": "Birra belga doppio malto rossa. In bocca è avvolgente e dolce, con tracce di cereali tostati, caramello e lievi note di liquirizia",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708209/arconti31/gjkm1pwbu4bammgk4pem.png",
       "gradazione": "6,6%",
       "disponibile": true,
-      "sezione": "Birre alla spina",
       "order": 2
     },
     {
@@ -464,11 +465,12 @@
       },
       {
         "nome": "Leffe Rouge",
-        "prezzo": "6,00",
-        "descrizione": "Birra belga doppio malto rossa",
+        "sezione": "Birre alla spina",
+        "prezzo": 6,
+        "descrizione": "Birra belga doppio malto rossa. In bocca è avvolgente e dolce, con tracce di cereali tostati, caramello e lievi note di liquirizia",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708209/arconti31/gjkm1pwbu4bammgk4pem.png",
         "gradazione": "6,6%",
         "disponibile": true,
-        "sezione": "Birre alla spina",
         "order": 2
       },
       {
