@@ -6,6 +6,6 @@ descrizione: "Chiara a bassa fermentazione, luppolo fresco raccolto. Tipopils Ha
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1765708850/arconti31/k0wlj6yprj7nvn43chlr.jpg"
 formato: "0,4L"
 gradazione: "5,2%"
-disponibile: true
+disponibile: false
 order: 10
 ---
