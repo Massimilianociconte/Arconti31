@@ -1,7 +1,6 @@
 ---
-nome: "Gin tonic"
+nome: "Gin Tonic / Lemon"
 prezzo: "7,00"
-descrizione: ""
 disponibile: true
 order: 9
 ---
