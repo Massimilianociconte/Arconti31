@@ -2,23 +2,23 @@
   "beverages": [
     {
       "nome": "Americano",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Bitter, vermouth rosso e soda",
       "disponibile": true,
       "order": 0,
       "tipo": "Cocktails"
     },
     {
-      "nome": "Aperol spritz",
+      "nome": "Spritz",
       "prezzo": 6,
-      "descrizione": "Prosecco, seltz e aperol",
+      "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
       "disponibile": true,
       "order": 1,
       "tipo": "Cocktails"
     },
     {
       "nome": "Black russian",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Vodka e liquore al caffè",
       "disponibile": true,
       "order": 2,
@@ -26,7 +26,7 @@
     },
     {
       "nome": "Blue kiss",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Rum al cocco malibù, blue curacao, ananas fresco",
       "disponibile": true,
       "order": 3,
@@ -34,7 +34,7 @@
     },
     {
       "nome": "Caipirinha",
-      "prezzo": 8,
+      "prezzo": "8,00",
       "descrizione": "Lime, zucchero, cachaca, ghiaccio pilé",
       "disponibile": true,
       "order": 4,
@@ -42,7 +42,7 @@
     },
     {
       "nome": "Campari shakerato",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Campari e gin shakerati",
       "disponibile": true,
       "order": 5,
@@ -50,7 +50,7 @@
     },
     {
       "nome": "Chocolate coco",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
       "disponibile": true,
       "order": 6,
@@ -58,7 +58,7 @@
     },
     {
       "nome": "Cuba Libre",
-      "prezzo": 6,
+      "prezzo": "6,50",
       "descrizione": "Coca Cola e rum scuro",
       "disponibile": true,
       "order": 7,
@@ -66,7 +66,7 @@
     },
     {
       "nome": "Gin lemon",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Gin e lemonsoda",
       "disponibile": true,
       "order": 8,
@@ -74,7 +74,7 @@
     },
     {
       "nome": "Gin tonic",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "",
       "disponibile": true,
       "order": 9,
@@ -82,7 +82,7 @@
     },
     {
       "nome": "Hurricane",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
       "disponibile": true,
       "order": 10,
@@ -90,7 +90,7 @@
     },
     {
       "nome": "Mimosa",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Spumante e arancia",
       "disponibile": true,
       "order": 11,
@@ -98,7 +98,7 @@
     },
     {
       "nome": "Mojito",
-      "prezzo": 8,
+      "prezzo": "8,00",
       "descrizione": "Lime, zucchero, menta fresca, ghiaccio, rum chiaro",
       "disponibile": true,
       "order": 12,
@@ -106,7 +106,7 @@
     },
     {
       "nome": "Moscow mule",
-      "prezzo": 8,
+      "prezzo": "8,00",
       "descrizione": "Lime fresco, vodka, ginger beer",
       "disponibile": true,
       "order": 13,
@@ -114,7 +114,7 @@
     },
     {
       "nome": "My own",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Gin, arancia e campari",
       "disponibile": true,
       "order": 14,
@@ -122,7 +122,7 @@
     },
     {
       "nome": "Negroni",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Bitter, vermouth rosso e gin",
       "disponibile": true,
       "order": 15,
@@ -130,7 +130,7 @@
     },
     {
       "nome": "Pina colada",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Rum bianco, ananas fresco, cocco",
       "disponibile": true,
       "order": 16,
@@ -138,7 +138,7 @@
     },
     {
       "nome": "Sbagliato",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Bitter, vermouth rosso, spumante secco",
       "disponibile": true,
       "order": 17,
@@ -146,7 +146,7 @@
     },
     {
       "nome": "Sea breeze",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Vodka, pompelmo, mirtillo",
       "disponibile": true,
       "order": 18,
@@ -154,7 +154,7 @@
     },
     {
       "nome": "Sex on the beach",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
       "disponibile": true,
       "order": 19,
@@ -162,7 +162,7 @@
     },
     {
       "nome": "Sweet and red",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Rum bianco, lampone, lemonsoda",
       "disponibile": true,
       "order": 20,
@@ -170,7 +170,7 @@
     },
     {
       "nome": "Tequila sunrise",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Tequila, arancia, granatina",
       "disponibile": true,
       "order": 21,
@@ -178,7 +178,7 @@
     },
     {
       "nome": "Vodka tonic",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "",
       "disponibile": true,
       "order": 22,
@@ -186,7 +186,7 @@
     },
     {
       "nome": "Waikiki",
-      "prezzo": 7,
+      "prezzo": "7,00",
       "descrizione": "Vodka e ananas fresco",
       "disponibile": true,
       "order": 23,
@@ -194,7 +194,7 @@
     },
     {
       "nome": "Arconti summer",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Mirtillo, ananas, papaja",
       "disponibile": true,
       "order": 0,
@@ -202,7 +202,7 @@
     },
     {
       "nome": "Come on",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Pompelmo, ananas, maracuja",
       "disponibile": true,
       "order": 1,
@@ -210,7 +210,7 @@
     },
     {
       "nome": "Cool down",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Ananas, sweet and sour, granatina, menta",
       "disponibile": true,
       "order": 2,
@@ -218,7 +218,7 @@
     },
     {
       "nome": "Florida",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Pompelmo, arancia, sweet and sour, soda",
       "disponibile": true,
       "order": 3,
@@ -226,7 +226,7 @@
     },
     {
       "nome": "Gallarate beach",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Arancia, ananas, sweet and sour, fragola",
       "disponibile": true,
       "order": 4,
@@ -234,7 +234,7 @@
     },
     {
       "nome": "Tropic star",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Arancia, maracuja, ananas",
       "disponibile": true,
       "order": 5,
@@ -242,7 +242,7 @@
     },
     {
       "nome": "Spritz analcolico",
-      "prezzo": 6,
+      "prezzo": "6,00",
       "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
       "disponibile": true,
       "order": 6,
@@ -250,7 +250,7 @@
     },
     {
       "nome": "Shirley Temple rivisitato",
-      "prezzo": 6,
+      "prezzo": "6,50",
       "descrizione": "Ginger beer, granatina, ciliegia o limone",
       "disponibile": true,
       "order": 7,
@@ -258,7 +258,7 @@
     },
     {
       "nome": "Mojito Analcolico",
-      "prezzo": 7,
+      "prezzo": "7,50",
       "descrizione": "Lime, zucchero, menta, Lemon Soda",
       "disponibile": true,
       "order": 8,
@@ -266,7 +266,7 @@
     },
     {
       "nome": "Acqua tonica",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 0,
@@ -274,7 +274,7 @@
     },
     {
       "nome": "Aranciata amara",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 1,
@@ -282,7 +282,7 @@
     },
     {
       "nome": "Chinotto",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 2,
@@ -290,7 +290,7 @@
     },
     {
       "nome": "Coca cola",
-      "prezzo": 4,
+      "prezzo": "4,50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 3,
@@ -298,7 +298,7 @@
     },
     {
       "nome": "Coca cola zero",
-      "prezzo": 4,
+      "prezzo": "4,50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 4,
@@ -306,7 +306,7 @@
     },
     {
       "nome": "Fanta",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 5,
@@ -314,7 +314,7 @@
     },
     {
       "nome": "Lemonsoda",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 6,
@@ -322,7 +322,7 @@
     },
     {
       "nome": "Red bull",
-      "prezzo": 5,
+      "prezzo": "5,00",
       "descrizione": "Bevanda energetica",
       "formato": "33cl",
       "disponibile": true,
@@ -331,7 +331,7 @@
     },
     {
       "nome": "Sprite",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 8,
@@ -339,7 +339,7 @@
     },
     {
       "nome": "Succhi di frutta",
-      "prezzo": 3,
+      "prezzo": "3,50",
       "descrizione": "Mirtillo, pompelmo, ananas, arancia",
       "formato": "20cl",
       "disponibile": true,
@@ -348,7 +348,7 @@
     },
     {
       "nome": "The limone",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 10,
@@ -356,7 +356,7 @@
     },
     {
       "nome": "The pesca",
-      "prezzo": 4,
+      "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 11,
@@ -364,7 +364,7 @@
     },
     {
       "nome": "Ginger beer | Fever-Tree",
-      "prezzo": 5,
+      "prezzo": "5,00",
       "descrizione": "Aroma di zenzero profondo",
       "disponibile": true,
       "order": 12,
@@ -372,7 +372,7 @@
     },
     {
       "nome": "Caffè decaffeinato",
-      "prezzo": 2,
+      "prezzo": "2,00",
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 0,
@@ -380,7 +380,7 @@
     },
     {
       "nome": "Caffè espresso",
-      "prezzo": 1,
+      "prezzo": "1,50",
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 1,
@@ -388,7 +388,7 @@
     },
     {
       "nome": "Caffè shakerato",
-      "prezzo": 3,
+      "prezzo": "3,50",
       "descrizione": "Lungo con ghiaccio e zucchero di canna",
       "disponibile": true,
       "order": 2,
@@ -396,14 +396,14 @@
     },
     {
       "nome": "Cappuccino",
-      "prezzo": 2,
+      "prezzo": "2,50",
       "disponibile": true,
       "order": 3,
       "tipo": "Caffetteria"
     },
     {
       "nome": "The e tisane",
-      "prezzo": 3,
+      "prezzo": "3,00",
       "descrizione": "Selezione",
       "disponibile": true,
       "order": 4,
@@ -411,14 +411,14 @@
     },
     {
       "nome": "Caffè macchiato",
-      "prezzo": 2,
+      "prezzo": "2,00",
       "disponibile": true,
       "order": 5,
       "tipo": "Caffetteria"
     },
     {
       "nome": "Calice prosecco extra dry",
-      "prezzo": 5,
+      "prezzo": "5,00",
       "descrizione": "Cuvée 21 Millesimato Extra Dry",
       "disponibile": true,
       "order": 0,
@@ -426,7 +426,7 @@
     },
     {
       "nome": "Valdobbiadene Superiore DOCG Brunei - La Tordera",
-      "prezzo": 22,
+      "prezzo": "22,00",
       "descrizione": "Veneto - Aromatico, sapido, profumi pera acerba, mela verde",
       "formato": "0,75L",
       "gradazione": "11%vol",
@@ -436,7 +436,7 @@
     },
     {
       "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
-      "prezzo": 22,
+      "prezzo": "22,00",
       "descrizione": "Veneto - Note floreali, fruttate, ananas",
       "formato": "0,75L",
       "gradazione": "11%",
@@ -446,7 +446,7 @@
     },
     {
       "nome": "Prosecco Extra Dry Flumen - Tenuta San Giorgio",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "descrizione": "Treviso, Veneto - Aromi floreali e fruttati - Uve: Glera",
       "formato": "0,75L",
       "gradazione": "11%vol",
@@ -456,7 +456,7 @@
     },
     {
       "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
-      "prezzo": 220,
+      "prezzo": "220,00",
       "descrizione": "Fragoline di bosco, ciliegie",
       "formato": "0,75L",
       "gradazione": "11,5%vol",
@@ -466,14 +466,14 @@
     },
     {
       "nome": "Prosecco Brut Flumen - Tenuta San Giorgio",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "disponibile": true,
       "order": 5,
       "tipo": "Bollicine"
     },
     {
       "nome": "21 Cuvée Millesimato Extra Dry",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
       "formato": "0,75L",
       "gradazione": "11%vol",
@@ -483,15 +483,15 @@
     },
     {
       "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
-      "prezzo": 22,
-      "descrizione": "2023",
+      "prezzo": "22,00",
+      "descrizione": 2023,
       "disponibile": true,
       "order": 7,
       "tipo": "Bollicine"
     },
     {
       "nome": "Gewürztraminer DOC Trentino - Cantina d'Isera",
-      "prezzo": 22,
+      "prezzo": "22,00",
       "descrizione": "Trentino, Italia",
       "disponibile": true,
       "order": 0,
@@ -499,21 +499,21 @@
     },
     {
       "nome": "Greco 'Janare' - La Guardiense",
-      "prezzo": 20,
+      "prezzo": "20,00",
       "disponibile": true,
       "order": 1,
       "tipo": "Bianchi fermi"
     },
     {
       "nome": "Falangina IGP Fremondo - La Guardiense",
-      "prezzo": 20,
+      "prezzo": "20,00",
       "disponibile": true,
       "order": 2,
       "tipo": "Bianchi fermi"
     },
     {
       "nome": "Chardonnay Moi IGP - Varvaglione",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "descrizione": "Puglia - Giallo paglierino, fiori gialli, frutta tropicale",
       "formato": "0,75L",
       "gradazione": "12%vol",
@@ -523,14 +523,14 @@
     },
     {
       "nome": "Calice di Bianco",
-      "prezzo": 5,
+      "prezzo": "5,00",
       "disponibile": true,
       "order": 4,
       "tipo": "Bianchi fermi"
     },
     {
       "nome": "Vini al Calice",
-      "prezzo": 5,
+      "prezzo": "5,00",
       "descrizione": "Primitivo (Masseria Moretti), Valpolicella Classico DOC (Recchia)",
       "disponibile": true,
       "order": 0,
@@ -538,7 +538,7 @@
     },
     {
       "nome": "Valpolicella Classico DOC Superiore Masua di Jago 2020 - Recchia",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "descrizione": "Veneto, Italia - Rosso granato, frutti rossi, note floreali - Uve: 65% Corvina, 15% Corvinone, 20% Rondinella",
       "formato": "0,75L",
       "gradazione": "14%vol",
@@ -547,8 +547,8 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
-      "prezzo": 25,
+      "nome": "Nebbiolo d'Alba DOC \\\"VinumVitaEst\\\" 2021 - Terre del Barolo",
+      "prezzo": "25,00",
       "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
       "formato": "0,75L",
       "gradazione": "14%vol",
@@ -558,7 +558,7 @@
     },
     {
       "nome": "Amarone della Valpolicella DOCG Classico - Recchia",
-      "prezzo": 35,
+      "prezzo": "35,00",
       "descrizione": "Veneto, Italia - Rosso rubino carico, intenso, fruttato - Uve: 55% Corvina, 25% Corvinone, 20% Rondinella",
       "formato": "0,75L",
       "gradazione": "16%vol",
@@ -567,8 +567,8 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Morellino di Scansano DOCG \"A' Luciano\" - Santa Lucia",
-      "prezzo": 20,
+      "nome": "Morellino di Scansano DOCG \\\"A' Luciano\\\" - Santa Lucia",
+      "prezzo": "20,00",
       "descrizione": "Toscana - Frutta rossa, piacevole bicchiere - Uve: 90% Sangiovese, 10% Alicante",
       "formato": "0,75L",
       "gradazione": "14%vol",
@@ -578,7 +578,7 @@
     },
     {
       "nome": "Primitivo - Masserie Moretti",
-      "prezzo": 18,
+      "prezzo": "18,00",
       "descrizione": "Puglia, Italia - Fruttato, cacao, ciliegia - Affum",
       "disponibile": true,
       "order": 5,
@@ -589,23 +589,23 @@
     "Cocktails": [
       {
         "nome": "Americano",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Bitter, vermouth rosso e soda",
         "disponibile": true,
         "order": 0,
         "tipo": "Cocktails"
       },
       {
-        "nome": "Aperol spritz",
+        "nome": "Spritz",
         "prezzo": 6,
-        "descrizione": "Prosecco, seltz e aperol",
+        "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
         "disponibile": true,
         "order": 1,
         "tipo": "Cocktails"
       },
       {
         "nome": "Black russian",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Vodka e liquore al caffè",
         "disponibile": true,
         "order": 2,
@@ -613,7 +613,7 @@
       },
       {
         "nome": "Blue kiss",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Rum al cocco malibù, blue curacao, ananas fresco",
         "disponibile": true,
         "order": 3,
@@ -621,7 +621,7 @@
       },
       {
         "nome": "Caipirinha",
-        "prezzo": 8,
+        "prezzo": "8,00",
         "descrizione": "Lime, zucchero, cachaca, ghiaccio pilé",
         "disponibile": true,
         "order": 4,
@@ -629,7 +629,7 @@
       },
       {
         "nome": "Campari shakerato",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Campari e gin shakerati",
         "disponibile": true,
         "order": 5,
@@ -637,7 +637,7 @@
       },
       {
         "nome": "Chocolate coco",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
         "disponibile": true,
         "order": 6,
@@ -645,7 +645,7 @@
       },
       {
         "nome": "Cuba Libre",
-        "prezzo": 6,
+        "prezzo": "6,50",
         "descrizione": "Coca Cola e rum scuro",
         "disponibile": true,
         "order": 7,
@@ -653,7 +653,7 @@
       },
       {
         "nome": "Gin lemon",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Gin e lemonsoda",
         "disponibile": true,
         "order": 8,
@@ -661,7 +661,7 @@
       },
       {
         "nome": "Gin tonic",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "",
         "disponibile": true,
         "order": 9,
@@ -669,7 +669,7 @@
       },
       {
         "nome": "Hurricane",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
         "disponibile": true,
         "order": 10,
@@ -677,7 +677,7 @@
       },
       {
         "nome": "Mimosa",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Spumante e arancia",
         "disponibile": true,
         "order": 11,
@@ -685,7 +685,7 @@
       },
       {
         "nome": "Mojito",
-        "prezzo": 8,
+        "prezzo": "8,00",
         "descrizione": "Lime, zucchero, menta fresca, ghiaccio, rum chiaro",
         "disponibile": true,
         "order": 12,
@@ -693,7 +693,7 @@
       },
       {
         "nome": "Moscow mule",
-        "prezzo": 8,
+        "prezzo": "8,00",
         "descrizione": "Lime fresco, vodka, ginger beer",
         "disponibile": true,
         "order": 13,
@@ -701,7 +701,7 @@
       },
       {
         "nome": "My own",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Gin, arancia e campari",
         "disponibile": true,
         "order": 14,
@@ -709,7 +709,7 @@
       },
       {
         "nome": "Negroni",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Bitter, vermouth rosso e gin",
         "disponibile": true,
         "order": 15,
@@ -717,7 +717,7 @@
       },
       {
         "nome": "Pina colada",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Rum bianco, ananas fresco, cocco",
         "disponibile": true,
         "order": 16,
@@ -725,7 +725,7 @@
       },
       {
         "nome": "Sbagliato",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Bitter, vermouth rosso, spumante secco",
         "disponibile": true,
         "order": 17,
@@ -733,7 +733,7 @@
       },
       {
         "nome": "Sea breeze",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Vodka, pompelmo, mirtillo",
         "disponibile": true,
         "order": 18,
@@ -741,7 +741,7 @@
       },
       {
         "nome": "Sex on the beach",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
         "disponibile": true,
         "order": 19,
@@ -749,7 +749,7 @@
       },
       {
         "nome": "Sweet and red",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Rum bianco, lampone, lemonsoda",
         "disponibile": true,
         "order": 20,
@@ -757,7 +757,7 @@
       },
       {
         "nome": "Tequila sunrise",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Tequila, arancia, granatina",
         "disponibile": true,
         "order": 21,
@@ -765,7 +765,7 @@
       },
       {
         "nome": "Vodka tonic",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "",
         "disponibile": true,
         "order": 22,
@@ -773,7 +773,7 @@
       },
       {
         "nome": "Waikiki",
-        "prezzo": 7,
+        "prezzo": "7,00",
         "descrizione": "Vodka e ananas fresco",
         "disponibile": true,
         "order": 23,
@@ -783,7 +783,7 @@
     "Analcolici": [
       {
         "nome": "Arconti summer",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Mirtillo, ananas, papaja",
         "disponibile": true,
         "order": 0,
@@ -791,7 +791,7 @@
       },
       {
         "nome": "Come on",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Pompelmo, ananas, maracuja",
         "disponibile": true,
         "order": 1,
@@ -799,7 +799,7 @@
       },
       {
         "nome": "Cool down",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Ananas, sweet and sour, granatina, menta",
         "disponibile": true,
         "order": 2,
@@ -807,7 +807,7 @@
       },
       {
         "nome": "Florida",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Pompelmo, arancia, sweet and sour, soda",
         "disponibile": true,
         "order": 3,
@@ -815,7 +815,7 @@
       },
       {
         "nome": "Gallarate beach",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Arancia, ananas, sweet and sour, fragola",
         "disponibile": true,
         "order": 4,
@@ -823,7 +823,7 @@
       },
       {
         "nome": "Tropic star",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Arancia, maracuja, ananas",
         "disponibile": true,
         "order": 5,
@@ -831,7 +831,7 @@
       },
       {
         "nome": "Spritz analcolico",
-        "prezzo": 6,
+        "prezzo": "6,00",
         "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
         "disponibile": true,
         "order": 6,
@@ -839,7 +839,7 @@
       },
       {
         "nome": "Shirley Temple rivisitato",
-        "prezzo": 6,
+        "prezzo": "6,50",
         "descrizione": "Ginger beer, granatina, ciliegia o limone",
         "disponibile": true,
         "order": 7,
@@ -847,7 +847,7 @@
       },
       {
         "nome": "Mojito Analcolico",
-        "prezzo": 7,
+        "prezzo": "7,50",
         "descrizione": "Lime, zucchero, menta, Lemon Soda",
         "disponibile": true,
         "order": 8,
@@ -857,7 +857,7 @@
     "Bibite": [
       {
         "nome": "Acqua tonica",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 0,
@@ -865,7 +865,7 @@
       },
       {
         "nome": "Aranciata amara",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 1,
@@ -873,7 +873,7 @@
       },
       {
         "nome": "Chinotto",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 2,
@@ -881,7 +881,7 @@
       },
       {
         "nome": "Coca cola",
-        "prezzo": 4,
+        "prezzo": "4,50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 3,
@@ -889,7 +889,7 @@
       },
       {
         "nome": "Coca cola zero",
-        "prezzo": 4,
+        "prezzo": "4,50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 4,
@@ -897,7 +897,7 @@
       },
       {
         "nome": "Fanta",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 5,
@@ -905,7 +905,7 @@
       },
       {
         "nome": "Lemonsoda",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 6,
@@ -913,7 +913,7 @@
       },
       {
         "nome": "Red bull",
-        "prezzo": 5,
+        "prezzo": "5,00",
         "descrizione": "Bevanda energetica",
         "formato": "33cl",
         "disponibile": true,
@@ -922,7 +922,7 @@
       },
       {
         "nome": "Sprite",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 8,
@@ -930,7 +930,7 @@
       },
       {
         "nome": "Succhi di frutta",
-        "prezzo": 3,
+        "prezzo": "3,50",
         "descrizione": "Mirtillo, pompelmo, ananas, arancia",
         "formato": "20cl",
         "disponibile": true,
@@ -939,7 +939,7 @@
       },
       {
         "nome": "The limone",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 10,
@@ -947,7 +947,7 @@
       },
       {
         "nome": "The pesca",
-        "prezzo": 4,
+        "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 11,
@@ -955,7 +955,7 @@
       },
       {
         "nome": "Ginger beer | Fever-Tree",
-        "prezzo": 5,
+        "prezzo": "5,00",
         "descrizione": "Aroma di zenzero profondo",
         "disponibile": true,
         "order": 12,
@@ -965,7 +965,7 @@
     "Caffetteria": [
       {
         "nome": "Caffè decaffeinato",
-        "prezzo": 2,
+        "prezzo": "2,00",
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 0,
@@ -973,7 +973,7 @@
       },
       {
         "nome": "Caffè espresso",
-        "prezzo": 1,
+        "prezzo": "1,50",
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 1,
@@ -981,7 +981,7 @@
       },
       {
         "nome": "Caffè shakerato",
-        "prezzo": 3,
+        "prezzo": "3,50",
         "descrizione": "Lungo con ghiaccio e zucchero di canna",
         "disponibile": true,
         "order": 2,
@@ -989,14 +989,14 @@
       },
       {
         "nome": "Cappuccino",
-        "prezzo": 2,
+        "prezzo": "2,50",
         "disponibile": true,
         "order": 3,
         "tipo": "Caffetteria"
       },
       {
         "nome": "The e tisane",
-        "prezzo": 3,
+        "prezzo": "3,00",
         "descrizione": "Selezione",
         "disponibile": true,
         "order": 4,
@@ -1004,7 +1004,7 @@
       },
       {
         "nome": "Caffè macchiato",
-        "prezzo": 2,
+        "prezzo": "2,00",
         "disponibile": true,
         "order": 5,
         "tipo": "Caffetteria"
@@ -1013,7 +1013,7 @@
     "Bollicine": [
       {
         "nome": "Calice prosecco extra dry",
-        "prezzo": 5,
+        "prezzo": "5,00",
         "descrizione": "Cuvée 21 Millesimato Extra Dry",
         "disponibile": true,
         "order": 0,
@@ -1021,7 +1021,7 @@
       },
       {
         "nome": "Valdobbiadene Superiore DOCG Brunei - La Tordera",
-        "prezzo": 22,
+        "prezzo": "22,00",
         "descrizione": "Veneto - Aromatico, sapido, profumi pera acerba, mela verde",
         "formato": "0,75L",
         "gradazione": "11%vol",
@@ -1031,7 +1031,7 @@
       },
       {
         "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
-        "prezzo": 22,
+        "prezzo": "22,00",
         "descrizione": "Veneto - Note floreali, fruttate, ananas",
         "formato": "0,75L",
         "gradazione": "11%",
@@ -1041,7 +1041,7 @@
       },
       {
         "nome": "Prosecco Extra Dry Flumen - Tenuta San Giorgio",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "descrizione": "Treviso, Veneto - Aromi floreali e fruttati - Uve: Glera",
         "formato": "0,75L",
         "gradazione": "11%vol",
@@ -1051,7 +1051,7 @@
       },
       {
         "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
-        "prezzo": 220,
+        "prezzo": "220,00",
         "descrizione": "Fragoline di bosco, ciliegie",
         "formato": "0,75L",
         "gradazione": "11,5%vol",
@@ -1061,14 +1061,14 @@
       },
       {
         "nome": "Prosecco Brut Flumen - Tenuta San Giorgio",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "disponibile": true,
         "order": 5,
         "tipo": "Bollicine"
       },
       {
         "nome": "21 Cuvée Millesimato Extra Dry",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
         "formato": "0,75L",
         "gradazione": "11%vol",
@@ -1078,8 +1078,8 @@
       },
       {
         "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
-        "prezzo": 22,
-        "descrizione": "2023",
+        "prezzo": "22,00",
+        "descrizione": 2023,
         "disponibile": true,
         "order": 7,
         "tipo": "Bollicine"
@@ -1088,7 +1088,7 @@
     "Bianchi fermi": [
       {
         "nome": "Gewürztraminer DOC Trentino - Cantina d'Isera",
-        "prezzo": 22,
+        "prezzo": "22,00",
         "descrizione": "Trentino, Italia",
         "disponibile": true,
         "order": 0,
@@ -1096,21 +1096,21 @@
       },
       {
         "nome": "Greco 'Janare' - La Guardiense",
-        "prezzo": 20,
+        "prezzo": "20,00",
         "disponibile": true,
         "order": 1,
         "tipo": "Bianchi fermi"
       },
       {
         "nome": "Falangina IGP Fremondo - La Guardiense",
-        "prezzo": 20,
+        "prezzo": "20,00",
         "disponibile": true,
         "order": 2,
         "tipo": "Bianchi fermi"
       },
       {
         "nome": "Chardonnay Moi IGP - Varvaglione",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "descrizione": "Puglia - Giallo paglierino, fiori gialli, frutta tropicale",
         "formato": "0,75L",
         "gradazione": "12%vol",
@@ -1120,7 +1120,7 @@
       },
       {
         "nome": "Calice di Bianco",
-        "prezzo": 5,
+        "prezzo": "5,00",
         "disponibile": true,
         "order": 4,
         "tipo": "Bianchi fermi"
@@ -1129,7 +1129,7 @@
     "Vini rossi": [
       {
         "nome": "Vini al Calice",
-        "prezzo": 5,
+        "prezzo": "5,00",
         "descrizione": "Primitivo (Masseria Moretti), Valpolicella Classico DOC (Recchia)",
         "disponibile": true,
         "order": 0,
@@ -1137,7 +1137,7 @@
       },
       {
         "nome": "Valpolicella Classico DOC Superiore Masua di Jago 2020 - Recchia",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "descrizione": "Veneto, Italia - Rosso granato, frutti rossi, note floreali - Uve: 65% Corvina, 15% Corvinone, 20% Rondinella",
         "formato": "0,75L",
         "gradazione": "14%vol",
@@ -1146,8 +1146,8 @@
         "tipo": "Vini rossi"
       },
       {
-        "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
-        "prezzo": 25,
+        "nome": "Nebbiolo d'Alba DOC \\\"VinumVitaEst\\\" 2021 - Terre del Barolo",
+        "prezzo": "25,00",
         "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
         "formato": "0,75L",
         "gradazione": "14%vol",
@@ -1157,7 +1157,7 @@
       },
       {
         "nome": "Amarone della Valpolicella DOCG Classico - Recchia",
-        "prezzo": 35,
+        "prezzo": "35,00",
         "descrizione": "Veneto, Italia - Rosso rubino carico, intenso, fruttato - Uve: 55% Corvina, 25% Corvinone, 20% Rondinella",
         "formato": "0,75L",
         "gradazione": "16%vol",
@@ -1166,8 +1166,8 @@
         "tipo": "Vini rossi"
       },
       {
-        "nome": "Morellino di Scansano DOCG \"A' Luciano\" - Santa Lucia",
-        "prezzo": 20,
+        "nome": "Morellino di Scansano DOCG \\\"A' Luciano\\\" - Santa Lucia",
+        "prezzo": "20,00",
         "descrizione": "Toscana - Frutta rossa, piacevole bicchiere - Uve: 90% Sangiovese, 10% Alicante",
         "formato": "0,75L",
         "gradazione": "14%vol",
@@ -1177,7 +1177,7 @@
       },
       {
         "nome": "Primitivo - Masserie Moretti",
-        "prezzo": 18,
+        "prezzo": "18,00",
         "descrizione": "Puglia, Italia - Fruttato, cacao, ciliegia - Affum",
         "disponibile": true,
         "order": 5,
