@@ -13,14 +13,15 @@
     },
     {
       "nome": "Bacon burger",
-      "prezzo": "13,50",
-      "descrizione": "Fassona 220gr con pancetta stufata, cheddar, salsa pepe nero, patatine",
+      "category": "Hamburger Fassona e Street food",
+      "prezzo": 13,
+      "descrizione": "220 gr di Fassona con pancetta stufata, cheddar, salsa pepe nero.",
+      "Contorno": "patatine fritte.",
       "tags": [
         "Più venduto",
         "Specialità"
       ],
       "disponibile": true,
-      "category": "Hamburger Fassona e Street food",
       "order": 0
     },
     {
@@ -765,14 +766,15 @@
     "Hamburger Fassona e Street food": [
       {
         "nome": "Bacon burger",
-        "prezzo": "13,50",
-        "descrizione": "Fassona 220gr con pancetta stufata, cheddar, salsa pepe nero, patatine",
+        "category": "Hamburger Fassona e Street food",
+        "prezzo": 13,
+        "descrizione": "220 gr di Fassona con pancetta stufata, cheddar, salsa pepe nero.",
+        "Contorno": "patatine fritte.",
         "tags": [
           "Più venduto",
           "Specialità"
         ],
         "disponibile": true,
-        "category": "Hamburger Fassona e Street food",
         "order": 0
       },
       {
