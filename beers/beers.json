@@ -50,6 +50,15 @@
       "order": 0
     },
     {
+      "nome": "Zona Cesarini - Toccalmatto ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6,5",
+      "formato": "0,4",
+      "gradazione": "6,6",
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Ayinger",
       "sezione": "Birre alla spina",
       "prezzo": "6,00",
@@ -548,6 +557,15 @@
         "prezzo": 7,
         "formato": "0,4",
         "gradazione": "7,4",
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "Zona Cesarini - Toccalmatto ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6,5",
+        "formato": "0,4",
+        "gradazione": "6,6",
         "disponibile": true,
         "order": 0
       },
