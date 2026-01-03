@@ -6,6 +6,6 @@ descrizione: "Würstel formaggio affumicati, pancetta, patate forno, cavolo capp
 tags:
   - "Novità"
   - "Specialità"
-disponibile: false
+disponibile: true
 order: 1
 ---
