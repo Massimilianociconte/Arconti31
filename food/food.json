@@ -502,7 +502,11 @@
       "nome": "Porchettara",
       "category": "Hamburger Fassona e Street food",
       "prezzo": 15,
-      "descrizione": "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine",
+      "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
+      "allergeni": [
+        "Glutine",
+        "Uova"
+      ],
       "tags": [
         "Novità",
         "Specialità"
@@ -867,7 +871,11 @@
         "nome": "Porchettara",
         "category": "Hamburger Fassona e Street food",
         "prezzo": 15,
-        "descrizione": "Pane artigianale, porchetta Maremma Toscana, brie fuso, cipolla caramellata, salsa pepe nero, patatine",
+        "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
+        "allergeni": [
+          "Glutine",
+          "Uova"
+        ],
         "tags": [
           "Novità",
           "Specialità"
