@@ -1,10 +1,14 @@
 ---
 nome: "Pulled Pork"
-prezzo: "14,50"
-descrizione: "Pane hamburger con spalla maiale 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, patatine"
+category: "Hamburger Fassona e Street food"
+prezzo: "14"
+descrizione: "Pane hamburger farcito con spalla maiale cotta a bassa temperatura e sfilacciata 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, accompagnato da cestino di patatine fritte"
+allergeni:
+  - "Glutine"
+  - "Lattosio"
+  - "Uova"
 tags:
   - "Più venduto"
 disponibile: true
-category: "Hamburger Fassona e Street food"
 order: 5
 ---
