@@ -280,14 +280,15 @@
     },
     {
       "nome": "Stinco di maiale al forno",
-      "prezzo": "16,00",
-      "descrizione": "Cottura bassa temperatura, patate forno, cavolo viola",
+      "category": "OKTOBERFEST",
+      "prezzo": 16,
+      "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
       "tags": [
         "Novità",
-        "Di stagione"
+        "Specialità"
       ],
       "disponibile": true,
-      "category": "OKTOBERFEST",
       "order": 2
     },
     {
@@ -892,14 +893,15 @@
       },
       {
         "nome": "Stinco di maiale al forno",
-        "prezzo": "16,00",
-        "descrizione": "Cottura bassa temperatura, patate forno, cavolo viola",
+        "category": "OKTOBERFEST",
+        "prezzo": 16,
+        "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
         "tags": [
           "Novità",
-          "Di stagione"
+          "Specialità"
         ],
         "disponibile": true,
-        "category": "OKTOBERFEST",
         "order": 2
       }
     ],
