@@ -1,10 +1,10 @@
 ---
 nome: "Hamburger F3"
-prezzo: "14,00"
-descrizione: "Fassona 220gr con pancetta stufata, tuorlo, zucchine grigliate, salsa bbq, fontina, patatine"
+category: "Hamburger Fassona e Street food"
+prezzo: "14"
+descrizione: "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigliate, salsa bbq, fontina, accompagnato da  patatine fritte"
 tags:
   - "Più venduto"
 disponibile: true
-category: "Hamburger Fassona e Street food"
 order: 3
 ---
