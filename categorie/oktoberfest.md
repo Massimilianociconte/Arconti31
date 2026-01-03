@@ -1,5 +1,5 @@
 ---
-nome: "Griglieria e bavarese"
+nome: "Bavarese"
 slug: "oktoberfest"
 tipo_menu: "food"
 icona: "🥨"
