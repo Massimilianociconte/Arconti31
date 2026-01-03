@@ -225,7 +225,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 1
     },
     {
@@ -944,7 +944,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 1
       },
       {
