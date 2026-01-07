@@ -37,7 +37,7 @@
     {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
-      "prezzo": 15.5,
+      "prezzo": "15.5",
       "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da cestino di patatine fritte ",
       "allergeni": [
         "Glutine",
@@ -54,7 +54,7 @@
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
       "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa",
-      "prezzo": 15.5,
+      "prezzo": "15.5",
       "allergeni": [
         "Uova",
         "Glutine",
@@ -69,7 +69,7 @@
     {
       "nome": "Mezzo polletto grigliato",
       "category": "OKTOBERFEST",
-      "prezzo": 15,
+      "prezzo": "15",
       "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
       "allergeni": [
@@ -113,9 +113,24 @@
     {
       "nome": "Tagliere aperitivo",
       "category": "Aperitivo",
-      "prezzo": 10,
+      "prezzo": "10",
       "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
+      "disponibile": true,
+      "order": 0
+    },
+    {
+      "nome": "test",
+      "category": "Hamburger di bufala",
+      "prezzo": "11.11",
+      "descrizione": "test",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Vegetariano",
+        "Vegano"
+      ],
       "disponibile": true,
       "order": 0
     },
@@ -256,7 +271,7 @@
     {
       "nome": "Hamburger F3 bufala",
       "category": "Hamburger di bufala",
-      "prezzo": 16,
+      "prezzo": "16",
       "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
       "tags": [
         "Più venduto"
@@ -290,7 +305,7 @@
     {
       "nome": "Stinco di maiale al forno",
       "category": "OKTOBERFEST",
-      "prezzo": 16,
+      "prezzo": "16",
       "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
       "tags": [
@@ -338,7 +353,7 @@
     {
       "nome": "Hamburger F3",
       "category": "Hamburger Fassona e Street food",
-      "prezzo": 14,
+      "prezzo": "14",
       "descrizione": "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigliate, salsa bbq, fontina, accompagnato da  patatine fritte",
       "tags": [
         "Più venduto"
@@ -406,7 +421,7 @@
     {
       "nome": "Sex on the meat",
       "category": "Piatti Speciali",
-      "prezzo": 16,
+      "prezzo": "16",
       "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
       "tags": [
         "Novità",
@@ -501,7 +516,7 @@
     {
       "nome": "Porchettara",
       "category": "Hamburger Fassona e Street food",
-      "prezzo": 15,
+      "prezzo": "15",
       "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
       "allergeni": [
         "Glutine",
@@ -528,7 +543,7 @@
     {
       "nome": "Hamburger Autunnale",
       "category": "Hamburger Fassona e Street food",
-      "prezzo": 15,
+      "prezzo": "15",
       "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana grigliata, chips di zucca. Contorno: patatine fritte.",
       "allergeni": [
         "Glutine",
@@ -571,7 +586,7 @@
       {
         "nome": "Tagliere aperitivo",
         "category": "Aperitivo",
-        "prezzo": 10,
+        "prezzo": "10",
         "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
         "disponibile": true,
@@ -739,7 +754,7 @@
       {
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
-        "prezzo": 15.5,
+        "prezzo": "15.5",
         "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da cestino di patatine fritte ",
         "allergeni": [
           "Glutine",
@@ -756,7 +771,7 @@
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
         "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa",
-        "prezzo": 15.5,
+        "prezzo": "15.5",
         "allergeni": [
           "Uova",
           "Glutine",
@@ -764,6 +779,21 @@
         ],
         "tags": [
           "Novità"
+        ],
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "test",
+        "category": "Hamburger di bufala",
+        "prezzo": "11.11",
+        "descrizione": "test",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Vegetariano",
+          "Vegano"
         ],
         "disponibile": true,
         "order": 0
@@ -779,7 +809,7 @@
       {
         "nome": "Hamburger F3 bufala",
         "category": "Hamburger di bufala",
-        "prezzo": 16,
+        "prezzo": "16",
         "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
         "tags": [
           "Più venduto"
@@ -848,7 +878,7 @@
       {
         "nome": "Hamburger F3",
         "category": "Hamburger Fassona e Street food",
-        "prezzo": 14,
+        "prezzo": "14",
         "descrizione": "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigliate, salsa bbq, fontina, accompagnato da  patatine fritte",
         "tags": [
           "Più venduto"
@@ -886,7 +916,7 @@
       {
         "nome": "Porchettara",
         "category": "Hamburger Fassona e Street food",
-        "prezzo": 15,
+        "prezzo": "15",
         "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
         "allergeni": [
           "Glutine",
@@ -902,7 +932,7 @@
       {
         "nome": "Hamburger Autunnale",
         "category": "Hamburger Fassona e Street food",
-        "prezzo": 15,
+        "prezzo": "15",
         "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana grigliata, chips di zucca. Contorno: patatine fritte.",
         "allergeni": [
           "Glutine",
@@ -1086,7 +1116,7 @@
       {
         "nome": "Sex on the meat",
         "category": "Piatti Speciali",
-        "prezzo": 16,
+        "prezzo": "16",
         "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
         "tags": [
           "Novità",
@@ -1113,7 +1143,7 @@
       {
         "nome": "Mezzo polletto grigliato",
         "category": "OKTOBERFEST",
-        "prezzo": 15,
+        "prezzo": "15",
         "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
         "allergeni": [
@@ -1142,7 +1172,7 @@
       {
         "nome": "Stinco di maiale al forno",
         "category": "OKTOBERFEST",
-        "prezzo": 16,
+        "prezzo": "16",
         "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
         "tags": [
