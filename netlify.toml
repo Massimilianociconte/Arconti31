@@ -19,27 +19,28 @@
     Cache-Control = "public, max-age=0, must-revalidate"
     Access-Control-Allow-Origin = "*"
 
-# 3. Static Assets (Images, CSS, JS, Fonts): Aggressive Caching (1 Year).
-# These files should change names/fingerprints if content changes, or we rely on HTML updates.
+# 3. Static Assets (Images, CSS, JS, Fonts): Cache with revalidation.
+# Since files are NOT fingerprinted, we use stale-while-revalidate for fast loads + updates.
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=300, stale-while-revalidate=3600"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=300, stale-while-revalidate=3600"
 
 [[headers]]
   for = "/fonts/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
 
 # Security Headers (Best Practices)
 [[headers]]
