@@ -4,32 +4,64 @@
 const https = require('https');
 const crypto = require('crypto');
 
-exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+// ==========================================
+// TOKEN VERIFICATION (Same as save-data.js)
+// ==========================================
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
+const TOKEN_SECRET = ADMIN_PASSWORD;
+
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Content-Type': 'application/json'
+};
+
+function verifyToken(token) {
+  if (!token || typeof token !== 'string') return null;
+
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+
+  const [payloadBase64, signature] = parts;
+
+  // Verify signature
+  const expectedSignature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
+  if (signature !== expectedSignature) {
+    console.log('Token signature mismatch');
+    return null;
   }
 
-  // Verifica autenticazione
-  const { token, file } = JSON.parse(event.body);
-  
-  if (!token) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Non autenticato' }) };
-  }
-
-  // Validate token - supporto per email multiple separate da virgola
+  // Decode and check expiry
   try {
-    const decoded = Buffer.from(token, 'base64').toString('utf-8');
-    const [tokenEmail] = decoded.split(':');
-    
-    // Supporto per email multiple (es: "email1@gmail.com,email2@gmail.com")
-    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
-    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
-    
-    if (!validEmails.includes(tokenEmail.toLowerCase())) {
-      return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+    const payload = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf-8'));
+    if (payload.exp && payload.exp < Date.now()) {
+      console.log('Token expired');
+      return null;
     }
+    return payload.email;
   } catch (e) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+    console.log('Token parse error:', e.message);
+    return null;
+  }
+}
+
+exports.handler = async (event, context) => {
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers, body: 'Method Not Allowed' };
+  }
+
+  // Verifica autenticazione con HMAC
+  const { token, file } = JSON.parse(event.body);
+
+  const userEmail = verifyToken(token);
+  if (!userEmail) {
+    return { statusCode: 401, headers, body: JSON.stringify({ error: 'Token non valido' }) };
   }
 
   // Cloudinary credentials
@@ -38,9 +70,9 @@ exports.handler = async (event, context) => {
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
   if (!cloudName || !apiKey || !apiSecret) {
-    return { 
-      statusCode: 500, 
-      body: JSON.stringify({ error: 'Cloudinary non configurato. Aggiungi CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET su Netlify.' }) 
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Cloudinary non configurato. Aggiungi CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET su Netlify.' })
     };
   }
 
@@ -48,14 +80,14 @@ exports.handler = async (event, context) => {
     // Generate signature for signed upload
     const timestamp = Math.round(Date.now() / 1000);
     const folder = 'arconti31';
-    
+
     // Create signature string (parameters must be in alphabetical order)
     const signatureString = `folder=${folder}&timestamp=${timestamp}${apiSecret}`;
     const signature = crypto.createHash('sha1').update(signatureString).digest('hex');
 
     // Upload to Cloudinary using multipart form
     const boundary = '----CloudinaryBoundary' + Date.now();
-    
+
     const parts = [];
     parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="file"\r\n\r\n${file}\r\n`);
     parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="api_key"\r\n\r\n${apiKey}\r\n`);
@@ -63,7 +95,7 @@ exports.handler = async (event, context) => {
     parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="signature"\r\n\r\n${signature}\r\n`);
     parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="folder"\r\n\r\n${folder}\r\n`);
     parts.push(`--${boundary}--\r\n`);
-    
+
     const body = parts.join('');
 
     const response = await new Promise((resolve, reject) => {
@@ -96,8 +128,8 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          success: true, 
+        body: JSON.stringify({
+          success: true,
           url: response.body.secure_url,
           public_id: response.body.public_id
         })
