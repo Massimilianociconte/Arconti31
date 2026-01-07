@@ -120,21 +120,6 @@
       "order": 0
     },
     {
-      "nome": "test",
-      "category": "Hamburger di bufala",
-      "prezzo": "11.11",
-      "descrizione": "test",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Vegetariano",
-        "Vegano"
-      ],
-      "disponibile": true,
-      "order": 0
-    },
-    {
       "nome": "Tiramisù al bicchiere",
       "prezzo": "6,00",
       "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
@@ -779,21 +764,6 @@
         ],
         "tags": [
           "Novità"
-        ],
-        "disponibile": true,
-        "order": 0
-      },
-      {
-        "nome": "test",
-        "category": "Hamburger di bufala",
-        "prezzo": "11.11",
-        "descrizione": "test",
-        "allergeni": [
-          "Glutine"
-        ],
-        "tags": [
-          "Vegetariano",
-          "Vegano"
         ],
         "disponibile": true,
         "order": 0
