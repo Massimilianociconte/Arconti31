@@ -2,10 +2,77 @@
 // Usa GitHub API con un Personal Access Token (PAT) salvato come variabile d'ambiente
 // INCLUDE: Rigenerazione automatica JSON dopo ogni salvataggio
 
+const crypto = require('crypto');
+
+// ==========================================
+// CONFIGURAZIONE AUTENTICAZIONE
+// ==========================================
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
+const ADMIN_EMAILS = ADMIN_EMAIL.split(',').map(e => e.toLowerCase().trim()).filter(e => e);
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
+const TOKEN_SECRET = ADMIN_PASSWORD; // Use password as HMAC secret
+const TOKEN_EXPIRY_HOURS = 24 * 7; // 7 days
+
+// CORS Headers
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Content-Type': 'application/json'
+};
+
+// ==========================================
+// TOKEN GENERATION & VERIFICATION (HMAC-SHA256)
+// ==========================================
+function generateToken(email) {
+  const payload = {
+    email: email,
+    exp: Date.now() + (TOKEN_EXPIRY_HOURS * 60 * 60 * 1000)
+  };
+  const payloadBase64 = Buffer.from(JSON.stringify(payload)).toString('base64');
+  const signature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
+  return `${payloadBase64}.${signature}`;
+}
+
+function verifyToken(token) {
+  if (!token || typeof token !== 'string') return null;
+
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+
+  const [payloadBase64, signature] = parts;
+
+  // Verify signature
+  const expectedSignature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
+  if (signature !== expectedSignature) {
+    console.log('Token signature mismatch');
+    return null;
+  }
+
+  // Decode and check expiry
+  try {
+    const payload = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf-8'));
+    if (payload.exp && payload.exp < Date.now()) {
+      console.log('Token expired');
+      return null;
+    }
+    return payload.email;
+  } catch (e) {
+    console.log('Token parse error:', e.message);
+    return null;
+  }
+}
+
 exports.handler = async (event, context) => {
+
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
   // Solo POST
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, headers, body: 'Method Not Allowed' };
   }
 
   const body = JSON.parse(event.body);
