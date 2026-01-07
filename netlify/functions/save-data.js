@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
 
   const body = JSON.parse(event.body);
   const { email, password, action, collection, filename, data, sha, token, skipRegeneration } = body;
-  
+
   // Return Cloudinary config (no auth needed)
   if (action === 'get-cloudinary-config') {
     return {
@@ -22,93 +22,50 @@ exports.handler = async (event, context) => {
       })
     };
   }
-  
-  // Login action - validate email/password and return token
+
+  // ==========================================
+  // LOGIN
+  // ==========================================
   if (action === 'login') {
-    // Supporto per email multiple separate da virgola
-    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
-    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
-    const validPassword = process.env.ADMIN_PASSWORD || 'arconti31admin';
-    
+    if (!email || !password) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: 'Email e password richiesti' }) };
+    }
+
     const emailLower = email.toLowerCase().trim();
-    const isValidEmail = validEmails.includes(emailLower);
-    
-    if (!isValidEmail || password !== validPassword) {
-      return { 
-        statusCode: 401, 
-        body: JSON.stringify({ error: 'Email o password non valida' }) 
-      };
-    }
-    
-    // Generate a simple token (in production use JWT)
-    const newToken = Buffer.from(`${emailLower}:${Date.now()}`).toString('base64');
-    
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        success: true, 
-        token: newToken,
-        email: emailLower
-      })
-    };
-  }
-  
-  // Verify token action - for session restore
-  if (action === 'verify-token') {
-    if (!token) {
-      return { statusCode: 401, body: JSON.stringify({ error: 'Token mancante' }) };
-    }
-    
-    try {
-      const decoded = Buffer.from(token, 'base64').toString('utf-8');
-      const [tokenEmail, timestamp] = decoded.split(':');
-      
-      // Supporto per email multiple
-      const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
-      const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
-      
-      if (!validEmails.includes(tokenEmail.toLowerCase())) {
-        return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
-      }
-      
-      // Token expires after 7 days
-      const tokenAge = Date.now() - parseInt(timestamp);
-      const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
-      
-      if (tokenAge > maxAge) {
-        return { statusCode: 401, body: JSON.stringify({ error: 'Token scaduto' }) };
-      }
-      
+
+    if (ADMIN_EMAILS.includes(emailLower) && password === ADMIN_PASSWORD) {
+      const newToken = generateToken(emailLower);
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valid: true, email: tokenEmail })
+        headers,
+        body: JSON.stringify({
+          token: newToken,
+          user: { email: emailLower, role: 'admin' }
+        })
       };
-    } catch (e) {
-      return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+    } else {
+      return { statusCode: 401, headers, body: JSON.stringify({ error: 'Credenziali non valide' }) };
     }
   }
-  
-  // Validate token for other actions
-  if (!token) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Non autenticato' }) };
+
+  // ==========================================
+  // VERIFICA TOKEN (Middleware)
+  // ==========================================
+  const authHeader = event.headers.authorization || event.headers.Authorization;
+  const incomingToken = authHeader ? authHeader.replace('Bearer ', '') : token; // Use 'token' from body if no Bearer header
+  const userEmail = verifyToken(incomingToken);
+
+  if (!userEmail) {
+    return { statusCode: 401, headers, body: JSON.stringify({ error: 'Sessione scaduta o non valida' }) };
   }
-  
-  // Simple token validation (in production use JWT verification)
-  try {
-    const decoded = Buffer.from(token, 'base64').toString('utf-8');
-    const [tokenEmail] = decoded.split(':');
-    
-    // Supporto per email multiple
-    const validEmailsRaw = process.env.ADMIN_EMAIL || 'admin@arconti31.com';
-    const validEmails = validEmailsRaw.split(',').map(e => e.trim().toLowerCase());
-    
-    if (!validEmails.includes(tokenEmail.toLowerCase())) {
-      return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
-    }
-  } catch (e) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Token non valido' }) };
+
+  // If action is 'verify-token', and we reached here, it means the token is valid (checked by middleware)
+  if (action === 'verify-token') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ valid: true, email: userEmail })
+    };
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -116,52 +73,52 @@ exports.handler = async (event, context) => {
   const REPO_NAME = process.env.REPO_NAME || 'Arconti31';
 
   if (!GITHUB_TOKEN) {
-    return { 
-      statusCode: 500, 
-      body: JSON.stringify({ error: 'GITHUB_TOKEN non configurato nelle variabili ambiente Netlify' }) 
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'GITHUB_TOKEN non configurato nelle variabili ambiente Netlify' })
     };
   }
 
   try {
     const path = `${collection}/${filename}`;
-    
+
     if (action === 'save') {
       // Genera contenuto markdown
       const content = generateMarkdown(data);
       const base64Content = Buffer.from(content).toString('base64');
-      
+
       const body = {
         message: `CMS: Update ${path}`,
         content: base64Content,
         branch: 'main'
       };
-      
+
       if (sha) {
         body.sha = sha;
       }
-      
+
       const result = await githubRequest(
         'PUT',
         `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
         body,
         GITHUB_TOKEN
       );
-      
+
       // ✨ NUOVO: Rigenera i JSON dopo il salvataggio (se non saltato)
       if (!skipRegeneration) {
         console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
         await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
       }
-      
+
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ success: true, sha: result.content?.sha })
       };
-      
+
     } else if (action === 'delete') {
       console.log('Delete action - received sha:', sha, 'filename:', filename);
-      
+
       if (!sha) {
         return {
           statusCode: 400,
@@ -169,28 +126,28 @@ exports.handler = async (event, context) => {
           body: JSON.stringify({ error: 'SHA mancante per eliminazione' })
         };
       }
-      
+
       const deleteBody = {
         message: `CMS: Delete ${path}`,
         sha: sha,
         branch: 'main'
       };
-      
+
       console.log('Sending to GitHub:', JSON.stringify(deleteBody));
-      
+
       await githubRequest(
         'DELETE',
         `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
         deleteBody,
         GITHUB_TOKEN
       );
-      
+
       // ✨ NUOVO: Rigenera i JSON dopo l'eliminazione (se non saltato)
       if (!skipRegeneration) {
         console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
         await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
       }
-      
+
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
@@ -199,16 +156,16 @@ exports.handler = async (event, context) => {
     } else if (action === 'regenerate-json') {
       console.log(`📦 Rigenerazione JSON manuale per collection: ${collection}`);
       await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
-      
+
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ success: true })
       };
     }
-    
+
     return { statusCode: 400, body: JSON.stringify({ error: 'Azione non valida' }) };
-    
+
   } catch (error) {
     console.error('Error:', error);
     return {
@@ -225,7 +182,7 @@ exports.handler = async (event, context) => {
 
 function generateMarkdown(data) {
   let yaml = '---\n';
-  
+
   for (const [key, value] of Object.entries(data)) {
     if (Array.isArray(value)) {
       if (value.length > 0) {
@@ -246,7 +203,7 @@ function generateMarkdown(data) {
       yaml += `${key}: "${value}"\n`;
     }
   }
-  
+
   yaml += '---\n';
   return yaml;
 }
@@ -257,7 +214,7 @@ function generateMarkdown(data) {
 
 async function githubRequest(method, path, body, token) {
   const url = `https://api.github.com${path}`;
-  
+
   const options = {
     method: method,
     headers: {
@@ -267,17 +224,17 @@ async function githubRequest(method, path, body, token) {
       'Accept': 'application/vnd.github.v3+json'
     }
   };
-  
+
   // For DELETE and other methods that need a body
   if (body) {
     options.body = JSON.stringify(body);
   }
-  
+
   console.log(`GitHub ${method} ${path}`);
-  
+
   const response = await fetch(url, options);
   const data = await response.text();
-  
+
   if (response.ok) {
     return data ? JSON.parse(data) : {};
   } else {
@@ -322,7 +279,7 @@ async function regenerateJSON(collection, token, owner, repo) {
 
   try {
     let jsonContent;
-    
+
     if (config.type === 'food') {
       jsonContent = await generateFoodJSON(token, owner, repo);
     } else if (config.type === 'beers') {
@@ -348,12 +305,12 @@ async function readCollectionFiles(folder, token, owner, repo) {
   try {
     const url = `/repos/${owner}/${repo}/contents/${folder}`;
     const files = await githubRequest('GET', url, null, token);
-    
+
     if (!Array.isArray(files)) return [];
-    
+
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
     const items = [];
-    
+
     for (const file of mdFiles) {
       try {
         // Scarica il contenuto del file
@@ -367,7 +324,7 @@ async function readCollectionFiles(folder, token, owner, repo) {
         console.error(`Errore lettura ${file.name}:`, e.message);
       }
     }
-    
+
     return items;
   } catch (e) {
     console.error(`Errore lettura collection ${folder}:`, e.message);
@@ -379,12 +336,12 @@ async function readCollectionFiles(folder, token, owner, repo) {
 function parseMarkdownFrontmatter(content) {
   const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return null;
-  
+
   const data = {};
   let currentKey = null;
   let inArray = false;
   let arrayValues = [];
-  
+
   match[1].split('\n').forEach(line => {
     line = line.replace(/\r$/, '');
     if (line.startsWith('  - ')) {
@@ -411,7 +368,7 @@ function parseMarkdownFrontmatter(content) {
       }
     }
   });
-  
+
   if (currentKey && inArray) data[currentKey] = arrayValues;
   return data;
 }
@@ -424,20 +381,20 @@ async function generateFoodJSON(token, owner, repo) {
   // Carica anche le categorie per l'ordine
   const categories = await readCollectionFiles('categorie', token, owner, repo);
   const foodCategories = categories.filter(c => c.tipo_menu === 'food' && c.visibile !== false);
-  
+
   const foodItems = await readCollectionFiles('food', token, owner, repo);
-  
+
   // Ordina per order
   foodItems.sort((a, b) => (a.order || 0) - (b.order || 0));
-  
+
   // Raggruppa per categoria
   const foodByCategory = {};
-  
+
   // Inizializza categorie vuote
   foodCategories.forEach(cat => {
     foodByCategory[cat.nome] = [];
   });
-  
+
   // Aggiungi i piatti
   foodItems.forEach(item => {
     const category = item.category || 'Altro';
@@ -446,13 +403,13 @@ async function generateFoodJSON(token, owner, repo) {
     }
     foodByCategory[category].push(item);
   });
-  
+
   // Ordina categorie
   const categoryOrder = {};
   foodCategories.forEach((cat, idx) => {
     categoryOrder[cat.nome] = cat.order || idx;
   });
-  
+
   return {
     food: foodItems,
     foodByCategory,
@@ -462,10 +419,10 @@ async function generateFoodJSON(token, owner, repo) {
 
 async function generateBeersJSON(token, owner, repo) {
   const beers = await readCollectionFiles('beers', token, owner, repo);
-  
+
   // Ordina per order
   beers.sort((a, b) => (a.order || 0) - (b.order || 0));
-  
+
   // Raggruppa per sezione
   const beersBySection = {};
   beers.forEach(beer => {
@@ -475,7 +432,7 @@ async function generateBeersJSON(token, owner, repo) {
     }
     beersBySection[section].push(beer);
   });
-  
+
   return {
     beers,
     beersBySection
@@ -484,11 +441,11 @@ async function generateBeersJSON(token, owner, repo) {
 
 async function generateCategoriesJSON(token, owner, repo) {
   const categories = await readCollectionFiles('categorie', token, owner, repo);
-  
+
   // Ordina (NON FILTRARE VISIBILI: il CMS deve vederle tutte!)
   const allCategories = categories
     .sort((a, b) => (a.order || 0) - (b.order || 0));
-  
+
   return {
     categories: allCategories,
     foodCategories: allCategories.filter(c => c.tipo_menu === 'food'),
@@ -507,27 +464,27 @@ async function generateBeveragesJSON(token, owner, repo) {
     { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
     { name: 'Vini rossi', folder: 'vini-rossi' }
   ];
-  
+
   const beveragesByType = {};
   const allBeverages = [];
-  
+
   for (const category of beverageCategories) {
     const items = await readCollectionFiles(category.folder, token, owner, repo);
-    
+
     // Aggiungi il tipo a ogni item
     items.forEach(item => {
       item.tipo = category.name;
     });
-    
+
     // Ordina
     items.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
+
     if (items.length > 0) {
       beveragesByType[category.name] = items;
       allBeverages.push(...items);
     }
   }
-  
+
   return {
     beverages: allBeverages,
     beveragesByType
@@ -541,7 +498,7 @@ async function generateBeveragesJSON(token, owner, repo) {
 async function commitJSON(jsonPath, content, token, owner, repo) {
   const jsonString = JSON.stringify(content, null, 2);
   const base64Content = Buffer.from(jsonString).toString('base64');
-  
+
   // Prima prova a ottenere lo SHA del file esistente
   let existingSha = null;
   try {
@@ -551,16 +508,16 @@ async function commitJSON(jsonPath, content, token, owner, repo) {
     // File non esiste, verrà creato
     console.log(`📝 Creazione nuovo file: ${jsonPath}`);
   }
-  
+
   const body = {
     message: `CMS Auto: Rigenera ${jsonPath}`,
     content: base64Content,
     branch: 'main'
   };
-  
+
   if (existingSha) {
     body.sha = existingSha;
   }
-  
+
   await githubRequest('PUT', `/repos/${owner}/${repo}/contents/${jsonPath}`, body, token);
 }

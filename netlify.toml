@@ -50,6 +50,13 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Admin SPA fallback
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Main SPA fallback (usare solo se necessario, altrimenti meglio 404 per asset mancanti)
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags - Ottimizzati per "Pub" e "Arconti 31" -->
     <title>Arconti 31 - Il Miglior Pub a Gallarate | Hamburgeria & Birre Artigianali</title>
-    <meta name="description" content="Scopri Arconti 31: molto più di un pub a Gallarate. Hamburger gourmet, birre artigianali selezionate e cocktail d'autore in un'atmosfera unica e spettacolare. Prenota ora!">
-    <meta name="keywords" content="Arconti 31, pub Gallarate, hamburgeria gourmet, birreria artigianale, cocktail bar, aperitivo Gallarate, cena Gallarate, ristorante carne">
+    <meta name="description"
+        content="Scopri Arconti 31: molto più di un pub a Gallarate. Hamburger gourmet, birre artigianali selezionate e cocktail d'autore in un'atmosfera unica e spettacolare. Prenota ora!">
+    <meta name="keywords"
+        content="Arconti 31, pub Gallarate, hamburgeria gourmet, birreria artigianale, cocktail bar, aperitivo Gallarate, cena Gallarate, ristorante carne">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/png" href="images/loghi/logo_arconti31.png">
     <link rel="apple-touch-icon" href="images/loghi/logo_arconti31.png">
@@ -24,19 +27,22 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Performance: Preload LCP Image -->
     <link rel="preload" as="image" href="images/loghi/sfondo-homepage-arconti31.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
+
     <style>
         /* --- SPECTACULAR LANDING STYLES --- */
         :root {
             --bg-deep: #050505;
             --text-color: #f0f0f0;
-            --accent: #d4af37; /* Oro Lussuoso */
+            --accent: #d4af37;
+            /* Oro Lussuoso */
             --accent-glow: rgba(212, 175, 55, 0.6);
             --secondary: #ffffff;
             --font-main: 'Playfair Display', serif;
@@ -44,7 +50,11 @@
             --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background-color: var(--bg-deep);
@@ -54,20 +64,27 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s var(--transition); }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s var(--transition);
+        }
 
         /* --- NAVIGATION GLASS --- */
         nav {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
             background: rgba(5, 5, 5, 0.2);
-            backdrop-filter: blur(10px); /* Effetto Vetro */
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            /* Effetto Vetro */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s ease;
         }
 
@@ -78,23 +95,27 @@
             font-weight: 700;
             color: #fff;
             display: flex;
-            align-items: center; /* Assicura allineamento verticale centrale */
+            align-items: center;
+            /* Assicura allineamento verticale centrale */
             gap: 15px;
             animation: logoReveal 1s ease forwards;
             text-transform: uppercase;
-            line-height: 1; /* Importante per l'allineamento del testo */
+            line-height: 1;
+            /* Importante per l'allineamento del testo */
         }
 
         .logo img {
             height: 45px;
             width: auto;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-            display: block; /* Rimuove spazi fantasma sotto l'immagine */
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+            display: block;
+            /* Rimuove spazi fantasma sotto l'immagine */
         }
 
         /* --- CINEMATIC HERO SECTION --- */
         .hero {
-            height: 100vh; /* Fullscreen experience */
+            height: 100vh;
+            /* Fullscreen experience */
             min-height: 600px;
             position: relative;
             display: flex;
@@ -109,26 +130,33 @@
 
         @supports (height: 100svh) {
             .hero {
-                min-height: 100svh; /* Gestisce correttamente la viewport su Safari/iPad */
+                min-height: 100svh;
+                /* Gestisce correttamente la viewport su Safari/iPad */
             }
         }
 
         .hero-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('images/loghi/sfondo-homepage-arconti31.png'); 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/loghi/sfondo-homepage-arconti31.png');
             background-size: cover;
             background-position: center;
-            opacity: 0; 
+            opacity: 0;
             animation: heroReveal 1.5s ease-out forwards, kenBurns 25s infinite alternate ease-in-out;
             z-index: 0;
         }
-        
+
         .hero-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             /* Gradiente più trasparente al centro/alto per far brillare l'immagine */
-            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.6) 50%, #050505 100%);
+            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.3) 0%, rgba(5, 5, 5, 0.6) 50%, #050505 100%);
             z-index: 1;
         }
 
@@ -136,8 +164,11 @@
         .hero::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
             z-index: 1;
             pointer-events: none;
         }
@@ -148,7 +179,7 @@
             max-width: 900px;
             animation: fadeUp 1.2s ease forwards 0.3s;
             opacity: 0;
-            transform: translateY(40px); 
+            transform: translateY(40px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -168,7 +199,8 @@
         }
 
         /* Elegant lines aside subtitle */
-        .subtitle::before, .subtitle::after {
+        .subtitle::before,
+        .subtitle::after {
             content: '';
             display: inline-block;
             width: 40px;
@@ -185,10 +217,10 @@
             line-height: 1.05;
             margin-bottom: 2rem;
             color: white;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             letter-spacing: -1px;
         }
-        
+
         h1 span {
             font-style: italic;
             color: var(--accent);
@@ -202,7 +234,7 @@
             margin-bottom: 3.5rem;
             max-width: 650px;
             font-weight: 300;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         /* --- SPECTACULAR BUTTONS --- */
@@ -219,7 +251,8 @@
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-radius: 50px; /* Rounded */
+            border-radius: 50px;
+            /* Rounded */
             font-weight: 600;
             cursor: pointer;
             transition: all 0.4s var(--transition);
@@ -242,9 +275,11 @@
         .btn-primary::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
             transition: 0.5s;
         }
 
@@ -252,9 +287,9 @@
             background-color: #fff;
             border-color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
-        
+
         .btn-primary:hover::before {
             left: 100%;
         }
@@ -263,14 +298,14 @@
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(4px);
         }
 
         .btn-secondary:hover {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             transform: translateY(-3px);
         }
 
@@ -299,7 +334,7 @@
         .golocal-icon {
             height: 24px;
             width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
         .golocal-subtext {
@@ -319,25 +354,28 @@
         .webnovis-link {
             display: inline-block;
             /* margin-top rimossa per desktop per allineamento */
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: rgba(255, 255, 255, 0.7); 
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
             letter-spacing: 2px;
             text-decoration: none;
-            border: 1px solid rgba(212, 175, 55, 0.3); 
-            padding: 10px 20px; 
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 10px 20px;
             transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.3); 
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .webnovis-link:hover {
-            color: #000000 !important; /* Testo nero FORZATO */
-            background: var(--accent); /* Sfondo oro pieno */
+            color: #000000 !important;
+            /* Testo nero FORZATO */
+            background: var(--accent);
+            /* Sfondo oro pieno */
             border-color: var(--accent);
             box-shadow: 0 0 20px var(--accent-glow);
             transform: translateY(-2px);
-            font-weight: 700; /* Renderlo ancora più leggibile */
+            font-weight: 700;
+            /* Renderlo ancora più leggibile */
         }
 
         /* --- STORIA SECTION --- */
@@ -373,107 +411,188 @@
         }
 
         @media (max-width: 768px) {
-            .storia-section { padding: 3rem 1.5rem; }
-            .storia-section h2 { font-size: 1.8rem; }
-            .storia-section p { font-size: 1rem; }
-            .storia-section .hashtag { font-size: 1.4rem; }
+            .storia-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .storia-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .storia-section p {
+                font-size: 1rem;
+            }
+
+            .storia-section .hashtag {
+                font-size: 1.4rem;
+            }
         }
 
         /* --- FOOTER --- */
         footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding: 2rem;
-            text-align: center;
+            background: #050505;
+            padding: 5rem 2rem 2rem;
+            position: relative;
             z-index: 10;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.8rem;
-            background: linear-gradient(to top, #050505, transparent);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .footer-links {
+        .footer-layout {
             display: flex;
-            justify-content: center;
-            align-items: center; /* Assicura allineamento verticale perfetto */
-            gap: 3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.85rem;
-            flex-wrap: nowrap; /* Forza tutto su una riga desktop */
-            width: 100%; /* Usa tutta la larghezza */
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
-        
-        .footer-links a {
+
+        .footer-contact-info {
+            display: flex;
+            gap: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .footer-contact-info a {
             display: flex;
             align-items: center;
-            gap: 8px;
-            position: relative;
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 1px;
-            background: var(--accent);
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
             transition: 0.3s;
         }
-        
-        .footer-links a:hover {
+
+        .footer-contact-info a:hover {
             color: var(--accent);
         }
 
-        .footer-links a:hover::after {
-            width: 100%;
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 1.5rem;
+        }
+
+        .webnovis-link {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .webnovis-link:hover {
+            color: #000 !important;
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .admin-link {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-left: 20px;
+        }
+
+        .admin-link:hover {
+            color: var(--accent);
         }
 
         /* --- KEYFRAMES --- */
         @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes heroReveal {
-            0% { opacity: 0; filter: blur(20px) brightness(0); transform: scale(1.1); }
-            100% { opacity: 0.75; filter: blur(0) brightness(0.9); transform: scale(1); }
+            0% {
+                opacity: 0;
+                filter: blur(20px) brightness(0);
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 0.75;
+                filter: blur(0) brightness(0.9);
+                transform: scale(1);
+            }
         }
 
         @keyframes kenBurns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         @keyframes logoReveal {
-            0% { opacity: 0; transform: translateY(-30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            nav { 
-                padding: 1.2rem; 
+            nav {
+                padding: 1.2rem;
                 justify-content: center;
-                background: rgba(0,0,0,0.8);
-            }
-            
-            .logo { font-size: 1.2rem; }
-            
-            h1 { 
-                font-size: 3.2rem; 
-                margin-bottom: 1.5rem; 
-            }
-            
-            .subtitle::before, .subtitle::after { width: 20px; }
-            
-            .hero { 
-                padding-top: 110px; 
-                height: auto; 
-                min-height: auto; /* Altezza naturale */
-                padding-bottom: 30px; /* Ridotto drasticamente lo spazio sotto il bottone */
+                background: rgba(0, 0, 0, 0.8);
             }
 
-            .subtitle { font-size: 0.8rem; letter-spacing: 3px; }
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .subtitle::before,
+            .subtitle::after {
+                width: 20px;
+            }
+
+            .hero {
+                padding-top: 110px;
+                height: auto;
+                min-height: auto;
+                /* Altezza naturale */
+                padding-bottom: 30px;
+                /* Ridotto drasticamente lo spazio sotto il bottone */
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
 
             p.intro-text {
                 font-size: 1.1rem;
@@ -481,30 +600,45 @@
                 padding: 0 15px;
             }
 
-            .cta-container { 
-                flex-direction: column; 
-                gap: 1rem; 
+            .cta-container {
+                flex-direction: column;
+                gap: 1rem;
                 width: 100%;
                 max-width: 350px;
             }
-            
-            .btn { width: 100%; padding: 1rem; }
+
+            .btn {
+                width: 100%;
+                padding: 1rem;
+            }
 
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
                 align-items: center;
             }
-            
-            footer {
-                position: relative; 
-                background: #050505; 
-                padding: 1.5rem 1rem; /* Ridotto il padding verticale del footer */
-                margin-top: 0;
+
+            .footer-layout {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .footer-contact-info {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: center;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-bottom: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -519,15 +653,15 @@
     <header class="hero">
         <div class="hero-bg" role="img" aria-label="Atmosfera interna pub Arconti 31"></div>
         <div class="hero-overlay"></div>
-        
+
         <div class="hero-content">
             <span class="subtitle">Est. 2009 &bull; Gallarate</span>
             <h1>In Birreria Come a <span>Casa Tua</span>.</h1>
             <p class="intro-text">
-                Un luogo dove il gusto incontra lo stile. Hamburger gourmet, birre ricercate e cocktail indimenticabili. 
+                Un luogo dove il gusto incontra lo stile. Hamburger gourmet, birre ricercate e cocktail indimenticabili.
                 Vivi l'esperienza <strong>Arconti 31</strong>.
             </p>
-            
+
             <div class="cta-container">
                 <!-- Primary Action: Menu -->
                 <a href="menu.html" class="btn btn-primary">
@@ -549,37 +683,51 @@
     <section class="storia-section">
         <h2>La Nostra Storia</h2>
         <p>
-            Il Pub Arconti 31 nasce da un'idea dei fratelli Daniele e Valerio il 5 Marzo 2009, all'interno di uno dei locali storici di Gallarate esistente dal 1958. La passione e la determinazione coinciliati ad un ambiente caldo e accogliente, fanno della semplicità il suo punto di forza.
+            Il Pub Arconti 31 nasce da un'idea dei fratelli Daniele e Valerio il 5 Marzo 2009, all'interno di uno dei
+            locali storici di Gallarate esistente dal 1958. La passione e la determinazione coinciliati ad un ambiente
+            caldo e accogliente, fanno della semplicità il suo punto di forza.
         </p>
         <p style="margin-top: 1.5rem;">
-            Lascia fuori i cattivi pensieri: qui troverai solo voglia di socializzare senza pregiudizio alcuno e di farti sentire a casa tua... e chissà che magari non nasca un'amicizia!
+            Lascia fuori i cattivi pensieri: qui troverai solo voglia di socializzare senza pregiudizio alcuno e di
+            farti sentire a casa tua... e chissà che magari non nasca un'amicizia!
         </p>
     </section>
 
-    <footer></footer>
-        <div class="footer-links">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Vittorio+Arconti,+31,+21013+Gallarate+VA" target="_blank" rel="noopener noreferrer">
-                📍 Via Vittorio Arconti 31, Gallarate
-            </a>
-            <a href="tel:03311830845">
-                📞 0331 183 0845
-            </a>
-            <a href="https://www.webnovis.com" target="_blank" class="webnovis-link">Creato da Web Novis</a>
+    <footer>
+        <div class="footer-layout">
+            <div class="footer-contact-info">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Vittorio+Arconti+31+Gallarate"
+                    target="_blank">
+                    <span>📍 VIA VITTORIO ARCONTI 31, GALLARATE</span>
+                </a>
+                <a href="tel:03311830845">
+                    <span>📞 0331 183 0845</span>
+                </a>
+            </div>
+            <div class="footer-cta">
+                <a href="https://www.webnovis.com" target="_blank" class="webnovis-link">CREATO DA WEB NOVIS</a>
+            </div>
         </div>
-        <p>&copy; 2025 Arconti 31. Pura Passione, Puro Gusto.</p>
+        <div class="footer-bottom">
+            <p>
+                &copy; 2025 Arconti 31. Pura Passione, Puro Gusto.
+                <a href="admin/index.html" class="admin-link" rel="nofollow">Area Riservata</a>
+            </p>
+        </div>
     </footer>
 
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
             });
-          }
-        });
-      }
+        }
     </script>
 
 </body>
+
 </html>
