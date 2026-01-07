@@ -1,12 +1,12 @@
 ---
 nome: "Sex on the meat"
-prezzo: "16,00"
-descrizione: "Pane sesamo, picanha fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, patatine stick"
+category: "Piatti Speciali"
+prezzo: "16"
+descrizione: "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno"
 tags:
-  - "Più venduto"
   - "Novità"
+  - "Più venduto"
   - "Specialità"
 disponibile: true
-category: "Piatti Speciali"
 order: 4
 ---
