@@ -917,50 +917,7 @@
       }
     ],
     "Menù Partita": [],
-    "OKTOBERFEST": [
-      {
-        "nome": "Mezzo polletto grigliato",
-        "category": "OKTOBERFEST",
-        "prezzo": 15,
-        "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
-        "allergeni": [
-          "Glutine",
-          "Uova"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0
-      },
-      {
-        "nome": "Tris di würstel Brema bavaresi ripieni",
-        "category": "OKTOBERFEST",
-        "prezzo": "15,00",
-        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 1
-      },
-      {
-        "nome": "Stinco di maiale al forno",
-        "category": "OKTOBERFEST",
-        "prezzo": 16,
-        "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 2
-      }
-    ],
+    "Bavarese": [],
     "Panini": [
       {
         "nome": "Arconti 31",
@@ -1152,6 +1109,50 @@
         "category": "Piatti Speciali",
         "order": 5
       }
+    ],
+    "OKTOBERFEST": [
+      {
+        "nome": "Mezzo polletto grigliato",
+        "category": "OKTOBERFEST",
+        "prezzo": 15,
+        "descrizione": "Polletto cottura bassa temperatura, patate al forno, cavolo viola",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "Tris di würstel Brema bavaresi ripieni",
+        "category": "OKTOBERFEST",
+        "prezzo": "15,00",
+        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 1
+      },
+      {
+        "nome": "Stinco di maiale al forno",
+        "category": "OKTOBERFEST",
+        "prezzo": 16,
+        "descrizione": "Stinco di maiale a cottura nel forno a  bassa temperatura, patate al forno, cavolo viola",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468508/arconti31/ka2hd5i1cakvbxudqhca.jpg",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 2
+      }
     ]
   },
   "categoryOrder": {
@@ -1162,7 +1163,7 @@
     "Hamburger di bufala": 1,
     "Hamburger Fassona e Street food": 2,
     "Menù Partita": 6,
-    "OKTOBERFEST": 3,
+    "Bavarese": 3,
     "Panini": 4,
     "Piadine": 7,
     "Piatti Speciali": 6
