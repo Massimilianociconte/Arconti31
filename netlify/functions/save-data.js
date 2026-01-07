@@ -236,6 +236,10 @@ function generateMarkdown(data) {
       }
     } else if (typeof value === 'boolean') {
       yaml += `${key}: ${value}\n`;
+    } else if (key === 'prezzo') {
+      // IMPORTANTE: Sempre salvare il prezzo come stringa tra virgolette
+      // per preservare i decimali (es: "14.50" invece di 14.5)
+      yaml += `${key}: "${value}"\n`;
     } else if (typeof value === 'number') {
       yaml += `${key}: ${value}\n`;
     } else if (value) {
@@ -400,7 +404,9 @@ function parseMarkdownFrontmatter(content) {
         let parsed = value.replace(/^["']|["']$/g, '');
         if (parsed === 'true') parsed = true;
         else if (parsed === 'false') parsed = false;
-        else if (!isNaN(parsed) && parsed !== '') parsed = Number(parsed);
+        // IMPORTANTE: Non convertire 'prezzo' in Number per preservare i decimali
+        // (es: "14.50" rimarrebbe "14.50" come stringa invece di 14.5)
+        else if (currentKey !== 'prezzo' && !isNaN(parsed) && parsed !== '') parsed = Number(parsed);
         data[currentKey] = parsed;
       }
     }

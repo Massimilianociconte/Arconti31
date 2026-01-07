@@ -52,7 +52,12 @@ function processCollection(dirPath, itemType) {
           const item = yaml.load(frontmatter);
           
           // Converti i tipi
-          if (item.prezzo) item.prezzo = parseFloat(item.prezzo);
+          // IMPORTANTE: Non usare parseFloat su prezzo! Tronca i decimali con virgola italiana (es: "9,50" diventa 9)
+          // Mantieni il prezzo come stringa per preservare la formattazione originale
+          if (item.prezzo !== undefined && item.prezzo !== null) {
+            // Normalizza: converti in stringa se è numero, mantieni stringa se già stringa
+            item.prezzo = String(item.prezzo);
+          }
           if (item.disponibile !== undefined) item.disponibile = item.disponibile === true || item.disponibile === 'true';
           if (item.order) item.order = parseInt(item.order);
           
