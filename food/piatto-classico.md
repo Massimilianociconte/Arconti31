@@ -1,8 +1,8 @@
 ---
 nome: "Piatto classico"
-prezzo: "10,00"
-descrizione: "Bufala 200gr grigliato, balsamico, salsa pomodorini gialli, patatine"
-disponibile: true
 category: "Piatti Speciali"
+prezzo: "10,00"
+descrizione: "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno"
+disponibile: true
 order: 0
 ---
