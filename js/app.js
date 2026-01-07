@@ -69,6 +69,37 @@ let beveragesData = [];
 let currentView = 'home';
 
 // ========================================
+// FORMATTAZIONE PREZZI (Locale IT)
+// ========================================
+
+/**
+ * Formatta un prezzo con localizzazione italiana (virgola come separatore decimale)
+ * @param {string|number} price - Il prezzo da formattare (accetta sia punto che virgola)
+ * @returns {string} - Prezzo formattato (es: "14,50")
+ */
+function formatPrice(price) {
+  if (price === undefined || price === null || price === '') return '0,00';
+  
+  // Converti in stringa e normalizza: sostituisci virgola con punto per parsing
+  let normalized = String(price).replace(',', '.');
+  
+  // Rimuovi eventuali caratteri non numerici (tranne punto e segno)
+  normalized = normalized.replace(/[^\d.-]/g, '');
+  
+  // Parsa come float
+  const numValue = parseFloat(normalized);
+  
+  // Se non è un numero valido, ritorna '0,00'
+  if (isNaN(numValue)) return '0,00';
+  
+  // Usa Intl.NumberFormat per formattazione italiana
+  return new Intl.NumberFormat('it-IT', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(numValue);
+}
+
+// ========================================
 // CARICAMENTO DATI DA JSON STATICI
 // ========================================
 
@@ -377,7 +408,7 @@ function renderCard(item, index, type) {
               <h3 class="beer-name">${item.nome}</h3>
             </div>
           </div>
-          <div class="price-tag">€${item.prezzo}</div>
+          <div class="price-tag">€${formatPrice(item.prezzo)}</div>
         </div>
         ${description}
         <div class="card-footer">
@@ -452,7 +483,7 @@ function openModal(itemName, type) {
     <div class="modal-content-scroll">
       <div class="modal-header-row">
         <h2 class="modal-title">${item.nome}</h2>
-        <span class="modal-price-big">€${item.prezzo}</span>
+        <span class="modal-price-big">€${formatPrice(item.prezzo)}</span>
       </div>
       ${avatarHtml}
       <div class="modal-desc-text">

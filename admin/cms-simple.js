@@ -185,6 +185,64 @@ let state = {
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 
+// ========================================
+// GESTIONE PREZZI (Sanitizzazione & Formattazione)
+// ========================================
+
+/**
+ * Sanitizza l'input del prezzo: accetta sia punto che virgola come separatore decimale
+ * Normalizza al formato con punto per salvataggio (es: "14,50" o "14.50" -> "14.50")
+ * @param {string} input - L'input dell'utente
+ * @returns {string} - Prezzo normalizzato con punto (es: "14.50")
+ */
+function sanitizePrice(input) {
+  if (!input) return '';
+  
+  // Converti in stringa e rimuovi spazi
+  let value = String(input).trim();
+  
+  // Rimuovi eventuali simboli di valuta
+  value = value.replace(/[€$]/g, '').trim();
+  
+  // Gestione formato italiano: 1.234,50 -> 1234.50
+  // Se contiene sia punto che virgola, il punto è separatore migliaia
+  if (value.includes('.') && value.includes(',')) {
+    value = value.replace(/\./g, ''); // Rimuovi punti (migliaia)
+    value = value.replace(',', '.'); // Virgola diventa punto decimale
+  } else {
+    // Altrimenti sostituisci semplicemente virgola con punto
+    value = value.replace(',', '.');
+  }
+  
+  // Rimuovi caratteri non validi
+  value = value.replace(/[^\d.]/g, '');
+  
+  // Parsa e riformatta per garantire max 2 decimali
+  const num = parseFloat(value);
+  if (isNaN(num)) return '';
+  
+  // Ritorna con sempre 2 decimali
+  return num.toFixed(2);
+}
+
+/**
+ * Formatta un prezzo per la visualizzazione nel CMS (formato italiano)
+ * @param {string|number} price - Il prezzo
+ * @returns {string} - Prezzo formattato (es: "14,50")
+ */
+function formatPriceDisplay(price) {
+  if (price === undefined || price === null || price === '') return '0,00';
+  
+  let normalized = String(price).replace(',', '.');
+  const num = parseFloat(normalized);
+  if (isNaN(num)) return '0,00';
+  
+  return new Intl.NumberFormat('it-IT', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(num);
+}
+
 // Init
 document.addEventListener('DOMContentLoaded', init);
 
@@ -991,7 +1049,7 @@ function renderItemCard(item, showCheckbox = false) {
   const isCategory = state.currentCollection === 'categorie';
   const metaHtml = isCategory
     ? `<span class="item-icon">${item.icona || '📦'}</span>`
-    : `<span class="item-price">€${item.prezzo || '0'}</span>`;
+    : `<span class="item-price">€${formatPriceDisplay(item.prezzo)}</span>`;
 
   // Checkbox for bulk selection (categories only)
   const checkboxHtml = showCheckbox
@@ -1151,7 +1209,7 @@ function showSearchSuggestions() {
       : '<div class="suggestion-thumb-placeholder">📷</div>';
 
     const cat = item.category || item.sezione || item.tipo_menu || '';
-    const price = item.prezzo ? `€${item.prezzo}` : '';
+    const price = item.prezzo ? `€${formatPriceDisplay(item.prezzo)}` : '';
 
     return `<div class="suggestion-item" data-filename="${item.filename}">
       ${thumbHtml}
@@ -1697,6 +1755,9 @@ async function saveItem() {
       data[field.name] = [...container.querySelectorAll('.tag-option.selected')].map(el => el.dataset.value);
     } else if (field.type === 'number') {
       data[field.name] = parseInt(formData.get(field.name)) || 0;
+    } else if (field.name === 'prezzo') {
+      // Sanitizza il prezzo: accetta sia punto che virgola, normalizza con punto
+      data[field.name] = sanitizePrice(formData.get(field.name));
     } else if (field.type === 'image') {
       // Priorità: URL input > hidden input (da upload Cloudinary)
       const urlInput = form.querySelector(`[name="${field.name}_url"]`);
@@ -2155,7 +2216,7 @@ async function performGlobalSearch(query) {
       ? `<img src="${thumb}" class="global-result-thumb" alt="" loading="lazy" onerror="this.style.display='none'">`
       : '<div class="global-result-placeholder">📷</div>';
 
-    const price = item.prezzo ? `€${item.prezzo}` : '';
+    const price = item.prezzo ? `€${formatPriceDisplay(item.prezzo)}` : '';
 
     div.innerHTML = `
       ${thumbHtml}
