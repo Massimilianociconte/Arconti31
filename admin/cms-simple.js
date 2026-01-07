@@ -197,13 +197,13 @@ const $$ = sel => document.querySelectorAll(sel);
  */
 function sanitizePrice(input) {
   if (!input) return '';
-  
+
   // Converti in stringa e rimuovi spazi
   let value = String(input).trim();
-  
+
   // Rimuovi eventuali simboli di valuta
   value = value.replace(/[€$]/g, '').trim();
-  
+
   // Gestione formato italiano: 1.234,50 -> 1234.50
   // Se contiene sia punto che virgola, il punto è separatore migliaia
   if (value.includes('.') && value.includes(',')) {
@@ -213,14 +213,14 @@ function sanitizePrice(input) {
     // Altrimenti sostituisci semplicemente virgola con punto
     value = value.replace(',', '.');
   }
-  
+
   // Rimuovi caratteri non validi
   value = value.replace(/[^\d.]/g, '');
-  
+
   // Parsa e riformatta per garantire max 2 decimali
   const num = parseFloat(value);
   if (isNaN(num)) return '';
-  
+
   // Ritorna con sempre 2 decimali
   return num.toFixed(2);
 }
@@ -232,11 +232,11 @@ function sanitizePrice(input) {
  */
 function formatPriceDisplay(price) {
   if (price === undefined || price === null || price === '') return '0,00';
-  
+
   let normalized = String(price).replace(',', '.');
   const num = parseFloat(normalized);
   if (isNaN(num)) return '0,00';
-  
+
   return new Intl.NumberFormat('it-IT', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
@@ -295,8 +295,14 @@ async function init() {
         loadAllData();
         toast('Bentornato!', 'success');
         return;
+      } else {
+        // Token expired or invalid - clear session silently
+        console.log('🔄 Sessione scaduta, richiesto nuovo login');
+        localStorage.removeItem('cms_session');
       }
     } catch (e) {
+      // Network error or parse error - clear session
+      console.log('🔄 Errore verifica sessione, richiesto nuovo login');
       localStorage.removeItem('cms_session');
     }
   }
@@ -527,14 +533,14 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     if (window.SmartCache && !forceApi) {
       const cachedItems = await window.SmartCache.getAll('items');
       const collectionItems = cachedItems.filter(i => i._collection === collectionName);
-      
+
       if (collectionItems.length > 0) {
         console.log(`⚡ Loaded ${collectionItems.length} items from SmartCache`);
         state.items = collectionItems.sort((a, b) => (a.order || 0) - (b.order || 0));
         renderItems();
         if (!silent) hideLoading();
         // Continue to fetch fresh data in background...
-        silent = true; 
+        silent = true;
       }
     }
 
@@ -543,7 +549,7 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     if (forceApi) {
       requestBody.mode = 'api';
     }
-    
+
     const res = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -560,19 +566,19 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
         : parseMarkdown(item.content, item.filename, item.sha)
     );
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
-    
+
     // Update SmartCache with fresh data
     if (window.SmartCache) {
       // Sync remote items (which might be stale) with cache
       // If cache has fresher local writes, they will be preserved
       await window.SmartCache.syncCollection(state.items, collectionName, forceApi ? 'live' : 'static');
-      
+
       // Now get the authoritative list from cache
       const cachedItems = await window.SmartCache.getAll('items');
       state.items = cachedItems
         .filter(i => i._collection === collectionName && !i._deleted)
         .sort((a, b) => (a.order || 0) - (b.order || 0));
-        
+
       console.log('🔄 SmartCache synced & loaded. Items:', state.items.length);
     }
 
@@ -1398,13 +1404,13 @@ async function bulkSetVisibility(visible) {
         // This prevents internal SmartCache fields (_collection, _hash, etc.) from polluting the YAML
         const validFields = COLLECTIONS['categorie'].fields.map(f => f.name);
         const updatedData = {};
-        
+
         validFields.forEach(field => {
           if (item[field] !== undefined) {
             updatedData[field] = item[field];
           }
         });
-        
+
         // Explicitly set visibility
         updatedData.visibile = visible;
 
@@ -1477,7 +1483,7 @@ async function bulkSetVisibility(visible) {
 
   // Clear selection
   clearBulkSelection();
-  
+
   // Notify subscribers to refresh UI from cache
   if (window.SmartCache) {
     window.SmartCache.notifySubscribers({
@@ -1485,7 +1491,7 @@ async function bulkSetVisibility(visible) {
       updated: [] // Just trigger refresh
     });
   }
-  
+
   // DO NOT reload from server immediately
   // await loadItems(state.currentCollection, true, true);
 }
@@ -1665,7 +1671,7 @@ async function handleImageUpload(e, fieldName) {
     console.error('Container non trovato per:', fieldName);
     return;
   }
-  
+
   const preview = container.querySelector('.image-preview');
   const hiddenInput = container.querySelector(`input[type="hidden"][name="${fieldName}"]`);
   const urlInput = container.querySelector(`input[name="${fieldName}_url"]`);
@@ -1703,7 +1709,7 @@ async function handleImageUpload(e, fieldName) {
       if (res.ok && responseData.url) {
         const imageUrl = responseData.url;
         console.log('✅ URL Cloudinary ricevuto:', imageUrl);
-        
+
         // Aggiorna ENTRAMBI gli input
         if (hiddenInput) {
           hiddenInput.value = imageUrl;
@@ -1713,7 +1719,7 @@ async function handleImageUpload(e, fieldName) {
           urlInput.value = imageUrl;
           console.log('URL input aggiornato:', urlInput.value);
         }
-        
+
         // Aggiorna preview con URL Cloudinary
         preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
         toast('✅ Immagine caricata!', 'success');
@@ -1786,18 +1792,18 @@ async function saveItem() {
     let sha = null;
     if (!state.isNew && state.currentItem) {
       console.log('Recupero SHA per:', filename, 'in folder:', collection.folder);
-      
+
       // IMPORTANTE: usa mode=api per forzare GitHub API e ottenere SHA
       const freshRes = await fetch('/.netlify/functions/read-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ folder: collection.folder, mode: 'api' })
       });
-      
+
       if (freshRes.ok) {
         const freshData = await freshRes.json();
         console.log('Source:', freshData.source, '- Items trovati:', freshData.items?.length);
-        
+
         const freshItem = freshData.items?.find(i => i.filename === filename);
         if (freshItem && freshItem.sha) {
           sha = freshItem.sha;
@@ -1811,7 +1817,7 @@ async function saveItem() {
         sha = state.currentItem.sha;
         console.log('Fetch fallito, uso SHA in memoria:', sha);
       }
-      
+
       if (!sha) {
         throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
       }
@@ -1841,24 +1847,24 @@ async function saveItem() {
     // significa che c'è un conflitto di nomi.
     if (!res.ok && state.isNew && result.error && (result.error.includes('sha') || result.error.includes('422'))) {
       console.log('⚠️ Collisione rilevata per', filename, '- Tento con suffisso...');
-      
+
       let counter = 1;
       const originalSlug = filename.replace('.md', '');
-      
+
       // Riprova fino a 5 volte con suffissi incrementali
       while (counter <= 10) {
         const newFilename = `${originalSlug}-${counter}.md`;
         console.log('🔄 Riprovo salvataggio con:', newFilename);
-        
+
         res = await performSave(newFilename);
         result = await res.json();
-        
+
         if (res.ok) {
           console.log('✅ Salvataggio riuscito con:', newFilename);
           filename = newFilename; // Aggiorna il filename per la cache
           break;
         }
-        
+
         // Se l'errore non è di collisione (es. 500 o altro), fermati
         if (!result.error || (!result.error.includes('sha') && !result.error.includes('422'))) {
           break;
@@ -1967,7 +1973,7 @@ async function deleteItem() {
         _deleted: true,
         _writeTime: Date.now()
       });
-      
+
       // Notify other tabs
       window.SmartCache.notifySubscribers({
         collection: state.currentCollection,
