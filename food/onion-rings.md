@@ -1,8 +1,8 @@
 ---
 nome: "Onion rings"
-prezzo: "5,50"
+category: "Fritti"
+prezzo: "6"
 descrizione: "Anelli cipolla fritti"
 disponibile: true
-category: "Fritti"
 order: 4
 ---
