@@ -413,7 +413,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 4
     },
     {
@@ -1093,7 +1093,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 4
       },
       {
