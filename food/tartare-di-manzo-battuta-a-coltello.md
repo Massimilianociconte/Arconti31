@@ -1,11 +1,11 @@
 ---
 nome: "Tartare di manzo battuta a coltello"
+category: "Piatti Speciali"
 prezzo: "18,50"
 descrizione: "Manzo 250gr, olio, senape, verdure stagione"
 tags:
-  - "Specialità"
   - "Più venduto"
-disponibile: true
-category: "Piatti Speciali"
+  - "Specialità"
+disponibile: false
 order: 2
 ---
