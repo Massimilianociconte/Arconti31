@@ -93,13 +93,13 @@
     },
     {
       "nome": "Picanha",
+      "category": "Piatti Speciali",
       "prezzo": "19,50",
       "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
       "tags": [
         "Specialità"
       ],
       "disponibile": true,
-      "category": "Griglieria",
       "order": 0
     },
     {
@@ -716,17 +716,6 @@
     ],
     "Griglieria": [
       {
-        "nome": "Picanha",
-        "prezzo": "19,50",
-        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
-        "tags": [
-          "Specialità"
-        ],
-        "disponibile": true,
-        "category": "Griglieria",
-        "order": 0
-      },
-      {
         "nome": "Tagliata di manzo",
         "category": "Griglieria",
         "prezzo": "19,50",
@@ -1060,6 +1049,17 @@
         "category": "Piatti Speciali",
         "prezzo": "10,00",
         "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "Picanha",
+        "category": "Piatti Speciali",
+        "prezzo": "19,50",
+        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
+        "tags": [
+          "Specialità"
+        ],
         "disponibile": true,
         "order": 0
       },
