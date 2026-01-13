@@ -6,5 +6,5 @@ descrizione: "Cuore morbido cioccolato, toping, zucchero velo, panna montata"
 tags:
   - "Più venduto"
 disponibile: true
-order: 33
+order: 34
 ---
