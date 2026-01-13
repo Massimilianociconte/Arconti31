@@ -8,5 +8,5 @@ tags:
   - "Novità"
   - "Specialità"
 disponibile: true
-order: 2
+order: 26
 ---
