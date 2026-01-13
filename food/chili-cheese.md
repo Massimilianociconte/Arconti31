@@ -7,5 +7,5 @@ tags:
   - "Piccante"
   - "Più venduto"
 disponibile: true
-order: 11
+order: 10
 ---
