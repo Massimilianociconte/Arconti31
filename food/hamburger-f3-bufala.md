@@ -6,5 +6,5 @@ descrizione: "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grig
 tags:
   - "Più venduto"
 disponibile: true
-order: 23
+order: 22
 ---
