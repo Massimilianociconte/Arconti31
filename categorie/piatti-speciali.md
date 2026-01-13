@@ -3,7 +3,7 @@ nome: "Piatti Speciali e griglieria"
 slug: "piatti-speciali"
 tipo_menu: "food"
 icona: "🍽️"
-immagine: "images/minicard sezioni/piatti-speciali.jpg"
+immagine: "https://res.cloudinary.com/ducwseofw/image/upload/v1768292996/arconti31/lilz2i4p5qgieij6bzdp.jpg"
 descrizione: "Le nostre specialità della casa"
 visibile: true
 order: 6
