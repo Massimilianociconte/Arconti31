@@ -530,7 +530,7 @@
     },
     {
       "nome": "Calice di Bianco",
-      "prezzo": "5,00",
+      "prezzo": "6,00",
       "disponibile": true,
       "order": 4,
       "tipo": "Bianchi fermi"
@@ -1134,7 +1134,7 @@
       },
       {
         "nome": "Calice di Bianco",
-        "prezzo": "5,00",
+        "prezzo": "6,00",
         "disponibile": true,
         "order": 4,
         "tipo": "Bianchi fermi"
