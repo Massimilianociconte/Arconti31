@@ -6,5 +6,5 @@ descrizione: "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdur
 tags:
   - "Specialità"
 disponibile: true
-order: 0
+order: 6
 ---
