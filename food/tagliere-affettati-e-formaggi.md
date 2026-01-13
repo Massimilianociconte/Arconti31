@@ -4,5 +4,5 @@ category: "Aperitivo"
 prezzo: "25,00"
 descrizione: "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30"
 disponibile: true
-order: 18
+order: 17
 ---
