@@ -9,7 +9,7 @@ class SmartCache {
     this.stores = ['items', 'metadata', 'manifest'];
     this.db = null;
     this.subscribers = new Set();
-    this.pollingInterval = config.pollingInterval || 10000; // 10s - più reattivo
+    this.pollingInterval = 0; // DISABILITATO - polling manuale solo su richiesta
     this.broadcastChannel = new BroadcastChannel('arconti31_sync');
     this.isInitialized = false;
     this.lastSaveTime = 0; // Timestamp ultimo salvataggio locale
@@ -25,16 +25,15 @@ class SmartCache {
     this.db = await this.openDB();
     this.broadcastChannel.onmessage = this.handleBroadcast;
     
-    // Avvia polling se configurato
-    if (this.pollingInterval > 0) {
-      setInterval(this.checkUpdates, this.pollingInterval);
-    }
+    // NOTA: Polling automatico DISABILITATO per evitare flickering
+    // Gli aggiornamenti arrivano solo da:
+    // 1. Caricamento iniziale pagina
+    // 2. Salvataggio locale (notifySubscribers)
+    // 3. Sync da altri tab (BroadcastChannel)
+    // 4. Refresh manuale (pulsante sync)
 
     this.isInitialized = true;
-    console.log('🚀 SmartCache inizializzato');
-    
-    // Controllo iniziale
-    this.checkUpdates();
+    console.log('🚀 SmartCache inizializzato (polling disabilitato)');
   }
 
   openDB() {

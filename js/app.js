@@ -162,21 +162,16 @@ async function loadAllData() {
     // Subscribe to updates
     window.SmartCache.subscribe((changes) => {
       console.log('🔄 SmartCache update received:', changes);
-      // Reload data from cache (which is now updated)
+      // Aggiorna i dati in background senza cambiare la vista corrente
       window.SmartCache.getAll('items').then(items => {
         processItems(items);
-        // Re-render current view
-        if (currentView === 'home') showCategoriesView();
-        else if (currentView === 'detail') {
-          // Find current category name from DOM or state (simplified here)
-          const title = document.querySelector('.section-title')?.textContent;
-          if (title) {
-             // Determine type based on title/items
-             // This is a bit hacky, better to store currentCategory in state
-             // For now, just go home to be safe or try to refresh
-             goHome(); 
-          }
+        // NON fare goHome() - l'utente potrebbe essere in una categoria
+        // Aggiorna solo se siamo nella home
+        if (currentView === 'home') {
+          showCategoriesView();
         }
+        // Se siamo in una categoria, i dati sono già aggiornati in memoria
+        // e verranno mostrati al prossimo render
       });
     });
   }

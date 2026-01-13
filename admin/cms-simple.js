@@ -1217,17 +1217,23 @@ async function handleDrop(e) {
   const [movedItem] = state.items.splice(draggedIdx, 1);
   state.items.splice(targetIdx, 0, movedItem);
   
-  // Update order values
+  // Track which items changed order
+  const changedItems = [];
   state.items.forEach((item, idx) => {
-    item.order = idx;
+    if (item.order !== idx) {
+      item.order = idx;
+      changedItems.push(item);
+    }
   });
   
   // Re-render immediately for visual feedback
   renderItems();
   setupDragAndDropEvents();
   
-  // Save new order to server
-  await saveNewOrder();
+  // Save only changed items
+  if (changedItems.length > 0) {
+    await saveNewOrder(changedItems);
+  }
 }
 
 function setupDragAndDropEvents() {
@@ -1242,11 +1248,14 @@ function setupDragAndDropEvents() {
   });
 }
 
-async function saveNewOrder() {
+async function saveNewOrder(changedItems) {
+  // Se non ci sono item cambiati, esci
+  if (!changedItems || changedItems.length === 0) return;
+  
   // Show subtle loading indicator
   const saveIndicator = document.createElement('div');
   saveIndicator.className = 'order-save-indicator';
-  saveIndicator.innerHTML = '💾 Salvando ordine...';
+  saveIndicator.innerHTML = `💾 Salvando ordine (${changedItems.length} elementi)...`;
   document.body.appendChild(saveIndicator);
   
   try {
@@ -1265,15 +1274,20 @@ async function saveNewOrder() {
       freshData = data.items;
     }
     
-    // Save each item with new order (sequentially to avoid conflicts)
+    // Save only changed items (sequentially to avoid conflicts)
     let successCount = 0;
-    for (const item of state.items) {
+    let errorCount = 0;
+    
+    for (const item of changedItems) {
       const freshItem = freshData.find(i => i.filename === item.filename);
       const sha = freshItem?.sha || item.sha;
       
-      if (!sha) continue;
+      if (!sha) {
+        console.warn(`Skipping ${item.filename}: no SHA`);
+        continue;
+      }
       
-      // Clean item data
+      // Clean item data - only valid fields
       const validFields = collection.fields.map(f => f.name);
       const cleanData = {};
       validFields.forEach(field => {
@@ -1299,10 +1313,10 @@ async function saveNewOrder() {
         
         if (res.ok) {
           const result = await res.json();
-          item.sha = result.sha; // Update SHA
+          item.sha = result.sha; // Update SHA for next save
           successCount++;
           
-          // Update SmartCache
+          // Update SmartCache silently
           if (window.SmartCache) {
             await window.SmartCache.set('items', {
               ...item,
@@ -1313,38 +1327,44 @@ async function saveNewOrder() {
               _writeTime: Date.now()
             });
           }
+        } else {
+          errorCount++;
+          const errData = await res.json().catch(() => ({}));
+          console.error(`Error saving ${item.filename}:`, errData.error || res.status);
         }
         
-        // Small delay between saves
-        await new Promise(r => setTimeout(r, 200));
+        // Small delay between saves to avoid rate limits
+        await new Promise(r => setTimeout(r, 300));
       } catch (e) {
+        errorCount++;
         console.error(`Error saving order for ${item.filename}:`, e);
       }
     }
     
-    // Regenerate JSON once at the end
+    // Regenerate JSON once at the end (only if we saved something)
     if (successCount > 0) {
-      await fetch('/.netlify/functions/save-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          token: state.token,
-          action: 'regenerate-json',
-          collection: collection.folder
-        })
-      });
-      
-      // Notify SmartCache
-      if (window.SmartCache) {
-        window.SmartCache.notifySubscribers({
-          collection: state.currentCollection,
-          updated: state.items
+      try {
+        await fetch('/.netlify/functions/save-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token: state.token,
+            action: 'regenerate-json',
+            collection: collection.folder
+          })
         });
+      } catch (e) {
+        console.error('Error regenerating JSON:', e);
       }
     }
     
-    saveIndicator.innerHTML = '✅ Ordine salvato!';
-    saveIndicator.classList.add('success');
+    if (errorCount === 0) {
+      saveIndicator.innerHTML = '✅ Ordine salvato!';
+      saveIndicator.classList.add('success');
+    } else {
+      saveIndicator.innerHTML = `⚠️ Salvati ${successCount}/${changedItems.length}`;
+      saveIndicator.classList.add('error');
+    }
     setTimeout(() => saveIndicator.remove(), 2000);
     
   } catch (e) {
