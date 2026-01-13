@@ -6,5 +6,5 @@ descrizione: "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 12
 tags:
   - "Specialità"
 disponibile: true
-order: 4
+order: 30
 ---
