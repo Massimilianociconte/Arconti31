@@ -75,8 +75,23 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, headers, body: 'Method Not Allowed' };
   }
 
-  const body = JSON.parse(event.body);
+  // Parse body con gestione errori
+  let body;
+  try {
+    body = JSON.parse(event.body);
+  } catch (e) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: 'JSON non valido' }) };
+  }
+  
   const { email, password, action, collection, filename, data, sha, token, skipRegeneration } = body;
+
+  // Validazione path traversal (sicurezza)
+  if (collection && (collection.includes('..') || collection.includes('/') || collection.includes('\\'))) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Collection non valida' }) };
+  }
+  if (filename && (filename.includes('..') || filename.includes('/') || filename.includes('\\'))) {
+    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Filename non valido' }) };
+  }
 
   // Return Cloudinary config (no auth needed)
   if (action === 'get-cloudinary-config') {

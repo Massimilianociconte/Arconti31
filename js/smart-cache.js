@@ -126,8 +126,8 @@ class SmartCache {
     const remoteMap = new Map(normalizedRemoteItems.map(i => [i.id, i]));
     const localMap = new Map(collectionItems.map(i => [i.id, i]));
 
-    // Tempo di protezione per modifiche locali recenti (30 secondi - ridotto per evitare flash)
-    const STALE_PROTECTION_MS = 30 * 1000;
+    // Tempo di protezione per modifiche locali recenti (2 minuti - per permettere rebuild Netlify)
+    const STALE_PROTECTION_MS = 2 * 60 * 1000;
 
     // Rileva aggiunte e modifiche
     for (const [id, remoteItem] of remoteMap) {

@@ -596,15 +596,21 @@ function openModal(itemName, type) {
   const modal = document.getElementById('beer-modal');
   const modalBody = document.getElementById('modal-body');
 
+  // Sanitizza tutti i campi per prevenire XSS
+  const safeName = escapeHtml(item.nome);
+  const safeDescription = escapeHtml(item.descrizione_dettagliata || item.descrizione || 'Nessuna descrizione aggiuntiva.');
+  const safeGradazione = item.gradazione ? escapeHtml(item.gradazione) : '';
+  const safeFormato = item.formato ? escapeHtml(item.formato) : '';
+
   // Immagine copertina
   const imageUrl = item.immagine_copertina || item.immagine;
-  const imageHtml = imageUrl ? `<div class="modal-hero-wrapper"><img src="${imageUrl}" class="modal-hero-img"></div>` : '';
+  const imageHtml = imageUrl ? `<div class="modal-hero-wrapper"><img src="${escapeHtml(imageUrl)}" class="modal-hero-img" alt="${safeName}"></div>` : '';
 
   // Avatar
   const avatarUrl = item.immagine_avatar || item.logo;
-  const avatarHtml = avatarUrl ? `<img src="${avatarUrl}" class="modal-logo-small" alt="Logo">` : '';
+  const avatarHtml = avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" class="modal-logo-small" alt="Logo">` : '';
 
-  // Tags
+  // Tags (sanitizzati)
   let tagsHtml = '';
   if (item.tags) {
     let tagsList = Array.isArray(item.tags) ? item.tags : [item.tags];
@@ -613,13 +619,13 @@ function openModal(itemName, type) {
       tagsHtml = `<div class="modal-tags-list">
         ${tagsList.map(tag => {
         const icon = ICONS.tags[tag] || ICONS.tags['default'];
-        return `<span class="modal-tag">${icon} ${tag}</span>`;
+        return `<span class="modal-tag">${icon} ${escapeHtml(tag)}</span>`;
       }).join('')}
       </div>`;
     }
   }
 
-  // Allergeni
+  // Allergeni (sanitizzati)
   let allergeniHtml = '';
   if (item.allergeni) {
     let allList = Array.isArray(item.allergeni) ? item.allergeni : [item.allergeni];
@@ -631,7 +637,7 @@ function openModal(itemName, type) {
           <div class="allergens-grid">
             ${allList.map(a => {
         const icon = ICONS.allergeni[a] || ICONS.allergeni['default'];
-        return `<div class="allergen-item"><span class="allergen-icon">${icon}</span> ${a}</div>`;
+        return `<div class="allergen-item"><span class="allergen-icon">${icon}</span> ${escapeHtml(a)}</div>`;
       }).join('')}
           </div>
         </div>`;
@@ -642,24 +648,27 @@ function openModal(itemName, type) {
     ${imageHtml}
     <div class="modal-content-scroll">
       <div class="modal-header-row">
-        <h2 class="modal-title">${item.nome}</h2>
+        <h2 class="modal-title">${safeName}</h2>
         <span class="modal-price-big">€${formatPrice(item.prezzo)}</span>
       </div>
       ${avatarHtml}
       <div class="modal-desc-text">
-        ${item.descrizione_dettagliata || item.descrizione || 'Nessuna descrizione aggiuntiva.'}
+        ${safeDescription}
       </div>
       ${tagsHtml}
       <div class="modal-meta-info">
-        ${item.gradazione ? `<div class="meta-box"><strong>Alcol</strong> ${item.gradazione}</div>` : ''}
-        ${item.formato ? `<div class="meta-box"><strong>Formato</strong> ${item.formato}</div>` : ''}
+        ${safeGradazione ? `<div class="meta-box"><strong>Alcol</strong> ${safeGradazione}</div>` : ''}
+        ${safeFormato ? `<div class="meta-box"><strong>Formato</strong> ${safeFormato}</div>` : ''}
       </div>
       ${allergeniHtml}
     </div>
     <div class="modal-close-btn-wrapper">
-      <button onclick="closeModal()" class="modal-close-action">Chiudi</button>
+      <button class="modal-close-action">Chiudi</button>
     </div>
   `;
+  
+  // Event listener per chiusura (evita inline onclick)
+  modalBody.querySelector('.modal-close-action').addEventListener('click', closeModal);
 
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';

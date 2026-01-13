@@ -2210,43 +2210,35 @@ async function deleteItem() {
   state._isUpdating = true;
   showLoading();
 
+  const collection = COLLECTIONS[state.currentCollection];
+  const itemToDelete = { ...state.currentItem }; // Copia per eventuale rollback
+  const originalItems = [...state.items]; // Backup per rollback
+
   try {
-    const collection = COLLECTIONS[state.currentCollection];
     let sha = state.currentItem.sha;
-    const itemToDelete = state.currentItem;
 
-    console.log('Delete item - Initial SHA:', sha, 'Filename:', itemToDelete.filename);
-
-    // Rimuovi immediatamente dalla UI per feedback istantaneo
-    state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
-    renderItems();
-
-    // Always fetch fresh SHA from GitHub to ensure it's current
-    console.log('Recupero SHA aggiornato dal server...');
+    // Recupera SHA fresco PRIMA di modificare la UI
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: collection.folder })
+      body: JSON.stringify({ folder: collection.folder, mode: 'api' })
     });
 
     if (fetchRes.ok) {
       const data = await fetchRes.json();
-      console.log('Items received:', data.items?.length);
       const found = data.items.find(i => i.filename === itemToDelete.filename);
-      console.log('Found item:', found);
       if (found && found.sha) {
         sha = found.sha;
-        console.log('Using fresh SHA:', sha);
       }
-    } else {
-      console.error('Failed to fetch items:', fetchRes.status);
     }
 
     if (!sha) {
       throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
     }
 
-    console.log('Sending delete request with SHA:', sha);
+    // Rimuovi dalla UI DOPO aver verificato SHA (feedback ottimistico ma sicuro)
+    state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
+    renderItems();
 
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
@@ -2261,22 +2253,26 @@ async function deleteItem() {
     });
 
     const result = await res.json();
-    console.log('Delete response:', result);
-    if (!res.ok) throw new Error(result.error || 'Errore eliminazione');
+    
+    if (!res.ok) {
+      // ROLLBACK: ripristina l'item nella UI
+      state.items = originalItems;
+      renderItems();
+      throw new Error(result.error || 'Errore eliminazione');
+    }
 
     toast('Eliminato!', 'success');
 
-    // Update SmartCache immediately
+    // Update SmartCache con tombstone
     if (window.SmartCache) {
-      // Use tombstone for soft delete to prevent stale data resurrection
       await window.SmartCache.set('items', {
         ...itemToDelete,
+        id: itemToDelete.filename,
         _deleted: true,
         _writeTime: Date.now()
       });
     }
 
-    // Show list view
     showListView();
     hideLoading();
     state._isUpdating = false;
@@ -2290,6 +2286,11 @@ async function deleteItem() {
     }
   } catch (e) {
     console.error('Delete error:', e);
+    // Assicura rollback in caso di errore
+    if (state.items.length !== originalItems.length) {
+      state.items = originalItems;
+      renderItems();
+    }
     state._isUpdating = false;
     toast(e.message || 'Errore eliminazione', 'error');
     hideLoading();
