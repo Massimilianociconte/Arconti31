@@ -60,7 +60,7 @@
       "order": 5
     },
     {
-      "nome": "Piatti Speciali",
+      "nome": "Piatti Speciali e griglieria",
       "slug": "piatti-speciali",
       "tipo_menu": "food",
       "icona": "🍽️",
@@ -281,7 +281,7 @@
       "order": 5
     },
     {
-      "nome": "Piatti Speciali",
+      "nome": "Piatti Speciali e griglieria",
       "slug": "piatti-speciali",
       "tipo_menu": "food",
       "icona": "🍽️",
