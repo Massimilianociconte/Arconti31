@@ -1780,10 +1780,18 @@ function renderEditForm(data) {
   const form = $('#edit-form');
   
   // Titolo dell'item in modifica (visibile soprattutto su mobile)
-  const itemTitle = data.nome || (state.isNew ? 'Nuovo elemento' : 'Modifica');
-  const titleHtml = `<div class="edit-item-title">${state.isNew ? '➕ Nuovo' : '✏️'} ${itemTitle}</div>`;
+  const itemTitle = data.nome || '';
+  const isNew = state.isNew;
+  
+  // Header con titolo prominente
+  const headerHtml = `
+    <div class="edit-form-header">
+      <div class="edit-form-badge">${isNew ? '➕ Nuovo' : '✏️ Modifica'}</div>
+      ${itemTitle ? `<div class="edit-form-title">${itemTitle}</div>` : ''}
+    </div>
+  `;
 
-  form.innerHTML = titleHtml + collection.fields.map(field => {
+  form.innerHTML = headerHtml + collection.fields.map(field => {
     const value = data[field.name] ?? field.default ?? '';
 
     switch (field.type) {
