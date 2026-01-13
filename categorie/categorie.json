@@ -30,16 +30,6 @@
       "order": 2
     },
     {
-      "nome": "Bavarese",
-      "slug": "Bavarese",
-      "tipo_menu": "food",
-      "icona": "🥨",
-      "immagine": "images/minicard sezioni/oktoberfest.jpg",
-      "descrizione": "Specialità bavaresi per l'Oktoberfest",
-      "visibile": true,
-      "order": 3
-    },
-    {
       "nome": "Panini",
       "slug": "panini",
       "tipo_menu": "food",
@@ -249,16 +239,6 @@
       "descrizione": "Hamburger di Fassona piemontese e street food",
       "visibile": true,
       "order": 2
-    },
-    {
-      "nome": "Bavarese",
-      "slug": "Bavarese",
-      "tipo_menu": "food",
-      "icona": "🥨",
-      "immagine": "images/minicard sezioni/oktoberfest.jpg",
-      "descrizione": "Specialità bavaresi per l'Oktoberfest",
-      "visibile": true,
-      "order": 3
     },
     {
       "nome": "Panini",
