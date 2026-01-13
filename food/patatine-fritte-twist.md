@@ -1,8 +1,8 @@
 ---
 nome: "Patatine fritte twist"
+category: "Fritti"
 prezzo: "6,00"
 descrizione: "Rustiche fritte twist"
 disponibile: true
-category: "Fritti"
-order: 6
+order: 45
 ---
