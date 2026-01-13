@@ -6,5 +6,5 @@ descrizione: "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigli
 tags:
   - "Più venduto"
 disponibile: true
-order: 3
+order: 29
 ---
