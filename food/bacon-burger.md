@@ -10,5 +10,5 @@ tags:
   - "Più venduto"
   - "Specialità"
 disponibile: true
-order: 0
+order: 1
 ---
