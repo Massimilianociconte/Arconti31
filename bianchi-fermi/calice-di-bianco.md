@@ -1,6 +1,6 @@
 ---
 nome: "Calice di Bianco"
-prezzo: "5,00"
+prezzo: "6,00"
 disponibile: true
 order: 4
 ---
