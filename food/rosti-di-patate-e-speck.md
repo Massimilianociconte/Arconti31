@@ -4,5 +4,5 @@ category: "Fritti"
 prezzo: "6,00"
 descrizione: "Forma particolare, patate, speck"
 disponibile: true
-order: 7
+order: 6
 ---
