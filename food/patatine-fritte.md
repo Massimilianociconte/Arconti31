@@ -1,8 +1,8 @@
 ---
 nome: "Patatine fritte"
+category: "Fritti"
 prezzo: "5,00"
 descrizione: "Rustiche fritte"
 disponibile: true
-category: "Fritti"
-order: 5
+order: 40
 ---
