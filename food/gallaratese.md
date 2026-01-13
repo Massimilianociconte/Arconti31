@@ -1,8 +1,8 @@
 ---
 nome: "Gallaratese"
+category: "Piadine"
 prezzo: "8,00"
 descrizione: "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate"
 disponibile: true
-category: "Piadine"
-order: 1
+order: 12
 ---
