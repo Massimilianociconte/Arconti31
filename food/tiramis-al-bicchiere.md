@@ -6,5 +6,5 @@ descrizione: "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, 
 tags:
   - "Novità"
 disponibile: true
-order: 9
+order: 8
 ---
