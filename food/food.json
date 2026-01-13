@@ -89,7 +89,7 @@
     },
     {
       "nome": "Piatto classico",
-      "category": "Piatti Speciali",
+      "category": "Piatti Speciali e griglieria",
       "prezzo": "10,00",
       "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
       "disponibile": true,
@@ -1041,7 +1041,16 @@
         "order": 2
       }
     ],
-    "Piatti Speciali e griglieria": [],
+    "Piatti Speciali e griglieria": [
+      {
+        "nome": "Piatto classico",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "10,00",
+        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
+        "disponibile": true,
+        "order": 0
+      }
+    ],
     "OKTOBERFEST": [
       {
         "nome": "Mezzo polletto grigliato",
@@ -1087,14 +1096,6 @@
       }
     ],
     "Piatti Speciali": [
-      {
-        "nome": "Piatto classico",
-        "category": "Piatti Speciali",
-        "prezzo": "10,00",
-        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
-        "disponibile": true,
-        "order": 0
-      },
       {
         "nome": "Picanha",
         "category": "Piatti Speciali",
