@@ -1,6 +1,6 @@
 ---
 nome: "Bavarese"
-slug: "oktoberfest"
+slug: "Bavarese"
 tipo_menu: "food"
 icona: "🥨"
 immagine: "images/minicard sezioni/oktoberfest.jpg"
