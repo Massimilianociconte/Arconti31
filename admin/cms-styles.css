@@ -423,6 +423,15 @@ body.ios-pwa .main-content {
   max-width: 600px;
 }
 
+.edit-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 8px 0 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -767,22 +776,41 @@ body.ios-pwa .main-content {
   
   .edit-form {
     padding-bottom: 100px;
+    padding-top: 8px;
   }
   
   #edit-view .view-header {
     position: sticky;
-    top: 64px;
+    top: 56px;
     background: var(--bg-dark);
-    padding: 12px 20px;
-    margin: -20px -20px 20px;
+    padding: 10px 16px;
+    margin: -20px -16px 8px;
     z-index: 50;
     flex-direction: row;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  /* Titolo item in modifica su mobile */
+  .edit-item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 4px 0 8px;
+    margin-bottom: 4px;
   }
   
   .btn {
     padding: 10px 16px;
     font-size: 13px;
     min-height: 44px;
+  }
+  
+  /* Drag handle sempre visibile su mobile */
+  .drag-handle {
+    opacity: 0.8;
+    padding: 10px 6px;
+    font-size: 16px;
+    touch-action: none;
   }
 }
 

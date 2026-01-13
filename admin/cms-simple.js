@@ -411,15 +411,13 @@ async function handleLogin(e) {
     state.email = result.email;
     state.isLoggedIn = true;
 
-    // Save session if "Ricordami" is checked
-    const rememberMe = $('#remember-me')?.checked;
-    if (rememberMe) {
-      localStorage.setItem('cms_session', JSON.stringify({
-        token: result.token,
-        email: result.email,
-        lastCollection: state.currentCollection
-      }));
-    }
+    // Salva sempre la sessione (per evitare logout al refresh)
+    // "Ricordami" controlla solo la durata del token lato server
+    localStorage.setItem('cms_session', JSON.stringify({
+      token: result.token,
+      email: result.email,
+      lastCollection: state.currentCollection
+    }));
 
     toast('Accesso effettuato!', 'success');
     showMainApp();
@@ -1760,8 +1758,12 @@ function editItem(filename) {
 function renderEditForm(data) {
   const collection = COLLECTIONS[state.currentCollection];
   const form = $('#edit-form');
+  
+  // Titolo dell'item in modifica (visibile soprattutto su mobile)
+  const itemTitle = data.nome || (state.isNew ? 'Nuovo elemento' : 'Modifica');
+  const titleHtml = `<div class="edit-item-title">${state.isNew ? '➕ Nuovo' : '✏️'} ${itemTitle}</div>`;
 
-  form.innerHTML = collection.fields.map(field => {
+  form.innerHTML = titleHtml + collection.fields.map(field => {
     const value = data[field.name] ?? field.default ?? '';
 
     switch (field.type) {
