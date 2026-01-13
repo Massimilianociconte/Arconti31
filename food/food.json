@@ -195,10 +195,10 @@
     },
     {
       "nome": "Piatto cotoletta",
+      "category": "Piatti Speciali e griglieria",
       "prezzo": "10,00",
       "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
       "disponibile": true,
-      "category": "Piatti Speciali",
       "order": 1
     },
     {
@@ -1049,6 +1049,14 @@
         "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
         "disponibile": true,
         "order": 0
+      },
+      {
+        "nome": "Piatto cotoletta",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "10,00",
+        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
+        "disponibile": true,
+        "order": 1
       }
     ],
     "OKTOBERFEST": [
@@ -1106,14 +1114,6 @@
         ],
         "disponibile": true,
         "order": 0
-      },
-      {
-        "nome": "Piatto cotoletta",
-        "prezzo": "10,00",
-        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
-        "disponibile": true,
-        "category": "Piatti Speciali",
-        "order": 1
       },
       {
         "nome": "Tartare di manzo battuta a coltello",
