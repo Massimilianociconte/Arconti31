@@ -1,8 +1,8 @@
 ---
 nome: "Piada alla nutella"
+category: "Dolci"
 prezzo: "5,00"
 descrizione: "Romagnola con nutella, zucchero velo, panna montata, topino"
 disponibile: true
-category: "Dolci"
-order: 1
+order: 15
 ---
