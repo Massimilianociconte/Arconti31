@@ -1,6 +1,6 @@
 ---
 nome: "Gin lemon"
-prezzo: "7,00"
+prezzo: "8,00"
 descrizione: "Gin e lemonsoda"
 disponibile: true
 order: 8
