@@ -10,5 +10,5 @@ allergeni:
 tags:
   - "Novità"
 disponibile: true
-order: 7
+order: 48
 ---
