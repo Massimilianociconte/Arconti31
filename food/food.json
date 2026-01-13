@@ -44,17 +44,6 @@
       "order": 1
     },
     {
-      "nome": "Cedratese",
-      "category": "Piadine",
-      "prezzo": "8,00",
-      "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
-      "tags": [
-        "Più venduto"
-      ],
-      "disponibile": true,
-      "order": 2
-    },
-    {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
       "prezzo": "15.5",
@@ -68,7 +57,7 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 3
+      "order": 2
     },
     {
       "nome": "Mezzo polletto grigliato",
@@ -85,7 +74,7 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 4
+      "order": 3
     },
     {
       "nome": "Piatto classico",
@@ -93,7 +82,7 @@
       "prezzo": "10,00",
       "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
       "disponibile": true,
-      "order": 5
+      "order": 4
     },
     {
       "nome": "Picanha",
@@ -104,7 +93,7 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 6
+      "order": 5
     },
     {
       "nome": "Rosti di patate e speck",
@@ -112,7 +101,7 @@
       "prezzo": "6,00",
       "descrizione": "Forma particolare, patate, speck",
       "disponibile": true,
-      "order": 7
+      "order": 6
     },
     {
       "nome": "Tagliere aperitivo",
@@ -121,7 +110,7 @@
       "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
       "disponibile": true,
-      "order": 8
+      "order": 7
     },
     {
       "nome": "Tiramisù al bicchiere",
@@ -132,7 +121,7 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 9
+      "order": 8
     },
     {
       "nome": "Azalee",
@@ -140,7 +129,7 @@
       "prezzo": "9,00",
       "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
       "disponibile": true,
-      "order": 10
+      "order": 9
     },
     {
       "nome": "Chili cheese",
@@ -152,7 +141,7 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 11
+      "order": 10
     },
     {
       "nome": "Gallaratese",
@@ -160,7 +149,7 @@
       "prezzo": "8,00",
       "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
       "disponibile": true,
-      "order": 12
+      "order": 11
     },
     {
       "nome": "Hamburger F1",
@@ -175,7 +164,7 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 13
+      "order": 12
     },
     {
       "nome": "Hamburger F2 bufala",
@@ -183,7 +172,7 @@
       "prezzo": "15,00",
       "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
       "disponibile": true,
-      "order": 14
+      "order": 13
     },
     {
       "nome": "Piada alla nutella",
@@ -191,7 +180,7 @@
       "prezzo": "5,00",
       "descrizione": "Romagnola con nutella, zucchero velo, panna montata, topino",
       "disponibile": true,
-      "order": 15
+      "order": 14
     },
     {
       "nome": "Piatto cotoletta",
@@ -199,7 +188,7 @@
       "prezzo": "10,00",
       "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
       "disponibile": true,
-      "order": 16
+      "order": 15
     },
     {
       "nome": "Tagliata di manzo",
@@ -207,7 +196,7 @@
       "prezzo": "19,50",
       "descrizione": "Manzo 250/300gr alla piastra, verdure fresche tagliate o patatine fritte",
       "disponibile": false,
-      "order": 17
+      "order": 16
     },
     {
       "nome": "Tagliere affettati e formaggi",
@@ -215,7 +204,7 @@
       "prezzo": "25,00",
       "descrizione": "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30",
       "disponibile": true,
-      "order": 18
+      "order": 17
     },
     {
       "nome": "Tris di würstel Brema bavaresi ripieni",
@@ -227,7 +216,7 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 19
+      "order": 18
     },
     {
       "nome": "Bettolino",
@@ -235,7 +224,7 @@
       "prezzo": "10,00",
       "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
       "disponibile": true,
-      "order": 20
+      "order": 19
     },
     {
       "nome": "Crocchette di filetto di pollo",
@@ -243,7 +232,7 @@
       "prezzo": "7,00",
       "descrizione": "Filetto di pollo fritto artigianale",
       "disponibile": true,
-      "order": 21
+      "order": 20
     },
     {
       "nome": "Hamburger F2",
@@ -252,7 +241,7 @@
       "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
       "disponibile": true,
-      "order": 22
+      "order": 21
     },
     {
       "nome": "Hamburger F3 bufala",
@@ -263,13 +252,24 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 23
+      "order": 22
     },
     {
       "nome": "Ronchi",
       "category": "Piadine",
       "prezzo": "9,00",
       "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
+      "tags": [
+        "Più venduto"
+      ],
+      "disponibile": true,
+      "order": 23
+    },
+    {
+      "nome": "Cedratese",
+      "category": "Piadine",
+      "prezzo": "8,00",
+      "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
       "tags": [
         "Più venduto"
       ],
@@ -579,7 +579,7 @@
         "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
         "disponibile": true,
-        "order": 8
+        "order": 7
       },
       {
         "nome": "Tagliere affettati e formaggi",
@@ -587,7 +587,7 @@
         "prezzo": "25,00",
         "descrizione": "Per due persone, selezione chef, pane bruschettato - Disponibile fino alle 20:30",
         "disponibile": true,
-        "order": 18
+        "order": 17
       }
     ],
     "Dolci": [
@@ -600,7 +600,7 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 9
+        "order": 8
       },
       {
         "nome": "Piada alla nutella",
@@ -608,7 +608,7 @@
         "prezzo": "5,00",
         "descrizione": "Romagnola con nutella, zucchero velo, panna montata, topino",
         "disponibile": true,
-        "order": 15
+        "order": 14
       },
       {
         "nome": "Salame al cioccolato",
@@ -660,7 +660,7 @@
         "prezzo": "6,00",
         "descrizione": "Forma particolare, patate, speck",
         "disponibile": true,
-        "order": 7
+        "order": 6
       },
       {
         "nome": "Chili cheese",
@@ -672,7 +672,7 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 11
+        "order": 10
       },
       {
         "nome": "Crocchette di filetto di pollo",
@@ -680,7 +680,7 @@
         "prezzo": "7,00",
         "descrizione": "Filetto di pollo fritto artigianale",
         "disponibile": true,
-        "order": 21
+        "order": 20
       },
       {
         "nome": "Olive ascolane",
@@ -746,7 +746,7 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 3
+        "order": 2
       },
       {
         "nome": "Hamburger F2 bufala",
@@ -754,7 +754,7 @@
         "prezzo": "15,00",
         "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
         "disponibile": true,
-        "order": 14
+        "order": 13
       },
       {
         "nome": "Hamburger F3 bufala",
@@ -765,7 +765,7 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 23
+        "order": 22
       },
       {
         "nome": "Hamburger F4 bufala",
@@ -806,7 +806,7 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 13
+        "order": 12
       },
       {
         "nome": "Hamburger F2",
@@ -815,7 +815,7 @@
         "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
         "disponibile": true,
-        "order": 22
+        "order": 21
       },
       {
         "nome": "Hamburger F3",
@@ -921,7 +921,7 @@
         "prezzo": "9,00",
         "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
         "disponibile": true,
-        "order": 10
+        "order": 9
       },
       {
         "nome": "Bettolino",
@@ -929,7 +929,7 @@
         "prezzo": "10,00",
         "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
         "disponibile": true,
-        "order": 20
+        "order": 19
       },
       {
         "nome": "Broletto",
@@ -1010,29 +1010,29 @@
     ],
     "Piadine": [
       {
-        "nome": "Cedratese",
-        "category": "Piadine",
-        "prezzo": "8,00",
-        "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
-        "tags": [
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 2
-      },
-      {
         "nome": "Gallaratese",
         "category": "Piadine",
         "prezzo": "8,00",
         "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
         "disponibile": true,
-        "order": 12
+        "order": 11
       },
       {
         "nome": "Ronchi",
         "category": "Piadine",
         "prezzo": "9,00",
         "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 23
+      },
+      {
+        "nome": "Cedratese",
+        "category": "Piadine",
+        "prezzo": "8,00",
+        "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
         "tags": [
           "Più venduto"
         ],
@@ -1047,7 +1047,7 @@
         "prezzo": "10,00",
         "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
         "disponibile": true,
-        "order": 5
+        "order": 4
       },
       {
         "nome": "Picanha",
@@ -1058,7 +1058,7 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 6
+        "order": 5
       },
       {
         "nome": "Piatto cotoletta",
@@ -1066,7 +1066,7 @@
         "prezzo": "10,00",
         "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
         "disponibile": true,
-        "order": 16
+        "order": 15
       }
     ],
     "Bavarese": [
@@ -1085,7 +1085,7 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 4
+        "order": 3
       },
       {
         "nome": "Stinco di maiale al forno",
@@ -1108,7 +1108,7 @@
         "prezzo": "19,50",
         "descrizione": "Manzo 250/300gr alla piastra, verdure fresche tagliate o patatine fritte",
         "disponibile": false,
-        "order": 17
+        "order": 16
       }
     ],
     "OKTOBERFEST": [
@@ -1122,7 +1122,7 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 19
+        "order": 18
       }
     ],
     "Piatti Speciali": [
