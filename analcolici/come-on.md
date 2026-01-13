@@ -1,6 +1,6 @@
 ---
 nome: "Come on"
-prezzo: "6,00"
+prezzo: "7,00"
 descrizione: "Pompelmo, ananas, maracuja"
 disponibile: true
 order: 1
