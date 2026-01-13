@@ -6,5 +6,5 @@ descrizione: "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine gr
 tags:
   - "Più venduto"
 disponibile: true
-order: 24
+order: 23
 ---
