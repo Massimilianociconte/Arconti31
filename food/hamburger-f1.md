@@ -9,5 +9,5 @@ allergeni:
 tags:
   - "Più venduto"
 disponibile: true
-order: 13
+order: 12
 ---
