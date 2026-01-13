@@ -78,6 +78,20 @@ let currentCategory = null;
 let currentCategoryType = null;
 
 // ========================================
+// UTILITY FUNCTIONS
+// ========================================
+
+/**
+ * Escape HTML per prevenire XSS
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ========================================
 // FORMATTAZIONE PREZZI (Locale IT)
 // ========================================
 
@@ -118,7 +132,7 @@ function formatPrice(price) {
 async function loadFromJSON(jsonPath) {
   try {
     // Cache buster aggressivo: timestamp + random per evitare qualsiasi cache
-    const cacheBuster = `?_=${Date.now()}&r=${Math.random().toString(36).substr(2, 9)}`;
+    const cacheBuster = `?_=${Date.now()}&r=${Math.random().toString(36).slice(2, 11)}`;
     const res = await fetch(jsonPath + cacheBuster, {
       cache: 'no-store', // Forza bypass cache browser
       headers: {
@@ -340,24 +354,39 @@ function showCategoriesView() {
   }
 
   categoriesView.innerHTML = html;
+  
+  // Event delegation per le category card (evita inline onclick)
+  categoriesView.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const categoryName = card.dataset.category;
+      const type = card.dataset.type;
+      if (categoryName && type) {
+        showCategory(categoryName, type);
+      }
+    });
+  });
 }
 
 function createCategoryCard(cat, count, type) {
   // Priorità: immagine dalla categoria dinamica > fallback hardcoded
   let imageUrl = cat.immagine || DEFAULT_CATEGORY_IMAGES[cat.nome] || null;
+  
+  // Sanitizza per prevenire XSS
+  const safeName = escapeHtml(cat.nome);
+  const safeType = escapeHtml(type);
 
   const hasImageClass = imageUrl ? 'has-bg-image' : '';
   const imageHtml = imageUrl
-    ? `<img src="${imageUrl}" alt="${cat.nome}" class="category-bg-img" loading="lazy" decoding="async">`
+    ? `<img src="${escapeHtml(imageUrl)}" alt="${safeName}" class="category-bg-img" loading="lazy" decoding="async">`
     : '';
 
   return `
-    <div class="category-card ${hasImageClass}" onclick="showCategory('${cat.nome}', '${type}')">
+    <div class="category-card ${hasImageClass}" data-category="${safeName}" data-type="${safeType}">
       <div class="category-bg-layer">${imageHtml}</div>
       <div class="category-overlay-layer"></div>
       <div class="category-content-wrapper">
         <div class="category-info">
-          <div class="category-title">${cat.nome}</div>
+          <div class="category-title">${safeName}</div>
           <div class="category-count">${count} prodotti</div>
         </div>
         <div class="category-arrow">→</div>
@@ -394,11 +423,22 @@ function showCategory(categoryName, type) {
 
   const detailContent = document.getElementById('detail-content');
   detailContent.innerHTML = `
-    <h2 class="section-title">${categoryName}</h2>
+    <h2 class="section-title">${escapeHtml(categoryName)}</h2>
     <div class="beer-grid">
       ${items.map((item, index) => renderCard(item, index, type)).join('')}
     </div>
   `;
+  
+  // Event delegation per le beer-card (evita inline onclick)
+  detailContent.querySelectorAll('.beer-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const itemName = card.dataset.itemName;
+      const itemType = card.dataset.itemType;
+      if (itemName && itemType) {
+        openModal(itemName, itemType);
+      }
+    });
+  });
 
   window.scrollTo(0, 0);
 }
@@ -476,12 +516,18 @@ function goHome() {
 // ========================================
 
 function renderCard(item, index, type) {
+  // Sanitizza per prevenire XSS
+  const safeName = escapeHtml(item.nome);
+  const safeType = escapeHtml(type);
+  const safeDescription = item.descrizione ? escapeHtml(item.descrizione) : '';
+  const safeCategoryLabel = type === 'beer' ? escapeHtml(item.sezione || '') : (type === 'food' ? escapeHtml(item.category || '') : escapeHtml(item.tipo || ''));
+  
   // Immagine copertina (opzionale)
   const hasImage = item.immagine || item.immagine_copertina;
   const imageUrl = item.immagine_copertina || item.immagine;
 
   const imageHtml = hasImage
-    ? `<div class="card-image-container"><img src="${imageUrl}" alt="${item.nome}" class="beer-image" loading="lazy" decoding="async"></div>`
+    ? `<div class="card-image-container"><img src="${escapeHtml(imageUrl)}" alt="${safeName}" class="beer-image" loading="lazy" decoding="async"></div>`
     : '';
 
   const noImageClass = !hasImage ? 'no-image-card' : '';
@@ -489,10 +535,8 @@ function renderCard(item, index, type) {
   // Avatar/Logo (opzionale)
   const logoUrl = item.immagine_avatar || item.logo;
   const logoHtml = logoUrl
-    ? `<img src="${logoUrl}" alt="${item.nome}" class="beer-logo">`
+    ? `<img src="${escapeHtml(logoUrl)}" alt="${safeName}" class="beer-logo">`
     : '';
-
-  const categoryLabel = type === 'beer' ? item.sezione : (type === 'food' ? item.category : item.tipo);
 
   // Tags
   let tagsHtml = '';
@@ -503,25 +547,25 @@ function renderCard(item, index, type) {
       tagsHtml = `<div class="card-badges">
         ${tagsList.map(tag => {
         const icon = ICONS.tags[tag] || ICONS.tags['default'];
-        const className = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        return `<span class="badge badge-${className}">${icon} ${tag}</span>`;
+        const className = escapeHtml(tag).toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return `<span class="badge badge-${className}">${icon} ${escapeHtml(tag)}</span>`;
       }).join('')}
       </div>`;
     }
   }
 
-  const description = item.descrizione ? `<p class="beer-description">${item.descrizione}</p>` : '';
+  const description = safeDescription ? `<p class="beer-description">${safeDescription}</p>` : '';
 
   return `
-    <div class="beer-card ${noImageClass}" style="animation-delay: ${(index % 10) * 0.05}s" onclick="openModal('${item.nome.replace(/'/g, "\\'")}', '${type}')">
+    <div class="beer-card ${noImageClass}" style="animation-delay: ${(index % 10) * 0.05}s" data-item-name="${safeName}" data-item-type="${safeType}">
       ${imageHtml}
       <div class="beer-content">
         <div class="card-header">
           <div class="header-left">
             ${logoHtml}
             <div class="title-group">
-              ${categoryLabel ? `<span class="tiny-category">${categoryLabel}</span>` : ''}
-              <h3 class="beer-name">${item.nome}</h3>
+              ${safeCategoryLabel ? `<span class="tiny-category">${safeCategoryLabel}</span>` : ''}
+              <h3 class="beer-name">${safeName}</h3>
             </div>
           </div>
           <div class="price-tag">€${formatPrice(item.prezzo)}</div>
