@@ -147,17 +147,33 @@ async function loadFromJSON(jsonPath) {
 
 async function loadAllData() {
   showLoading();
+  
+  // Salva l'hash PRIMA di qualsiasi operazione (per il restore dopo)
+  const initialHash = window.location.hash.slice(1);
 
   // Init SmartCache
   if (window.SmartCache) {
     await window.SmartCache.init();
     
-    // Try to load from cache first
+    // Try to load from cache first (ma filtra items eliminati)
     const cachedFood = await window.SmartCache.getAll('items');
-    if (cachedFood.length > 0) {
+    const validCachedItems = cachedFood.filter(i => !i._deleted);
+    
+    if (validCachedItems.length > 0) {
       console.log('⚡ Loaded items from SmartCache');
-      processItems(cachedFood);
-      showCategoriesView();
+      processItems(validCachedItems);
+      
+      // Se c'è un hash, naviga alla categoria invece di mostrare home
+      if (initialHash) {
+        const category = findCategoryBySlug(initialHash);
+        if (category) {
+          showCategory(category.name, category.type);
+        } else {
+          showCategoriesView();
+        }
+      } else {
+        showCategoriesView();
+      }
       hideLoading();
     }
 
@@ -166,7 +182,8 @@ async function loadAllData() {
       console.log('🔄 SmartCache update received:', changes);
       // Aggiorna i dati in background senza cambiare la vista corrente
       window.SmartCache.getAll('items').then(items => {
-        processItems(items);
+        // Filtra sempre gli items eliminati
+        processItems(items.filter(i => !i._deleted));
         // NON fare goHome() - l'utente potrebbe essere in una categoria
         // Aggiorna solo se siamo nella home
         if (currentView === 'home') {
@@ -215,8 +232,14 @@ async function loadAllData() {
     console.log(`✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande`);
 
     // Controlla se c'è un hash nell'URL per navigare direttamente alla categoria
-    if (window.location.hash) {
-      handleHashNavigation();
+    // (usa initialHash salvato all'inizio per evitare race condition)
+    if (initialHash) {
+      const category = findCategoryBySlug(initialHash);
+      if (category) {
+        showCategory(category.name, category.type);
+      } else {
+        showCategoriesView();
+      }
     } else {
       showCategoriesView();
     }

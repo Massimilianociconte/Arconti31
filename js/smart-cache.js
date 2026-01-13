@@ -126,8 +126,8 @@ class SmartCache {
     const remoteMap = new Map(normalizedRemoteItems.map(i => [i.id, i]));
     const localMap = new Map(collectionItems.map(i => [i.id, i]));
 
-    // Tempo di protezione per modifiche locali recenti (2 minuti)
-    const STALE_PROTECTION_MS = 2 * 60 * 1000;
+    // Tempo di protezione per modifiche locali recenti (30 secondi - ridotto per evitare flash)
+    const STALE_PROTECTION_MS = 30 * 1000;
 
     // Rileva aggiunte e modifiche
     for (const [id, remoteItem] of remoteMap) {
@@ -156,6 +156,13 @@ class SmartCache {
           continue;
         }
         
+        // Se l'item era marcato come eliminato ma è passato il tempo di protezione,
+        // rimuovilo definitivamente dalla cache invece di resuscitarlo
+        if (localItem._deleted) {
+          await this.delete('items', id);
+          continue;
+        }
+        
         // PROTEZIONE 2: Item modificato localmente di recente
         // Se l'hash è diverso ma l'item locale è stato scritto di recente, ignora l'update stale
         if (localItem._hash !== itemToStore._hash) {
@@ -174,18 +181,18 @@ class SmartCache {
     // Rileva rimozioni (item presenti localmente ma non nel remoto)
     for (const [id, localItem] of localMap) {
       if (!remoteMap.has(id)) {
+        // Se l'item è già marcato come eliminato, rimuovilo definitivamente
+        if (localItem._deleted) {
+          await this.delete('items', id);
+          continue;
+        }
+        
         // PROTEZIONE STALE DATA (Rimozioni):
         // Se l'item locale è stato modificato di recente, non rimuoverlo
         // (potrebbe essere che il JSON non è ancora aggiornato)
         if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
            console.log(`🛡️ SmartCache: Ignorata rimozione stale per ${id}`);
            continue;
-        }
-        
-        // Se l'item è già marcato come eliminato, rimuovilo definitivamente
-        if (localItem._deleted) {
-          await this.delete('items', id);
-          continue;
         }
 
         changes.removed.push(localItem);
