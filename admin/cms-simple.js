@@ -253,12 +253,23 @@ async function init() {
     // Subscribe to updates
     window.SmartCache.subscribe(async (changes) => {
       console.log('🔄 SmartCache update received:', changes);
+      
+      // Ignora se stiamo già facendo un'operazione (evita race condition)
+      if (state._isUpdating) {
+        console.log('⏳ Skipping update - operation in progress');
+        return;
+      }
+      
       if (changes.collection === state.currentCollection) {
         // Refresh current view from CACHE ONLY (no network)
         const cachedItems = await window.SmartCache.getAll('items');
-        const collectionItems = cachedItems.filter(i => i._collection === state.currentCollection);
-        if (collectionItems.length > 0) {
-          state.items = collectionItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+        const collectionItems = cachedItems
+          .filter(i => i._collection === state.currentCollection && !i._deleted)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+        
+        // Solo se abbiamo effettivamente item da mostrare
+        if (collectionItems.length > 0 || changes.removed?.length > 0) {
+          state.items = collectionItems;
           renderItems();
         }
       }
@@ -2053,6 +2064,8 @@ async function saveItem() {
 
   let filename = state.isNew ? `${slugify(data.nome || data.slug)}.md` : state.currentItem.filename;
 
+  // Flag per evitare race condition con subscriber
+  state._isUpdating = true;
   showLoading();
 
   try {
@@ -2145,34 +2158,47 @@ async function saveItem() {
 
     toast('Salvato!', 'success');
 
-    // Update SmartCache immediately
+    // Aggiorna lo state locale PRIMA di notificare
+    const newItem = { ...data, filename, sha: result.sha, _collection: state.currentCollection };
+    
+    // Aggiorna l'item nello state locale
+    if (state.isNew) {
+      state.items.push(newItem);
+    } else {
+      const idx = state.items.findIndex(i => i.filename === filename);
+      if (idx !== -1) {
+        state.items[idx] = { ...state.items[idx], ...newItem };
+      }
+    }
+
+    // Update SmartCache
     if (window.SmartCache) {
-      const newItem = { ...data, filename, sha: result.sha, _collection: state.currentCollection };
       await window.SmartCache.set('items', {
         ...newItem,
         id: filename,
         _hash: window.SmartCache.generateHash(newItem),
         _lastUpdated: Date.now(),
-        _writeTime: Date.now() // Timestamp scrittura per protezione stale data
+        _writeTime: Date.now()
       });
-      // Notify other tabs
+    }
+
+    // Show list view e rilascia il flag
+    showListView();
+    hideLoading();
+    state._isUpdating = false;
+
+    // Notify DOPO aver rilasciato il flag
+    if (window.SmartCache) {
       window.SmartCache.notifySubscribers({
         collection: state.currentCollection,
         updated: [newItem]
       });
     }
-
-    // Show list view first
-    showListView();
-    hideLoading();
-
-    // DO NOT reload from server immediately to avoid stale data overwrite
-    // The UI is already updated via SmartCache subscription (triggered above)
-    // await loadItems(state.currentCollection, true, true);
   } catch (e) {
     console.error(e);
     toast(e.message || 'Errore nel salvataggio', 'error');
     hideLoading();
+    state._isUpdating = false;
   }
 }
 
@@ -2180,13 +2206,20 @@ async function deleteItem() {
   if (!state.currentItem) return;
   if (!confirm(`Eliminare "${state.currentItem.nome}"?`)) return;
 
+  // Flag per evitare race condition con subscriber
+  state._isUpdating = true;
   showLoading();
 
   try {
     const collection = COLLECTIONS[state.currentCollection];
     let sha = state.currentItem.sha;
+    const itemToDelete = state.currentItem;
 
-    console.log('Delete item - Initial SHA:', sha, 'Filename:', state.currentItem.filename);
+    console.log('Delete item - Initial SHA:', sha, 'Filename:', itemToDelete.filename);
+
+    // Rimuovi immediatamente dalla UI per feedback istantaneo
+    state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
+    renderItems();
 
     // Always fetch fresh SHA from GitHub to ensure it's current
     console.log('Recupero SHA aggiornato dal server...');
@@ -2199,7 +2232,7 @@ async function deleteItem() {
     if (fetchRes.ok) {
       const data = await fetchRes.json();
       console.log('Items received:', data.items?.length);
-      const found = data.items.find(i => i.filename === state.currentItem.filename);
+      const found = data.items.find(i => i.filename === itemToDelete.filename);
       console.log('Found item:', found);
       if (found && found.sha) {
         sha = found.sha;
@@ -2222,7 +2255,7 @@ async function deleteItem() {
         token: state.token,
         action: 'delete',
         collection: collection.folder,
-        filename: state.currentItem.filename,
+        filename: itemToDelete.filename,
         sha: sha
       })
     });
@@ -2237,26 +2270,27 @@ async function deleteItem() {
     if (window.SmartCache) {
       // Use tombstone for soft delete to prevent stale data resurrection
       await window.SmartCache.set('items', {
-        ...state.currentItem,
+        ...itemToDelete,
         _deleted: true,
         _writeTime: Date.now()
       });
-
-      // Notify other tabs
-      window.SmartCache.notifySubscribers({
-        collection: state.currentCollection,
-        removed: [state.currentItem]
-      });
     }
 
-    // Show list view first
+    // Show list view
     showListView();
     hideLoading();
+    state._isUpdating = false;
 
-    // DO NOT reload from server immediately
-    // await loadItems(state.currentCollection, true, true);
+    // Notify DOPO aver rilasciato il flag
+    if (window.SmartCache) {
+      window.SmartCache.notifySubscribers({
+        collection: state.currentCollection,
+        removed: [itemToDelete]
+      });
+    }
   } catch (e) {
     console.error('Delete error:', e);
+    state._isUpdating = false;
     toast(e.message || 'Errore eliminazione', 'error');
     hideLoading();
   }
