@@ -32,7 +32,7 @@ const COLLECTIONS = {
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
       { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image', hint: 'Immagine grande del piatto' },
       { name: 'immagine_avatar', label: 'Immagine Avatar', type: 'image', hint: 'Icona piccola (opzionale)' },
-      { name: 'allergeni', label: 'Allergeni', type: 'tags', options: ['Glutine', 'Lattosio', 'Uova', 'Frutta a Guscio', 'Pesce', 'Soia'] },
+      { name: 'allergeni', label: 'Allergeni', type: 'tags', options: ['Glutine', 'Crostacei', 'Uova', 'Pesce', 'Arachidi', 'Soia', 'Latte', 'Frutta a guscio', 'Sedano', 'Senape', 'Sesamo', 'Anidride solforosa e solfiti', 'Lupini', 'Molluschi'] },
       { name: 'tags', label: 'Tag Speciali', type: 'tags', options: ['Novità', 'Vegetariano', 'Vegano', 'Piccante', 'Più venduto', 'Specialità'] },
       { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
       { name: 'order', label: 'Ordine', type: 'number', default: 0 }
@@ -1001,8 +1001,9 @@ function renderItems() {
   // Setup click handlers
   document.querySelectorAll('.item-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // Don't trigger edit if clicking on checkbox
-      if (e.target.classList.contains('item-checkbox')) return;
+      // Don't trigger edit if clicking on checkbox or drag handle
+      if (e.target.classList.contains('item-checkbox') || 
+          e.target.classList.contains('drag-handle')) return;
       editItem(card.dataset.filename);
     });
   });
@@ -1016,6 +1017,9 @@ function renderItems() {
       });
     });
   }
+  
+  // Setup drag and drop for reordering
+  setupDragAndDrop();
 }
 
 function renderGroupedItems(items) {
@@ -1062,7 +1066,11 @@ function renderItemCard(item, showCheckbox = false) {
     ? `<input type="checkbox" class="item-checkbox" data-filename="${item.filename}" onclick="event.stopPropagation()">`
     : '';
 
-  return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}">
+  // Drag handle for reordering
+  const dragHandle = `<div class="drag-handle" title="Trascina per riordinare">⋮⋮</div>`;
+
+  return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}" data-order="${item.order || 0}" draggable="true">
+    ${dragHandle}
     ${checkboxHtml}
     ${thumbHtml}
     <div class="item-info">
@@ -1118,6 +1126,236 @@ function getFilteredItems() {
 }
 
 function filterItems() { renderItems(); }
+
+// ========================================
+// DRAG & DROP REORDERING
+// ========================================
+
+let draggedItem = null;
+let draggedOverItem = null;
+
+function setupDragAndDrop() {
+  const list = $('#items-list');
+  if (!list) return;
+
+  // Event delegation for drag events
+  list.addEventListener('dragstart', handleDragStart);
+  list.addEventListener('dragend', handleDragEnd);
+  list.addEventListener('dragover', handleDragOver);
+  list.addEventListener('dragenter', handleDragEnter);
+  list.addEventListener('dragleave', handleDragLeave);
+  list.addEventListener('drop', handleDrop);
+}
+
+function handleDragStart(e) {
+  const card = e.target.closest('.item-card');
+  if (!card) return;
+  
+  draggedItem = card;
+  card.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', card.dataset.filename);
+  
+  // Delay to allow the drag image to be captured
+  setTimeout(() => {
+    card.style.opacity = '0.5';
+  }, 0);
+}
+
+function handleDragEnd(e) {
+  const card = e.target.closest('.item-card');
+  if (card) {
+    card.classList.remove('dragging');
+    card.style.opacity = '1';
+  }
+  
+  // Remove all drag-over states
+  document.querySelectorAll('.item-card.drag-over').forEach(el => {
+    el.classList.remove('drag-over');
+  });
+  
+  draggedItem = null;
+  draggedOverItem = null;
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragEnter(e) {
+  const card = e.target.closest('.item-card');
+  if (card && card !== draggedItem) {
+    card.classList.add('drag-over');
+    draggedOverItem = card;
+  }
+}
+
+function handleDragLeave(e) {
+  const card = e.target.closest('.item-card');
+  if (card && !card.contains(e.relatedTarget)) {
+    card.classList.remove('drag-over');
+  }
+}
+
+async function handleDrop(e) {
+  e.preventDefault();
+  
+  const targetCard = e.target.closest('.item-card');
+  if (!targetCard || !draggedItem || targetCard === draggedItem) return;
+  
+  targetCard.classList.remove('drag-over');
+  
+  const draggedFilename = draggedItem.dataset.filename;
+  const targetFilename = targetCard.dataset.filename;
+  
+  // Find items in state
+  const draggedIdx = state.items.findIndex(i => i.filename === draggedFilename);
+  const targetIdx = state.items.findIndex(i => i.filename === targetFilename);
+  
+  if (draggedIdx === -1 || targetIdx === -1) return;
+  
+  // Reorder items array
+  const [movedItem] = state.items.splice(draggedIdx, 1);
+  state.items.splice(targetIdx, 0, movedItem);
+  
+  // Update order values
+  state.items.forEach((item, idx) => {
+    item.order = idx;
+  });
+  
+  // Re-render immediately for visual feedback
+  renderItems();
+  setupDragAndDropEvents();
+  
+  // Save new order to server
+  await saveNewOrder();
+}
+
+function setupDragAndDropEvents() {
+  // Re-attach click handlers after re-render
+  document.querySelectorAll('.item-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't trigger edit if clicking on checkbox or drag handle
+      if (e.target.classList.contains('item-checkbox') || 
+          e.target.classList.contains('drag-handle')) return;
+      editItem(card.dataset.filename);
+    });
+  });
+}
+
+async function saveNewOrder() {
+  // Show subtle loading indicator
+  const saveIndicator = document.createElement('div');
+  saveIndicator.className = 'order-save-indicator';
+  saveIndicator.innerHTML = '💾 Salvando ordine...';
+  document.body.appendChild(saveIndicator);
+  
+  try {
+    const collection = COLLECTIONS[state.currentCollection];
+    
+    // Get fresh SHAs first
+    const fetchRes = await fetch('/.netlify/functions/read-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ folder: collection.folder, mode: 'api' })
+    });
+    
+    let freshData = [];
+    if (fetchRes.ok) {
+      const data = await fetchRes.json();
+      freshData = data.items;
+    }
+    
+    // Save each item with new order (sequentially to avoid conflicts)
+    let successCount = 0;
+    for (const item of state.items) {
+      const freshItem = freshData.find(i => i.filename === item.filename);
+      const sha = freshItem?.sha || item.sha;
+      
+      if (!sha) continue;
+      
+      // Clean item data
+      const validFields = collection.fields.map(f => f.name);
+      const cleanData = {};
+      validFields.forEach(field => {
+        if (item[field] !== undefined) {
+          cleanData[field] = item[field];
+        }
+      });
+      
+      try {
+        const res = await fetch('/.netlify/functions/save-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token: state.token,
+            action: 'save',
+            collection: collection.folder,
+            filename: item.filename,
+            data: cleanData,
+            sha: sha,
+            skipRegeneration: true // Skip JSON regen for each item
+          })
+        });
+        
+        if (res.ok) {
+          const result = await res.json();
+          item.sha = result.sha; // Update SHA
+          successCount++;
+          
+          // Update SmartCache
+          if (window.SmartCache) {
+            await window.SmartCache.set('items', {
+              ...item,
+              id: item.filename,
+              _collection: state.currentCollection,
+              _hash: window.SmartCache.generateHash(item),
+              _lastUpdated: Date.now(),
+              _writeTime: Date.now()
+            });
+          }
+        }
+        
+        // Small delay between saves
+        await new Promise(r => setTimeout(r, 200));
+      } catch (e) {
+        console.error(`Error saving order for ${item.filename}:`, e);
+      }
+    }
+    
+    // Regenerate JSON once at the end
+    if (successCount > 0) {
+      await fetch('/.netlify/functions/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: state.token,
+          action: 'regenerate-json',
+          collection: collection.folder
+        })
+      });
+      
+      // Notify SmartCache
+      if (window.SmartCache) {
+        window.SmartCache.notifySubscribers({
+          collection: state.currentCollection,
+          updated: state.items
+        });
+      }
+    }
+    
+    saveIndicator.innerHTML = '✅ Ordine salvato!';
+    saveIndicator.classList.add('success');
+    setTimeout(() => saveIndicator.remove(), 2000);
+    
+  } catch (e) {
+    console.error('Error saving order:', e);
+    saveIndicator.innerHTML = '❌ Errore salvataggio';
+    saveIndicator.classList.add('error');
+    setTimeout(() => saveIndicator.remove(), 3000);
+  }
+}
 
 // ========================================
 // SEARCH LIVE SUGGESTIONS

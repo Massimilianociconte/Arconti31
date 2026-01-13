@@ -16,7 +16,42 @@
 [[headers]]
   for = "/*.json"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    Access-Control-Allow-Origin = "*"
+
+# JSON in subfolders (food, beers, categorie, beverages)
+[[headers]]
+  for = "/food/*.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/beers/*.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/categorie/*.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/beverages/*.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
     Access-Control-Allow-Origin = "*"
 
 # 3. Static Assets (Images, CSS, JS, Fonts): Cache with revalidation.

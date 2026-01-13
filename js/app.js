@@ -24,14 +24,21 @@ const ICONS = {
   },
   allergeni: {
     'Glutine': '🌾',
-    'Lattosio': '🥛',
+    'Crostacei': '🦐',
     'Uova': '🥚',
-    'Frutta a Guscio': '🥜',
     'Pesce': '🐟',
+    'Arachidi': '🥜',
     'Soia': '🫘',
-    'Senza Glutine': '✅',
-    'Solfiti': '🍷',
+    'Latte': '🥛',
+    'Frutta a guscio': '🌰',
     'Sedano': '🥬',
+    'Senape': '🟡',
+    'Sesamo': '⚪',
+    'Anidride solforosa e solfiti': '🍷',
+    'Lupini': '🫛',
+    'Molluschi': '🦪',
+    'Lattosio': '🥛',
+    'Senza Glutine': '✅',
     'default': '⚠️'
   }
 };
@@ -108,9 +115,15 @@ function formatPrice(price) {
  */
 async function loadFromJSON(jsonPath) {
   try {
-    // Cache buster per evitare dati stantii
-    const cacheBuster = `?t=${Date.now()}`;
-    const res = await fetch(jsonPath + cacheBuster);
+    // Cache buster aggressivo: timestamp + random per evitare qualsiasi cache
+    const cacheBuster = `?_=${Date.now()}&r=${Math.random().toString(36).substr(2, 9)}`;
+    const res = await fetch(jsonPath + cacheBuster, {
+      cache: 'no-store', // Forza bypass cache browser
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    });
     if (!res.ok) {
       console.warn(`⚠️ Errore caricamento ${jsonPath}: ${res.status}`);
       return null;

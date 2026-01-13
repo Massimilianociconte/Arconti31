@@ -9,9 +9,10 @@ class SmartCache {
     this.stores = ['items', 'metadata', 'manifest'];
     this.db = null;
     this.subscribers = new Set();
-    this.pollingInterval = config.pollingInterval || 30000; // 30s default
+    this.pollingInterval = config.pollingInterval || 10000; // 10s - più reattivo
     this.broadcastChannel = new BroadcastChannel('arconti31_sync');
     this.isInitialized = false;
+    this.lastSaveTime = 0; // Timestamp ultimo salvataggio locale
     
     // Bind methods
     this.handleBroadcast = this.handleBroadcast.bind(this);
@@ -126,6 +127,9 @@ class SmartCache {
     const remoteMap = new Map(normalizedRemoteItems.map(i => [i.id, i]));
     const localMap = new Map(collectionItems.map(i => [i.id, i]));
 
+    // Tempo di protezione per modifiche locali recenti (2 minuti)
+    const STALE_PROTECTION_MS = 2 * 60 * 1000;
+
     // Rileva aggiunte e modifiche
     for (const [id, remoteItem] of remoteMap) {
       const localItem = localMap.get(id);
@@ -137,41 +141,52 @@ class SmartCache {
         _collection: collectionName,
         _hash: this.generateHash(remoteItem),
         _lastUpdated: Date.now()
-        // NOTA: Non sovrascriviamo _writeTime qui se viene dal server (static), 
-        // perché _writeTime deve riflettere l'ultima modifica LOCALE.
       };
 
       if (!localItem) {
+        // Item nuovo dal server - aggiungilo
         changes.added.push(itemToStore);
         await this.set('items', itemToStore);
-      } else if (localItem._hash !== itemToStore._hash) {
-        // PROTEZIONE STALE DATA:
-        // Se la fonte è 'static' (JSON potenzialmente vecchio) e l'item locale è stato scritto
-        // molto recentemente (< 5 min), IGNORA l'aggiornamento remoto perché probabilmente
-        // è il JSON vecchio che non ha ancora recepito la nostra modifica locale.
-        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < 5 * 60 * 1000)) {
-          console.log(`🛡️ SmartCache: Ignorato aggiornamento stale per ${id} (modificato localmente di recente)`);
+      } else {
+        // Item esiste localmente - controlla se aggiornare
+        
+        // PROTEZIONE 1: Item marcato come eliminato localmente
+        // NON resuscitare item eliminati di recente, anche se il JSON vecchio li contiene ancora
+        if (localItem._deleted && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+          console.log(`🛡️ SmartCache: Ignorato item eliminato localmente: ${id}`);
           continue;
         }
-
-        // Se accettiamo l'aggiornamento remoto, preserviamo il _writeTime locale se esiste?
-        // No, se accettiamo il remoto significa che è più nuovo o che il locale è vecchio.
-        // Ma se è un aggiornamento 'static' che stiamo accettando (perché il locale è vecchio o non ha writeTime),
-        // non dovremmo settare un nuovo _writeTime.
         
-        await this.set('items', itemToStore);
-        changes.updated.push(itemToStore);
+        // PROTEZIONE 2: Item modificato localmente di recente
+        // Se l'hash è diverso ma l'item locale è stato scritto di recente, ignora l'update stale
+        if (localItem._hash !== itemToStore._hash) {
+          if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+            console.log(`🛡️ SmartCache: Ignorato aggiornamento stale per ${id} (modificato localmente di recente)`);
+            continue;
+          }
+          
+          // Accetta l'aggiornamento remoto
+          await this.set('items', itemToStore);
+          changes.updated.push(itemToStore);
+        }
       }
     }
 
-    // Rileva rimozioni
+    // Rileva rimozioni (item presenti localmente ma non nel remoto)
     for (const [id, localItem] of localMap) {
       if (!remoteMap.has(id)) {
         // PROTEZIONE STALE DATA (Rimozioni):
-        // Se l'item locale è recente, non rimuoverlo solo perché manca nel JSON vecchio
-        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < 5 * 60 * 1000)) {
+        // Se l'item locale è stato modificato di recente, non rimuoverlo
+        // (potrebbe essere che il JSON non è ancora aggiornato)
+        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
            console.log(`🛡️ SmartCache: Ignorata rimozione stale per ${id}`);
            continue;
+        }
+        
+        // Se l'item è già marcato come eliminato, rimuovilo definitivamente
+        if (localItem._deleted) {
+          await this.delete('items', id);
+          continue;
         }
 
         changes.removed.push(localItem);
@@ -212,8 +227,16 @@ class SmartCache {
         const path = coll === 'categorie' ? '/categorie/categorie.json' : 
                      coll === 'beverages' ? '/beverages/beverages.json' : 
                      `/${coll}/${coll}.json`;
-                     
-        const res = await fetch(path + '?t=' + Date.now()); // Cache busting per il check
+        
+        // Cache buster aggressivo
+        const cacheBuster = `?_=${Date.now()}&r=${Math.random().toString(36).substr(2, 9)}`;
+        const res = await fetch(path + cacheBuster, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
         if (!res.ok) continue;
         
         const data = await res.json();
@@ -235,6 +258,14 @@ class SmartCache {
     } catch (e) {
       console.error('SmartCache update check failed:', e);
     }
+  }
+
+  /**
+   * Forza un refresh immediato (chiamato dopo salvataggio)
+   */
+  async forceRefresh() {
+    console.log('🔄 SmartCache: Force refresh triggered');
+    await this.checkUpdates();
   }
 
   slugify(text) {
