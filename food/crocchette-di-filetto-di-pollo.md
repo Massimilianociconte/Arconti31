@@ -1,8 +1,8 @@
 ---
 nome: "Crocchette di filetto di pollo"
+category: "Fritti"
 prezzo: "7,00"
 descrizione: "Filetto di pollo fritto artigianale"
 disponibile: true
-category: "Fritti"
-order: 2
+order: 21
 ---
