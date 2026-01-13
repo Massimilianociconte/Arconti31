@@ -74,6 +74,8 @@ let foodData = [];
 let beersData = [];
 let beveragesData = [];
 let currentView = 'home';
+let currentCategory = null;
+let currentCategoryType = null;
 
 // ========================================
 // FORMATTAZIONE PREZZI (Locale IT)
@@ -212,7 +214,12 @@ async function loadAllData() {
 
     console.log(`✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande`);
 
-    showCategoriesView();
+    // Controlla se c'è un hash nell'URL per navigare direttamente alla categoria
+    if (window.location.hash) {
+      handleHashNavigation();
+    } else {
+      showCategoriesView();
+    }
   } catch (error) {
     console.error('Errore nel caricamento:', error);
     document.getElementById('categories-view').innerHTML =
@@ -253,6 +260,14 @@ function hideLoading() {
 
 function showCategoriesView() {
   currentView = 'home';
+  currentCategory = null;
+  currentCategoryType = null;
+  
+  // Aggiorna URL senza hash
+  if (window.location.hash) {
+    history.pushState(null, '', window.location.pathname);
+  }
+  
   document.getElementById('breadcrumb').style.display = 'none';
   document.getElementById('categories-view').style.display = 'block';
   document.getElementById('detail-view').style.display = 'none';
@@ -330,6 +345,13 @@ function createCategoryCard(cat, count, type) {
 
 function showCategory(categoryName, type) {
   currentView = 'detail';
+  currentCategory = categoryName;
+  currentCategoryType = type;
+  
+  // Aggiorna URL con hash per permettere refresh e condivisione
+  const slug = slugifyCategory(categoryName);
+  history.pushState({ category: categoryName, type: type }, '', `#${slug}`);
+  
   document.getElementById('breadcrumb').style.display = 'flex';
   document.getElementById('categories-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
@@ -358,7 +380,70 @@ function showCategory(categoryName, type) {
   window.scrollTo(0, 0);
 }
 
+/**
+ * Converte il nome categoria in uno slug URL-friendly
+ */
+function slugifyCategory(name) {
+  return name.toString().toLowerCase().trim()
+    .replace(/\s+/g, '-')
+    .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
+    .replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
+}
+
+/**
+ * Trova una categoria dal suo slug
+ */
+function findCategoryBySlug(slug) {
+  if (!slug) return null;
+  
+  const normalizedSlug = slug.toLowerCase();
+  
+  // Cerca in tutte le categorie
+  for (const cat of categoriesData) {
+    if (slugifyCategory(cat.nome) === normalizedSlug) {
+      // Determina il tipo
+      let type = 'food';
+      if (cat.tipo_menu === 'beverage') {
+        // Controlla se è birra o altra bevanda
+        const isBeer = beersData.some(b => b.sezione === cat.nome);
+        type = isBeer ? 'beer' : 'beverage';
+      }
+      return { name: cat.nome, type: type };
+    }
+  }
+  
+  return null;
+}
+
+/**
+ * Gestisce la navigazione da URL hash (refresh o link diretto)
+ */
+function handleHashNavigation() {
+  const hash = window.location.hash.slice(1); // Rimuovi il #
+  
+  if (!hash) {
+    // Nessun hash, mostra home
+    if (currentView !== 'home') {
+      showCategoriesView();
+    }
+    return;
+  }
+  
+  // Cerca la categoria corrispondente
+  const category = findCategoryBySlug(hash);
+  
+  if (category) {
+    showCategory(category.name, category.type);
+  } else {
+    // Hash non valido, vai alla home
+    showCategoriesView();
+  }
+}
+
 function goHome() {
+  // Aggiorna URL rimuovendo l'hash
+  history.pushState(null, '', window.location.pathname);
   showCategoriesView();
   window.scrollTo(0, 0);
 }
@@ -538,3 +623,17 @@ function toggleCompactView() {
 
 // Init
 document.addEventListener('DOMContentLoaded', loadAllData);
+
+// Gestione navigazione browser (back/forward)
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.category) {
+    // Naviga alla categoria salvata nello state
+    showCategory(event.state.category, event.state.type);
+  } else {
+    // Nessuno state o hash vuoto = home
+    handleHashNavigation();
+  }
+});
+
+// Gestione hash change (per link diretti)
+window.addEventListener('hashchange', handleHashNavigation);
