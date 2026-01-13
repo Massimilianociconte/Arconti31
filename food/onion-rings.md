@@ -4,5 +4,5 @@ category: "Fritti"
 prezzo: "6"
 descrizione: "Anelli cipolla fritti"
 disponibile: true
-order: 4
+order: 36
 ---
