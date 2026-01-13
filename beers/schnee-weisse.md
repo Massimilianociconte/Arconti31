@@ -1,10 +1,12 @@
 ---
-nome: "Schnee weisse"
+nome: "Bräuweisse - Ayinger"
 sezione: "Birre alla spina"
-prezzo: "7,00"
-descrizione: "Birra di frumento alta fermentazione secondo tradizione tedesca. Il malto di frumento le conferisce sapori delicati e fruttati mentre quello d'orzo le dona corpo e carattere. Al naso predomina una netta fragranza di banana ma si avvertono anche note citriche e di vaniglia. Bicchiere da 50 cl per 5,1%"
-immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768320277/arconti31/vnunqyxidvkpv3fzce1t.jpg"
+prezzo: "7.00"
+descrizione: "Una classica birra di frumento tedesca (Weizen) torbida, di colore giallo paglierino e con un'intensa effervescenza e una schiuma cremosa. 
+Al naso e al palato offre aromi fruttati (banana, pera) e speziati (chiodo di garofano, vaniglia) tipici del lievito d'alta fermentazione, con note maltate che donano corpo e un finale rinfrescante e leggermente acidulo. "
+immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768346848/arconti31/lh959v0qd0qpnvkiylib.webp"
 formato: "50cl"
+gradazione: "5,1 "
 disponibile: true
 order: 3
 ---
