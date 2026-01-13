@@ -1,5 +1,5 @@
 ---
-nome: "Piatti Speciali"
+nome: "Piatti Speciali e griglieria"
 slug: "piatti-speciali"
 tipo_menu: "food"
 icona: "🍽️"
