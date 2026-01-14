@@ -3,7 +3,7 @@ nome: "Panini"
 slug: "panini"
 tipo_menu: "food"
 icona: "🥪"
-immagine: "images/minicard sezioni/panini.jpg"
+immagine: "https://res.cloudinary.com/ducwseofw/image/upload/v1768382322/arconti31/qutpmzrlkgz7pl0we7mj.jpg"
 descrizione: "I nostri panini farciti"
 visibile: true
 order: 4
