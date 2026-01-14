@@ -28,18 +28,6 @@
       "order": 0
     },
     {
-      "nome": "Test",
-      "category": "Hamburger di bufala",
-      "prezzo": "10.00",
-      "descrizione": "Ciao",
-      "allergeni": [
-        "Sesamo",
-        "Lupini"
-      ],
-      "disponibile": true,
-      "order": 0
-    },
-    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "13,50",
@@ -772,18 +760,6 @@
         ],
         "tags": [
           "Novità"
-        ],
-        "disponibile": true,
-        "order": 0
-      },
-      {
-        "nome": "Test",
-        "category": "Hamburger di bufala",
-        "prezzo": "10.00",
-        "descrizione": "Ciao",
-        "allergeni": [
-          "Sesamo",
-          "Lupini"
         ],
         "disponibile": true,
         "order": 0
