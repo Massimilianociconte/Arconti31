@@ -161,7 +161,7 @@
     },
     {
       "nome": "Sex on the beach",
-      "prezzo": "7,00",
+      "prezzo": "8,00",
       "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
       "disponibile": true,
       "order": 19,
@@ -757,7 +757,7 @@
       },
       {
         "nome": "Sex on the beach",
-        "prezzo": "7,00",
+        "prezzo": "8,00",
         "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
         "disponibile": true,
         "order": 19,
