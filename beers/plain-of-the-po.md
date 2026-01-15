@@ -5,5 +5,5 @@ prezzo: "6"
 descrizione: "Double Dry Hopped IPA, mouthfeel cremoso"
 gradazione: "5,2% vol"
 disponibile: false
-order: 7
+order: 23
 ---
