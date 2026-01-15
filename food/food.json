@@ -135,8 +135,9 @@
     {
       "nome": "Chili cheese",
       "category": "Fritti",
-      "prezzo": "6,00",
+      "prezzo": "6.00",
       "descrizione": "Crocchette fritte artigianali con formaggio e chili",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
       "tags": [
         "Piccante",
         "Più venduto"
@@ -707,8 +708,9 @@
       {
         "nome": "Chili cheese",
         "category": "Fritti",
-        "prezzo": "6,00",
+        "prezzo": "6.00",
         "descrizione": "Crocchette fritte artigianali con formaggio e chili",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
         "tags": [
           "Piccante",
           "Più venduto"
