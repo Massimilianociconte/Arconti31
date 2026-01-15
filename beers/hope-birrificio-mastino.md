@@ -6,5 +6,5 @@ descrizione: "Session IPA, colore oro carico, frutta tropicale"
 formato: "0,4L"
 gradazione: "4,7%"
 disponibile: false
-order: 8
+order: 26
 ---
