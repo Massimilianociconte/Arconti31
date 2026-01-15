@@ -1,7 +1,7 @@
 ---
 nome: "Rochefort"
 sezione: "Birre artigianali alla spina a rotazione"
-prezzo: "6.50"
+prezzo: "7.00"
 descrizione: "Dal colore giallo dorato e dalla bella schiuma bianca, la Rochefort Tripel Extra sprigiona note agrumate insieme alla pesca e banana, accompagnate da note speziate tipiche dello stile. 
 In bocca è ricca e complessa, con gli aromi maltati in primo piano, morbida e vellutata. 
 La robusta gradazione alcolica rimane nell’ombra e, nonostante la complessità di aromi, la Rochefort Extra è una birra di facile approccio."
