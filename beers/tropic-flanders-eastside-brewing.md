@@ -6,5 +6,5 @@ descrizione: "Modern Saison, multi cereale, luppoli Galaxy e Citra"
 formato: "0,4L"
 gradazione: "6%"
 disponibile: false
-order: 7
+order: 24
 ---
