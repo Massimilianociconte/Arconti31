@@ -7,5 +7,5 @@ immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1765708209/
 formato: "33 cl"
 gradazione: "6,6%"
 disponibile: true
-order: 2
+order: 12
 ---
