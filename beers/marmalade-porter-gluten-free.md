@@ -1,12 +1,10 @@
 ---
 nome: "Marmalade Porter gluten free"
+sezione: "Frigo Birre"
 prezzo: "8,00"
 descrizione: "Porter complessa"
-tags:
-  - "Senza glutine"
 formato: "50cl"
 gradazione: "5%"
 disponibile: true
-sezione: "Frigo Birre"
-order: 4
+order: 19
 ---
