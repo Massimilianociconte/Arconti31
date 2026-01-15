@@ -1,12 +1,15 @@
 ---
 nome: "Varesina"
 category: "Panini"
-prezzo: "8,00"
+prezzo: "8.00"
 descrizione: "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella"
+allergeni:
+  - "Glutine"
+  - "Latte"
 tags:
+  - "Novità"
   - "Più venduto"
   - "Specialità"
-  - "Novità"
 disponibile: true
 order: 49
 ---
