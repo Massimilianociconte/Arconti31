@@ -266,16 +266,6 @@
       "order": 10
     },
     {
-      "nome": "Chouffe",
-      "sezione": "Frigo Birre",
-      "prezzo": "6,00",
-      "descrizione": "Belgian strong ale chiara",
-      "formato": "33cl",
-      "gradazione": "8%",
-      "disponibile": true,
-      "order": 11
-    },
-    {
       "nome": "Leffe Rouge",
       "sezione": "Birre alla spina",
       "prezzo": "6.00",
@@ -677,16 +667,6 @@
         "gradazione": "7%",
         "disponibile": true,
         "order": 7
-      },
-      {
-        "nome": "Chouffe",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,00",
-        "descrizione": "Belgian strong ale chiara",
-        "formato": "33cl",
-        "gradazione": "8%",
-        "disponibile": true,
-        "order": 11
       },
       {
         "nome": "Against the grain gluten free",
