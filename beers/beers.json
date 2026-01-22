@@ -32,6 +32,18 @@
       "order": 0
     },
     {
+      "nome": "Chouffe- d’Achouffe",
+      "sezione": "Frigo Birre",
+      "prezzo": "6.00",
+      "descrizione": "Il colore è molto elegante, un dorato opalescente con riflessi arancioni con una e schiuma bianca molto cremosa.",
+      "Bouquet olfattivo molto ampio": "speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769119165/arconti31/v7cwadecrgu07xvd4elw.jpg",
+      "formato": "33 cl",
+      "gradazione": "8%",
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Double Fisto - Toccalmatto",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
@@ -642,6 +654,18 @@
         "gradazione": "7%",
         "disponibile": true,
         "sezione": "Frigo Birre",
+        "order": 0
+      },
+      {
+        "nome": "Chouffe- d’Achouffe",
+        "sezione": "Frigo Birre",
+        "prezzo": "6.00",
+        "descrizione": "Il colore è molto elegante, un dorato opalescente con riflessi arancioni con una e schiuma bianca molto cremosa.",
+        "Bouquet olfattivo molto ampio": "speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769119165/arconti31/v7cwadecrgu07xvd4elw.jpg",
+        "formato": "33 cl",
+        "gradazione": "8%",
+        "disponibile": true,
         "order": 0
       },
       {
