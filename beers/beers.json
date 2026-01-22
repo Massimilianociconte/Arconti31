@@ -87,6 +87,17 @@
       "order": 0
     },
     {
+      "nome": "Rodenbach Vintage 2018",
+      "sezione": "Birre speciali in bottiglia",
+      "prezzo": "12.00",
+      "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769115731/arconti31/r1dc63cafbqlham1rlti.jpg",
+      "formato": "37.5 cl",
+      "gradazione": "7%",
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Silvio’s - 50&50",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -802,6 +813,17 @@
       }
     ],
     "Birre speciali in bottiglia": [
+      {
+        "nome": "Rodenbach Vintage 2018",
+        "sezione": "Birre speciali in bottiglia",
+        "prezzo": "12.00",
+        "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769115731/arconti31/r1dc63cafbqlham1rlti.jpg",
+        "formato": "37.5 cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "order": 0
+      },
       {
         "nome": "Theresianer Senza Glutine",
         "sezione": "Birre speciali in bottiglia",
