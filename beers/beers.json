@@ -1,6 +1,17 @@
 {
   "beers": [
     {
+      "nome": "Bibock- Birrificio Italiano",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "descrizione": "La rossa “non rossa”, gustosa, originale, ribelle. Bibock è il nostro omaggio sui generis alle creazioni più vigorose della scuola germanica: le Bock, nome che deriva dalla deformazione di Einbeck, la città dove è nato questo stile di birra, ma anche “caprone” in lingua tedesca. Bibock è eleganza, prepotenza, un’entrata a gamba tesa di sorprendente gentilezza, in bilico tra amaro e miele, accattivante e difficile da addomesticare. ",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112645/arconti31/vxmke9qdbyvs5xqyyb9m.jpg",
+      "formato": "0,4 l",
+      "gradazione": "6,2",
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Chimay chiara",
       "prezzo": "6,00",
       "descrizione": "Birra belga chiara trapista",
@@ -343,118 +354,18 @@
     }
   ],
   "beersBySection": {
-    "Frigo Birre": [
+    "Birre artigianali alla spina a rotazione": [
       {
-        "nome": "Chimay chiara",
-        "prezzo": "6,00",
-        "descrizione": "Birra belga chiara trapista",
-        "formato": "33cl",
-        "gradazione": "7%",
+        "nome": "Bibock- Birrificio Italiano",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "descrizione": "La rossa “non rossa”, gustosa, originale, ribelle. Bibock è il nostro omaggio sui generis alle creazioni più vigorose della scuola germanica: le Bock, nome che deriva dalla deformazione di Einbeck, la città dove è nato questo stile di birra, ma anche “caprone” in lingua tedesca. Bibock è eleganza, prepotenza, un’entrata a gamba tesa di sorprendente gentilezza, in bilico tra amaro e miele, accattivante e difficile da addomesticare. ",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112645/arconti31/vxmke9qdbyvs5xqyyb9m.jpg",
+        "formato": "0,4 l",
+        "gradazione": "6,2",
         "disponibile": true,
-        "sezione": "Frigo Birre",
         "order": 0
       },
-      {
-        "nome": "Chimay Rossa",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,00",
-        "descrizione": "Birra rossa trappista belga di Vallonia",
-        "formato": "33cl",
-        "gradazione": "7%",
-        "disponibile": true,
-        "order": 7
-      },
-      {
-        "nome": "Chouffe",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,00",
-        "descrizione": "Belgian strong ale chiara",
-        "formato": "33cl",
-        "gradazione": "8%",
-        "disponibile": true,
-        "order": 11
-      },
-      {
-        "nome": "Against the grain gluten free",
-        "sezione": "Frigo Birre",
-        "prezzo": "8,00",
-        "descrizione": "Apa Pale Ale senza glutine",
-        "formato": "50cl",
-        "gradazione": "4,5%",
-        "disponibile": true,
-        "order": 14
-      },
-      {
-        "nome": "Marmalade Porter gluten free",
-        "sezione": "Frigo Birre",
-        "prezzo": "8,00",
-        "descrizione": "Porter complessa",
-        "formato": "50cl",
-        "gradazione": "5%",
-        "disponibile": true,
-        "order": 19
-      },
-      {
-        "nome": "Scarborough fair IPA gluten free",
-        "sezione": "Frigo Birre",
-        "prezzo": "8,00",
-        "descrizione": "IPA senza glutine",
-        "formato": "50cl",
-        "gradazione": "6%",
-        "disponibile": true,
-        "order": 20
-      },
-      {
-        "nome": "Ayinger Keller",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,50",
-        "descrizione": "Chiara a bassa fermentazione, non filtrata",
-        "formato": "50cl",
-        "gradazione": "4,9%",
-        "disponibile": true,
-        "order": 21
-      },
-      {
-        "nome": "Plain of the po",
-        "sezione": "Frigo Birre",
-        "prezzo": "6",
-        "descrizione": "Double Dry Hopped IPA, mouthfeel cremoso",
-        "gradazione": "5,2% vol",
-        "disponibile": false,
-        "order": 23
-      },
-      {
-        "nome": "3 Fonteinen oude geuze",
-        "sezione": "Frigo Birre",
-        "prezzo": "30,00",
-        "descrizione": "Lambic fermentazione spontanea",
-        "formato": "75cl",
-        "gradazione": "6,8%",
-        "disponibile": true,
-        "order": 25
-      },
-      {
-        "nome": "Bloemenbier - De Proefbrouwerij",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,00",
-        "descrizione": "Ambrata brassata con fiori",
-        "formato": "33cl",
-        "gradazione": "7%",
-        "disponibile": true,
-        "order": 28
-      },
-      {
-        "nome": "Estrella Galicia Senza Glutine",
-        "sezione": "Frigo Birre",
-        "prezzo": "5,00",
-        "descrizione": "Applicazione enzima per glutine",
-        "formato": "0,33L",
-        "gradazione": "5,5%",
-        "disponibile": true,
-        "order": 29
-      }
-    ],
-    "Birre artigianali alla spina a rotazione": [
       {
         "nome": "Double Fisto - Toccalmatto",
         "sezione": "Birre artigianali alla spina a rotazione",
@@ -601,6 +512,117 @@
         "gradazione": "5,2%",
         "disponibile": false,
         "order": 30
+      }
+    ],
+    "Frigo Birre": [
+      {
+        "nome": "Chimay chiara",
+        "prezzo": "6,00",
+        "descrizione": "Birra belga chiara trapista",
+        "formato": "33cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "sezione": "Frigo Birre",
+        "order": 0
+      },
+      {
+        "nome": "Chimay Rossa",
+        "sezione": "Frigo Birre",
+        "prezzo": "6,00",
+        "descrizione": "Birra rossa trappista belga di Vallonia",
+        "formato": "33cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "order": 7
+      },
+      {
+        "nome": "Chouffe",
+        "sezione": "Frigo Birre",
+        "prezzo": "6,00",
+        "descrizione": "Belgian strong ale chiara",
+        "formato": "33cl",
+        "gradazione": "8%",
+        "disponibile": true,
+        "order": 11
+      },
+      {
+        "nome": "Against the grain gluten free",
+        "sezione": "Frigo Birre",
+        "prezzo": "8,00",
+        "descrizione": "Apa Pale Ale senza glutine",
+        "formato": "50cl",
+        "gradazione": "4,5%",
+        "disponibile": true,
+        "order": 14
+      },
+      {
+        "nome": "Marmalade Porter gluten free",
+        "sezione": "Frigo Birre",
+        "prezzo": "8,00",
+        "descrizione": "Porter complessa",
+        "formato": "50cl",
+        "gradazione": "5%",
+        "disponibile": true,
+        "order": 19
+      },
+      {
+        "nome": "Scarborough fair IPA gluten free",
+        "sezione": "Frigo Birre",
+        "prezzo": "8,00",
+        "descrizione": "IPA senza glutine",
+        "formato": "50cl",
+        "gradazione": "6%",
+        "disponibile": true,
+        "order": 20
+      },
+      {
+        "nome": "Ayinger Keller",
+        "sezione": "Frigo Birre",
+        "prezzo": "6,50",
+        "descrizione": "Chiara a bassa fermentazione, non filtrata",
+        "formato": "50cl",
+        "gradazione": "4,9%",
+        "disponibile": true,
+        "order": 21
+      },
+      {
+        "nome": "Plain of the po",
+        "sezione": "Frigo Birre",
+        "prezzo": "6",
+        "descrizione": "Double Dry Hopped IPA, mouthfeel cremoso",
+        "gradazione": "5,2% vol",
+        "disponibile": false,
+        "order": 23
+      },
+      {
+        "nome": "3 Fonteinen oude geuze",
+        "sezione": "Frigo Birre",
+        "prezzo": "30,00",
+        "descrizione": "Lambic fermentazione spontanea",
+        "formato": "75cl",
+        "gradazione": "6,8%",
+        "disponibile": true,
+        "order": 25
+      },
+      {
+        "nome": "Bloemenbier - De Proefbrouwerij",
+        "sezione": "Frigo Birre",
+        "prezzo": "6,00",
+        "descrizione": "Ambrata brassata con fiori",
+        "formato": "33cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "order": 28
+      },
+      {
+        "nome": "Estrella Galicia Senza Glutine",
+        "sezione": "Frigo Birre",
+        "prezzo": "5,00",
+        "descrizione": "Applicazione enzima per glutine",
+        "formato": "0,33L",
+        "gradazione": "5,5%",
+        "disponibile": true,
+        "order": 29
       }
     ],
     "Birre alla spina": [
