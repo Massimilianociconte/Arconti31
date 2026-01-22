@@ -1,5 +1,5 @@
 ---
-nome: "Rio"
+nome: "Rio - Birrificio Abruzzese"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.50"
 descrizione: "Stile: DDH HAZY IPA 
