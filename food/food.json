@@ -102,8 +102,8 @@
     },
     {
       "nome": "Piatto classico",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "10,00",
+      "category": "Piatti Speciali",
+      "prezzo": "10.00",
       "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
       "disponibile": true,
       "order": 4
@@ -1309,14 +1309,6 @@
     ],
     "Piatti Speciali e griglieria": [
       {
-        "nome": "Piatto classico",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "10,00",
-        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
-        "disponibile": true,
-        "order": 4
-      },
-      {
         "nome": "Picanha",
         "category": "Piatti Speciali e griglieria",
         "prezzo": "19,50",
@@ -1336,31 +1328,15 @@
         "order": 15
       }
     ],
-    "Griglieria": [
-      {
-        "nome": "Tagliata di manzo",
-        "category": "Griglieria",
-        "prezzo": "19.50",
-        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
-        "disponibile": true,
-        "order": 16
-      }
-    ],
-    "OKTOBERFEST": [
-      {
-        "nome": "Tris di würstel Brema bavaresi ripieni",
-        "category": "OKTOBERFEST",
-        "prezzo": "15.00",
-        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 18
-      }
-    ],
     "Piatti Speciali": [
+      {
+        "nome": "Piatto classico",
+        "category": "Piatti Speciali",
+        "prezzo": "10.00",
+        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
+        "disponibile": true,
+        "order": 4
+      },
       {
         "nome": "Tartare di manzo battuta a coltello",
         "category": "Piatti Speciali",
@@ -1404,6 +1380,30 @@
         ],
         "disponibile": true,
         "order": 43
+      }
+    ],
+    "Griglieria": [
+      {
+        "nome": "Tagliata di manzo",
+        "category": "Griglieria",
+        "prezzo": "19.50",
+        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
+        "disponibile": true,
+        "order": 16
+      }
+    ],
+    "OKTOBERFEST": [
+      {
+        "nome": "Tris di würstel Brema bavaresi ripieni",
+        "category": "OKTOBERFEST",
+        "prezzo": "15.00",
+        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 18
       }
     ]
   },
