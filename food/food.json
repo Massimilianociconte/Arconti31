@@ -227,8 +227,8 @@
     },
     {
       "nome": "Piatto cotoletta",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "10,00",
+      "category": "Piatti Speciali",
+      "prezzo": "10.00",
       "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
       "disponibile": true,
       "order": 15
@@ -1307,16 +1307,7 @@
         "order": 24
       }
     ],
-    "Piatti Speciali e griglieria": [
-      {
-        "nome": "Piatto cotoletta",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "10,00",
-        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
-        "disponibile": true,
-        "order": 15
-      }
-    ],
+    "Piatti Speciali e griglieria": [],
     "Piatti Speciali": [
       {
         "nome": "Piatto classico",
@@ -1336,6 +1327,14 @@
         ],
         "disponibile": true,
         "order": 5
+      },
+      {
+        "nome": "Piatto cotoletta",
+        "category": "Piatti Speciali",
+        "prezzo": "10.00",
+        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
+        "disponibile": true,
+        "order": 15
       },
       {
         "nome": "Tartare di manzo battuta a coltello",
