@@ -543,7 +543,9 @@
         "Uova"
       ],
       "tags": [
-        "Più venduto"
+        "Piccante",
+        "Più venduto",
+        "Specialità"
       ],
       "disponibile": true,
       "order": 41
@@ -1055,7 +1057,9 @@
           "Uova"
         ],
         "tags": [
-          "Più venduto"
+          "Piccante",
+          "Più venduto",
+          "Specialità"
         ],
         "disponibile": true,
         "order": 41
