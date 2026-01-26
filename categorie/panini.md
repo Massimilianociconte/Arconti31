@@ -1,5 +1,5 @@
 ---
-nome: "Panini"
+nome: "Panini Ciabatta"
 slug: "panini"
 tipo_menu: "food"
 icona: "🥪"
