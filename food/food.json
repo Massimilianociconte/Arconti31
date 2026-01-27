@@ -235,7 +235,7 @@
     },
     {
       "nome": "Tagliata di manzo",
-      "category": "Griglieria",
+      "category": "Piatti Speciali",
       "prezzo": "19.50",
       "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
       "disponibile": true,
@@ -895,6 +895,7 @@
         "order": 45
       }
     ],
+    "Griglieria": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
@@ -1097,6 +1098,68 @@
         "order": 48
       }
     ],
+    "Panini Ciabatta": [],
+    "Piadine": [
+      {
+        "nome": "Arnate calcio",
+        "category": "Piadine",
+        "prezzo": "8.00",
+        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Vegetariano",
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "Gallaratese",
+        "category": "Piadine",
+        "prezzo": "8.00",
+        "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "disponibile": true,
+        "order": 11
+      },
+      {
+        "nome": "Ronchi",
+        "category": "Piadine",
+        "prezzo": "9.00",
+        "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 23
+      },
+      {
+        "nome": "Cedratese",
+        "category": "Piadine",
+        "prezzo": "8.00",
+        "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 24
+      }
+    ],
+    "Piatti Speciali e griglieria": [],
     "Panini": [
       {
         "nome": "Arconti 31",
@@ -1247,67 +1310,6 @@
         "order": 50
       }
     ],
-    "Piadine": [
-      {
-        "nome": "Arnate calcio",
-        "category": "Piadine",
-        "prezzo": "8.00",
-        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Vegetariano",
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 0
-      },
-      {
-        "nome": "Gallaratese",
-        "category": "Piadine",
-        "prezzo": "8.00",
-        "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "disponibile": true,
-        "order": 11
-      },
-      {
-        "nome": "Ronchi",
-        "category": "Piadine",
-        "prezzo": "9.00",
-        "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 23
-      },
-      {
-        "nome": "Cedratese",
-        "category": "Piadine",
-        "prezzo": "8.00",
-        "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 24
-      }
-    ],
-    "Piatti Speciali e griglieria": [],
     "Piatti Speciali": [
       {
         "nome": "Piatto classico",
@@ -1335,6 +1337,14 @@
         "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
         "disponibile": true,
         "order": 15
+      },
+      {
+        "nome": "Tagliata di manzo",
+        "category": "Piatti Speciali",
+        "prezzo": "19.50",
+        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
+        "disponibile": true,
+        "order": 16
       },
       {
         "nome": "Tartare di manzo battuta a coltello",
@@ -1381,16 +1391,6 @@
         "order": 43
       }
     ],
-    "Griglieria": [
-      {
-        "nome": "Tagliata di manzo",
-        "category": "Griglieria",
-        "prezzo": "19.50",
-        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
-        "disponibile": true,
-        "order": 16
-      }
-    ],
     "OKTOBERFEST": [
       {
         "nome": "Tris di würstel Brema bavaresi ripieni",
@@ -1411,9 +1411,10 @@
     "Bavarese": 1,
     "Dolci": 9,
     "Fritti": 8,
+    "Griglieria": 5,
     "Hamburger di bufala": 1,
     "Hamburger Fassona e Street food": 2,
-    "Panini": 4,
+    "Panini Ciabatta": 4,
     "Piadine": 7,
     "Piatti Speciali e griglieria": 6
   }
