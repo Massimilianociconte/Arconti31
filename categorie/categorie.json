@@ -27,6 +27,14 @@
       "order": 0
     },
     {
+      "nome": "Selezione di Rum",
+      "slug": "selezione-di-rum",
+      "tipo_menu": "beverage",
+      "icona": "🍫🍊",
+      "visibile": true,
+      "order": 0
+    },
+    {
       "nome": "Selezione di whisky ",
       "slug": "selezione-di-whisky",
       "tipo_menu": "beverage",
@@ -351,6 +359,14 @@
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
       "icona": "🍋",
+      "visibile": true,
+      "order": 0
+    },
+    {
+      "nome": "Selezione di Rum",
+      "slug": "selezione-di-rum",
+      "tipo_menu": "beverage",
+      "icona": "🍫🍊",
       "visibile": true,
       "order": 0
     },
