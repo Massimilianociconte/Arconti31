@@ -73,16 +73,6 @@
       "order": 4
     },
     {
-      "nome": "Griglieria",
-      "slug": "griglieria",
-      "tipo_menu": "food",
-      "icona": "🔥",
-      "immagine": "images/minicard sezioni/picanha.jpg",
-      "descrizione": "Carni alla griglia",
-      "visibile": true,
-      "order": 5
-    },
-    {
       "nome": "Piatti Speciali e griglieria",
       "slug": "piatti-speciali e griglieria",
       "tipo_menu": "food",
@@ -291,16 +281,6 @@
       "descrizione": "I nostri panini farciti",
       "visibile": true,
       "order": 4
-    },
-    {
-      "nome": "Griglieria",
-      "slug": "griglieria",
-      "tipo_menu": "food",
-      "icona": "🔥",
-      "immagine": "images/minicard sezioni/picanha.jpg",
-      "descrizione": "Carni alla griglia",
-      "visibile": true,
-      "order": 5
     },
     {
       "nome": "Piatti Speciali e griglieria",
