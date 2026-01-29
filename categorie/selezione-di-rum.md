@@ -1,8 +1,8 @@
 ---
 nome: "Selezione di Rum"
-slug: "selezione-di-rum"
+slug: "rum"
 tipo_menu: "beverage"
-icona: "🍫🍊"
+icona: "🍫"
 visibile: true
 order: 0
 ---
