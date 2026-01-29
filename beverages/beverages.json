@@ -608,7 +608,10 @@
     {
       "nome": "Primitivo Salento IGP “12 e mezzo” - Varvaglione",
       "prezzo": "18.00",
-      "descrizione": "Puglia, Italia - Fruttato, cacao, ciliegia - Affum",
+      "descrizione": "Salento, Puglia.",
+      "Gradazione": "12,5%",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769719827/arconti31/mk2zuzamv5g1rd10ykot.webp",
+      "formato": "0,75 l ",
       "disponibile": true,
       "order": 5,
       "tipo": "Vini rossi"
@@ -1236,7 +1239,10 @@
       {
         "nome": "Primitivo Salento IGP “12 e mezzo” - Varvaglione",
         "prezzo": "18.00",
-        "descrizione": "Puglia, Italia - Fruttato, cacao, ciliegia - Affum",
+        "descrizione": "Salento, Puglia.",
+        "Gradazione": "12,5%",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769719827/arconti31/mk2zuzamv5g1rd10ykot.webp",
+        "formato": "0,75 l ",
         "disponibile": true,
         "order": 5,
         "tipo": "Vini rossi"
