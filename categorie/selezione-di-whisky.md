@@ -1,6 +1,6 @@
 ---
 nome: "Selezione di whisky "
-slug: "selezione-di-whisky"
+slug: "whisky"
 tipo_menu: "beverage"
 icona: "🥃"
 visibile: true
