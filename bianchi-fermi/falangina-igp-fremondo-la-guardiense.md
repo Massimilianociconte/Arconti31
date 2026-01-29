@@ -1,7 +1,8 @@
 ---
-nome: "Falangina IGP Fremondo - La Guardiense"
-prezzo: "20,00"
-descrizione: "La Falanghina Janare è un vino bianco fresco e leggero: espressione giovane e territoriale del vitigno. Sentori di mandorle e frutta tropicale emergono da un profilo fresco e sapido, di buon equilibrio e di grande piacevolezza. Gradazione 13,5%"
+nome: "Falangina del Sannio “Janare” - La Guardiense "
+prezzo: "20.00"
+descrizione: "Un bianco campano di grande intensità, prodotto con uve 100% Falanghina tra i 100-400m slm. Si distingue per il colore giallo paglierino, profumi di frutta (mela verde, ananas) e fiori bianchi, con un gusto fresco, sapido e dal finale agrumato.
+Gradazione 13%"
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1768384773/arconti31/btgo4h8kasuwlcmvb3wd.jpg"
 disponibile: true
 order: 2
