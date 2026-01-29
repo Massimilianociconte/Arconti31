@@ -48,6 +48,21 @@
       "order": 0
     },
     {
+      "nome": "Profitterol",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Latte"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -748,6 +763,21 @@
     ],
     "Dolci": [
       {
+        "nome": "Profitterol",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0
+      },
+      {
         "nome": "Tiramisù al bicchiere",
         "category": "Dolci",
         "prezzo": "6.00",
@@ -895,7 +925,6 @@
         "order": 45
       }
     ],
-    "Griglieria": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
@@ -1411,7 +1440,6 @@
     "Bavarese": 1,
     "Dolci": 9,
     "Fritti": 8,
-    "Griglieria": 5,
     "Hamburger di bufala": 1,
     "Hamburger Fassona e Street food": 2,
     "Panini Ciabatta": 4,
