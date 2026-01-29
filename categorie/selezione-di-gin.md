@@ -1,6 +1,6 @@
 ---
 nome: "Selezione di Gin"
-slug: "selezione-di-gin"
+slug: "Gin"
 tipo_menu: "beverage"
 icona: "🍋"
 visibile: true
