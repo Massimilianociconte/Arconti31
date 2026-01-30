@@ -10,13 +10,6 @@
       "order": 0
     },
     {
-      "nome": "Gin",
-      "slug": "ginn",
-      "tipo_menu": "beverage",
-      "visibile": true,
-      "order": 0
-    },
-    {
       "nome": "Menù Partita",
       "slug": "menu-partita",
       "tipo_menu": "food",
@@ -341,13 +334,6 @@
     }
   ],
   "beverageCategories": [
-    {
-      "nome": "Gin",
-      "slug": "ginn",
-      "tipo_menu": "beverage",
-      "visibile": true,
-      "order": 0
-    },
     {
       "nome": "Selezione di Gin",
       "slug": "Gin",
