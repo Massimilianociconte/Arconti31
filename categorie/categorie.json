@@ -43,6 +43,13 @@
       "order": 0
     },
     {
+      "nome": "Whisky ",
+      "slug": "whisky",
+      "tipo_menu": "beverage",
+      "visibile": true,
+      "order": 0
+    },
+    {
       "nome": "Hamburger di bufala",
       "slug": "hamburger-bufala",
       "tipo_menu": "food",
@@ -355,6 +362,13 @@
       "slug": "whisky",
       "tipo_menu": "beverage",
       "icona": "🥃",
+      "visibile": true,
+      "order": 0
+    },
+    {
+      "nome": "Whisky ",
+      "slug": "whisky",
+      "tipo_menu": "beverage",
       "visibile": true,
       "order": 0
     },
