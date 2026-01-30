@@ -1,6 +1,6 @@
 ---
 nome: "Gin"
-slug: "gin"
+slug: "ginn"
 tipo_menu: "beverage"
 visibile: true
 order: 0
