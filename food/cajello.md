@@ -1,6 +1,6 @@
 ---
 nome: "Cajello"
-category: "Panini"
+category: "Panini Ciabatta"
 prezzo: "9.00"
 descrizione: "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato"
 allergeni:
