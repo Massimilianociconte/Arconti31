@@ -692,7 +692,7 @@
     },
     {
       "nome": "Cajello vegano",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "8.00",
       "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
       "allergeni": [
@@ -1247,6 +1247,21 @@
         ],
         "disponibile": true,
         "order": 49
+      },
+      {
+        "nome": "Cajello vegano",
+        "category": "Panini Ciabatta",
+        "prezzo": "8.00",
+        "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
+        "allergeni": [
+          "Glutine",
+          "Sedano"
+        ],
+        "tags": [
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 50
       }
     ],
     "Piadine": [
@@ -1418,21 +1433,6 @@
         ],
         "disponibile": true,
         "order": 39
-      },
-      {
-        "nome": "Cajello vegano",
-        "category": "Panini",
-        "prezzo": "8.00",
-        "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
-        "allergeni": [
-          "Glutine",
-          "Sedano"
-        ],
-        "tags": [
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 50
       }
     ]
   },
