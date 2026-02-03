@@ -1,6 +1,6 @@
 ---
 nome: "Arconti 31"
-category: "Panini"
+category: "Panini Ciabatta"
 prezzo: "9.50"
 descrizione: "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese"
 allergeni:
