@@ -171,7 +171,7 @@
     },
     {
       "nome": "Azalee",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "9.00",
       "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
       "allergeni": [
@@ -1144,6 +1144,18 @@
         "order": 0
       },
       {
+        "nome": "Azalee",
+        "category": "Panini Ciabatta",
+        "prezzo": "9.00",
+        "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "disponibile": true,
+        "order": 9
+      },
+      {
         "nome": "Bettolino",
         "category": "Panini Ciabatta",
         "prezzo": "10.00",
@@ -1364,19 +1376,21 @@
         "order": 43
       }
     ],
-    "Panini": [
+    "OKTOBERFEST": [
       {
-        "nome": "Azalee",
-        "category": "Panini",
-        "prezzo": "9.00",
-        "descrizione": "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola",
-        "allergeni": [
-          "Glutine",
-          "Latte"
+        "nome": "Tris di würstel Brema bavaresi ripieni",
+        "category": "OKTOBERFEST",
+        "prezzo": "15.00",
+        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+        "tags": [
+          "Novità",
+          "Specialità"
         ],
-        "disponibile": true,
-        "order": 9
-      },
+        "disponibile": false,
+        "order": 18
+      }
+    ],
+    "Panini": [
       {
         "nome": "Broletto",
         "category": "Panini",
@@ -1419,20 +1433,6 @@
         ],
         "disponibile": true,
         "order": 50
-      }
-    ],
-    "OKTOBERFEST": [
-      {
-        "nome": "Tris di würstel Brema bavaresi ripieni",
-        "category": "OKTOBERFEST",
-        "prezzo": "15.00",
-        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 18
       }
     ]
   },
