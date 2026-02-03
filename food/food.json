@@ -528,7 +528,7 @@
     },
     {
       "nome": "Cascinetta",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "9.50",
       "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
       "allergeni": [
@@ -1199,6 +1199,19 @@
         "order": 35
       },
       {
+        "nome": "Cascinetta",
+        "category": "Panini Ciabatta",
+        "prezzo": "9.50",
+        "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "disponibile": true,
+        "order": 39
+      },
+      {
         "nome": "Cedrate",
         "category": "Panini Ciabatta",
         "prezzo": "8.50",
@@ -1418,21 +1431,6 @@
         ],
         "disponibile": false,
         "order": 18
-      }
-    ],
-    "Panini": [
-      {
-        "nome": "Cascinetta",
-        "category": "Panini",
-        "prezzo": "9.50",
-        "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "disponibile": true,
-        "order": 39
       }
     ]
   },
