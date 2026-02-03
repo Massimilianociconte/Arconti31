@@ -2,7 +2,7 @@
   "food": [
     {
       "nome": "Arconti 31",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "9.50",
       "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
       "allergeni": [
@@ -1127,7 +1127,23 @@
         "order": 48
       }
     ],
-    "Panini Ciabatta": [],
+    "Panini Ciabatta": [
+      {
+        "nome": "Arconti 31",
+        "category": "Panini Ciabatta",
+        "prezzo": "9.50",
+        "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Piccante"
+        ],
+        "disponibile": true,
+        "order": 0
+      }
+    ],
     "Piadine": [
       {
         "nome": "Arnate calcio",
@@ -1189,22 +1205,88 @@
       }
     ],
     "Piatti Speciali e griglieria": [],
-    "Panini": [
+    "Piatti Speciali": [
       {
-        "nome": "Arconti 31",
-        "category": "Panini",
-        "prezzo": "9.50",
-        "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
+        "nome": "Piatto classico",
+        "category": "Piatti Speciali",
+        "prezzo": "10.00",
+        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
+        "disponibile": true,
+        "order": 4
+      },
+      {
+        "nome": "Picanha",
+        "category": "Piatti Speciali",
+        "prezzo": "19.50",
+        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 5
+      },
+      {
+        "nome": "Piatto cotoletta",
+        "category": "Piatti Speciali",
+        "prezzo": "10.00",
+        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
+        "disponibile": true,
+        "order": 15
+      },
+      {
+        "nome": "Tagliata di manzo",
+        "category": "Piatti Speciali",
+        "prezzo": "19.50",
+        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
+        "disponibile": false,
+        "order": 16
+      },
+      {
+        "nome": "Tartare di manzo battuta a coltello",
+        "category": "Piatti Speciali",
+        "prezzo": "18,50",
+        "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
+        "tags": [
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 27
+      },
+      {
+        "nome": "Sex on the meat",
+        "category": "Piatti Speciali",
+        "prezzo": "16",
+        "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
+        "tags": [
+          "Novità",
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 37
+      },
+      {
+        "nome": "Smash Burger (1-3 strati) ",
+        "category": "Piatti Speciali",
+        "prezzo": "8.00",
+        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:",
+        "1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine": "Normali +2€ | Twist +3€",
         "allergeni": [
           "Glutine",
+          "Uova",
           "Latte"
         ],
         "tags": [
-          "Piccante"
+          "Novità",
+          "Più venduto",
+          "Specialità"
         ],
         "disponibile": true,
-        "order": 0
-      },
+        "order": 43
+      }
+    ],
+    "Panini": [
       {
         "nome": "Azalee",
         "category": "Panini",
@@ -1337,87 +1419,6 @@
         ],
         "disponibile": true,
         "order": 50
-      }
-    ],
-    "Piatti Speciali": [
-      {
-        "nome": "Piatto classico",
-        "category": "Piatti Speciali",
-        "prezzo": "10.00",
-        "descrizione": "Hamburger di bufala al piatto 200gr grigliato su letto di rucoa, salsa pomodorini gialli, patatine fritte come contorno",
-        "disponibile": true,
-        "order": 4
-      },
-      {
-        "nome": "Picanha",
-        "category": "Piatti Speciali",
-        "prezzo": "19.50",
-        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
-        "tags": [
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 5
-      },
-      {
-        "nome": "Piatto cotoletta",
-        "category": "Piatti Speciali",
-        "prezzo": "10.00",
-        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salse",
-        "disponibile": true,
-        "order": 15
-      },
-      {
-        "nome": "Tagliata di manzo",
-        "category": "Piatti Speciali",
-        "prezzo": "19.50",
-        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
-        "disponibile": false,
-        "order": 16
-      },
-      {
-        "nome": "Tartare di manzo battuta a coltello",
-        "category": "Piatti Speciali",
-        "prezzo": "18,50",
-        "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
-        "tags": [
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 27
-      },
-      {
-        "nome": "Sex on the meat",
-        "category": "Piatti Speciali",
-        "prezzo": "16",
-        "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
-        "tags": [
-          "Novità",
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 37
-      },
-      {
-        "nome": "Smash Burger (1-3 strati) ",
-        "category": "Piatti Speciali",
-        "prezzo": "8.00",
-        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:",
-        "1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine": "Normali +2€ | Twist +3€",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 43
       }
     ],
     "OKTOBERFEST": [
