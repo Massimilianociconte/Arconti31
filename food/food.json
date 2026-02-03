@@ -278,7 +278,7 @@
     },
     {
       "nome": "Bettolino",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "10.00",
       "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
       "allergeni": [
@@ -1142,6 +1142,19 @@
         ],
         "disponibile": true,
         "order": 0
+      },
+      {
+        "nome": "Bettolino",
+        "category": "Panini Ciabatta",
+        "prezzo": "10.00",
+        "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "disponibile": true,
+        "order": 19
       }
     ],
     "Piadine": [
@@ -1298,19 +1311,6 @@
         ],
         "disponibile": true,
         "order": 9
-      },
-      {
-        "nome": "Bettolino",
-        "category": "Panini",
-        "prezzo": "10.00",
-        "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "disponibile": true,
-        "order": 19
       },
       {
         "nome": "Broletto",
