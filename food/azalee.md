@@ -1,6 +1,6 @@
 ---
 nome: "Azalee"
-category: "Panini"
+category: "Panini Ciabatta"
 prezzo: "9.00"
 descrizione: "Ciabatta 180gr con bresaola Valtellina, crema formaggio, rucola"
 allergeni:
