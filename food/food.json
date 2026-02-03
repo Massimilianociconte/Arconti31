@@ -594,7 +594,7 @@
     },
     {
       "nome": "Cedrate",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "8.50",
       "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
       "allergeni": [
@@ -1170,6 +1170,22 @@
         ],
         "disponibile": true,
         "order": 35
+      },
+      {
+        "nome": "Cedrate",
+        "category": "Panini Ciabatta",
+        "prezzo": "8.50",
+        "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 44
       }
     ],
     "Piadine": [
@@ -1354,22 +1370,6 @@
         ],
         "disponibile": true,
         "order": 39
-      },
-      {
-        "nome": "Cedrate",
-        "category": "Panini",
-        "prezzo": "8.50",
-        "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "tags": [
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 44
       },
       {
         "nome": "Crenna",
