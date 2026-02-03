@@ -1,6 +1,6 @@
 ---
 nome: "Crenna"
-category: "Panini"
+category: "Panini Ciabatta"
 prezzo: "8.50"
 descrizione: "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa"
 allergeni:
