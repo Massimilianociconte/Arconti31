@@ -479,7 +479,7 @@
     },
     {
       "nome": "Cajello",
-      "category": "Panini",
+      "category": "Panini Ciabatta",
       "prezzo": "9.00",
       "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
       "allergeni": [
@@ -1155,6 +1155,21 @@
         ],
         "disponibile": true,
         "order": 19
+      },
+      {
+        "nome": "Cajello",
+        "category": "Panini Ciabatta",
+        "prezzo": "9.00",
+        "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 35
       }
     ],
     "Piadine": [
@@ -1326,21 +1341,6 @@
         ],
         "disponibile": true,
         "order": 28
-      },
-      {
-        "nome": "Cajello",
-        "category": "Panini",
-        "prezzo": "9.00",
-        "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Vegetariano"
-        ],
-        "disponibile": true,
-        "order": 35
       },
       {
         "nome": "Cascinetta",
