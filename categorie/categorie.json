@@ -205,17 +205,6 @@
       "_filename": "bianchi-fermi.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 19,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Vini rossi",
       "slug": "vini-rossi",
       "tipo_menu": "beverage",
@@ -223,7 +212,7 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 20,
+      "order": 19,
       "_filename": "vini-rossi.md"
     },
     {
@@ -234,8 +223,19 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bollicine.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Selezione di whisky ",
@@ -473,17 +473,6 @@
       "_filename": "bianchi-fermi.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 19,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Vini rossi",
       "slug": "vini-rossi",
       "tipo_menu": "beverage",
@@ -491,7 +480,7 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 20,
+      "order": 19,
       "_filename": "vini-rossi.md"
     },
     {
@@ -502,8 +491,19 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bollicine.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Selezione di whisky ",
