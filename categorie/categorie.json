@@ -212,17 +212,6 @@
       "_filename": "bibite.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 20,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Bianchi fermi",
       "slug": "bianchi-fermi",
       "tipo_menu": "beverage",
@@ -230,8 +219,19 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bianchi-fermi.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Vini rossi",
@@ -480,17 +480,6 @@
       "_filename": "bibite.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 20,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Bianchi fermi",
       "slug": "bianchi-fermi",
       "tipo_menu": "beverage",
@@ -498,8 +487,19 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bianchi-fermi.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Vini rossi",
