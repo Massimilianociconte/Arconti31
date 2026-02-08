@@ -227,12 +227,23 @@
       "_filename": "vini-rossi.md"
     },
     {
+      "nome": "Bollicine",
+      "slug": "bollicine",
+      "tipo_menu": "beverage",
+      "icona": "🥂",
+      "immagine": "images/minicard sezioni/bollicine.jpg",
+      "descrizione": "Spumanti e prosecchi",
+      "visibile": true,
+      "order": 21,
+      "_filename": "bollicine.md"
+    },
+    {
       "nome": "Selezione di whisky ",
       "slug": "whisky",
       "tipo_menu": "beverage",
       "icona": "🥃",
       "visibile": true,
-      "order": 21,
+      "order": 22,
       "_filename": "selezione-di-whisky.md"
     },
     {
@@ -241,19 +252,8 @@
       "tipo_menu": "beverage",
       "icona": "🍫",
       "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Bollicine",
-      "slug": "bollicine",
-      "tipo_menu": "beverage",
-      "icona": "🥂",
-      "immagine": "images/minicard sezioni/bollicine.jpg",
-      "descrizione": "Spumanti e prosecchi",
-      "visibile": true,
       "order": 23,
-      "_filename": "bollicine.md"
+      "_filename": "selezione-di-rum.md"
     },
     {
       "nome": "Selezione di Gin",
@@ -495,12 +495,23 @@
       "_filename": "vini-rossi.md"
     },
     {
+      "nome": "Bollicine",
+      "slug": "bollicine",
+      "tipo_menu": "beverage",
+      "icona": "🥂",
+      "immagine": "images/minicard sezioni/bollicine.jpg",
+      "descrizione": "Spumanti e prosecchi",
+      "visibile": true,
+      "order": 21,
+      "_filename": "bollicine.md"
+    },
+    {
       "nome": "Selezione di whisky ",
       "slug": "whisky",
       "tipo_menu": "beverage",
       "icona": "🥃",
       "visibile": true,
-      "order": 21,
+      "order": 22,
       "_filename": "selezione-di-whisky.md"
     },
     {
@@ -509,19 +520,8 @@
       "tipo_menu": "beverage",
       "icona": "🍫",
       "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Bollicine",
-      "slug": "bollicine",
-      "tipo_menu": "beverage",
-      "icona": "🥂",
-      "immagine": "images/minicard sezioni/bollicine.jpg",
-      "descrizione": "Spumanti e prosecchi",
-      "visibile": true,
       "order": 23,
-      "_filename": "bollicine.md"
+      "_filename": "selezione-di-rum.md"
     },
     {
       "nome": "Selezione di Gin",
