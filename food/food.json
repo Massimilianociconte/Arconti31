@@ -13,7 +13,8 @@
         "Piccante"
       ],
       "disponibile": true,
-      "order": 0
+      "order": 0,
+      "_filename": "arconti-31.md"
     },
     {
       "nome": "Arnate calcio",
@@ -29,7 +30,8 @@
         "Vegano"
       ],
       "disponibile": true,
-      "order": 0
+      "order": 0,
+      "_filename": "arnate-calcio.md"
     },
     {
       "nome": "Hamburger F1 Bufala",
@@ -45,7 +47,8 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 0
+      "order": 0,
+      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
     },
     {
       "nome": "Profitterol",
@@ -63,7 +66,23 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 0
+      "order": 0,
+      "_filename": "profitterol.md"
+    },
+    {
+      "nome": "test",
+      "category": "Bavarese",
+      "prezzo": "10.00",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "test.md"
     },
     {
       "nome": "Bacon burger",
@@ -81,7 +100,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 1
+      "order": 1,
+      "_filename": "bacon-burger.md"
     },
     {
       "nome": "Hamburger F1 Bufala",
@@ -97,7 +117,8 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 2
+      "order": 2,
+      "_filename": "hamburger-f1-bufala.md"
     },
     {
       "nome": "Mezzo polletto grigliato",
@@ -116,7 +137,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 3
+      "order": 3,
+      "_filename": "mezzo-polletto-grigliato.md"
     },
     {
       "nome": "Piatto classico",
@@ -129,7 +151,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 4
+      "order": 4,
+      "_filename": "piatto-classico.md"
     },
     {
       "nome": "Picanha",
@@ -142,7 +165,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 5
+      "order": 5,
+      "_filename": "picanha.md"
     },
     {
       "nome": "Rosti di patate e speck",
@@ -156,7 +180,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 6
+      "order": 6,
+      "_filename": "rosti-di-patate-e-speck.md"
     },
     {
       "nome": "Tagliere aperitivo",
@@ -165,7 +190,8 @@
       "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
       "disponibile": true,
-      "order": 7
+      "order": 7,
+      "_filename": "tagliere-aperitivo.md"
     },
     {
       "nome": "Tiramisù al bicchiere",
@@ -177,7 +203,8 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 8
+      "order": 8,
+      "_filename": "tiramis-al-bicchiere.md"
     },
     {
       "nome": "Azalee",
@@ -189,7 +216,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 9
+      "order": 9,
+      "_filename": "azalee.md"
     },
     {
       "nome": "Chili cheese",
@@ -202,7 +230,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 10
+      "order": 10,
+      "_filename": "chili-cheese.md"
     },
     {
       "nome": "Gallaratese",
@@ -214,7 +243,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 11
+      "order": 11,
+      "_filename": "gallaratese.md"
     },
     {
       "nome": "Hamburger F1",
@@ -231,7 +261,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 12
+      "order": 12,
+      "_filename": "hamburger-f1.md"
     },
     {
       "nome": "Hamburger F2 bufala",
@@ -239,7 +270,8 @@
       "prezzo": "15,00",
       "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
       "disponibile": true,
-      "order": 13
+      "order": 13,
+      "_filename": "hamburger-f2-bufala.md"
     },
     {
       "nome": "Piada alla nutella",
@@ -248,7 +280,8 @@
       "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
       "disponibile": true,
-      "order": 14
+      "order": 14,
+      "_filename": "piada-alla-nutella.md"
     },
     {
       "nome": "Piatto cotoletta",
@@ -263,7 +296,8 @@
         "Senape"
       ],
       "disponibile": true,
-      "order": 15
+      "order": 15,
+      "_filename": "piatto-cotoletta.md"
     },
     {
       "nome": "Tagliata di manzo",
@@ -271,7 +305,8 @@
       "prezzo": "19.50",
       "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
       "disponibile": false,
-      "order": 16
+      "order": 16,
+      "_filename": "tagliata-di-manzo.md"
     },
     {
       "nome": "Tagliere affettati e formaggi",
@@ -286,7 +321,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 17
+      "order": 17,
+      "_filename": "tagliere-affettati-e-formaggi.md"
     },
     {
       "nome": "Tris di würstel Brema bavaresi ripieni",
@@ -298,7 +334,8 @@
         "Specialità"
       ],
       "disponibile": false,
-      "order": 18
+      "order": 18,
+      "_filename": "tris-di-wrstel-brema-bavaresi-ripieni.md"
     },
     {
       "nome": "Bettolino",
@@ -311,7 +348,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 19
+      "order": 19,
+      "_filename": "bettolino.md"
     },
     {
       "nome": "Crocchette di filetto di pollo",
@@ -320,7 +358,8 @@
       "descrizione": "Filetto di pollo fritto artigianale",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
       "disponibile": true,
-      "order": 20
+      "order": 20,
+      "_filename": "crocchette-di-filetto-di-pollo.md"
     },
     {
       "nome": "Hamburger F2",
@@ -330,7 +369,8 @@
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
       "disponibile": true,
-      "order": 21
+      "order": 21,
+      "_filename": "hamburger-f2.md"
     },
     {
       "nome": "Hamburger F3 bufala",
@@ -341,7 +381,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 22
+      "order": 22,
+      "_filename": "hamburger-f3-bufala.md"
     },
     {
       "nome": "Ronchi",
@@ -356,7 +397,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 23
+      "order": 23,
+      "_filename": "ronchi.md"
     },
     {
       "nome": "Cedratese",
@@ -371,7 +413,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 24
+      "order": 24,
+      "_filename": "cedratese.md"
     },
     {
       "nome": "Salame al cioccolato",
@@ -384,7 +427,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 25
+      "order": 25,
+      "_filename": "salame-al-cioccolato.md"
     },
     {
       "nome": "Stinco di maiale al forno",
@@ -398,7 +442,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 26
+      "order": 26,
+      "_filename": "stinco-di-maiale-al-forno.md"
     },
     {
       "nome": "Tartare di manzo battuta a coltello",
@@ -410,7 +455,8 @@
         "Specialità"
       ],
       "disponibile": false,
-      "order": 27
+      "order": 27,
+      "_filename": "tartare-di-manzo-battuta-a-coltello.md"
     },
     {
       "nome": "Broletto",
@@ -425,7 +471,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 28
+      "order": 28,
+      "_filename": "broletto.md"
     },
     {
       "nome": "Hamburger F3",
@@ -438,7 +485,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 29
+      "order": 29,
+      "_filename": "hamburger-f3.md"
     },
     {
       "nome": "Hamburger F4",
@@ -456,7 +504,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 30
+      "order": 30,
+      "_filename": "hamburger-f4.md"
     },
     {
       "nome": "Carbo-burger",
@@ -470,7 +519,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 31
+      "order": 31,
+      "_filename": "carbo-burger.md"
     },
     {
       "nome": "Hamburger F4 bufala",
@@ -478,7 +528,8 @@
       "prezzo": "15,50",
       "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, accompagnato da patatine fritte",
       "disponibile": true,
-      "order": 32
+      "order": 32,
+      "_filename": "hamburger-f4-bufala.md"
     },
     {
       "nome": "Crocchette di pulled pork ",
@@ -490,7 +541,8 @@
         "Glutine"
       ],
       "disponibile": true,
-      "order": 33
+      "order": 33,
+      "_filename": "olive-ascolane.md"
     },
     {
       "nome": "Tortino con cuore morbido al cioccolato",
@@ -502,7 +554,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 34
+      "order": 34,
+      "_filename": "tortino-con-cuore-morbido-al-cioccolato.md"
     },
     {
       "nome": "Cajello",
@@ -517,7 +570,8 @@
         "Vegetariano"
       ],
       "disponibile": true,
-      "order": 35
+      "order": 35,
+      "_filename": "cajello.md"
     },
     {
       "nome": "Onion rings",
@@ -526,7 +580,8 @@
       "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
       "disponibile": true,
-      "order": 36
+      "order": 36,
+      "_filename": "onion-rings.md"
     },
     {
       "nome": "Sex on the meat",
@@ -539,7 +594,8 @@
         "Specialità"
       ],
       "disponibile": false,
-      "order": 37
+      "order": 37,
+      "_filename": "sex-on-the-meat.md"
     },
     {
       "nome": "Strudel di mele",
@@ -551,7 +607,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 38
+      "order": 38,
+      "_filename": "strudel-di-mele.md"
     },
     {
       "nome": "Cascinetta",
@@ -564,7 +621,8 @@
         "Latte"
       ],
       "disponibile": true,
-      "order": 39
+      "order": 39,
+      "_filename": "cascinetta.md"
     },
     {
       "nome": "Patatine fritte",
@@ -573,7 +631,8 @@
       "descrizione": "Rustiche fritte",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
       "disponibile": true,
-      "order": 40
+      "order": 40,
+      "_filename": "patatine-fritte.md"
     },
     {
       "nome": "Pulled Pork",
@@ -590,7 +649,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 41
+      "order": 41,
+      "_filename": "pulled-pork.md"
     },
     {
       "nome": "Salame al cioccolato bianco",
@@ -598,7 +658,8 @@
       "prezzo": "6,00",
       "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
       "disponibile": false,
-      "order": 42
+      "order": 42,
+      "_filename": "salame-al-cioccolato-bianco.md"
     },
     {
       "nome": "Smash Burger (1-3 strati) ",
@@ -617,7 +678,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 43
+      "order": 43,
+      "_filename": "smash-burger.md"
     },
     {
       "nome": "Cedrate",
@@ -633,7 +695,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 44
+      "order": 44,
+      "_filename": "cedrate.md"
     },
     {
       "nome": "Patatine fritte twist",
@@ -649,7 +712,8 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 45
+      "order": 45,
+      "_filename": "patatine-fritte-twist.md"
     },
     {
       "nome": "Porchettara",
@@ -666,7 +730,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 46
+      "order": 46,
+      "_filename": "porchettara.md"
     },
     {
       "nome": "Crenna",
@@ -683,7 +748,8 @@
         "Più venduto"
       ],
       "disponibile": true,
-      "order": 47
+      "order": 47,
+      "_filename": "crenna.md"
     },
     {
       "nome": "Hamburger Autunnale",
@@ -698,7 +764,8 @@
         "Novità"
       ],
       "disponibile": true,
-      "order": 48
+      "order": 48,
+      "_filename": "hamburger-autunnale.md"
     },
     {
       "nome": "Varesina",
@@ -715,7 +782,8 @@
         "Specialità"
       ],
       "disponibile": true,
-      "order": 49
+      "order": 49,
+      "_filename": "varesina.md"
     },
     {
       "nome": "Cajello vegano",
@@ -730,7 +798,8 @@
         "Vegano"
       ],
       "disponibile": true,
-      "order": 50
+      "order": 50,
+      "_filename": "cajello-vegano.md"
     }
   ],
   "foodByCategory": {
@@ -742,7 +811,8 @@
         "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
         "disponibile": true,
-        "order": 7
+        "order": 7,
+        "_filename": "tagliere-aperitivo.md"
       },
       {
         "nome": "Tagliere affettati e formaggi",
@@ -757,10 +827,26 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 17
+        "order": 17,
+        "_filename": "tagliere-affettati-e-formaggi.md"
       }
     ],
     "Bavarese": [
+      {
+        "nome": "test",
+        "category": "Bavarese",
+        "prezzo": "10.00",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Novità",
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "test.md"
+      },
       {
         "nome": "Mezzo polletto grigliato",
         "category": "Bavarese",
@@ -778,7 +864,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 3
+        "order": 3,
+        "_filename": "mezzo-polletto-grigliato.md"
       },
       {
         "nome": "Stinco di maiale al forno",
@@ -792,7 +879,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 26
+        "order": 26,
+        "_filename": "stinco-di-maiale-al-forno.md"
       }
     ],
     "Dolci": [
@@ -812,7 +900,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 0
+        "order": 0,
+        "_filename": "profitterol.md"
       },
       {
         "nome": "Tiramisù al bicchiere",
@@ -824,7 +913,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 8
+        "order": 8,
+        "_filename": "tiramis-al-bicchiere.md"
       },
       {
         "nome": "Piada alla nutella",
@@ -833,7 +923,8 @@
         "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
         "disponibile": true,
-        "order": 14
+        "order": 14,
+        "_filename": "piada-alla-nutella.md"
       },
       {
         "nome": "Salame al cioccolato",
@@ -846,7 +937,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 25
+        "order": 25,
+        "_filename": "salame-al-cioccolato.md"
       },
       {
         "nome": "Tortino con cuore morbido al cioccolato",
@@ -858,7 +950,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 34
+        "order": 34,
+        "_filename": "tortino-con-cuore-morbido-al-cioccolato.md"
       },
       {
         "nome": "Strudel di mele",
@@ -870,7 +963,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 38
+        "order": 38,
+        "_filename": "strudel-di-mele.md"
       },
       {
         "nome": "Salame al cioccolato bianco",
@@ -878,7 +972,8 @@
         "prezzo": "6,00",
         "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
         "disponibile": false,
-        "order": 42
+        "order": 42,
+        "_filename": "salame-al-cioccolato-bianco.md"
       }
     ],
     "Fritti": [
@@ -894,7 +989,8 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 6
+        "order": 6,
+        "_filename": "rosti-di-patate-e-speck.md"
       },
       {
         "nome": "Chili cheese",
@@ -907,7 +1003,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 10
+        "order": 10,
+        "_filename": "chili-cheese.md"
       },
       {
         "nome": "Crocchette di filetto di pollo",
@@ -916,7 +1013,8 @@
         "descrizione": "Filetto di pollo fritto artigianale",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
         "disponibile": true,
-        "order": 20
+        "order": 20,
+        "_filename": "crocchette-di-filetto-di-pollo.md"
       },
       {
         "nome": "Crocchette di pulled pork ",
@@ -928,7 +1026,8 @@
           "Glutine"
         ],
         "disponibile": true,
-        "order": 33
+        "order": 33,
+        "_filename": "olive-ascolane.md"
       },
       {
         "nome": "Onion rings",
@@ -937,7 +1036,8 @@
         "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
         "disponibile": true,
-        "order": 36
+        "order": 36,
+        "_filename": "onion-rings.md"
       },
       {
         "nome": "Patatine fritte",
@@ -946,7 +1046,8 @@
         "descrizione": "Rustiche fritte",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
         "disponibile": true,
-        "order": 40
+        "order": 40,
+        "_filename": "patatine-fritte.md"
       },
       {
         "nome": "Patatine fritte twist",
@@ -962,7 +1063,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 45
+        "order": 45,
+        "_filename": "patatine-fritte-twist.md"
       }
     ],
     "Hamburger di bufala": [
@@ -980,7 +1082,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 0
+        "order": 0,
+        "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
       },
       {
         "nome": "Hamburger F1 Bufala",
@@ -996,7 +1099,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 2
+        "order": 2,
+        "_filename": "hamburger-f1-bufala.md"
       },
       {
         "nome": "Hamburger F2 bufala",
@@ -1004,7 +1108,8 @@
         "prezzo": "15,00",
         "descrizione": "Bufala 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
         "disponibile": true,
-        "order": 13
+        "order": 13,
+        "_filename": "hamburger-f2-bufala.md"
       },
       {
         "nome": "Hamburger F3 bufala",
@@ -1015,7 +1120,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 22
+        "order": 22,
+        "_filename": "hamburger-f3-bufala.md"
       },
       {
         "nome": "Hamburger F4 bufala",
@@ -1023,7 +1129,8 @@
         "prezzo": "15,50",
         "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, accompagnato da patatine fritte",
         "disponibile": true,
-        "order": 32
+        "order": 32,
+        "_filename": "hamburger-f4-bufala.md"
       }
     ],
     "Hamburger Fassona e Street food": [
@@ -1043,7 +1150,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 1
+        "order": 1,
+        "_filename": "bacon-burger.md"
       },
       {
         "nome": "Hamburger F1",
@@ -1060,7 +1168,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 12
+        "order": 12,
+        "_filename": "hamburger-f1.md"
       },
       {
         "nome": "Hamburger F2",
@@ -1070,7 +1179,8 @@
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
         "disponibile": true,
-        "order": 21
+        "order": 21,
+        "_filename": "hamburger-f2.md"
       },
       {
         "nome": "Hamburger F3",
@@ -1083,7 +1193,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 29
+        "order": 29,
+        "_filename": "hamburger-f3.md"
       },
       {
         "nome": "Hamburger F4",
@@ -1101,7 +1212,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 30
+        "order": 30,
+        "_filename": "hamburger-f4.md"
       },
       {
         "nome": "Carbo-burger",
@@ -1115,7 +1227,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 31
+        "order": 31,
+        "_filename": "carbo-burger.md"
       },
       {
         "nome": "Pulled Pork",
@@ -1132,7 +1245,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 41
+        "order": 41,
+        "_filename": "pulled-pork.md"
       },
       {
         "nome": "Porchettara",
@@ -1149,7 +1263,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 46
+        "order": 46,
+        "_filename": "porchettara.md"
       },
       {
         "nome": "Hamburger Autunnale",
@@ -1164,7 +1279,8 @@
           "Novità"
         ],
         "disponibile": true,
-        "order": 48
+        "order": 48,
+        "_filename": "hamburger-autunnale.md"
       }
     ],
     "Panini Ciabatta": [
@@ -1181,7 +1297,8 @@
           "Piccante"
         ],
         "disponibile": true,
-        "order": 0
+        "order": 0,
+        "_filename": "arconti-31.md"
       },
       {
         "nome": "Azalee",
@@ -1193,7 +1310,8 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 9
+        "order": 9,
+        "_filename": "azalee.md"
       },
       {
         "nome": "Bettolino",
@@ -1206,7 +1324,8 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 19
+        "order": 19,
+        "_filename": "bettolino.md"
       },
       {
         "nome": "Broletto",
@@ -1221,7 +1340,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 28
+        "order": 28,
+        "_filename": "broletto.md"
       },
       {
         "nome": "Cajello",
@@ -1236,7 +1356,8 @@
           "Vegetariano"
         ],
         "disponibile": true,
-        "order": 35
+        "order": 35,
+        "_filename": "cajello.md"
       },
       {
         "nome": "Cascinetta",
@@ -1249,7 +1370,8 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 39
+        "order": 39,
+        "_filename": "cascinetta.md"
       },
       {
         "nome": "Cedrate",
@@ -1265,7 +1387,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 44
+        "order": 44,
+        "_filename": "cedrate.md"
       },
       {
         "nome": "Crenna",
@@ -1282,7 +1405,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 47
+        "order": 47,
+        "_filename": "crenna.md"
       },
       {
         "nome": "Varesina",
@@ -1299,7 +1423,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 49
+        "order": 49,
+        "_filename": "varesina.md"
       },
       {
         "nome": "Cajello vegano",
@@ -1314,7 +1439,8 @@
           "Vegano"
         ],
         "disponibile": true,
-        "order": 50
+        "order": 50,
+        "_filename": "cajello-vegano.md"
       }
     ],
     "Piadine": [
@@ -1332,7 +1458,8 @@
           "Vegano"
         ],
         "disponibile": true,
-        "order": 0
+        "order": 0,
+        "_filename": "arnate-calcio.md"
       },
       {
         "nome": "Gallaratese",
@@ -1344,7 +1471,8 @@
           "Latte"
         ],
         "disponibile": true,
-        "order": 11
+        "order": 11,
+        "_filename": "gallaratese.md"
       },
       {
         "nome": "Ronchi",
@@ -1359,7 +1487,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 23
+        "order": 23,
+        "_filename": "ronchi.md"
       },
       {
         "nome": "Cedratese",
@@ -1374,7 +1503,8 @@
           "Più venduto"
         ],
         "disponibile": true,
-        "order": 24
+        "order": 24,
+        "_filename": "cedratese.md"
       }
     ],
     "Piatti Speciali e griglieria": [
@@ -1389,7 +1519,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 4
+        "order": 4,
+        "_filename": "piatto-classico.md"
       },
       {
         "nome": "Picanha",
@@ -1402,7 +1533,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 5
+        "order": 5,
+        "_filename": "picanha.md"
       },
       {
         "nome": "Piatto cotoletta",
@@ -1417,7 +1549,8 @@
           "Senape"
         ],
         "disponibile": true,
-        "order": 15
+        "order": 15,
+        "_filename": "piatto-cotoletta.md"
       }
     ],
     "Piatti Speciali": [
@@ -1427,7 +1560,8 @@
         "prezzo": "19.50",
         "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
         "disponibile": false,
-        "order": 16
+        "order": 16,
+        "_filename": "tagliata-di-manzo.md"
       },
       {
         "nome": "Tartare di manzo battuta a coltello",
@@ -1439,7 +1573,8 @@
           "Specialità"
         ],
         "disponibile": false,
-        "order": 27
+        "order": 27,
+        "_filename": "tartare-di-manzo-battuta-a-coltello.md"
       },
       {
         "nome": "Sex on the meat",
@@ -1452,7 +1587,8 @@
           "Specialità"
         ],
         "disponibile": false,
-        "order": 37
+        "order": 37,
+        "_filename": "sex-on-the-meat.md"
       },
       {
         "nome": "Smash Burger (1-3 strati) ",
@@ -1471,7 +1607,8 @@
           "Specialità"
         ],
         "disponibile": true,
-        "order": 43
+        "order": 43,
+        "_filename": "smash-burger.md"
       }
     ],
     "OKTOBERFEST": [
@@ -1485,7 +1622,8 @@
           "Specialità"
         ],
         "disponibile": false,
-        "order": 18
+        "order": 18,
+        "_filename": "tris-di-wrstel-brema-bavaresi-ripieni.md"
       }
     ]
   },
@@ -1494,9 +1632,9 @@
     "Bavarese": 1,
     "Dolci": 9,
     "Fritti": 8,
-    "Hamburger di bufala": 1,
-    "Hamburger Fassona e Street food": 2,
-    "Panini Ciabatta": 4,
+    "Hamburger di bufala": 3,
+    "Hamburger Fassona e Street food": 4,
+    "Panini Ciabatta": 5,
     "Piadine": 7,
     "Piatti Speciali e griglieria": 6
   }
