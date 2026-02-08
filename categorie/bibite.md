@@ -6,5 +6,5 @@ icona: "🥫"
 immagine: "images/minicard sezioni/bevande.jpg"
 descrizione: "Bibite e soft drinks"
 visibile: true
-order: 23
+order: 19
 ---
