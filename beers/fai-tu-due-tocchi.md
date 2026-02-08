@@ -6,6 +6,6 @@ descrizione: "Bitter tradizionale inglese e ambrata caratterizzata da un amaro e
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg"
 formato: "0,4 l"
 gradazione: "3,5"
-disponibile: false
+disponibile: true
 order: 0
 ---
