@@ -6,5 +6,5 @@ icona: "🍷"
 immagine: "images/minicard sezioni/bianchi-fermi.png"
 descrizione: "Vini bianchi fermi"
 visibile: true
-order: 31
+order: 23
 ---
