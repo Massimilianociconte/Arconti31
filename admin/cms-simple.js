@@ -683,11 +683,17 @@ function findFreshItem(freshItems, targetFilename, targetNome) {
 // ========================================
 
 function selectCollection(name, categoryFilter = null, beerSection = null) {
+  const collection = COLLECTIONS[name];
+  if (!collection) {
+    console.warn(`Collection "${name}" not found in COLLECTIONS`);
+    toast(`Collezione "${name}" non configurata nel CMS`, 'error');
+    return;
+  }
   state.currentCollection = name;
   state.currentCategory = categoryFilter;
   state.currentBeerSection = beerSection;
   // Set title based on context
-  let title = COLLECTIONS[name].label;
+  let title = collection.label;
   if (beerSection) {
     title = beerSection;
   } else if (categoryFilter) {
@@ -903,7 +909,19 @@ function renderSidebar() {
       'Bianchi fermi': 'bianchi-fermi',
       'Vini rossi': 'vini-rossi'
     };
-    const collection = collectionMap[cat.nome] || cat.slug;
+    // Try name map first, then check if slug is a valid COLLECTIONS key
+    const collection = collectionMap[cat.nome] || (COLLECTIONS[cat.slug] ? cat.slug : null);
+    if (!collection) {
+      // Category exists in DB but has no matching collection in CMS config
+      return `
+        <div class="tree-section">
+          <div class="tree-item disabled${cat.visibile === false ? ' is-hidden' : ''}" title="Collezione non configurata">
+            ${renderCatThumb(cat)}
+            <span class="tree-item-name">${cat.nome} ⚠️</span>
+            ${hiddenBadge(cat)}
+          </div>
+        </div>`;
+    }
     return `
       <div class="tree-section">
         <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="${collection}">
