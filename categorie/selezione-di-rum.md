@@ -4,5 +4,5 @@ slug: "rum"
 tipo_menu: "beverage"
 icona: "🍫"
 visibile: true
-order: 22
+order: 23
 ---
