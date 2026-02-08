@@ -216,15 +216,6 @@
       "_filename": "caffetteria.md"
     },
     {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 20,
-      "_filename": "selezione-di-whisky.md"
-    },
-    {
       "nome": "Vini rossi",
       "slug": "vini-rossi",
       "tipo_menu": "beverage",
@@ -232,8 +223,17 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "vini-rossi.md"
+    },
+    {
+      "nome": "Selezione di whisky ",
+      "slug": "whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 21,
+      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Selezione di Rum",
@@ -484,15 +484,6 @@
       "_filename": "caffetteria.md"
     },
     {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 20,
-      "_filename": "selezione-di-whisky.md"
-    },
-    {
       "nome": "Vini rossi",
       "slug": "vini-rossi",
       "tipo_menu": "beverage",
@@ -500,8 +491,17 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "vini-rossi.md"
+    },
+    {
+      "nome": "Selezione di whisky ",
+      "slug": "whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 21,
+      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Selezione di Rum",
