@@ -131,15 +131,9 @@ function formatPrice(price) {
  */
 async function loadFromJSON(jsonPath) {
   try {
-    // Cache buster aggressivo: timestamp + random per evitare qualsiasi cache
-    const cacheBuster = `?_=${Date.now()}&r=${Math.random().toString(36).slice(2, 11)}`;
-    const res = await fetch(jsonPath + cacheBuster, {
-      cache: 'no-store', // Forza bypass cache browser
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    });
+    // Cache buster: 60s granularity allows browser to reuse within the same minute
+    const cacheBuster = `?_=${Math.floor(Date.now() / 60000)}`;
+    const res = await fetch(jsonPath + cacheBuster);
     if (!res.ok) {
       console.warn(`⚠️ Errore caricamento ${jsonPath}: ${res.status}`);
       return null;

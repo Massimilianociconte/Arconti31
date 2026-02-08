@@ -2,68 +2,45 @@
 // Usa GitHub API con un Personal Access Token (PAT) salvato come variabile d'ambiente
 // INCLUDE: Rigenerazione automatica JSON dopo ogni salvataggio
 
-const crypto = require('crypto');
+// Single source of truth for beverage categories (used by COLLECTION_CONFIG + generateBeveragesJSON)
+const BEVERAGE_CATEGORIES = [
+  { name: 'Cocktails', folder: 'cocktails' },
+  { name: 'Analcolici', folder: 'analcolici' },
+  { name: 'Bibite', folder: 'bibite' },
+  { name: 'Caffetteria', folder: 'caffetteria' },
+  { name: 'Bollicine', folder: 'bollicine' },
+  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
+  { name: 'Vini rossi', folder: 'vini-rossi' }
+];
 
-// ==========================================
-// CONFIGURAZIONE AUTENTICAZIONE
-// ==========================================
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
-const ADMIN_EMAILS = ADMIN_EMAIL.split(',').map(e => e.toLowerCase().trim()).filter(e => e);
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
-const TOKEN_SECRET = ADMIN_PASSWORD; // Use password as HMAC secret
-const TOKEN_EXPIRY_HOURS = 24 * 7; // 7 days
+// Shared auth module (single source of truth)
+const { generateToken, verifyToken, verifyLogin } = require('./auth');
 
-// CORS Headers
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Content-Type': 'application/json'
-};
+// CORS Headers - restrict to known origins
+const ALLOWED_ORIGINS = [
+  'https://arconti31.com',
+  'https://www.arconti31.com',
+  'https://arconti31.netlify.app',
+  'http://localhost:8000',
+  'http://localhost:3000'
+];
 
-// ==========================================
-// TOKEN GENERATION & VERIFICATION (HMAC-SHA256)
-// ==========================================
-function generateToken(email) {
-  const payload = {
-    email: email,
-    exp: Date.now() + (TOKEN_EXPIRY_HOURS * 60 * 60 * 1000)
-  };
-  const payloadBase64 = Buffer.from(JSON.stringify(payload)).toString('base64');
-  const signature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
-  return `${payloadBase64}.${signature}`;
+function getCorsOrigin(event) {
+  const origin = event.headers.origin || event.headers.Origin || '';
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 }
 
-function verifyToken(token) {
-  if (!token || typeof token !== 'string') return null;
-
-  const parts = token.split('.');
-  if (parts.length !== 2) return null;
-
-  const [payloadBase64, signature] = parts;
-
-  // Verify signature
-  const expectedSignature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
-  if (signature !== expectedSignature) {
-    console.log('Token signature mismatch');
-    return null;
-  }
-
-  // Decode and check expiry
-  try {
-    const payload = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf-8'));
-    if (payload.exp && payload.exp < Date.now()) {
-      console.log('Token expired');
-      return null;
-    }
-    return payload.email;
-  } catch (e) {
-    console.log('Token parse error:', e.message);
-    return null;
-  }
+function getHeaders(event) {
+  return {
+    'Access-Control-Allow-Origin': getCorsOrigin(event),
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json'
+  };
 }
 
 exports.handler = async (event, context) => {
+  const headers = getHeaders(event);
 
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
@@ -113,16 +90,15 @@ exports.handler = async (event, context) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Email e password richiesti' }) };
     }
 
-    const emailLower = email.toLowerCase().trim();
-
-    if (ADMIN_EMAILS.includes(emailLower) && password === ADMIN_PASSWORD) {
-      const newToken = generateToken(emailLower);
+    const validEmail = verifyLogin(email, password);
+    if (validEmail) {
+      const newToken = generateToken(validEmail);
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           token: newToken,
-          user: { email: emailLower, role: 'admin' }
+          user: { email: validEmail, role: 'admin' }
         })
       };
     } else {
@@ -490,14 +466,10 @@ const COLLECTION_CONFIG = {
     jsonPath: 'categorie/categorie.json',
     type: 'categories'
   },
-  // Le bevande condividono tutte lo stesso JSON
-  'cocktails': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'cocktails' },
-  'analcolici': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'analcolici' },
-  'bibite': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'bibite' },
-  'caffetteria': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'caffetteria' },
-  'bollicine': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'bollicine' },
-  'bianchi-fermi': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'bianchi-fermi' },
-  'vini-rossi': { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: 'vini-rossi' }
+  // Beverage collections derived from BEVERAGE_CATEGORIES constant
+  ...Object.fromEntries(BEVERAGE_CATEGORIES.map(c => [
+    c.folder, { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: c.folder }
+  ]))
 };
 
 async function regenerateJSON(collection, token, owner, repo) {
@@ -539,24 +511,24 @@ async function readCollectionFiles(folder, token, owner, repo) {
     if (!Array.isArray(files)) return [];
 
     const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
-    const items = [];
 
-    for (const file of mdFiles) {
+    // Read all files in parallel for speed (avoids Netlify function timeout)
+    const results = await Promise.all(mdFiles.map(async (file) => {
       try {
-        // Scarica il contenuto del file
         const fileData = await githubRequest('GET', `/repos/${owner}/${repo}/contents/${folder}/${file.name}`, null, token);
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
         const parsed = parseMarkdownFrontmatter(content);
         if (parsed) {
           parsed._filename = file.name;
-          items.push(parsed);
+          return parsed;
         }
       } catch (e) {
         console.error(`Errore lettura ${file.name}:`, e.message);
       }
-    }
+      return null;
+    }));
 
-    return items;
+    return results.filter(Boolean);
   } catch (e) {
     console.error(`Errore lettura collection ${folder}:`, e.message);
     return [];
@@ -685,21 +657,10 @@ async function generateCategoriesJSON(token, owner, repo) {
 }
 
 async function generateBeveragesJSON(token, owner, repo) {
-  // Definizione categorie bevande
-  const beverageCategories = [
-    { name: 'Cocktails', folder: 'cocktails' },
-    { name: 'Analcolici', folder: 'analcolici' },
-    { name: 'Bibite', folder: 'bibite' },
-    { name: 'Caffetteria', folder: 'caffetteria' },
-    { name: 'Bollicine', folder: 'bollicine' },
-    { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
-    { name: 'Vini rossi', folder: 'vini-rossi' }
-  ];
-
   const beveragesByType = {};
   const allBeverages = [];
 
-  for (const category of beverageCategories) {
+  for (const category of BEVERAGE_CATEGORIES) {
     const items = await readCollectionFiles(category.folder, token, owner, repo);
 
     // Aggiungi il tipo a ogni item

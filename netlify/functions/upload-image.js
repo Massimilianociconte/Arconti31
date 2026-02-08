@@ -3,12 +3,7 @@
 
 const https = require('https');
 const crypto = require('crypto');
-
-// ==========================================
-// TOKEN VERIFICATION (Same as save-data.js)
-// ==========================================
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
-const TOKEN_SECRET = ADMIN_PASSWORD;
+const { verifyToken } = require('./auth');
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -16,35 +11,6 @@ const headers = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Content-Type': 'application/json'
 };
-
-function verifyToken(token) {
-  if (!token || typeof token !== 'string') return null;
-
-  const parts = token.split('.');
-  if (parts.length !== 2) return null;
-
-  const [payloadBase64, signature] = parts;
-
-  // Verify signature
-  const expectedSignature = crypto.createHmac('sha256', TOKEN_SECRET).update(payloadBase64).digest('hex');
-  if (signature !== expectedSignature) {
-    console.log('Token signature mismatch');
-    return null;
-  }
-
-  // Decode and check expiry
-  try {
-    const payload = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf-8'));
-    if (payload.exp && payload.exp < Date.now()) {
-      console.log('Token expired');
-      return null;
-    }
-    return payload.email;
-  } catch (e) {
-    console.log('Token parse error:', e.message);
-    return null;
-  }
-}
 
 exports.handler = async (event, context) => {
   // Handle CORS preflight

@@ -1,5 +1,5 @@
 {
-  "name": "menu-birre-cms",
+  "name": "arconti31",
   "version": "1.0.0",
   "description": "Menù birre con Netlify CMS",
   "scripts": {
@@ -9,6 +9,9 @@
   "keywords": ["netlify-cms", "restaurant", "beer-menu"],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "js-yaml": "^4.1.0"
   }

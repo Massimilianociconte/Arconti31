@@ -570,6 +570,7 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     const requestBody = { folder: collection.folder };
     if (forceApi) {
       requestBody.mode = 'api';
+      requestBody.token = state.token;
     }
 
     const res = await fetch('/.netlify/functions/read-data', {
@@ -1614,7 +1615,7 @@ async function bulkSetVisibility(visible) {
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'categorie', mode: 'api' })
+      body: JSON.stringify({ folder: 'categorie', mode: 'api', token: state.token })
     });
 
     let freshData = [];
@@ -2068,7 +2069,7 @@ async function saveItem() {
       const freshRes = await fetch('/.netlify/functions/read-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ folder: collection.folder, mode: 'api' })
+        body: JSON.stringify({ folder: collection.folder, mode: 'api', token: state.token })
       });
 
       if (freshRes.ok) {
@@ -2221,7 +2222,7 @@ async function deleteItem() {
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: collection.folder, mode: 'api' })
+      body: JSON.stringify({ folder: collection.folder, mode: 'api', token: state.token })
     });
 
     if (fetchRes.ok) {

@@ -2,6 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
+// Single source of truth for beverage categories (must match save-data.js)
+const BEVERAGE_CATEGORIES = [
+  { name: 'Cocktails', folder: 'cocktails' },
+  { name: 'Analcolici', folder: 'analcolici' },
+  { name: 'Bibite', folder: 'bibite' },
+  { name: 'Caffetteria', folder: 'caffetteria' },
+  { name: 'Bollicine', folder: 'bollicine' },
+  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
+  { name: 'Vini rossi', folder: 'vini-rossi' }
+];
+
 // Processa categorie dinamiche PRIMA di tutto
 function loadCategories() {
   const categoriesDir = path.join(__dirname, '../categorie');
@@ -16,6 +27,7 @@ function loadCategories() {
         const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
         if (match) {
           const cat = yaml.load(match[1]);
+          cat._filename = file;
           // INCLUDE TUTTE LE CATEGORIE nel JSON
           // Il filtro visibile deve essere fatto dal frontend (app.js), non qui.
           // Altrimenti il CMS non vede le categorie nascoste e non può riattivarle.
@@ -69,6 +81,7 @@ function processCollection(dirPath, itemType) {
             item.allergeni = [item.allergeni];
           }
           
+          item._filename = file;
           items.push(item);
         }
       } catch (error) {
@@ -129,21 +142,12 @@ dynamicCategories
   });
 
 
-// Processa tutte le categorie di bevande
-const categories = [
-  { name: 'Cocktails', folder: 'cocktails' },
-  { name: 'Analcolici', folder: 'analcolici' },
-  { name: 'Bibite', folder: 'bibite' },
-  { name: 'Caffetteria', folder: 'caffetteria' },
-  { name: 'Bollicine', folder: 'bollicine' },
-  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
-  { name: 'Vini rossi', folder: 'vini-rossi' }
-];
+// Processa tutte le categorie di bevande (da BEVERAGE_CATEGORIES)
 
 const beveragesByType = {};
 let totalBeverages = 0;
 
-categories.forEach(category => {
+BEVERAGE_CATEGORIES.forEach(category => {
   const dir = path.join(__dirname, `../${category.folder}`);
   const items = processCollection(dir, 'beverage');
   

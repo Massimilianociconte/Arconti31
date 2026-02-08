@@ -109,7 +109,7 @@ class SmartCache {
     // Normalize items ensuring ID/filename exists
     // Questo è fondamentale perché i JSON raw (es. food.json) non hanno filename/id
     const normalizedRemoteItems = remoteItems.map(i => {
-      const id = i.filename || i.id || (i.slug || (i.nome ? this.slugify(i.nome) : 'unknown-' + Math.random().toString(36).slice(2, 11))) + '.md';
+      const id = i._filename || i.filename || i.id || (i.slug || (i.nome ? this.slugify(i.nome) : 'unknown-' + Math.random().toString(36).slice(2, 11))) + '.md';
       return { ...i, id: id, filename: id };
     });
 

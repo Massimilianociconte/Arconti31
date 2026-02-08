@@ -1,6 +1,8 @@
 // Netlify Function per leggere i dati
 // OTTIMIZZATO: Usa JSON statici quando possibile, API GitHub solo per SHA
 
+const { verifyToken } = require('./auth');
+
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -14,10 +16,18 @@ exports.handler = async (event, context) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const { folder, mode } = parsedBody;
+  const { folder, mode, token } = parsedBody;
 
   if (!folder) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Folder required' }) };
+  }
+
+  // mode=api exposes SHA data → require authentication
+  if (mode === 'api') {
+    const userEmail = verifyToken(token);
+    if (!userEmail) {
+      return { statusCode: 401, body: JSON.stringify({ error: 'Authentication required for API mode', items: [] }) };
+    }
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -216,14 +226,11 @@ function generateMarkdownFromItem(item) {
 
 function slugify(text) {
   if (!text) return 'item-' + Date.now();
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
+  return text.toString().toLowerCase().trim()
     .replace(/\s+/g, '-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-')
-    .substring(0, 50);
+    .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
+    .replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').substring(0, 50);
 }
 
 // ========================================
