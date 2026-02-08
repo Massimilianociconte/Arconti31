@@ -110,16 +110,6 @@
       "order": 10
     },
     {
-      "nome": "Birre artigianali alla spina a rotazione",
-      "slug": "birre-artigianali",
-      "tipo_menu": "beverage",
-      "icona": "🍺",
-      "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
-      "descrizione": "Selezione di birre artigianali a rotazione",
-      "visibile": true,
-      "order": 11
-    },
-    {
       "nome": "Dolci",
       "slug": "dolci",
       "tipo_menu": "food",
@@ -140,6 +130,16 @@
       "order": 12
     },
     {
+      "nome": "Birre artigianali alla spina a rotazione",
+      "slug": "birre-artigianali",
+      "tipo_menu": "beverage",
+      "icona": "🍺",
+      "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
+      "descrizione": "Selezione di birre artigianali a rotazione",
+      "visibile": true,
+      "order": 13
+    },
+    {
       "nome": "Birre alla spina",
       "slug": "birre-alla-spina",
       "tipo_menu": "beverage",
@@ -147,7 +147,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 12
+      "order": 14
     },
     {
       "nome": "Birre speciali in bottiglia",
@@ -157,7 +157,7 @@
       "immagine": "images/minicard sezioni/speciali-bottiglia.png",
       "descrizione": "Birre speciali in bottiglia",
       "visibile": true,
-      "order": 13
+      "order": 15
     },
     {
       "nome": "Frigo Birre",
@@ -167,7 +167,7 @@
       "immagine": "images/minicard sezioni/frigo-birre.png",
       "descrizione": "Birre dal frigo",
       "visibile": true,
-      "order": 14
+      "order": 16
     },
     {
       "nome": "Cocktails",
@@ -177,7 +177,7 @@
       "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
-      "order": 15
+      "order": 17
     },
     {
       "nome": "Analcolici",
@@ -187,7 +187,7 @@
       "immagine": "images/minicard sezioni/analcolici.jpg",
       "descrizione": "Bevande analcoliche",
       "visibile": true,
-      "order": 16
+      "order": 18
     },
     {
       "nome": "Bibite",
@@ -380,7 +380,7 @@
       "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
-      "order": 11
+      "order": 13
     },
     {
       "nome": "Birre alla spina",
@@ -390,7 +390,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 12
+      "order": 14
     },
     {
       "nome": "Birre speciali in bottiglia",
@@ -400,7 +400,7 @@
       "immagine": "images/minicard sezioni/speciali-bottiglia.png",
       "descrizione": "Birre speciali in bottiglia",
       "visibile": true,
-      "order": 13
+      "order": 15
     },
     {
       "nome": "Frigo Birre",
@@ -410,7 +410,7 @@
       "immagine": "images/minicard sezioni/frigo-birre.png",
       "descrizione": "Birre dal frigo",
       "visibile": true,
-      "order": 14
+      "order": 16
     },
     {
       "nome": "Cocktails",
@@ -420,7 +420,7 @@
       "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
-      "order": 15
+      "order": 17
     },
     {
       "nome": "Analcolici",
@@ -430,7 +430,7 @@
       "immagine": "images/minicard sezioni/analcolici.jpg",
       "descrizione": "Bevande analcoliche",
       "visibile": true,
-      "order": 16
+      "order": 18
     },
     {
       "nome": "Bibite",
