@@ -66,6 +66,17 @@
       "order": 0
     },
     {
+      "nome": "La Grigna - Lariano ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "descrizione": "PILS",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
+      "formato": "0,4 l ",
+      "gradazione": "4,2% ",
+      "disponibile": true,
+      "order": 0
+    },
+    {
       "nome": "Rio - Birrificio Abruzzese",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -418,6 +429,17 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg",
         "formato": "0,4 l",
         "gradazione": "3,5",
+        "disponibile": true,
+        "order": 0
+      },
+      {
+        "nome": "La Grigna - Lariano ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "descrizione": "PILS",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
+        "formato": "0,4 l ",
+        "gradazione": "4,2% ",
         "disponibile": true,
         "order": 0
       },
