@@ -4,5 +4,5 @@ slug: "whisky"
 tipo_menu: "beverage"
 icona: "🥃"
 visibile: true
-order: 20
+order: 21
 ---
