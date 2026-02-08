@@ -2,6 +2,6 @@
 nome: "Gin"
 slug: "gin"
 tipo_menu: "beverage"
-visibile: true
+visibile: false
 order: 2
 ---
