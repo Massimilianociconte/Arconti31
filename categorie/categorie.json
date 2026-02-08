@@ -217,7 +217,7 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 30
+      "order": 22
     },
     {
       "nome": "Bianchi fermi",
@@ -227,7 +227,7 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 31
+      "order": 23
     },
     {
       "nome": "Vini rossi",
@@ -237,7 +237,7 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 32
+      "order": 24
     }
   ],
   "foodCategories": [
@@ -460,7 +460,7 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 30
+      "order": 22
     },
     {
       "nome": "Bianchi fermi",
@@ -470,7 +470,7 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 31
+      "order": 23
     },
     {
       "nome": "Vini rossi",
@@ -480,7 +480,7 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 32
+      "order": 24
     }
   ]
 }
