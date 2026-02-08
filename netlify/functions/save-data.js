@@ -244,6 +244,157 @@ exports.handler = async (event, context) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ success: true })
       };
+    } else if (action === 'batch-save-order') {
+      // ========================================
+      // BATCH REORDER: single atomic commit via Git Trees API
+      // ========================================
+      const orderItems = body.items;
+      if (!collection || !orderItems || !orderItems.length) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing collection or items' }) };
+      }
+
+      const BRANCH = 'main';
+
+      // 1. Get current branch ref + commit tree SHA
+      const ref = await githubRequest('GET',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/ref/heads/${BRANCH}`, null, GITHUB_TOKEN);
+      const latestCommitSha = ref.object.sha;
+
+      const latestCommit = await githubRequest('GET',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/commits/${latestCommitSha}`, null, GITHUB_TOKEN);
+      const baseTreeSha = latestCommit.tree.sha;
+
+      // 2. Read all .md files in collection (PARALLEL for speed)
+      const listing = await githubRequest('GET',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${collection}`, null, GITHUB_TOKEN);
+
+      if (!Array.isArray(listing)) {
+        return { statusCode: 404, headers, body: JSON.stringify({ error: 'Collection not found' }) };
+      }
+
+      const mdFiles = listing.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
+
+      const fileResults = await Promise.all(mdFiles.map(async (file) => {
+        try {
+          const fileData = await githubRequest('GET',
+            `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${collection}/${file.name}`, null, GITHUB_TOKEN);
+          const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
+          const parsed = parseMarkdownFrontmatter(content);
+          if (parsed) {
+            parsed._filename = file.name;
+            return parsed;
+          }
+        } catch (e) {
+          console.error(`Error reading ${file.name}:`, e.message);
+        }
+        return null;
+      }));
+
+      const allItems = fileResults.filter(Boolean);
+
+      // 3. Build order lookup: by filename (primary) + by nome (fallback)
+      const orderMap = new Map(orderItems.map(i => [i.filename, i.order]));
+      const nameOrderMap = new Map();
+      orderItems.forEach(i => {
+        if (i.nome) nameOrderMap.set(i.nome.trim().toLowerCase(), i.order);
+      });
+
+      // 4. Apply order updates and build tree entries
+      const treeEntries = [];
+      let updatedCount = 0;
+
+      for (const item of allItems) {
+        let newOrder = orderMap.get(item._filename);
+
+        // Fallback: match by nome (handles filename mismatch)
+        if (newOrder === undefined && item.nome) {
+          const byName = nameOrderMap.get(item.nome.trim().toLowerCase());
+          if (byName !== undefined) newOrder = byName;
+        }
+
+        if (newOrder !== undefined && newOrder !== item.order) {
+          item.order = newOrder;
+          const { _filename, ...cleanData } = item;
+          treeEntries.push({
+            path: `${collection}/${_filename}`,
+            mode: '100644',
+            type: 'blob',
+            content: generateMarkdown(cleanData)
+          });
+          updatedCount++;
+        }
+      }
+
+      if (treeEntries.length === 0) {
+        return { statusCode: 200, headers, body: JSON.stringify({ success: true, updated: 0 }) };
+      }
+
+      // 5. Generate updated JSON and include in same commit (no extra API calls)
+      const sorted = [...allItems].sort((a, b) => (a.order || 0) - (b.order || 0));
+      const batchConfig = COLLECTION_CONFIG[collection];
+
+      if (batchConfig) {
+        let jsonContent = null;
+
+        if (batchConfig.type === 'categories') {
+          jsonContent = {
+            categories: sorted,
+            foodCategories: sorted.filter(c => c.tipo_menu === 'food'),
+            beverageCategories: sorted.filter(c => c.tipo_menu === 'beverage')
+          };
+        } else if (batchConfig.type === 'food') {
+          const categories = await readCollectionFiles('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+          const foodCats = categories.filter(c => c.tipo_menu === 'food' && c.visibile !== false);
+          const foodByCategory = {};
+          foodCats.forEach(cat => { foodByCategory[cat.nome] = []; });
+          sorted.forEach(item => {
+            const cat = item.category || 'Altro';
+            if (!foodByCategory[cat]) foodByCategory[cat] = [];
+            foodByCategory[cat].push(item);
+          });
+          const categoryOrder = {};
+          foodCats.forEach((cat, idx) => { categoryOrder[cat.nome] = cat.order || idx; });
+          jsonContent = { food: sorted, foodByCategory, categoryOrder };
+        } else if (batchConfig.type === 'beers') {
+          const beersBySection = {};
+          sorted.forEach(beer => {
+            const sec = beer.sezione || 'Birre alla spina';
+            if (!beersBySection[sec]) beersBySection[sec] = [];
+            beersBySection[sec].push(beer);
+          });
+          jsonContent = { beers: sorted, beersBySection };
+        }
+
+        if (jsonContent) {
+          treeEntries.push({
+            path: batchConfig.jsonPath,
+            mode: '100644',
+            type: 'blob',
+            content: JSON.stringify(jsonContent, null, 2)
+          });
+        }
+      }
+
+      // 6. Create tree → commit → update ref (3 API calls)
+      const newTree = await githubRequest('POST',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/trees`,
+        { base_tree: baseTreeSha, tree: treeEntries }, GITHUB_TOKEN);
+
+      const newCommit = await githubRequest('POST',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/commits`,
+        { message: `CMS: Reorder ${collection} (${updatedCount} items)`,
+          tree: newTree.sha, parents: [latestCommitSha] }, GITHUB_TOKEN);
+
+      await githubRequest('PATCH',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/ref/heads/${BRANCH}`,
+        { sha: newCommit.sha }, GITHUB_TOKEN);
+
+      console.log(`✅ Batch reorder: ${updatedCount} items in ${collection}`);
+
+      return {
+        statusCode: 200, headers,
+        body: JSON.stringify({ success: true, updated: updatedCount })
+      };
     }
 
     return { statusCode: 400, body: JSON.stringify({ error: 'Azione non valida' }) };

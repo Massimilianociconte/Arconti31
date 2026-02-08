@@ -1306,10 +1306,8 @@ function setupDragAndDropEvents() {
 }
 
 async function saveNewOrder(changedItems) {
-  // Se non ci sono item cambiati, esci
   if (!changedItems || changedItems.length === 0) return;
   
-  // Show subtle loading indicator
   const saveIndicator = document.createElement('div');
   saveIndicator.className = 'order-save-indicator';
   saveIndicator.innerHTML = `💾 Salvando ordine (${changedItems.length} elementi)...`;
@@ -1318,120 +1316,45 @@ async function saveNewOrder(changedItems) {
   try {
     const collection = COLLECTIONS[state.currentCollection];
     
-    // Get fresh SHAs first
-    const fetchRes = await fetch('/.netlify/functions/read-data', {
+    // Send all changed items in a single batch request
+    // Server handles: parallel file reads, SHA management, atomic commit via Git Trees API
+    const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: collection.folder, mode: 'api' })
+      body: JSON.stringify({
+        token: state.token,
+        action: 'batch-save-order',
+        collection: collection.folder,
+        items: changedItems.map(item => ({
+          filename: item.filename,
+          nome: item.nome,
+          order: item.order
+        }))
+      })
     });
     
-    let freshData = [];
-    if (fetchRes.ok) {
-      const data = await fetchRes.json();
-      freshData = data.items;
+    const result = await res.json();
+    
+    if (!res.ok) {
+      throw new Error(result.error || 'Errore salvataggio ordine');
     }
     
-    // Save only changed items (sequentially to avoid conflicts)
-    let successCount = 0;
-    let errorCount = 0;
-    
-    for (const item of changedItems) {
-      const freshItem = findFreshItem(freshData, item.filename, item.nome);
-      // Correct filename if matched by name (different from stored filename)
-      if (freshItem && freshItem.filename !== item.filename) {
-        const oldFilename = item.filename;
-        console.log(`Filename corrected: ${oldFilename} → ${freshItem.filename}`);
-        item.filename = freshItem.filename;
-        // Remove orphaned SmartCache entry with old filename
-        if (window.SmartCache) {
-          await window.SmartCache.delete('items', oldFilename);
-        }
-      }
-      const sha = freshItem?.sha || item.sha;
-      
-      if (!sha) {
-        console.warn(`Skipping ${item.filename}: no SHA`);
-        continue;
-      }
-      
-      // Clean item data - only valid fields
-      const validFields = collection.fields.map(f => f.name);
-      const cleanData = {};
-      validFields.forEach(field => {
-        if (item[field] !== undefined) {
-          cleanData[field] = item[field];
-        }
-      });
-      
-      try {
-        const res = await fetch('/.netlify/functions/save-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: state.token,
-            action: 'save',
-            collection: collection.folder,
-            filename: item.filename,
-            data: cleanData,
-            sha: sha,
-            skipRegeneration: true // Skip JSON regen for each item
-          })
+    // Update SmartCache for all changed items
+    if (window.SmartCache) {
+      for (const item of changedItems) {
+        await window.SmartCache.set('items', {
+          ...item,
+          id: item.filename,
+          _collection: state.currentCollection,
+          _hash: window.SmartCache.generateHash(item),
+          _lastUpdated: Date.now(),
+          _writeTime: Date.now()
         });
-        
-        if (res.ok) {
-          const result = await res.json();
-          item.sha = result.sha; // Update SHA for next save
-          successCount++;
-          
-          // Update SmartCache silently
-          if (window.SmartCache) {
-            await window.SmartCache.set('items', {
-              ...item,
-              id: item.filename,
-              _collection: state.currentCollection,
-              _hash: window.SmartCache.generateHash(item),
-              _lastUpdated: Date.now(),
-              _writeTime: Date.now()
-            });
-          }
-        } else {
-          errorCount++;
-          const errData = await res.json().catch(() => ({}));
-          console.error(`Error saving ${item.filename}:`, errData.error || res.status);
-        }
-        
-        // Small delay between saves to avoid rate limits
-        await new Promise(r => setTimeout(r, 300));
-      } catch (e) {
-        errorCount++;
-        console.error(`Error saving order for ${item.filename}:`, e);
       }
     }
     
-    // Regenerate JSON once at the end (only if we saved something)
-    if (successCount > 0) {
-      try {
-        await fetch('/.netlify/functions/save-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: state.token,
-            action: 'regenerate-json',
-            collection: collection.folder
-          })
-        });
-      } catch (e) {
-        console.error('Error regenerating JSON:', e);
-      }
-    }
-    
-    if (errorCount === 0) {
-      saveIndicator.innerHTML = '✅ Ordine salvato!';
-      saveIndicator.classList.add('success');
-    } else {
-      saveIndicator.innerHTML = `⚠️ Salvati ${successCount}/${changedItems.length}`;
-      saveIndicator.classList.add('error');
-    }
+    saveIndicator.innerHTML = `✅ Ordine salvato! (${result.updated || changedItems.length} elementi)`;
+    saveIndicator.classList.add('success');
     setTimeout(() => saveIndicator.remove(), 2000);
     
   } catch (e) {
