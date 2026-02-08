@@ -632,6 +632,25 @@ function parseMarkdown(content, filename, sha) {
 
 
 // ========================================
+// FILENAME MATCHING HELPER
+// ========================================
+
+function findFreshItem(freshItems, targetFilename, targetNome) {
+  if (!freshItems || !freshItems.length) return null;
+  // Primary: match by filename
+  let found = freshItems.find(i => i.filename === targetFilename);
+  if (found) return found;
+  // Fallback: match by nome in markdown content
+  if (!targetNome) return null;
+  const normalizedTarget = targetNome.trim().toLowerCase();
+  return freshItems.find(i => {
+    if (!i.content) return false;
+    const match = i.content.match(/nome:\s*"?([^"\n]+)"?/);
+    return match && match[1].trim().toLowerCase() === normalizedTarget;
+  });
+}
+
+// ========================================
 // COLLECTION & RENDERING
 // ========================================
 
@@ -1290,7 +1309,12 @@ async function saveNewOrder(changedItems) {
     let errorCount = 0;
     
     for (const item of changedItems) {
-      const freshItem = freshData.find(i => i.filename === item.filename);
+      const freshItem = findFreshItem(freshData, item.filename, item.nome);
+      // Correct filename if matched by name (different from stored filename)
+      if (freshItem && freshItem.filename !== item.filename) {
+        console.log(`Filename corrected: ${item.filename} → ${freshItem.filename}`);
+        item.filename = freshItem.filename;
+      }
       const sha = freshItem?.sha || item.sha;
       
       if (!sha) {
@@ -1650,11 +1674,18 @@ async function bulkSetVisibility(visible) {
       const item = state.items.find(i => i.filename === filename);
       if (!item) continue;
 
-      const freshItem = freshData.find(i => i.filename === filename);
+      const freshItem = findFreshItem(freshData, filename, item.nome);
+      // Correct filename if matched by name
+      let correctedFilename = filename;
+      if (freshItem && freshItem.filename !== filename) {
+        console.log(`Filename corrected: ${filename} → ${freshItem.filename}`);
+        correctedFilename = freshItem.filename;
+        item.filename = correctedFilename;
+      }
       const sha = freshItem?.sha || item.sha;
 
       if (sha) {
-        itemsToUpdate.push({ filename, item, sha });
+        itemsToUpdate.push({ filename: correctedFilename, item, sha });
       }
     }
 
@@ -2085,9 +2116,14 @@ async function saveItem() {
         const freshData = await freshRes.json();
         console.log('Source:', freshData.source, '- Items trovati:', freshData.items?.length);
 
-        const freshItem = freshData.items?.find(i => i.filename === filename);
+        const freshItem = findFreshItem(freshData.items || [], filename, data.nome);
         if (freshItem && freshItem.sha) {
           sha = freshItem.sha;
+          // Correct filename if matched by name (different from stored filename)
+          if (freshItem.filename !== filename) {
+            console.log(`Filename corrected: ${filename} → ${freshItem.filename}`);
+            filename = freshItem.filename;
+          }
           console.log('SHA trovato:', sha);
         } else {
           console.log('File non trovato o SHA mancante, provo con SHA in memoria');
@@ -2226,14 +2262,34 @@ async function deleteItem() {
 
     if (fetchRes.ok) {
       const data = await fetchRes.json();
-      const found = data.items.find(i => i.filename === itemToDelete.filename);
+      const found = findFreshItem(data.items || [], itemToDelete.filename, itemToDelete.nome);
       if (found && found.sha) {
         sha = found.sha;
+        // Correct filename if matched by name (different from stored filename)
+        if (found.filename !== itemToDelete.filename) {
+          console.log(`Filename corrected: ${itemToDelete.filename} → ${found.filename}`);
+          itemToDelete.filename = found.filename;
+        }
       }
     }
 
     if (!sha) {
-      throw new Error('Impossibile recuperare SHA del file. Ricarica la pagina e riprova.');
+      // Item might have been already deleted outside the CMS (ghost entry in JSON)
+      state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
+      if (window.SmartCache) {
+        await window.SmartCache.set('items', {
+          ...itemToDelete,
+          id: itemToDelete.filename,
+          _deleted: true,
+          _writeTime: Date.now()
+        });
+      }
+      renderItems();
+      showListView();
+      hideLoading();
+      state._isUpdating = false;
+      toast('Elemento non trovato sul server (potrebbe essere stato già eliminato). Rimosso dalla lista.', 'info');
+      return;
     }
 
     // Rimuovi dalla UI DOPO aver verificato SHA (feedback ottimistico ma sicuro)

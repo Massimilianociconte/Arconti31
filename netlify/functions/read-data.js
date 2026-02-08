@@ -168,7 +168,7 @@ async function tryReadFromJSON(folder, owner, repo) {
     // Genera sia il content markdown (per compatibilità) che passa l'item diretto
     return items.map(item => {
       // Genera un filename dallo slug o dal nome
-      const filename = (item.slug || slugify(item.nome)) + '.md';
+      const filename = item._filename || ((item.slug || slugify(item.nome)) + '.md');
 
       // Genera contenuto markdown per compatibilità con parseMarkdown
       const content = generateMarkdownFromItem(item);

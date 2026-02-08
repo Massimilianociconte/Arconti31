@@ -77,6 +77,12 @@
     Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 
+# 4. Admin CMS assets: Always revalidate to ensure bug fixes are picked up immediately.
+[[headers]]
+  for = "/admin/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # Security Headers (Best Practices)
 [[headers]]
   for = "/*"

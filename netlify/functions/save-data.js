@@ -400,6 +400,7 @@ async function readCollectionFiles(folder, token, owner, repo) {
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
         const parsed = parseMarkdownFrontmatter(content);
         if (parsed) {
+          parsed._filename = file.name;
           items.push(parsed);
         }
       } catch (e) {
