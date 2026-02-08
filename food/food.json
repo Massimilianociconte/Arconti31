@@ -70,21 +70,6 @@
       "_filename": "profitterol.md"
     },
     {
-      "nome": "test",
-      "category": "Bavarese",
-      "prezzo": "10.00",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Novità",
-        "Vegano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "_filename": "test.md"
-    },
-    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -832,21 +817,6 @@
       }
     ],
     "Bavarese": [
-      {
-        "nome": "test",
-        "category": "Bavarese",
-        "prezzo": "10.00",
-        "allergeni": [
-          "Glutine"
-        ],
-        "tags": [
-          "Novità",
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "test.md"
-      },
       {
         "nome": "Mezzo polletto grigliato",
         "category": "Bavarese",
