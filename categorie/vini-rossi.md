@@ -6,5 +6,5 @@ icona: "🍷"
 immagine: "images/minicard sezioni/rossi.jpg"
 descrizione: "Vini rossi"
 visibile: true
-order: 20
+order: 22
 ---
