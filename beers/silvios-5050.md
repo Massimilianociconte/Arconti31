@@ -6,6 +6,6 @@ descrizione: "Morbida e dalla semplice beva, Silvio's è una STOUT arricchita co
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1769114652/arconti31/xs3jrauemc9nye3owx8l.jpg"
 formato: "0,4 l"
 gradazione: "5,2% "
-disponibile: true
+disponibile: false
 order: 0
 ---
