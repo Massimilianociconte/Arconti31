@@ -216,17 +216,6 @@
       "_filename": "vini-rossi.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 20,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Bollicine",
       "slug": "bollicine",
       "tipo_menu": "beverage",
@@ -234,8 +223,19 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bollicine.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Selezione di whisky ",
@@ -484,17 +484,6 @@
       "_filename": "vini-rossi.md"
     },
     {
-      "nome": "Caffetteria",
-      "slug": "caffetteria",
-      "tipo_menu": "beverage",
-      "icona": "☕",
-      "immagine": "images/minicard sezioni/caffetteria.jpg",
-      "descrizione": "Caffè e bevande calde",
-      "visibile": true,
-      "order": 20,
-      "_filename": "caffetteria.md"
-    },
-    {
       "nome": "Bollicine",
       "slug": "bollicine",
       "tipo_menu": "beverage",
@@ -502,8 +491,19 @@
       "immagine": "images/minicard sezioni/bollicine.jpg",
       "descrizione": "Spumanti e prosecchi",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "bollicine.md"
+    },
+    {
+      "nome": "Caffetteria",
+      "slug": "caffetteria",
+      "tipo_menu": "beverage",
+      "icona": "☕",
+      "immagine": "images/minicard sezioni/caffetteria.jpg",
+      "descrizione": "Caffè e bevande calde",
+      "visibile": true,
+      "order": 21,
+      "_filename": "caffetteria.md"
     },
     {
       "nome": "Selezione di whisky ",
