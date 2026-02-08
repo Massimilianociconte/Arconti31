@@ -256,7 +256,7 @@ class SmartCache {
         // Aggiungi filename come ID se manca
         items = items.map(i => ({
           ...i,
-          filename: i.filename || (i.slug || this.slugify(i.nome)) + '.md'
+          filename: i._filename || i.filename || (i.slug || this.slugify(i.nome)) + '.md'
         }));
 
         await this.syncCollection(items, coll, 'static');

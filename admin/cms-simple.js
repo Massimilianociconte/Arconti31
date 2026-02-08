@@ -263,10 +263,23 @@ async function init() {
       if (changes.collection === state.currentCollection) {
         // Refresh current view from CACHE ONLY (no network)
         const cachedItems = await window.SmartCache.getAll('items');
-        const collectionItems = cachedItems
+        let collectionItems = cachedItems
           .filter(i => i._collection === state.currentCollection && !i._deleted)
           .sort((a, b) => (a.order || 0) - (b.order || 0));
         
+        // Deduplicate by nome (handles orphaned entries from filename corrections)
+        const seenNomi = new Set();
+        collectionItems = collectionItems.filter(item => {
+          const key = (item.nome || '').trim().toLowerCase();
+          if (!key) return true;
+          if (seenNomi.has(key)) {
+            window.SmartCache.delete('items', item.id || item.filename).catch(() => {});
+            return false;
+          }
+          seenNomi.add(key);
+          return true;
+        });
+
         // Solo se abbiamo effettivamente item da mostrare
         if (collectionItems.length > 0 || changes.removed?.length > 0) {
           state.items = collectionItems;
@@ -587,6 +600,20 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
       state.items = cachedItems
         .filter(i => i._collection === collectionName && !i._deleted)
         .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+      // Deduplicate by nome (handles orphaned SmartCache entries from filename corrections)
+      const seenNomi = new Set();
+      state.items = state.items.filter(item => {
+        const key = (item.nome || '').trim().toLowerCase();
+        if (!key) return true;
+        if (seenNomi.has(key)) {
+          // Remove the duplicate from SmartCache too
+          window.SmartCache.delete('items', item.id || item.filename).catch(() => {});
+          return false;
+        }
+        seenNomi.add(key);
+        return true;
+      });
 
       console.log('🔄 SmartCache synced & loaded. Items:', state.items.length);
     }
@@ -1312,8 +1339,13 @@ async function saveNewOrder(changedItems) {
       const freshItem = findFreshItem(freshData, item.filename, item.nome);
       // Correct filename if matched by name (different from stored filename)
       if (freshItem && freshItem.filename !== item.filename) {
-        console.log(`Filename corrected: ${item.filename} → ${freshItem.filename}`);
+        const oldFilename = item.filename;
+        console.log(`Filename corrected: ${oldFilename} → ${freshItem.filename}`);
         item.filename = freshItem.filename;
+        // Remove orphaned SmartCache entry with old filename
+        if (window.SmartCache) {
+          await window.SmartCache.delete('items', oldFilename);
+        }
       }
       const sha = freshItem?.sha || item.sha;
       
@@ -1681,6 +1713,10 @@ async function bulkSetVisibility(visible) {
         console.log(`Filename corrected: ${filename} → ${freshItem.filename}`);
         correctedFilename = freshItem.filename;
         item.filename = correctedFilename;
+        // Remove orphaned SmartCache entry with old filename
+        if (window.SmartCache) {
+          await window.SmartCache.delete('items', filename);
+        }
       }
       const sha = freshItem?.sha || item.sha;
 
@@ -2121,8 +2157,13 @@ async function saveItem() {
           sha = freshItem.sha;
           // Correct filename if matched by name (different from stored filename)
           if (freshItem.filename !== filename) {
-            console.log(`Filename corrected: ${filename} → ${freshItem.filename}`);
+            const oldFilename = filename;
+            console.log(`Filename corrected: ${oldFilename} → ${freshItem.filename}`);
             filename = freshItem.filename;
+            // Remove orphaned SmartCache entry with old filename
+            if (window.SmartCache) {
+              await window.SmartCache.delete('items', oldFilename);
+            }
           }
           console.log('SHA trovato:', sha);
         } else {
@@ -2267,8 +2308,13 @@ async function deleteItem() {
         sha = found.sha;
         // Correct filename if matched by name (different from stored filename)
         if (found.filename !== itemToDelete.filename) {
-          console.log(`Filename corrected: ${itemToDelete.filename} → ${found.filename}`);
+          const oldFilename = itemToDelete.filename;
+          console.log(`Filename corrected: ${oldFilename} → ${found.filename}`);
           itemToDelete.filename = found.filename;
+          // Remove orphaned SmartCache entry with old filename
+          if (window.SmartCache) {
+            await window.SmartCache.delete('items', oldFilename);
+          }
         }
       }
     }
