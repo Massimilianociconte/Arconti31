@@ -147,7 +147,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 13
+      "order": 12
     },
     {
       "nome": "Birre speciali in bottiglia",
@@ -390,7 +390,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 13
+      "order": 12
     },
     {
       "nome": "Birre speciali in bottiglia",
