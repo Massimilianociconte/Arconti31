@@ -255,14 +255,11 @@ exports.handler = async (event, context) => {
 
       const BRANCH = 'main';
 
-      // 1. Get current branch ref + commit tree SHA
-      const ref = await githubRequest('GET',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/ref/heads/${BRANCH}`, null, GITHUB_TOKEN);
-      const latestCommitSha = ref.object.sha;
-
-      const latestCommit = await githubRequest('GET',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/commits/${latestCommitSha}`, null, GITHUB_TOKEN);
-      const baseTreeSha = latestCommit.tree.sha;
+      // 1. Get current branch info (commit SHA + tree SHA in one call)
+      const branchInfo = await githubRequest('GET',
+        `/repos/${REPO_OWNER}/${REPO_NAME}/branches/${BRANCH}`, null, GITHUB_TOKEN);
+      const latestCommitSha = branchInfo.commit.sha;
+      const baseTreeSha = branchInfo.commit.commit.tree.sha;
 
       // 2. Read all .md files in collection (PARALLEL for speed)
       const listing = await githubRequest('GET',
@@ -386,7 +383,7 @@ exports.handler = async (event, context) => {
           tree: newTree.sha, parents: [latestCommitSha] }, GITHUB_TOKEN);
 
       await githubRequest('PATCH',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/ref/heads/${BRANCH}`,
+        `/repos/${REPO_OWNER}/${REPO_NAME}/git/refs/heads/${BRANCH}`,
         { sha: newCommit.sha }, GITHUB_TOKEN);
 
       console.log(`✅ Batch reorder: ${updatedCount} items in ${collection}`);
