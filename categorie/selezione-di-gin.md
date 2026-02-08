@@ -4,5 +4,5 @@ slug: "Gin"
 tipo_menu: "beverage"
 icona: "🍋"
 visibile: true
-order: 0
+order: 24
 ---
