@@ -6,5 +6,5 @@ icona: "🥤"
 immagine: "images/minicard sezioni/analcolici.jpg"
 descrizione: "Bevande analcoliche"
 visibile: true
-order: 17
+order: 16
 ---
