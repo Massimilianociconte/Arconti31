@@ -6,5 +6,5 @@ icona: "🍺"
 immagine: "images/minicard sezioni/birre-spina-rotazione.png"
 descrizione: "Selezione di birre artigianali a rotazione"
 visibile: true
-order: 12
+order: 11
 ---
