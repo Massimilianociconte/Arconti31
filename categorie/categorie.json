@@ -11,20 +11,11 @@
       "_filename": "bavarese.md"
     },
     {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 1,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
       "visibile": false,
-      "order": 2,
+      "order": 1,
       "_filename": "gin.md"
     },
     {
@@ -34,7 +25,7 @@
       "icona": "⚽",
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1765584256/arconti31/arnsgtm4tbvaornjjxja.jpg",
       "visibile": false,
-      "order": 3,
+      "order": 2,
       "_filename": "menu-partita.md"
     },
     {
@@ -45,7 +36,7 @@
       "immagine": "images/minicard sezioni/hamburger-bufala.png",
       "descrizione": "I nostri hamburger con carne di bufala selezionata",
       "visibile": true,
-      "order": 4,
+      "order": 3,
       "_filename": "hamburger-bufala.md"
     },
     {
@@ -56,7 +47,7 @@
       "immagine": "images/minicard sezioni/bufala-streetfood.png",
       "descrizione": "Hamburger di Fassona piemontese e street food",
       "visibile": true,
-      "order": 5,
+      "order": 4,
       "_filename": "hamburger-fassona.md"
     },
     {
@@ -67,7 +58,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768382322/arconti31/qutpmzrlkgz7pl0we7mj.jpg",
       "descrizione": "I nostri panini farciti",
       "visibile": true,
-      "order": 6,
+      "order": 5,
       "_filename": "panini.md"
     },
     {
@@ -78,7 +69,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768292996/arconti31/lilz2i4p5qgieij6bzdp.jpg",
       "descrizione": "Le nostre specialità della casa",
       "visibile": true,
-      "order": 7,
+      "order": 6,
       "_filename": "piatti-speciali.md"
     },
     {
@@ -89,7 +80,7 @@
       "immagine": "images/minicard sezioni/piadine.jpg",
       "descrizione": "Piadine romagnole farcite",
       "visibile": true,
-      "order": 8,
+      "order": 7,
       "_filename": "piadine.md"
     },
     {
@@ -100,7 +91,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768294936/arconti31/myfz7x29z01cohlqzr7y.jpg",
       "descrizione": "Fritti e contorni",
       "visibile": true,
-      "order": 9,
+      "order": 8,
       "_filename": "fritti.md"
     },
     {
@@ -111,7 +102,7 @@
       "immagine": "images/minicard sezioni/dolci.jpg",
       "descrizione": "I nostri dolci fatti in casa",
       "visibile": true,
-      "order": 10,
+      "order": 9,
       "_filename": "dolci.md"
     },
     {
@@ -122,7 +113,7 @@
       "immagine": "images/minicard sezioni/aperitivo.jpg",
       "descrizione": "Stuzzichini per l'aperitivo",
       "visibile": true,
-      "order": 11,
+      "order": 10,
       "_filename": "aperitivo.md"
     },
     {
@@ -133,7 +124,7 @@
       "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
-      "order": 12,
+      "order": 11,
       "_filename": "birre-artigianali.md"
     },
     {
@@ -144,7 +135,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 13,
+      "order": 12,
       "_filename": "birre-alla-spina.md"
     },
     {
@@ -155,7 +146,7 @@
       "immagine": "images/minicard sezioni/speciali-bottiglia.png",
       "descrizione": "Birre speciali in bottiglia",
       "visibile": true,
-      "order": 14,
+      "order": 13,
       "_filename": "birre-speciali-bottiglia.md"
     },
     {
@@ -166,7 +157,7 @@
       "immagine": "images/minicard sezioni/frigo-birre.png",
       "descrizione": "Birre dal frigo",
       "visibile": true,
-      "order": 15,
+      "order": 14,
       "_filename": "frigo-birre.md"
     },
     {
@@ -177,7 +168,7 @@
       "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
-      "order": 16,
+      "order": 15,
       "_filename": "cocktails.md"
     },
     {
@@ -188,7 +179,7 @@
       "immagine": "images/minicard sezioni/analcolici.jpg",
       "descrizione": "Bevande analcoliche",
       "visibile": true,
-      "order": 17,
+      "order": 16,
       "_filename": "analcolici.md"
     },
     {
@@ -199,7 +190,7 @@
       "immagine": "images/minicard sezioni/bevande.jpg",
       "descrizione": "Bibite e soft drinks",
       "visibile": true,
-      "order": 18,
+      "order": 17,
       "_filename": "bibite.md"
     },
     {
@@ -210,7 +201,7 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 19,
+      "order": 18,
       "_filename": "bianchi-fermi.md"
     },
     {
@@ -221,7 +212,7 @@
       "immagine": "images/minicard sezioni/caffetteria.jpg",
       "descrizione": "Caffè e bevande calde",
       "visibile": true,
-      "order": 20,
+      "order": 19,
       "_filename": "caffetteria.md"
     },
     {
@@ -230,7 +221,7 @@
       "tipo_menu": "beverage",
       "icona": "🥃",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "selezione-di-whisky.md"
     },
     {
@@ -241,8 +232,17 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 22,
+      "order": 21,
       "_filename": "vini-rossi.md"
+    },
+    {
+      "nome": "Selezione di Rum",
+      "slug": "rum",
+      "tipo_menu": "beverage",
+      "icona": "🍫",
+      "visibile": true,
+      "order": 22,
+      "_filename": "selezione-di-rum.md"
     },
     {
       "nome": "Bollicine",
@@ -283,7 +283,7 @@
       "icona": "⚽",
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1765584256/arconti31/arnsgtm4tbvaornjjxja.jpg",
       "visibile": false,
-      "order": 3,
+      "order": 2,
       "_filename": "menu-partita.md"
     },
     {
@@ -294,7 +294,7 @@
       "immagine": "images/minicard sezioni/hamburger-bufala.png",
       "descrizione": "I nostri hamburger con carne di bufala selezionata",
       "visibile": true,
-      "order": 4,
+      "order": 3,
       "_filename": "hamburger-bufala.md"
     },
     {
@@ -305,7 +305,7 @@
       "immagine": "images/minicard sezioni/bufala-streetfood.png",
       "descrizione": "Hamburger di Fassona piemontese e street food",
       "visibile": true,
-      "order": 5,
+      "order": 4,
       "_filename": "hamburger-fassona.md"
     },
     {
@@ -316,7 +316,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768382322/arconti31/qutpmzrlkgz7pl0we7mj.jpg",
       "descrizione": "I nostri panini farciti",
       "visibile": true,
-      "order": 6,
+      "order": 5,
       "_filename": "panini.md"
     },
     {
@@ -327,7 +327,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768292996/arconti31/lilz2i4p5qgieij6bzdp.jpg",
       "descrizione": "Le nostre specialità della casa",
       "visibile": true,
-      "order": 7,
+      "order": 6,
       "_filename": "piatti-speciali.md"
     },
     {
@@ -338,7 +338,7 @@
       "immagine": "images/minicard sezioni/piadine.jpg",
       "descrizione": "Piadine romagnole farcite",
       "visibile": true,
-      "order": 8,
+      "order": 7,
       "_filename": "piadine.md"
     },
     {
@@ -349,7 +349,7 @@
       "immagine": "https://res.cloudinary.com/ducwseofw/image/upload/v1768294936/arconti31/myfz7x29z01cohlqzr7y.jpg",
       "descrizione": "Fritti e contorni",
       "visibile": true,
-      "order": 9,
+      "order": 8,
       "_filename": "fritti.md"
     },
     {
@@ -360,7 +360,7 @@
       "immagine": "images/minicard sezioni/dolci.jpg",
       "descrizione": "I nostri dolci fatti in casa",
       "visibile": true,
-      "order": 10,
+      "order": 9,
       "_filename": "dolci.md"
     },
     {
@@ -371,26 +371,17 @@
       "immagine": "images/minicard sezioni/aperitivo.jpg",
       "descrizione": "Stuzzichini per l'aperitivo",
       "visibile": true,
-      "order": 11,
+      "order": 10,
       "_filename": "aperitivo.md"
     }
   ],
   "beverageCategories": [
     {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 1,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
       "visibile": false,
-      "order": 2,
+      "order": 1,
       "_filename": "gin.md"
     },
     {
@@ -401,7 +392,7 @@
       "immagine": "images/minicard sezioni/birre-spina-rotazione.png",
       "descrizione": "Selezione di birre artigianali a rotazione",
       "visibile": true,
-      "order": 12,
+      "order": 11,
       "_filename": "birre-artigianali.md"
     },
     {
@@ -412,7 +403,7 @@
       "immagine": "images/minicard sezioni/birra-spina.png",
       "descrizione": "Birre alla spina classiche",
       "visibile": true,
-      "order": 13,
+      "order": 12,
       "_filename": "birre-alla-spina.md"
     },
     {
@@ -423,7 +414,7 @@
       "immagine": "images/minicard sezioni/speciali-bottiglia.png",
       "descrizione": "Birre speciali in bottiglia",
       "visibile": true,
-      "order": 14,
+      "order": 13,
       "_filename": "birre-speciali-bottiglia.md"
     },
     {
@@ -434,7 +425,7 @@
       "immagine": "images/minicard sezioni/frigo-birre.png",
       "descrizione": "Birre dal frigo",
       "visibile": true,
-      "order": 15,
+      "order": 14,
       "_filename": "frigo-birre.md"
     },
     {
@@ -445,7 +436,7 @@
       "immagine": "images/minicard sezioni/cocktail.jpg",
       "descrizione": "I nostri cocktails classici e signature",
       "visibile": true,
-      "order": 16,
+      "order": 15,
       "_filename": "cocktails.md"
     },
     {
@@ -456,7 +447,7 @@
       "immagine": "images/minicard sezioni/analcolici.jpg",
       "descrizione": "Bevande analcoliche",
       "visibile": true,
-      "order": 17,
+      "order": 16,
       "_filename": "analcolici.md"
     },
     {
@@ -467,7 +458,7 @@
       "immagine": "images/minicard sezioni/bevande.jpg",
       "descrizione": "Bibite e soft drinks",
       "visibile": true,
-      "order": 18,
+      "order": 17,
       "_filename": "bibite.md"
     },
     {
@@ -478,7 +469,7 @@
       "immagine": "images/minicard sezioni/bianchi-fermi.png",
       "descrizione": "Vini bianchi fermi",
       "visibile": true,
-      "order": 19,
+      "order": 18,
       "_filename": "bianchi-fermi.md"
     },
     {
@@ -489,7 +480,7 @@
       "immagine": "images/minicard sezioni/caffetteria.jpg",
       "descrizione": "Caffè e bevande calde",
       "visibile": true,
-      "order": 20,
+      "order": 19,
       "_filename": "caffetteria.md"
     },
     {
@@ -498,7 +489,7 @@
       "tipo_menu": "beverage",
       "icona": "🥃",
       "visibile": true,
-      "order": 21,
+      "order": 20,
       "_filename": "selezione-di-whisky.md"
     },
     {
@@ -509,8 +500,17 @@
       "immagine": "images/minicard sezioni/rossi.jpg",
       "descrizione": "Vini rossi",
       "visibile": true,
-      "order": 22,
+      "order": 21,
       "_filename": "vini-rossi.md"
+    },
+    {
+      "nome": "Selezione di Rum",
+      "slug": "rum",
+      "tipo_menu": "beverage",
+      "icona": "🍫",
+      "visibile": true,
+      "order": 22,
+      "_filename": "selezione-di-rum.md"
     },
     {
       "nome": "Bollicine",
