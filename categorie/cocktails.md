@@ -6,5 +6,5 @@ icona: "🍹"
 immagine: "images/minicard sezioni/cocktail.jpg"
 descrizione: "I nostri cocktails classici e signature"
 visibile: true
-order: 17
+order: 15
 ---
