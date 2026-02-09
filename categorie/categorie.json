@@ -254,15 +254,6 @@
       "visibile": true,
       "order": 23,
       "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Selezione di Gin",
-      "slug": "Gin",
-      "tipo_menu": "beverage",
-      "icona": "🍋",
-      "visibile": true,
-      "order": 24,
-      "_filename": "selezione-di-gin.md"
     }
   ],
   "foodCategories": [
@@ -522,15 +513,6 @@
       "visibile": true,
       "order": 23,
       "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Selezione di Gin",
-      "slug": "Gin",
-      "tipo_menu": "beverage",
-      "icona": "🍋",
-      "visibile": true,
-      "order": 24,
-      "_filename": "selezione-di-gin.md"
     }
   ]
 }
