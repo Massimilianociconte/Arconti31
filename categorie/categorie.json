@@ -236,15 +236,6 @@
       "visibile": true,
       "order": 21,
       "_filename": "caffetteria.md"
-    },
-    {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 23,
-      "_filename": "selezione-di-rum.md"
     }
   ],
   "foodCategories": [
@@ -486,15 +477,6 @@
       "visibile": true,
       "order": 21,
       "_filename": "caffetteria.md"
-    },
-    {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 23,
-      "_filename": "selezione-di-rum.md"
     }
   ]
 }
