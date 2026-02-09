@@ -238,15 +238,6 @@
       "_filename": "caffetteria.md"
     },
     {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-whisky.md"
-    },
-    {
       "nome": "Selezione di Rum",
       "slug": "rum",
       "tipo_menu": "beverage",
@@ -495,15 +486,6 @@
       "visibile": true,
       "order": 21,
       "_filename": "caffetteria.md"
-    },
-    {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Selezione di Rum",
