@@ -6,6 +6,7 @@
       "descrizione": "Bitter, vermouth rosso e soda",
       "disponibile": true,
       "order": 0,
+      "_filename": "americano.md",
       "tipo": "Cocktails"
     },
     {
@@ -14,6 +15,7 @@
       "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
       "disponibile": true,
       "order": 1,
+      "_filename": "aperol-spritz.md",
       "tipo": "Cocktails"
     },
     {
@@ -23,6 +25,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464972/arconti31/z5m43wy5g3sqxdfgukjp.avif",
       "disponibile": true,
       "order": 2,
+      "_filename": "black-russian.md",
       "tipo": "Cocktails"
     },
     {
@@ -32,6 +35,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768319787/arconti31/uwmp1jchphm8ojd5agdf.webp",
       "disponibile": true,
       "order": 3,
+      "_filename": "blue-kiss.md",
       "tipo": "Cocktails"
     },
     {
@@ -40,6 +44,7 @@
       "descrizione": "Lime, zucchero, cachaca, ghiaccio pilé",
       "disponibile": true,
       "order": 4,
+      "_filename": "caipirinha.md",
       "tipo": "Cocktails"
     },
     {
@@ -48,6 +53,7 @@
       "descrizione": "Campari e gin shakerati",
       "disponibile": true,
       "order": 5,
+      "_filename": "campari-shakerato.md",
       "tipo": "Cocktails"
     },
     {
@@ -56,6 +62,7 @@
       "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
       "disponibile": true,
       "order": 6,
+      "_filename": "chocolate-coco.md",
       "tipo": "Cocktails"
     },
     {
@@ -65,6 +72,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465094/arconti31/jgsehpefikvko3rx9nzg.png",
       "disponibile": true,
       "order": 7,
+      "_filename": "cuba-libre.md",
       "tipo": "Cocktails"
     },
     {
@@ -73,6 +81,7 @@
       "descrizione": "Gin e lemonsoda",
       "disponibile": true,
       "order": 8,
+      "_filename": "gin-lemon.md",
       "tipo": "Cocktails"
     },
     {
@@ -80,6 +89,7 @@
       "prezzo": "7,00",
       "disponibile": true,
       "order": 9,
+      "_filename": "gin-tonic.md",
       "tipo": "Cocktails"
     },
     {
@@ -88,6 +98,7 @@
       "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
       "disponibile": true,
       "order": 10,
+      "_filename": "hurricane.md",
       "tipo": "Cocktails"
     },
     {
@@ -96,6 +107,7 @@
       "descrizione": "Spumante e arancia",
       "disponibile": false,
       "order": 11,
+      "_filename": "mimosa.md",
       "tipo": "Cocktails"
     },
     {
@@ -105,6 +117,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465044/arconti31/fsbzuxlpdbz1thvz5hsi.webp",
       "disponibile": true,
       "order": 12,
+      "_filename": "mojito.md",
       "tipo": "Cocktails"
     },
     {
@@ -115,6 +128,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323321/arconti31/fooqowxwvxeamu19lw33.webp",
       "disponibile": true,
       "order": 13,
+      "_filename": "moscow-mule.md",
       "tipo": "Cocktails"
     },
     {
@@ -123,6 +137,7 @@
       "descrizione": "Gin, arancia e campari",
       "disponibile": true,
       "order": 14,
+      "_filename": "my-own.md",
       "tipo": "Cocktails"
     },
     {
@@ -131,6 +146,7 @@
       "descrizione": "Bitter, vermouth rosso e gin",
       "disponibile": true,
       "order": 15,
+      "_filename": "negroni.md",
       "tipo": "Cocktails"
     },
     {
@@ -140,6 +156,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768383865/arconti31/dck2jces7rttfs2xbrwg.webp",
       "disponibile": true,
       "order": 16,
+      "_filename": "pina-colada.md",
       "tipo": "Cocktails"
     },
     {
@@ -148,6 +165,7 @@
       "descrizione": "Bitter, vermouth rosso, spumante secco",
       "disponibile": true,
       "order": 17,
+      "_filename": "sbagliato.md",
       "tipo": "Cocktails"
     },
     {
@@ -158,6 +176,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323448/arconti31/vv2n5d55tu8wnylpk9bf.jpg",
       "disponibile": true,
       "order": 18,
+      "_filename": "sea-breeze.md",
       "tipo": "Cocktails"
     },
     {
@@ -166,6 +185,7 @@
       "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
       "disponibile": true,
       "order": 19,
+      "_filename": "sex-on-the-beach.md",
       "tipo": "Cocktails"
     },
     {
@@ -174,6 +194,7 @@
       "descrizione": "Rum bianco, lampone, lemonsoda",
       "disponibile": true,
       "order": 20,
+      "_filename": "sweet-and-red.md",
       "tipo": "Cocktails"
     },
     {
@@ -183,6 +204,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768466682/arconti31/a4p7fluu6dig3dfnktqf.jpg",
       "disponibile": true,
       "order": 21,
+      "_filename": "tequila-sunrise.md",
       "tipo": "Cocktails"
     },
     {
@@ -191,6 +213,7 @@
       "descrizione": "",
       "disponibile": true,
       "order": 22,
+      "_filename": "vodka-tonic.md",
       "tipo": "Cocktails"
     },
     {
@@ -200,6 +223,7 @@
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
       "disponibile": true,
       "order": 23,
+      "_filename": "waikiki.md",
       "tipo": "Cocktails"
     },
     {
@@ -208,6 +232,7 @@
       "descrizione": "Mirtillo, ananas, papaja",
       "disponibile": true,
       "order": 0,
+      "_filename": "arconti-summer.md",
       "tipo": "Analcolici"
     },
     {
@@ -216,6 +241,7 @@
       "descrizione": "Pompelmo, ananas, maracuja",
       "disponibile": true,
       "order": 1,
+      "_filename": "come-on.md",
       "tipo": "Analcolici"
     },
     {
@@ -224,6 +250,7 @@
       "descrizione": "Ananas, sweet and sour, granatina, menta",
       "disponibile": true,
       "order": 2,
+      "_filename": "cool-down.md",
       "tipo": "Analcolici"
     },
     {
@@ -232,6 +259,7 @@
       "descrizione": "Pompelmo, arancia, sweet and sour, soda",
       "disponibile": true,
       "order": 3,
+      "_filename": "florida.md",
       "tipo": "Analcolici"
     },
     {
@@ -240,6 +268,7 @@
       "descrizione": "Arancia, ananas, sweet and sour, fragola",
       "disponibile": true,
       "order": 4,
+      "_filename": "gallarate-beach.md",
       "tipo": "Analcolici"
     },
     {
@@ -248,6 +277,7 @@
       "descrizione": "Arancia, maracuja, ananas",
       "disponibile": true,
       "order": 5,
+      "_filename": "tropic-star.md",
       "tipo": "Analcolici"
     },
     {
@@ -256,6 +286,7 @@
       "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
       "disponibile": false,
       "order": 6,
+      "_filename": "spritz-analcolico.md",
       "tipo": "Analcolici"
     },
     {
@@ -264,6 +295,7 @@
       "descrizione": "Ginger beer, granatina, ciliegia o limone",
       "disponibile": true,
       "order": 7,
+      "_filename": "shirley-temple-rivisitato.md",
       "tipo": "Analcolici"
     },
     {
@@ -272,6 +304,7 @@
       "descrizione": "Lime, zucchero, menta, Lemon Soda",
       "disponibile": true,
       "order": 8,
+      "_filename": "mojito-analcolico.md",
       "tipo": "Analcolici"
     },
     {
@@ -280,6 +313,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 0,
+      "_filename": "acqua-tonica.md",
       "tipo": "Bibite"
     },
     {
@@ -288,6 +322,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 1,
+      "_filename": "aranciata-amara.md",
       "tipo": "Bibite"
     },
     {
@@ -296,6 +331,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 2,
+      "_filename": "chinotto.md",
       "tipo": "Bibite"
     },
     {
@@ -304,6 +340,7 @@
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 3,
+      "_filename": "coca-cola.md",
       "tipo": "Bibite"
     },
     {
@@ -312,6 +349,7 @@
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 4,
+      "_filename": "coca-cola-zero.md",
       "tipo": "Bibite"
     },
     {
@@ -320,6 +358,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 5,
+      "_filename": "fanta.md",
       "tipo": "Bibite"
     },
     {
@@ -328,6 +367,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 6,
+      "_filename": "lemonsoda.md",
       "tipo": "Bibite"
     },
     {
@@ -337,6 +377,7 @@
       "formato": "33cl",
       "disponibile": true,
       "order": 7,
+      "_filename": "red-bull.md",
       "tipo": "Bibite"
     },
     {
@@ -345,6 +386,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 8,
+      "_filename": "sprite.md",
       "tipo": "Bibite"
     },
     {
@@ -354,6 +396,7 @@
       "formato": "20cl",
       "disponibile": true,
       "order": 9,
+      "_filename": "succhi-di-frutta.md",
       "tipo": "Bibite"
     },
     {
@@ -362,6 +405,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 10,
+      "_filename": "the-limone.md",
       "tipo": "Bibite"
     },
     {
@@ -370,6 +414,7 @@
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 11,
+      "_filename": "the-pesca.md",
       "tipo": "Bibite"
     },
     {
@@ -378,6 +423,7 @@
       "descrizione": "Aroma di zenzero profondo",
       "disponibile": true,
       "order": 12,
+      "_filename": "ginger-beer-fever-tree.md",
       "tipo": "Bibite"
     },
     {
@@ -386,6 +432,7 @@
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 0,
+      "_filename": "caff-decaffeinato.md",
       "tipo": "Caffetteria"
     },
     {
@@ -394,6 +441,7 @@
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 1,
+      "_filename": "caff-espresso.md",
       "tipo": "Caffetteria"
     },
     {
@@ -402,6 +450,7 @@
       "descrizione": "Lungo con ghiaccio e zucchero di canna",
       "disponibile": true,
       "order": 2,
+      "_filename": "caff-shakerato.md",
       "tipo": "Caffetteria"
     },
     {
@@ -409,6 +458,7 @@
       "prezzo": "2,50",
       "disponibile": true,
       "order": 3,
+      "_filename": "cappuccino.md",
       "tipo": "Caffetteria"
     },
     {
@@ -417,6 +467,7 @@
       "descrizione": "Selezione",
       "disponibile": true,
       "order": 4,
+      "_filename": "the-e-tisane.md",
       "tipo": "Caffetteria"
     },
     {
@@ -424,6 +475,7 @@
       "prezzo": "2,00",
       "disponibile": true,
       "order": 5,
+      "_filename": "caff-macchiato.md",
       "tipo": "Caffetteria"
     },
     {
@@ -432,6 +484,7 @@
       "descrizione": "Cuvée 21 Millesimato Extra Dry",
       "disponibile": true,
       "order": 0,
+      "_filename": "calice-prosecco-extra-dry.md",
       "tipo": "Bollicine"
     },
     {
@@ -441,6 +494,7 @@
       "formato": "0,75L",
       "disponibile": false,
       "order": 1,
+      "_filename": "valdobbiadene-superiore-docg-brunei-la-tordera.md",
       "tipo": "Bollicine"
     },
     {
@@ -451,6 +505,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 2,
+      "_filename": "valdobbiadene-superiore-docg-extra-dry-batso.md",
       "tipo": "Bollicine"
     },
     {
@@ -460,6 +515,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 3,
+      "_filename": "prosecco-extra-dry-flumen-tenuta-san-giorgio.md",
       "tipo": "Bollicine"
     },
     {
@@ -473,6 +529,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 4,
+      "_filename": "prosecco-doc-treviso-ros-brut-la-tordera.md",
       "tipo": "Bollicine"
     },
     {
@@ -480,6 +537,7 @@
       "prezzo": "18,00",
       "disponibile": true,
       "order": 5,
+      "_filename": "prosecco-brut-flumen-tenuta-san-giorgio.md",
       "tipo": "Bollicine"
     },
     {
@@ -489,6 +547,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 6,
+      "_filename": "21-cuve-millesimato-extra-dry.md",
       "tipo": "Bollicine"
     },
     {
@@ -497,6 +556,7 @@
       "descrizione": 2023,
       "disponibile": true,
       "order": 7,
+      "_filename": "prosecco-doc-millesimato-extra-dry-santorsola.md",
       "tipo": "Bollicine"
     },
     {
@@ -507,6 +567,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 0,
+      "_filename": "gewrztraminer-doc-trentino-cantina-disera.md",
       "tipo": "Bianchi fermi"
     },
     {
@@ -517,6 +578,7 @@
       "formato": "0,75 l ",
       "disponibile": true,
       "order": 0,
+      "_filename": "traminer-aromatico-doc-tenuta-villanova.md",
       "tipo": "Bianchi fermi"
     },
     {
@@ -527,6 +589,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 1,
+      "_filename": "greco-janare-la-guardiense.md",
       "tipo": "Bianchi fermi"
     },
     {
@@ -536,6 +599,7 @@
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384773/arconti31/btgo4h8kasuwlcmvb3wd.jpg",
       "disponibile": true,
       "order": 2,
+      "_filename": "falangina-igp-fremondo-la-guardiense.md",
       "tipo": "Bianchi fermi"
     },
     {
@@ -546,6 +610,7 @@
       "formato": "0,75L",
       "disponibile": true,
       "order": 3,
+      "_filename": "chardonnay-moi-igp-varvaglione.md",
       "tipo": "Bianchi fermi"
     },
     {
@@ -555,14 +620,17 @@
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718915/arconti31/jnsczkermzws0t4blieh.webp",
       "disponibile": true,
       "order": 4,
+      "_filename": "calice-di-bianco.md",
       "tipo": "Bianchi fermi"
     },
     {
       "nome": "Calice di rosso",
       "prezzo": "6.00",
       "descrizione": "Calice a scelta tra Primitivo (Masseria Moretti) o Valpolicella Classico DOC (Recchia)",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630330/arconti31/you8qr1scnimmuot8tlq.jpg",
       "disponibile": true,
       "order": 0,
+      "_filename": "vini-al-calice.md",
       "tipo": "Vini rossi"
     },
     {
@@ -573,6 +641,7 @@
       "gradazione": "14%vol",
       "disponibile": true,
       "order": 1,
+      "_filename": "valpolicella-classico-doc-superiore-masua-di-jago-2020-recchia.md",
       "tipo": "Vini rossi"
     },
     {
@@ -583,6 +652,7 @@
       "gradazione": "14%vol",
       "disponibile": true,
       "order": 2,
+      "_filename": "nebbiolo-dalba-doc-vinumvitaest-2021-terre-del-barolo.md",
       "tipo": "Vini rossi"
     },
     {
@@ -593,6 +663,7 @@
       "gradazione": "16%vol",
       "disponibile": true,
       "order": 3,
+      "_filename": "amarone-della-valpolicella-docg-classico-recchia.md",
       "tipo": "Vini rossi"
     },
     {
@@ -603,6 +674,7 @@
       "gradazione": "14%vol",
       "disponibile": true,
       "order": 4,
+      "_filename": "morellino-di-scansano-docg-a-luciano-santa-lucia.md",
       "tipo": "Vini rossi"
     },
     {
@@ -614,6 +686,7 @@
       "formato": "0,75 l ",
       "disponibile": true,
       "order": 5,
+      "_filename": "primitivo-masserie-moretti.md",
       "tipo": "Vini rossi"
     }
   ],
@@ -625,6 +698,7 @@
         "descrizione": "Bitter, vermouth rosso e soda",
         "disponibile": true,
         "order": 0,
+        "_filename": "americano.md",
         "tipo": "Cocktails"
       },
       {
@@ -633,6 +707,7 @@
         "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
         "disponibile": true,
         "order": 1,
+        "_filename": "aperol-spritz.md",
         "tipo": "Cocktails"
       },
       {
@@ -642,6 +717,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464972/arconti31/z5m43wy5g3sqxdfgukjp.avif",
         "disponibile": true,
         "order": 2,
+        "_filename": "black-russian.md",
         "tipo": "Cocktails"
       },
       {
@@ -651,6 +727,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768319787/arconti31/uwmp1jchphm8ojd5agdf.webp",
         "disponibile": true,
         "order": 3,
+        "_filename": "blue-kiss.md",
         "tipo": "Cocktails"
       },
       {
@@ -659,6 +736,7 @@
         "descrizione": "Lime, zucchero, cachaca, ghiaccio pilé",
         "disponibile": true,
         "order": 4,
+        "_filename": "caipirinha.md",
         "tipo": "Cocktails"
       },
       {
@@ -667,6 +745,7 @@
         "descrizione": "Campari e gin shakerati",
         "disponibile": true,
         "order": 5,
+        "_filename": "campari-shakerato.md",
         "tipo": "Cocktails"
       },
       {
@@ -675,6 +754,7 @@
         "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
         "disponibile": true,
         "order": 6,
+        "_filename": "chocolate-coco.md",
         "tipo": "Cocktails"
       },
       {
@@ -684,6 +764,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465094/arconti31/jgsehpefikvko3rx9nzg.png",
         "disponibile": true,
         "order": 7,
+        "_filename": "cuba-libre.md",
         "tipo": "Cocktails"
       },
       {
@@ -692,6 +773,7 @@
         "descrizione": "Gin e lemonsoda",
         "disponibile": true,
         "order": 8,
+        "_filename": "gin-lemon.md",
         "tipo": "Cocktails"
       },
       {
@@ -699,6 +781,7 @@
         "prezzo": "7,00",
         "disponibile": true,
         "order": 9,
+        "_filename": "gin-tonic.md",
         "tipo": "Cocktails"
       },
       {
@@ -707,6 +790,7 @@
         "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
         "disponibile": true,
         "order": 10,
+        "_filename": "hurricane.md",
         "tipo": "Cocktails"
       },
       {
@@ -715,6 +799,7 @@
         "descrizione": "Spumante e arancia",
         "disponibile": false,
         "order": 11,
+        "_filename": "mimosa.md",
         "tipo": "Cocktails"
       },
       {
@@ -724,6 +809,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465044/arconti31/fsbzuxlpdbz1thvz5hsi.webp",
         "disponibile": true,
         "order": 12,
+        "_filename": "mojito.md",
         "tipo": "Cocktails"
       },
       {
@@ -734,6 +820,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323321/arconti31/fooqowxwvxeamu19lw33.webp",
         "disponibile": true,
         "order": 13,
+        "_filename": "moscow-mule.md",
         "tipo": "Cocktails"
       },
       {
@@ -742,6 +829,7 @@
         "descrizione": "Gin, arancia e campari",
         "disponibile": true,
         "order": 14,
+        "_filename": "my-own.md",
         "tipo": "Cocktails"
       },
       {
@@ -750,6 +838,7 @@
         "descrizione": "Bitter, vermouth rosso e gin",
         "disponibile": true,
         "order": 15,
+        "_filename": "negroni.md",
         "tipo": "Cocktails"
       },
       {
@@ -759,6 +848,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768383865/arconti31/dck2jces7rttfs2xbrwg.webp",
         "disponibile": true,
         "order": 16,
+        "_filename": "pina-colada.md",
         "tipo": "Cocktails"
       },
       {
@@ -767,6 +857,7 @@
         "descrizione": "Bitter, vermouth rosso, spumante secco",
         "disponibile": true,
         "order": 17,
+        "_filename": "sbagliato.md",
         "tipo": "Cocktails"
       },
       {
@@ -777,6 +868,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323448/arconti31/vv2n5d55tu8wnylpk9bf.jpg",
         "disponibile": true,
         "order": 18,
+        "_filename": "sea-breeze.md",
         "tipo": "Cocktails"
       },
       {
@@ -785,6 +877,7 @@
         "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
         "disponibile": true,
         "order": 19,
+        "_filename": "sex-on-the-beach.md",
         "tipo": "Cocktails"
       },
       {
@@ -793,6 +886,7 @@
         "descrizione": "Rum bianco, lampone, lemonsoda",
         "disponibile": true,
         "order": 20,
+        "_filename": "sweet-and-red.md",
         "tipo": "Cocktails"
       },
       {
@@ -802,6 +896,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768466682/arconti31/a4p7fluu6dig3dfnktqf.jpg",
         "disponibile": true,
         "order": 21,
+        "_filename": "tequila-sunrise.md",
         "tipo": "Cocktails"
       },
       {
@@ -810,6 +905,7 @@
         "descrizione": "",
         "disponibile": true,
         "order": 22,
+        "_filename": "vodka-tonic.md",
         "tipo": "Cocktails"
       },
       {
@@ -819,6 +915,7 @@
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
         "disponibile": true,
         "order": 23,
+        "_filename": "waikiki.md",
         "tipo": "Cocktails"
       }
     ],
@@ -829,6 +926,7 @@
         "descrizione": "Mirtillo, ananas, papaja",
         "disponibile": true,
         "order": 0,
+        "_filename": "arconti-summer.md",
         "tipo": "Analcolici"
       },
       {
@@ -837,6 +935,7 @@
         "descrizione": "Pompelmo, ananas, maracuja",
         "disponibile": true,
         "order": 1,
+        "_filename": "come-on.md",
         "tipo": "Analcolici"
       },
       {
@@ -845,6 +944,7 @@
         "descrizione": "Ananas, sweet and sour, granatina, menta",
         "disponibile": true,
         "order": 2,
+        "_filename": "cool-down.md",
         "tipo": "Analcolici"
       },
       {
@@ -853,6 +953,7 @@
         "descrizione": "Pompelmo, arancia, sweet and sour, soda",
         "disponibile": true,
         "order": 3,
+        "_filename": "florida.md",
         "tipo": "Analcolici"
       },
       {
@@ -861,6 +962,7 @@
         "descrizione": "Arancia, ananas, sweet and sour, fragola",
         "disponibile": true,
         "order": 4,
+        "_filename": "gallarate-beach.md",
         "tipo": "Analcolici"
       },
       {
@@ -869,6 +971,7 @@
         "descrizione": "Arancia, maracuja, ananas",
         "disponibile": true,
         "order": 5,
+        "_filename": "tropic-star.md",
         "tipo": "Analcolici"
       },
       {
@@ -877,6 +980,7 @@
         "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
         "disponibile": false,
         "order": 6,
+        "_filename": "spritz-analcolico.md",
         "tipo": "Analcolici"
       },
       {
@@ -885,6 +989,7 @@
         "descrizione": "Ginger beer, granatina, ciliegia o limone",
         "disponibile": true,
         "order": 7,
+        "_filename": "shirley-temple-rivisitato.md",
         "tipo": "Analcolici"
       },
       {
@@ -893,6 +998,7 @@
         "descrizione": "Lime, zucchero, menta, Lemon Soda",
         "disponibile": true,
         "order": 8,
+        "_filename": "mojito-analcolico.md",
         "tipo": "Analcolici"
       }
     ],
@@ -903,6 +1009,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 0,
+        "_filename": "acqua-tonica.md",
         "tipo": "Bibite"
       },
       {
@@ -911,6 +1018,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 1,
+        "_filename": "aranciata-amara.md",
         "tipo": "Bibite"
       },
       {
@@ -919,6 +1027,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 2,
+        "_filename": "chinotto.md",
         "tipo": "Bibite"
       },
       {
@@ -927,6 +1036,7 @@
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 3,
+        "_filename": "coca-cola.md",
         "tipo": "Bibite"
       },
       {
@@ -935,6 +1045,7 @@
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 4,
+        "_filename": "coca-cola-zero.md",
         "tipo": "Bibite"
       },
       {
@@ -943,6 +1054,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 5,
+        "_filename": "fanta.md",
         "tipo": "Bibite"
       },
       {
@@ -951,6 +1063,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 6,
+        "_filename": "lemonsoda.md",
         "tipo": "Bibite"
       },
       {
@@ -960,6 +1073,7 @@
         "formato": "33cl",
         "disponibile": true,
         "order": 7,
+        "_filename": "red-bull.md",
         "tipo": "Bibite"
       },
       {
@@ -968,6 +1082,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 8,
+        "_filename": "sprite.md",
         "tipo": "Bibite"
       },
       {
@@ -977,6 +1092,7 @@
         "formato": "20cl",
         "disponibile": true,
         "order": 9,
+        "_filename": "succhi-di-frutta.md",
         "tipo": "Bibite"
       },
       {
@@ -985,6 +1101,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 10,
+        "_filename": "the-limone.md",
         "tipo": "Bibite"
       },
       {
@@ -993,6 +1110,7 @@
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 11,
+        "_filename": "the-pesca.md",
         "tipo": "Bibite"
       },
       {
@@ -1001,6 +1119,7 @@
         "descrizione": "Aroma di zenzero profondo",
         "disponibile": true,
         "order": 12,
+        "_filename": "ginger-beer-fever-tree.md",
         "tipo": "Bibite"
       }
     ],
@@ -1011,6 +1130,7 @@
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 0,
+        "_filename": "caff-decaffeinato.md",
         "tipo": "Caffetteria"
       },
       {
@@ -1019,6 +1139,7 @@
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 1,
+        "_filename": "caff-espresso.md",
         "tipo": "Caffetteria"
       },
       {
@@ -1027,6 +1148,7 @@
         "descrizione": "Lungo con ghiaccio e zucchero di canna",
         "disponibile": true,
         "order": 2,
+        "_filename": "caff-shakerato.md",
         "tipo": "Caffetteria"
       },
       {
@@ -1034,6 +1156,7 @@
         "prezzo": "2,50",
         "disponibile": true,
         "order": 3,
+        "_filename": "cappuccino.md",
         "tipo": "Caffetteria"
       },
       {
@@ -1042,6 +1165,7 @@
         "descrizione": "Selezione",
         "disponibile": true,
         "order": 4,
+        "_filename": "the-e-tisane.md",
         "tipo": "Caffetteria"
       },
       {
@@ -1049,6 +1173,7 @@
         "prezzo": "2,00",
         "disponibile": true,
         "order": 5,
+        "_filename": "caff-macchiato.md",
         "tipo": "Caffetteria"
       }
     ],
@@ -1059,6 +1184,7 @@
         "descrizione": "Cuvée 21 Millesimato Extra Dry",
         "disponibile": true,
         "order": 0,
+        "_filename": "calice-prosecco-extra-dry.md",
         "tipo": "Bollicine"
       },
       {
@@ -1068,6 +1194,7 @@
         "formato": "0,75L",
         "disponibile": false,
         "order": 1,
+        "_filename": "valdobbiadene-superiore-docg-brunei-la-tordera.md",
         "tipo": "Bollicine"
       },
       {
@@ -1078,6 +1205,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 2,
+        "_filename": "valdobbiadene-superiore-docg-extra-dry-batso.md",
         "tipo": "Bollicine"
       },
       {
@@ -1087,6 +1215,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 3,
+        "_filename": "prosecco-extra-dry-flumen-tenuta-san-giorgio.md",
         "tipo": "Bollicine"
       },
       {
@@ -1100,6 +1229,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 4,
+        "_filename": "prosecco-doc-treviso-ros-brut-la-tordera.md",
         "tipo": "Bollicine"
       },
       {
@@ -1107,6 +1237,7 @@
         "prezzo": "18,00",
         "disponibile": true,
         "order": 5,
+        "_filename": "prosecco-brut-flumen-tenuta-san-giorgio.md",
         "tipo": "Bollicine"
       },
       {
@@ -1116,6 +1247,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 6,
+        "_filename": "21-cuve-millesimato-extra-dry.md",
         "tipo": "Bollicine"
       },
       {
@@ -1124,6 +1256,7 @@
         "descrizione": 2023,
         "disponibile": true,
         "order": 7,
+        "_filename": "prosecco-doc-millesimato-extra-dry-santorsola.md",
         "tipo": "Bollicine"
       }
     ],
@@ -1136,6 +1269,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 0,
+        "_filename": "gewrztraminer-doc-trentino-cantina-disera.md",
         "tipo": "Bianchi fermi"
       },
       {
@@ -1146,6 +1280,7 @@
         "formato": "0,75 l ",
         "disponibile": true,
         "order": 0,
+        "_filename": "traminer-aromatico-doc-tenuta-villanova.md",
         "tipo": "Bianchi fermi"
       },
       {
@@ -1156,6 +1291,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 1,
+        "_filename": "greco-janare-la-guardiense.md",
         "tipo": "Bianchi fermi"
       },
       {
@@ -1165,6 +1301,7 @@
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384773/arconti31/btgo4h8kasuwlcmvb3wd.jpg",
         "disponibile": true,
         "order": 2,
+        "_filename": "falangina-igp-fremondo-la-guardiense.md",
         "tipo": "Bianchi fermi"
       },
       {
@@ -1175,6 +1312,7 @@
         "formato": "0,75L",
         "disponibile": true,
         "order": 3,
+        "_filename": "chardonnay-moi-igp-varvaglione.md",
         "tipo": "Bianchi fermi"
       },
       {
@@ -1184,6 +1322,7 @@
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718915/arconti31/jnsczkermzws0t4blieh.webp",
         "disponibile": true,
         "order": 4,
+        "_filename": "calice-di-bianco.md",
         "tipo": "Bianchi fermi"
       }
     ],
@@ -1192,8 +1331,10 @@
         "nome": "Calice di rosso",
         "prezzo": "6.00",
         "descrizione": "Calice a scelta tra Primitivo (Masseria Moretti) o Valpolicella Classico DOC (Recchia)",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630330/arconti31/you8qr1scnimmuot8tlq.jpg",
         "disponibile": true,
         "order": 0,
+        "_filename": "vini-al-calice.md",
         "tipo": "Vini rossi"
       },
       {
@@ -1204,6 +1345,7 @@
         "gradazione": "14%vol",
         "disponibile": true,
         "order": 1,
+        "_filename": "valpolicella-classico-doc-superiore-masua-di-jago-2020-recchia.md",
         "tipo": "Vini rossi"
       },
       {
@@ -1214,6 +1356,7 @@
         "gradazione": "14%vol",
         "disponibile": true,
         "order": 2,
+        "_filename": "nebbiolo-dalba-doc-vinumvitaest-2021-terre-del-barolo.md",
         "tipo": "Vini rossi"
       },
       {
@@ -1224,6 +1367,7 @@
         "gradazione": "16%vol",
         "disponibile": true,
         "order": 3,
+        "_filename": "amarone-della-valpolicella-docg-classico-recchia.md",
         "tipo": "Vini rossi"
       },
       {
@@ -1234,6 +1378,7 @@
         "gradazione": "14%vol",
         "disponibile": true,
         "order": 4,
+        "_filename": "morellino-di-scansano-docg-a-luciano-santa-lucia.md",
         "tipo": "Vini rossi"
       },
       {
@@ -1245,6 +1390,7 @@
         "formato": "0,75 l ",
         "disponibile": true,
         "order": 5,
+        "_filename": "primitivo-masserie-moretti.md",
         "tipo": "Vini rossi"
       }
     ]
