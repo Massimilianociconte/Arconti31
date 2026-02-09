@@ -8,6 +8,6 @@ allergeni:
   - "Uova"
 tags:
   - "Novità"
-disponibile: true
+disponibile: false
 order: 48
 ---
