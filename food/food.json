@@ -750,7 +750,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 48,
       "_filename": "hamburger-autunnale.md"
     },
@@ -1252,7 +1252,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 48,
         "_filename": "hamburger-autunnale.md"
       }
