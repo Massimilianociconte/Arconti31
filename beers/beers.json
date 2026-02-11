@@ -91,7 +91,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
       "formato": "0,4 l ",
       "gradazione": "4,2% ",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "la-grigna-lariano.md"
     },
@@ -520,7 +520,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
         "formato": "0,4 l ",
         "gradazione": "4,2% ",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "la-grigna-lariano.md"
       },
