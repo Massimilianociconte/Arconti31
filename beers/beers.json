@@ -72,6 +72,18 @@
       "_filename": "fai-tu-due-tocchi.md"
     },
     {
+      "nome": "Hibernatus - Lupulus",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
+      "formato": "0,4 L ",
+      "gradazione": "9%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "hibernatus-lupulus.md"
+    },
+    {
       "nome": "La Grigna - Lariano ",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -487,6 +499,18 @@
         "disponibile": true,
         "order": 0,
         "_filename": "fai-tu-due-tocchi.md"
+      },
+      {
+        "nome": "Hibernatus - Lupulus",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
+        "formato": "0,4 L ",
+        "gradazione": "9%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "hibernatus-lupulus.md"
       },
       {
         "nome": "La Grigna - Lariano ",
