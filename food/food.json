@@ -605,7 +605,7 @@
         "Uova",
         "Latte"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 39,
       "_filename": "cascinetta.md"
     },
@@ -1343,7 +1343,7 @@
           "Uova",
           "Latte"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 39,
         "_filename": "cascinetta.md"
       },
