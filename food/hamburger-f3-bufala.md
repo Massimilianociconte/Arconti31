@@ -5,6 +5,6 @@ prezzo: "16.00"
 descrizione: "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte"
 tags:
   - "Più venduto"
-disponibile: false
+disponibile: true
 order: 22
 ---
