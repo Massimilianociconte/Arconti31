@@ -121,7 +121,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 3,
       "_filename": "mezzo-polletto-grigliato.md"
     },
@@ -835,7 +835,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 3,
         "_filename": "mezzo-polletto-grigliato.md"
       },
