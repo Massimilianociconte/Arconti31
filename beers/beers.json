@@ -202,6 +202,14 @@
       "_filename": "sunshine-valley-bierol.md"
     },
     {
+      "nome": "Wave Runner - Hammer",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "wave-runner-hammer.md"
+    },
+    {
       "nome": "Lager Hell - Ayinger",
       "sezione": "Birre alla spina",
       "prezzo": "6.00",
@@ -640,6 +648,14 @@
         "disponibile": false,
         "order": 0,
         "_filename": "sunshine-valley-bierol.md"
+      },
+      {
+        "nome": "Wave Runner - Hammer",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "wave-runner-hammer.md"
       },
       {
         "nome": "Rochefort",
