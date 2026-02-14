@@ -9,6 +9,6 @@ allergeni:
 tags:
   - "Vegetariano"
   - "Vegano"
-disponibile: true
+disponibile: false
 order: 0
 ---
