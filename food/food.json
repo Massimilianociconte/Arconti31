@@ -187,7 +187,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 8,
       "_filename": "tiramis-al-bicchiere.md"
     },
@@ -884,7 +884,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 8,
         "_filename": "tiramis-al-bicchiere.md"
       },
