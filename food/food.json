@@ -365,7 +365,7 @@
       "tags": [
         "Più venduto"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 22,
       "_filename": "hamburger-f3-bufala.md"
     },
@@ -1091,7 +1091,7 @@
         "tags": [
           "Più venduto"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 22,
         "_filename": "hamburger-f3-bufala.md"
       },
