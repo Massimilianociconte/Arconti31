@@ -305,7 +305,7 @@
         "Uova",
         "Latte"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 17,
       "_filename": "tagliere-affettati-e-formaggi.md"
     },
@@ -813,7 +813,7 @@
           "Uova",
           "Latte"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 17,
         "_filename": "tagliere-affettati-e-formaggi.md"
       }
