@@ -698,7 +698,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 45,
       "_filename": "patatine-fritte-twist.md"
     },
@@ -1034,7 +1034,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 45,
         "_filename": "patatine-fritte-twist.md"
       }
