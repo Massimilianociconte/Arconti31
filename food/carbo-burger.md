@@ -8,6 +8,6 @@ immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768294413/
 tags:
   - "Novità"
   - "Specialità"
-disponibile: true
+disponibile: false
 order: 31
 ---
