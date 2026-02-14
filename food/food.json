@@ -381,7 +381,7 @@
       "tags": [
         "Più venduto"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 23,
       "_filename": "ronchi.md"
     },
@@ -1460,7 +1460,7 @@
         "tags": [
           "Più venduto"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 23,
         "_filename": "ronchi.md"
       },
