@@ -227,7 +227,7 @@
         "Glutine",
         "Latte"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 11,
       "_filename": "gallaratese.md"
     },
@@ -1444,7 +1444,7 @@
           "Glutine",
           "Latte"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 11,
         "_filename": "gallaratese.md"
       },
