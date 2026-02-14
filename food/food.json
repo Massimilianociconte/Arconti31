@@ -200,7 +200,7 @@
         "Glutine",
         "Latte"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 9,
       "_filename": "azalee.md"
     },
@@ -1283,7 +1283,7 @@
           "Glutine",
           "Latte"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 9,
         "_filename": "azalee.md"
       },
