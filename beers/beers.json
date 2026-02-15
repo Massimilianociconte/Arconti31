@@ -131,10 +131,13 @@
       "_filename": "new-zealand-crak-senza-glutine.md"
     },
     {
-      "nome": "Perfect Cashmere - Cr/Ak",
+      "nome": "La Morte Sua - Kashmir",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
       "descrizione": "Double IPA",
+      "Per chi vuole solo l’essenziale": "il luppolo.",
+      "formato": "0,4 L ",
+      "gradazione": "8%",
       "disponibile": true,
       "order": 0,
       "_filename": "perfect-cashmere-crak.md"
@@ -600,10 +603,13 @@
         "_filename": "new-zealand-crak-senza-glutine.md"
       },
       {
-        "nome": "Perfect Cashmere - Cr/Ak",
+        "nome": "La Morte Sua - Kashmir",
         "sezione": "Birre artigianali alla spina a rotazione",
         "prezzo": "7.00",
         "descrizione": "Double IPA",
+        "Per chi vuole solo l’essenziale": "il luppolo.",
+        "formato": "0,4 L ",
+        "gradazione": "8%",
         "disponibile": true,
         "order": 0,
         "_filename": "perfect-cashmere-crak.md"
