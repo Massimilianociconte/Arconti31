@@ -9,6 +9,7 @@ Fermentata con lievito Inglese per esaltare succosità, pulizia e drinkability n
 
 Una DIPA diretta, intensa e senza compromessi.
 Per chi vuole solo l’essenziale: il luppolo."
+immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1771179262/arconti31/z1ag9wvnzafuauywz2rb.png"
 formato: "0,4 L "
 gradazione: "8%"
 disponibile: true
