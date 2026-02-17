@@ -11,6 +11,15 @@
       "_filename": "bavarese.md"
     },
     {
+      "nome": "L’AMMAZZA CAFFÈ ",
+      "slug": "Ammazza-caffe",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "lammazza-caffe.md"
+    },
+    {
       "nome": "Menù Partita",
       "slug": "menu-partita",
       "tipo_menu": "food",
@@ -341,6 +350,15 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "L’AMMAZZA CAFFÈ ",
+      "slug": "Ammazza-caffe",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "lammazza-caffe.md"
+    },
     {
       "nome": "Birre artigianali alla spina a rotazione",
       "slug": "birre-artigianali",
