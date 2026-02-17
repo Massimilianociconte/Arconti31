@@ -236,6 +236,14 @@
       "tipo": "Analcolici"
     },
     {
+      "nome": "Gin Toni Analcolico (Tanqueray) ",
+      "prezzo": "8.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "gin-toni-analcolico-tanqueray.md",
+      "tipo": "Analcolici"
+    },
+    {
       "nome": "Come on",
       "prezzo": "7,00",
       "descrizione": "Pompelmo, ananas, maracuja",
@@ -930,6 +938,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "arconti-summer.md",
+        "tipo": "Analcolici"
+      },
+      {
+        "nome": "Gin Toni Analcolico (Tanqueray) ",
+        "prezzo": "8.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "gin-toni-analcolico-tanqueray.md",
         "tipo": "Analcolici"
       },
       {
