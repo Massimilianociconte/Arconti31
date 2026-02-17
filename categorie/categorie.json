@@ -11,14 +11,6 @@
       "_filename": "bavarese.md"
     },
     {
-      "nome": "Gin",
-      "slug": "gin",
-      "tipo_menu": "beverage",
-      "visibile": false,
-      "order": 1,
-      "_filename": "gin.md"
-    },
-    {
       "nome": "Menù Partita",
       "slug": "menu-partita",
       "tipo_menu": "food",
@@ -349,14 +341,6 @@
     }
   ],
   "beverageCategories": [
-    {
-      "nome": "Gin",
-      "slug": "gin",
-      "tipo_menu": "beverage",
-      "visibile": false,
-      "order": 1,
-      "_filename": "gin.md"
-    },
     {
       "nome": "Birre artigianali alla spina a rotazione",
       "slug": "birre-artigianali",
