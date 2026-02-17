@@ -11,6 +11,14 @@
       "_filename": "bavarese.md"
     },
     {
+      "nome": "Gin",
+      "slug": "gin",
+      "tipo_menu": "beverage",
+      "visibile": true,
+      "order": 0,
+      "_filename": "gin.md"
+    },
+    {
       "nome": "L’AMMAZZA CAFFÈ ",
       "slug": "Ammazza-caffe",
       "tipo_menu": "beverage",
@@ -350,6 +358,14 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "Gin",
+      "slug": "gin",
+      "tipo_menu": "beverage",
+      "visibile": true,
+      "order": 0,
+      "_filename": "gin.md"
+    },
     {
       "nome": "L’AMMAZZA CAFFÈ ",
       "slug": "Ammazza-caffe",
