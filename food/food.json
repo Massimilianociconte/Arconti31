@@ -17,7 +17,7 @@
       "_filename": "arconti-31.md"
     },
     {
-      "nome": "Arnate calcio",
+      "nome": "Romagnola ",
       "category": "Piadine",
       "prezzo": "8.00",
       "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
@@ -171,7 +171,7 @@
     {
       "nome": "Tagliere aperitivo",
       "category": "Aperitivo",
-      "prezzo": "10",
+      "prezzo": "10.00",
       "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
       "disponibile": true,
@@ -339,7 +339,7 @@
     {
       "nome": "Crocchette di filetto di pollo",
       "category": "Fritti",
-      "prezzo": "7.00",
+      "prezzo": "7.50",
       "descrizione": "Filetto di pollo fritto artigianale",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
       "disponibile": true,
@@ -360,7 +360,7 @@
     {
       "nome": "Hamburger F3 bufala",
       "category": "Hamburger di bufala",
-      "prezzo": "16",
+      "prezzo": "16.00",
       "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
       "tags": [
         "Più venduto"
@@ -503,7 +503,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 31,
       "_filename": "carbo-burger.md"
     },
@@ -624,6 +624,8 @@
       "category": "Hamburger Fassona e Street food",
       "prezzo": "15.50",
       "descrizione": "Pane hamburger farcito con spalla maiale cotta a bassa temperatura e sfilacciata 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, accompagnato da cestino di patatine fritte",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631247/arconti31/koo8vpknds2jcues4owr.jpg",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631252/arconti31/fwqn7vhsndqbxyefimbv.jpg",
       "allergeni": [
         "Glutine",
         "Uova"
@@ -640,9 +642,9 @@
     {
       "nome": "Salame al cioccolato bianco",
       "category": "Dolci",
-      "prezzo": "6,00",
+      "prezzo": "6.00",
       "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-      "disponibile": false,
+      "disponibile": true,
       "order": 42,
       "_filename": "salame-al-cioccolato-bianco.md"
     },
@@ -748,7 +750,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 48,
       "_filename": "hamburger-autunnale.md"
     },
@@ -792,7 +794,7 @@
       {
         "nome": "Tagliere aperitivo",
         "category": "Aperitivo",
-        "prezzo": "10",
+        "prezzo": "10.00",
         "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
         "disponibile": true,
@@ -939,9 +941,9 @@
       {
         "nome": "Salame al cioccolato bianco",
         "category": "Dolci",
-        "prezzo": "6,00",
+        "prezzo": "6.00",
         "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-        "disponibile": false,
+        "disponibile": true,
         "order": 42,
         "_filename": "salame-al-cioccolato-bianco.md"
       }
@@ -979,7 +981,7 @@
       {
         "nome": "Crocchette di filetto di pollo",
         "category": "Fritti",
-        "prezzo": "7.00",
+        "prezzo": "7.50",
         "descrizione": "Filetto di pollo fritto artigianale",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
         "disponibile": true,
@@ -1084,7 +1086,7 @@
       {
         "nome": "Hamburger F3 bufala",
         "category": "Hamburger di bufala",
-        "prezzo": "16",
+        "prezzo": "16.00",
         "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
         "tags": [
           "Più venduto"
@@ -1196,7 +1198,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 31,
         "_filename": "carbo-burger.md"
       },
@@ -1205,6 +1207,8 @@
         "category": "Hamburger Fassona e Street food",
         "prezzo": "15.50",
         "descrizione": "Pane hamburger farcito con spalla maiale cotta a bassa temperatura e sfilacciata 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, accompagnato da cestino di patatine fritte",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631247/arconti31/koo8vpknds2jcues4owr.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631252/arconti31/fwqn7vhsndqbxyefimbv.jpg",
         "allergeni": [
           "Glutine",
           "Uova"
@@ -1248,7 +1252,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 48,
         "_filename": "hamburger-autunnale.md"
       }
@@ -1415,7 +1419,7 @@
     ],
     "Piadine": [
       {
-        "nome": "Arnate calcio",
+        "nome": "Romagnola ",
         "category": "Piadine",
         "prezzo": "8.00",
         "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",

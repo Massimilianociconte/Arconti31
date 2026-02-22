@@ -14,9 +14,18 @@
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
-      "visibile": false,
-      "order": 1,
+      "visibile": true,
+      "order": 0,
       "_filename": "gin.md"
+    },
+    {
+      "nome": "L’AMMAZZA CAFFÈ ",
+      "slug": "Ammazza-caffe",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "lammazza-caffe.md"
     },
     {
       "nome": "Menù Partita",
@@ -236,33 +245,6 @@
       "visibile": true,
       "order": 21,
       "_filename": "caffetteria.md"
-    },
-    {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-whisky.md"
-    },
-    {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 23,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Selezione di Gin",
-      "slug": "Gin",
-      "tipo_menu": "beverage",
-      "icona": "🍋",
-      "visibile": true,
-      "order": 24,
-      "_filename": "selezione-di-gin.md"
     }
   ],
   "foodCategories": [
@@ -380,9 +362,18 @@
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
-      "visibile": false,
-      "order": 1,
+      "visibile": true,
+      "order": 0,
       "_filename": "gin.md"
+    },
+    {
+      "nome": "L’AMMAZZA CAFFÈ ",
+      "slug": "Ammazza-caffe",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "lammazza-caffe.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
@@ -504,33 +495,6 @@
       "visibile": true,
       "order": 21,
       "_filename": "caffetteria.md"
-    },
-    {
-      "nome": "Selezione di whisky ",
-      "slug": "whisky",
-      "tipo_menu": "beverage",
-      "icona": "🥃",
-      "visibile": true,
-      "order": 22,
-      "_filename": "selezione-di-whisky.md"
-    },
-    {
-      "nome": "Selezione di Rum",
-      "slug": "rum",
-      "tipo_menu": "beverage",
-      "icona": "🍫",
-      "visibile": true,
-      "order": 23,
-      "_filename": "selezione-di-rum.md"
-    },
-    {
-      "nome": "Selezione di Gin",
-      "slug": "Gin",
-      "tipo_menu": "beverage",
-      "icona": "🍋",
-      "visibile": true,
-      "order": 24,
-      "_filename": "selezione-di-gin.md"
     }
   ]
 }

@@ -1,7 +1,6 @@
 ---
-nome: "Acqua tonica"
-prezzo: "4,00"
-formato: "Lattina 33cl"
+nome: "Acqua tonica (Schweppes) "
+prezzo: "4.00"
 disponibile: true
 order: 0
 ---

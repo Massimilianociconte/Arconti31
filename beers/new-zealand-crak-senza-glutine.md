@@ -6,6 +6,6 @@ descrizione: "Abbondantemente luppolata con luppoli neozelandesi, al naso sprigi
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1770589309/arconti31/rcpwtxbgjncy1orizftp.jpg"
 formato: "0,4 l"
 gradazione: "7%"
-disponibile: true
+disponibile: false
 order: 0
 ---

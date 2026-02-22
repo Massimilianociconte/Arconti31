@@ -1,7 +1,7 @@
 ---
 nome: "Spritz analcolico"
-prezzo: "6,00"
+prezzo: "6.00"
 descrizione: "Spumante dealcolizzato, infuso arancia, Apeol"
-disponibile: false
+disponibile: true
 order: 6
 ---

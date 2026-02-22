@@ -1,9 +1,9 @@
 ---
 nome: "Morellino di Scansano DOCG \"A' Luciano\" - Santa Lucia"
-prezzo: "20,00"
+prezzo: "20.00"
 descrizione: "Toscana - Frutta rossa, piacevole bicchiere - Uve: 90% Sangiovese, 10% Alicante"
+immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1770630636/arconti31/tplauyszph01iu4dmzvr.jpg"
 formato: "0,75L"
-gradazione: "14%vol"
 disponibile: true
 order: 4
 ---

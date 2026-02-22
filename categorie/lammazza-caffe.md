@@ -1,8 +1,8 @@
 ---
-nome: "Selezione di whisky "
-slug: "whisky"
+nome: "L’AMMAZZA CAFFÈ "
+slug: "Ammazza-caffe"
 tipo_menu: "beverage"
 icona: "🥃"
 visibile: true
-order: 22
+order: 0
 ---

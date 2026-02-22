@@ -60,6 +60,18 @@
       "_filename": "double-fisto-toccalmatto.md"
     },
     {
+      "nome": "Extra Hop - Birrificio Italiano",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "descrizione": "DDH PILS",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770932137/arconti31/ayhcbw9jquegtgn7usih.png",
+      "formato": "0,4 L ",
+      "gradazione": "4,8%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "extra-hop-birrificio-italiano.md"
+    },
+    {
       "nome": "Fai Tu - Due Tocchi",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.00",
@@ -67,9 +79,21 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg",
       "formato": "0,4 l",
       "gradazione": "3,5",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "fai-tu-due-tocchi.md"
+    },
+    {
+      "nome": "Hibernatus - Lupulus",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
+      "formato": "0,4 L ",
+      "gradazione": "9%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "hibernatus-lupulus.md"
     },
     {
       "nome": "La Grigna - Lariano ",
@@ -79,9 +103,33 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
       "formato": "0,4 l ",
       "gradazione": "4,2% ",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "la-grigna-lariano.md"
+    },
+    {
+      "nome": "London Pride - Chiswick",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "descrizione": "Vera e propria icona del birrificio di Chiswick, questa Bitter è caratterizzata da un colore dorato intenso, da un corpo medio e presenta un profumo luppolato e maltato. Il sapore ricalca sostanzialmente i sentori, con una piacevole luppolatura sul finale.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771180270/arconti31/qtvj9bjg27gdrritvtcj.png",
+      "formato": "0,4 L ",
+      "gradazione": "4,7% ",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "london-pride-chiswick.md"
+    },
+    {
+      "nome": "Naima - Cr/Ak",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "DDH IPA",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
+      "formato": "0,4 L ",
+      "gradazione": "6,2% ",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "naima-crak.md"
     },
     {
       "nome": "New Zealand - Crak (SENZA GLUTINE) ",
@@ -91,9 +139,22 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770589309/arconti31/rcpwtxbgjncy1orizftp.jpg",
       "formato": "0,4 l",
       "gradazione": "7%",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "new-zealand-crak-senza-glutine.md"
+    },
+    {
+      "nome": "La Morte Sua - Kashmir",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Double IPA",
+      "Per chi vuole solo l’essenziale": "il luppolo.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179262/arconti31/z1ag9wvnzafuauywz2rb.png",
+      "formato": "0,4 L ",
+      "gradazione": "8%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "perfect-cashmere-crak.md"
     },
     {
       "nome": "Profanator - Shire ",
@@ -108,25 +169,13 @@
       "_filename": "profanator-shire.md"
     },
     {
-      "nome": "Rio - Birrificio Abruzzese",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.50",
-      "descrizione": "Stile: DDH HAZY IPA",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769029800/arconti31/hsppvryrbhdwzblteqix.webp",
-      "formato": "0,4 l",
-      "gradazione": "6%",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "rio.md"
-    },
-    {
       "nome": "RIU - Altotevere ",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
       "descrizione": "Double IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580232/arconti31/p3si5nc8q7jmfp0vrqjj.webp",
       "gradazione": "8,1 %",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "riu-altotevere.md"
     },
@@ -174,9 +223,21 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588929/arconti31/rascn4s7nphud5arxb1i.jpg",
       "formato": "0,4 L ",
       "gradazione": "6,7%",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "sunshine-valley-bierol.md"
+    },
+    {
+      "nome": "Wave Runner - Hammer",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "descrizione": "IPA",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179719/arconti31/fnxzbje0yhbcwlfj66rf.jpg",
+      "formato": "0,4 L ",
+      "gradazione": "6,5%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "wave-runner-hammer.md"
     },
     {
       "nome": "Lager Hell - Ayinger",
@@ -212,17 +273,6 @@
       "disponibile": true,
       "order": 2,
       "_filename": "rochefort.md"
-    },
-    {
-      "nome": "Verguernza Xmas ",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7",
-      "descrizione": "Versione natalizia della Verguenza: ambrata in stile imperial I.P.A., con impiego massiccio di luppoli speciali, ricercati e ogni anno diversi: affianca La Verguenza in dicembre. BIRRIFICIO MENARESTA",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708111/arconti31/yyrrrmtzcswh3affqial.png",
-      "gradazione": "8,5%",
-      "disponibile": true,
-      "order": 2,
-      "_filename": "zlatan-railroad.md"
     },
     {
       "nome": "Bräuweisse - Ayinger",
@@ -500,6 +550,18 @@
         "_filename": "double-fisto-toccalmatto.md"
       },
       {
+        "nome": "Extra Hop - Birrificio Italiano",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "descrizione": "DDH PILS",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770932137/arconti31/ayhcbw9jquegtgn7usih.png",
+        "formato": "0,4 L ",
+        "gradazione": "4,8%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "extra-hop-birrificio-italiano.md"
+      },
+      {
         "nome": "Fai Tu - Due Tocchi",
         "sezione": "Birre artigianali alla spina a rotazione",
         "prezzo": "6.00",
@@ -507,9 +569,21 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg",
         "formato": "0,4 l",
         "gradazione": "3,5",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "fai-tu-due-tocchi.md"
+      },
+      {
+        "nome": "Hibernatus - Lupulus",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
+        "formato": "0,4 L ",
+        "gradazione": "9%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "hibernatus-lupulus.md"
       },
       {
         "nome": "La Grigna - Lariano ",
@@ -519,9 +593,33 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
         "formato": "0,4 l ",
         "gradazione": "4,2% ",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "la-grigna-lariano.md"
+      },
+      {
+        "nome": "London Pride - Chiswick",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "descrizione": "Vera e propria icona del birrificio di Chiswick, questa Bitter è caratterizzata da un colore dorato intenso, da un corpo medio e presenta un profumo luppolato e maltato. Il sapore ricalca sostanzialmente i sentori, con una piacevole luppolatura sul finale.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771180270/arconti31/qtvj9bjg27gdrritvtcj.png",
+        "formato": "0,4 L ",
+        "gradazione": "4,7% ",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "london-pride-chiswick.md"
+      },
+      {
+        "nome": "Naima - Cr/Ak",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "DDH IPA",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
+        "formato": "0,4 L ",
+        "gradazione": "6,2% ",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "naima-crak.md"
       },
       {
         "nome": "New Zealand - Crak (SENZA GLUTINE) ",
@@ -531,9 +629,22 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770589309/arconti31/rcpwtxbgjncy1orizftp.jpg",
         "formato": "0,4 l",
         "gradazione": "7%",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "new-zealand-crak-senza-glutine.md"
+      },
+      {
+        "nome": "La Morte Sua - Kashmir",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Double IPA",
+        "Per chi vuole solo l’essenziale": "il luppolo.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179262/arconti31/z1ag9wvnzafuauywz2rb.png",
+        "formato": "0,4 L ",
+        "gradazione": "8%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "perfect-cashmere-crak.md"
       },
       {
         "nome": "Profanator - Shire ",
@@ -548,25 +659,13 @@
         "_filename": "profanator-shire.md"
       },
       {
-        "nome": "Rio - Birrificio Abruzzese",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.50",
-        "descrizione": "Stile: DDH HAZY IPA",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769029800/arconti31/hsppvryrbhdwzblteqix.webp",
-        "formato": "0,4 l",
-        "gradazione": "6%",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "rio.md"
-      },
-      {
         "nome": "RIU - Altotevere ",
         "sezione": "Birre artigianali alla spina a rotazione",
         "prezzo": "7.00",
         "descrizione": "Double IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580232/arconti31/p3si5nc8q7jmfp0vrqjj.webp",
         "gradazione": "8,1 %",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "riu-altotevere.md"
       },
@@ -602,9 +701,21 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588929/arconti31/rascn4s7nphud5arxb1i.jpg",
         "formato": "0,4 L ",
         "gradazione": "6,7%",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "sunshine-valley-bierol.md"
+      },
+      {
+        "nome": "Wave Runner - Hammer",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "descrizione": "IPA",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179719/arconti31/fnxzbje0yhbcwlfj66rf.jpg",
+        "formato": "0,4 L ",
+        "gradazione": "6,5%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "wave-runner-hammer.md"
       },
       {
         "nome": "Rochefort",
@@ -617,17 +728,6 @@
         "disponibile": true,
         "order": 2,
         "_filename": "rochefort.md"
-      },
-      {
-        "nome": "Verguernza Xmas ",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7",
-        "descrizione": "Versione natalizia della Verguenza: ambrata in stile imperial I.P.A., con impiego massiccio di luppoli speciali, ricercati e ogni anno diversi: affianca La Verguenza in dicembre. BIRRIFICIO MENARESTA",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708111/arconti31/yyrrrmtzcswh3affqial.png",
-        "gradazione": "8,5%",
-        "disponibile": true,
-        "order": 2,
-        "_filename": "zlatan-railroad.md"
       },
       {
         "nome": "Three Rules - La Trappe/ Tynt Meadow/ Zundert ",
