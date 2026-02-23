@@ -48,6 +48,18 @@
       "_filename": "chouffe-dachouffe.md"
     },
     {
+      "nome": "Classe ‘96 - B. Lambrate e B. Italiano ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "descrizione": "Modern Italian Pilsner",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1771881252/arconti31/puhqwlhrwshgrkzo7guy.jpg",
+      "formato": "0,4 l",
+      "gradazione": "5%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "classe-96-b-lambrate-e-b-italiano.md"
+    },
+    {
       "nome": "Double Fisto - Toccalmatto",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
@@ -535,6 +547,18 @@
         "disponibile": true,
         "order": 0,
         "_filename": "bibock-birrificio-italiano.md"
+      },
+      {
+        "nome": "Classe ‘96 - B. Lambrate e B. Italiano ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "descrizione": "Modern Italian Pilsner",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1771881252/arconti31/puhqwlhrwshgrkzo7guy.jpg",
+        "formato": "0,4 l",
+        "gradazione": "5%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "classe-96-b-lambrate-e-b-italiano.md"
       },
       {
         "nome": "Double Fisto - Toccalmatto",
