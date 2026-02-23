@@ -65,7 +65,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "profitterol.md"
     },
@@ -871,7 +871,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "profitterol.md"
       },
