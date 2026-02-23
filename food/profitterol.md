@@ -11,6 +11,6 @@ allergeni:
   - "Latte"
 tags:
   - "Novità"
-disponibile: true
+disponibile: false
 order: 0
 ---
