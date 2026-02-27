@@ -325,7 +325,7 @@
       "tipo": "Bibite"
     },
     {
-      "nome": "Ginger ale",
+      "nome": "Ginger ale | Fever-Tree",
       "prezzo": "4.00",
       "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
@@ -1042,7 +1042,7 @@
         "tipo": "Bibite"
       },
       {
-        "nome": "Ginger ale",
+        "nome": "Ginger ale | Fever-Tree",
         "prezzo": "4.00",
         "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
