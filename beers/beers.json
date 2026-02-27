@@ -156,6 +156,16 @@
       "_filename": "new-zealand-crak-senza-glutine.md"
     },
     {
+      "nome": "Ocata - Garage ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "formato": "0,4 l",
+      "gradazione": "5%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "ocata-garage.md"
+    },
+    {
       "nome": "La Morte Sua - Kashmir",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
@@ -656,6 +666,16 @@
         "disponibile": false,
         "order": 0,
         "_filename": "new-zealand-crak-senza-glutine.md"
+      },
+      {
+        "nome": "Ocata - Garage ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "formato": "0,4 l",
+        "gradazione": "5%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "ocata-garage.md"
       },
       {
         "nome": "La Morte Sua - Kashmir",
