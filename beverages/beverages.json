@@ -325,6 +325,16 @@
       "tipo": "Bibite"
     },
     {
+      "nome": "Ginger ale",
+      "prezzo": "4.00",
+      "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "ginger-ale.md",
+      "tipo": "Bibite"
+    },
+    {
       "nome": "Aranciata amara",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
@@ -1029,6 +1039,16 @@
         "disponibile": true,
         "order": 0,
         "_filename": "acqua-tonica.md",
+        "tipo": "Bibite"
+      },
+      {
+        "nome": "Ginger ale",
+        "prezzo": "4.00",
+        "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "ginger-ale.md",
         "tipo": "Bibite"
       },
       {
