@@ -86,7 +86,7 @@
     },
     {
       "nome": "Gin Tonic / Lemon",
-      "prezzo": "7,00",
+      "prezzo": "8.00",
       "disponibile": true,
       "order": 9,
       "_filename": "gin-tonic.md",
@@ -788,7 +788,7 @@
       },
       {
         "nome": "Gin Tonic / Lemon",
-        "prezzo": "7,00",
+        "prezzo": "8.00",
         "disponibile": true,
         "order": 9,
         "_filename": "gin-tonic.md",

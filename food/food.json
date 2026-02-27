@@ -65,7 +65,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "profitterol.md"
     },
@@ -503,7 +503,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 31,
       "_filename": "carbo-burger.md"
     },
@@ -644,7 +644,7 @@
       "category": "Dolci",
       "prezzo": "6.00",
       "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-      "disponibile": true,
+      "disponibile": false,
       "order": 42,
       "_filename": "salame-al-cioccolato-bianco.md"
     },
@@ -871,7 +871,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "profitterol.md"
       },
@@ -943,7 +943,7 @@
         "category": "Dolci",
         "prezzo": "6.00",
         "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-        "disponibile": true,
+        "disponibile": false,
         "order": 42,
         "_filename": "salame-al-cioccolato-bianco.md"
       }
@@ -1198,7 +1198,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 31,
         "_filename": "carbo-burger.md"
       },

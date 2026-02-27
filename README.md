@@ -162,6 +162,7 @@ Usa il pannello admin "Gestione Categorie" per creare nuove categorie senza tocc
 ## 📄 Licenza
 
 MIT - Usa liberamente per il tuo ristorante!
+Progetto sviluppato da [WebNovis](https://webnovis.com) — Agenzia di sviluppo web e SEO a Rho (Milano).
 
 ## 📞 Contatti
 
