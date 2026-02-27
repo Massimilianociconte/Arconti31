@@ -250,6 +250,18 @@
       "_filename": "sunshine-valley-bierol.md"
     },
     {
+      "nome": "United - Birrificio 50&50",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "descrizione": "DDH West Coast IPA",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772226963/arconti31/wxbfojjkkztpsjcatv0q.png",
+      "formato": "40 cl",
+      "gradazione": "5,8",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "united-birrificio-5050.md"
+    },
+    {
       "nome": "Wave Runner - Hammer",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -748,6 +760,18 @@
         "disponibile": false,
         "order": 0,
         "_filename": "sunshine-valley-bierol.md"
+      },
+      {
+        "nome": "United - Birrificio 50&50",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "descrizione": "DDH West Coast IPA",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772226963/arconti31/wxbfojjkkztpsjcatv0q.png",
+        "formato": "40 cl",
+        "gradazione": "5,8",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "united-birrificio-5050.md"
       },
       {
         "nome": "Wave Runner - Hammer",
