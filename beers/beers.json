@@ -139,7 +139,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
       "formato": "0,4 L ",
       "gradazione": "6,2% ",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "naima-crak.md"
     },
@@ -641,7 +641,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
         "formato": "0,4 L ",
         "gradazione": "6,2% ",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "naima-crak.md"
       },
