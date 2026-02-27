@@ -149,7 +149,29 @@ async function tryReadFromJSON(folder, owner, repo) {
     'vini-rossi': { file: 'beverages/beverages.json', field: 'beverages', filter: 'Vini rossi' }
   };
 
-  const config = JSON_MAP[folder];
+  let config = JSON_MAP[folder];
+
+  // If folder is not in static map, check categorie.json for dynamic beverage folders
+  if (!config) {
+    try {
+      const catUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/categorie/categorie.json`;
+      const catRes = await fetch(catUrl);
+      if (catRes.ok) {
+        const catData = await catRes.json();
+        const match = (catData.categories || []).find(c => {
+          const slug = (c.slug || '').toLowerCase().replace(/\s+/g, '-');
+          return c.tipo_menu === 'beverage' && slug === folder;
+        });
+        if (match) {
+          config = { file: 'beverages/beverages.json', field: 'beverages', filter: match.nome };
+          console.log(`[tryReadFromJSON] Dynamic beverage mapping: ${folder} → filter "${match.nome}"`);
+        }
+      }
+    } catch (e) {
+      console.log(`[tryReadFromJSON] Error checking dynamic beverage: ${e.message}`);
+    }
+  }
+
   if (!config) {
     console.log(`[tryReadFromJSON] Nessun mapping per ${folder}`);
     return null;

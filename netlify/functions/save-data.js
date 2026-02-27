@@ -473,7 +473,25 @@ const COLLECTION_CONFIG = {
 };
 
 async function regenerateJSON(collection, token, owner, repo) {
-  const config = COLLECTION_CONFIG[collection];
+  let config = COLLECTION_CONFIG[collection];
+
+  // If collection is not in static config, check if it's a dynamic beverage folder
+  if (!config) {
+    try {
+      const categories = await readCollectionFiles('categorie', token, owner, repo);
+      const isDynamicBeverage = categories.some(c => {
+        const slug = (c.slug || '').toLowerCase().replace(/\s+/g, '-');
+        return c.tipo_menu === 'beverage' && slug === collection;
+      });
+      if (isDynamicBeverage) {
+        config = { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: collection };
+        console.log(`📦 Dynamic beverage folder detected: ${collection}`);
+      }
+    } catch (e) {
+      console.error(`Error checking dynamic beverage for ${collection}:`, e.message);
+    }
+  }
+
   if (!config) {
     console.log(`⚠️ Collection ${collection} non configurata per rigenerazione JSON`);
     return;
@@ -657,11 +675,38 @@ async function generateCategoriesJSON(token, owner, repo) {
 }
 
 async function generateBeveragesJSON(token, owner, repo) {
+  // Build the full list of beverage folders: hardcoded + dynamic from categories
+  const knownFolders = new Set(BEVERAGE_CATEGORIES.map(c => c.folder));
+  const allBeverageFolders = [...BEVERAGE_CATEGORIES];
+
+  // Discover dynamic beverage folders from categorie collection
+  try {
+    const categories = await readCollectionFiles('categorie', token, owner, repo);
+    const beverageCats = categories.filter(c => c.tipo_menu === 'beverage');
+    for (const cat of beverageCats) {
+      const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+      if (slug && !knownFolders.has(slug)) {
+        allBeverageFolders.push({ name: cat.nome, folder: slug });
+        knownFolders.add(slug);
+        console.log(`📦 Dynamic beverage folder discovered: ${slug} → "${cat.nome}"`);
+      }
+    }
+  } catch (e) {
+    console.error('Error discovering dynamic beverage folders:', e.message);
+  }
+
   const beveragesByType = {};
   const allBeverages = [];
 
-  for (const category of BEVERAGE_CATEGORIES) {
-    const items = await readCollectionFiles(category.folder, token, owner, repo);
+  for (const category of allBeverageFolders) {
+    let items;
+    try {
+      items = await readCollectionFiles(category.folder, token, owner, repo);
+    } catch (e) {
+      // Folder may not exist yet (no products added) — skip gracefully
+      console.log(`⏭️ Beverage folder "${category.folder}" not found or empty, skipping`);
+      continue;
+    }
 
     // Aggiungi il tipo a ogni item
     items.forEach(item => {

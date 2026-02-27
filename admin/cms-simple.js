@@ -760,6 +760,9 @@ async function loadAllData(silent = false) {
     // Clear cached items for global search to force refresh
     state.allItems = {};
 
+    // Register dynamic COLLECTIONS for new beverage categories
+    ensureDynamicCollections();
+
     renderSidebar();
     setupSidebarEvents();
 
@@ -900,7 +903,7 @@ function renderSidebar() {
     
     <!-- Altre bevande -->
     ${otherBeverages.map(cat => {
-    const collectionMap = {
+    const knownMap = {
       'Cocktails': 'cocktails',
       'Analcolici': 'analcolici',
       'Bibite': 'bibite',
@@ -909,8 +912,11 @@ function renderSidebar() {
       'Bianchi fermi': 'bianchi-fermi',
       'Vini rossi': 'vini-rossi'
     };
-    // Try name map first, then check if slug is a valid COLLECTIONS key
-    const collection = collectionMap[cat.nome] || (COLLECTIONS[cat.slug] ? cat.slug : null);
+    // Dynamic lookup: hardcoded names first, then normalized slug, then name-derived slug
+    const normalizedSlug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+    const collection = knownMap[cat.nome]
+      || (COLLECTIONS[normalizedSlug] ? normalizedSlug : null)
+      || (COLLECTIONS[slugify(cat.nome)] ? slugify(cat.nome) : null);
     if (!collection) {
       // Category exists in DB but has no matching collection in CMS config
       return `
@@ -1024,6 +1030,45 @@ function getCategoriesForType(type) {
   const dynamic = state.categories.filter(c => c.tipo_menu === type).map(c => c.nome);
   if (type === 'food') return [...new Set([...dynamic, ...DEFAULT_FOOD_CATEGORIES])];
   return dynamic;
+}
+
+// Template fields for dynamically-created beverage collections
+const BEVERAGE_FIELD_TEMPLATE = [
+  { name: 'nome', label: 'Nome', type: 'text', required: true },
+  { name: 'prezzo', label: 'Prezzo (€)', type: 'text', required: true },
+  { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
+  { name: 'immagine_copertina', label: 'Immagine Copertina', type: 'image' },
+  { name: 'immagine_avatar', label: 'Avatar', type: 'image' },
+  { name: 'disponibile', label: 'Disponibile', type: 'toggle', default: true },
+  { name: 'order', label: 'Ordine', type: 'number', default: 0 }
+];
+
+// Scans state.categories for beverage categories and dynamically registers
+// COLLECTIONS entries for those that don't have a hardcoded collection.
+// This enables the CMS to navigate to, create, and manage products in new beverage folders.
+function ensureDynamicCollections() {
+  const beverageCats = state.categories.filter(c => c.tipo_menu === 'beverage');
+
+  for (const cat of beverageCats) {
+    const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+    if (!slug) continue;
+
+    // Skip if a COLLECTIONS entry already exists
+    if (COLLECTIONS[slug]) continue;
+
+    // Also check by name-derived slug
+    const nameSlug = slugify(cat.nome);
+    if (nameSlug && COLLECTIONS[nameSlug]) continue;
+
+    // Register a new dynamic collection for this beverage category
+    COLLECTIONS[slug] = {
+      label: cat.nome,
+      folder: slug,
+      _dynamic: true,
+      fields: [...BEVERAGE_FIELD_TEMPLATE]
+    };
+    console.log(`📦 Dynamic collection registered: ${slug} → "${cat.nome}"`);
+  }
 }
 
 function renderItems() {
@@ -2190,6 +2235,24 @@ async function saveItem() {
       }
     }
 
+    // ★ FIX: Sync state.categories when saving a category
+    // Without this, getCategoriesForType() and renderSidebar() use stale data,
+    // preventing product creation under newly-created categories.
+    if (state.currentCollection === 'categorie') {
+      if (state.isNew) {
+        state.categories.push(newItem);
+      } else {
+        const catIdx = state.categories.findIndex(c => c.filename === filename);
+        if (catIdx !== -1) {
+          state.categories[catIdx] = { ...state.categories[catIdx], ...newItem };
+        }
+      }
+      state.categories.sort((a, b) => (a.order || 0) - (b.order || 0));
+      ensureDynamicCollections();
+      renderSidebar();
+      setupSidebarEvents();
+    }
+
     // Update SmartCache
     if (window.SmartCache) {
       await window.SmartCache.set('items', {
@@ -2306,6 +2369,14 @@ async function deleteItem() {
     }
 
     toast('Eliminato!', 'success');
+
+    // ★ FIX: Sync state.categories when deleting a category
+    if (state.currentCollection === 'categorie') {
+      state.categories = state.categories.filter(c => c.filename !== itemToDelete.filename);
+      ensureDynamicCollections();
+      renderSidebar();
+      setupSidebarEvents();
+    }
 
     // Update SmartCache con tombstone
     if (window.SmartCache) {
