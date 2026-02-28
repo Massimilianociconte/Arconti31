@@ -1,5 +1,5 @@
 ---
-nome: "Cowboy kirk "
+nome: "Cowboy kirk - 50&50"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.50"
 descrizione: "COWBOY KIRK è una Black IPA che tiene insieme due mondi:
