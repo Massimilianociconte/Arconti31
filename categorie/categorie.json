@@ -14,7 +14,7 @@
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "gin.md"
     },
@@ -23,7 +23,7 @@
       "slug": "Ammazza-caffe",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
@@ -362,7 +362,7 @@
       "nome": "Gin",
       "slug": "gin",
       "tipo_menu": "beverage",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "gin.md"
     },
@@ -371,7 +371,7 @@
       "slug": "Ammazza-caffe",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
