@@ -6,6 +6,6 @@ descrizione: "Una birra unica nel suo genere. Questa dubbel si presenta con un c
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768322865/arconti31/ssg1osnwv0tp4npbs35w.png"
 formato: "40 cl"
 gradazione: "7,4 %"
-disponibile: true
+disponibile: false
 order: 3
 ---
