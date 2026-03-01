@@ -7,6 +7,8 @@ Al palato risulta molto morbida nonostante l’elevata gradazione alcolica, succ
 È facilmente riconoscibile l' utilizzo di spezie e lieviti che la portano quasi ad assomigliare ad una birra trappista. 
 Sapore frizzante, dal gusto rotondo e pieno. Sul finale l’equilibrio tra amaro acido e dolce è perfetto."
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1772323383/arconti31/fj25dbbwytqlovafdipj.png"
+formato: "0,4"
+gradazione: "8,5"
 disponibile: true
 order: 0
 ---
