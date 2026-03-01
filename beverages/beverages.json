@@ -717,6 +717,16 @@
       "order": 0,
       "_filename": "amaro-del-capo-caffo.md",
       "tipo": "L’AMMAZZA CAFFÈ "
+    },
+    {
+      "nome": "Montenegro - ",
+      "prezzo": "4.00",
+      "descrizione": "Bologna | 23% alc.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382266/arconti31/o06mo83htj3c3yi4wsq8.jpg",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "montenegro-.md",
+      "tipo": "L’AMMAZZA CAFFÈ "
     }
   ],
   "beveragesByType": {
@@ -1451,6 +1461,16 @@
         "disponibile": true,
         "order": 0,
         "_filename": "amaro-del-capo-caffo.md",
+        "tipo": "L’AMMAZZA CAFFÈ "
+      },
+      {
+        "nome": "Montenegro - ",
+        "prezzo": "4.00",
+        "descrizione": "Bologna | 23% alc.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382266/arconti31/o06mo83htj3c3yi4wsq8.jpg",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "montenegro-.md",
         "tipo": "L’AMMAZZA CAFFÈ "
       }
     ]
