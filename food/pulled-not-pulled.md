@@ -1,5 +1,5 @@
 ---
-nome: "PULLED NOT PULLED "
+nome: "PULLED NOT PORK "
 category: "Hamburger Fassona e Street food"
 prezzo: "15.00"
 descrizione: "Pane al sesamo, Pulled di cervo, cavolo cappuccio, cipolle caramellate e salsa bbq affumicata.
