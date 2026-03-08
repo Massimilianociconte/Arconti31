@@ -737,7 +737,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 46,
       "_filename": "porchettara.md"
     },
@@ -1278,7 +1278,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 46,
         "_filename": "porchettara.md"
       },
