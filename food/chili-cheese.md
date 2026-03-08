@@ -7,6 +7,6 @@ immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/
 tags:
   - "Piccante"
   - "Più venduto"
-disponibile: true
+disponibile: false
 order: 10
 ---
