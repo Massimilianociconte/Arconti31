@@ -10,6 +10,6 @@ allergeni:
   - "Molluschi"
 tags:
   - "Più venduto"
-disponibile: true
+disponibile: false
 order: 47
 ---
