@@ -12,6 +12,6 @@ tags:
   - "Piccante"
   - "Più venduto"
   - "Specialità"
-disponibile: true
+disponibile: false
 order: 41
 ---
