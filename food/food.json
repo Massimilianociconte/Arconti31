@@ -235,7 +235,7 @@
         "Piccante",
         "Più venduto"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 10,
       "_filename": "chili-cheese.md"
     },
@@ -997,7 +997,7 @@
           "Piccante",
           "Più venduto"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 10,
         "_filename": "chili-cheese.md"
       },
