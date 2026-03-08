@@ -546,7 +546,7 @@
       "allergeni": [
         "Glutine"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 33,
       "_filename": "olive-ascolane.md"
     },
@@ -1020,7 +1020,7 @@
         "allergeni": [
           "Glutine"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 33,
         "_filename": "olive-ascolane.md"
       },
