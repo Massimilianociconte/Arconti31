@@ -29,7 +29,7 @@
         "Vegetariano",
         "Vegano"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "arnate-calcio.md"
     },
@@ -1473,7 +1473,7 @@
           "Vegetariano",
           "Vegano"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "arnate-calcio.md"
       },
