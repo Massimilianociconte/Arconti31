@@ -755,7 +755,7 @@
       "tags": [
         "Più venduto"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 47,
       "_filename": "crenna.md"
     },
@@ -1420,7 +1420,7 @@
         "tags": [
           "Più venduto"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 47,
         "_filename": "crenna.md"
       },
