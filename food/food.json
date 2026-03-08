@@ -418,7 +418,7 @@
       "tags": [
         "Più venduto"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 24,
       "_filename": "cedratese.md"
     },
@@ -1518,7 +1518,7 @@
         "tags": [
           "Più venduto"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 24,
         "_filename": "cedratese.md"
       }
