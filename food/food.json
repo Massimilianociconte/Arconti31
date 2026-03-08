@@ -168,7 +168,7 @@
       "tags": [
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 5,
       "_filename": "picanha.md"
     },
@@ -1548,7 +1548,7 @@
         "tags": [
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 5,
         "_filename": "picanha.md"
       },
