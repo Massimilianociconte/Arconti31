@@ -656,7 +656,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 41,
       "_filename": "pulled-pork.md"
     },
@@ -1260,7 +1260,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 41,
         "_filename": "pulled-pork.md"
       },
