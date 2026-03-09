@@ -7,6 +7,6 @@ immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v17688299
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768829920/arconti31/fg6ul1jzxocdulpnnxvp.jpg"
 tags:
   - "Più venduto"
-disponibile: false
+disponibile: true
 order: 29
 ---
