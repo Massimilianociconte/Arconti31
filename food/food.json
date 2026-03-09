@@ -524,7 +524,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 31,
       "_filename": "carbo-burger.md"
     },
@@ -1240,7 +1240,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 31,
         "_filename": "carbo-burger.md"
       },
