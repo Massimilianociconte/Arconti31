@@ -8,6 +8,6 @@ allergeni:
   - "Latte"
 tags:
   - "Più venduto"
-disponibile: false
+disponibile: true
 order: 24
 ---
