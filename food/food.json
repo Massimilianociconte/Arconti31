@@ -208,7 +208,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 8,
       "_filename": "tiramis-al-bicchiere.md"
     },
@@ -907,7 +907,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 8,
         "_filename": "tiramis-al-bicchiere.md"
       },
