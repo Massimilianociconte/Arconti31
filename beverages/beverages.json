@@ -76,15 +76,6 @@
       "tipo": "Cocktails"
     },
     {
-      "nome": "Gin lemon",
-      "prezzo": "8.00",
-      "descrizione": "Gin e lemonsoda",
-      "disponibile": true,
-      "order": 8,
-      "_filename": "gin-lemon.md",
-      "tipo": "Cocktails"
-    },
-    {
       "nome": "Gin Tonic/Lemon",
       "prezzo": "8.00",
       "descrizione": "Possibile richiesta di un gin specifico (prezzo variabile) ",
@@ -842,15 +833,6 @@
         "disponibile": true,
         "order": 7,
         "_filename": "cuba-libre.md",
-        "tipo": "Cocktails"
-      },
-      {
-        "nome": "Gin lemon",
-        "prezzo": "8.00",
-        "descrizione": "Gin e lemonsoda",
-        "disponibile": true,
-        "order": 8,
-        "_filename": "gin-lemon.md",
         "tipo": "Cocktails"
       },
       {
