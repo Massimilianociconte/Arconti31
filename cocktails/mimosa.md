@@ -1,6 +1,6 @@
 ---
 nome: "Mimosa"
-prezzo: "6.00"
+prezzo: "8.00"
 descrizione: "Spumante e arancia"
 disponibile: true
 order: 11
