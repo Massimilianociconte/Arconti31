@@ -91,7 +91,7 @@
     {
       "nome": "Soffice Cremoso",
       "category": "Dolci",
-      "prezzo": "7.00",
+      "prezzo": "6.00",
       "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
       "allergeni": [
         "Glutine",
@@ -918,7 +918,7 @@
       {
         "nome": "Soffice Cremoso",
         "category": "Dolci",
-        "prezzo": "7.00",
+        "prezzo": "6.00",
         "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
         "allergeni": [
           "Glutine",
