@@ -1,6 +1,6 @@
 ---
 nome: "Gin Tonic Analcolico (Tanqueray) "
-prezzo: "8.00"
+prezzo: "7.00"
 disponibile: true
 order: 0
 ---
