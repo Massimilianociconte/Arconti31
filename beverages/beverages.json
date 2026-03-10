@@ -12,7 +12,7 @@
     {
       "nome": "Spritz",
       "prezzo": "7.00",
-      "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
+      "descrizione": "Prosecco, seltz e Aperol.",
       "disponibile": true,
       "order": 1,
       "_filename": "aperol-spritz.md",
@@ -781,7 +781,7 @@
       {
         "nome": "Spritz",
         "prezzo": "7.00",
-        "descrizione": "Prosecco, seltz e Aperol/ Campari / Cynar/ …",
+        "descrizione": "Prosecco, seltz e Aperol.",
         "disponibile": true,
         "order": 1,
         "_filename": "aperol-spritz.md",
