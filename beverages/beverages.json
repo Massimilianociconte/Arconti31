@@ -10,6 +10,15 @@
       "tipo": "Cocktails"
     },
     {
+      "nome": "Cuba Libre",
+      "prezzo": "8.50",
+      "descrizione": "Pestato (lime e zucchero di canna), rum chiaro e ghiaccio pilé.",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "cuba-libre-1.md",
+      "tipo": "Cocktails"
+    },
+    {
       "nome": "Spritz",
       "prezzo": "7.00",
       "descrizione": "Prosecco, seltz e Aperol.",
@@ -768,6 +777,15 @@
         "disponibile": true,
         "order": 0,
         "_filename": "americano.md",
+        "tipo": "Cocktails"
+      },
+      {
+        "nome": "Cuba Libre",
+        "prezzo": "8.50",
+        "descrizione": "Pestato (lime e zucchero di canna), rum chiaro e ghiaccio pilé.",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "cuba-libre-1.md",
         "tipo": "Cocktails"
       },
       {
