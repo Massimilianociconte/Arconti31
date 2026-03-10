@@ -2,6 +2,6 @@
 nome: "Cool down"
 prezzo: "7.00"
 descrizione: "Ananas, sweet and sour, granatina, menta"
-disponibile: false
+disponibile: true
 order: 2
 ---
