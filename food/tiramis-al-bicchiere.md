@@ -8,6 +8,6 @@ tags:
   - "Novità"
   - "Più venduto"
   - "Specialità"
-disponibile: true
+disponibile: false
 order: 8
 ---
