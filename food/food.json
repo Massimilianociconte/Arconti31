@@ -89,6 +89,25 @@
       "_filename": "pulled-not-pulled.md"
     },
     {
+      "nome": "Soffice Cremoso",
+      "category": "Dolci",
+      "prezzo": "7.00",
+      "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "soffice-cremoso.md"
+    },
+    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -432,7 +451,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 25,
       "_filename": "salame-al-cioccolato.md"
     },
@@ -897,6 +916,25 @@
         "_filename": "profitterol.md"
       },
       {
+        "nome": "Soffice Cremoso",
+        "category": "Dolci",
+        "prezzo": "7.00",
+        "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "soffice-cremoso.md"
+      },
+      {
         "nome": "Tiramisù al bicchiere",
         "category": "Dolci",
         "prezzo": "6.00",
@@ -931,7 +969,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 25,
         "_filename": "salame-al-cioccolato.md"
       },
