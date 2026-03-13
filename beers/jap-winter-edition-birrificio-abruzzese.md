@@ -1,12 +1,12 @@
 ---
-nome: "Jap Winter Edition - Birrificio Abruzzese"
+nome: "Glaciale - Birrificio dell’Eremo"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "7.00"
-descrizione: "Double IPA
-Un’edizione speciale, l’aggiunta di cocco in scaglie durante il processo di fermentazione dona un booster aromatico alle già presenti note tropicali e di menta e lime."
-immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1773175009/arconti31/umki5czsbdvgkgcd2c70.webp"
+descrizione: "Imperial IPA
+ Glaciale una birra artigianale in stile Imperial IPA con aggiunta di miele biologico, dal colore ambrato scuro con schiuma beige fine e persistente. Al naso complessa con note erbacee e balsamiche, con chiari sentori di agrumi e legno di mandarino. "
+immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1773423516/arconti31/qzoerlsxsjwfoy6rcxck.webp"
 formato: "0,4 l"
-gradazione: "8%"
+gradazione: "7,5%"
 disponibile: true
 order: 0
 ---
