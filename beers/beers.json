@@ -132,13 +132,13 @@
       "_filename": "hibernatus-lupulus.md"
     },
     {
-      "nome": "Jap Winter Edition - Birrificio Abruzzese",
+      "nome": "Glaciale - Birrificio dell’Eremo",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
-      "descrizione": "Double IPA",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773175009/arconti31/umki5czsbdvgkgcd2c70.webp",
+      "descrizione": "Imperial IPA",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423516/arconti31/qzoerlsxsjwfoy6rcxck.webp",
       "formato": "0,4 l",
-      "gradazione": "8%",
+      "gradazione": "7,5%",
       "disponibile": true,
       "order": 0,
       "_filename": "jap-winter-edition-birrificio-abruzzese.md"
@@ -742,13 +742,13 @@
         "_filename": "hibernatus-lupulus.md"
       },
       {
-        "nome": "Jap Winter Edition - Birrificio Abruzzese",
+        "nome": "Glaciale - Birrificio dell’Eremo",
         "sezione": "Birre artigianali alla spina a rotazione",
         "prezzo": "7.00",
-        "descrizione": "Double IPA",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773175009/arconti31/umki5czsbdvgkgcd2c70.webp",
+        "descrizione": "Imperial IPA",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423516/arconti31/qzoerlsxsjwfoy6rcxck.webp",
         "formato": "0,4 l",
-        "gradazione": "8%",
+        "gradazione": "7,5%",
         "disponibile": true,
         "order": 0,
         "_filename": "jap-winter-edition-birrificio-abruzzese.md"
