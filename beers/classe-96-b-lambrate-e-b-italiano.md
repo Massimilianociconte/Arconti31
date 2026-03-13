@@ -1,5 +1,5 @@
 ---
-nome: "Dirty Dancing - Birrificio Italiano"
+nome: "Ritorno al futuro - Birrificio Italiano"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.00"
 descrizione: "Modern Italian Pilsner.
