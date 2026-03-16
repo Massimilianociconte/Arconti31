@@ -289,6 +289,36 @@ function hideLoading() {
 // VIEWS
 // ========================================
 
+// Helper: get subcategories of a parent category
+function getSubcategories(parentSlug) {
+  return categoriesData.filter(c => c.parent_category === parentSlug);
+}
+
+// Helper: count products for a category (including subcategories)
+function countCategoryProducts(cat) {
+  let count = 0;
+  if (cat.tipo_menu === 'food') {
+    count = foodData.filter(f => f.category === cat.nome && f.disponibile !== false).length;
+  } else {
+    // Beers
+    count = beersData.filter(b => b.sezione === cat.nome && b.disponibile !== false).length;
+    // Beverages
+    if (count === 0) {
+      count = beveragesData.filter(b => b.tipo === cat.nome && b.disponibile !== false).length;
+    }
+  }
+  // Add subcategory products
+  const subcats = getSubcategories(cat.slug);
+  subcats.forEach(sub => { count += countCategoryProducts(sub); });
+  return count;
+}
+
+// Helper: determine type for a beverage category
+function resolveBevType(cat) {
+  if (beersData.some(b => b.sezione === cat.nome)) return 'beer';
+  return 'beverage';
+}
+
 function showCategoriesView() {
   currentView = 'home';
   currentCategory = null;
@@ -306,37 +336,28 @@ function showCategoriesView() {
   const categoriesView = document.getElementById('categories-view');
   let html = '';
 
-  // 1. CUCINA (Food)
-  // Usa SOLO le categorie dinamiche caricate (che sono già filtrate per visibilità)
-  const foodCategories = categoriesData.filter(c => c.tipo_menu === 'food');
+  // 1. CUCINA (Food) — only top-level (no parent_category)
+  const foodCategories = categoriesData.filter(c => c.tipo_menu === 'food' && !c.parent_category);
   
   if (foodCategories.length > 0) {
     html += '<h2 class="section-header">Cucina</h2><div class="categories-grid">';
     foodCategories.forEach(cat => {
-      const items = foodData.filter(f => f.category === cat.nome && f.disponibile !== false);
-      html += createCategoryCard(cat, items.length, 'food');
+      const count = countCategoryProducts(cat);
+      html += createCategoryCard(cat, count, 'food');
     });
     html += '</div>';
   }
 
-  // 2. BEVERAGE (Beers + Beverages)
-  const beverageCategories = categoriesData.filter(c => c.tipo_menu === 'beverage');
+  // 2. BEVERAGE (Beers + Beverages) — only top-level (no parent_category)
+  const beverageCategories = categoriesData.filter(c => c.tipo_menu === 'beverage' && !c.parent_category);
   
   if (beverageCategories.length > 0) {
     html += '<h2 class="section-header">Beverage</h2><div class="categories-grid">';
     
     beverageCategories.forEach(cat => {
-      // Cerca in birre
-      let items = beersData.filter(b => b.sezione === cat.nome && b.disponibile !== false);
-      let type = 'beer';
-      
-      // Se non trovato, cerca in beverages
-      if (items.length === 0) {
-        items = beveragesData.filter(b => b.tipo === cat.nome && b.disponibile !== false);
-        type = 'beverage';
-      }
-      
-      html += createCategoryCard(cat, items.length, type);
+      const count = countCategoryProducts(cat);
+      const type = resolveBevType(cat);
+      html += createCategoryCard(cat, count, type);
     });
     
     html += '</div>';
@@ -402,37 +423,99 @@ function showCategory(categoryName, type) {
   document.getElementById('categories-view').style.display = 'none';
   document.getElementById('detail-view').style.display = 'block';
 
-  let items = [];
-
-  if (type === 'beer') {
-    items = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
-  } else if (type === 'beverage') {
-    items = beveragesData.filter(b => b.tipo === categoryName && b.disponibile !== false);
-  } else if (type === 'food') {
-    items = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
-  }
-
-  // Ordina per order
-  items.sort((a, b) => (a.order || 0) - (b.order || 0));
+  // Check if this category has subcategories
+  const thisCat = categoriesData.find(c => c.nome === categoryName);
+  const subcats = thisCat ? getSubcategories(thisCat.slug) : [];
 
   const detailContent = document.getElementById('detail-content');
-  detailContent.innerHTML = `
-    <h2 class="section-title">${escapeHtml(categoryName)}</h2>
-    <div class="beer-grid">
-      ${items.map((item, index) => renderCard(item, index, type)).join('')}
-    </div>
-  `;
-  
-  // Event delegation per le beer-card (evita inline onclick)
-  detailContent.querySelectorAll('.beer-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const itemName = card.dataset.itemName;
-      const itemType = card.dataset.itemType;
-      if (itemName && itemType) {
-        openModal(itemName, itemType);
-      }
+
+  if (subcats.length > 0) {
+    // Parent category with subcategories → show subcategory cards
+    // Also include direct products of the parent (if any)
+    let directItems = [];
+    if (type === 'beer') {
+      directItems = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
+    } else if (type === 'beverage') {
+      directItems = beveragesData.filter(b => b.tipo === categoryName && b.disponibile !== false);
+    } else if (type === 'food') {
+      directItems = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
+    }
+    directItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    let html = `<h2 class="section-title">${escapeHtml(categoryName)}</h2>`;
+
+    // Subcategory cards grid
+    html += '<div class="categories-grid">';
+    subcats.forEach(sub => {
+      const subCount = countCategoryProducts(sub);
+      const subType = sub.tipo_menu === 'food' ? 'food' : resolveBevType(sub);
+      html += createCategoryCard(sub, subCount, subType);
     });
-  });
+    html += '</div>';
+
+    // Direct products of the parent (shown below subcategory cards)
+    if (directItems.length > 0) {
+      html += `<div class="beer-grid" style="margin-top: 1.5rem;">`;
+      html += directItems.map((item, index) => renderCard(item, index, type)).join('');
+      html += '</div>';
+    }
+
+    detailContent.innerHTML = html;
+
+    // Event delegation for subcategory cards
+    detailContent.querySelectorAll('.category-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const catName = card.dataset.category;
+        const catType = card.dataset.type;
+        if (catName && catType) {
+          showCategory(catName, catType);
+        }
+      });
+    });
+
+    // Event delegation for direct product cards
+    detailContent.querySelectorAll('.beer-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const itemName = card.dataset.itemName;
+        const itemType = card.dataset.itemType;
+        if (itemName && itemType) {
+          openModal(itemName, itemType);
+        }
+      });
+    });
+  } else {
+    // Leaf category → show products directly
+    let items = [];
+
+    if (type === 'beer') {
+      items = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
+    } else if (type === 'beverage') {
+      items = beveragesData.filter(b => b.tipo === categoryName && b.disponibile !== false);
+    } else if (type === 'food') {
+      items = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
+    }
+
+    // Ordina per order
+    items.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    detailContent.innerHTML = `
+      <h2 class="section-title">${escapeHtml(categoryName)}</h2>
+      <div class="beer-grid">
+        ${items.map((item, index) => renderCard(item, index, type)).join('')}
+      </div>
+    `;
+    
+    // Event delegation per le beer-card (evita inline onclick)
+    detailContent.querySelectorAll('.beer-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const itemName = card.dataset.itemName;
+        const itemType = card.dataset.itemType;
+        if (itemName && itemType) {
+          openModal(itemName, itemType);
+        }
+      });
+    });
+  }
 
   window.scrollTo(0, 0);
 }
