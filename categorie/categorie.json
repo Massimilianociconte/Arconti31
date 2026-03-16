@@ -1,6 +1,15 @@
 {
   "categories": [
     {
+      "nome": "Amari e distillatii",
+      "slug": "amari-e-distillatii",
+      "tipo_menu": "beverage",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "amari-e-distillatii.md"
+    },
+    {
       "nome": "Bavarese",
       "slug": "bavarese",
       "tipo_menu": "food",
@@ -377,6 +386,15 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "Amari e distillatii",
+      "slug": "amari-e-distillatii",
+      "tipo_menu": "beverage",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "amari-e-distillatii.md"
+    },
     {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
