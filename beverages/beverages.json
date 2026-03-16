@@ -710,14 +710,6 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Mandragola Riserva - Carlo Alberto",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "mandragola-riserva-carlo-alberto.md",
-      "tipo": "Amari e Distillati"
-    },
-    {
       "nome": "Petrus Boonekamp",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1467,14 +1459,6 @@
       }
     ],
     "Amari e Distillati": [
-      {
-        "nome": "Mandragola Riserva - Carlo Alberto",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "mandragola-riserva-carlo-alberto.md",
-        "tipo": "Amari e Distillati"
-      },
       {
         "nome": "Petrus Boonekamp",
         "prezzo": "4.00",
