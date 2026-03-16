@@ -1,15 +1,6 @@
 {
   "categories": [
     {
-      "nome": "Amari e distillatii",
-      "slug": "amari-e-distillatii",
-      "tipo_menu": "beverage",
-      "icona": "🥨",
-      "visibile": true,
-      "order": 0,
-      "_filename": "amari-e-distillatii.md"
-    },
-    {
       "nome": "Bavarese",
       "slug": "bavarese",
       "tipo_menu": "food",
@@ -33,7 +24,7 @@
       "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": false,
+      "visibile": true,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
@@ -387,15 +378,6 @@
   ],
   "beverageCategories": [
     {
-      "nome": "Amari e distillatii",
-      "slug": "amari-e-distillatii",
-      "tipo_menu": "beverage",
-      "icona": "🥨",
-      "visibile": true,
-      "order": 0,
-      "_filename": "amari-e-distillatii.md"
-    },
-    {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
       "tipo_menu": "beverage",
@@ -409,7 +391,7 @@
       "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": false,
+      "visibile": true,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
