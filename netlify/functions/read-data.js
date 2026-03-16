@@ -123,8 +123,19 @@ exports.handler = async (event, context) => {
       };
     }
 
+    // 404 = folder doesn't exist yet (e.g. newly created category with no products)
+    // Return empty items instead of error so the CMS shows an empty list
+    if (error.message.includes('404')) {
+      console.log(`[read-data] Folder "${folder}" not found — returning empty items (new category?)`);
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [], source: 'empty-folder' })
+      };
+    }
+
     return {
-      statusCode: error.message.includes('404') ? 404 : 500,
+      statusCode: 500,
       body: JSON.stringify({ error: error.message, items: [] })
     };
   }

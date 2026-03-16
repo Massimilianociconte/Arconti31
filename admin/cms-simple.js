@@ -579,7 +579,17 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
       body: JSON.stringify(requestBody)
     });
 
-    if (!res.ok) throw new Error('Errore caricamento');
+    if (!res.ok) {
+      // 404 = folder doesn't exist yet (new category, no products) → treat as empty
+      if (res.status === 404) {
+        console.log(`Folder for "${collectionName}" not found — showing empty list`);
+        state.items = [];
+        renderItems();
+        if (!silent) hideLoading();
+        return;
+      }
+      throw new Error('Errore caricamento');
+    }
 
     const data = await res.json();
     // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
