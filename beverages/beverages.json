@@ -708,14 +708,6 @@
       "order": 5,
       "_filename": "primitivo-masserie-moretti.md",
       "tipo": "Vini rossi"
-    },
-    {
-      "nome": "Unicum",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "unicum.md",
-      "tipo": "Amari e Distillati"
     }
   ],
   "beveragesByType": {
@@ -1440,16 +1432,6 @@
         "order": 5,
         "_filename": "primitivo-masserie-moretti.md",
         "tipo": "Vini rossi"
-      }
-    ],
-    "Amari e Distillati": [
-      {
-        "nome": "Unicum",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "unicum.md",
-        "tipo": "Amari e Distillati"
       }
     ]
   }
