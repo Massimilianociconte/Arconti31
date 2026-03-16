@@ -1,6 +1,16 @@
 {
   "categories": [
     {
+      "nome": "Artigianali",
+      "slug": "artigianali",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "artigianali.md"
+    },
+    {
       "nome": "Bavarese",
       "slug": "bavarese",
       "tipo_menu": "food",
@@ -9,6 +19,26 @@
       "visibile": true,
       "order": 0,
       "_filename": "bavarese.md"
+    },
+    {
+      "nome": "Classici",
+      "slug": "classici",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "classici.md"
+    },
+    {
+      "nome": "Grappe",
+      "slug": "grappe",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🔥",
+      "visibile": true,
+      "order": 0,
+      "_filename": "grappe.md"
     },
     {
       "nome": "I nostri Rum",
@@ -377,6 +407,36 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "Artigianali",
+      "slug": "artigianali",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "artigianali.md"
+    },
+    {
+      "nome": "Classici",
+      "slug": "classici",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "classici.md"
+    },
+    {
+      "nome": "Grappe",
+      "slug": "grappe",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🔥",
+      "visibile": true,
+      "order": 0,
+      "_filename": "grappe.md"
+    },
     {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
