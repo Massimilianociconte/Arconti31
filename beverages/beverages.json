@@ -726,6 +726,14 @@
       "tipo": "Amari e Distillati"
     },
     {
+      "nome": "San Simone ",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "san-simone.md",
+      "tipo": "Amari e Distillati"
+    },
+    {
       "nome": "Unicum",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1473,6 +1481,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "petrus-boonekamp.md",
+        "tipo": "Amari e Distillati"
+      },
+      {
+        "nome": "San Simone ",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "san-simone.md",
         "tipo": "Amari e Distillati"
       },
       {
