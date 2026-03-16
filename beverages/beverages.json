@@ -710,14 +710,6 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Petrus Boonekamp",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "petrus-boonekamp.md",
-      "tipo": "Amari e Distillati"
-    },
-    {
       "nome": "Unicum",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1451,14 +1443,6 @@
       }
     ],
     "Amari e Distillati": [
-      {
-        "nome": "Petrus Boonekamp",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "petrus-boonekamp.md",
-        "tipo": "Amari e Distillati"
-      },
       {
         "nome": "Unicum",
         "prezzo": "4.00",
