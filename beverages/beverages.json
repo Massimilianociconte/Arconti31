@@ -710,12 +710,13 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Diplomatico - Reserva Exclusiva",
-      "prezzo": "0.00",
+      "nome": "test",
+      "prezzo": "10.00",
+      "descrizione": "test sottocategoria",
       "disponibile": true,
       "order": 0,
-      "_filename": "diplomatico-reserva-exclusiva.md",
-      "tipo": "I nostri Rhum"
+      "_filename": "test.md",
+      "tipo": "Amari e distillatii"
     }
   ],
   "beveragesByType": {
@@ -1442,14 +1443,15 @@
         "tipo": "Vini rossi"
       }
     ],
-    "I nostri Rhum": [
+    "Amari e distillatii": [
       {
-        "nome": "Diplomatico - Reserva Exclusiva",
-        "prezzo": "0.00",
+        "nome": "test",
+        "prezzo": "10.00",
+        "descrizione": "test sottocategoria",
         "disponibile": true,
         "order": 0,
-        "_filename": "diplomatico-reserva-exclusiva.md",
-        "tipo": "I nostri Rhum"
+        "_filename": "test.md",
+        "tipo": "Amari e distillatii"
       }
     ]
   }
