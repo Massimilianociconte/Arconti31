@@ -710,6 +710,14 @@
       "tipo": "Vini rossi"
     },
     {
+      "nome": "Amaro Ilex",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amaro-ilex.md",
+      "tipo": "Amari e Distillati"
+    },
+    {
       "nome": "Petrus Boonekamp",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1451,6 +1459,14 @@
       }
     ],
     "Amari e Distillati": [
+      {
+        "nome": "Amaro Ilex",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amaro-ilex.md",
+        "tipo": "Amari e Distillati"
+      },
       {
         "nome": "Petrus Boonekamp",
         "prezzo": "4.00",
