@@ -710,6 +710,15 @@
       "tipo": "Vini rossi"
     },
     {
+      "nome": "Amari da frigo",
+      "prezzo": "4.00",
+      "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amari-da-frigo.md",
+      "tipo": "Amari"
+    },
+    {
       "nome": "Amaro del Capo - Caffo",
       "prezzo": "4.00",
       "descrizione": "Calabria | 35% alc.",
@@ -717,7 +726,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "amaro-del-capo-caffo.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     },
     {
       "nome": "Amaro Silano",
@@ -727,7 +736,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "amaro-silano.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     },
     {
       "nome": "Jegermaister ",
@@ -737,7 +746,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "jegermaister.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     },
     {
       "nome": "Limoncello",
@@ -746,7 +755,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "limoncello.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     },
     {
       "nome": "Liquirizia ",
@@ -755,7 +764,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "liquirizia.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     },
     {
       "nome": "Montenegro - ",
@@ -765,7 +774,7 @@
       "disponibile": true,
       "order": 0,
       "_filename": "montenegro-.md",
-      "tipo": "L’AMMAZZA CAFFÈ "
+      "tipo": "Amari"
     }
   ],
   "beveragesByType": {
@@ -1492,7 +1501,16 @@
         "tipo": "Vini rossi"
       }
     ],
-    "L’AMMAZZA CAFFÈ ": [
+    "Amari": [
+      {
+        "nome": "Amari da frigo",
+        "prezzo": "4.00",
+        "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amari-da-frigo.md",
+        "tipo": "Amari"
+      },
       {
         "nome": "Amaro del Capo - Caffo",
         "prezzo": "4.00",
@@ -1501,7 +1519,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "amaro-del-capo-caffo.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       },
       {
         "nome": "Amaro Silano",
@@ -1511,7 +1529,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "amaro-silano.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       },
       {
         "nome": "Jegermaister ",
@@ -1521,7 +1539,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "jegermaister.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       },
       {
         "nome": "Limoncello",
@@ -1530,7 +1548,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "limoncello.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       },
       {
         "nome": "Liquirizia ",
@@ -1539,7 +1557,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "liquirizia.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       },
       {
         "nome": "Montenegro - ",
@@ -1549,7 +1567,7 @@
         "disponibile": true,
         "order": 0,
         "_filename": "montenegro-.md",
-        "tipo": "L’AMMAZZA CAFFÈ "
+        "tipo": "Amari"
       }
     ]
   }
