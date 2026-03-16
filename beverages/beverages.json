@@ -716,6 +716,14 @@
       "order": 0,
       "_filename": "petrus-boonekamp.md",
       "tipo": "Amari e Distillati"
+    },
+    {
+      "nome": "Unicum",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "unicum.md",
+      "tipo": "Amari e Distillati"
     }
   ],
   "beveragesByType": {
@@ -1449,6 +1457,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "petrus-boonekamp.md",
+        "tipo": "Amari e Distillati"
+      },
+      {
+        "nome": "Unicum",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "unicum.md",
         "tipo": "Amari e Distillati"
       }
     ]
