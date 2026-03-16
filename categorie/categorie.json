@@ -1,6 +1,16 @@
 {
   "categories": [
     {
+      "nome": "Artigianali",
+      "slug": "artigianali",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "artigianali.md"
+    },
+    {
       "nome": "Bavarese",
       "slug": "bavarese",
       "tipo_menu": "food",
@@ -387,6 +397,16 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "Artigianali",
+      "slug": "artigianali",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "artigianali.md"
+    },
     {
       "nome": "Classici",
       "slug": "classici",
