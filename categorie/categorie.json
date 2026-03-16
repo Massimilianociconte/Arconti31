@@ -38,6 +38,15 @@
       "_filename": "selezione-di-gin.md"
     },
     {
+      "nome": "Selezione di Whisky ",
+      "slug": "selezione-di-whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-whisky.md"
+    },
+    {
       "nome": "Menù Partita",
       "slug": "menu-partita",
       "tipo_menu": "food",
@@ -394,6 +403,15 @@
       "visibile": false,
       "order": 0,
       "_filename": "selezione-di-gin.md"
+    },
+    {
+      "nome": "Selezione di Whisky ",
+      "slug": "selezione-di-whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
