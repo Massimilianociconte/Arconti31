@@ -11,6 +11,15 @@
       "_filename": "bavarese.md"
     },
     {
+      "nome": "I nostri Rhum",
+      "slug": "i-nostri-rhum",
+      "tipo_menu": "beverage",
+      "icona": "🍫",
+      "visibile": true,
+      "order": 0,
+      "_filename": "i-nostri-rhum.md"
+    },
+    {
       "nome": "Amari e Distillati",
       "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
@@ -350,6 +359,15 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "I nostri Rhum",
+      "slug": "i-nostri-rhum",
+      "tipo_menu": "beverage",
+      "icona": "🍫",
+      "visibile": true,
+      "order": 0,
+      "_filename": "i-nostri-rhum.md"
+    },
     {
       "nome": "Amari e Distillati",
       "slug": "Amari-Distillati",
