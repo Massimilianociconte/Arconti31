@@ -150,6 +150,7 @@ const COLLECTIONS = {
       { name: 'nome', label: 'Nome Categoria', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true, hint: 'ID univoco', autoSlug: true },
       { name: 'tipo_menu', label: 'Tipo Menù', type: 'select', options: ['food', 'beverage'], required: true },
+      { name: 'parent_category', label: 'Categoria Padre', type: 'parent-category-select', hint: 'Lascia vuoto per categoria principale' },
       { name: 'icona', label: 'Icona', type: 'text', hint: 'Es: 🍔 🍺' },
       { name: 'immagine', label: 'Immagine Sfondo', type: 'image', hint: 'Sfondo della card categoria' },
       { name: 'descrizione', label: 'Descrizione', type: 'textarea' },
@@ -834,8 +835,20 @@ async function silentRefresh() {
 
 function renderSidebar() {
   const nav = $('#sidebar-nav');
-  const foodCategories = state.categories.filter(c => c.tipo_menu === 'food');
-  const beverageCategories = state.categories.filter(c => c.tipo_menu === 'beverage');
+
+  // Build parent→children map from parent_category field
+  const childrenOf = {};
+  state.categories.forEach(c => {
+    if (c.parent_category) {
+      if (!childrenOf[c.parent_category]) childrenOf[c.parent_category] = [];
+      childrenOf[c.parent_category].push(c);
+    }
+  });
+  Object.values(childrenOf).forEach(arr => arr.sort((a, b) => (a.order || 0) - (b.order || 0)));
+
+  // Top-level categories only (no parent_category)
+  const foodCategories = state.categories.filter(c => c.tipo_menu === 'food' && !c.parent_category);
+  const beverageCategories = state.categories.filter(c => c.tipo_menu === 'beverage' && !c.parent_category);
 
   // Separate beer categories from other beverages
   const beerCategories = beverageCategories.filter(c =>
@@ -845,12 +858,25 @@ function renderSidebar() {
     !c.nome.toLowerCase().includes('birr') && !c.nome.toLowerCase().includes('frigo')
   );
 
-  // Count items per category
+  // Count items per food category
   const foodCounts = {};
   (state.allFood || []).forEach(item => {
     const cat = item.category || 'Altro';
     foodCounts[cat] = (foodCounts[cat] || 0) + 1;
   });
+
+  // Helper: resolve beverage category → COLLECTIONS key
+  const resolveBevCollection = (cat) => {
+    const knownMap = {
+      'Cocktails': 'cocktails', 'Analcolici': 'analcolici', 'Bibite': 'bibite',
+      'Caffetteria': 'caffetteria', 'Bollicine': 'bollicine',
+      'Bianchi fermi': 'bianchi-fermi', 'Vini rossi': 'vini-rossi'
+    };
+    const normalizedSlug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+    return knownMap[cat.nome]
+      || (COLLECTIONS[normalizedSlug] ? normalizedSlug : null)
+      || (COLLECTIONS[slugify(cat.nome)] ? slugify(cat.nome) : null);
+  };
 
   // Helper to render category image
   const renderCatThumb = (cat) => {
@@ -866,6 +892,96 @@ function renderSidebar() {
   // Helper per indicare se una categoria è nascosta nel frontend
   const hiddenBadge = (cat) => cat.visibile === false ? '<span class="hidden-badge" title="Nascosto nel menu">👁️‍🗨️</span>' : '';
 
+  // Render a single food category (flat or with subcategories)
+  const renderFoodCat = (cat) => {
+    const subcats = childrenOf[cat.slug] || [];
+    if (subcats.length > 0) {
+      return `
+        <div class="tree-subsection-inline">
+          <div class="tree-header tree-header-inline${cat.visibile === false ? ' is-hidden' : ''}" data-collection="food" data-category="${cat.nome}" data-expandable="true">
+            <span class="tree-toggle">▶</span>
+            ${renderCatThumb(cat)}
+            <span class="tree-label">${cat.nome}</span>
+            ${hiddenBadge(cat)}
+            <span class="tree-count">${foodCounts[cat.nome] || 0}</span>
+          </div>
+          <div class="tree-children tree-subsection">
+            ${subcats.map(sub => `
+              <div class="tree-item${sub.visibile === false ? ' is-hidden' : ''}" data-collection="food" data-category="${sub.nome}">
+                ${renderCatThumb(sub)}
+                <span class="tree-item-name">${sub.nome}</span>
+                ${hiddenBadge(sub)}
+                <span class="tree-item-count">${foodCounts[sub.nome] || 0}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="food" data-category="${cat.nome}">
+        ${renderCatThumb(cat)}
+        <span class="tree-item-name">${cat.nome}</span>
+        ${hiddenBadge(cat)}
+        <span class="tree-item-count">${foodCounts[cat.nome] || 0}</span>
+      </div>`;
+  };
+
+  // Render a single beverage category (flat or with subcategories)
+  const renderBevCat = (cat) => {
+    const collection = resolveBevCollection(cat);
+    const subcats = childrenOf[cat.slug] || [];
+
+    if (subcats.length > 0) {
+      // Parent with subcategories — expandable tree
+      return `
+        <div class="tree-section">
+          <div class="tree-header${cat.visibile === false ? ' is-hidden' : ''}" ${collection ? `data-collection="${collection}"` : ''} data-expandable="true">
+            <span class="tree-toggle">▶</span>
+            ${renderCatThumb(cat)}
+            <span class="tree-label">${cat.nome}</span>
+            ${hiddenBadge(cat)}
+          </div>
+          <div class="tree-children tree-subsection">
+            ${subcats.map(sub => {
+              const subColl = resolveBevCollection(sub);
+              if (!subColl) return `
+                <div class="tree-item disabled${sub.visibile === false ? ' is-hidden' : ''}">
+                  ${renderCatThumb(sub)}
+                  <span class="tree-item-name">${sub.nome} ⚠️</span>
+                  ${hiddenBadge(sub)}
+                </div>`;
+              return `
+                <div class="tree-item${sub.visibile === false ? ' is-hidden' : ''}" data-collection="${subColl}">
+                  ${renderCatThumb(sub)}
+                  <span class="tree-item-name">${sub.nome}</span>
+                  ${hiddenBadge(sub)}
+                </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+    }
+
+    // No subcategories — flat item
+    if (!collection) {
+      return `
+        <div class="tree-section">
+          <div class="tree-item disabled${cat.visibile === false ? ' is-hidden' : ''}" title="Collezione non configurata">
+            ${renderCatThumb(cat)}
+            <span class="tree-item-name">${cat.nome} ⚠️</span>
+            ${hiddenBadge(cat)}
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="tree-section">
+        <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="${collection}">
+          ${renderCatThumb(cat)}
+          <span class="tree-item-name">${cat.nome}</span>
+          ${hiddenBadge(cat)}
+        </div>
+      </div>`;
+  };
+
   // Build tree HTML
   let html = `
     <!-- SEZIONE FOOD -->
@@ -879,14 +995,7 @@ function renderSidebar() {
         <span class="tree-count">${state.allFood?.length || 0}</span>
       </div>
       <div class="tree-children">
-        ${foodCategories.map(cat => `
-          <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="food" data-category="${cat.nome}">
-            ${renderCatThumb(cat)}
-            <span class="tree-item-name">${cat.nome}</span>
-            ${hiddenBadge(cat)}
-            <span class="tree-item-count">${foodCounts[cat.nome] || 0}</span>
-          </div>
-        `).join('')}
+        ${foodCategories.map(renderFoodCat).join('')}
       </div>
     </div>
     
@@ -911,42 +1020,8 @@ function renderSidebar() {
       </div>
     </div>
     
-    <!-- Altre bevande -->
-    ${otherBeverages.map(cat => {
-    const knownMap = {
-      'Cocktails': 'cocktails',
-      'Analcolici': 'analcolici',
-      'Bibite': 'bibite',
-      'Caffetteria': 'caffetteria',
-      'Bollicine': 'bollicine',
-      'Bianchi fermi': 'bianchi-fermi',
-      'Vini rossi': 'vini-rossi'
-    };
-    // Dynamic lookup: hardcoded names first, then normalized slug, then name-derived slug
-    const normalizedSlug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
-    const collection = knownMap[cat.nome]
-      || (COLLECTIONS[normalizedSlug] ? normalizedSlug : null)
-      || (COLLECTIONS[slugify(cat.nome)] ? slugify(cat.nome) : null);
-    if (!collection) {
-      // Category exists in DB but has no matching collection in CMS config
-      return `
-        <div class="tree-section">
-          <div class="tree-item disabled${cat.visibile === false ? ' is-hidden' : ''}" title="Collezione non configurata">
-            ${renderCatThumb(cat)}
-            <span class="tree-item-name">${cat.nome} ⚠️</span>
-            ${hiddenBadge(cat)}
-          </div>
-        </div>`;
-    }
-    return `
-      <div class="tree-section">
-        <div class="tree-item${cat.visibile === false ? ' is-hidden' : ''}" data-collection="${collection}">
-          ${renderCatThumb(cat)}
-          <span class="tree-item-name">${cat.nome}</span>
-          ${hiddenBadge(cat)}
-        </div>
-      </div>`;
-  }).join('')}
+    <!-- Altre bevande (con supporto sotto-categorie) -->
+    ${otherBeverages.map(renderBevCat).join('')}
     
     <div class="tree-divider"></div>
     <div class="tree-section-title">⚙️ IMPOSTAZIONI</div>
@@ -963,8 +1038,8 @@ function renderSidebar() {
 }
 
 function setupSidebarEvents() {
-  // Expandable headers
-  document.querySelectorAll('.tree-header[data-expandable]').forEach(header => {
+  // Expandable headers (both .tree-header and .tree-header-inline)
+  document.querySelectorAll('[data-expandable]').forEach(header => {
     header.addEventListener('click', (e) => {
       e.stopPropagation();
       header.classList.toggle('expanded');
@@ -972,7 +1047,8 @@ function setupSidebarEvents() {
       // If clicking on collection header, also select it
       const collection = header.dataset.collection;
       if (collection) {
-        selectTreeItem(collection, null);
+        const category = header.dataset.category || null;
+        selectTreeItem(collection, category);
       }
     });
   });
@@ -1003,7 +1079,7 @@ function setupSidebarEvents() {
 
 function selectTreeItem(collection, category, beerSection = null) {
   // Remove all active states
-  document.querySelectorAll('.tree-header.active, .tree-item.active').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tree-header.active, .tree-header-inline.active, .tree-item.active').forEach(el => el.classList.remove('active'));
 
   // Set active state
   if (beerSection) {
@@ -1011,9 +1087,13 @@ function selectTreeItem(collection, category, beerSection = null) {
     const item = $(`.tree-item[data-collection="${collection}"][data-beer-section="${beerSection}"]`);
     if (item) item.classList.add('active');
   } else if (category) {
-    // Per le categorie food (usa data-category)
+    // Per le categorie food/beverage — check tree-item, tree-header, and tree-header-inline
     const item = $(`.tree-item[data-collection="${collection}"][data-category="${category}"]`);
+    const header = $(`.tree-header[data-collection="${collection}"][data-category="${category}"]`);
+    const inlineHeader = $(`.tree-header-inline[data-collection="${collection}"][data-category="${category}"]`);
     if (item) item.classList.add('active');
+    if (header) header.classList.add('active');
+    if (inlineHeader) inlineHeader.classList.add('active');
   } else {
     // Per le collezioni principali senza sottocategoria
     const header = $(`.tree-header[data-collection="${collection}"]`);
@@ -1908,6 +1988,21 @@ function renderEditForm(data) {
           </select>
         </div>`;
 
+      case 'parent-category-select':
+        // Show only top-level categories (no parent_category) excluding the current item
+        const currentSlug = state.currentItem?.slug || '';
+        const parentOpts = state.categories
+          .filter(c => !c.parent_category && c.slug !== currentSlug)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+        return `<div class="form-group">
+          <label class="form-label">${field.label}</label>
+          <select name="${field.name}" class="form-select" id="parent-category-select">
+            <option value="">-- Nessuna (categoria principale) --</option>
+            ${parentOpts.map(cat => `<option value="${cat.slug}" data-tipo="${cat.tipo_menu}" ${value === cat.slug ? 'selected' : ''}>${cat.icona || '📁'} ${cat.nome} (${cat.tipo_menu})</option>`).join('')}
+          </select>
+          ${field.hint ? `<div class="form-hint">${field.hint}</div>` : ''}
+        </div>`;
+
       case 'toggle':
         const checked = value === true || value === 'true' || (value === '' && field.default);
         return `<div class="form-group">
@@ -1944,6 +2039,18 @@ function renderEditForm(data) {
   const slugInput = form.querySelector('[data-auto-slug="true"]');
   if (nomeInput && slugInput && state.isNew) {
     nomeInput.addEventListener('input', () => slugInput.value = slugify(nomeInput.value));
+  }
+
+  // Auto-fill tipo_menu when selecting a parent category
+  const parentSelect = form.querySelector('#parent-category-select');
+  const tipoSelect = form.querySelector('[name="tipo_menu"]');
+  if (parentSelect && tipoSelect) {
+    parentSelect.addEventListener('change', () => {
+      const selected = parentSelect.options[parentSelect.selectedIndex];
+      if (selected && selected.dataset.tipo) {
+        tipoSelect.value = selected.dataset.tipo;
+      }
+    });
   }
 
   // Image upload handlers

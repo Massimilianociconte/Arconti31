@@ -1795,6 +1795,64 @@ body.ios-pwa .main-content {
   font-size: 12px;
 }
 
+/* Inline subcategory headers (food categories with children) */
+.tree-subsection-inline {
+  margin: 0;
+}
+
+.tree-header-inline {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  font-size: 13px;
+  color: var(--text-secondary);
+  gap: 8px;
+}
+
+.tree-header-inline:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.tree-header-inline.active {
+  background: var(--primary);
+  color: #000;
+}
+
+.tree-header-inline .tree-toggle {
+  font-size: 8px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  width: 12px;
+}
+
+.tree-header-inline.expanded .tree-toggle {
+  transform: rotate(90deg);
+}
+
+.tree-header-inline + .tree-children {
+  display: none;
+}
+
+.tree-header-inline.expanded + .tree-children {
+  display: block;
+}
+
+.tree-header-inline .tree-count {
+  margin-left: auto;
+  font-size: 10px;
+  background: var(--bg-input);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.tree-header-inline.is-hidden {
+  opacity: 0.5;
+}
+
 /* Categorie nascoste nel frontend (visibile: false) */
 .tree-item.is-hidden {
   opacity: 0.5;
