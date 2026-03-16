@@ -11,6 +11,16 @@
       "_filename": "bavarese.md"
     },
     {
+      "nome": "Classici",
+      "slug": "classici",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "classici.md"
+    },
+    {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
       "tipo_menu": "beverage",
@@ -377,6 +387,16 @@
     }
   ],
   "beverageCategories": [
+    {
+      "nome": "Classici",
+      "slug": "classici",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🥃",
+      "visibile": true,
+      "order": 0,
+      "_filename": "classici.md"
+    },
     {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
