@@ -24,7 +24,7 @@
       "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": false,
+      "visibile": true,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
@@ -391,7 +391,7 @@
       "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": false,
+      "visibile": true,
       "order": 0,
       "_filename": "lammazza-caffe.md"
     },
