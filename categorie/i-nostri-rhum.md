@@ -1,6 +1,6 @@
 ---
-nome: "I nostri Rhum"
-slug: "i-nostri-rhum"
+nome: "I nostri Rum"
+slug: "i-nostri-rum"
 tipo_menu: "beverage"
 icona: "🍫"
 visibile: false
