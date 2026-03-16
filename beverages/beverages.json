@@ -710,13 +710,13 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "test",
+      "nome": "Test",
       "prezzo": "10.00",
-      "descrizione": "test sottocategoria",
+      "descrizione": "test",
       "disponibile": true,
       "order": 0,
       "_filename": "test.md",
-      "tipo": "Amari e distillatii"
+      "tipo": "Classici"
     }
   ],
   "beveragesByType": {
@@ -1443,15 +1443,15 @@
         "tipo": "Vini rossi"
       }
     ],
-    "Amari e distillatii": [
+    "Classici": [
       {
-        "nome": "test",
+        "nome": "Test",
         "prezzo": "10.00",
-        "descrizione": "test sottocategoria",
+        "descrizione": "test",
         "disponibile": true,
         "order": 0,
         "_filename": "test.md",
-        "tipo": "Amari e distillatii"
+        "tipo": "Classici"
       }
     ]
   }
