@@ -15,7 +15,7 @@
       "slug": "i-nostri-rhum",
       "tipo_menu": "beverage",
       "icona": "🍫",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "i-nostri-rhum.md"
     },
@@ -364,7 +364,7 @@
       "slug": "i-nostri-rhum",
       "tipo_menu": "beverage",
       "icona": "🍫",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "i-nostri-rhum.md"
     },
