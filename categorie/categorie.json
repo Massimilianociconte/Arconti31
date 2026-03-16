@@ -31,6 +31,16 @@
       "_filename": "classici.md"
     },
     {
+      "nome": "Grappe",
+      "slug": "grappe",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🔥",
+      "visibile": true,
+      "order": 0,
+      "_filename": "grappe.md"
+    },
+    {
       "nome": "I nostri Rum",
       "slug": "i-nostri-rum",
       "tipo_menu": "beverage",
@@ -416,6 +426,16 @@
       "visibile": true,
       "order": 0,
       "_filename": "classici.md"
+    },
+    {
+      "nome": "Grappe",
+      "slug": "grappe",
+      "tipo_menu": "beverage",
+      "parent_category": "Amari-Distillati",
+      "icona": "🔥",
+      "visibile": true,
+      "order": 0,
+      "_filename": "grappe.md"
     },
     {
       "nome": "I nostri Rum",
