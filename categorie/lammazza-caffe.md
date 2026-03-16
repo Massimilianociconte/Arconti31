@@ -1,5 +1,5 @@
 ---
-nome: "L’AMMAZZA CAFFÈ "
+nome: "Amari"
 slug: "Ammazza-caffe"
 tipo_menu: "beverage"
 icona: "🥃"
