@@ -1,6 +1,15 @@
 {
   "categories": [
     {
+      "nome": "Amari e distillatii",
+      "slug": "amari-e-distillatii",
+      "tipo_menu": "beverage",
+      "icona": "🥨",
+      "visibile": true,
+      "order": 0,
+      "_filename": "amari-e-distillatii.md"
+    },
+    {
       "nome": "Bavarese",
       "slug": "bavarese",
       "tipo_menu": "food",
@@ -11,21 +20,40 @@
       "_filename": "bavarese.md"
     },
     {
-      "nome": "Gin",
-      "slug": "gin",
+      "nome": "I nostri Rum",
+      "slug": "i-nostri-rum",
       "tipo_menu": "beverage",
-      "visibile": true,
+      "icona": "🍫",
+      "visibile": false,
       "order": 0,
-      "_filename": "gin.md"
+      "_filename": "i-nostri-rhum.md"
     },
     {
-      "nome": "L’AMMAZZA CAFFÈ ",
-      "slug": "Ammazza-caffe",
+      "nome": "Amari e Distillati",
+      "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "lammazza-caffe.md"
+    },
+    {
+      "nome": "Selezione di Gin",
+      "slug": "selezione-di-gin",
+      "tipo_menu": "beverage",
+      "icona": "🫐",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-gin.md"
+    },
+    {
+      "nome": "Selezione di Whisky ",
+      "slug": "selezione-di-whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Menù Partita",
@@ -359,21 +387,49 @@
   ],
   "beverageCategories": [
     {
-      "nome": "Gin",
-      "slug": "gin",
+      "nome": "Amari e distillatii",
+      "slug": "amari-e-distillatii",
       "tipo_menu": "beverage",
+      "icona": "🥨",
       "visibile": true,
       "order": 0,
-      "_filename": "gin.md"
+      "_filename": "amari-e-distillatii.md"
     },
     {
-      "nome": "L’AMMAZZA CAFFÈ ",
-      "slug": "Ammazza-caffe",
+      "nome": "I nostri Rum",
+      "slug": "i-nostri-rum",
+      "tipo_menu": "beverage",
+      "icona": "🍫",
+      "visibile": false,
+      "order": 0,
+      "_filename": "i-nostri-rhum.md"
+    },
+    {
+      "nome": "Amari e Distillati",
+      "slug": "Amari-Distillati",
       "tipo_menu": "beverage",
       "icona": "🥃",
-      "visibile": true,
+      "visibile": false,
       "order": 0,
       "_filename": "lammazza-caffe.md"
+    },
+    {
+      "nome": "Selezione di Gin",
+      "slug": "selezione-di-gin",
+      "tipo_menu": "beverage",
+      "icona": "🫐",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-gin.md"
+    },
+    {
+      "nome": "Selezione di Whisky ",
+      "slug": "selezione-di-whisky",
+      "tipo_menu": "beverage",
+      "icona": "🥃",
+      "visibile": false,
+      "order": 0,
+      "_filename": "selezione-di-whisky.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",

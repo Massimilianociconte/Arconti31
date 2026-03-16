@@ -1,7 +1,7 @@
 ---
-nome: "Moscow mule"
+nome: "Moscow/ London Mule"
 prezzo: "8.00"
-descrizione: "Lime fresco, vodka, ginger beer"
+descrizione: "Lime fresco, Vodka/Gin, ginger beer."
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1768296790/arconti31/iswqbwgq7gssmbr7lslc.webp"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768323321/arconti31/fooqowxwvxeamu19lw33.webp"
 disponibile: true

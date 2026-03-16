@@ -1,6 +1,6 @@
 ---
 nome: "Campari shakerato"
-prezzo: "7,00"
+prezzo: "8.00"
 descrizione: "Campari e gin shakerati"
 disponibile: true
 order: 5

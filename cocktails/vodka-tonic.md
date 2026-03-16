@@ -1,7 +1,6 @@
 ---
-nome: "Vodka tonic"
-prezzo: "7,00"
-descrizione: ""
+nome: "Vodka Tonic/ Lemon"
+prezzo: "8.00"
 disponibile: true
 order: 22
 ---

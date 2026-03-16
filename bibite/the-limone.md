@@ -1,7 +1,6 @@
 ---
-nome: "The limone"
-prezzo: "4,00"
-formato: "Lattina 33cl"
+nome: "Estaté limone"
+prezzo: "4.00"
 disponibile: true
 order: 10
 ---

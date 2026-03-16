@@ -1,6 +1,6 @@
 ---
-nome: "Amari e Distillati"
-slug: "Amari-Distillati"
+nome: "Selezione di Whisky "
+slug: "selezione-di-whisky"
 tipo_menu: "beverage"
 icona: "🥃"
 visibile: false
