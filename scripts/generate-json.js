@@ -142,12 +142,27 @@ dynamicCategories
   });
 
 
-// Processa tutte le categorie di bevande (da BEVERAGE_CATEGORIES)
+// Processa tutte le categorie di bevande (hardcoded + dinamiche da categorie/*.md)
+
+// Discover dynamic beverage folders from categories
+const knownFolders = new Set(BEVERAGE_CATEGORIES.map(c => c.folder));
+const allBeverageFolders = [...BEVERAGE_CATEGORIES];
+
+dynamicCategories
+  .filter(c => c.tipo_menu === 'beverage')
+  .forEach(cat => {
+    const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+    if (slug && !knownFolders.has(slug)) {
+      allBeverageFolders.push({ name: cat.nome, folder: slug });
+      knownFolders.add(slug);
+      console.log(`📦 Dynamic beverage folder discovered: ${slug} → "${cat.nome}"`);
+    }
+  });
 
 const beveragesByType = {};
 let totalBeverages = 0;
 
-BEVERAGE_CATEGORIES.forEach(category => {
+allBeverageFolders.forEach(category => {
   const dir = path.join(__dirname, `../${category.folder}`);
   const items = processCollection(dir, 'beverage');
   

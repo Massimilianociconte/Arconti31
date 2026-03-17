@@ -110,7 +110,7 @@
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
-      "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.",
+      "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.  Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829718/arconti31/cmkedwfu9ym7wkeyo2fh.webp",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829726/arconti31/li45sni6vjybxmbbrgl9.webp",
       "allergeni": [
@@ -274,7 +274,7 @@
       "nome": "Hamburger F1",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "15.00",
-      "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte.",
+      "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829132/arconti31/emetliuafqdtoqkgq9rx.jpg",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829137/arconti31/w6p5kqdybdbzebk6izij.jpg",
       "allergeni": [
@@ -389,7 +389,7 @@
       "nome": "Hamburger F2",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
-      "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte.",
+      "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
       "disponibile": true,
@@ -516,7 +516,7 @@
       "nome": "Hamburger F4",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "15.00",
-      "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte.",
+      "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830160/arconti31/mazpsosarpugykvmf3dw.jpg",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830169/arconti31/ycf7vt88tqf86wx0zuvl.jpg",
       "allergeni": [
@@ -691,8 +691,7 @@
       "nome": "Smash Burger (1-3 strati) ",
       "category": "Piatti Speciali",
       "prezzo": "8.00",
-      "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:",
-      "1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine": "Normali +2€ | Twist +3€",
+      "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:  1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
       "allergeni": [
         "Glutine",
         "Uova",
@@ -829,34 +828,6 @@
     }
   ],
   "foodByCategory": {
-    "Aperitivo": [
-      {
-        "nome": "Tagliere aperitivo",
-        "category": "Aperitivo",
-        "prezzo": "10.00",
-        "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
-        "disponibile": true,
-        "order": 7,
-        "_filename": "tagliere-aperitivo.md"
-      },
-      {
-        "nome": "Tagliere affettati e formaggi",
-        "category": "Aperitivo",
-        "prezzo": "25.00",
-        "descrizione": "Per due persone, selezione chef di salumi nostrani e formaggi della tradizione, pane bruschettato - Disponibile fino alle 20:30",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129172/arconti31/x28i6gpoqu8kiqhosz2j.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129177/arconti31/h8gfdswq4mrx7wjvagam.jpg",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "disponibile": true,
-        "order": 17,
-        "_filename": "tagliere-affettati-e-formaggi.md"
-      }
-    ],
     "Bavarese": [
       {
         "nome": "Mezzo polletto grigliato",
@@ -894,211 +865,7 @@
         "_filename": "stinco-di-maiale-al-forno.md"
       }
     ],
-    "Dolci": [
-      {
-        "nome": "Profitterol",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "tre palline di bigne ripieni alla crema ricoperte di cioccolato fondente",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129307/arconti31/zcs4pqsdqfpzn9uizytr.jpg",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "profitterol.md"
-      },
-      {
-        "nome": "Soffice Cremoso",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "soffice-cremoso.md"
-      },
-      {
-        "nome": "Tiramisù al bicchiere",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465373/arconti31/onchf51xfvqlaqtmipon.jpg",
-        "tags": [
-          "Novità",
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 8,
-        "_filename": "tiramis-al-bicchiere.md"
-      },
-      {
-        "nome": "Piada alla nutella",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
-        "disponibile": true,
-        "order": 14,
-        "_filename": "piada-alla-nutella.md"
-      },
-      {
-        "nome": "Salame al cioccolato",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463564/arconti31/hryjdclsduxdszb9ntup.webp",
-        "tags": [
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 25,
-        "_filename": "salame-al-cioccolato.md"
-      },
-      {
-        "nome": "Tortino con cuore morbido al cioccolato",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463645/arconti31/ndxa8sum6cnn3hnskk2a.jpg",
-        "tags": [
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 34,
-        "_filename": "tortino-con-cuore-morbido-al-cioccolato.md"
-      },
-      {
-        "nome": "Strudel di mele",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463693/arconti31/tz9a9kpiwbaumjrg4an8.jpg",
-        "tags": [
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 38,
-        "_filename": "strudel-di-mele.md"
-      },
-      {
-        "nome": "Salame al cioccolato bianco",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
-        "disponibile": false,
-        "order": 42,
-        "_filename": "salame-al-cioccolato-bianco.md"
-      }
-    ],
-    "Fritti": [
-      {
-        "nome": "Rosti di patate e speck",
-        "category": "Fritti",
-        "prezzo": "6.00",
-        "descrizione": "Forma particolare, patate, speck",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463783/arconti31/f5nubikfbiusptaihbvo.jpg",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "disponibile": true,
-        "order": 6,
-        "_filename": "rosti-di-patate-e-speck.md"
-      },
-      {
-        "nome": "Chili cheese",
-        "category": "Fritti",
-        "prezzo": "6.00",
-        "descrizione": "Crocchette fritte artigianali con formaggio e chili",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
-        "tags": [
-          "Piccante",
-          "Più venduto"
-        ],
-        "disponibile": true,
-        "order": 10,
-        "_filename": "chili-cheese.md"
-      },
-      {
-        "nome": "Crocchette di filetto di pollo",
-        "category": "Fritti",
-        "prezzo": "7.50",
-        "descrizione": "Filetto di pollo fritto artigianale",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
-        "disponibile": true,
-        "order": 20,
-        "_filename": "crocchette-di-filetto-di-pollo.md"
-      },
-      {
-        "nome": "Crocchette di pulled pork ",
-        "category": "Fritti",
-        "prezzo": "7.50",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570433/arconti31/cew7cjgqiakvmj3u6u7f.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570420/arconti31/v1scjukxetkge2uhgyto.jpg",
-        "allergeni": [
-          "Glutine"
-        ],
-        "disponibile": true,
-        "order": 33,
-        "_filename": "olive-ascolane.md"
-      },
-      {
-        "nome": "Onion rings",
-        "category": "Fritti",
-        "prezzo": "6.00",
-        "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
-        "disponibile": true,
-        "order": 36,
-        "_filename": "onion-rings.md"
-      },
-      {
-        "nome": "Patatine fritte",
-        "category": "Fritti",
-        "prezzo": "5.00",
-        "descrizione": "Rustiche fritte",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
-        "disponibile": true,
-        "order": 40,
-        "_filename": "patatine-fritte.md"
-      },
-      {
-        "nome": "Patatine fritte twist",
-        "category": "Fritti",
-        "prezzo": "6.00",
-        "descrizione": "Rustiche fritte twist",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464265/arconti31/avtqke7nvvhbb8xqlk5m.webp",
-        "allergeni": [
-          "Glutine",
-          "Uova"
-        ],
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 45,
-        "_filename": "patatine-fritte-twist.md"
-      }
-    ],
+    "Menù Partita": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
@@ -1188,7 +955,7 @@
         "nome": "Bacon burger",
         "category": "Hamburger Fassona e Street food",
         "prezzo": "14.00",
-        "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.",
+        "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.  Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829718/arconti31/cmkedwfu9ym7wkeyo2fh.webp",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829726/arconti31/li45sni6vjybxmbbrgl9.webp",
         "allergeni": [
@@ -1207,7 +974,7 @@
         "nome": "Hamburger F1",
         "category": "Hamburger Fassona e Street food",
         "prezzo": "15.00",
-        "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte.",
+        "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829132/arconti31/emetliuafqdtoqkgq9rx.jpg",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829137/arconti31/w6p5kqdybdbzebk6izij.jpg",
         "allergeni": [
@@ -1225,7 +992,7 @@
         "nome": "Hamburger F2",
         "category": "Hamburger Fassona e Street food",
         "prezzo": "14.00",
-        "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte.",
+        "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767469304/arconti31/sghgvyhgecsutgfd5a4y.jpg",
         "disponibile": true,
@@ -1250,7 +1017,7 @@
         "nome": "Hamburger F4",
         "category": "Hamburger Fassona e Street food",
         "prezzo": "15.00",
-        "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte.",
+        "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830160/arconti31/mazpsosarpugykvmf3dw.jpg",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830169/arconti31/ycf7vt88tqf86wx0zuvl.jpg",
         "allergeni": [
@@ -1495,6 +1262,52 @@
         "_filename": "cajello-vegano.md"
       }
     ],
+    "Piatti Speciali e griglieria": [
+      {
+        "nome": "Piatto classico",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "10.00",
+        "descrizione": "Hamburger di bufala al piatto 220gr grigliato su letto di rucola, salsa pomodorini gialli, patatine fritte come contorno",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128322/arconti31/auykyuvvdykdbsuyioba.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128326/arconti31/w3leaahh6k5k2wit979x.jpg",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 4,
+        "_filename": "piatto-classico.md"
+      },
+      {
+        "nome": "Picanha",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "19.50",
+        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128474/arconti31/xhqhesowsmlnijthiaf1.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128482/arconti31/j5kos9aqrlkpo07ch6nf.jpg",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 5,
+        "_filename": "picanha.md"
+      },
+      {
+        "nome": "Piatto cotoletta",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "10.00",
+        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salsa senape a parte",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128600/arconti31/facxtvyfi7ce0vubbk1i.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128606/arconti31/nls8ggqx6njbknlrplsx.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Senape"
+        ],
+        "disponibile": true,
+        "order": 15,
+        "_filename": "piatto-cotoletta.md"
+      }
+    ],
     "Piadine": [
       {
         "nome": "Romagnola ",
@@ -1559,50 +1372,237 @@
         "_filename": "cedratese.md"
       }
     ],
-    "Piatti Speciali e griglieria": [
+    "Fritti": [
       {
-        "nome": "Piatto classico",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "10.00",
-        "descrizione": "Hamburger di bufala al piatto 220gr grigliato su letto di rucola, salsa pomodorini gialli, patatine fritte come contorno",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128322/arconti31/auykyuvvdykdbsuyioba.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128326/arconti31/w3leaahh6k5k2wit979x.jpg",
-        "tags": [
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 4,
-        "_filename": "piatto-classico.md"
-      },
-      {
-        "nome": "Picanha",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "19.50",
-        "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128474/arconti31/xhqhesowsmlnijthiaf1.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128482/arconti31/j5kos9aqrlkpo07ch6nf.jpg",
-        "tags": [
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 5,
-        "_filename": "picanha.md"
-      },
-      {
-        "nome": "Piatto cotoletta",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "10.00",
-        "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salsa senape a parte",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128600/arconti31/facxtvyfi7ce0vubbk1i.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128606/arconti31/nls8ggqx6njbknlrplsx.jpg",
+        "nome": "Rosti di patate e speck",
+        "category": "Fritti",
+        "prezzo": "6.00",
+        "descrizione": "Forma particolare, patate, speck",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463783/arconti31/f5nubikfbiusptaihbvo.jpg",
         "allergeni": [
           "Glutine",
           "Uova",
-          "Senape"
+          "Latte"
         ],
         "disponibile": true,
-        "order": 15,
-        "_filename": "piatto-cotoletta.md"
+        "order": 6,
+        "_filename": "rosti-di-patate-e-speck.md"
+      },
+      {
+        "nome": "Chili cheese",
+        "category": "Fritti",
+        "prezzo": "6.00",
+        "descrizione": "Crocchette fritte artigianali con formaggio e chili",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
+        "tags": [
+          "Piccante",
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 10,
+        "_filename": "chili-cheese.md"
+      },
+      {
+        "nome": "Crocchette di filetto di pollo",
+        "category": "Fritti",
+        "prezzo": "7.50",
+        "descrizione": "Filetto di pollo fritto artigianale",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
+        "disponibile": true,
+        "order": 20,
+        "_filename": "crocchette-di-filetto-di-pollo.md"
+      },
+      {
+        "nome": "Crocchette di pulled pork ",
+        "category": "Fritti",
+        "prezzo": "7.50",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570433/arconti31/cew7cjgqiakvmj3u6u7f.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570420/arconti31/v1scjukxetkge2uhgyto.jpg",
+        "allergeni": [
+          "Glutine"
+        ],
+        "disponibile": true,
+        "order": 33,
+        "_filename": "olive-ascolane.md"
+      },
+      {
+        "nome": "Onion rings",
+        "category": "Fritti",
+        "prezzo": "6.00",
+        "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
+        "disponibile": true,
+        "order": 36,
+        "_filename": "onion-rings.md"
+      },
+      {
+        "nome": "Patatine fritte",
+        "category": "Fritti",
+        "prezzo": "5.00",
+        "descrizione": "Rustiche fritte",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
+        "disponibile": true,
+        "order": 40,
+        "_filename": "patatine-fritte.md"
+      },
+      {
+        "nome": "Patatine fritte twist",
+        "category": "Fritti",
+        "prezzo": "6.00",
+        "descrizione": "Rustiche fritte twist",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464265/arconti31/avtqke7nvvhbb8xqlk5m.webp",
+        "allergeni": [
+          "Glutine",
+          "Uova"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 45,
+        "_filename": "patatine-fritte-twist.md"
+      }
+    ],
+    "Dolci": [
+      {
+        "nome": "Profitterol",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "tre palline di bigne ripieni alla crema ricoperte di cioccolato fondente",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129307/arconti31/zcs4pqsdqfpzn9uizytr.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "profitterol.md"
+      },
+      {
+        "nome": "Soffice Cremoso",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "soffice-cremoso.md"
+      },
+      {
+        "nome": "Tiramisù al bicchiere",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465373/arconti31/onchf51xfvqlaqtmipon.jpg",
+        "tags": [
+          "Novità",
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 8,
+        "_filename": "tiramis-al-bicchiere.md"
+      },
+      {
+        "nome": "Piada alla nutella",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
+        "disponibile": true,
+        "order": 14,
+        "_filename": "piada-alla-nutella.md"
+      },
+      {
+        "nome": "Salame al cioccolato",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463564/arconti31/hryjdclsduxdszb9ntup.webp",
+        "tags": [
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 25,
+        "_filename": "salame-al-cioccolato.md"
+      },
+      {
+        "nome": "Tortino con cuore morbido al cioccolato",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463645/arconti31/ndxa8sum6cnn3hnskk2a.jpg",
+        "tags": [
+          "Più venduto"
+        ],
+        "disponibile": true,
+        "order": 34,
+        "_filename": "tortino-con-cuore-morbido-al-cioccolato.md"
+      },
+      {
+        "nome": "Strudel di mele",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463693/arconti31/tz9a9kpiwbaumjrg4an8.jpg",
+        "tags": [
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 38,
+        "_filename": "strudel-di-mele.md"
+      },
+      {
+        "nome": "Salame al cioccolato bianco",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
+        "disponibile": false,
+        "order": 42,
+        "_filename": "salame-al-cioccolato-bianco.md"
+      }
+    ],
+    "Aperitivo": [
+      {
+        "nome": "Tagliere aperitivo",
+        "category": "Aperitivo",
+        "prezzo": "10.00",
+        "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
+        "disponibile": true,
+        "order": 7,
+        "_filename": "tagliere-aperitivo.md"
+      },
+      {
+        "nome": "Tagliere affettati e formaggi",
+        "category": "Aperitivo",
+        "prezzo": "25.00",
+        "descrizione": "Per due persone, selezione chef di salumi nostrani e formaggi della tradizione, pane bruschettato - Disponibile fino alle 20:30",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129172/arconti31/x28i6gpoqu8kiqhosz2j.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129177/arconti31/h8gfdswq4mrx7wjvagam.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "disponibile": true,
+        "order": 17,
+        "_filename": "tagliere-affettati-e-formaggi.md"
       }
     ],
     "Piatti Speciali": [
@@ -1646,8 +1646,7 @@
         "nome": "Smash Burger (1-3 strati) ",
         "category": "Piatti Speciali",
         "prezzo": "8.00",
-        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:",
-        "1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine": "Normali +2€ | Twist +3€",
+        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:  1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
         "allergeni": [
           "Glutine",
           "Uova",
@@ -1680,14 +1679,15 @@
     ]
   },
   "categoryOrder": {
-    "Aperitivo": 10,
-    "Bavarese": 1,
-    "Dolci": 9,
-    "Fritti": 8,
+    "Bavarese": 0,
+    "Menù Partita": 2,
     "Hamburger di bufala": 3,
     "Hamburger Fassona e Street food": 4,
     "Panini Ciabatta": 5,
+    "Piatti Speciali e griglieria": 6,
     "Piadine": 7,
-    "Piatti Speciali e griglieria": 6
+    "Fritti": 8,
+    "Dolci": 9,
+    "Aperitivo": 10
   }
 }
