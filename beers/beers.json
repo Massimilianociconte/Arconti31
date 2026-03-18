@@ -180,6 +180,16 @@
       "_filename": "london-pride-chiswick.md"
     },
     {
+      "nome": "McTiss - Railroad ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.50",
+      "formato": "0,4 l ",
+      "gradazione": "5,5%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "mctiss-railroad.md"
+    },
+    {
       "nome": "Naima - Cr/Ak",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
@@ -788,6 +798,16 @@
         "disponibile": true,
         "order": 0,
         "_filename": "london-pride-chiswick.md"
+      },
+      {
+        "nome": "McTiss - Railroad ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.50",
+        "formato": "0,4 l ",
+        "gradazione": "5,5%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "mctiss-railroad.md"
       },
       {
         "nome": "Naima - Cr/Ak",
