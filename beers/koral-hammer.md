@@ -6,6 +6,6 @@ descrizione: "IPA prodotta con i migliori luppoli Neozelandesi, Australiani, Gia
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1772824482/arconti31/tdbq4smk0khpsraxiqgw.jpg"
 formato: "0,4 L"
 gradazione: "6,3%"
-disponibile: true
+disponibile: false
 order: 0
 ---
