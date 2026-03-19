@@ -59,6 +59,16 @@
       "_filename": "lammazza-caffe.md"
     },
     {
+      "nome": "London Dry",
+      "slug": "london-dry",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🫐 ",
+      "visibile": true,
+      "order": 0,
+      "_filename": "london-dry.md"
+    },
+    {
       "nome": "Selezione di Gin",
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
@@ -474,6 +484,16 @@
       "visibile": true,
       "order": 0,
       "_filename": "lammazza-caffe.md"
+    },
+    {
+      "nome": "London Dry",
+      "slug": "london-dry",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🫐 ",
+      "visibile": true,
+      "order": 0,
+      "_filename": "london-dry.md"
     },
     {
       "nome": "Selezione di Gin",
