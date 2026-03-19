@@ -69,6 +69,16 @@
       "_filename": "london-dry.md"
     },
     {
+      "nome": "New Western ",
+      "slug": "new-western",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🍊💐🍋",
+      "visibile": true,
+      "order": 0,
+      "_filename": "new-western.md"
+    },
+    {
       "nome": "Old Tom",
       "slug": "old-tom",
       "tipo_menu": "beverage",
@@ -504,6 +514,16 @@
       "visibile": true,
       "order": 0,
       "_filename": "london-dry.md"
+    },
+    {
+      "nome": "New Western ",
+      "slug": "new-western",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🍊💐🍋",
+      "visibile": true,
+      "order": 0,
+      "_filename": "new-western.md"
     },
     {
       "nome": "Old Tom",
