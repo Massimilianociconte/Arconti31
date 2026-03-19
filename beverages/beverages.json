@@ -720,6 +720,14 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Rum Brugal Anejo Superior",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "rum-brugal-anejo-superior.md",
+      "tipo": "I nostri Rum"
+    },
+    {
       "nome": "Rum Bumbu",
       "prezzo": "10.00",
       "disponibile": true,
@@ -1473,6 +1481,14 @@
       }
     ],
     "I nostri Rum": [
+      {
+        "nome": "Rum Brugal Anejo Superior",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "rum-brugal-anejo-superior.md",
+        "tipo": "I nostri Rum"
+      },
       {
         "nome": "Rum Bumbu",
         "prezzo": "10.00",
