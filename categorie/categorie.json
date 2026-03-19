@@ -73,7 +73,7 @@
       "slug": "new-western",
       "tipo_menu": "beverage",
       "parent_category": "selezione-di-gin",
-      "icona": "🍊💐🍋",
+      "icona": "💐",
       "visibile": true,
       "order": 0,
       "_filename": "new-western.md"
@@ -529,7 +529,7 @@
       "slug": "new-western",
       "tipo_menu": "beverage",
       "parent_category": "selezione-di-gin",
-      "icona": "🍊💐🍋",
+      "icona": "💐",
       "visibile": true,
       "order": 0,
       "_filename": "new-western.md"
