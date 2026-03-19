@@ -742,6 +742,14 @@
       "order": 0,
       "_filename": "rum-diplomatico-reserva-exclusiva.md",
       "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Rum Pampero Especial",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "rum-pampero-especial.md",
+      "tipo": "I nostri Rum"
     }
   ],
   "beveragesByType": {
@@ -1503,6 +1511,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "rum-diplomatico-reserva-exclusiva.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Rum Pampero Especial",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "rum-pampero-especial.md",
         "tipo": "I nostri Rum"
       }
     ]
