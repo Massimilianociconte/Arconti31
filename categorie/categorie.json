@@ -69,6 +69,16 @@
       "_filename": "london-dry.md"
     },
     {
+      "nome": "Old Tom",
+      "slug": "old-tom",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "☺️",
+      "visibile": true,
+      "order": 0,
+      "_filename": "old-tom.md"
+    },
+    {
       "nome": "Selezione di Gin",
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
@@ -494,6 +504,16 @@
       "visibile": true,
       "order": 0,
       "_filename": "london-dry.md"
+    },
+    {
+      "nome": "Old Tom",
+      "slug": "old-tom",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "☺️",
+      "visibile": true,
+      "order": 0,
+      "_filename": "old-tom.md"
     },
     {
       "nome": "Selezione di Gin",
