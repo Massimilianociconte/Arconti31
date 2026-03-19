@@ -750,6 +750,14 @@
       "order": 0,
       "_filename": "rum-pampero-especial.md",
       "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Saint James ",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "saint-james.md",
+      "tipo": "I nostri Rum"
     }
   ],
   "beveragesByType": {
@@ -1519,6 +1527,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "rum-pampero-especial.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Saint James ",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "saint-james.md",
         "tipo": "I nostri Rum"
       }
     ]
