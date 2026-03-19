@@ -758,6 +758,14 @@
       "order": 0,
       "_filename": "saint-james.md",
       "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Zacapa Solera Gran Reserva",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "zacapa-solera-gran-reserva.md",
+      "tipo": "I nostri Rum"
     }
   ],
   "beveragesByType": {
@@ -1535,6 +1543,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "saint-james.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Zacapa Solera Gran Reserva",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "zacapa-solera-gran-reserva.md",
         "tipo": "I nostri Rum"
       }
     ]
