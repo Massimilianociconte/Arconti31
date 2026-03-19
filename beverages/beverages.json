@@ -728,6 +728,14 @@
       "tipo": "I nostri Rum"
     },
     {
+      "nome": "Pampero Aniversario",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "pampero-aniversario.md",
+      "tipo": "I nostri Rum"
+    },
+    {
       "nome": "Rum Brugal Anejo Superior",
       "prezzo": "10.00",
       "disponibile": true,
@@ -1527,6 +1535,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "matusalem-solera-7-years-old.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Pampero Aniversario",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "pampero-aniversario.md",
         "tipo": "I nostri Rum"
       },
       {
