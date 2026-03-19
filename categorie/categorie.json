@@ -89,6 +89,15 @@
       "_filename": "old-tom.md"
     },
     {
+      "nome": "Others ",
+      "slug": "others",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "visibile": true,
+      "order": 0,
+      "_filename": "others.md"
+    },
+    {
       "nome": "Selezione di Gin",
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
@@ -534,6 +543,15 @@
       "visibile": true,
       "order": 0,
       "_filename": "old-tom.md"
+    },
+    {
+      "nome": "Others ",
+      "slug": "others",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "visibile": true,
+      "order": 0,
+      "_filename": "others.md"
     },
     {
       "nome": "Selezione di Gin",
