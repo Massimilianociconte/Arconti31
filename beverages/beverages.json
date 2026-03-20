@@ -710,16 +710,6 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Test",
-      "prezzo": "10.00",
-      "descrizione": "test",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773703321/arconti31/btd3dk4ec9bhtzzbullm.png",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "test.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Matusalem Solera 7 Years Old",
       "prezzo": "10.00",
       "disponibile": true,
@@ -1514,18 +1504,6 @@
         "order": 5,
         "_filename": "primitivo-masserie-moretti.md",
         "tipo": "Vini rossi"
-      }
-    ],
-    "Classici": [
-      {
-        "nome": "Test",
-        "prezzo": "10.00",
-        "descrizione": "test",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773703321/arconti31/btd3dk4ec9bhtzzbullm.png",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "test.md",
-        "tipo": "Classici"
       }
     ],
     "I nostri Rum": [
