@@ -710,6 +710,16 @@
       "tipo": "Vini rossi"
     },
     {
+      "nome": "Amaro Mandragola - Carlo Alberto",
+      "prezzo": "5.00",
+      "descrizione": "Piemonte | 45% alc.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amaro-mandragola-carlo-alberto.md",
+      "tipo": "Artigianali"
+    },
+    {
       "nome": "Matusalem Solera 7 Years Old",
       "prezzo": "10.00",
       "disponibile": true,
@@ -1504,6 +1514,18 @@
         "order": 5,
         "_filename": "primitivo-masserie-moretti.md",
         "tipo": "Vini rossi"
+      }
+    ],
+    "Artigianali": [
+      {
+        "nome": "Amaro Mandragola - Carlo Alberto",
+        "prezzo": "5.00",
+        "descrizione": "Piemonte | 45% alc.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amaro-mandragola-carlo-alberto.md",
+        "tipo": "Artigianali"
       }
     ],
     "I nostri Rum": [
