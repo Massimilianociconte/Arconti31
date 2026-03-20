@@ -710,6 +710,15 @@
       "tipo": "Vini rossi"
     },
     {
+      "nome": "Amara - Rossa Agricola",
+      "prezzo": "5.00",
+      "descrizione": "Sicilia | 30% alc.",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amara-rossa-agricola.md",
+      "tipo": "Artigianali"
+    },
+    {
       "nome": "Amaro Mandragola - Carlo Alberto",
       "prezzo": "5.00",
       "descrizione": "Piemonte | 45% alc.",
@@ -1517,6 +1526,15 @@
       }
     ],
     "Artigianali": [
+      {
+        "nome": "Amara - Rossa Agricola",
+        "prezzo": "5.00",
+        "descrizione": "Sicilia | 30% alc.",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amara-rossa-agricola.md",
+        "tipo": "Artigianali"
+      },
       {
         "nome": "Amaro Mandragola - Carlo Alberto",
         "prezzo": "5.00",
