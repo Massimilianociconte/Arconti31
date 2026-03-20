@@ -1,5 +1,5 @@
 ---
-nome: "Amaro Mandragola - Carlo Alberto"
+nome: "Mandragola - Carlo Alberto"
 prezzo: "5.00"
 descrizione: "Piemonte | 45% alc.
 È ispirato alla tradizione locale dei "Setmin", guaritori dotati di conoscenze magiche tramandate attraverso generazioni. 
