@@ -6,6 +6,6 @@ descrizione: "BLACK IPA | IBU 45"
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1772487415/arconti31/o3fzdxeyggocrsxkfrjw.jpg"
 formato: "0,4"
 gradazione: "5,5%"
-disponibile: true
+disponibile: false
 order: 0
 ---
