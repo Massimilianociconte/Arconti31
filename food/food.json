@@ -18,7 +18,7 @@
     },
     {
       "nome": "Romagnola ",
-      "category": "Piadine",
+      "category": "Vegetariano/ Vegano ",
       "prezzo": "8.00",
       "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
       "allergeni": [
@@ -1557,23 +1557,6 @@
     ],
     "Piadine": [
       {
-        "nome": "Romagnola ",
-        "category": "Piadine",
-        "prezzo": "8.00",
-        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Vegetariano",
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "arnate-calcio.md"
-      },
-      {
         "nome": "Gallaratese",
         "category": "Piadine",
         "prezzo": "8.00",
@@ -1685,6 +1668,25 @@
         "_filename": "piatto-cotoletta.md"
       }
     ],
+    "Vegetariano/ Vegano ": [
+      {
+        "nome": "Romagnola ",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "8.00",
+        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Vegetariano",
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "arnate-calcio.md"
+      }
+    ],
     "Piatti Speciali": [
       {
         "nome": "Tagliata di manzo",
@@ -1768,6 +1770,7 @@
     "Hamburger Fassona e Street food": 4,
     "Panini Ciabatta": 5,
     "Piadine": 7,
-    "Piatti Speciali e griglieria": 6
+    "Piatti Speciali e griglieria": 6,
+    "Vegetariano/ Vegano ": 9
   }
 }
