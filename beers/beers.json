@@ -263,6 +263,17 @@
       "_filename": "perfect-cashmere-crak.md"
     },
     {
+      "nome": "Pesi Massimi - EastSide",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Belgian Tripel",
+      "formato": "0,4 L ",
+      "gradazione": "9% ",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "pesi-massimi-eastside.md"
+    },
+    {
       "nome": "Wabi - Orso Verde",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.00",
@@ -894,6 +905,17 @@
         "disponibile": false,
         "order": 0,
         "_filename": "perfect-cashmere-crak.md"
+      },
+      {
+        "nome": "Pesi Massimi - EastSide",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Belgian Tripel",
+        "formato": "0,4 L ",
+        "gradazione": "9% ",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "pesi-massimi-eastside.md"
       },
       {
         "nome": "Wabi - Orso Verde",
