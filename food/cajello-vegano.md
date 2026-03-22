@@ -1,6 +1,6 @@
 ---
 nome: "Cajello vegano"
-category: "Panini Ciabatta"
+category: "Vegetariano/ Vegano "
 prezzo: "8.00"
 descrizione: "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione"
 allergeni:
