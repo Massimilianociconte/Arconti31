@@ -1,6 +1,6 @@
 ---
 nome: "Veggy Burger "
-category: "Piatti Speciali e griglieria"
+category: "Vegetariano/ Vegano "
 prezzo: "15.00"
 descrizione: "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋"
 allergeni:
