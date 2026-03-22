@@ -83,7 +83,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "pulled-not-pulled.md"
     },
@@ -1240,7 +1240,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "pulled-not-pulled.md"
       },
