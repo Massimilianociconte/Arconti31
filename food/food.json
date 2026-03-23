@@ -34,6 +34,22 @@
       "_filename": "arnate-calcio.md"
     },
     {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "10.00",
+      "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "insalatona.md"
+    },
+    {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
       "prezzo": "15.50",
@@ -1649,6 +1665,22 @@
         "disponibile": true,
         "order": 0,
         "_filename": "arnate-calcio.md"
+      },
+      {
+        "nome": "Insalatona",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "10.00",
+        "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "insalatona.md"
       },
       {
         "nome": "Veggy Burger ",
