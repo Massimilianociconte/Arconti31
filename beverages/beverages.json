@@ -780,6 +780,14 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Ramazzotti ",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "ramazzotti.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Vecchio Amaro del Capo ",
       "prezzo": "4.00",
       "descrizione": "❄️Da frigo❄️",
@@ -1656,6 +1664,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "montenegro.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Ramazzotti ",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "ramazzotti.md",
         "tipo": "Classici"
       },
       {
