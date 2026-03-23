@@ -118,7 +118,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "soffice-cremoso.md"
     },
@@ -1003,7 +1003,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "soffice-cremoso.md"
       },
