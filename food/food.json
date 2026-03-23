@@ -144,6 +144,24 @@
     },
     {
       "nome": "Verdure pastellate",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "7.00",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "verdure-pastellate-1.md"
+    },
+    {
+      "nome": "Verdure pastellate",
       "category": "Fritti",
       "prezzo": "7.00",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
@@ -1701,6 +1719,24 @@
         "disponibile": true,
         "order": 0,
         "_filename": "veggy-burger.md"
+      },
+      {
+        "nome": "Verdure pastellate",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "7.00",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "verdure-pastellate-1.md"
       },
       {
         "nome": "Cajello vegano",
