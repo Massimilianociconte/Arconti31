@@ -730,6 +730,14 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Montenegro",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "montenegro.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Vecchio Amaro del Capo ",
       "prezzo": "4.00",
       "descrizione": "❄️Da frigo❄️",
@@ -1558,6 +1566,14 @@
       }
     ],
     "Classici": [
+      {
+        "nome": "Montenegro",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "montenegro.md",
+        "tipo": "Classici"
+      },
       {
         "nome": "Vecchio Amaro del Capo ",
         "prezzo": "4.00",
