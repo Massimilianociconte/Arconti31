@@ -524,7 +524,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 25,
       "_filename": "salame-al-cioccolato.md"
     },
@@ -1042,7 +1042,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 25,
         "_filename": "salame-al-cioccolato.md"
       },
