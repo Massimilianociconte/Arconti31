@@ -730,6 +730,14 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Jägermeister",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "jagermeister.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Montenegro",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1566,6 +1574,14 @@
       }
     ],
     "Classici": [
+      {
+        "nome": "Jägermeister",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "jagermeister.md",
+        "tipo": "Classici"
+      },
       {
         "nome": "Montenegro",
         "prezzo": "4.00",
