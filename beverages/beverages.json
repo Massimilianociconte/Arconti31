@@ -730,6 +730,15 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Amaro Silano",
+      "prezzo": "4.00",
+      "descrizione": "❄️Da frigo❄️",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amaro-silano.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Jägermeister",
       "prezzo": "4.00",
       "descrizione": "❄️Da frigo❄️",
@@ -1575,6 +1584,15 @@
       }
     ],
     "Classici": [
+      {
+        "nome": "Amaro Silano",
+        "prezzo": "4.00",
+        "descrizione": "❄️Da frigo❄️",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amaro-silano.md",
+        "tipo": "Classici"
+      },
       {
         "nome": "Jägermeister",
         "prezzo": "4.00",
