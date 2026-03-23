@@ -739,6 +739,14 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Fernet-Branca",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "fernet-branca.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Jägermeister",
       "prezzo": "4.00",
       "descrizione": "❄️Da frigo❄️",
@@ -1591,6 +1599,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "amaro-silano.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Fernet-Branca",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "fernet-branca.md",
         "tipo": "Classici"
       },
       {
