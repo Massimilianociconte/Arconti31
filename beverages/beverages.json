@@ -755,6 +755,14 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Cynar ",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "cynar.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Fernet-Branca",
       "prezzo": "4.00",
       "disponibile": true,
@@ -1639,6 +1647,14 @@
         "disponibile": true,
         "order": 0,
         "_filename": "branca-menta.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Cynar ",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "cynar.md",
         "tipo": "Classici"
       },
       {
