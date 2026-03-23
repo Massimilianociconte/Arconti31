@@ -730,6 +730,15 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Vecchio Amaro del Capo ",
+      "prezzo": "4.00",
+      "descrizione": "❄️Da frigo❄️",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "vecchio-amaro-del-capo.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Matusalem Solera 7 Years Old",
       "prezzo": "10.00",
       "disponibile": true,
@@ -1546,6 +1555,17 @@
         "order": 0,
         "_filename": "amaro-mandragola-carlo-alberto.md",
         "tipo": "Artigianali"
+      }
+    ],
+    "Classici": [
+      {
+        "nome": "Vecchio Amaro del Capo ",
+        "prezzo": "4.00",
+        "descrizione": "❄️Da frigo❄️",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "vecchio-amaro-del-capo.md",
+        "tipo": "Classici"
       }
     ],
     "I nostri Rum": [
