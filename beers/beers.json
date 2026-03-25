@@ -1,6 +1,17 @@
 {
   "beers": [
     {
+      "nome": "Backdoor - Orso Verde",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "descrizione": "Amara, Secca, Controversa. | 40 IBU",
+      "formato": "0,4 l ",
+      "gradazione": "5%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "backdoor-orso-verde.md"
+    },
+    {
       "nome": "Bibock- Birrificio Italiano",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.00",
@@ -681,6 +692,17 @@
   ],
   "beersBySection": {
     "Birre artigianali alla spina a rotazione": [
+      {
+        "nome": "Backdoor - Orso Verde",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "descrizione": "Amara, Secca, Controversa. | 40 IBU",
+        "formato": "0,4 l ",
+        "gradazione": "5%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "backdoor-orso-verde.md"
+      },
       {
         "nome": "Bibock- Birrificio Italiano",
         "sezione": "Birre artigianali alla spina a rotazione",
