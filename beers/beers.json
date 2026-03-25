@@ -83,6 +83,17 @@
       "_filename": "cowboy-kirk.md"
     },
     {
+      "nome": "DANKO - 50&50",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Baltic Porter | IBU 25",
+      "formato": "0,4 l ",
+      "gradazione": "8%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "danko-5050.md"
+    },
+    {
       "nome": "Double Fisto - Toccalmatto",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
@@ -738,6 +749,17 @@
         "disponibile": false,
         "order": 0,
         "_filename": "cowboy-kirk.md"
+      },
+      {
+        "nome": "DANKO - 50&50",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Baltic Porter | IBU 25",
+        "formato": "0,4 l ",
+        "gradazione": "8%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "danko-5050.md"
       },
       {
         "nome": "Double Fisto - Toccalmatto",
