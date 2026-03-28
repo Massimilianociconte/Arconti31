@@ -11,6 +11,6 @@ allergeni:
 tags:
   - "Novità"
   - "Specialità"
-disponibile: false
+disponibile: true
 order: 0
 ---
