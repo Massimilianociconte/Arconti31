@@ -2,12 +2,10 @@
 nome: "Pesi Massimi - EastSide"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "7.00"
-descrizione: "Belgian Tripel 
-Dal colore dorato i sentori sono i classici dello stile con una nota moderna conferita dalla luppolatura a base di Ekuanot. 
-Al naso ed al palato si percepiscono in evidenza le note di malto che conferiscono equilibrio ai sentori più freschi e pungenti conferiti dalla luppolatura. Secca e amara la bevuta."
+descrizione: "Belgian Tripel"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1774219638/arconti31/l91aejcdl2rmivdip6bx.png"
 formato: "0,4 L "
 gradazione: "9% "
-disponibile: true
+disponibile: false
 order: 0
 ---
