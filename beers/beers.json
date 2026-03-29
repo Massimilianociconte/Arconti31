@@ -307,7 +307,7 @@
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219638/arconti31/l91aejcdl2rmivdip6bx.png",
       "formato": "0,4 L ",
       "gradazione": "9% ",
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "pesi-massimi-eastside.md"
     },
@@ -989,7 +989,7 @@
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219638/arconti31/l91aejcdl2rmivdip6bx.png",
         "formato": "0,4 L ",
         "gradazione": "9% ",
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "pesi-massimi-eastside.md"
       },
