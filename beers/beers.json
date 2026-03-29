@@ -420,6 +420,17 @@
       "_filename": "united-birrificio-5050.md"
     },
     {
+      "nome": "Vertigo - Orso Verde",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "Nell’ex Bock | IBU 25",
+      "formato": "0,4 l ",
+      "gradazione": "7%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "vertigo-orso-verde.md"
+    },
+    {
       "nome": "Wave Runner - Hammer",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -1088,6 +1099,17 @@
         "disponibile": false,
         "order": 0,
         "_filename": "united-birrificio-5050.md"
+      },
+      {
+        "nome": "Vertigo - Orso Verde",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "Nell’ex Bock | IBU 25",
+        "formato": "0,4 l ",
+        "gradazione": "7%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "vertigo-orso-verde.md"
       },
       {
         "nome": "Wave Runner - Hammer",
