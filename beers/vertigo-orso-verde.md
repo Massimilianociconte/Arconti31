@@ -8,6 +8,7 @@ Chiara, Robusta, Enigmatica.
 Color ocra e schiuma cremosa, ti seduce con il suo ricco aroma di malto, miele d’acacia e frutta bianca. 
 Al gusto, conferma le promesse olfattive, bilanciando magistralmente intensità e beverinità. 
 Vertigo è la scelta perfetta per chi cerca una birra robusta ma sorprendentemente facile da bere."
+immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1774818433/arconti31/thssmt4774bhlc2znan3.webp"
 formato: "0,4 l "
 gradazione: "7%"
 disponibile: true
