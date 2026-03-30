@@ -6,6 +6,6 @@ descrizione: "La rossa “non rossa”, gustosa, originale, ribelle. Bibock è i
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1769112645/arconti31/vxmke9qdbyvs5xqyyb9m.jpg"
 formato: "0,4 l"
 gradazione: "6,2"
-disponibile: true
+disponibile: false
 order: 0
 ---
