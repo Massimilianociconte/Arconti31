@@ -526,17 +526,6 @@
       "_filename": "zona-cesarini-toccalmatto.md"
     },
     {
-      "nome": "Chimay Rossa",
-      "sezione": "Frigo Birre",
-      "prezzo": "6,00",
-      "descrizione": "Birra rossa trappista belga di Vallonia",
-      "formato": "33cl",
-      "gradazione": "7%",
-      "disponibile": true,
-      "order": 7,
-      "_filename": "chimay-rossa.md"
-    },
-    {
       "nome": "Theresianer Senza Glutine",
       "sezione": "Birre speciali in bottiglia",
       "prezzo": "5,00",
@@ -1264,17 +1253,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "chouffe-dachouffe.md"
-      },
-      {
-        "nome": "Chimay Rossa",
-        "sezione": "Frigo Birre",
-        "prezzo": "6,00",
-        "descrizione": "Birra rossa trappista belga di Vallonia",
-        "formato": "33cl",
-        "gradazione": "7%",
-        "disponibile": true,
-        "order": 7,
-        "_filename": "chimay-rossa.md"
       },
       {
         "nome": "Against the grain gluten free",
