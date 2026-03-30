@@ -264,14 +264,15 @@
       "_filename": "new-zealand-crak-senza-glutine.md"
     },
     {
-      "nome": "Nocturnum - Delirium",
+      "nome": "Another Sunset - Birrificio EAST Side",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "7.00",
-      "descrizione": "Dark Belgian Strong Ale  Aroma composto da caramello, caffè e cioccolato, sono presenti varie spezie del posto come liquerizia, coriandolo, rovere e scorza d’arancio.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772323383/arconti31/fj25dbbwytqlovafdipj.png",
+      "descrizione": " Italian Grape Ale.",
+      "Birra realizzata con l'aggiunta di una frazione di mosto d'uva (o più raramente uva in forma di frutto) aggiunto durante il processo produttivo. In realtà però questa birra è per certi versi anche assimilabile alla famiglia delle Fruit Beer, generica denominazione che indica birre brassate con l'impiego di frutta": "nella fattispecie la ricetta prevede l'aggiunta di frutti di bosco",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774906567/arconti31/nvmgmevdlburksxmeb8n.png",
       "formato": "0,4",
-      "gradazione": "8,5%",
-      "disponibile": false,
+      "gradazione": "6,6%",
+      "disponibile": true,
       "order": 0,
       "_filename": "nocturna-delirium.md"
     },
@@ -947,14 +948,15 @@
         "_filename": "new-zealand-crak-senza-glutine.md"
       },
       {
-        "nome": "Nocturnum - Delirium",
+        "nome": "Another Sunset - Birrificio EAST Side",
         "sezione": "Birre artigianali alla spina a rotazione",
         "prezzo": "7.00",
-        "descrizione": "Dark Belgian Strong Ale  Aroma composto da caramello, caffè e cioccolato, sono presenti varie spezie del posto come liquerizia, coriandolo, rovere e scorza d’arancio.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772323383/arconti31/fj25dbbwytqlovafdipj.png",
+        "descrizione": " Italian Grape Ale.",
+        "Birra realizzata con l'aggiunta di una frazione di mosto d'uva (o più raramente uva in forma di frutto) aggiunto durante il processo produttivo. In realtà però questa birra è per certi versi anche assimilabile alla famiglia delle Fruit Beer, generica denominazione che indica birre brassate con l'impiego di frutta": "nella fattispecie la ricetta prevede l'aggiunta di frutti di bosco",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774906567/arconti31/nvmgmevdlburksxmeb8n.png",
         "formato": "0,4",
-        "gradazione": "8,5%",
-        "disponibile": false,
+        "gradazione": "6,6%",
+        "disponibile": true,
         "order": 0,
         "_filename": "nocturna-delirium.md"
       },
