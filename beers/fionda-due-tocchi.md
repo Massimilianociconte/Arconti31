@@ -6,6 +6,6 @@ descrizione: " DDH IPA (sabro e mosaic i luppoli): naso tropicale esplosivo con 
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1774642772/arconti31/bca69azlmblyiijx8nlg.webp"
 formato: "0,4 l  "
 gradazione: "6,5% "
-disponibile: true
+disponibile: false
 order: 0
 ---
