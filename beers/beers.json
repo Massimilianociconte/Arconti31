@@ -36,17 +36,6 @@
       "_filename": "bloemenbier-de-proefbrouwerij-1.md"
     },
     {
-      "nome": "Chimay chiara",
-      "prezzo": "6,00",
-      "descrizione": "Birra belga chiara trapista",
-      "formato": "33cl",
-      "gradazione": "7%",
-      "disponibile": true,
-      "sezione": "Frigo Birre",
-      "order": 0,
-      "_filename": "chimay-chiara.md"
-    },
-    {
       "nome": "Chouffe- d’Achouffe",
       "sezione": "Frigo Birre",
       "prezzo": "6.00",
@@ -1255,17 +1244,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "bloemenbier-de-proefbrouwerij-1.md"
-      },
-      {
-        "nome": "Chimay chiara",
-        "prezzo": "6,00",
-        "descrizione": "Birra belga chiara trapista",
-        "formato": "33cl",
-        "gradazione": "7%",
-        "disponibile": true,
-        "sezione": "Frigo Birre",
-        "order": 0,
-        "_filename": "chimay-chiara.md"
       },
       {
         "nome": "Chouffe- d’Achouffe",
