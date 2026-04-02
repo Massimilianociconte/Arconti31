@@ -409,6 +409,17 @@
       "_filename": "sunshine-valley-bierol.md"
     },
     {
+      "nome": "Tempura Crunch - Rebel’s",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "descrizione": "New England IPA",
+      "formato": "0,4 l ",
+      "gradazione": "6%",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "tempura-crunch-rebels.md"
+    },
+    {
       "nome": "United - Birrificio 50&50",
       "sezione": "Birre artigianali alla spina a rotazione",
       "prezzo": "6.50",
@@ -1079,6 +1090,17 @@
         "disponibile": false,
         "order": 0,
         "_filename": "sunshine-valley-bierol.md"
+      },
+      {
+        "nome": "Tempura Crunch - Rebel’s",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "descrizione": "New England IPA",
+        "formato": "0,4 l ",
+        "gradazione": "6%",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "tempura-crunch-rebels.md"
       },
       {
         "nome": "United - Birrificio 50&50",
