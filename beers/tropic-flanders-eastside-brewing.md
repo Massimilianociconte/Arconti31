@@ -1,6 +1,7 @@
 ---
 nome: "Tropic Flanders - Eastside Brewing"
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "6,50"
 descrizione: "Modern Saison, multi cereale, luppoli Galaxy e Citra"
 formato: "0,4L"

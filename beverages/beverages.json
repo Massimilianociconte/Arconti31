@@ -2,6 +2,7 @@
   "beverages": [
     {
       "nome": "Americano",
+      "tipo_slug": "cocktails",
       "prezzo": "7.00",
       "descrizione": "Bitter, vermouth rosso e soda",
       "disponibile": true,
@@ -11,6 +12,7 @@
     },
     {
       "nome": "Cuba Libre",
+      "tipo_slug": "cocktails",
       "prezzo": "8.50",
       "descrizione": "Pestato (lime e zucchero di canna), rum chiaro e ghiaccio pilé.",
       "disponibile": true,
@@ -20,8 +22,9 @@
     },
     {
       "nome": "Spritz",
+      "tipo_slug": "cocktails",
       "prezzo": "7.00",
-      "descrizione": "Prosecco, seltz e Aperol.",
+      "descrizione": "Prosecco, seltz e Aperol. €8 Campari / Cynar/ …",
       "disponibile": true,
       "order": 1,
       "_filename": "aperol-spritz.md",
@@ -29,6 +32,7 @@
     },
     {
       "nome": "Black russian",
+      "tipo_slug": "cocktails",
       "prezzo": "7.00",
       "descrizione": "Vodka e liquore al caffè",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464972/arconti31/z5m43wy5g3sqxdfgukjp.avif",
@@ -39,6 +43,7 @@
     },
     {
       "nome": "Blue kiss",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Rum al cocco malibù, blue curacao, succo d’ananas. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768319787/arconti31/uwmp1jchphm8ojd5agdf.webp",
@@ -49,10 +54,9 @@
     },
     {
       "nome": "Caipirinha",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
-      "descrizione": "Lime e zucchero pestati, cachaça e ghiacchio pilé.",
-      "Possibile modifica con frutta come": "fragola/ frutto della passione/ frutti di bosco.",
-      "Varianti": [],
+      "descrizione": "Lime e zucchero pestati, cachaça e ghiacchio pilé. Possibile modifica con frutta come: fragola/ frutto della passione/ frutti di bosco.  Varianti:  Caipiroska= vodka,  Capirissima= rum bianco,  Caipiteqa= tequila.",
       "disponibile": true,
       "order": 4,
       "_filename": "caipirinha.md",
@@ -60,6 +64,7 @@
     },
     {
       "nome": "Campari shakerato",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Campari e gin shakerati",
       "disponibile": true,
@@ -69,6 +74,7 @@
     },
     {
       "nome": "Chocolate coco",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
       "disponibile": true,
@@ -78,8 +84,9 @@
     },
     {
       "nome": "Rum&Cola",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
-      "descrizione": "Coca Cola e rum scuro.",
+      "descrizione": "Coca Cola e rum scuro. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465094/arconti31/jgsehpefikvko3rx9nzg.png",
       "disponibile": true,
       "order": 7,
@@ -88,6 +95,7 @@
     },
     {
       "nome": "Gin Tonic/Lemon",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Possibile richiesta di un gin specifico (prezzo variabile) ",
       "disponibile": true,
@@ -97,6 +105,7 @@
     },
     {
       "nome": "Hurricane",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
       "disponibile": true,
@@ -106,6 +115,7 @@
     },
     {
       "nome": "Mimosa",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Spumante e arancia",
       "disponibile": true,
@@ -115,6 +125,7 @@
     },
     {
       "nome": "Mojito",
+      "tipo_slug": "cocktails",
       "prezzo": "8.50",
       "descrizione": "Lime e zucchero di canna pestati, menta fresca, ghiaccio pilé, rum chiaro.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465044/arconti31/fsbzuxlpdbz1thvz5hsi.webp",
@@ -125,6 +136,7 @@
     },
     {
       "nome": "Moscow/ London Mule",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Lime fresco, Vodka/Gin, ginger beer.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768296790/arconti31/iswqbwgq7gssmbr7lslc.webp",
@@ -136,6 +148,7 @@
     },
     {
       "nome": "My own",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Gin, arancia e campari",
       "disponibile": true,
@@ -145,6 +158,7 @@
     },
     {
       "nome": "Negroni",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Bitter, vermouth rosso e gin",
       "disponibile": true,
@@ -154,6 +168,7 @@
     },
     {
       "nome": "Pina colada",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Rum bianco, ananas fresco, cocco",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768383865/arconti31/dck2jces7rttfs2xbrwg.webp",
@@ -164,6 +179,7 @@
     },
     {
       "nome": "Sbagliato",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Bitter, vermouth rosso, spumante secco",
       "disponibile": true,
@@ -173,6 +189,7 @@
     },
     {
       "nome": "Sea breeze",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Vodka, pompelmo, mirtillo",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297095/arconti31/rgrvbyaah7jlvjvuox1i.jpg",
@@ -184,6 +201,7 @@
     },
     {
       "nome": "Sex on the beach",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
       "disponibile": true,
@@ -193,6 +211,7 @@
     },
     {
       "nome": "Sweet and red",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Rum bianco, lampone, lemonsoda",
       "disponibile": true,
@@ -202,6 +221,7 @@
     },
     {
       "nome": "Tequila sunrise",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "descrizione": "Tequila, arancia, granatina",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768466682/arconti31/a4p7fluu6dig3dfnktqf.jpg",
@@ -212,6 +232,7 @@
     },
     {
       "nome": "Vodka Tonic/ Lemon",
+      "tipo_slug": "cocktails",
       "prezzo": "8.00",
       "disponibile": true,
       "order": 22,
@@ -220,6 +241,7 @@
     },
     {
       "nome": "Waikiki",
+      "tipo_slug": "cocktails",
       "prezzo": "8,00",
       "descrizione": "Vodka e ananas fresco",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
@@ -230,6 +252,7 @@
     },
     {
       "nome": "Arconti summer",
+      "tipo_slug": "analcolici",
       "prezzo": "7,00",
       "descrizione": "Mirtillo, ananas, papaja",
       "disponibile": true,
@@ -239,6 +262,7 @@
     },
     {
       "nome": "Gin Tonic Analcolico (Tanqueray) ",
+      "tipo_slug": "analcolici",
       "prezzo": "7.00",
       "disponibile": true,
       "order": 0,
@@ -247,6 +271,7 @@
     },
     {
       "nome": "Come on",
+      "tipo_slug": "analcolici",
       "prezzo": "7,00",
       "descrizione": "Pompelmo, ananas, maracuja",
       "disponibile": true,
@@ -256,6 +281,7 @@
     },
     {
       "nome": "Cool down",
+      "tipo_slug": "analcolici",
       "prezzo": "7.00",
       "descrizione": "Ananas, sweet and sour, granatina, menta",
       "disponibile": true,
@@ -265,6 +291,7 @@
     },
     {
       "nome": "Florida",
+      "tipo_slug": "analcolici",
       "prezzo": "7,00",
       "descrizione": "Pompelmo, arancia, sweet and sour, soda",
       "disponibile": true,
@@ -274,6 +301,7 @@
     },
     {
       "nome": "Gallarate beach",
+      "tipo_slug": "analcolici",
       "prezzo": "7,00",
       "descrizione": "Arancia, ananas, sweet and sour, fragola",
       "disponibile": true,
@@ -283,6 +311,7 @@
     },
     {
       "nome": "Tropic star",
+      "tipo_slug": "analcolici",
       "prezzo": "7,00",
       "descrizione": "Arancia, maracuja, ananas",
       "disponibile": true,
@@ -292,6 +321,7 @@
     },
     {
       "nome": "Spritz analcolico",
+      "tipo_slug": "analcolici",
       "prezzo": "6.00",
       "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
       "disponibile": true,
@@ -301,6 +331,7 @@
     },
     {
       "nome": "Shirley Temple ",
+      "tipo_slug": "analcolici",
       "prezzo": "7.00",
       "descrizione": "Ginger ale, granatina, ciliegia o limone",
       "disponibile": true,
@@ -310,6 +341,7 @@
     },
     {
       "nome": "Mojito Analcolico",
+      "tipo_slug": "analcolici",
       "prezzo": "7,50",
       "descrizione": "Lime, zucchero, menta, Lemon Soda",
       "disponibile": true,
@@ -319,6 +351,7 @@
     },
     {
       "nome": "Acqua tonica (Schweppes) ",
+      "tipo_slug": "bibite",
       "prezzo": "4.00",
       "disponibile": true,
       "order": 0,
@@ -327,8 +360,9 @@
     },
     {
       "nome": "Ginger ale | Fever-Tree",
+      "tipo_slug": "bibite",
       "prezzo": "4.00",
-      "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
+      "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante. Da prediligere per qualcosa di fresco ma non invadente! ",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
       "disponibile": true,
       "order": 0,
@@ -337,6 +371,7 @@
     },
     {
       "nome": "Aranciata amara",
+      "tipo_slug": "bibite",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
@@ -346,6 +381,7 @@
     },
     {
       "nome": "Chinotto",
+      "tipo_slug": "bibite",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
@@ -355,6 +391,7 @@
     },
     {
       "nome": "Coca cola",
+      "tipo_slug": "bibite",
       "prezzo": "4,50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
@@ -364,6 +401,7 @@
     },
     {
       "nome": "Coca cola zero",
+      "tipo_slug": "bibite",
       "prezzo": "4,50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
@@ -373,6 +411,7 @@
     },
     {
       "nome": "Fanta",
+      "tipo_slug": "bibite",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
@@ -382,6 +421,7 @@
     },
     {
       "nome": "Lemonsoda",
+      "tipo_slug": "bibite",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
@@ -391,6 +431,7 @@
     },
     {
       "nome": "Red bull",
+      "tipo_slug": "bibite",
       "prezzo": "5,00",
       "descrizione": "Bevanda energetica",
       "formato": "33cl",
@@ -401,6 +442,7 @@
     },
     {
       "nome": "Sprite",
+      "tipo_slug": "bibite",
       "prezzo": "4,00",
       "formato": "Lattina 33cl",
       "disponibile": true,
@@ -410,6 +452,7 @@
     },
     {
       "nome": "Succhi di frutta",
+      "tipo_slug": "bibite",
       "prezzo": "3,50",
       "descrizione": "Mirtillo, pompelmo, ananas, arancia",
       "formato": "20cl",
@@ -420,6 +463,7 @@
     },
     {
       "nome": "Estaté limone",
+      "tipo_slug": "bibite",
       "prezzo": "4.00",
       "disponibile": true,
       "order": 10,
@@ -428,6 +472,7 @@
     },
     {
       "nome": "Estaté pesca",
+      "tipo_slug": "bibite",
       "prezzo": "4.00",
       "disponibile": true,
       "order": 11,
@@ -436,6 +481,7 @@
     },
     {
       "nome": "Ginger beer | Fever-Tree",
+      "tipo_slug": "bibite",
       "prezzo": "5,00",
       "descrizione": "Aroma di zenzero profondo",
       "disponibile": true,
@@ -445,6 +491,7 @@
     },
     {
       "nome": "Caffè decaffeinato",
+      "tipo_slug": "caffetteria",
       "prezzo": "2,00",
       "descrizione": "In tazzina",
       "disponibile": true,
@@ -454,6 +501,7 @@
     },
     {
       "nome": "Caffè espresso",
+      "tipo_slug": "caffetteria",
       "prezzo": "1,50",
       "descrizione": "In tazzina",
       "disponibile": true,
@@ -463,6 +511,7 @@
     },
     {
       "nome": "Caffè shakerato",
+      "tipo_slug": "caffetteria",
       "prezzo": "3,50",
       "descrizione": "Lungo con ghiaccio e zucchero di canna",
       "disponibile": true,
@@ -472,6 +521,7 @@
     },
     {
       "nome": "Cappuccino",
+      "tipo_slug": "caffetteria",
       "prezzo": "2,50",
       "disponibile": true,
       "order": 3,
@@ -480,6 +530,7 @@
     },
     {
       "nome": "The e tisane",
+      "tipo_slug": "caffetteria",
       "prezzo": "3,00",
       "descrizione": "Selezione",
       "disponibile": true,
@@ -489,6 +540,7 @@
     },
     {
       "nome": "Caffè macchiato",
+      "tipo_slug": "caffetteria",
       "prezzo": "2,00",
       "disponibile": true,
       "order": 5,
@@ -497,6 +549,7 @@
     },
     {
       "nome": "Calice prosecco extra dry",
+      "tipo_slug": "bollicine",
       "prezzo": "5.00",
       "descrizione": "Cuvée 21 Millesimato Extra Dry",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630698/arconti31/mbifndz4g1zu6uvzpa8y.jpg",
@@ -507,6 +560,7 @@
     },
     {
       "nome": "Valdobbiadene Superiore DOCG Brunei - La Tordera",
+      "tipo_slug": "bollicine",
       "prezzo": "24.00",
       "descrizione": "Veneto - Aromatico, sapido, profumi pera acerba, mela verde",
       "formato": "0,75L",
@@ -517,6 +571,7 @@
     },
     {
       "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
+      "tipo_slug": "bollicine",
       "prezzo": "24,00",
       "descrizione": "Dai terreni ripidi e insidiosi e da una lunga sosta sui lieviti più nobili, una bollicina fine ed elegante. In bocca una vibrante energia accompagna sapidità e freschezza, con profumi di pera e mela decisa. Gradazione 11%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384266/arconti31/besbjscngkxq8xutkvxm.webp",
@@ -528,6 +583,7 @@
     },
     {
       "nome": "Prosecco Extra Dry Flumen - Tenuta San Giorgio",
+      "tipo_slug": "bollicine",
       "prezzo": "20.00",
       "descrizione": "Treviso, Veneto - Aromi floreali e fruttati - Uve: Glera",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630778/arconti31/xmrs4a5jmpycpra7rvzt.jpg",
@@ -539,11 +595,9 @@
     },
     {
       "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
+      "tipo_slug": "bollicine",
       "prezzo": "22,00",
-      "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante.",
-      "Colore": "rosa tenue, pesca Perlage: fine e minuto, elegante.",
-      "Profumo": "sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi.",
-      "Sapore": "al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
+      "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante. Colore: rosa tenue, pesca Perlage: fine e minuto, elegante. Profumo: sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi. Sapore: al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323860/arconti31/okyrfgpkeyzwlmniq8d4.jpg",
       "formato": "0,75L",
       "disponibile": true,
@@ -553,6 +607,7 @@
     },
     {
       "nome": "Prosecco Brut Flumen - Tenuta San Giorgio",
+      "tipo_slug": "bollicine",
       "prezzo": "20.00",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630839/arconti31/d5jn7szh4p8wscxqzhj0.png",
       "disponibile": true,
@@ -562,6 +617,7 @@
     },
     {
       "nome": "21 Cuvée Millesimato Extra Dry",
+      "tipo_slug": "bollicine",
       "prezzo": "20,00",
       "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
       "formato": "0,75L",
@@ -572,8 +628,9 @@
     },
     {
       "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
+      "tipo_slug": "bollicine",
       "prezzo": "22,00",
-      "descrizione": 2023,
+      "descrizione": "2023",
       "disponibile": true,
       "order": 7,
       "_filename": "prosecco-doc-millesimato-extra-dry-santorsola.md",
@@ -581,6 +638,7 @@
     },
     {
       "nome": "Gewürztraminer DOC Trentino - Cantina d'Isera",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "24.00",
       "descrizione": "Trentino, Italia. Coltivato nelle zone collinari più vocate, riesce a maturare un vino di colore giallo paglierino con riflessi dorati. Il profumo è fruttato-floreale con tipiche note tropicali e di rosa. Al palato è pieno, avvolgente e aromatico. Gradazione 13,5%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384499/arconti31/btxrfmc8t2ahxph0tkro.png",
@@ -592,8 +650,9 @@
     },
     {
       "nome": "Traminer Aromatico DOC - Tenuta Villanova",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "22.00",
-      "descrizione": "Friuli Venezia Giulia | 100% Traminer Aromatico",
+      "descrizione": "Friuli Venezia Giulia | 100% Traminer Aromatico Vino bianco secco, fermo e intensamente aromatico, caratterizzato da note di vaniglia, fiori di tiglio e frutta esotica, con un tipico retrogusto amarognolo. Gradazione ",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718612/arconti31/lh3tn3fvd41xslpjq0b8.webp",
       "formato": "0,75 l ",
       "disponibile": true,
@@ -603,6 +662,7 @@
     },
     {
       "nome": "Greco 'Janare' - La Guardiense",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "22,00",
       "descrizione": "Il Greco del Sannio \"Janare\" è un vino bianco fresco e dalle note sapide, perfetto da accompagnare a menù di pesce o verdure. Al naso sviluppa note fragranti e tipiche di agrumi, pesca, mela verde, camomilla e sensazioni erbacee. Presenta un corpo equilibrato, limpido e scorrevole, energizzato da una vivace freschezza marina. Gradazione 13%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384604/arconti31/uytm7jpotkw6cjoboxns.jpg",
@@ -614,8 +674,9 @@
     },
     {
       "nome": "Falangina del Sannio “Janare” - La Guardiense ",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "20.00",
-      "descrizione": "Un bianco campano di grande intensità, prodotto con uve 100% Falanghina tra i 100-400m slm. Si distingue per il colore giallo paglierino, profumi di frutta (mela verde, ananas) e fiori bianchi, con un gusto fresco, sapido e dal finale agrumato.",
+      "descrizione": "Un bianco campano di grande intensità, prodotto con uve 100% Falanghina tra i 100-400m slm. Si distingue per il colore giallo paglierino, profumi di frutta (mela verde, ananas) e fiori bianchi, con un gusto fresco, sapido e dal finale agrumato. Gradazione 13%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384773/arconti31/btgo4h8kasuwlcmvb3wd.jpg",
       "disponibile": true,
       "order": 2,
@@ -624,6 +685,7 @@
     },
     {
       "nome": "Chardonnay Moi IGP - Varvaglione",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "20.00",
       "descrizione": "Puglia - Giallo paglierino, fiori gialli, frutta tropicale. Lo Chardonnay Puglia IGP della linea Moi, prodotto dalla cantina Varvaglione, di Taranto, nasce per offrire un vino elegante e piacevole alla beva, dal profilo leggibile ed equilibrato. Giallo paglierino alla vista, al naso evidenzia intense note fruttate e floreali, con note di frutta tropicale e fiori gialli in evidenza. L’assaggio risulta pieno e generoso, con ritorni agrumati sul finale.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384893/arconti31/xorgm1ytpxqt0vrsapxe.jpg",
@@ -635,8 +697,9 @@
     },
     {
       "nome": "Calice di Bianco",
+      "tipo_slug": "bianchi-fermi",
       "prezzo": "6.00",
-      "descrizione": "Calice di bianco a scelta tra Chardonnay o Falanghina.",
+      "descrizione": "Calice di bianco a scelta tra Chardonnay o Falanghina. ",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718915/arconti31/jnsczkermzws0t4blieh.webp",
       "disponibile": true,
       "order": 4,
@@ -645,6 +708,7 @@
     },
     {
       "nome": "Calice di rosso",
+      "tipo_slug": "vini-rossi",
       "prezzo": "6.00",
       "descrizione": "Calice a scelta tra Primitivo Salento o Valpolicella Classico DOC (Recchia)",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630330/arconti31/you8qr1scnimmuot8tlq.jpg",
@@ -655,6 +719,7 @@
     },
     {
       "nome": "Valpolicella Classico DOC Superiore Masua di Jago 2020 - Recchia",
+      "tipo_slug": "vini-rossi",
       "prezzo": "18.00",
       "descrizione": "Veneto, Italia - Rosso granato, frutti rossi, note floreali - Uve: 65% Corvina, 15% Corvinone, 20% Rondinella",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630427/arconti31/xmjnzglvpt8lexxyic6m.jpg",
@@ -665,7 +730,8 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Nebbiolo d'Alba DOC \\\"VinumVitaEst\\\" 2021 - Terre del Barolo",
+      "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
+      "tipo_slug": "vini-rossi",
       "prezzo": "25,00",
       "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
       "formato": "0,75L",
@@ -677,6 +743,7 @@
     },
     {
       "nome": "Amarone della Valpolicella DOCG Classico - Recchia",
+      "tipo_slug": "vini-rossi",
       "prezzo": "35.00",
       "descrizione": "Veneto, Italia - Rosso rubino carico, intenso, fruttato - Uve: 55% Corvina, 25% Corvinone, 20% Rondinella",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630560/arconti31/ihxk8vivnvpwa3ivnl1m.png",
@@ -687,7 +754,8 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Morellino di Scansano DOCG \\\"A' Luciano\\\" - Santa Lucia",
+      "nome": "Morellino di Scansano DOCG \"A' Luciano\" - Santa Lucia",
+      "tipo_slug": "vini-rossi",
       "prezzo": "20.00",
       "descrizione": "Toscana - Frutta rossa, piacevole bicchiere - Uve: 90% Sangiovese, 10% Alicante",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630636/arconti31/tplauyszph01iu4dmzvr.jpg",
@@ -699,9 +767,9 @@
     },
     {
       "nome": "Primitivo Salento IGP “12 e mezzo” - Varvaglione",
+      "tipo_slug": "vini-rossi",
       "prezzo": "18.00",
-      "descrizione": "Salento, Puglia.",
-      "Gradazione": "12,5%",
+      "descrizione": "Salento, Puglia. Vino di colore rosso molto elegante. PROFUMO Profumo intenso, con sentori fruttati di prugne mature, confettura di ciliegia e note di cacao, appena speziato con un finale che dona note di vaniglia. GUSTO Morbido e ricco di tannini maturi.  Gradazione: 12,5%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769719827/arconti31/mk2zuzamv5g1rd10ykot.webp",
       "formato": "0,75 l ",
       "disponibile": true,
@@ -710,177 +778,105 @@
       "tipo": "Vini rossi"
     },
     {
-      "nome": "Amara - Rossa Agricola",
-      "prezzo": "5.00",
-      "descrizione": "Sicilia | 30% alc.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774024991/arconti31/x9zv1prhziu5tezlbchw.jpg",
+      "nome": "Test",
+      "tipo_slug": "classici",
+      "prezzo": "10.00",
+      "descrizione": "test",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773703321/arconti31/btd3dk4ec9bhtzzbullm.png",
       "disponibile": true,
       "order": 0,
-      "_filename": "amara-rossa-agricola.md",
-      "tipo": "Artigianali"
+      "_filename": "test.md",
+      "tipo": "Classici"
     },
     {
-      "nome": "Mandragola - Carlo Alberto",
-      "prezzo": "5.00",
-      "descrizione": "Piemonte | 45% alc.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
+      "nome": "Diplomatico - Reserva Exclusiva",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "0.00",
       "disponibile": true,
       "order": 0,
-      "_filename": "amaro-mandragola-carlo-alberto.md",
-      "tipo": "Artigianali"
+      "_filename": "diplomatico-reserva-exclusiva.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Amari da frigo",
+      "tipo_slug": "amari-distillati",
+      "prezzo": "4.00",
+      "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amari-da-frigo.md",
+      "tipo": "Amari e Distillati"
+    },
+    {
+      "nome": "Amaro del Capo - Caffo",
+      "tipo_slug": "amari-distillati",
+      "prezzo": "4.00",
+      "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "amaro-del-capo-caffo.md",
+      "tipo": "Amari e Distillati"
     },
     {
       "nome": "Amaro Silano",
+      "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️",
+      "descrizione": "Calabria | 30% alc. Gusti di liquirizia, arancia, gentiana e camomilla si fondono in un'armonia che è allo stesso tempo robusta e rinfrescante.  La sua finitura è lunga e piacevolmente amaricante, con una complessità che stimola la scoperta continua.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382440/arconti31/jsbxxjelsorbvw602kpz.jpg",
       "disponibile": true,
       "order": 0,
       "_filename": "amaro-silano.md",
-      "tipo": "Classici"
+      "tipo": "Amari e Distillati"
     },
     {
-      "nome": "Baileys ",
+      "nome": "Jegermaister ",
+      "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
+      "descrizione": "Germania | 35% alc. Amaro tedesco a base di erbe, fiori, radici e spezie. La sua ricetta segreta include 56 ingredienti, invecchiati per almeno un anno in botti di rovere.  Ha un gusto complesso, con note di agrumi, menta, cannella e spezie, ed è meno amaro di altri amari centroeuropei.  ",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772383095/arconti31/r1qnxfaozlvudnkfp0va.jpg",
       "disponibile": true,
       "order": 0,
-      "_filename": "baileys.md",
-      "tipo": "Classici"
+      "_filename": "jegermaister.md",
+      "tipo": "Amari e Distillati"
     },
     {
-      "nome": "Branca Menta",
+      "nome": "Limoncello",
+      "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382471/arconti31/uqszqvhwizl2oedvzmou.jpg",
       "disponibile": true,
       "order": 0,
-      "_filename": "branca-menta.md",
-      "tipo": "Classici"
+      "_filename": "limoncello.md",
+      "tipo": "Amari e Distillati"
     },
     {
-      "nome": "Cynar ",
+      "nome": "Liquirizia ",
+      "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382494/arconti31/b19bp7xfbwbkrc1x2urc.jpg",
       "disponibile": true,
       "order": 0,
-      "_filename": "cynar.md",
-      "tipo": "Classici"
+      "_filename": "liquirizia.md",
+      "tipo": "Amari e Distillati"
     },
     {
-      "nome": "Fernet-Branca",
+      "nome": "Montenegro - ",
+      "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
+      "descrizione": "Bologna | 23% alc. Prodotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382266/arconti31/o06mo83htj3c3yi4wsq8.jpg",
       "disponibile": true,
       "order": 0,
-      "_filename": "fernet-branca.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Jägermeister",
-      "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "jagermeister.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Montenegro",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "montenegro.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Ramazzotti ",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "ramazzotti.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Vecchio Amaro del Capo ",
-      "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "vecchio-amaro-del-capo.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Matusalem Solera 7 Years Old",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "matusalem-solera-7-years-old.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Pampero Aniversario",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "pampero-aniversario.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Rum Brugal Anejo Superior",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "rum-brugal-anejo-superior.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Rum Bumbu",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "rum-bumbu.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Rum Diplomatico Reserva Exclusiva",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "rum-diplomatico-reserva-exclusiva.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Rum Pampero Especial",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "rum-pampero-especial.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Saint James Royal Ambré",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "saint-james.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Santa Teresa Anejo Gran Reserva",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "santa-teresa-anejo-gran-reserva.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Zacapa Solera Gran Reserva",
-      "prezzo": "10.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "zacapa-solera-gran-reserva.md",
-      "tipo": "I nostri Rum"
+      "_filename": "montenegro-.md",
+      "tipo": "Amari e Distillati"
     }
   ],
   "beveragesByType": {
     "Cocktails": [
       {
         "nome": "Americano",
+        "tipo_slug": "cocktails",
         "prezzo": "7.00",
         "descrizione": "Bitter, vermouth rosso e soda",
         "disponibile": true,
@@ -890,6 +886,7 @@
       },
       {
         "nome": "Cuba Libre",
+        "tipo_slug": "cocktails",
         "prezzo": "8.50",
         "descrizione": "Pestato (lime e zucchero di canna), rum chiaro e ghiaccio pilé.",
         "disponibile": true,
@@ -899,8 +896,9 @@
       },
       {
         "nome": "Spritz",
+        "tipo_slug": "cocktails",
         "prezzo": "7.00",
-        "descrizione": "Prosecco, seltz e Aperol.",
+        "descrizione": "Prosecco, seltz e Aperol. €8 Campari / Cynar/ …",
         "disponibile": true,
         "order": 1,
         "_filename": "aperol-spritz.md",
@@ -908,6 +906,7 @@
       },
       {
         "nome": "Black russian",
+        "tipo_slug": "cocktails",
         "prezzo": "7.00",
         "descrizione": "Vodka e liquore al caffè",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464972/arconti31/z5m43wy5g3sqxdfgukjp.avif",
@@ -918,6 +917,7 @@
       },
       {
         "nome": "Blue kiss",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Rum al cocco malibù, blue curacao, succo d’ananas. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768319787/arconti31/uwmp1jchphm8ojd5agdf.webp",
@@ -928,10 +928,9 @@
       },
       {
         "nome": "Caipirinha",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
-        "descrizione": "Lime e zucchero pestati, cachaça e ghiacchio pilé.",
-        "Possibile modifica con frutta come": "fragola/ frutto della passione/ frutti di bosco.",
-        "Varianti": [],
+        "descrizione": "Lime e zucchero pestati, cachaça e ghiacchio pilé. Possibile modifica con frutta come: fragola/ frutto della passione/ frutti di bosco.  Varianti:  Caipiroska= vodka,  Capirissima= rum bianco,  Caipiteqa= tequila.",
         "disponibile": true,
         "order": 4,
         "_filename": "caipirinha.md",
@@ -939,6 +938,7 @@
       },
       {
         "nome": "Campari shakerato",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Campari e gin shakerati",
         "disponibile": true,
@@ -948,6 +948,7 @@
       },
       {
         "nome": "Chocolate coco",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
         "disponibile": true,
@@ -957,8 +958,9 @@
       },
       {
         "nome": "Rum&Cola",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
-        "descrizione": "Coca Cola e rum scuro.",
+        "descrizione": "Coca Cola e rum scuro. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465094/arconti31/jgsehpefikvko3rx9nzg.png",
         "disponibile": true,
         "order": 7,
@@ -967,6 +969,7 @@
       },
       {
         "nome": "Gin Tonic/Lemon",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Possibile richiesta di un gin specifico (prezzo variabile) ",
         "disponibile": true,
@@ -976,6 +979,7 @@
       },
       {
         "nome": "Hurricane",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
         "disponibile": true,
@@ -985,6 +989,7 @@
       },
       {
         "nome": "Mimosa",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Spumante e arancia",
         "disponibile": true,
@@ -994,6 +999,7 @@
       },
       {
         "nome": "Mojito",
+        "tipo_slug": "cocktails",
         "prezzo": "8.50",
         "descrizione": "Lime e zucchero di canna pestati, menta fresca, ghiaccio pilé, rum chiaro.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465044/arconti31/fsbzuxlpdbz1thvz5hsi.webp",
@@ -1004,6 +1010,7 @@
       },
       {
         "nome": "Moscow/ London Mule",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Lime fresco, Vodka/Gin, ginger beer.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768296790/arconti31/iswqbwgq7gssmbr7lslc.webp",
@@ -1015,6 +1022,7 @@
       },
       {
         "nome": "My own",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Gin, arancia e campari",
         "disponibile": true,
@@ -1024,6 +1032,7 @@
       },
       {
         "nome": "Negroni",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Bitter, vermouth rosso e gin",
         "disponibile": true,
@@ -1033,6 +1042,7 @@
       },
       {
         "nome": "Pina colada",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Rum bianco, ananas fresco, cocco",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768383865/arconti31/dck2jces7rttfs2xbrwg.webp",
@@ -1043,6 +1053,7 @@
       },
       {
         "nome": "Sbagliato",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Bitter, vermouth rosso, spumante secco",
         "disponibile": true,
@@ -1052,6 +1063,7 @@
       },
       {
         "nome": "Sea breeze",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Vodka, pompelmo, mirtillo",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297095/arconti31/rgrvbyaah7jlvjvuox1i.jpg",
@@ -1063,6 +1075,7 @@
       },
       {
         "nome": "Sex on the beach",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
         "disponibile": true,
@@ -1072,6 +1085,7 @@
       },
       {
         "nome": "Sweet and red",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Rum bianco, lampone, lemonsoda",
         "disponibile": true,
@@ -1081,6 +1095,7 @@
       },
       {
         "nome": "Tequila sunrise",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "descrizione": "Tequila, arancia, granatina",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768466682/arconti31/a4p7fluu6dig3dfnktqf.jpg",
@@ -1091,6 +1106,7 @@
       },
       {
         "nome": "Vodka Tonic/ Lemon",
+        "tipo_slug": "cocktails",
         "prezzo": "8.00",
         "disponibile": true,
         "order": 22,
@@ -1099,6 +1115,7 @@
       },
       {
         "nome": "Waikiki",
+        "tipo_slug": "cocktails",
         "prezzo": "8,00",
         "descrizione": "Vodka e ananas fresco",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
@@ -1111,6 +1128,7 @@
     "Analcolici": [
       {
         "nome": "Arconti summer",
+        "tipo_slug": "analcolici",
         "prezzo": "7,00",
         "descrizione": "Mirtillo, ananas, papaja",
         "disponibile": true,
@@ -1120,6 +1138,7 @@
       },
       {
         "nome": "Gin Tonic Analcolico (Tanqueray) ",
+        "tipo_slug": "analcolici",
         "prezzo": "7.00",
         "disponibile": true,
         "order": 0,
@@ -1128,6 +1147,7 @@
       },
       {
         "nome": "Come on",
+        "tipo_slug": "analcolici",
         "prezzo": "7,00",
         "descrizione": "Pompelmo, ananas, maracuja",
         "disponibile": true,
@@ -1137,6 +1157,7 @@
       },
       {
         "nome": "Cool down",
+        "tipo_slug": "analcolici",
         "prezzo": "7.00",
         "descrizione": "Ananas, sweet and sour, granatina, menta",
         "disponibile": true,
@@ -1146,6 +1167,7 @@
       },
       {
         "nome": "Florida",
+        "tipo_slug": "analcolici",
         "prezzo": "7,00",
         "descrizione": "Pompelmo, arancia, sweet and sour, soda",
         "disponibile": true,
@@ -1155,6 +1177,7 @@
       },
       {
         "nome": "Gallarate beach",
+        "tipo_slug": "analcolici",
         "prezzo": "7,00",
         "descrizione": "Arancia, ananas, sweet and sour, fragola",
         "disponibile": true,
@@ -1164,6 +1187,7 @@
       },
       {
         "nome": "Tropic star",
+        "tipo_slug": "analcolici",
         "prezzo": "7,00",
         "descrizione": "Arancia, maracuja, ananas",
         "disponibile": true,
@@ -1173,6 +1197,7 @@
       },
       {
         "nome": "Spritz analcolico",
+        "tipo_slug": "analcolici",
         "prezzo": "6.00",
         "descrizione": "Spumante dealcolizzato, infuso arancia, Apeol",
         "disponibile": true,
@@ -1182,6 +1207,7 @@
       },
       {
         "nome": "Shirley Temple ",
+        "tipo_slug": "analcolici",
         "prezzo": "7.00",
         "descrizione": "Ginger ale, granatina, ciliegia o limone",
         "disponibile": true,
@@ -1191,6 +1217,7 @@
       },
       {
         "nome": "Mojito Analcolico",
+        "tipo_slug": "analcolici",
         "prezzo": "7,50",
         "descrizione": "Lime, zucchero, menta, Lemon Soda",
         "disponibile": true,
@@ -1202,6 +1229,7 @@
     "Bibite": [
       {
         "nome": "Acqua tonica (Schweppes) ",
+        "tipo_slug": "bibite",
         "prezzo": "4.00",
         "disponibile": true,
         "order": 0,
@@ -1210,8 +1238,9 @@
       },
       {
         "nome": "Ginger ale | Fever-Tree",
+        "tipo_slug": "bibite",
         "prezzo": "4.00",
-        "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante.",
+        "descrizione": "Una bibita dolce e delicata, rispetto alla ginger beer, che è fermentata, torbida, molto speziata e piccante. Da prediligere per qualcosa di fresco ma non invadente! ",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772233864/arconti31/itxuzhlxniyuicnqtvtk.jpg",
         "disponibile": true,
         "order": 0,
@@ -1220,6 +1249,7 @@
       },
       {
         "nome": "Aranciata amara",
+        "tipo_slug": "bibite",
         "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
@@ -1229,6 +1259,7 @@
       },
       {
         "nome": "Chinotto",
+        "tipo_slug": "bibite",
         "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
@@ -1238,6 +1269,7 @@
       },
       {
         "nome": "Coca cola",
+        "tipo_slug": "bibite",
         "prezzo": "4,50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
@@ -1247,6 +1279,7 @@
       },
       {
         "nome": "Coca cola zero",
+        "tipo_slug": "bibite",
         "prezzo": "4,50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
@@ -1256,6 +1289,7 @@
       },
       {
         "nome": "Fanta",
+        "tipo_slug": "bibite",
         "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
@@ -1265,6 +1299,7 @@
       },
       {
         "nome": "Lemonsoda",
+        "tipo_slug": "bibite",
         "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
@@ -1274,6 +1309,7 @@
       },
       {
         "nome": "Red bull",
+        "tipo_slug": "bibite",
         "prezzo": "5,00",
         "descrizione": "Bevanda energetica",
         "formato": "33cl",
@@ -1284,6 +1320,7 @@
       },
       {
         "nome": "Sprite",
+        "tipo_slug": "bibite",
         "prezzo": "4,00",
         "formato": "Lattina 33cl",
         "disponibile": true,
@@ -1293,6 +1330,7 @@
       },
       {
         "nome": "Succhi di frutta",
+        "tipo_slug": "bibite",
         "prezzo": "3,50",
         "descrizione": "Mirtillo, pompelmo, ananas, arancia",
         "formato": "20cl",
@@ -1303,6 +1341,7 @@
       },
       {
         "nome": "Estaté limone",
+        "tipo_slug": "bibite",
         "prezzo": "4.00",
         "disponibile": true,
         "order": 10,
@@ -1311,6 +1350,7 @@
       },
       {
         "nome": "Estaté pesca",
+        "tipo_slug": "bibite",
         "prezzo": "4.00",
         "disponibile": true,
         "order": 11,
@@ -1319,6 +1359,7 @@
       },
       {
         "nome": "Ginger beer | Fever-Tree",
+        "tipo_slug": "bibite",
         "prezzo": "5,00",
         "descrizione": "Aroma di zenzero profondo",
         "disponibile": true,
@@ -1330,6 +1371,7 @@
     "Caffetteria": [
       {
         "nome": "Caffè decaffeinato",
+        "tipo_slug": "caffetteria",
         "prezzo": "2,00",
         "descrizione": "In tazzina",
         "disponibile": true,
@@ -1339,6 +1381,7 @@
       },
       {
         "nome": "Caffè espresso",
+        "tipo_slug": "caffetteria",
         "prezzo": "1,50",
         "descrizione": "In tazzina",
         "disponibile": true,
@@ -1348,6 +1391,7 @@
       },
       {
         "nome": "Caffè shakerato",
+        "tipo_slug": "caffetteria",
         "prezzo": "3,50",
         "descrizione": "Lungo con ghiaccio e zucchero di canna",
         "disponibile": true,
@@ -1357,6 +1401,7 @@
       },
       {
         "nome": "Cappuccino",
+        "tipo_slug": "caffetteria",
         "prezzo": "2,50",
         "disponibile": true,
         "order": 3,
@@ -1365,6 +1410,7 @@
       },
       {
         "nome": "The e tisane",
+        "tipo_slug": "caffetteria",
         "prezzo": "3,00",
         "descrizione": "Selezione",
         "disponibile": true,
@@ -1374,6 +1420,7 @@
       },
       {
         "nome": "Caffè macchiato",
+        "tipo_slug": "caffetteria",
         "prezzo": "2,00",
         "disponibile": true,
         "order": 5,
@@ -1384,6 +1431,7 @@
     "Bollicine": [
       {
         "nome": "Calice prosecco extra dry",
+        "tipo_slug": "bollicine",
         "prezzo": "5.00",
         "descrizione": "Cuvée 21 Millesimato Extra Dry",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630698/arconti31/mbifndz4g1zu6uvzpa8y.jpg",
@@ -1394,6 +1442,7 @@
       },
       {
         "nome": "Valdobbiadene Superiore DOCG Brunei - La Tordera",
+        "tipo_slug": "bollicine",
         "prezzo": "24.00",
         "descrizione": "Veneto - Aromatico, sapido, profumi pera acerba, mela verde",
         "formato": "0,75L",
@@ -1404,6 +1453,7 @@
       },
       {
         "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
+        "tipo_slug": "bollicine",
         "prezzo": "24,00",
         "descrizione": "Dai terreni ripidi e insidiosi e da una lunga sosta sui lieviti più nobili, una bollicina fine ed elegante. In bocca una vibrante energia accompagna sapidità e freschezza, con profumi di pera e mela decisa. Gradazione 11%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384266/arconti31/besbjscngkxq8xutkvxm.webp",
@@ -1415,6 +1465,7 @@
       },
       {
         "nome": "Prosecco Extra Dry Flumen - Tenuta San Giorgio",
+        "tipo_slug": "bollicine",
         "prezzo": "20.00",
         "descrizione": "Treviso, Veneto - Aromi floreali e fruttati - Uve: Glera",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630778/arconti31/xmrs4a5jmpycpra7rvzt.jpg",
@@ -1426,11 +1477,9 @@
       },
       {
         "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
+        "tipo_slug": "bollicine",
         "prezzo": "22,00",
-        "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante.",
-        "Colore": "rosa tenue, pesca Perlage: fine e minuto, elegante.",
-        "Profumo": "sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi.",
-        "Sapore": "al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
+        "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante. Colore: rosa tenue, pesca Perlage: fine e minuto, elegante. Profumo: sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi. Sapore: al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323860/arconti31/okyrfgpkeyzwlmniq8d4.jpg",
         "formato": "0,75L",
         "disponibile": true,
@@ -1440,6 +1489,7 @@
       },
       {
         "nome": "Prosecco Brut Flumen - Tenuta San Giorgio",
+        "tipo_slug": "bollicine",
         "prezzo": "20.00",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630839/arconti31/d5jn7szh4p8wscxqzhj0.png",
         "disponibile": true,
@@ -1449,6 +1499,7 @@
       },
       {
         "nome": "21 Cuvée Millesimato Extra Dry",
+        "tipo_slug": "bollicine",
         "prezzo": "20,00",
         "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
         "formato": "0,75L",
@@ -1459,8 +1510,9 @@
       },
       {
         "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
+        "tipo_slug": "bollicine",
         "prezzo": "22,00",
-        "descrizione": 2023,
+        "descrizione": "2023",
         "disponibile": true,
         "order": 7,
         "_filename": "prosecco-doc-millesimato-extra-dry-santorsola.md",
@@ -1470,6 +1522,7 @@
     "Bianchi fermi": [
       {
         "nome": "Gewürztraminer DOC Trentino - Cantina d'Isera",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "24.00",
         "descrizione": "Trentino, Italia. Coltivato nelle zone collinari più vocate, riesce a maturare un vino di colore giallo paglierino con riflessi dorati. Il profumo è fruttato-floreale con tipiche note tropicali e di rosa. Al palato è pieno, avvolgente e aromatico. Gradazione 13,5%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384499/arconti31/btxrfmc8t2ahxph0tkro.png",
@@ -1481,8 +1534,9 @@
       },
       {
         "nome": "Traminer Aromatico DOC - Tenuta Villanova",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "22.00",
-        "descrizione": "Friuli Venezia Giulia | 100% Traminer Aromatico",
+        "descrizione": "Friuli Venezia Giulia | 100% Traminer Aromatico Vino bianco secco, fermo e intensamente aromatico, caratterizzato da note di vaniglia, fiori di tiglio e frutta esotica, con un tipico retrogusto amarognolo. Gradazione ",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718612/arconti31/lh3tn3fvd41xslpjq0b8.webp",
         "formato": "0,75 l ",
         "disponibile": true,
@@ -1492,6 +1546,7 @@
       },
       {
         "nome": "Greco 'Janare' - La Guardiense",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "22,00",
         "descrizione": "Il Greco del Sannio \"Janare\" è un vino bianco fresco e dalle note sapide, perfetto da accompagnare a menù di pesce o verdure. Al naso sviluppa note fragranti e tipiche di agrumi, pesca, mela verde, camomilla e sensazioni erbacee. Presenta un corpo equilibrato, limpido e scorrevole, energizzato da una vivace freschezza marina. Gradazione 13%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384604/arconti31/uytm7jpotkw6cjoboxns.jpg",
@@ -1503,8 +1558,9 @@
       },
       {
         "nome": "Falangina del Sannio “Janare” - La Guardiense ",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "20.00",
-        "descrizione": "Un bianco campano di grande intensità, prodotto con uve 100% Falanghina tra i 100-400m slm. Si distingue per il colore giallo paglierino, profumi di frutta (mela verde, ananas) e fiori bianchi, con un gusto fresco, sapido e dal finale agrumato.",
+        "descrizione": "Un bianco campano di grande intensità, prodotto con uve 100% Falanghina tra i 100-400m slm. Si distingue per il colore giallo paglierino, profumi di frutta (mela verde, ananas) e fiori bianchi, con un gusto fresco, sapido e dal finale agrumato. Gradazione 13%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384773/arconti31/btgo4h8kasuwlcmvb3wd.jpg",
         "disponibile": true,
         "order": 2,
@@ -1513,6 +1569,7 @@
       },
       {
         "nome": "Chardonnay Moi IGP - Varvaglione",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "20.00",
         "descrizione": "Puglia - Giallo paglierino, fiori gialli, frutta tropicale. Lo Chardonnay Puglia IGP della linea Moi, prodotto dalla cantina Varvaglione, di Taranto, nasce per offrire un vino elegante e piacevole alla beva, dal profilo leggibile ed equilibrato. Giallo paglierino alla vista, al naso evidenzia intense note fruttate e floreali, con note di frutta tropicale e fiori gialli in evidenza. L’assaggio risulta pieno e generoso, con ritorni agrumati sul finale.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384893/arconti31/xorgm1ytpxqt0vrsapxe.jpg",
@@ -1524,8 +1581,9 @@
       },
       {
         "nome": "Calice di Bianco",
+        "tipo_slug": "bianchi-fermi",
         "prezzo": "6.00",
-        "descrizione": "Calice di bianco a scelta tra Chardonnay o Falanghina.",
+        "descrizione": "Calice di bianco a scelta tra Chardonnay o Falanghina. ",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769718915/arconti31/jnsczkermzws0t4blieh.webp",
         "disponibile": true,
         "order": 4,
@@ -1536,6 +1594,7 @@
     "Vini rossi": [
       {
         "nome": "Calice di rosso",
+        "tipo_slug": "vini-rossi",
         "prezzo": "6.00",
         "descrizione": "Calice a scelta tra Primitivo Salento o Valpolicella Classico DOC (Recchia)",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630330/arconti31/you8qr1scnimmuot8tlq.jpg",
@@ -1546,6 +1605,7 @@
       },
       {
         "nome": "Valpolicella Classico DOC Superiore Masua di Jago 2020 - Recchia",
+        "tipo_slug": "vini-rossi",
         "prezzo": "18.00",
         "descrizione": "Veneto, Italia - Rosso granato, frutti rossi, note floreali - Uve: 65% Corvina, 15% Corvinone, 20% Rondinella",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630427/arconti31/xmjnzglvpt8lexxyic6m.jpg",
@@ -1556,7 +1616,8 @@
         "tipo": "Vini rossi"
       },
       {
-        "nome": "Nebbiolo d'Alba DOC \\\"VinumVitaEst\\\" 2021 - Terre del Barolo",
+        "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
+        "tipo_slug": "vini-rossi",
         "prezzo": "25,00",
         "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
         "formato": "0,75L",
@@ -1568,6 +1629,7 @@
       },
       {
         "nome": "Amarone della Valpolicella DOCG Classico - Recchia",
+        "tipo_slug": "vini-rossi",
         "prezzo": "35.00",
         "descrizione": "Veneto, Italia - Rosso rubino carico, intenso, fruttato - Uve: 55% Corvina, 25% Corvinone, 20% Rondinella",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630560/arconti31/ihxk8vivnvpwa3ivnl1m.png",
@@ -1578,7 +1640,8 @@
         "tipo": "Vini rossi"
       },
       {
-        "nome": "Morellino di Scansano DOCG \\\"A' Luciano\\\" - Santa Lucia",
+        "nome": "Morellino di Scansano DOCG \"A' Luciano\" - Santa Lucia",
+        "tipo_slug": "vini-rossi",
         "prezzo": "20.00",
         "descrizione": "Toscana - Frutta rossa, piacevole bicchiere - Uve: 90% Sangiovese, 10% Alicante",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770630636/arconti31/tplauyszph01iu4dmzvr.jpg",
@@ -1590,9 +1653,9 @@
       },
       {
         "nome": "Primitivo Salento IGP “12 e mezzo” - Varvaglione",
+        "tipo_slug": "vini-rossi",
         "prezzo": "18.00",
-        "descrizione": "Salento, Puglia.",
-        "Gradazione": "12,5%",
+        "descrizione": "Salento, Puglia. Vino di colore rosso molto elegante. PROFUMO Profumo intenso, con sentori fruttati di prugne mature, confettura di ciliegia e note di cacao, appena speziato con un finale che dona note di vaniglia. GUSTO Morbido e ricco di tannini maturi.  Gradazione: 12,5%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1769719827/arconti31/mk2zuzamv5g1rd10ykot.webp",
         "formato": "0,75 l ",
         "disponibile": true,
@@ -1601,177 +1664,104 @@
         "tipo": "Vini rossi"
       }
     ],
-    "Artigianali": [
-      {
-        "nome": "Amara - Rossa Agricola",
-        "prezzo": "5.00",
-        "descrizione": "Sicilia | 30% alc.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774024991/arconti31/x9zv1prhziu5tezlbchw.jpg",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "amara-rossa-agricola.md",
-        "tipo": "Artigianali"
-      },
-      {
-        "nome": "Mandragola - Carlo Alberto",
-        "prezzo": "5.00",
-        "descrizione": "Piemonte | 45% alc.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "amaro-mandragola-carlo-alberto.md",
-        "tipo": "Artigianali"
-      }
-    ],
     "Classici": [
       {
-        "nome": "Amaro Silano",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️",
+        "nome": "Test",
+        "tipo_slug": "classici",
+        "prezzo": "10.00",
+        "descrizione": "test",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773703321/arconti31/btd3dk4ec9bhtzzbullm.png",
         "disponibile": true,
         "order": 0,
-        "_filename": "amaro-silano.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Baileys ",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "baileys.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Branca Menta",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "branca-menta.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Cynar ",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "cynar.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Fernet-Branca",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "fernet-branca.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Jägermeister",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "jagermeister.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Montenegro",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "montenegro.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Ramazzotti ",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "ramazzotti.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Vecchio Amaro del Capo ",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "vecchio-amaro-del-capo.md",
+        "_filename": "test.md",
         "tipo": "Classici"
       }
     ],
     "I nostri Rum": [
       {
-        "nome": "Matusalem Solera 7 Years Old",
-        "prezzo": "10.00",
+        "nome": "Diplomatico - Reserva Exclusiva",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "0.00",
         "disponibile": true,
         "order": 0,
-        "_filename": "matusalem-solera-7-years-old.md",
+        "_filename": "diplomatico-reserva-exclusiva.md",
         "tipo": "I nostri Rum"
+      }
+    ],
+    "Amari e Distillati": [
+      {
+        "nome": "Amari da frigo",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "amari-da-frigo.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Pampero Aniversario",
-        "prezzo": "10.00",
+        "nome": "Amaro del Capo - Caffo",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "pampero-aniversario.md",
-        "tipo": "I nostri Rum"
+        "_filename": "amaro-del-capo-caffo.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Rum Brugal Anejo Superior",
-        "prezzo": "10.00",
+        "nome": "Amaro Silano",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "descrizione": "Calabria | 30% alc. Gusti di liquirizia, arancia, gentiana e camomilla si fondono in un'armonia che è allo stesso tempo robusta e rinfrescante.  La sua finitura è lunga e piacevolmente amaricante, con una complessità che stimola la scoperta continua.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382440/arconti31/jsbxxjelsorbvw602kpz.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "rum-brugal-anejo-superior.md",
-        "tipo": "I nostri Rum"
+        "_filename": "amaro-silano.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Rum Bumbu",
-        "prezzo": "10.00",
+        "nome": "Jegermaister ",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "descrizione": "Germania | 35% alc. Amaro tedesco a base di erbe, fiori, radici e spezie. La sua ricetta segreta include 56 ingredienti, invecchiati per almeno un anno in botti di rovere.  Ha un gusto complesso, con note di agrumi, menta, cannella e spezie, ed è meno amaro di altri amari centroeuropei.  ",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772383095/arconti31/r1qnxfaozlvudnkfp0va.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "rum-bumbu.md",
-        "tipo": "I nostri Rum"
+        "_filename": "jegermaister.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Rum Diplomatico Reserva Exclusiva",
-        "prezzo": "10.00",
+        "nome": "Limoncello",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382471/arconti31/uqszqvhwizl2oedvzmou.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "rum-diplomatico-reserva-exclusiva.md",
-        "tipo": "I nostri Rum"
+        "_filename": "limoncello.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Rum Pampero Especial",
-        "prezzo": "10.00",
+        "nome": "Liquirizia ",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382494/arconti31/b19bp7xfbwbkrc1x2urc.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "rum-pampero-especial.md",
-        "tipo": "I nostri Rum"
+        "_filename": "liquirizia.md",
+        "tipo": "Amari e Distillati"
       },
       {
-        "nome": "Saint James Royal Ambré",
-        "prezzo": "10.00",
+        "nome": "Montenegro - ",
+        "tipo_slug": "amari-distillati",
+        "prezzo": "4.00",
+        "descrizione": "Bologna | 23% alc. Prodotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772382266/arconti31/o06mo83htj3c3yi4wsq8.jpg",
         "disponibile": true,
         "order": 0,
-        "_filename": "saint-james.md",
-        "tipo": "I nostri Rum"
-      },
-      {
-        "nome": "Santa Teresa Anejo Gran Reserva",
-        "prezzo": "10.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "santa-teresa-anejo-gran-reserva.md",
-        "tipo": "I nostri Rum"
-      },
-      {
-        "nome": "Zacapa Solera Gran Reserva",
-        "prezzo": "10.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "zacapa-solera-gran-reserva.md",
-        "tipo": "I nostri Rum"
+        "_filename": "montenegro-.md",
+        "tipo": "Amari e Distillati"
       }
     ]
   }

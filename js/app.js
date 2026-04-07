@@ -91,6 +91,54 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function normalizeSlugValue(value) {
+  if (!value) return '';
+
+  return String(value)
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o')
+    .replace(/[ùúûü]/g, 'u')
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function getFilenameBase(filename) {
+  if (!filename) return '';
+  return String(filename).replace(/\.md$/i, '');
+}
+
+function getCategoryAliases(category) {
+  const aliases = new Set();
+  [category?.nome, category?.slug, category?.folder, getFilenameBase(category?._filename || category?.filename)].forEach(value => {
+    const normalized = normalizeSlugValue(value);
+    if (normalized) aliases.add(normalized);
+  });
+  return [...aliases];
+}
+
+function matchesCategoryValue(value, category) {
+  const normalizedValue = normalizeSlugValue(value);
+  if (!normalizedValue || !category) return false;
+  return getCategoryAliases(category).includes(normalizedValue);
+}
+
+function matchesItemToCategory(item, category, legacyField, stableField) {
+  const stableValue = normalizeSlugValue(item?.[stableField]);
+  if (stableValue) {
+    if (matchesCategoryValue(stableValue, category)) return true;
+    if (normalizeSlugValue(category?.slug) === stableValue) return true;
+  }
+  return matchesCategoryValue(item?.[legacyField], category);
+}
+
+function getCategoryHash(category) {
+  return normalizeSlugValue(category?.slug || category?.nome || '');
+}
+
 // ========================================
 // FORMATTAZIONE PREZZI (Locale IT)
 // ========================================
@@ -175,9 +223,9 @@ async function loadAllData() {
       if (initialHash) {
         const category = findCategoryBySlug(initialHash);
         if (category) {
-          showCategory(category.name, category.type);
+          showCategory(category.name, category.type, { skipHistory: true });
         } else {
-          showCategoriesView();
+          showCategoriesView({ skipHistory: true });
         }
       } else {
         showCategoriesView();
@@ -244,9 +292,9 @@ async function loadAllData() {
     if (initialHash) {
       const category = findCategoryBySlug(initialHash);
       if (category) {
-        showCategory(category.name, category.type);
+        showCategory(category.name, category.type, { skipHistory: true });
       } else {
-        showCategoriesView();
+        showCategoriesView({ skipHistory: true });
       }
     } else {
       showCategoriesView();
@@ -291,20 +339,21 @@ function hideLoading() {
 
 // Helper: get subcategories of a parent category
 function getSubcategories(parentSlug) {
-  return categoriesData.filter(c => c.parent_category === parentSlug);
+  const normalizedParent = normalizeSlugValue(parentSlug);
+  return categoriesData.filter(c => normalizeSlugValue(c.parent_category) === normalizedParent);
 }
 
 // Helper: count products for a category (including subcategories)
 function countCategoryProducts(cat) {
   let count = 0;
   if (cat.tipo_menu === 'food') {
-    count = foodData.filter(f => f.category === cat.nome && f.disponibile !== false).length;
+    count = foodData.filter(f => matchesItemToCategory(f, cat, 'category', 'category_slug') && f.disponibile !== false).length;
   } else {
     // Beers
-    count = beersData.filter(b => b.sezione === cat.nome && b.disponibile !== false).length;
+    count = beersData.filter(b => matchesItemToCategory(b, cat, 'sezione', 'sezione_slug') && b.disponibile !== false).length;
     // Beverages
     if (count === 0) {
-      count = beveragesData.filter(b => b.tipo === cat.nome && b.disponibile !== false).length;
+      count = beveragesData.filter(b => matchesItemToCategory(b, cat, 'tipo', 'tipo_slug') && b.disponibile !== false).length;
     }
   }
   // Add subcategory products
@@ -315,17 +364,18 @@ function countCategoryProducts(cat) {
 
 // Helper: determine type for a beverage category
 function resolveBevType(cat) {
-  if (beersData.some(b => b.sezione === cat.nome)) return 'beer';
+  if (beersData.some(b => matchesItemToCategory(b, cat, 'sezione', 'sezione_slug'))) return 'beer';
   return 'beverage';
 }
 
-function showCategoriesView() {
+function showCategoriesView(options = {}) {
+  const { skipHistory = false } = options;
   currentView = 'home';
   currentCategory = null;
   currentCategoryType = null;
   
   // Aggiorna URL senza hash
-  if (window.location.hash) {
+  if (!skipHistory && window.location.hash) {
     history.pushState(null, '', window.location.pathname);
   }
   
@@ -410,14 +460,18 @@ function createCategoryCard(cat, count, type) {
   `;
 }
 
-function showCategory(categoryName, type) {
+function showCategory(categoryName, type, options = {}) {
+  const { skipHistory = false } = options;
   currentView = 'detail';
   currentCategory = categoryName;
   currentCategoryType = type;
   
   // Aggiorna URL con hash per permettere refresh e condivisione
-  const slug = slugifyCategory(categoryName);
-  history.pushState({ category: categoryName, type: type }, '', `#${slug}`);
+  const category = categoriesData.find(cat => cat.nome === categoryName);
+  const slug = category ? getCategoryHash(category) : slugifyCategory(categoryName);
+  if (!skipHistory) {
+    history.pushState({ category: categoryName, type: type }, '', `#${slug}`);
+  }
   
   document.getElementById('breadcrumb').style.display = 'flex';
   document.getElementById('categories-view').style.display = 'none';
@@ -434,11 +488,11 @@ function showCategory(categoryName, type) {
     // Also include direct products of the parent (if any)
     let directItems = [];
     if (type === 'beer') {
-      directItems = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
+      directItems = beersData.filter(b => matchesItemToCategory(b, thisCat, 'sezione', 'sezione_slug') && b.disponibile !== false);
     } else if (type === 'beverage') {
-      directItems = beveragesData.filter(b => b.tipo === categoryName && b.disponibile !== false);
+      directItems = beveragesData.filter(b => matchesItemToCategory(b, thisCat, 'tipo', 'tipo_slug') && b.disponibile !== false);
     } else if (type === 'food') {
-      directItems = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
+      directItems = foodData.filter(f => matchesItemToCategory(f, thisCat, 'category', 'category_slug') && f.disponibile !== false);
     }
     directItems.sort((a, b) => (a.order || 0) - (b.order || 0));
 
@@ -488,11 +542,11 @@ function showCategory(categoryName, type) {
     let items = [];
 
     if (type === 'beer') {
-      items = beersData.filter(b => b.sezione === categoryName && b.disponibile !== false);
+      items = beersData.filter(b => matchesItemToCategory(b, thisCat, 'sezione', 'sezione_slug') && b.disponibile !== false);
     } else if (type === 'beverage') {
-      items = beveragesData.filter(b => b.tipo === categoryName && b.disponibile !== false);
+      items = beveragesData.filter(b => matchesItemToCategory(b, thisCat, 'tipo', 'tipo_slug') && b.disponibile !== false);
     } else if (type === 'food') {
-      items = foodData.filter(f => f.category === categoryName && f.disponibile !== false);
+      items = foodData.filter(f => matchesItemToCategory(f, thisCat, 'category', 'category_slug') && f.disponibile !== false);
     }
 
     // Ordina per order
@@ -524,11 +578,7 @@ function showCategory(categoryName, type) {
  * Converte il nome categoria in uno slug URL-friendly
  */
 function slugifyCategory(name) {
-  return name.toString().toLowerCase().trim()
-    .replace(/\s+/g, '-')
-    .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
-    .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
-    .replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
+  return normalizeSlugValue(name);
 }
 
 /**
@@ -537,16 +587,16 @@ function slugifyCategory(name) {
 function findCategoryBySlug(slug) {
   if (!slug) return null;
   
-  const normalizedSlug = slug.toLowerCase();
+  const normalizedSlug = normalizeSlugValue(slug);
   
   // Cerca in tutte le categorie
   for (const cat of categoriesData) {
-    if (slugifyCategory(cat.nome) === normalizedSlug) {
+    if (getCategoryAliases(cat).includes(normalizedSlug)) {
       // Determina il tipo
       let type = 'food';
       if (cat.tipo_menu === 'beverage') {
         // Controlla se è birra o altra bevanda
-        const isBeer = beersData.some(b => b.sezione === cat.nome);
+        const isBeer = beersData.some(b => matchesItemToCategory(b, cat, 'sezione', 'sezione_slug'));
         type = isBeer ? 'beer' : 'beverage';
       }
       return { name: cat.nome, type: type };
@@ -565,7 +615,7 @@ function handleHashNavigation() {
   if (!hash) {
     // Nessun hash, mostra home
     if (currentView !== 'home') {
-      showCategoriesView();
+      showCategoriesView({ skipHistory: true });
     }
     return;
   }
@@ -574,10 +624,10 @@ function handleHashNavigation() {
   const category = findCategoryBySlug(hash);
   
   if (category) {
-    showCategory(category.name, category.type);
+    showCategory(category.name, category.type, { skipHistory: true });
   } else {
     // Hash non valido, vai alla home
-    showCategoriesView();
+    showCategoriesView({ skipHistory: true });
   }
 }
 
@@ -781,7 +831,7 @@ document.addEventListener('DOMContentLoaded', loadAllData);
 window.addEventListener('popstate', (event) => {
   if (event.state && event.state.category) {
     // Naviga alla categoria salvata nello state
-    showCategory(event.state.category, event.state.type);
+    showCategory(event.state.category, event.state.type, { skipHistory: true });
   } else {
     // Nessuno state o hash vuoto = home
     handleHashNavigation();

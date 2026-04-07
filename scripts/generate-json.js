@@ -1,17 +1,14 @@
 const fs = require('fs');
 const path = require('path');
-const yaml = require('js-yaml');
+const {
+  BASE_BEVERAGE_CATEGORIES,
+  getFilenameBase,
+  getCategoryFolder,
+  normalizeSlug,
+  parseFrontmatter
+} = require('../lib/menu-utils');
 
-// Single source of truth for beverage categories (must match save-data.js)
-const BEVERAGE_CATEGORIES = [
-  { name: 'Cocktails', folder: 'cocktails' },
-  { name: 'Analcolici', folder: 'analcolici' },
-  { name: 'Bibite', folder: 'bibite' },
-  { name: 'Caffetteria', folder: 'caffetteria' },
-  { name: 'Bollicine', folder: 'bollicine' },
-  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
-  { name: 'Vini rossi', folder: 'vini-rossi' }
-];
+const buildErrors = [];
 
 // Processa categorie dinamiche PRIMA di tutto
 function loadCategories() {
@@ -24,9 +21,8 @@ function loadCategories() {
     files.forEach(file => {
       try {
         const content = fs.readFileSync(path.join(categoriesDir, file), 'utf8');
-        const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
-        if (match) {
-          const cat = yaml.load(match[1]);
+        const cat = parseFrontmatter(content);
+        if (cat) {
           cat._filename = file;
           // INCLUDE TUTTE LE CATEGORIE nel JSON
           // Il filtro visibile deve essere fatto dal frontend (app.js), non qui.
@@ -35,6 +31,7 @@ function loadCategories() {
         }
       } catch (error) {
         console.error(`Errore nel processare categoria ${file}:`, error.message);
+        buildErrors.push(`categorie/${file}: ${error.message}`);
       }
     });
   }
@@ -47,6 +44,25 @@ function loadCategories() {
 const dynamicCategories = loadCategories();
 console.log(`📁 Caricate ${dynamicCategories.length} categorie dinamiche`);
 
+function getCategoryAliases(category = {}) {
+  const aliases = new Set();
+  [category.nome, category.slug, category.folder, getFilenameBase(category._filename)].forEach(value => {
+    const normalizedValue = normalizeSlug(value);
+    if (normalizedValue) aliases.add(normalizedValue);
+  });
+  return [...aliases];
+}
+
+function findCategoryByReference(categories = [], value, typeMenu = null) {
+  const normalizedValue = normalizeSlug(value);
+  if (!normalizedValue) return null;
+
+  return categories.find(category =>
+    (!typeMenu || category.tipo_menu === typeMenu) &&
+    getCategoryAliases(category).includes(normalizedValue)
+  ) || null;
+}
+
 function processCollection(dirPath, itemType) {
   const items = [];
   
@@ -56,36 +72,15 @@ function processCollection(dirPath, itemType) {
     files.forEach(file => {
       try {
         const content = fs.readFileSync(path.join(dirPath, file), 'utf8');
-        
-        // Estrai i dati dal frontmatter usando yaml
-        const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
-        if (match) {
-          const frontmatter = match[1];
-          const item = yaml.load(frontmatter);
-          
-          // Converti i tipi
-          // IMPORTANTE: Non usare parseFloat su prezzo! Tronca i decimali con virgola italiana (es: "9,50" diventa 9)
-          // Mantieni il prezzo come stringa per preservare la formattazione originale
-          if (item.prezzo !== undefined && item.prezzo !== null) {
-            // Normalizza: converti in stringa se è numero, mantieni stringa se già stringa
-            item.prezzo = String(item.prezzo);
-          }
-          if (item.disponibile !== undefined) item.disponibile = item.disponibile === true || item.disponibile === 'true';
-          if (item.order) item.order = parseInt(item.order);
-          
-          // Assicurati che tags e allergeni siano array
-          if (item.tags && !Array.isArray(item.tags)) {
-            item.tags = [item.tags];
-          }
-          if (item.allergeni && !Array.isArray(item.allergeni)) {
-            item.allergeni = [item.allergeni];
-          }
-          
+
+        const item = parseFrontmatter(content);
+        if (item) {
           item._filename = file;
           items.push(item);
         }
       } catch (error) {
         console.error(`Errore nel processare ${file}:`, error.message);
+        buildErrors.push(`${path.relative(path.join(__dirname, '..'), path.join(dirPath, file))}: ${error.message}`);
       }
     });
   }
@@ -99,6 +94,17 @@ function processCollection(dirPath, itemType) {
 // Processa birre
 const beersDir = path.join(__dirname, '../beers');
 const beers = processCollection(beersDir, 'beer');
+const beverageCategoriesList = dynamicCategories.filter(c => c.tipo_menu === 'beverage');
+
+beers.forEach(beer => {
+  const match = findCategoryByReference(beverageCategoriesList, beer.sezione, 'beverage');
+  if (match) {
+    beer.sezione = match.nome;
+    beer.sezione_slug = normalizeSlug(beer.sezione_slug || match.slug || match.nome);
+  } else if (beer.sezione_slug) {
+    beer.sezione_slug = normalizeSlug(beer.sezione_slug);
+  }
+});
 
 // Raggruppa birre per sezione
 const beersBySection = {};
@@ -113,6 +119,17 @@ beers.forEach(beer => {
 // Processa food (NUOVO)
 const foodDir = path.join(__dirname, '../food');
 const foodItems = processCollection(foodDir, 'food');
+const foodCategoriesList = dynamicCategories.filter(c => c.tipo_menu === 'food');
+
+foodItems.forEach(item => {
+  const match = findCategoryByReference(foodCategoriesList, item.category, 'food');
+  if (match) {
+    item.category = match.nome;
+    item.category_slug = normalizeSlug(item.category_slug || match.slug || match.nome);
+  } else if (item.category_slug) {
+    item.category_slug = normalizeSlug(item.category_slug);
+  }
+});
 
 // Raggruppa food per categoria
 const foodByCategory = {};
@@ -145,17 +162,20 @@ dynamicCategories
 // Processa tutte le categorie di bevande (hardcoded + dinamiche da categorie/*.md)
 
 // Discover dynamic beverage folders from categories
-const knownFolders = new Set(BEVERAGE_CATEGORIES.map(c => c.folder));
-const allBeverageFolders = [...BEVERAGE_CATEGORIES];
+const knownFolders = new Set(BASE_BEVERAGE_CATEGORIES.map(c => c.folder));
+const allBeverageFolders = BASE_BEVERAGE_CATEGORIES.map(category => ({
+  ...category,
+  slug: category.folder
+}));
 
 dynamicCategories
   .filter(c => c.tipo_menu === 'beverage')
   .forEach(cat => {
-    const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
-    if (slug && !knownFolders.has(slug)) {
-      allBeverageFolders.push({ name: cat.nome, folder: slug });
-      knownFolders.add(slug);
-      console.log(`📦 Dynamic beverage folder discovered: ${slug} → "${cat.nome}"`);
+    const folder = getCategoryFolder(cat);
+    if (folder && !knownFolders.has(folder)) {
+      allBeverageFolders.push({ name: cat.nome, folder, slug: normalizeSlug(cat.slug || cat.nome) });
+      knownFolders.add(folder);
+      console.log(`📦 Dynamic beverage folder discovered: ${folder} → "${cat.nome}"`);
     }
   });
 
@@ -169,6 +189,7 @@ allBeverageFolders.forEach(category => {
   // Aggiungi il tipo a ogni item
   items.forEach(item => {
     item.tipo = category.name;
+    item.tipo_slug = normalizeSlug(item.tipo_slug || category.slug || category.folder || category.name);
   });
   
   if (items.length > 0) {
@@ -182,6 +203,12 @@ const allBeverages = [];
 Object.values(beveragesByType).forEach(items => {
   allBeverages.push(...items);
 });
+
+if (buildErrors.length > 0) {
+  console.error('\n❌ Build interrotta: trovati file markdown non validi.');
+  buildErrors.forEach(error => console.error(`- ${error}`));
+  process.exit(1);
+}
 
 // Scrivi i file JSON
 const beersOutput = { 

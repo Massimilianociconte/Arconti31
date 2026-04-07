@@ -1,34 +1,24 @@
 {
   "beers": [
     {
-      "nome": "Backdoor - Orso Verde",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.00",
-      "descrizione": "Amara, Secca, Controversa. | 40 IBU",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650231/arconti31/orgctx4t8ywmtfbbwsgy.jpg",
-      "formato": "0,4 l ",
-      "gradazione": "5%",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "backdoor-orso-verde.md"
-    },
-    {
       "nome": "Bibock- Birrificio Italiano",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
       "descrizione": "La rossa “non rossa”, gustosa, originale, ribelle. Bibock è il nostro omaggio sui generis alle creazioni più vigorose della scuola germanica: le Bock, nome che deriva dalla deformazione di Einbeck, la città dove è nato questo stile di birra, ma anche “caprone” in lingua tedesca. Bibock è eleganza, prepotenza, un’entrata a gamba tesa di sorprendente gentilezza, in bilico tra amaro e miele, accattivante e difficile da addomesticare. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112645/arconti31/vxmke9qdbyvs5xqyyb9m.jpg",
       "formato": "0,4 l",
       "gradazione": "6,2",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "bibock-birrificio-italiano.md"
     },
     {
       "nome": "Bloemenbier - De Proefbrouwerij",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "6.50",
-      "descrizione": "La caratteristica principale di questa birra è che viene brassata con due tipi di fiori,mantenuti segreti dai produttori.",
+      "descrizione": "La caratteristica principale di questa birra è che viene brassata con due tipi di fiori,mantenuti segreti dai produttori.\nCome si può immaginare,dato l' utilizzo di fiori, è una birra dal gusto molto dolce.  Al naso si percepiscono note di caramello, malto, miele d'acacia e sentori floreali che ricordano la primavera, mentre al palato emergono note fruttate che donano a questa birra dolce e vellutata un leggero retrogusto amarognolo.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769117725/arconti31/rjvpeqc59zikmtusg0ii.jpg",
       "formato": "33 cl",
       "disponibile": true,
@@ -36,11 +26,23 @@
       "_filename": "bloemenbier-de-proefbrouwerij-1.md"
     },
     {
+      "nome": "Chimay chiara",
+      "prezzo": "6,00",
+      "descrizione": "Birra belga chiara trapista",
+      "formato": "33cl",
+      "gradazione": "7%",
+      "disponibile": true,
+      "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
+      "order": 0,
+      "_filename": "chimay-chiara.md"
+    },
+    {
       "nome": "Chouffe- d’Achouffe",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "6.00",
-      "descrizione": "Belgian Strong Ale chiara",
-      "Bouquet olfattivo molto ampio": "speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.",
+      "descrizione": "Belgian Strong Ale chiara  Il colore è molto elegante, un dorato opalescente con riflessi arancioni con una e schiuma bianca molto cremosa. Bouquet olfattivo molto ampio: speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.  Al palato il calore morbido ed avvolgente dal notevole grado alcolico che viene ottimamente bilanciato dall'amaro del luppolo e da una sensazione finale di frutta più acerba ed aspra. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769119165/arconti31/v7cwadecrgu07xvd4elw.jpg",
       "formato": "33 cl",
       "gradazione": "8%",
@@ -49,13 +51,14 @@
       "_filename": "chouffe-dachouffe.md"
     },
     {
-      "nome": "Il cobra - Birrificio Railroad ",
+      "nome": "Ritorno al futuro - Birrificio Italiano",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
-      "descrizione": "Modern Italian Pilsner. Il Cobra” era il soprannome di Sandro Tovalieri, centravanti diventato celebre nelle file del Bari. La birra a lui dedicata è in stile Lager Pilsla prima birra brassata a bassa fermentazione. Birra di facile beva, ideale per muovere i primi passi verso il mondo artigianale. Gluten Free",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774199411/arconti31/jlr99dc0bkiykm4c8he0.png",
+      "descrizione": "Modern Italian Pilsner. Parliamo di monoluppolo Hersbrucker e doppio dry hopping, profumo erbaceo dai contorni terrosi che non ci farà posare il bicchiere. Doppio Day Hop Ping con luppolo Hersburcker ",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423089/arconti31/qzcijmvdncrrs22cqb9f.jpg",
       "formato": "0,4 l",
-      "gradazione": "5 %",
+      "gradazione": "5,2%",
       "disponibile": true,
       "order": 0,
       "_filename": "classe-96-b-lambrate-e-b-italiano.md"
@@ -63,30 +66,20 @@
     {
       "nome": "Cowboy Kirk - 50&50",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "BLACK IPA | IBU 45",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772487415/arconti31/o3fzdxeyggocrsxkfrjw.jpg",
       "formato": "0,4",
       "gradazione": "5,5%",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "cowboy-kirk.md"
     },
     {
-      "nome": "DANKO - 50&50",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7.00",
-      "descrizione": "Baltic Porter | IBU 25",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650252/arconti31/rjew5ngixvq1jtywoj3q.png",
-      "formato": "0,4 l ",
-      "gradazione": "8%",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "danko-5050.md"
-    },
-    {
       "nome": "Double Fisto - Toccalmatto",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Double Fisto è una birra artigianale iconica e dal carattere deciso, pensata per rappresentare al meglio lo stile Double IPA attraverso intensità aromatica e struttura importante.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768516742/arconti31/w79nrvmnpxlthurfvnhd.jpg",
@@ -99,6 +92,7 @@
     {
       "nome": "Extra Hop - Birrificio Italiano",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
       "descrizione": "DDH PILS",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770932137/arconti31/ayhcbw9jquegtgn7usih.png",
@@ -111,6 +105,7 @@
     {
       "nome": "Fai Tu - Due Tocchi",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
       "descrizione": "Bitter tradizionale inglese e ambrata caratterizzata da un amaro equilibrato ma presente, corpo leggero, bassa carbonazione e buona bevibilità, con note di malto (pane, biscotto, caramello) e luppoli erbacei/floreali.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg",
@@ -121,20 +116,9 @@
       "_filename": "fai-tu-due-tocchi.md"
     },
     {
-      "nome": "Yaki - Birra dell’Eremo",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.50",
-      "descrizione": " DDH IPA (sabro e mosaic i luppoli): naso tropicale esplosivo con tanto cocco, maracuja, scorza di cedro, mandarancio, ananas. Tutto potente e nitido, privo di qualsivoglia rumore olfattivo. In bocca è piena ma non grassa (Vermont il lievito, avena e frumento maltato i cereali in più), la corsa gustativa è ben registrata, spigliata, con acidità, dolcezza e amaro a passeggiare mano nella mano. 6° alc.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774642772/arconti31/bca69azlmblyiijx8nlg.webp",
-      "formato": "0,4 l  ",
-      "gradazione": "6,5% ",
-      "disponibile": false,
-      "order": 0,
-      "_filename": "fionda-due-tocchi.md"
-    },
-    {
       "nome": "2026 - Cr/Ak",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "DOUBLE IPA DDH | Edizione Limitata Non Filtrata",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772493473/arconti31/bt5fvpwtfpvdipkwewar.jpg",
@@ -147,6 +131,7 @@
     {
       "nome": "Hibernatus - Lupulus",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
@@ -159,30 +144,33 @@
     {
       "nome": "Glaciale - Birrificio dell’Eremo",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Imperial IPA Glaciale una birra artigianale in stile Imperial IPA con aggiunta di miele biologico, dal colore ambrato scuro con schiuma beige fine e persistente. Al naso complessa con note erbacee e balsamiche, con chiari sentori di agrumi e legno di mandarino. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423516/arconti31/qzoerlsxsjwfoy6rcxck.webp",
       "formato": "0,4 l",
       "gradazione": "7,5%",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "jap-winter-edition-birrificio-abruzzese.md"
     },
     {
       "nome": "Koral - Hammer",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "IPA prodotta con i migliori luppoli Neozelandesi, Australiani, Giapponesi ed Americani, tutti provenienti dalla zona del Pacifico. Di color ambrato, sia al naso che al palato i sentori sono intensi, si percepiscono note esplosive di frutta gialla e tropicale, agrumi e balsamiche tutte messe in evidenza da un delicato profilo maltato.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772824482/arconti31/tdbq4smk0khpsraxiqgw.jpg",
       "formato": "0,4 L",
       "gradazione": "6,3%",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "koral-hammer.md"
     },
     {
       "nome": "La Grigna - Lariano ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "PILS",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
@@ -195,42 +183,20 @@
     {
       "nome": "London Pride - Chiswick",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
       "descrizione": "Vera e propria icona del birrificio di Chiswick, questa Bitter è caratterizzata da un colore dorato intenso, da un corpo medio e presenta un profumo luppolato e maltato. Il sapore ricalca sostanzialmente i sentori, con una piacevole luppolatura sul finale.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771180270/arconti31/qtvj9bjg27gdrritvtcj.png",
       "formato": "0,4 L ",
       "gradazione": "4,7% ",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "london-pride-chiswick.md"
     },
     {
-      "nome": "Maracaibo - Orso Verde ",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.00",
-      "descrizione": "Session IPA",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650328/arconti31/jua1v8aczxmib33jtc9z.jpg",
-      "formato": "0,4 l ",
-      "gradazione": "3,5 % ",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "maracaibo-orso-verde.md"
-    },
-    {
-      "nome": "McTiss - Railroad ",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.50",
-      "descrizione": "Direttamente da Seregno arriva una rossa, color rubino brillante e con una schiuma compatta color crema.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219623/arconti31/iovae7wm4jympsikd1vu.jpg",
-      "formato": "0,4 l ",
-      "gradazione": "5,5%",
-      "disponibile": false,
-      "order": 0,
-      "_filename": "mctiss-railroad.md"
-    },
-    {
       "nome": "Naima - Cr/Ak",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "DDH IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
@@ -243,6 +209,7 @@
     {
       "nome": "New Zealand - Crak (SENZA GLUTINE) ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Abbondantemente luppolata con luppoli neozelandesi, al naso sprigiona tutto il suo dolce e intenso aroma tropicale e un delicato citrico. In bocca ha una grande morbidezza, seguita da dolci aromi fruttati (mango, pesca, melone) che spostano in secondo piano il corpo alcolico piuttosto sostenuto, mentre l’amarezza è morbida e ben bilanciata dalla nota fruttata e maltata.Nella grafica il giallo della frutta a polpa gialla si fonde al nero, il colore iconico della nazionale neozelandese di rugby.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770589309/arconti31/rcpwtxbgjncy1orizftp.jpg",
@@ -253,14 +220,14 @@
       "_filename": "new-zealand-crak-senza-glutine.md"
     },
     {
-      "nome": "Another Sunset - Birrificio EAST Side",
+      "nome": "Nocturnum - Delirium",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
-      "descrizione": " Italian Grape Ale.",
-      "Birra realizzata con l'aggiunta di una frazione di mosto d'uva (o più raramente uva in forma di frutto) aggiunto durante il processo produttivo. In realtà però questa birra è per certi versi anche assimilabile alla famiglia delle Fruit Beer, generica denominazione che indica birre brassate con l'impiego di frutta": "nella fattispecie la ricetta prevede l'aggiunta di frutti di bosco",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774906567/arconti31/nvmgmevdlburksxmeb8n.png",
+      "descrizione": "Dark Belgian Strong Ale  Aroma composto da caramello, caffè e cioccolato, sono presenti varie spezie del posto come liquerizia, coriandolo, rovere e scorza d’arancio.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772323383/arconti31/fj25dbbwytqlovafdipj.png",
       "formato": "0,4",
-      "gradazione": "6,6%",
+      "gradazione": "8,5%",
       "disponibile": true,
       "order": 0,
       "_filename": "nocturna-delirium.md"
@@ -268,6 +235,7 @@
     {
       "nome": "Ocata - Garage ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "Session IPA",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772824597/arconti31/cbyf3ppqdxz1pnjn5bv8.jpg",
@@ -280,6 +248,7 @@
     {
       "nome": "La Morte Sua - Kashmir",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Double IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179262/arconti31/z1ag9wvnzafuauywz2rb.png",
@@ -290,44 +259,22 @@
       "_filename": "perfect-cashmere-crak.md"
     },
     {
-      "nome": "Pesi Massimi - EastSide",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7.00",
-      "descrizione": "Belgian Tripel",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219638/arconti31/l91aejcdl2rmivdip6bx.png",
-      "formato": "0,4 L ",
-      "gradazione": "9% ",
-      "disponibile": false,
-      "order": 0,
-      "_filename": "pesi-massimi-eastside.md"
-    },
-    {
       "nome": "Wabi - Orso Verde",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
-      "descrizione": "Slovenia Golden Ale",
+      "descrizione": "Slovenia Golden Ale  La Wabi è una Golden Ale dal colore dorato e schiuma bianca e persistente. La selezione di luppoli sloveni, tra cui Styrian Dana, Styrian Golding e Aurora, regala al naso un bouquet di aromi che evocano fiori di campo e fieno appena falciato, arricchiti da sottili accenni di limone",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773435880/arconti31/o4hznejxgo49vdo0kg6z.webp",
       "formato": "0,4",
       "gradazione": "5,3%",
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
       "_filename": "pizzica-salento.md"
     },
     {
-      "nome": "Poculator",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "6.50",
-      "descrizione": "Poculator - dopplebock è una birra scura a bassa gradazione, con una notevole persistenza di note tostate e sentori di liquirizia.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775238990/arconti31/gazkapsjtfn18cqdecn3.jpg",
-      "formato": "0,4",
-      "gradazione": "7,4",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "poculator.md"
-    },
-    {
       "nome": "Profanator - Shire ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "DOPPELBOCK",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588993/arconti31/ju7a2ddxbnpzuxcbq1uf.jpg",
@@ -340,6 +287,7 @@
     {
       "nome": "Taribo- Hammer ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Double IPA una birra estremamente luppolata, dal colore ramato leggero e dal tenore alcolico importante. Ispirata alle Double IPA californiane, ai malti viene aggiunto destrosio, per rendere la birra particolarmente secca e per far emergere al meglio le note aromatiche intense dei luppoli americani utilizzati (Simcoe, Citra, Amarillo).",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772128824/arconti31/jxctyd0k380eztjapd2r.png",
@@ -352,8 +300,9 @@
     {
       "nome": "Rodenbach Vintage 2018",
       "sezione": "Birre speciali in bottiglia",
+      "sezione_slug": "birre-speciali-bottiglia",
       "prezzo": "12.00",
-      "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente.",
+      "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente. Al naso e al palato la spuntatura acida si fa subito sentire, mela verde aspra, seguito da un bouquet dolce, caramello, miele ma anche fragolina di bosco, oltre al miele e alla quercia.  Il retrogusto comunque rimane fruttato asprigno, ma asciutto e pulito.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769115731/arconti31/r1dc63cafbqlham1rlti.jpg",
       "formato": "37.5 cl",
       "gradazione": "7%",
@@ -364,6 +313,7 @@
     {
       "nome": "Silvio’s - 50&50",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "Morbida e dalla semplice beva, Silvio's è una STOUT arricchita con fiocchi d'avena e luppolata con Ernst e Mandarina Bavaria. Dall'elegante aspetto scuro, nera nel bicchiere con schiuma color nocciola, i sentori sono morbidi e delicati (note di malto e cioccolato, protagoniste al naso ed al palato) a cui si aggiungono lievi sfumature luppolate nel finale.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769114652/arconti31/xs3jrauemc9nye3owx8l.jpg",
@@ -376,6 +326,7 @@
     {
       "nome": "Spiga di Legno - Legnone ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "Golden Ale",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770584628/arconti31/xv0ykgfro8dr7tici7bj.jpg",
@@ -388,8 +339,9 @@
     {
       "nome": "Stai seregno - Railroad ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
-      "descrizione": "SAISON",
+      "descrizione": "SAISON  È una birra artigianale chiara, di colore paglierino.  Dona note erbacee, floreali (artemisia, sambuco) e sentori di spezie come pepe e ginepro. Il corpo è leggero con partenza morbida, evoluzione secca e un amaricato moderato.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772310608/arconti31/hzbiegrsjsiustjd8svn.jpg",
       "formato": "0,4",
       "gradazione": "5,8",
@@ -400,6 +352,7 @@
     {
       "nome": "Sunshine Valley - Bierol",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "West Coast IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588929/arconti31/rascn4s7nphud5arxb1i.jpg",
@@ -410,32 +363,9 @@
       "_filename": "sunshine-valley-bierol.md"
     },
     {
-      "nome": "Tempura Crunch - Rebel’s",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7.00",
-      "descrizione": "Asian NEIPA",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1775160041/arconti31/t6gmbophdk7wm3b5xmbq.jpg",
-      "formato": "0,4 l ",
-      "gradazione": "6%",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "tempura-crunch-rebels.md"
-    },
-    {
-      "nome": "True - Orso verde",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7.00",
-      "descrizione": "La nostra DDH American Double IPA. Il metodo Double Dry Hopping, prevede l’aggiunta di luppoli in due volte durante la fermentazione, senza bollitura, per intensificare aroma e gusto senza aumentare l’amaro. True ne è un esempio perfetto, con un aroma marcato di luppolo americano e un tocco di zucchero candito che la rende morbida, mascherando l’alta gradazione alcolica.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775239428/arconti31/v4bg8pnfnvbvpk2p6rjt.jpg",
-      "formato": "0,4",
-      "gradazione": "8,5",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "true-orso-verde.md"
-    },
-    {
       "nome": "United - Birrificio 50&50",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "DDH West Coast IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772226963/arconti31/wxbfojjkkztpsjcatv0q.png",
@@ -446,20 +376,9 @@
       "_filename": "united-birrificio-5050.md"
     },
     {
-      "nome": "Vertigo - Orso Verde",
-      "sezione": "Birre artigianali alla spina a rotazione",
-      "prezzo": "7.00",
-      "descrizione": "Heller Bock | IBU 25",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774818433/arconti31/thssmt4774bhlc2znan3.webp",
-      "formato": "0,4 l ",
-      "gradazione": "7%",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "vertigo-orso-verde.md"
-    },
-    {
       "nome": "Wave Runner - Hammer",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "IPA",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179719/arconti31/fnxzbje0yhbcwlfj66rf.jpg",
@@ -472,6 +391,7 @@
     {
       "nome": "Lager Hell - Ayinger",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "6.00",
       "descrizione": "Una lager bavarese (Helles) dal colore biondo dorato, molto beverina e dissetante, caratterizzata da un gusto morbido e maltato con note di miele, cereali e una leggera venatura erbacea/floreale data dal luppolo.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768339018/arconti31/z9jk81oifcetqasxnas2.webp",
@@ -484,6 +404,7 @@
     {
       "nome": "Guinness",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "7,00",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765440474/arconti31/zyktbcqupldxu7j1vucy.jpg",
       "formato": "50cl",
@@ -495,8 +416,9 @@
     {
       "nome": "Rochefort",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
-      "descrizione": "Dal colore giallo dorato e dalla bella schiuma bianca, la Rochefort Tripel Extra sprigiona note agrumate insieme alla pesca e banana, accompagnate da note speziate tipiche dello stile.",
+      "descrizione": "Dal colore giallo dorato e dalla bella schiuma bianca, la Rochefort Tripel Extra sprigiona note agrumate insieme alla pesca e banana, accompagnate da note speziate tipiche dello stile.  In bocca è ricca e complessa, con gli aromi maltati in primo piano, morbida e vellutata.  La robusta gradazione alcolica rimane nell’ombra e, nonostante la complessità di aromi, la Rochefort Extra è una birra di facile approccio.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768322677/arconti31/r9fbjavkn5cfretisrrv.webp",
       "formato": "33 cl",
       "gradazione": "7,5",
@@ -507,8 +429,9 @@
     {
       "nome": "Bräuweisse - Ayinger",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "7.00",
-      "descrizione": "Una classica birra di frumento tedesca (Weizen) torbida, di colore giallo paglierino e con un'intensa effervescenza e una schiuma cremosa.",
+      "descrizione": "Una classica birra di frumento tedesca (Weizen) torbida, di colore giallo paglierino e con un'intensa effervescenza e una schiuma cremosa.  Al naso e al palato offre aromi fruttati (banana, pera) e speziati (chiodo di garofano, vaniglia) tipici del lievito d'alta fermentazione, con note maltate che donano corpo e un finale rinfrescante e leggermente acidulo. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768346848/arconti31/lh959v0qd0qpnvkiylib.webp",
       "formato": "50cl",
       "gradazione": "5,1 ",
@@ -519,6 +442,7 @@
     {
       "nome": "Three Rules - La Trappe/ Tynt Meadow/ Zundert ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Una birra unica nel suo genere. Questa dubbel si presenta con un colore ambrato e una schiuma mediamente persistente color beige. Sono presenti i tipici aromi di caramello e malto tostato, con note speziate e luppolate che bilanciano i fini sentori di torba. Birra corposa, con un perfetto bilanciamento, la Three Rules è un’autentica esperienza assolutamente da provare. ",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768322865/arconti31/ssg1osnwv0tp4npbs35w.png",
@@ -531,6 +455,7 @@
     {
       "nome": "Four Brother - Ritual Lab",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "7.00",
       "descrizione": "Birra nera a bassa fermentazione.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708486/arconti31/juxttr1mm4uwb27oxfp6.jpg",
@@ -542,6 +467,7 @@
     {
       "nome": "Zona Cesarini - Toccalmatto ",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.50",
       "descrizione": "Definita la miglior IPA italiana, ha dato il via al filone delle Pacific IPA unendo le caratteristiche di una American IPA con le aromaticità tipiche dei luppoli del Pacifico (come il Pacific Gem ed il giapponese Sorachi Ace). Bicchiere da 40 cl per 6,6%",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768320497/arconti31/wcjttufxgj1y6yhreis4.png",
@@ -552,8 +478,21 @@
       "_filename": "zona-cesarini-toccalmatto.md"
     },
     {
+      "nome": "Chimay Rossa",
+      "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
+      "prezzo": "6,00",
+      "descrizione": "Birra rossa trappista belga di Vallonia",
+      "formato": "33cl",
+      "gradazione": "7%",
+      "disponibile": true,
+      "order": 7,
+      "_filename": "chimay-rossa.md"
+    },
+    {
       "nome": "Theresianer Senza Glutine",
       "sezione": "Birre speciali in bottiglia",
+      "sezione_slug": "birre-speciali-bottiglia",
       "prezzo": "5,00",
       "descrizione": "Lager non filtrata, equilibrata",
       "formato": "0,33L",
@@ -565,6 +504,7 @@
     {
       "nome": "Caution Barrication Area C.B.A. - Birra Menaresta",
       "sezione": "Birre speciali in bottiglia",
+      "sezione_slug": "birre-speciali-bottiglia",
       "prezzo": "10.00",
       "descrizione": "Sour Ale in botti di Laphroaig, complessa e acida. Colore: ambrato",
       "gradazione": "7%",
@@ -575,6 +515,7 @@
     {
       "nome": "Leffe Rouge",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "6.00",
       "descrizione": "Birra belga doppio malto rossa. In bocca è avvolgente e dolce, con tracce di cereali tostati, caramello e lievi note di liquirizia",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708209/arconti31/gjkm1pwbu4bammgk4pem.png",
@@ -587,6 +528,7 @@
     {
       "nome": "Against the grain gluten free",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "8,00",
       "descrizione": "Apa Pale Ale senza glutine",
       "formato": "50cl",
@@ -598,6 +540,7 @@
     {
       "nome": "Giasa Blanche - Railroad",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "6",
       "descrizione": "Velata e chiara, note agrumate e speziate",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765570142/arconti31/wtykjcmurn7wlqy6kana.jpg",
@@ -611,6 +554,7 @@
     {
       "nome": "Bjorne",
       "sezione": "Birre alla spina",
+      "sezione_slug": "birre-alla-spina",
       "prezzo": "6",
       "descrizione": "Birra chiara doppio malto. Una doppio malto di colore giallo dorato intenso e con spuma cremosa, compatte e persistente. Il suo sapore deciso e l'elevato tasso alcolico che la contraddistinguono, convincono e lasciano il segno al palato.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708640/arconti31/kguro0oyg4czu2bhmbiv.png",
@@ -623,6 +567,7 @@
     {
       "nome": "Marmalade Porter gluten free",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "8,00",
       "descrizione": "Porter complessa",
       "formato": "50cl",
@@ -634,6 +579,7 @@
     {
       "nome": "Scarborough fair IPA gluten free",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "8,00",
       "descrizione": "IPA senza glutine",
       "formato": "50cl",
@@ -645,6 +591,7 @@
     {
       "nome": "Ayinger Keller",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "6,50",
       "descrizione": "Chiara a bassa fermentazione, non filtrata",
       "formato": "50cl",
@@ -656,6 +603,7 @@
     {
       "nome": "Backdoor - OrsoVerde (BITTER)",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6.00",
       "descrizione": "Extra Special Bitter ambrata, aromi di pepe rosa e cedro",
       "formato": "0,4L",
@@ -667,6 +615,7 @@
     {
       "nome": "Plain of the po",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "6",
       "descrizione": "Double Dry Hopped IPA, mouthfeel cremoso",
       "gradazione": "5,2% vol",
@@ -677,6 +626,7 @@
     {
       "nome": "Tropic Flanders - Eastside Brewing",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6,50",
       "descrizione": "Modern Saison, multi cereale, luppoli Galaxy e Citra",
       "formato": "0,4L",
@@ -688,6 +638,7 @@
     {
       "nome": "3 Fonteinen oude geuze",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "30,00",
       "descrizione": "Lambic fermentazione spontanea",
       "formato": "75cl",
@@ -699,6 +650,7 @@
     {
       "nome": "Hop.E - Birrificio Mastino",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6,00",
       "descrizione": "Session IPA, colore oro carico, frutta tropicale",
       "formato": "0,4L",
@@ -710,6 +662,7 @@
     {
       "nome": "Bernhardus Bock - Schnitzlbaumer",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6",
       "descrizione": "Tedesca della Baviera, stile Bock, scura e corposa",
       "formato": "0,4L",
@@ -721,6 +674,7 @@
     {
       "nome": "Estrella Galicia Senza Glutine",
       "sezione": "Frigo Birre",
+      "sezione_slug": "frigo-birre",
       "prezzo": "5,00",
       "descrizione": "Applicazione enzima per glutine",
       "formato": "0,33L",
@@ -732,6 +686,7 @@
     {
       "nome": "Tipopils Harvest - Birrificio Italiano",
       "sezione": "Birre artigianali alla spina a rotazione",
+      "sezione_slug": "birre-artigianali",
       "prezzo": "6",
       "descrizione": "Chiara a bassa fermentazione, luppolo fresco raccolto. Tipopils Harvest è una birra preparata con luppolo verde appena raccolto, per scattare un'istantanea dei profumi e della fragranza della pianta. Il luppolo viene selezionato dai nostri birrai in Germania il giorno stesso del raccolto, effettuato una sola volta all'anno in Settembre, e usato in cotta entro pochissime ore. La birra, equilibrata ed essenziale, diventa così una tela su cui i profumi del luppolo si possono esprimere liberamente.",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708850/arconti31/k0wlj6yprj7nvn43chlr.jpg",
@@ -745,37 +700,27 @@
   "beersBySection": {
     "Birre artigianali alla spina a rotazione": [
       {
-        "nome": "Backdoor - Orso Verde",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.00",
-        "descrizione": "Amara, Secca, Controversa. | 40 IBU",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650231/arconti31/orgctx4t8ywmtfbbwsgy.jpg",
-        "formato": "0,4 l ",
-        "gradazione": "5%",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "backdoor-orso-verde.md"
-      },
-      {
         "nome": "Bibock- Birrificio Italiano",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
         "descrizione": "La rossa “non rossa”, gustosa, originale, ribelle. Bibock è il nostro omaggio sui generis alle creazioni più vigorose della scuola germanica: le Bock, nome che deriva dalla deformazione di Einbeck, la città dove è nato questo stile di birra, ma anche “caprone” in lingua tedesca. Bibock è eleganza, prepotenza, un’entrata a gamba tesa di sorprendente gentilezza, in bilico tra amaro e miele, accattivante e difficile da addomesticare. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112645/arconti31/vxmke9qdbyvs5xqyyb9m.jpg",
         "formato": "0,4 l",
         "gradazione": "6,2",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "bibock-birrificio-italiano.md"
       },
       {
-        "nome": "Il cobra - Birrificio Railroad ",
+        "nome": "Ritorno al futuro - Birrificio Italiano",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
-        "descrizione": "Modern Italian Pilsner. Il Cobra” era il soprannome di Sandro Tovalieri, centravanti diventato celebre nelle file del Bari. La birra a lui dedicata è in stile Lager Pilsla prima birra brassata a bassa fermentazione. Birra di facile beva, ideale per muovere i primi passi verso il mondo artigianale. Gluten Free",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774199411/arconti31/jlr99dc0bkiykm4c8he0.png",
+        "descrizione": "Modern Italian Pilsner. Parliamo di monoluppolo Hersbrucker e doppio dry hopping, profumo erbaceo dai contorni terrosi che non ci farà posare il bicchiere. Doppio Day Hop Ping con luppolo Hersburcker ",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423089/arconti31/qzcijmvdncrrs22cqb9f.jpg",
         "formato": "0,4 l",
-        "gradazione": "5 %",
+        "gradazione": "5,2%",
         "disponibile": true,
         "order": 0,
         "_filename": "classe-96-b-lambrate-e-b-italiano.md"
@@ -783,30 +728,20 @@
       {
         "nome": "Cowboy Kirk - 50&50",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "BLACK IPA | IBU 45",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772487415/arconti31/o3fzdxeyggocrsxkfrjw.jpg",
         "formato": "0,4",
         "gradazione": "5,5%",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "cowboy-kirk.md"
       },
       {
-        "nome": "DANKO - 50&50",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7.00",
-        "descrizione": "Baltic Porter | IBU 25",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650252/arconti31/rjew5ngixvq1jtywoj3q.png",
-        "formato": "0,4 l ",
-        "gradazione": "8%",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "danko-5050.md"
-      },
-      {
         "nome": "Double Fisto - Toccalmatto",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Double Fisto è una birra artigianale iconica e dal carattere deciso, pensata per rappresentare al meglio lo stile Double IPA attraverso intensità aromatica e struttura importante.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768516742/arconti31/w79nrvmnpxlthurfvnhd.jpg",
@@ -819,6 +754,7 @@
       {
         "nome": "Extra Hop - Birrificio Italiano",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
         "descrizione": "DDH PILS",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770932137/arconti31/ayhcbw9jquegtgn7usih.png",
@@ -831,6 +767,7 @@
       {
         "nome": "Fai Tu - Due Tocchi",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
         "descrizione": "Bitter tradizionale inglese e ambrata caratterizzata da un amaro equilibrato ma presente, corpo leggero, bassa carbonazione e buona bevibilità, con note di malto (pane, biscotto, caramello) e luppoli erbacei/floreali.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769112223/arconti31/nsz2b9irccsbd6ubrdsp.jpg",
@@ -841,20 +778,9 @@
         "_filename": "fai-tu-due-tocchi.md"
       },
       {
-        "nome": "Yaki - Birra dell’Eremo",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.50",
-        "descrizione": " DDH IPA (sabro e mosaic i luppoli): naso tropicale esplosivo con tanto cocco, maracuja, scorza di cedro, mandarancio, ananas. Tutto potente e nitido, privo di qualsivoglia rumore olfattivo. In bocca è piena ma non grassa (Vermont il lievito, avena e frumento maltato i cereali in più), la corsa gustativa è ben registrata, spigliata, con acidità, dolcezza e amaro a passeggiare mano nella mano. 6° alc.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774642772/arconti31/bca69azlmblyiijx8nlg.webp",
-        "formato": "0,4 l  ",
-        "gradazione": "6,5% ",
-        "disponibile": false,
-        "order": 0,
-        "_filename": "fionda-due-tocchi.md"
-      },
-      {
         "nome": "2026 - Cr/Ak",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "DOUBLE IPA DDH | Edizione Limitata Non Filtrata",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772493473/arconti31/bt5fvpwtfpvdipkwewar.jpg",
@@ -867,6 +793,7 @@
       {
         "nome": "Hibernatus - Lupulus",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Prodotta dalla Brasserie les 3 Forquets per il periodo invernale, con i migliori malti sloveni.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770844071/arconti31/ca2gqb388nunoavwgr3j.png",
@@ -879,30 +806,33 @@
       {
         "nome": "Glaciale - Birrificio dell’Eremo",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Imperial IPA Glaciale una birra artigianale in stile Imperial IPA con aggiunta di miele biologico, dal colore ambrato scuro con schiuma beige fine e persistente. Al naso complessa con note erbacee e balsamiche, con chiari sentori di agrumi e legno di mandarino. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773423516/arconti31/qzoerlsxsjwfoy6rcxck.webp",
         "formato": "0,4 l",
         "gradazione": "7,5%",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "jap-winter-edition-birrificio-abruzzese.md"
       },
       {
         "nome": "Koral - Hammer",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "IPA prodotta con i migliori luppoli Neozelandesi, Australiani, Giapponesi ed Americani, tutti provenienti dalla zona del Pacifico. Di color ambrato, sia al naso che al palato i sentori sono intensi, si percepiscono note esplosive di frutta gialla e tropicale, agrumi e balsamiche tutte messe in evidenza da un delicato profilo maltato.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772824482/arconti31/tdbq4smk0khpsraxiqgw.jpg",
         "formato": "0,4 L",
         "gradazione": "6,3%",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "koral-hammer.md"
       },
       {
         "nome": "La Grigna - Lariano ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "PILS",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770580155/arconti31/glpbk6kgj7accp4ffooj.gif",
@@ -915,42 +845,20 @@
       {
         "nome": "London Pride - Chiswick",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
         "descrizione": "Vera e propria icona del birrificio di Chiswick, questa Bitter è caratterizzata da un colore dorato intenso, da un corpo medio e presenta un profumo luppolato e maltato. Il sapore ricalca sostanzialmente i sentori, con una piacevole luppolatura sul finale.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771180270/arconti31/qtvj9bjg27gdrritvtcj.png",
         "formato": "0,4 L ",
         "gradazione": "4,7% ",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "london-pride-chiswick.md"
       },
       {
-        "nome": "Maracaibo - Orso Verde ",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.00",
-        "descrizione": "Session IPA",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774650328/arconti31/jua1v8aczxmib33jtc9z.jpg",
-        "formato": "0,4 l ",
-        "gradazione": "3,5 % ",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "maracaibo-orso-verde.md"
-      },
-      {
-        "nome": "McTiss - Railroad ",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.50",
-        "descrizione": "Direttamente da Seregno arriva una rossa, color rubino brillante e con una schiuma compatta color crema.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219623/arconti31/iovae7wm4jympsikd1vu.jpg",
-        "formato": "0,4 l ",
-        "gradazione": "5,5%",
-        "disponibile": false,
-        "order": 0,
-        "_filename": "mctiss-railroad.md"
-      },
-      {
         "nome": "Naima - Cr/Ak",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "DDH IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg",
@@ -963,6 +871,7 @@
       {
         "nome": "New Zealand - Crak (SENZA GLUTINE) ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Abbondantemente luppolata con luppoli neozelandesi, al naso sprigiona tutto il suo dolce e intenso aroma tropicale e un delicato citrico. In bocca ha una grande morbidezza, seguita da dolci aromi fruttati (mango, pesca, melone) che spostano in secondo piano il corpo alcolico piuttosto sostenuto, mentre l’amarezza è morbida e ben bilanciata dalla nota fruttata e maltata.Nella grafica il giallo della frutta a polpa gialla si fonde al nero, il colore iconico della nazionale neozelandese di rugby.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770589309/arconti31/rcpwtxbgjncy1orizftp.jpg",
@@ -973,14 +882,14 @@
         "_filename": "new-zealand-crak-senza-glutine.md"
       },
       {
-        "nome": "Another Sunset - Birrificio EAST Side",
+        "nome": "Nocturnum - Delirium",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
-        "descrizione": " Italian Grape Ale.",
-        "Birra realizzata con l'aggiunta di una frazione di mosto d'uva (o più raramente uva in forma di frutto) aggiunto durante il processo produttivo. In realtà però questa birra è per certi versi anche assimilabile alla famiglia delle Fruit Beer, generica denominazione che indica birre brassate con l'impiego di frutta": "nella fattispecie la ricetta prevede l'aggiunta di frutti di bosco",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774906567/arconti31/nvmgmevdlburksxmeb8n.png",
+        "descrizione": "Dark Belgian Strong Ale  Aroma composto da caramello, caffè e cioccolato, sono presenti varie spezie del posto come liquerizia, coriandolo, rovere e scorza d’arancio.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772323383/arconti31/fj25dbbwytqlovafdipj.png",
         "formato": "0,4",
-        "gradazione": "6,6%",
+        "gradazione": "8,5%",
         "disponibile": true,
         "order": 0,
         "_filename": "nocturna-delirium.md"
@@ -988,6 +897,7 @@
       {
         "nome": "Ocata - Garage ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "Session IPA",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772824597/arconti31/cbyf3ppqdxz1pnjn5bv8.jpg",
@@ -1000,6 +910,7 @@
       {
         "nome": "La Morte Sua - Kashmir",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Double IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179262/arconti31/z1ag9wvnzafuauywz2rb.png",
@@ -1010,44 +921,22 @@
         "_filename": "perfect-cashmere-crak.md"
       },
       {
-        "nome": "Pesi Massimi - EastSide",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7.00",
-        "descrizione": "Belgian Tripel",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774219638/arconti31/l91aejcdl2rmivdip6bx.png",
-        "formato": "0,4 L ",
-        "gradazione": "9% ",
-        "disponibile": false,
-        "order": 0,
-        "_filename": "pesi-massimi-eastside.md"
-      },
-      {
         "nome": "Wabi - Orso Verde",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
-        "descrizione": "Slovenia Golden Ale",
+        "descrizione": "Slovenia Golden Ale  La Wabi è una Golden Ale dal colore dorato e schiuma bianca e persistente. La selezione di luppoli sloveni, tra cui Styrian Dana, Styrian Golding e Aurora, regala al naso un bouquet di aromi che evocano fiori di campo e fieno appena falciato, arricchiti da sottili accenni di limone",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1773435880/arconti31/o4hznejxgo49vdo0kg6z.webp",
         "formato": "0,4",
         "gradazione": "5,3%",
-        "disponibile": false,
+        "disponibile": true,
         "order": 0,
         "_filename": "pizzica-salento.md"
       },
       {
-        "nome": "Poculator",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "6.50",
-        "descrizione": "Poculator - dopplebock è una birra scura a bassa gradazione, con una notevole persistenza di note tostate e sentori di liquirizia.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775238990/arconti31/gazkapsjtfn18cqdecn3.jpg",
-        "formato": "0,4",
-        "gradazione": "7,4",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "poculator.md"
-      },
-      {
         "nome": "Profanator - Shire ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "DOPPELBOCK",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588993/arconti31/ju7a2ddxbnpzuxcbq1uf.jpg",
@@ -1060,6 +949,7 @@
       {
         "nome": "Taribo- Hammer ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Double IPA una birra estremamente luppolata, dal colore ramato leggero e dal tenore alcolico importante. Ispirata alle Double IPA californiane, ai malti viene aggiunto destrosio, per rendere la birra particolarmente secca e per far emergere al meglio le note aromatiche intense dei luppoli americani utilizzati (Simcoe, Citra, Amarillo).",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772128824/arconti31/jxctyd0k380eztjapd2r.png",
@@ -1072,6 +962,7 @@
       {
         "nome": "Silvio’s - 50&50",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "Morbida e dalla semplice beva, Silvio's è una STOUT arricchita con fiocchi d'avena e luppolata con Ernst e Mandarina Bavaria. Dall'elegante aspetto scuro, nera nel bicchiere con schiuma color nocciola, i sentori sono morbidi e delicati (note di malto e cioccolato, protagoniste al naso ed al palato) a cui si aggiungono lievi sfumature luppolate nel finale.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769114652/arconti31/xs3jrauemc9nye3owx8l.jpg",
@@ -1084,6 +975,7 @@
       {
         "nome": "Spiga di Legno - Legnone ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "Golden Ale",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770584628/arconti31/xv0ykgfro8dr7tici7bj.jpg",
@@ -1096,8 +988,9 @@
       {
         "nome": "Stai seregno - Railroad ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
-        "descrizione": "SAISON",
+        "descrizione": "SAISON  È una birra artigianale chiara, di colore paglierino.  Dona note erbacee, floreali (artemisia, sambuco) e sentori di spezie come pepe e ginepro. Il corpo è leggero con partenza morbida, evoluzione secca e un amaricato moderato.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772310608/arconti31/hzbiegrsjsiustjd8svn.jpg",
         "formato": "0,4",
         "gradazione": "5,8",
@@ -1108,6 +1001,7 @@
       {
         "nome": "Sunshine Valley - Bierol",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "West Coast IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770588929/arconti31/rascn4s7nphud5arxb1i.jpg",
@@ -1118,32 +1012,9 @@
         "_filename": "sunshine-valley-bierol.md"
       },
       {
-        "nome": "Tempura Crunch - Rebel’s",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7.00",
-        "descrizione": "Asian NEIPA",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1775160041/arconti31/t6gmbophdk7wm3b5xmbq.jpg",
-        "formato": "0,4 l ",
-        "gradazione": "6%",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "tempura-crunch-rebels.md"
-      },
-      {
-        "nome": "True - Orso verde",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7.00",
-        "descrizione": "La nostra DDH American Double IPA. Il metodo Double Dry Hopping, prevede l’aggiunta di luppoli in due volte durante la fermentazione, senza bollitura, per intensificare aroma e gusto senza aumentare l’amaro. True ne è un esempio perfetto, con un aroma marcato di luppolo americano e un tocco di zucchero candito che la rende morbida, mascherando l’alta gradazione alcolica.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775239428/arconti31/v4bg8pnfnvbvpk2p6rjt.jpg",
-        "formato": "0,4",
-        "gradazione": "8,5",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "true-orso-verde.md"
-      },
-      {
         "nome": "United - Birrificio 50&50",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "DDH West Coast IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1772226963/arconti31/wxbfojjkkztpsjcatv0q.png",
@@ -1154,20 +1025,9 @@
         "_filename": "united-birrificio-5050.md"
       },
       {
-        "nome": "Vertigo - Orso Verde",
-        "sezione": "Birre artigianali alla spina a rotazione",
-        "prezzo": "7.00",
-        "descrizione": "Heller Bock | IBU 25",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774818433/arconti31/thssmt4774bhlc2znan3.webp",
-        "formato": "0,4 l ",
-        "gradazione": "7%",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "vertigo-orso-verde.md"
-      },
-      {
         "nome": "Wave Runner - Hammer",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "IPA",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1771179719/arconti31/fnxzbje0yhbcwlfj66rf.jpg",
@@ -1180,8 +1040,9 @@
       {
         "nome": "Rochefort",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
-        "descrizione": "Dal colore giallo dorato e dalla bella schiuma bianca, la Rochefort Tripel Extra sprigiona note agrumate insieme alla pesca e banana, accompagnate da note speziate tipiche dello stile.",
+        "descrizione": "Dal colore giallo dorato e dalla bella schiuma bianca, la Rochefort Tripel Extra sprigiona note agrumate insieme alla pesca e banana, accompagnate da note speziate tipiche dello stile.  In bocca è ricca e complessa, con gli aromi maltati in primo piano, morbida e vellutata.  La robusta gradazione alcolica rimane nell’ombra e, nonostante la complessità di aromi, la Rochefort Extra è una birra di facile approccio.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768322677/arconti31/r9fbjavkn5cfretisrrv.webp",
         "formato": "33 cl",
         "gradazione": "7,5",
@@ -1192,6 +1053,7 @@
       {
         "nome": "Three Rules - La Trappe/ Tynt Meadow/ Zundert ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Una birra unica nel suo genere. Questa dubbel si presenta con un colore ambrato e una schiuma mediamente persistente color beige. Sono presenti i tipici aromi di caramello e malto tostato, con note speziate e luppolate che bilanciano i fini sentori di torba. Birra corposa, con un perfetto bilanciamento, la Three Rules è un’autentica esperienza assolutamente da provare. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768322865/arconti31/ssg1osnwv0tp4npbs35w.png",
@@ -1204,6 +1066,7 @@
       {
         "nome": "Four Brother - Ritual Lab",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "7.00",
         "descrizione": "Birra nera a bassa fermentazione.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708486/arconti31/juxttr1mm4uwb27oxfp6.jpg",
@@ -1215,6 +1078,7 @@
       {
         "nome": "Zona Cesarini - Toccalmatto ",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.50",
         "descrizione": "Definita la miglior IPA italiana, ha dato il via al filone delle Pacific IPA unendo le caratteristiche di una American IPA con le aromaticità tipiche dei luppoli del Pacifico (come il Pacific Gem ed il giapponese Sorachi Ace). Bicchiere da 40 cl per 6,6%",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768320497/arconti31/wcjttufxgj1y6yhreis4.png",
@@ -1227,6 +1091,7 @@
       {
         "nome": "Backdoor - OrsoVerde (BITTER)",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6.00",
         "descrizione": "Extra Special Bitter ambrata, aromi di pepe rosa e cedro",
         "formato": "0,4L",
@@ -1238,6 +1103,7 @@
       {
         "nome": "Tropic Flanders - Eastside Brewing",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6,50",
         "descrizione": "Modern Saison, multi cereale, luppoli Galaxy e Citra",
         "formato": "0,4L",
@@ -1249,6 +1115,7 @@
       {
         "nome": "Hop.E - Birrificio Mastino",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6,00",
         "descrizione": "Session IPA, colore oro carico, frutta tropicale",
         "formato": "0,4L",
@@ -1260,6 +1127,7 @@
       {
         "nome": "Bernhardus Bock - Schnitzlbaumer",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6",
         "descrizione": "Tedesca della Baviera, stile Bock, scura e corposa",
         "formato": "0,4L",
@@ -1271,6 +1139,7 @@
       {
         "nome": "Tipopils Harvest - Birrificio Italiano",
         "sezione": "Birre artigianali alla spina a rotazione",
+        "sezione_slug": "birre-artigianali",
         "prezzo": "6",
         "descrizione": "Chiara a bassa fermentazione, luppolo fresco raccolto. Tipopils Harvest è una birra preparata con luppolo verde appena raccolto, per scattare un'istantanea dei profumi e della fragranza della pianta. Il luppolo viene selezionato dai nostri birrai in Germania il giorno stesso del raccolto, effettuato una sola volta all'anno in Settembre, e usato in cotta entro pochissime ore. La birra, equilibrata ed essenziale, diventa così una tela su cui i profumi del luppolo si possono esprimere liberamente.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708850/arconti31/k0wlj6yprj7nvn43chlr.jpg",
@@ -1285,8 +1154,9 @@
       {
         "nome": "Bloemenbier - De Proefbrouwerij",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "6.50",
-        "descrizione": "La caratteristica principale di questa birra è che viene brassata con due tipi di fiori,mantenuti segreti dai produttori.",
+        "descrizione": "La caratteristica principale di questa birra è che viene brassata con due tipi di fiori,mantenuti segreti dai produttori.\nCome si può immaginare,dato l' utilizzo di fiori, è una birra dal gusto molto dolce.  Al naso si percepiscono note di caramello, malto, miele d'acacia e sentori floreali che ricordano la primavera, mentre al palato emergono note fruttate che donano a questa birra dolce e vellutata un leggero retrogusto amarognolo.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769117725/arconti31/rjvpeqc59zikmtusg0ii.jpg",
         "formato": "33 cl",
         "disponibile": true,
@@ -1294,11 +1164,23 @@
         "_filename": "bloemenbier-de-proefbrouwerij-1.md"
       },
       {
+        "nome": "Chimay chiara",
+        "prezzo": "6,00",
+        "descrizione": "Birra belga chiara trapista",
+        "formato": "33cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
+        "order": 0,
+        "_filename": "chimay-chiara.md"
+      },
+      {
         "nome": "Chouffe- d’Achouffe",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "6.00",
-        "descrizione": "Belgian Strong Ale chiara",
-        "Bouquet olfattivo molto ampio": "speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.",
+        "descrizione": "Belgian Strong Ale chiara  Il colore è molto elegante, un dorato opalescente con riflessi arancioni con una e schiuma bianca molto cremosa. Bouquet olfattivo molto ampio: speziato, floreale, agrumato, di lievito (crosta di pane e banana), di caramello e toffee.  Al palato il calore morbido ed avvolgente dal notevole grado alcolico che viene ottimamente bilanciato dall'amaro del luppolo e da una sensazione finale di frutta più acerba ed aspra. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769119165/arconti31/v7cwadecrgu07xvd4elw.jpg",
         "formato": "33 cl",
         "gradazione": "8%",
@@ -1307,8 +1189,21 @@
         "_filename": "chouffe-dachouffe.md"
       },
       {
+        "nome": "Chimay Rossa",
+        "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
+        "prezzo": "6,00",
+        "descrizione": "Birra rossa trappista belga di Vallonia",
+        "formato": "33cl",
+        "gradazione": "7%",
+        "disponibile": true,
+        "order": 7,
+        "_filename": "chimay-rossa.md"
+      },
+      {
         "nome": "Against the grain gluten free",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "8,00",
         "descrizione": "Apa Pale Ale senza glutine",
         "formato": "50cl",
@@ -1320,6 +1215,7 @@
       {
         "nome": "Marmalade Porter gluten free",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "8,00",
         "descrizione": "Porter complessa",
         "formato": "50cl",
@@ -1331,6 +1227,7 @@
       {
         "nome": "Scarborough fair IPA gluten free",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "8,00",
         "descrizione": "IPA senza glutine",
         "formato": "50cl",
@@ -1342,6 +1239,7 @@
       {
         "nome": "Ayinger Keller",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "6,50",
         "descrizione": "Chiara a bassa fermentazione, non filtrata",
         "formato": "50cl",
@@ -1353,6 +1251,7 @@
       {
         "nome": "Plain of the po",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "6",
         "descrizione": "Double Dry Hopped IPA, mouthfeel cremoso",
         "gradazione": "5,2% vol",
@@ -1363,6 +1262,7 @@
       {
         "nome": "3 Fonteinen oude geuze",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "30,00",
         "descrizione": "Lambic fermentazione spontanea",
         "formato": "75cl",
@@ -1374,6 +1274,7 @@
       {
         "nome": "Estrella Galicia Senza Glutine",
         "sezione": "Frigo Birre",
+        "sezione_slug": "frigo-birre",
         "prezzo": "5,00",
         "descrizione": "Applicazione enzima per glutine",
         "formato": "0,33L",
@@ -1387,8 +1288,9 @@
       {
         "nome": "Rodenbach Vintage 2018",
         "sezione": "Birre speciali in bottiglia",
+        "sezione_slug": "birre-speciali-bottiglia",
         "prezzo": "12.00",
-        "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente.",
+        "descrizione": "Si presenta in bicchiere rosso rame con schiuma bianca importante mediamente persistente. Al naso e al palato la spuntatura acida si fa subito sentire, mela verde aspra, seguito da un bouquet dolce, caramello, miele ma anche fragolina di bosco, oltre al miele e alla quercia.  Il retrogusto comunque rimane fruttato asprigno, ma asciutto e pulito.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1769115731/arconti31/r1dc63cafbqlham1rlti.jpg",
         "formato": "37.5 cl",
         "gradazione": "7%",
@@ -1399,6 +1301,7 @@
       {
         "nome": "Theresianer Senza Glutine",
         "sezione": "Birre speciali in bottiglia",
+        "sezione_slug": "birre-speciali-bottiglia",
         "prezzo": "5,00",
         "descrizione": "Lager non filtrata, equilibrata",
         "formato": "0,33L",
@@ -1410,6 +1313,7 @@
       {
         "nome": "Caution Barrication Area C.B.A. - Birra Menaresta",
         "sezione": "Birre speciali in bottiglia",
+        "sezione_slug": "birre-speciali-bottiglia",
         "prezzo": "10.00",
         "descrizione": "Sour Ale in botti di Laphroaig, complessa e acida. Colore: ambrato",
         "gradazione": "7%",
@@ -1422,6 +1326,7 @@
       {
         "nome": "Lager Hell - Ayinger",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "6.00",
         "descrizione": "Una lager bavarese (Helles) dal colore biondo dorato, molto beverina e dissetante, caratterizzata da un gusto morbido e maltato con note di miele, cereali e una leggera venatura erbacea/floreale data dal luppolo.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768339018/arconti31/z9jk81oifcetqasxnas2.webp",
@@ -1434,6 +1339,7 @@
       {
         "nome": "Guinness",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "7,00",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765440474/arconti31/zyktbcqupldxu7j1vucy.jpg",
         "formato": "50cl",
@@ -1445,8 +1351,9 @@
       {
         "nome": "Bräuweisse - Ayinger",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "7.00",
-        "descrizione": "Una classica birra di frumento tedesca (Weizen) torbida, di colore giallo paglierino e con un'intensa effervescenza e una schiuma cremosa.",
+        "descrizione": "Una classica birra di frumento tedesca (Weizen) torbida, di colore giallo paglierino e con un'intensa effervescenza e una schiuma cremosa.  Al naso e al palato offre aromi fruttati (banana, pera) e speziati (chiodo di garofano, vaniglia) tipici del lievito d'alta fermentazione, con note maltate che donano corpo e un finale rinfrescante e leggermente acidulo. ",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768346848/arconti31/lh959v0qd0qpnvkiylib.webp",
         "formato": "50cl",
         "gradazione": "5,1 ",
@@ -1457,6 +1364,7 @@
       {
         "nome": "Leffe Rouge",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "6.00",
         "descrizione": "Birra belga doppio malto rossa. In bocca è avvolgente e dolce, con tracce di cereali tostati, caramello e lievi note di liquirizia",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708209/arconti31/gjkm1pwbu4bammgk4pem.png",
@@ -1469,6 +1377,7 @@
       {
         "nome": "Giasa Blanche - Railroad",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "6",
         "descrizione": "Velata e chiara, note agrumate e speziate",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765570142/arconti31/wtykjcmurn7wlqy6kana.jpg",
@@ -1482,6 +1391,7 @@
       {
         "nome": "Bjorne",
         "sezione": "Birre alla spina",
+        "sezione_slug": "birre-alla-spina",
         "prezzo": "6",
         "descrizione": "Birra chiara doppio malto. Una doppio malto di colore giallo dorato intenso e con spuma cremosa, compatte e persistente. Il suo sapore deciso e l'elevato tasso alcolico che la contraddistinguono, convincono e lasciano il segno al palato.",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1765708640/arconti31/kguro0oyg4czu2bhmbiv.png",

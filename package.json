@@ -4,7 +4,9 @@
   "description": "Menù birre con Netlify CMS",
   "scripts": {
     "build": "node scripts/generate-json.js",
-    "dev": "python -m http.server 8000"
+    "backfill:stable-refs": "node scripts/backfill-stable-refs.js",
+    "dev": "python -m http.server 8000",
+    "test:e2e-cms": "node scripts/e2e-cms-controlled.js"
   },
   "keywords": ["netlify-cms", "restaurant", "beer-menu"],
   "author": "",

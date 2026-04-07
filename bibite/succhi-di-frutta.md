@@ -1,5 +1,6 @@
 ---
 nome: "Succhi di frutta"
+tipo_slug: "bibite"
 prezzo: "3,50"
 descrizione: "Mirtillo, pompelmo, ananas, arancia"
 formato: "20cl"

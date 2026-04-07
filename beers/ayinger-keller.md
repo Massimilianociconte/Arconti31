@@ -1,6 +1,7 @@
 ---
 nome: "Ayinger Keller"
 sezione: "Frigo Birre"
+sezione_slug: "frigo-birre"
 prezzo: "6,50"
 descrizione: "Chiara a bassa fermentazione, non filtrata"
 formato: "50cl"

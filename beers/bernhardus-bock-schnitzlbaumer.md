@@ -1,6 +1,7 @@
 ---
 nome: "Bernhardus Bock - Schnitzlbaumer"
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "6"
 descrizione: "Tedesca della Baviera, stile Bock, scura e corposa"
 formato: "0,4L"

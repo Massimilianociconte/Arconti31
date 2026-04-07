@@ -15,10 +15,13 @@ const CONFIG = {
   }
 };
 
-const DEFAULT_FOOD_CATEGORIES = [
-  'Hamburger di bufala', 'Hamburger Fassona e Street food', 'OKTOBERFEST',
-  'Panini', 'Griglieria', 'Piatti Speciali', 'Piadine', 'Fritti', 'Dolci', 'Aperitivo'
-];
+
+const LEGACY_BEVERAGE_FOLDER_ALIASES = {
+  'amari-distillati': 'ammazza-caffe',
+  'i-nostri-rum': 'i-nostri-rhum'
+};
+
+const SESSION_KEY = 'cms_session';
 
 const COLLECTIONS = {
   food: {
@@ -186,6 +189,99 @@ let state = {
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 
+function normalizeSlug(value) {
+  if (!value) return '';
+
+  return String(value)
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[àáâãäå]/g, 'a')
+    .replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i')
+    .replace(/[òóôõö]/g, 'o')
+    .replace(/[ùúûü]/g, 'u')
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function getFilenameBase(filename) {
+  if (!filename) return '';
+  return String(filename).replace(/\.md$/i, '');
+}
+
+function getCategoryCollectionKey(category) {
+  return normalizeSlug(category?.slug || category?.nome || '');
+}
+
+function getCategoryFolder(category) {
+  if (category?.folder) return category.folder;
+  const collectionKey = getCategoryCollectionKey(category);
+  return LEGACY_BEVERAGE_FOLDER_ALIASES[collectionKey] || collectionKey;
+}
+
+function getCategoryAliases(category) {
+  const aliases = new Set();
+  [category?.nome, category?.slug, category?.folder, getFilenameBase(category?._filename || category?.filename)].forEach(value => {
+    const normalized = normalizeSlug(value);
+    if (normalized) aliases.add(normalized);
+  });
+  return [...aliases];
+}
+
+function matchesCategoryValue(value, category) {
+  const normalizedValue = normalizeSlug(value);
+  if (!normalizedValue || !category) return false;
+  return getCategoryAliases(category).includes(normalizedValue);
+}
+
+function matchesItemToCategory(item, category, legacyField, stableField) {
+  const stableValue = normalizeSlug(item?.[stableField]);
+  if (stableValue) {
+    if (matchesCategoryValue(stableValue, category)) return true;
+    if (normalizeSlug(category?.slug) === stableValue) return true;
+  }
+  return matchesCategoryValue(item?.[legacyField], category);
+}
+
+function getSearchCollectionKeys() {
+  return Object.keys(COLLECTIONS).filter(key => key !== 'categorie');
+}
+
+function clearStoredSessions() {
+  localStorage.removeItem(SESSION_KEY);
+  sessionStorage.removeItem(SESSION_KEY);
+}
+
+function getStoredSession() {
+  for (const storage of [localStorage, sessionStorage]) {
+    const rawSession = storage.getItem(SESSION_KEY);
+    if (!rawSession) continue;
+
+    try {
+      return { session: JSON.parse(rawSession), storage };
+    } catch (error) {
+      storage.removeItem(SESSION_KEY);
+    }
+  }
+
+  return { session: null, storage: null };
+}
+
+function persistSession(session, rememberMe) {
+  const targetStorage = rememberMe ? localStorage : sessionStorage;
+  const otherStorage = rememberMe ? sessionStorage : localStorage;
+  otherStorage.removeItem(SESSION_KEY);
+  targetStorage.setItem(SESSION_KEY, JSON.stringify(session));
+}
+
+function updateStoredSession(patch) {
+  const { session, storage } = getStoredSession();
+  if (!session || !storage) return;
+  storage.setItem(SESSION_KEY, JSON.stringify({ ...session, ...patch }));
+}
+
 // ========================================
 // GESTIONE PREZZI (Sanitizzazione & Formattazione)
 // ========================================
@@ -302,20 +398,19 @@ async function init() {
   setupEventListeners();
 
   // Check for saved session (Ricordami)
-  const savedSession = localStorage.getItem('cms_session');
+  const { session: savedSession } = getStoredSession();
   if (savedSession) {
     try {
-      const session = JSON.parse(savedSession);
       const res = await fetch('/.netlify/functions/save-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'verify-token', token: session.token })
+        body: JSON.stringify({ action: 'verify-token', token: savedSession.token })
       });
       if (res.ok) {
-        state.token = session.token;
-        state.email = session.email;
+        state.token = savedSession.token;
+        state.email = savedSession.email || '';
         state.isLoggedIn = true;
-        state.currentCollection = session.lastCollection || 'food';
+        state.currentCollection = savedSession.lastCollection || 'food';
         showMainApp();
         loadAllData();
         toast('Bentornato!', 'success');
@@ -323,12 +418,12 @@ async function init() {
       } else {
         // Token expired or invalid - clear session silently
         console.log('🔄 Sessione scaduta, richiesto nuovo login');
-        localStorage.removeItem('cms_session');
+        clearStoredSessions();
       }
     } catch (e) {
       // Network error or parse error - clear session
       console.log('🔄 Errore verifica sessione, richiesto nuovo login');
-      localStorage.removeItem('cms_session');
+      clearStoredSessions();
     }
   }
 
@@ -408,6 +503,7 @@ async function handleLogin(e) {
   e.preventDefault();
   const email = $('#email-input').value.trim();
   const password = $('#password-input').value;
+  const rememberMe = $('#remember-me')?.checked === true;
 
   if (!email) { toast('Inserisci email', 'error'); return; }
   if (!password) { toast('Inserisci password', 'error'); return; }
@@ -433,16 +529,14 @@ async function handleLogin(e) {
 
     // Store token
     state.token = result.token;
-    state.email = result.email;
+    state.email = result.user?.email || result.email || email;
     state.isLoggedIn = true;
 
-    // Salva sempre la sessione (per evitare logout al refresh)
-    // "Ricordami" controlla solo la durata del token lato server
-    localStorage.setItem('cms_session', JSON.stringify({
+    persistSession({
       token: result.token,
-      email: result.email,
+      email: state.email,
       lastCollection: state.currentCollection
-    }));
+    }, rememberMe);
 
     toast('Accesso effettuato!', 'success');
     showMainApp();
@@ -459,7 +553,7 @@ function logout() {
   state.token = null;
   state.email = null;
   state.isLoggedIn = false;
-  localStorage.removeItem('cms_session');
+  clearStoredSessions();
   showLoginScreen();
   toast('Logout effettuato', 'info');
 }
@@ -555,11 +649,12 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     // 1. Try SmartCache first (instant load)
     if (window.SmartCache && !forceApi) {
       const cachedItems = await window.SmartCache.getAll('items');
-      const collectionItems = cachedItems.filter(i => i._collection === collectionName);
+      const collectionItems = cachedItems.filter(i => i._collection === collectionName && !i._deleted);
 
       if (collectionItems.length > 0) {
         console.log(`⚡ Loaded ${collectionItems.length} items from SmartCache`);
         state.items = collectionItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+        state.allItems[collectionName] = [...state.items];
         renderItems();
         if (!silent) hideLoading();
         // Continue to fetch fresh data in background...
@@ -630,6 +725,7 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
       console.log('🔄 SmartCache synced & loaded. Items:', state.items.length);
     }
 
+    state.allItems[collectionName] = [...state.items];
     renderItems();
   } catch (e) {
     console.error(e);
@@ -729,14 +825,7 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
   }
 
   // Save last collection for session restore
-  const savedSession = localStorage.getItem('cms_session');
-  if (savedSession) {
-    try {
-      const session = JSON.parse(savedSession);
-      session.lastCollection = name;
-      localStorage.setItem('cms_session', JSON.stringify(session));
-    } catch (e) { }
-  }
+  updateStoredSession({ lastCollection: name });
 
   loadItems(name);
   showListView();
@@ -773,6 +862,10 @@ async function loadAllData(silent = false) {
 
     // Register dynamic COLLECTIONS for new beverage categories
     ensureDynamicCollections();
+    if (!COLLECTIONS[state.currentCollection]) {
+      state.currentCollection = 'food';
+      updateStoredSession({ lastCollection: state.currentCollection });
+    }
 
     renderSidebar();
     setupSidebarEvents();
@@ -792,7 +885,7 @@ async function loadAllData(silent = false) {
 
 // Pre-carica tutti i dati per la ricerca globale in background
 async function preloadGlobalSearchData() {
-  const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
+  const searchCollections = getSearchCollectionKeys();
 
   // Carica tutte le collezioni in parallelo in background
   const fetchPromises = searchCollections
@@ -861,7 +954,10 @@ function renderSidebar() {
   // Count items per food category
   const foodCounts = {};
   (state.allFood || []).forEach(item => {
-    const cat = item.category || 'Altro';
+    const matchedCategory = state.categories.find(category =>
+      category.tipo_menu === 'food' && matchesItemToCategory(item, category, 'category', 'category_slug')
+    );
+    const cat = matchedCategory?.nome || item.category || 'Altro';
     foodCounts[cat] = (foodCounts[cat] || 0) + 1;
   });
 
@@ -872,9 +968,9 @@ function renderSidebar() {
       'Caffetteria': 'caffetteria', 'Bollicine': 'bollicine',
       'Bianchi fermi': 'bianchi-fermi', 'Vini rossi': 'vini-rossi'
     };
-    const normalizedSlug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
+    const collectionKey = getCategoryCollectionKey(cat);
     return knownMap[cat.nome]
-      || (COLLECTIONS[normalizedSlug] ? normalizedSlug : null)
+      || (COLLECTIONS[collectionKey] ? collectionKey : null)
       || (COLLECTIONS[slugify(cat.nome)] ? slugify(cat.nome) : null);
   };
 
@@ -1118,7 +1214,13 @@ function updateCategoryFilter(name) {
 
 function getCategoriesForType(type) {
   const dynamic = state.categories.filter(c => c.tipo_menu === type).map(c => c.nome);
-  if (type === 'food') return [...new Set([...dynamic, ...DEFAULT_FOOD_CATEGORIES])];
+  if (type === 'food') {
+    // Include any legacy category names still in use by existing products
+    const legacyInUse = (state.allFood || [])
+      .map(item => item.category)
+      .filter(category => category && !dynamic.includes(category));
+    return [...new Set([...dynamic, ...legacyInUse])];
+  }
   return dynamic;
 }
 
@@ -1140,24 +1242,25 @@ function ensureDynamicCollections() {
   const beverageCats = state.categories.filter(c => c.tipo_menu === 'beverage');
 
   for (const cat of beverageCats) {
-    const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
-    if (!slug) continue;
+    const collectionKey = getCategoryCollectionKey(cat);
+    const folder = getCategoryFolder(cat);
+    if (!collectionKey || !folder) continue;
 
     // Skip if a COLLECTIONS entry already exists
-    if (COLLECTIONS[slug]) continue;
+    if (COLLECTIONS[collectionKey]) continue;
 
     // Also check by name-derived slug
     const nameSlug = slugify(cat.nome);
     if (nameSlug && COLLECTIONS[nameSlug]) continue;
 
     // Register a new dynamic collection for this beverage category
-    COLLECTIONS[slug] = {
+    COLLECTIONS[collectionKey] = {
       label: cat.nome,
-      folder: slug,
+      folder,
       _dynamic: true,
       fields: [...BEVERAGE_FIELD_TEMPLATE]
     };
-    console.log(`📦 Dynamic collection registered: ${slug} → "${cat.nome}"`);
+    console.log(`📦 Dynamic collection registered: ${collectionKey} → folder "${folder}" ("${cat.nome}")`);
   }
 }
 
@@ -1235,7 +1338,10 @@ function renderGroupedItems(items) {
   const list = $('#items-list');
   const grouped = {};
   items.forEach(item => {
-    const cat = item.category || 'Altro';
+    const matchedCategory = state.categories.find(category =>
+      category.tipo_menu === 'food' && matchesItemToCategory(item, category, 'category', 'category_slug')
+    );
+    const cat = matchedCategory?.nome || item.category || 'Altro';
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(item);
   });
@@ -1309,7 +1415,20 @@ function getFilteredItems() {
   }
 
   // Category/section filter
-  if (category) items = items.filter(i => i.category === category || i.sezione === category);
+  if (category) {
+    const selectedCategory = state.categories.find(cat => cat.nome === category);
+    items = items.filter(item => {
+      if (selectedCategory?.tipo_menu === 'food') {
+        return matchesItemToCategory(item, selectedCategory, 'category', 'category_slug');
+      }
+
+      return matchesItemToCategory(item, selectedCategory, 'sezione', 'sezione_slug')
+        || matchesItemToCategory(item, selectedCategory, 'tipo', 'tipo_slug')
+        || item.category === category
+        || item.sezione === category
+        || item.tipo === category;
+    });
+  }
 
   // Beer section filter (for beer subsections in sidebar)
   if (state.currentBeerSection && state.currentCollection === 'beers') {
@@ -1506,6 +1625,8 @@ async function saveNewOrder(changedItems) {
         });
       }
     }
+
+    state.allItems[state.currentCollection] = [...state.items];
     
     saveIndicator.innerHTML = `✅ Ordine salvato! (${result.updated || changedItems.length} elementi)`;
     saveIndicator.classList.add('success');
@@ -1768,7 +1889,7 @@ async function bulkSetVisibility(visible) {
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'categorie', mode: 'api', token: state.token })
+      body: JSON.stringify({ folder: 'categorie', mode: 'api', token: state.token, filenames: state.selectedItems })
     });
 
     let freshData = [];
@@ -2249,7 +2370,13 @@ async function saveItem() {
       const freshRes = await fetch('/.netlify/functions/read-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ folder: collection.folder, mode: 'api', token: state.token })
+        body: JSON.stringify({
+          folder: collection.folder,
+          mode: 'api',
+          token: state.token,
+          filename,
+          lookupName: data.nome
+        })
       });
 
       if (freshRes.ok) {
@@ -2351,6 +2478,7 @@ async function saveItem() {
         state.items[idx] = { ...state.items[idx], ...newItem };
       }
     }
+    state.allItems[state.currentCollection] = [...state.items];
 
     // ★ FIX: Sync state.categories when saving a category
     // Without this, getCategoriesForType() and renderSidebar() use stale data,
@@ -2420,7 +2548,13 @@ async function deleteItem() {
     const fetchRes = await fetch('/.netlify/functions/read-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: collection.folder, mode: 'api', token: state.token })
+      body: JSON.stringify({
+        folder: collection.folder,
+        mode: 'api',
+        token: state.token,
+        filename: itemToDelete.filename,
+        lookupName: itemToDelete.nome
+      })
     });
 
     if (fetchRes.ok) {
@@ -2444,6 +2578,7 @@ async function deleteItem() {
     if (!sha) {
       // Item might have been already deleted outside the CMS (ghost entry in JSON)
       state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
+      state.allItems[state.currentCollection] = [...state.items];
       if (window.SmartCache) {
         await window.SmartCache.set('items', {
           ...itemToDelete,
@@ -2462,6 +2597,7 @@ async function deleteItem() {
 
     // Rimuovi dalla UI DOPO aver verificato SHA (feedback ottimistico ma sicuro)
     state.items = state.items.filter(i => i.filename !== itemToDelete.filename);
+    state.allItems[state.currentCollection] = [...state.items];
     renderItems();
 
     const res = await fetch('/.netlify/functions/save-data', {
@@ -2481,6 +2617,7 @@ async function deleteItem() {
     if (!res.ok) {
       // ROLLBACK: ripristina l'item nella UI
       state.items = originalItems;
+      state.allItems[state.currentCollection] = [...state.items];
       renderItems();
       throw new Error(result.error || 'Errore eliminazione');
     }
@@ -2660,7 +2797,7 @@ async function performGlobalSearch(query) {
   const allMatches = [];
 
   // Define collections to search
-  const searchCollections = ['food', 'beers', 'cocktails', 'analcolici', 'bibite', 'caffetteria', 'bollicine', 'bianchi-fermi', 'vini-rossi'];
+  const searchCollections = getSearchCollectionKeys();
 
   // Trova collezioni che devono essere caricate
   const collectionsToFetch = searchCollections.filter(c => !state.allItems[c]);

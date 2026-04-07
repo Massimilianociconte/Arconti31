@@ -1,6 +1,7 @@
 ---
 nome: "Cedrate"
 category: "Panini Ciabatta"
+category_slug: "panini"
 prezzo: "8.50"
 descrizione: "Ciabatta 180gr con speck alta qualità, brie, salsa rosa"
 allergeni:

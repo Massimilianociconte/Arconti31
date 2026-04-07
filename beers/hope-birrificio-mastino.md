@@ -1,6 +1,7 @@
 ---
 nome: "Hop.E - Birrificio Mastino"
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "6,00"
 descrizione: "Session IPA, colore oro carico, frutta tropicale"
 formato: "0,4L"

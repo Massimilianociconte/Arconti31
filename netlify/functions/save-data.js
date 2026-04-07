@@ -2,19 +2,18 @@
 // Usa GitHub API con un Personal Access Token (PAT) salvato come variabile d'ambiente
 // INCLUDE: Rigenerazione automatica JSON dopo ogni salvataggio
 
-// Single source of truth for beverage categories (used by COLLECTION_CONFIG + generateBeveragesJSON)
-const BEVERAGE_CATEGORIES = [
-  { name: 'Cocktails', folder: 'cocktails' },
-  { name: 'Analcolici', folder: 'analcolici' },
-  { name: 'Bibite', folder: 'bibite' },
-  { name: 'Caffetteria', folder: 'caffetteria' },
-  { name: 'Bollicine', folder: 'bollicine' },
-  { name: 'Bianchi fermi', folder: 'bianchi-fermi' },
-  { name: 'Vini rossi', folder: 'vini-rossi' }
-];
-
 // Shared auth module (single source of truth)
+const crypto = require('crypto');
 const { generateToken, verifyToken, verifyLogin } = require('./auth');
+const {
+  BASE_BEVERAGE_CATEGORIES,
+  findBeverageCategoryByFolder,
+  getCategoryFolder,
+  getFilenameBase,
+  normalizeSlug,
+  parseFrontmatter,
+  stringifyFrontmatter
+} = require('../../lib/menu-utils');
 
 // CORS Headers - restrict to known origins
 const ALLOWED_ORIGINS = [
@@ -74,7 +73,7 @@ exports.handler = async (event, context) => {
   if (action === 'get-cloudinary-config') {
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
         uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || ''
@@ -98,6 +97,7 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({
           token: newToken,
+          email: validEmail,
           user: { email: validEmail, role: 'admin' }
         })
       };
@@ -133,6 +133,7 @@ exports.handler = async (event, context) => {
   if (!GITHUB_TOKEN) {
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ error: 'GITHUB_TOKEN non configurato nelle variabili ambiente Netlify' })
     };
   }
@@ -141,36 +142,45 @@ exports.handler = async (event, context) => {
     const path = `${collection}/${filename}`;
 
     if (action === 'save') {
-      // Genera contenuto markdown
-      const content = generateMarkdown(data);
-      const base64Content = Buffer.from(content).toString('base64');
+      const preparedData = await prepareDataForSave(collection, data, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      await assertSafeCategorySave(collection, filename, preparedData, sha, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
 
-      const body = {
-        message: `CMS: Update ${path}`,
-        content: base64Content,
-        branch: 'main'
-      };
+      let result;
+      if (skipRegeneration) {
+        const content = generateMarkdown(preparedData);
+        const base64Content = Buffer.from(content).toString('base64');
 
-      if (sha) {
-        body.sha = sha;
-      }
+        const body = {
+          message: `CMS: Update ${path}`,
+          content: base64Content,
+          branch: 'main'
+        };
 
-      const result = await githubRequest(
-        'PUT',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
-        body,
-        GITHUB_TOKEN
-      );
+        if (sha) {
+          body.sha = sha;
+        }
 
-      // ✨ NUOVO: Rigenera i JSON dopo il salvataggio (se non saltato)
-      if (!skipRegeneration) {
-        console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
-        await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+        result = await githubRequest(
+          'PUT',
+          `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
+          body,
+          GITHUB_TOKEN
+        );
+      } else {
+        result = await saveItemAtomically({
+          collection,
+          filename,
+          data: preparedData,
+          sha,
+          token: GITHUB_TOKEN,
+          owner: REPO_OWNER,
+          repo: REPO_NAME
+        });
       }
 
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ success: true, sha: result.content?.sha })
       };
 
@@ -185,30 +195,36 @@ exports.handler = async (event, context) => {
         };
       }
 
-      const deleteBody = {
-        message: `CMS: Delete ${path}`,
-        sha: sha,
-        branch: 'main'
-      };
+      await assertSafeCategoryDelete(collection, filename, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
 
-      console.log('Sending to GitHub:', JSON.stringify(deleteBody));
+      if (skipRegeneration) {
+        const deleteBody = {
+          message: `CMS: Delete ${path}`,
+          sha: sha,
+          branch: 'main'
+        };
 
-      await githubRequest(
-        'DELETE',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
-        deleteBody,
-        GITHUB_TOKEN
-      );
+        console.log('Sending to GitHub:', JSON.stringify(deleteBody));
 
-      // ✨ NUOVO: Rigenera i JSON dopo l'eliminazione (se non saltato)
-      if (!skipRegeneration) {
-        console.log(`📦 Rigenerazione JSON per collection: ${collection}`);
-        await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+        await githubRequest(
+          'DELETE',
+          `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
+          deleteBody,
+          GITHUB_TOKEN
+        );
+      } else {
+        await deleteItemAtomically({
+          collection,
+          filename,
+          token: GITHUB_TOKEN,
+          owner: REPO_OWNER,
+          repo: REPO_NAME
+        });
       }
 
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ success: true })
       };
     } else if (action === 'regenerate-json') {
@@ -237,33 +253,13 @@ exports.handler = async (event, context) => {
       const latestCommitSha = branchInfo.commit.sha;
       const baseTreeSha = branchInfo.commit.commit.tree.sha;
 
-      // 2. Read all .md files in collection (PARALLEL for speed)
-      const listing = await githubRequest('GET',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${collection}`, null, GITHUB_TOKEN);
+      // 2. Read collection snapshot (prefer JSON, fallback to markdown files)
+      const allItems = await readCollectionSnapshot(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+        || await readCollectionFiles(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
 
-      if (!Array.isArray(listing)) {
+      if (!Array.isArray(allItems)) {
         return { statusCode: 404, headers, body: JSON.stringify({ error: 'Collection not found' }) };
       }
-
-      const mdFiles = listing.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
-
-      const fileResults = await Promise.all(mdFiles.map(async (file) => {
-        try {
-          const fileData = await githubRequest('GET',
-            `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${collection}/${file.name}`, null, GITHUB_TOKEN);
-          const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-          const parsed = parseMarkdownFrontmatter(content);
-          if (parsed) {
-            parsed._filename = file.name;
-            return parsed;
-          }
-        } catch (e) {
-          console.error(`Error reading ${file.name}:`, e.message);
-        }
-        return null;
-      }));
-
-      const allItems = fileResults.filter(Boolean);
 
       // 3. Build order lookup: by filename (primary) + by nome (fallback)
       const orderMap = new Map(orderItems.map(i => [i.filename, i.order]));
@@ -304,7 +300,21 @@ exports.handler = async (event, context) => {
 
       // 5. Generate updated JSON and include in same commit (no extra API calls)
       const sorted = [...allItems].sort((a, b) => (a.order || 0) - (b.order || 0));
-      const batchConfig = COLLECTION_CONFIG[collection];
+      let batchConfig = COLLECTION_CONFIG[collection];
+
+      if (!batchConfig) {
+        const categories = await readCollectionSnapshot('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+          || await readCollectionFiles('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+        const matchedCategory = findBeverageCategoryByFolder(categories, collection);
+        if (matchedCategory) {
+          batchConfig = {
+            jsonPath: 'beverages/beverages.json',
+            type: 'beverages',
+            folder: getCategoryFolder(matchedCategory),
+            name: matchedCategory.nome
+          };
+        }
+      }
 
       if (batchConfig) {
         let jsonContent = null;
@@ -316,7 +326,8 @@ exports.handler = async (event, context) => {
             beverageCategories: sorted.filter(c => c.tipo_menu === 'beverage')
           };
         } else if (batchConfig.type === 'food') {
-          const categories = await readCollectionFiles('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+          const categories = await readCollectionSnapshot('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+            || await readCollectionFiles('categorie', GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
           const foodCats = categories.filter(c => c.tipo_menu === 'food' && c.visibile !== false);
           const foodByCategory = {};
           foodCats.forEach(cat => { foodByCategory[cat.nome] = []; });
@@ -336,6 +347,10 @@ exports.handler = async (event, context) => {
             beersBySection[sec].push(beer);
           });
           jsonContent = { beers: sorted, beersBySection };
+        } else if (batchConfig.type === 'beverages') {
+          jsonContent = await generateJSONForConfig(batchConfig, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, {
+            [collection]: sorted
+          });
         }
 
         if (jsonContent) {
@@ -370,13 +385,13 @@ exports.handler = async (event, context) => {
       };
     }
 
-    return { statusCode: 400, body: JSON.stringify({ error: 'Azione non valida' }) };
+    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Azione non valida' }) };
 
   } catch (error) {
     console.error('Error:', error);
     return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
+      statusCode: getErrorStatusCode(error),
+      headers,
       body: JSON.stringify({ error: error.message || 'Unknown error' })
     };
   }
@@ -387,31 +402,590 @@ exports.handler = async (event, context) => {
 // ========================================
 
 function generateMarkdown(data) {
-  let yaml = '---\n';
+  return stringifyFrontmatter(data);
+}
 
-  for (const [key, value] of Object.entries(data)) {
-    if (Array.isArray(value)) {
-      if (value.length > 0) {
-        yaml += `${key}:\n`;
-        value.forEach(v => {
-          yaml += `  - "${v}"\n`;
-        });
-      }
-    } else if (typeof value === 'boolean') {
-      yaml += `${key}: ${value}\n`;
-    } else if (key === 'prezzo') {
-      // IMPORTANTE: Sempre salvare il prezzo come stringa tra virgolette
-      // per preservare i decimali (es: "14.50" invece di 14.5)
-      yaml += `${key}: "${value}"\n`;
-    } else if (typeof value === 'number') {
-      yaml += `${key}: ${value}\n`;
-    } else if (value) {
-      yaml += `${key}: "${value}"\n`;
+function calculateGitBlobSha(content) {
+  return crypto
+    .createHash('sha1')
+    .update(`blob ${Buffer.byteLength(content, 'utf8')}\0${content}`, 'utf8')
+    .digest('hex');
+}
+
+function getErrorStatusCode(error) {
+  const message = String(error?.message || '');
+
+  if (
+    message.includes('Campi obbligatori') ||
+    message.includes('Payload non valido') ||
+    message.includes('Prezzo non valido') ||
+    message.includes('Slug categoria non valido') ||
+    message.includes('Categoria food non valida') ||
+    message.includes('Sezione birra non valida') ||
+    message.includes('tipo_menu categoria non valido') ||
+    message.includes('Categoria padre') ||
+    message.includes('Una categoria non puo avere se stessa come padre') ||
+    message.includes('Impossibile modificare la categoria') ||
+    message.includes('Impossibile eliminare la categoria')
+  ) {
+    return 400;
+  }
+
+  if (
+    message.includes('Esiste gia una categoria') ||
+    message.includes('gia usata') ||
+    message.includes('already exists')
+  ) {
+    return 409;
+  }
+
+  if (message.includes('File non trovato')) {
+    return 404;
+  }
+
+  return 500;
+}
+
+function findCategoryByReference(categories = [], value, typeMenu = null) {
+  const normalizedValue = normalizeSlug(value);
+  if (!normalizedValue) return null;
+
+  return categories.find(category =>
+    (!typeMenu || category.tipo_menu === typeMenu) &&
+    getCategoryReferenceAliases(category).includes(normalizedValue)
+  ) || null;
+}
+
+async function loadCategoriesSnapshot(token, owner, repo) {
+  return readCollectionSnapshot('categorie', token, owner, repo)
+    || readCollectionFiles('categorie', token, owner, repo);
+}
+
+async function prepareDataForSave(collection, rawData = {}, token, owner, repo) {
+  if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
+    throw new Error('Payload non valido');
+  }
+
+  const normalized = { ...rawData };
+
+  if (collection === 'categorie') {
+    normalized.slug = normalizeSlug(normalized.slug || normalized.nome || '');
+    if (!normalized.slug) {
+      throw new Error('Slug categoria non valido');
+    }
+
+    const parentCategory = normalizeSlug(normalized.parent_category || '');
+    if (parentCategory) {
+      normalized.parent_category = parentCategory;
+    } else {
+      delete normalized.parent_category;
     }
   }
 
-  yaml += '---\n';
-  return yaml;
+  if (normalized.prezzo !== undefined) {
+    const priceValue = String(normalized.prezzo).replace(',', '.').trim();
+    const parsedPrice = Number(priceValue);
+    if (!Number.isFinite(parsedPrice)) {
+      throw new Error('Prezzo non valido');
+    }
+    normalized.prezzo = parsedPrice.toFixed(2);
+  }
+
+  if (normalized.order !== undefined) {
+    normalized.order = Number.parseInt(normalized.order, 10) || 0;
+  }
+
+  if (collection === 'food' || collection === 'beers' || !['categorie', 'food', 'beers'].includes(collection)) {
+    const categories = await loadCategoriesSnapshot(token, owner, repo);
+
+    if (collection === 'food') {
+      const match = findCategoryByReference(categories, normalized.category, 'food');
+      if (!match) {
+        throw new Error('Categoria food non valida');
+      }
+      normalized.category = match.nome;
+      normalized.category_slug = normalizeSlug(match.slug || match.nome);
+    } else if (collection === 'beers') {
+      const match = findCategoryByReference(categories, normalized.sezione, 'beverage');
+      if (!match) {
+        throw new Error('Sezione birra non valida');
+      }
+      normalized.sezione = match.nome;
+      normalized.sezione_slug = normalizeSlug(match.slug || match.nome);
+    } else {
+      const match = findBeverageCategoryByFolder(categories, collection);
+      if (match) {
+        normalized.tipo_slug = normalizeSlug(match.slug || match.nome);
+      }
+    }
+  }
+
+  const parsed = parseMarkdownFrontmatter(generateMarkdown(normalized));
+  validateRequiredFields(collection, parsed || {});
+  return parsed || {};
+}
+
+function validateRequiredFields(collection, data) {
+  const requiredFields = ['nome'];
+
+  if (collection === 'food') {
+    requiredFields.push('category', 'prezzo');
+  } else if (collection === 'beers') {
+    requiredFields.push('sezione', 'prezzo');
+  } else if (collection === 'categorie') {
+    requiredFields.push('slug', 'tipo_menu');
+  } else {
+    requiredFields.push('prezzo');
+  }
+
+  const missing = requiredFields.filter(field => {
+    const value = data[field];
+    return value === undefined || value === null || String(value).trim() === '';
+  });
+
+  if (missing.length > 0) {
+    throw new Error(`Campi obbligatori mancanti: ${missing.join(', ')}`);
+  }
+
+  if (collection === 'categorie') {
+    if (!['food', 'beverage'].includes(data.tipo_menu)) {
+      throw new Error('tipo_menu categoria non valido');
+    }
+    if (data.parent_category && normalizeSlug(data.parent_category) === normalizeSlug(data.slug)) {
+      throw new Error('Una categoria non puo avere se stessa come padre');
+    }
+  }
+}
+
+function getCategoryReferenceAliases(category = {}) {
+  const aliases = new Set();
+  [category.nome, category.slug, category.folder, getFilenameBase(category._filename)].forEach(value => {
+    const normalizedValue = normalizeSlug(value);
+    if (normalizedValue) aliases.add(normalizedValue);
+  });
+  return [...aliases];
+}
+
+function matchesCategoryReference(value, aliases = []) {
+  const normalizedValue = normalizeSlug(value);
+  return normalizedValue ? aliases.includes(normalizedValue) : false;
+}
+
+function hasCategoryStructuralChange(previousCategory = {}, nextCategory = {}) {
+  return (
+    normalizeSlug(previousCategory.nome) !== normalizeSlug(nextCategory.nome) ||
+    normalizeSlug(previousCategory.slug) !== normalizeSlug(nextCategory.slug) ||
+    normalizeSlug(previousCategory.parent_category) !== normalizeSlug(nextCategory.parent_category) ||
+    String(previousCategory.tipo_menu || '') !== String(nextCategory.tipo_menu || '')
+  );
+}
+
+function buildCategoryDependencyError(actionLabel, category, dependents) {
+  const parts = [];
+  if (dependents.childCategories.length > 0) parts.push(`${dependents.childCategories.length} sottocategorie`);
+  if (dependents.foodItems.length > 0) parts.push(`${dependents.foodItems.length} prodotti food`);
+  if (dependents.beerItems.length > 0) parts.push(`${dependents.beerItems.length} birre collegate`);
+  if (dependents.beverageItems.length > 0) parts.push(`${dependents.beverageItems.length} bevande collegate`);
+
+  if (parts.length === 0) return null;
+
+  return `Impossibile ${actionLabel} la categoria "${category.nome}": contiene o collega ancora ${parts.join(', ')}. Sposta prima i contenuti collegati.`;
+}
+
+async function readRepoFileContent(repoPath, token, owner, repo) {
+  const fileData = await githubRequest('GET', `/repos/${owner}/${repo}/contents/${repoPath}`, null, token);
+  return Buffer.from(fileData.content, 'base64').toString('utf-8');
+}
+
+async function readJsonFileFromRepo(repoPath, token, owner, repo) {
+  return JSON.parse(await readRepoFileContent(repoPath, token, owner, repo));
+}
+
+function cloneCollectionItems(items = []) {
+  return items.map(item => ({ ...item }));
+}
+
+async function readCategoryByFilename(filename, token, owner, repo) {
+  const content = await readRepoFileContent(`categorie/${filename}`, token, owner, repo);
+  const parsed = parseMarkdownFrontmatter(content);
+  if (!parsed) return null;
+  parsed._filename = filename;
+  return parsed;
+}
+
+async function loadCategoryDependents(category, token, owner, repo, overrides = {}) {
+  const aliases = getCategoryReferenceAliases(category);
+  const categories = await readCollectionSnapshot('categorie', token, owner, repo, overrides)
+    || await readCollectionFiles('categorie', token, owner, repo, overrides);
+  const childCategories = categories.filter(item =>
+    item._filename !== category._filename &&
+    matchesCategoryReference(item.parent_category, aliases)
+  );
+
+  const foodItems = category.tipo_menu === 'food'
+    ? ((await readCollectionSnapshot('food', token, owner, repo, overrides))
+      || await readCollectionFiles('food', token, owner, repo, overrides))
+      .filter(item => matchesCategoryReference(item.category, aliases))
+    : [];
+
+  const beerItems = category.tipo_menu === 'beverage'
+    ? ((await readCollectionSnapshot('beers', token, owner, repo, overrides))
+      || await readCollectionFiles('beers', token, owner, repo, overrides))
+      .filter(item => matchesCategoryReference(item.sezione, aliases))
+    : [];
+
+  const beverageItems = category.tipo_menu === 'beverage'
+    ? ((await readCollectionSnapshot(getCategoryFolder(category), token, owner, repo, overrides))
+      || await readCollectionFiles(getCategoryFolder(category), token, owner, repo, overrides))
+    : [];
+
+  return { childCategories, foodItems, beerItems, beverageItems };
+}
+
+async function assertSafeCategorySave(collection, filename, nextData, sha, token, owner, repo) {
+  if (collection !== 'categorie') return;
+
+  const categories = await readCollectionSnapshot('categorie', token, owner, repo)
+    || await readCollectionFiles('categorie', token, owner, repo);
+  const normalizedNextSlug = normalizeSlug(nextData.slug);
+  const nextCategoryCandidate = { ...nextData, _filename: filename };
+  const nextFolder = nextData.tipo_menu === 'beverage' ? getCategoryFolder(nextCategoryCandidate) : null;
+
+  const duplicateSlug = categories.find(category =>
+    category._filename !== filename &&
+    normalizeSlug(category.slug || category.nome) === normalizedNextSlug
+  );
+  if (duplicateSlug) {
+    throw new Error(`Esiste gia una categoria con slug "${nextData.slug}"`);
+  }
+
+  if (nextFolder) {
+    const duplicateFolder = categories.find(category =>
+      category._filename !== filename &&
+      category.tipo_menu === 'beverage' &&
+      getCategoryFolder(category) === nextFolder
+    );
+    if (duplicateFolder) {
+      throw new Error(`La cartella beverage "${nextFolder}" e gia usata da "${duplicateFolder.nome}"`);
+    }
+  }
+
+  if (nextData.parent_category) {
+    const parent = categories.find(category =>
+      category._filename !== filename &&
+      normalizeSlug(category.slug || category.nome) === normalizeSlug(nextData.parent_category)
+    );
+    if (!parent) {
+      throw new Error('Categoria padre non trovata');
+    }
+    if (parent.tipo_menu !== nextData.tipo_menu) {
+      throw new Error('La categoria padre deve avere lo stesso tipo_menu');
+    }
+    if (parent.parent_category) {
+      throw new Error('La categoria padre deve essere di primo livello');
+    }
+  }
+
+  if (!sha) return;
+
+  const currentCategory = categories.find(category => category._filename === filename) || await readCategoryByFilename(filename, token, owner, repo);
+  if (!currentCategory || !hasCategoryStructuralChange(currentCategory, nextData)) return;
+
+  const dependents = await loadCategoryDependents(currentCategory, token, owner, repo);
+  const dependencyError = buildCategoryDependencyError('modificare', currentCategory, dependents);
+  if (dependencyError) {
+    throw new Error(dependencyError);
+  }
+}
+
+async function assertSafeCategoryDelete(collection, filename, token, owner, repo) {
+  if (collection !== 'categorie') return;
+
+  const currentCategory = await readCategoryByFilename(filename, token, owner, repo);
+  if (!currentCategory) return;
+
+  const dependents = await loadCategoryDependents(currentCategory, token, owner, repo);
+  const dependencyError = buildCategoryDependencyError('eliminare', currentCategory, dependents);
+  if (dependencyError) {
+    throw new Error(dependencyError);
+  }
+}
+
+function applySaveToCollectionItems(items, filename, data) {
+  const nextItems = items.filter(item => item._filename !== filename);
+  nextItems.push({ ...data, _filename: filename });
+  nextItems.sort((a, b) => (a.order || 0) - (b.order || 0));
+  return nextItems;
+}
+
+function applyDeleteToCollectionItems(items, filename) {
+  return items
+    .filter(item => item._filename !== filename)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
+}
+
+async function getBranchContext(token, owner, repo, branch = 'main') {
+  const branchInfo = await githubRequest('GET', `/repos/${owner}/${repo}/branches/${branch}`, null, token);
+  return {
+    branch,
+    latestCommitSha: branchInfo.commit.sha,
+    baseTreeSha: branchInfo.commit.commit.tree.sha
+  };
+}
+
+async function createCommitFromEntries({ token, owner, repo, message, treeEntries, branch = 'main' }) {
+  if (!treeEntries.length) {
+    throw new Error('Nessuna modifica da salvare');
+  }
+
+  const branchContext = await getBranchContext(token, owner, repo, branch);
+  const newTree = await githubRequest(
+    'POST',
+    `/repos/${owner}/${repo}/git/trees`,
+    { base_tree: branchContext.baseTreeSha, tree: treeEntries },
+    token
+  );
+
+  const newCommit = await githubRequest(
+    'POST',
+    `/repos/${owner}/${repo}/git/commits`,
+    {
+      message,
+      tree: newTree.sha,
+      parents: [branchContext.latestCommitSha]
+    },
+    token
+  );
+
+  await githubRequest(
+    'PATCH',
+    `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
+    { sha: newCommit.sha },
+    token
+  );
+
+  return newCommit;
+}
+
+async function resolveCollectionConfig(collection, token, owner, repo, overrides = {}) {
+  let config = COLLECTION_CONFIG[collection];
+
+  if (!config) {
+    const categories = await readCollectionSnapshot('categorie', token, owner, repo, overrides)
+      || await readCollectionFiles('categorie', token, owner, repo, overrides);
+    const matchedCategory = findBeverageCategoryByFolder(categories, collection);
+    if (matchedCategory) {
+      config = {
+        jsonPath: 'beverages/beverages.json',
+        type: 'beverages',
+        folder: getCategoryFolder(matchedCategory),
+        name: matchedCategory.nome
+      };
+      console.log(`📦 Dynamic beverage folder detected: ${config.folder} → "${matchedCategory.nome}"`);
+    }
+  }
+
+  return config || null;
+}
+
+async function readCollectionSnapshot(collection, token, owner, repo, overrides = {}) {
+  if (Object.prototype.hasOwnProperty.call(overrides, collection)) {
+    return cloneCollectionItems(overrides[collection] || []);
+  }
+
+  const config = await resolveCollectionConfig(collection, token, owner, repo, overrides);
+  if (!config) return null;
+
+  try {
+    const jsonData = await readJsonFileFromRepo(config.jsonPath, token, owner, repo);
+
+    if (config.type === 'food') {
+      return cloneCollectionItems(jsonData.food || []);
+    }
+    if (config.type === 'beers') {
+      return cloneCollectionItems(jsonData.beers || []);
+    }
+    if (config.type === 'categories') {
+      return cloneCollectionItems(jsonData.categories || []);
+    }
+    if (config.type === 'beverages') {
+      return cloneCollectionItems((jsonData.beverages || []).filter(item => item.tipo === config.name));
+    }
+  } catch (error) {
+    console.log(`⚠️ Snapshot fallback to markdown for ${collection}: ${error.message}`);
+  }
+
+  return null;
+}
+
+async function generateJSONForConfig(config, token, owner, repo, overrides = {}) {
+  if (!config) return null;
+
+  if (config.type === 'food') {
+    return generateFoodJSON(token, owner, repo, overrides);
+  }
+  if (config.type === 'beers') {
+    return generateBeersJSON(token, owner, repo, overrides);
+  }
+  if (config.type === 'categories') {
+    return generateCategoriesJSON(token, owner, repo, overrides);
+  }
+  if (config.type === 'beverages') {
+    const incremental = await generateIncrementalBeveragesJSON(config, token, owner, repo, overrides);
+    if (incremental) return incremental;
+    return generateBeveragesJSON(token, owner, repo, overrides);
+  }
+
+  return null;
+}
+
+async function buildJsonTreeEntry(collection, token, owner, repo, overrides = {}) {
+  const config = await resolveCollectionConfig(collection, token, owner, repo, overrides);
+  if (!config) return null;
+
+  const jsonContent = await generateJSONForConfig(config, token, owner, repo, overrides);
+  if (!jsonContent) return null;
+
+  return {
+    path: config.jsonPath,
+    mode: '100644',
+    type: 'blob',
+    content: JSON.stringify(jsonContent, null, 2)
+  };
+}
+
+async function generateIncrementalBeveragesJSON(config, token, owner, repo, overrides = {}) {
+  if (!config?.folder || !Object.prototype.hasOwnProperty.call(overrides, config.folder)) {
+    return null;
+  }
+
+  const displayName = config.name || BASE_BEVERAGE_CATEGORIES.find(category => category.folder === config.folder)?.name;
+  if (!displayName) {
+    return null;
+  }
+
+  try {
+    const currentJson = JSON.parse(await readRepoFileContent(config.jsonPath, token, owner, repo));
+    const currentByType = { ...(currentJson.beveragesByType || {}) };
+    const updatedItems = (overrides[config.folder] || [])
+      .map(item => ({ ...item, tipo: displayName }))
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    if (updatedItems.length > 0) {
+      currentByType[displayName] = updatedItems;
+    } else {
+      delete currentByType[displayName];
+    }
+
+    const orderedKeys = Object.keys(currentJson.beveragesByType || {});
+    if (updatedItems.length > 0 && !orderedKeys.includes(displayName)) {
+      orderedKeys.push(displayName);
+    }
+
+    const nextByType = {};
+    orderedKeys.forEach(key => {
+      if (currentByType[key]?.length) {
+        nextByType[key] = currentByType[key];
+      }
+    });
+
+    Object.keys(currentByType).forEach(key => {
+      if (!nextByType[key] && currentByType[key]?.length) {
+        nextByType[key] = currentByType[key];
+      }
+    });
+
+    const beverages = [];
+    Object.values(nextByType).forEach(items => beverages.push(...items));
+
+    return {
+      beverages,
+      beveragesByType: nextByType
+    };
+  } catch (error) {
+    console.log(`⚠️ Fallback full beverages regen: ${error.message}`);
+    return null;
+  }
+}
+
+async function saveItemAtomically({ collection, filename, data, sha, token, owner, repo }) {
+  const existingItems = await readCollectionSnapshot(collection, token, owner, repo)
+    || await readCollectionFiles(collection, token, owner, repo);
+  const fileExists = existingItems.some(item => item._filename === filename);
+
+  if (!sha && fileExists) {
+    throw new Error('GitHub API error: 422 - File already exists');
+  }
+  if (sha && !fileExists) {
+    throw new Error('File non trovato per aggiornamento');
+  }
+
+  const updatedItems = applySaveToCollectionItems(existingItems, filename, data);
+  const fileContent = generateMarkdown(data);
+  const fileSha = calculateGitBlobSha(fileContent);
+  const treeEntries = [
+    {
+      path: `${collection}/${filename}`,
+      mode: '100644',
+      type: 'blob',
+      content: fileContent
+    }
+  ];
+
+  const jsonEntry = await buildJsonTreeEntry(collection, token, owner, repo, {
+    [collection]: updatedItems
+  });
+  if (jsonEntry) {
+    treeEntries.push(jsonEntry);
+  }
+
+  const commit = await createCommitFromEntries({
+    token,
+    owner,
+    repo,
+    message: `CMS: Update ${collection}/${filename}`,
+    treeEntries
+  });
+
+  return {
+    sha: fileSha,
+    content: { sha: fileSha },
+    commit
+  };
+}
+
+async function deleteItemAtomically({ collection, filename, token, owner, repo }) {
+  const existingItems = await readCollectionSnapshot(collection, token, owner, repo)
+    || await readCollectionFiles(collection, token, owner, repo);
+  const fileExists = existingItems.some(item => item._filename === filename);
+  if (!fileExists) {
+    throw new Error('File non trovato per eliminazione');
+  }
+
+  const updatedItems = applyDeleteToCollectionItems(existingItems, filename);
+  const treeEntries = [
+    {
+      path: `${collection}/${filename}`,
+      mode: '100644',
+      type: 'blob',
+      sha: null
+    }
+  ];
+
+  const jsonEntry = await buildJsonTreeEntry(collection, token, owner, repo, {
+    [collection]: updatedItems
+  });
+  if (jsonEntry) {
+    treeEntries.push(jsonEntry);
+  }
+
+  return createCommitFromEntries({
+    token,
+    owner,
+    repo,
+    message: `CMS: Delete ${collection}/${filename}`,
+    treeEntries
+  });
 }
 
 // ========================================
@@ -467,61 +1041,31 @@ const COLLECTION_CONFIG = {
     type: 'categories'
   },
   // Beverage collections derived from BEVERAGE_CATEGORIES constant
-  ...Object.fromEntries(BEVERAGE_CATEGORIES.map(c => [
-    c.folder, { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: c.folder }
+  ...Object.fromEntries(BASE_BEVERAGE_CATEGORIES.map(c => [
+    c.folder, { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: c.folder, name: c.name }
   ]))
 };
 
 async function regenerateJSON(collection, token, owner, repo) {
-  let config = COLLECTION_CONFIG[collection];
-
-  // If collection is not in static config, check if it's a dynamic beverage folder
-  if (!config) {
-    try {
-      const categories = await readCollectionFiles('categorie', token, owner, repo);
-      const isDynamicBeverage = categories.some(c => {
-        const slug = (c.slug || '').toLowerCase().replace(/\s+/g, '-');
-        return c.tipo_menu === 'beverage' && slug === collection;
-      });
-      if (isDynamicBeverage) {
-        config = { jsonPath: 'beverages/beverages.json', type: 'beverages', folder: collection };
-        console.log(`📦 Dynamic beverage folder detected: ${collection}`);
-      }
-    } catch (e) {
-      console.error(`Error checking dynamic beverage for ${collection}:`, e.message);
-    }
-  }
-
+  const config = await resolveCollectionConfig(collection, token, owner, repo);
   if (!config) {
     console.log(`⚠️ Collection ${collection} non configurata per rigenerazione JSON`);
     return;
   }
 
-  try {
-    let jsonContent;
-
-    if (config.type === 'food') {
-      jsonContent = await generateFoodJSON(token, owner, repo);
-    } else if (config.type === 'beers') {
-      jsonContent = await generateBeersJSON(token, owner, repo);
-    } else if (config.type === 'categories') {
-      jsonContent = await generateCategoriesJSON(token, owner, repo);
-    } else if (config.type === 'beverages') {
-      jsonContent = await generateBeveragesJSON(token, owner, repo);
-    }
-
-    if (jsonContent) {
-      await commitJSON(config.jsonPath, jsonContent, token, owner, repo);
-      console.log(`✅ JSON rigenerato: ${config.jsonPath}`);
-    }
-  } catch (error) {
-    console.error(`❌ Errore rigenerazione JSON per ${collection}:`, error.message);
-    // Non blocchiamo il salvataggio se la rigenerazione fallisce
+  const jsonContent = await generateJSONForConfig(config, token, owner, repo);
+  if (jsonContent) {
+    await commitJSON(config.jsonPath, jsonContent, token, owner, repo);
+    console.log(`✅ JSON rigenerato: ${config.jsonPath}`);
   }
 }
 
 // Legge tutti i file .md di una collection
-async function readCollectionFiles(folder, token, owner, repo) {
+async function readCollectionFiles(folder, token, owner, repo, overrides = {}) {
+  if (Object.prototype.hasOwnProperty.call(overrides, folder)) {
+    return (overrides[folder] || []).map(item => ({ ...item }));
+  }
+
   try {
     const url = `/repos/${owner}/${repo}/contents/${folder}`;
     const files = await githubRequest('GET', url, null, token);
@@ -535,7 +1079,7 @@ async function readCollectionFiles(folder, token, owner, repo) {
       try {
         const fileData = await githubRequest('GET', `/repos/${owner}/${repo}/contents/${folder}/${file.name}`, null, token);
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-        const parsed = parseMarkdownFrontmatter(content);
+        const parsed = parseFrontmatter(content);
         if (parsed) {
           parsed._filename = file.name;
           return parsed;
@@ -555,55 +1099,36 @@ async function readCollectionFiles(folder, token, owner, repo) {
 
 // Parsifica il frontmatter YAML dal markdown
 function parseMarkdownFrontmatter(content) {
-  const match = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
-
-  const data = {};
-  let currentKey = null;
-  let inArray = false;
-  let arrayValues = [];
-
-  match[1].split('\n').forEach(line => {
-    line = line.replace(/\r$/, '');
-    if (line.startsWith('  - ')) {
-      arrayValues.push(line.replace('  - ', '').replace(/"/g, '').trim());
-    } else if (line.includes(':')) {
-      if (currentKey && inArray) {
-        data[currentKey] = arrayValues;
-        arrayValues = [];
-        inArray = false;
-      }
-      const [key, ...rest] = line.split(':');
-      const value = rest.join(':').trim();
-      currentKey = key.trim();
-      if (value === '') {
-        inArray = true;
-      } else {
-        let parsed = value.replace(/^["']|["']$/g, '');
-        if (parsed === 'true') parsed = true;
-        else if (parsed === 'false') parsed = false;
-        // IMPORTANTE: Non convertire 'prezzo' in Number per preservare i decimali
-        // (es: "14.50" rimarrebbe "14.50" come stringa invece di 14.5)
-        else if (currentKey !== 'prezzo' && !isNaN(parsed) && parsed !== '') parsed = Number(parsed);
-        data[currentKey] = parsed;
-      }
-    }
-  });
-
-  if (currentKey && inArray) data[currentKey] = arrayValues;
-  return data;
+  return parseFrontmatter(content);
 }
 
 // ========================================
 // GENERATORI JSON SPECIFICI
 // ========================================
 
-async function generateFoodJSON(token, owner, repo) {
+async function generateFoodJSON(token, owner, repo, overrides = {}) {
+  const useSnapshots = Object.keys(overrides).length > 0;
   // Carica anche le categorie per l'ordine
-  const categories = await readCollectionFiles('categorie', token, owner, repo);
+  const categories = useSnapshots
+    ? (await readCollectionSnapshot('categorie', token, owner, repo, overrides))
+      || await readCollectionFiles('categorie', token, owner, repo, overrides)
+    : await readCollectionFiles('categorie', token, owner, repo, overrides);
   const foodCategories = categories.filter(c => c.tipo_menu === 'food' && c.visibile !== false);
 
-  const foodItems = await readCollectionFiles('food', token, owner, repo);
+  const foodItems = useSnapshots
+    ? (await readCollectionSnapshot('food', token, owner, repo, overrides))
+      || await readCollectionFiles('food', token, owner, repo, overrides)
+    : await readCollectionFiles('food', token, owner, repo, overrides);
+
+  foodItems.forEach(item => {
+    const match = findCategoryByReference(foodCategories, item.category, 'food');
+    if (match) {
+      item.category = match.nome;
+      item.category_slug = normalizeSlug(item.category_slug || match.slug || match.nome);
+    } else if (item.category_slug) {
+      item.category_slug = normalizeSlug(item.category_slug);
+    }
+  });
 
   // Ordina per order
   foodItems.sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -638,8 +1163,26 @@ async function generateFoodJSON(token, owner, repo) {
   };
 }
 
-async function generateBeersJSON(token, owner, repo) {
-  const beers = await readCollectionFiles('beers', token, owner, repo);
+async function generateBeersJSON(token, owner, repo, overrides = {}) {
+  const useSnapshots = Object.keys(overrides).length > 0;
+  const beers = useSnapshots
+    ? (await readCollectionSnapshot('beers', token, owner, repo, overrides))
+      || await readCollectionFiles('beers', token, owner, repo, overrides)
+    : await readCollectionFiles('beers', token, owner, repo, overrides);
+
+  const beverageCategories = await (useSnapshots
+    ? loadCategoriesSnapshot(token, owner, repo)
+    : readCollectionFiles('categorie', token, owner, repo, overrides));
+
+  beers.forEach(beer => {
+    const match = findCategoryByReference(beverageCategories, beer.sezione, 'beverage');
+    if (match) {
+      beer.sezione = match.nome;
+      beer.sezione_slug = normalizeSlug(beer.sezione_slug || match.slug || match.nome);
+    } else if (beer.sezione_slug) {
+      beer.sezione_slug = normalizeSlug(beer.sezione_slug);
+    }
+  });
 
   // Ordina per order
   beers.sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -660,8 +1203,8 @@ async function generateBeersJSON(token, owner, repo) {
   };
 }
 
-async function generateCategoriesJSON(token, owner, repo) {
-  const categories = await readCollectionFiles('categorie', token, owner, repo);
+async function generateCategoriesJSON(token, owner, repo, overrides = {}) {
+  const categories = await readCollectionFiles('categorie', token, owner, repo, overrides);
 
   // Ordina (NON FILTRARE VISIBILI: il CMS deve vederle tutte!)
   const allCategories = categories
@@ -674,21 +1217,25 @@ async function generateCategoriesJSON(token, owner, repo) {
   };
 }
 
-async function generateBeveragesJSON(token, owner, repo) {
+async function generateBeveragesJSON(token, owner, repo, overrides = {}) {
+  const useSnapshots = Object.keys(overrides).length > 0;
   // Build the full list of beverage folders: hardcoded + dynamic from categories
-  const knownFolders = new Set(BEVERAGE_CATEGORIES.map(c => c.folder));
-  const allBeverageFolders = [...BEVERAGE_CATEGORIES];
+  const knownFolders = new Set(BASE_BEVERAGE_CATEGORIES.map(c => c.folder));
+  const allBeverageFolders = [...BASE_BEVERAGE_CATEGORIES];
 
   // Discover dynamic beverage folders from categorie collection
   try {
-    const categories = await readCollectionFiles('categorie', token, owner, repo);
+    const categories = useSnapshots
+      ? (await readCollectionSnapshot('categorie', token, owner, repo, overrides))
+        || await readCollectionFiles('categorie', token, owner, repo, overrides)
+      : await readCollectionFiles('categorie', token, owner, repo, overrides);
     const beverageCats = categories.filter(c => c.tipo_menu === 'beverage');
     for (const cat of beverageCats) {
-      const slug = (cat.slug || '').toLowerCase().replace(/\s+/g, '-');
-      if (slug && !knownFolders.has(slug)) {
-        allBeverageFolders.push({ name: cat.nome, folder: slug });
-        knownFolders.add(slug);
-        console.log(`📦 Dynamic beverage folder discovered: ${slug} → "${cat.nome}"`);
+      const folder = getCategoryFolder(cat);
+      if (folder && !knownFolders.has(folder)) {
+        allBeverageFolders.push({ name: cat.nome, folder, slug: normalizeSlug(cat.slug || cat.nome) });
+        knownFolders.add(folder);
+        console.log(`📦 Dynamic beverage folder discovered: ${folder} → "${cat.nome}"`);
       }
     }
   } catch (e) {
@@ -701,7 +1248,10 @@ async function generateBeveragesJSON(token, owner, repo) {
   for (const category of allBeverageFolders) {
     let items;
     try {
-      items = await readCollectionFiles(category.folder, token, owner, repo);
+      items = useSnapshots
+        ? (await readCollectionSnapshot(category.folder, token, owner, repo, overrides))
+          || await readCollectionFiles(category.folder, token, owner, repo, overrides)
+        : await readCollectionFiles(category.folder, token, owner, repo, overrides);
     } catch (e) {
       // Folder may not exist yet (no products added) — skip gracefully
       console.log(`⏭️ Beverage folder "${category.folder}" not found or empty, skipping`);
@@ -711,6 +1261,7 @@ async function generateBeveragesJSON(token, owner, repo) {
     // Aggiungi il tipo a ogni item
     items.forEach(item => {
       item.tipo = category.name;
+      item.tipo_slug = normalizeSlug(item.tipo_slug || category.slug || category.folder || category.name);
     });
 
     // Ordina

@@ -1,6 +1,7 @@
 ---
 nome: "Naima - Cr/Ak"
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "7.00"
 descrizione: "DDH IPA"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1771179327/arconti31/qflhrl5iofzpwduamuan.jpg"
