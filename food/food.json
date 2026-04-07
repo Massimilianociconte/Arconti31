@@ -3,6 +3,7 @@
     {
       "nome": "Arconti 31",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "9.50",
       "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
       "allergeni": [
@@ -19,6 +20,7 @@
     {
       "nome": "Romagnola ",
       "category": "Piadine",
+      "category_slug": "piadine",
       "prezzo": "8.00",
       "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
       "allergeni": [
@@ -36,6 +38,7 @@
     {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
+      "category_slug": "hamburger-bufala",
       "prezzo": "15.50",
       "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte",
       "allergeni": [
@@ -52,6 +55,7 @@
     {
       "nome": "Profitterol",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "tre palline di bigne ripieni alla crema ricoperte di cioccolato fondente",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
@@ -71,6 +75,7 @@
     {
       "nome": "PULLED NOT PORK ",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "16.50",
       "descrizione": "Pane al sesamo, Pulled di lepre CBT, cavolo cappuccio, cipolle caramellate, pomodori secchi artigianali e salsa bbq affumicata.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772823176/arconti31/nclvmcvuwhfiuwfivqq3.png",
@@ -90,6 +95,7 @@
     {
       "nome": "Soffice Cremoso",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
       "allergeni": [
@@ -109,6 +115,7 @@
     {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "14.00",
       "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.  Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829718/arconti31/cmkedwfu9ym7wkeyo2fh.webp",
@@ -128,6 +135,7 @@
     {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
+      "category_slug": "hamburger-bufala",
       "prezzo": "15.5",
       "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da un cestino di patatine fritte.",
       "allergeni": [
@@ -145,6 +153,7 @@
     {
       "nome": "Mezzo polletto grigliato",
       "category": "Bavarese",
+      "category_slug": "bavarese",
       "prezzo": "16.00",
       "descrizione": "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg",
@@ -165,6 +174,7 @@
     {
       "nome": "Piatto classico",
       "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "10.00",
       "descrizione": "Hamburger di bufala al piatto 220gr grigliato su letto di rucola, salsa pomodorini gialli, patatine fritte come contorno",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128322/arconti31/auykyuvvdykdbsuyioba.jpg",
@@ -179,6 +189,7 @@
     {
       "nome": "Picanha",
       "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "19.50",
       "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128474/arconti31/xhqhesowsmlnijthiaf1.jpg",
@@ -193,6 +204,7 @@
     {
       "nome": "Rosti di patate e speck",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "6.00",
       "descrizione": "Forma particolare, patate, speck",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463783/arconti31/f5nubikfbiusptaihbvo.jpg",
@@ -208,6 +220,7 @@
     {
       "nome": "Tagliere aperitivo",
       "category": "Aperitivo",
+      "category_slug": "aperitivo",
       "prezzo": "10.00",
       "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
@@ -218,6 +231,7 @@
     {
       "nome": "Tiramisù al bicchiere",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465373/arconti31/onchf51xfvqlaqtmipon.jpg",
@@ -233,6 +247,7 @@
     {
       "nome": "Azalee",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "9.00",
       "descrizione": "Ciabatta 180gr con bresaola Valtellina, ricotta di bufala fresca, olio extra vergine e rucola",
       "allergeni": [
@@ -246,6 +261,7 @@
     {
       "nome": "Chili cheese",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "6.00",
       "descrizione": "Crocchette fritte artigianali con formaggio e chili",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
@@ -260,6 +276,7 @@
     {
       "nome": "Gallaratese",
       "category": "Piadine",
+      "category_slug": "piadine",
       "prezzo": "8.00",
       "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
       "allergeni": [
@@ -273,6 +290,7 @@
     {
       "nome": "Hamburger F1",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.00",
       "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829132/arconti31/emetliuafqdtoqkgq9rx.jpg",
@@ -291,6 +309,7 @@
     {
       "nome": "Hamburger F2 bufala",
       "category": "Hamburger di bufala",
+      "category_slug": "hamburger-bufala",
       "prezzo": "15.00",
       "descrizione": "Bufala 220gr dall’ allevamento “Facchi” di Oleggio con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
       "disponibile": true,
@@ -300,6 +319,7 @@
     {
       "nome": "Piada alla nutella",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
@@ -310,6 +330,7 @@
     {
       "nome": "Piatto cotoletta",
       "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "10.00",
       "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salsa senape a parte",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128600/arconti31/facxtvyfi7ce0vubbk1i.jpg",
@@ -325,7 +346,8 @@
     },
     {
       "nome": "Tagliata di manzo",
-      "category": "Piatti Speciali",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "19.50",
       "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
       "disponibile": false,
@@ -335,6 +357,7 @@
     {
       "nome": "Tagliere affettati e formaggi",
       "category": "Aperitivo",
+      "category_slug": "aperitivo",
       "prezzo": "25.00",
       "descrizione": "Per due persone, selezione chef di salumi nostrani e formaggi della tradizione, pane bruschettato - Disponibile fino alle 20:30",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129172/arconti31/x28i6gpoqu8kiqhosz2j.jpg",
@@ -350,7 +373,8 @@
     },
     {
       "nome": "Tris di würstel Brema bavaresi ripieni",
-      "category": "OKTOBERFEST",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "15.00",
       "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
       "tags": [
@@ -364,6 +388,7 @@
     {
       "nome": "Bettolino",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "10.00",
       "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
       "allergeni": [
@@ -378,6 +403,7 @@
     {
       "nome": "Crocchette di filetto di pollo",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "7.50",
       "descrizione": "Filetto di pollo fritto artigianale",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
@@ -388,6 +414,7 @@
     {
       "nome": "Hamburger F2",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "14.00",
       "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
@@ -399,6 +426,7 @@
     {
       "nome": "Hamburger F3 bufala",
       "category": "Hamburger di bufala",
+      "category_slug": "hamburger-bufala",
       "prezzo": "16.00",
       "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
       "tags": [
@@ -411,6 +439,7 @@
     {
       "nome": "Ronchi",
       "category": "Piadine",
+      "category_slug": "piadine",
       "prezzo": "9.00",
       "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
       "allergeni": [
@@ -427,6 +456,7 @@
     {
       "nome": "Cedratese",
       "category": "Piadine",
+      "category_slug": "piadine",
       "prezzo": "8.00",
       "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
       "allergeni": [
@@ -443,6 +473,7 @@
     {
       "nome": "Salame al cioccolato",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463564/arconti31/hryjdclsduxdszb9ntup.webp",
@@ -457,6 +488,7 @@
     {
       "nome": "Stinco di maiale al forno",
       "category": "Bavarese",
+      "category_slug": "bavarese",
       "prezzo": "17.50",
       "descrizione": "Stinco di maiale circa 800/900 grammi cotto nel forno a  bassa temperatura, patate al forno, cavolo viola.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827566/arconti31/zfqvt2ovhg7qbnlznf6o.jpg",
@@ -471,7 +503,8 @@
     },
     {
       "nome": "Tartare di manzo battuta a coltello",
-      "category": "Piatti Speciali",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "18,50",
       "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
       "tags": [
@@ -485,6 +518,7 @@
     {
       "nome": "Broletto",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "8.50",
       "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
       "allergeni": [
@@ -501,6 +535,7 @@
     {
       "nome": "Hamburger F3",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.50",
       "descrizione": "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigliate, salsa bbq, fontina, accompagnato da  patatine fritte.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829916/arconti31/tpzv9i3zostryx261mbr.jpg",
@@ -515,6 +550,7 @@
     {
       "nome": "Hamburger F4",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.00",
       "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte. Coperto 1 €",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830160/arconti31/mazpsosarpugykvmf3dw.jpg",
@@ -534,6 +570,7 @@
     {
       "nome": "Carbo-burger",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.50",
       "descrizione": "Pane artigianale con hamburger fassona 220 gr, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, accompagnato da cestino di patatine stick",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297763/arconti31/imvnaq2pze9nobuq4rdf.jpg",
@@ -549,6 +586,7 @@
     {
       "nome": "Hamburger F4 bufala",
       "category": "Hamburger di bufala",
+      "category_slug": "hamburger-bufala",
       "prezzo": "15,50",
       "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, accompagnato da patatine fritte",
       "disponibile": true,
@@ -558,6 +596,7 @@
     {
       "nome": "Crocchette di pulled pork ",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "7.50",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570433/arconti31/cew7cjgqiakvmj3u6u7f.jpg",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570420/arconti31/v1scjukxetkge2uhgyto.jpg",
@@ -571,6 +610,7 @@
     {
       "nome": "Tortino con cuore morbido al cioccolato",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463645/arconti31/ndxa8sum6cnn3hnskk2a.jpg",
@@ -584,6 +624,7 @@
     {
       "nome": "Cajello",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "9.00",
       "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
       "allergeni": [
@@ -600,6 +641,7 @@
     {
       "nome": "Onion rings",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "6.00",
       "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
@@ -609,7 +651,8 @@
     },
     {
       "nome": "Sex on the meat",
-      "category": "Piatti Speciali",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "16",
       "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
       "tags": [
@@ -624,6 +667,7 @@
     {
       "nome": "Strudel di mele",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463693/arconti31/tz9a9kpiwbaumjrg4an8.jpg",
@@ -637,6 +681,7 @@
     {
       "nome": "Cascinetta",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "9.50",
       "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
       "allergeni": [
@@ -651,6 +696,7 @@
     {
       "nome": "Patatine fritte",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "5.00",
       "descrizione": "Rustiche fritte",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
@@ -661,6 +707,7 @@
     {
       "nome": "Pulled Pork",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.50",
       "descrizione": "Pane hamburger farcito con spalla maiale cotta a bassa temperatura e sfilacciata 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, accompagnato da cestino di patatine fritte",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631247/arconti31/koo8vpknds2jcues4owr.jpg",
@@ -681,6 +728,7 @@
     {
       "nome": "Salame al cioccolato bianco",
       "category": "Dolci",
+      "category_slug": "dolci",
       "prezzo": "6.00",
       "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
       "disponibile": false,
@@ -689,7 +737,8 @@
     },
     {
       "nome": "Smash Burger (1-3 strati) ",
-      "category": "Piatti Speciali",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
       "prezzo": "8.00",
       "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:  1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
       "allergeni": [
@@ -709,6 +758,7 @@
     {
       "nome": "Cedrate",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "8.50",
       "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
       "allergeni": [
@@ -726,6 +776,7 @@
     {
       "nome": "Patatine fritte twist",
       "category": "Fritti",
+      "category_slug": "fritti",
       "prezzo": "6.00",
       "descrizione": "Rustiche fritte twist",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464265/arconti31/avtqke7nvvhbb8xqlk5m.webp",
@@ -743,6 +794,7 @@
     {
       "nome": "Porchettara",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.00",
       "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
       "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768294585/arconti31/eechw3ki5oqg9qisymqw.jpg",
@@ -761,6 +813,7 @@
     {
       "nome": "Crenna",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "8.50",
       "descrizione": "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa",
       "allergeni": [
@@ -779,6 +832,7 @@
     {
       "nome": "Hamburger Autunnale",
       "category": "Hamburger Fassona e Street food",
+      "category_slug": "hamburger-fassona",
       "prezzo": "15.00",
       "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana grigliata, chips di zucca. Contorno: patatine fritte.",
       "allergeni": [
@@ -795,6 +849,7 @@
     {
       "nome": "Varesina",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "8.00",
       "descrizione": "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella",
       "allergeni": [
@@ -813,6 +868,7 @@
     {
       "nome": "Cajello vegano",
       "category": "Panini Ciabatta",
+      "category_slug": "panini",
       "prezzo": "8.00",
       "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
       "allergeni": [
@@ -832,6 +888,7 @@
       {
         "nome": "Mezzo polletto grigliato",
         "category": "Bavarese",
+        "category_slug": "bavarese",
         "prezzo": "16.00",
         "descrizione": "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg",
@@ -852,6 +909,7 @@
       {
         "nome": "Stinco di maiale al forno",
         "category": "Bavarese",
+        "category_slug": "bavarese",
         "prezzo": "17.50",
         "descrizione": "Stinco di maiale circa 800/900 grammi cotto nel forno a  bassa temperatura, patate al forno, cavolo viola.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827566/arconti31/zfqvt2ovhg7qbnlznf6o.jpg",
@@ -870,6 +928,7 @@
       {
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "15.50",
         "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte",
         "allergeni": [
@@ -886,6 +945,7 @@
       {
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "15.5",
         "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da un cestino di patatine fritte.",
         "allergeni": [
@@ -903,6 +963,7 @@
       {
         "nome": "Hamburger F2 bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "15.00",
         "descrizione": "Bufala 220gr dall’ allevamento “Facchi” di Oleggio con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte",
         "disponibile": true,
@@ -912,6 +973,7 @@
       {
         "nome": "Hamburger F3 bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "16.00",
         "descrizione": "Bufala 220gr con pancetta affumicata, tuorlo d'uovo, zucchine grigliate, salsa bbq, fontina accompagnato da cestino di patatine fritte",
         "tags": [
@@ -924,6 +986,7 @@
       {
         "nome": "Hamburger F4 bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "15,50",
         "descrizione": "Bufala 220gr con pane sesamo, carpaccio pomodoro, rucola, burratina 125gr, balsamico, accompagnato da patatine fritte",
         "disponibile": true,
@@ -935,6 +998,7 @@
       {
         "nome": "PULLED NOT PORK ",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "16.50",
         "descrizione": "Pane al sesamo, Pulled di lepre CBT, cavolo cappuccio, cipolle caramellate, pomodori secchi artigianali e salsa bbq affumicata.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772823176/arconti31/nclvmcvuwhfiuwfivqq3.png",
@@ -954,6 +1018,7 @@
       {
         "nome": "Bacon burger",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "14.00",
         "descrizione": "220 gr di Fassona con pancetta tesa grigliata, cheddar, salsa pepe nero. Contorno: patatine fritte.  Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829718/arconti31/cmkedwfu9ym7wkeyo2fh.webp",
@@ -973,6 +1038,7 @@
       {
         "nome": "Hamburger F1",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.00",
         "descrizione": "Fassona 220gr con aggiunta tomino grigliato, speck, salsa rosa, accompagnato da cestino di patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829132/arconti31/emetliuafqdtoqkgq9rx.jpg",
@@ -991,6 +1057,7 @@
       {
         "nome": "Hamburger F2",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "14.00",
         "descrizione": "Fassona 220gr con cipolle caramellate, pomodoro, fontina, insalata, maionese, accompagnato da cestino di patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829397/arconti31/hvjudmpyebit3hk4yx2d.webp",
@@ -1002,6 +1069,7 @@
       {
         "nome": "Hamburger F3",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.50",
         "descrizione": "Fassona 220gr con pancetta tesa grigliata, tuorlo, zucchine grigliate, salsa bbq, fontina, accompagnato da  patatine fritte.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768829916/arconti31/tpzv9i3zostryx261mbr.jpg",
@@ -1016,6 +1084,7 @@
       {
         "nome": "Hamburger F4",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.00",
         "descrizione": "Fassona 220gr con sesamo, carpaccio pomodoro, rucola, burratina 125gr allevamento Facchi, glassa aceto balsamico, accompagnato da cestino di  patatine fritte. Coperto 1 €",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768830160/arconti31/mazpsosarpugykvmf3dw.jpg",
@@ -1035,6 +1104,7 @@
       {
         "nome": "Carbo-burger",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.50",
         "descrizione": "Pane artigianale con hamburger fassona 220 gr, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, accompagnato da cestino di patatine stick",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297763/arconti31/imvnaq2pze9nobuq4rdf.jpg",
@@ -1050,6 +1120,7 @@
       {
         "nome": "Pulled Pork",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.50",
         "descrizione": "Pane hamburger farcito con spalla maiale cotta a bassa temperatura e sfilacciata 250gr (8 ore), affumicata, peperoni grigliati o cavolo viola, salsa piccante, accompagnato da cestino di patatine fritte",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770631247/arconti31/koo8vpknds2jcues4owr.jpg",
@@ -1070,6 +1141,7 @@
       {
         "nome": "Porchettara",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.00",
         "descrizione": "Pane artigianale farcito con  porchetta Maremma Toscana grigliata, brie fuso, cipolla caramellata, salsa pepe nero, accompagnato da cestino di patatine fritte",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768294585/arconti31/eechw3ki5oqg9qisymqw.jpg",
@@ -1088,6 +1160,7 @@
       {
         "nome": "Hamburger Autunnale",
         "category": "Hamburger Fassona e Street food",
+        "category_slug": "hamburger-fassona",
         "prezzo": "15.00",
         "descrizione": "Fassona 220gr, crema zola-zucca delica, porchetta maremmana grigliata, chips di zucca. Contorno: patatine fritte.",
         "allergeni": [
@@ -1106,6 +1179,7 @@
       {
         "nome": "Arconti 31",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "9.50",
         "descrizione": "Ciabatta 180gr con spianata piccante, scamorza bufala affumicata, rucola, salsa pepe nero, 'nduia calabrese",
         "allergeni": [
@@ -1122,6 +1196,7 @@
       {
         "nome": "Azalee",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "9.00",
         "descrizione": "Ciabatta 180gr con bresaola Valtellina, ricotta di bufala fresca, olio extra vergine e rucola",
         "allergeni": [
@@ -1135,6 +1210,7 @@
       {
         "nome": "Bettolino",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "10.00",
         "descrizione": "Ciabatta 200 gr con cotoletta pollo homemade, lattuga, pomodoro, maionese",
         "allergeni": [
@@ -1149,6 +1225,7 @@
       {
         "nome": "Broletto",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "8.50",
         "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
         "allergeni": [
@@ -1165,6 +1242,7 @@
       {
         "nome": "Cajello",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "9.00",
         "descrizione": "Ciabatta 180gr con tomino, zucchine, melanzane, verdure stagione, olio speziato",
         "allergeni": [
@@ -1181,6 +1259,7 @@
       {
         "nome": "Cascinetta",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "9.50",
         "descrizione": "Ciabatta 180gr con pancetta grigliata, tomino, insalata, salsa pomodorini gialli",
         "allergeni": [
@@ -1195,6 +1274,7 @@
       {
         "nome": "Cedrate",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "8.50",
         "descrizione": "Ciabatta 180gr con speck alta qualità, brie, salsa rosa",
         "allergeni": [
@@ -1212,6 +1292,7 @@
       {
         "nome": "Crenna",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "8.50",
         "descrizione": "Ciabatta 180gr con cotto alta qualità, gamberetti, rucola, salsa rosa",
         "allergeni": [
@@ -1230,6 +1311,7 @@
       {
         "nome": "Varesina",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "8.00",
         "descrizione": "Ciabatta 180gr con zucchine fresche grigliate, prosciutto cotto, mozzarella",
         "allergeni": [
@@ -1248,6 +1330,7 @@
       {
         "nome": "Cajello vegano",
         "category": "Panini Ciabatta",
+        "category_slug": "panini",
         "prezzo": "8.00",
         "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
         "allergeni": [
@@ -1266,6 +1349,7 @@
       {
         "nome": "Piatto classico",
         "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
         "prezzo": "10.00",
         "descrizione": "Hamburger di bufala al piatto 220gr grigliato su letto di rucola, salsa pomodorini gialli, patatine fritte come contorno",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128322/arconti31/auykyuvvdykdbsuyioba.jpg",
@@ -1280,6 +1364,7 @@
       {
         "nome": "Picanha",
         "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
         "prezzo": "19.50",
         "descrizione": "Picanha irlandese 250/300gr alla piastra, patatine fritte o verdure",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128474/arconti31/xhqhesowsmlnijthiaf1.jpg",
@@ -1294,6 +1379,7 @@
       {
         "nome": "Piatto cotoletta",
         "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
         "prezzo": "10.00",
         "descrizione": "Cotoletta pollo milanese impanata, salsa pomodori gialli, balsamico, patatine, salsa senape a parte",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770128600/arconti31/facxtvyfi7ce0vubbk1i.jpg",
@@ -1306,12 +1392,86 @@
         "disponibile": true,
         "order": 15,
         "_filename": "piatto-cotoletta.md"
+      },
+      {
+        "nome": "Tagliata di manzo",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "19.50",
+        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
+        "disponibile": false,
+        "order": 16,
+        "_filename": "tagliata-di-manzo.md"
+      },
+      {
+        "nome": "Tris di würstel Brema bavaresi ripieni",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "15.00",
+        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 18,
+        "_filename": "tris-di-wrstel-brema-bavaresi-ripieni.md"
+      },
+      {
+        "nome": "Tartare di manzo battuta a coltello",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "18,50",
+        "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
+        "tags": [
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 27,
+        "_filename": "tartare-di-manzo-battuta-a-coltello.md"
+      },
+      {
+        "nome": "Sex on the meat",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "16",
+        "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
+        "tags": [
+          "Novità",
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 37,
+        "_filename": "sex-on-the-meat.md"
+      },
+      {
+        "nome": "Smash Burger (1-3 strati) ",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "8.00",
+        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:  1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Più venduto",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 43,
+        "_filename": "smash-burger.md"
       }
     ],
     "Piadine": [
       {
         "nome": "Romagnola ",
         "category": "Piadine",
+        "category_slug": "piadine",
         "prezzo": "8.00",
         "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
         "allergeni": [
@@ -1329,6 +1489,7 @@
       {
         "nome": "Gallaratese",
         "category": "Piadine",
+        "category_slug": "piadine",
         "prezzo": "8.00",
         "descrizione": "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate",
         "allergeni": [
@@ -1342,6 +1503,7 @@
       {
         "nome": "Ronchi",
         "category": "Piadine",
+        "category_slug": "piadine",
         "prezzo": "9.00",
         "descrizione": "Romagnola con crudo Parma 18/24 mesi, burratina 125gr, zucchine grigliate",
         "allergeni": [
@@ -1358,6 +1520,7 @@
       {
         "nome": "Cedratese",
         "category": "Piadine",
+        "category_slug": "piadine",
         "prezzo": "8.00",
         "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
         "allergeni": [
@@ -1376,6 +1539,7 @@
       {
         "nome": "Rosti di patate e speck",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "6.00",
         "descrizione": "Forma particolare, patate, speck",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463783/arconti31/f5nubikfbiusptaihbvo.jpg",
@@ -1391,6 +1555,7 @@
       {
         "nome": "Chili cheese",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "6.00",
         "descrizione": "Crocchette fritte artigianali con formaggio e chili",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463952/arconti31/xqi5xw6jalgqegajrmek.jpg",
@@ -1405,6 +1570,7 @@
       {
         "nome": "Crocchette di filetto di pollo",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "7.50",
         "descrizione": "Filetto di pollo fritto artigianale",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464021/arconti31/vydg48uwal1bvl2wkqo2.jpg",
@@ -1415,6 +1581,7 @@
       {
         "nome": "Crocchette di pulled pork ",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "7.50",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570433/arconti31/cew7cjgqiakvmj3u6u7f.jpg",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770570420/arconti31/v1scjukxetkge2uhgyto.jpg",
@@ -1428,6 +1595,7 @@
       {
         "nome": "Onion rings",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "6.00",
         "descrizione": "Anelli cipolla artigianali impanati alla birra fritti",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464134/arconti31/gibje5eoj8flouls6uih.jpg",
@@ -1438,6 +1606,7 @@
       {
         "nome": "Patatine fritte",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "5.00",
         "descrizione": "Rustiche fritte",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464203/arconti31/jfzays3jvyogcpg0tsxe.jpg",
@@ -1448,6 +1617,7 @@
       {
         "nome": "Patatine fritte twist",
         "category": "Fritti",
+        "category_slug": "fritti",
         "prezzo": "6.00",
         "descrizione": "Rustiche fritte twist",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768464265/arconti31/avtqke7nvvhbb8xqlk5m.webp",
@@ -1467,6 +1637,7 @@
       {
         "nome": "Profitterol",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "tre palline di bigne ripieni alla crema ricoperte di cioccolato fondente",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
@@ -1486,6 +1657,7 @@
       {
         "nome": "Soffice Cremoso",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
         "allergeni": [
@@ -1505,6 +1677,7 @@
       {
         "nome": "Tiramisù al bicchiere",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Classico con mascarpone, tuorlo e albume pastorizzati, savoiardo, caffè",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768465373/arconti31/onchf51xfvqlaqtmipon.jpg",
@@ -1520,6 +1693,7 @@
       {
         "nome": "Piada alla nutella",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Romagnola con nutella, zucchero velo, panna montata, toping al cioccolato",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463450/arconti31/mlvfzgcjshwnewocfhmc.jpg",
@@ -1530,6 +1704,7 @@
       {
         "nome": "Salame al cioccolato",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463564/arconti31/hryjdclsduxdszb9ntup.webp",
@@ -1544,6 +1719,7 @@
       {
         "nome": "Tortino con cuore morbido al cioccolato",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Cuore morbido cioccolato, toping, zucchero velo, panna montata",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463645/arconti31/ndxa8sum6cnn3hnskk2a.jpg",
@@ -1557,6 +1733,7 @@
       {
         "nome": "Strudel di mele",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Tradizione trentina, mele, cannella, pinoli, panna montata, zucchero velo, toping",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1768463693/arconti31/tz9a9kpiwbaumjrg4an8.jpg",
@@ -1570,6 +1747,7 @@
       {
         "nome": "Salame al cioccolato bianco",
         "category": "Dolci",
+        "category_slug": "dolci",
         "prezzo": "6.00",
         "descrizione": "Fondente artigianale con cioccolato, biscotti freschi, frutta secca tostata",
         "disponibile": false,
@@ -1581,6 +1759,7 @@
       {
         "nome": "Tagliere aperitivo",
         "category": "Aperitivo",
+        "category_slug": "aperitivo",
         "prezzo": "10.00",
         "descrizione": "Affettati e formaggi con fantasia dello chef - Disponibile fino alle 20:30 - *Comunicare allergie",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1765583827/arconti31/tpunzdd6gd0lcy181t0a.jpg",
@@ -1591,6 +1770,7 @@
       {
         "nome": "Tagliere affettati e formaggi",
         "category": "Aperitivo",
+        "category_slug": "aperitivo",
         "prezzo": "25.00",
         "descrizione": "Per due persone, selezione chef di salumi nostrani e formaggi della tradizione, pane bruschettato - Disponibile fino alle 20:30",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129172/arconti31/x28i6gpoqu8kiqhosz2j.jpg",
@@ -1603,78 +1783,6 @@
         "disponibile": true,
         "order": 17,
         "_filename": "tagliere-affettati-e-formaggi.md"
-      }
-    ],
-    "Piatti Speciali": [
-      {
-        "nome": "Tagliata di manzo",
-        "category": "Piatti Speciali",
-        "prezzo": "19.50",
-        "descrizione": "Manzo 250/300gr alla piastra con patatine fritte o verdure fresche grigliate.",
-        "disponibile": false,
-        "order": 16,
-        "_filename": "tagliata-di-manzo.md"
-      },
-      {
-        "nome": "Tartare di manzo battuta a coltello",
-        "category": "Piatti Speciali",
-        "prezzo": "18,50",
-        "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
-        "tags": [
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 27,
-        "_filename": "tartare-di-manzo-battuta-a-coltello.md"
-      },
-      {
-        "nome": "Sex on the meat",
-        "category": "Piatti Speciali",
-        "prezzo": "16",
-        "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
-        "tags": [
-          "Novità",
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 37,
-        "_filename": "sex-on-the-meat.md"
-      },
-      {
-        "nome": "Smash Burger (1-3 strati) ",
-        "category": "Piatti Speciali",
-        "prezzo": "8.00",
-        "descrizione": "Lattuga fresca, pomodoro, cheddar, bacon. Opzioni:  1 Smash 8€ | 2 Smash 11€ | 3 Smash 14€. Patatine: Normali +2€ | Twist +3€",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Più venduto",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 43,
-        "_filename": "smash-burger.md"
-      }
-    ],
-    "OKTOBERFEST": [
-      {
-        "nome": "Tris di würstel Brema bavaresi ripieni",
-        "category": "OKTOBERFEST",
-        "prezzo": "15.00",
-        "descrizione": "Würstel formaggio affumicati, pancetta, patate forno, cavolo cappuccio viola",
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 18,
-        "_filename": "tris-di-wrstel-brema-bavaresi-ripieni.md"
       }
     ]
   },

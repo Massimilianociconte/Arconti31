@@ -1,5 +1,6 @@
 ---
 nome: "Blue kiss"
+tipo_slug: "cocktails"
 prezzo: "8.00"
 descrizione: "Rum al cocco malibù, blue curacao, succo d’ananas. "
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768319787/arconti31/uwmp1jchphm8ojd5agdf.webp"

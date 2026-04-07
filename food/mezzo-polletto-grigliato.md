@@ -1,6 +1,7 @@
 ---
 nome: "Mezzo polletto grigliato"
 category: "Bavarese"
+category_slug: "bavarese"
 prezzo: "16.00"
 descrizione: "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola."
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg"

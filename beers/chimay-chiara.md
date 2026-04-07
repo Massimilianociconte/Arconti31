@@ -6,5 +6,6 @@ formato: "33cl"
 gradazione: "7%"
 disponibile: true
 sezione: "Frigo Birre"
+sezione_slug: "frigo-birre"
 order: 0
 ---

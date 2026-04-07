@@ -1,6 +1,7 @@
 ---
 nome: "Piatto classico"
 category: "Piatti Speciali e griglieria"
+category_slug: "piatti-speciali-e-griglieria"
 prezzo: "10.00"
 descrizione: "Hamburger di bufala al piatto 220gr grigliato su letto di rucola, salsa pomodorini gialli, patatine fritte come contorno"
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1770128322/arconti31/auykyuvvdykdbsuyioba.jpg"

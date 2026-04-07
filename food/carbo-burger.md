@@ -1,6 +1,7 @@
 ---
 nome: "Carbo-burger"
 category: "Hamburger Fassona e Street food"
+category_slug: "hamburger-fassona"
 prezzo: "15.50"
 descrizione: "Pane artigianale con hamburger fassona 220 gr, guanciale croccante, cialda pecorino, tuorlo, salsa pepe nero, accompagnato da cestino di patatine stick"
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1768297763/arconti31/imvnaq2pze9nobuq4rdf.jpg"

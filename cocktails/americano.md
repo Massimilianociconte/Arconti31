@@ -1,5 +1,6 @@
 ---
 nome: "Americano"
+tipo_slug: "cocktails"
 prezzo: "7.00"
 descrizione: "Bitter, vermouth rosso e soda"
 disponibile: true

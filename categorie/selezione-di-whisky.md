@@ -1,5 +1,5 @@
 ---
-nome: "Selezione di Whisky "
+nome: "Selezione di Whisky"
 slug: "selezione-di-whisky"
 tipo_menu: "beverage"
 icona: "🥃"

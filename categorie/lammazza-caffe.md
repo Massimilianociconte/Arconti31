@@ -1,6 +1,7 @@
 ---
 nome: "Amari e Distillati"
-slug: "Amari-Distillati"
+slug: "amari-distillati"
+folder: "ammazza-caffe"
 tipo_menu: "beverage"
 icona: "🥃"
 visibile: true

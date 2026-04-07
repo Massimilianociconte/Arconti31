@@ -1,6 +1,7 @@
 ---
 nome: "Tagliere affettati e formaggi"
 category: "Aperitivo"
+category_slug: "aperitivo"
 prezzo: "25.00"
 descrizione: "Per due persone, selezione chef di salumi nostrani e formaggi della tradizione, pane bruschettato - Disponibile fino alle 20:30"
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1770129172/arconti31/x28i6gpoqu8kiqhosz2j.jpg"

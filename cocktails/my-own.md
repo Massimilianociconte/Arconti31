@@ -1,5 +1,6 @@
 ---
 nome: "My own"
+tipo_slug: "cocktails"
 prezzo: "8.00"
 descrizione: "Gin, arancia e campari"
 disponibile: true

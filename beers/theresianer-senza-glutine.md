@@ -1,6 +1,7 @@
 ---
 nome: "Theresianer Senza Glutine"
 sezione: "Birre speciali in bottiglia"
+sezione_slug: "birre-speciali-bottiglia"
 prezzo: "5,00"
 descrizione: "Lager non filtrata, equilibrata"
 formato: "0,33L"

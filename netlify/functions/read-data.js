@@ -2,6 +2,13 @@
 // OTTIMIZZATO: Usa JSON statici quando possibile, API GitHub solo per SHA
 
 const { verifyToken } = require('./auth');
+const {
+  findBeverageCategoryByFolder,
+  getCategoryFolder,
+  normalizeSlug,
+  parseFrontmatter,
+  stringifyFrontmatter
+} = require('../../lib/menu-utils');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -16,7 +23,7 @@ exports.handler = async (event, context) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const { folder, mode, token } = parsedBody;
+  const { folder, mode, token, filename, filenames, lookupName } = parsedBody;
 
   if (!folder) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Folder required' }) };
@@ -61,6 +68,39 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    if (mode === 'api' && Array.isArray(filenames) && filenames.length > 0) {
+      const items = await readItemsMetadataFromAPI({
+        folder,
+        filenames,
+        token: GITHUB_TOKEN,
+        owner: REPO_OWNER,
+        repo: REPO_NAME
+      });
+
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items, source: 'api-listing' })
+      };
+    }
+
+    if (mode === 'api' && filename) {
+      const item = await readSingleItemFromAPI({
+        folder,
+        filename,
+        lookupName,
+        token: GITHUB_TOKEN,
+        owner: REPO_OWNER,
+        repo: REPO_NAME
+      });
+
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: item ? [item] : [], source: 'api-single' })
+      };
+    }
+
     const files = await githubRequest(
       'GET',
       `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folder}`,
@@ -87,7 +127,8 @@ exports.handler = async (event, context) => {
           GITHUB_TOKEN
         );
         const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
-        return { content, filename: file.name, sha: fileData.sha };
+        const parsedItem = parseFrontmatter(content);
+        return { content, filename: file.name, sha: fileData.sha, parsedItem };
       } catch (e) {
         console.error(`Error loading ${file.name}:`, e);
         return null;
@@ -141,6 +182,72 @@ exports.handler = async (event, context) => {
   }
 };
 
+async function readItemsMetadataFromAPI({ folder, filenames, token, owner, repo }) {
+  const wanted = new Set((filenames || []).filter(Boolean));
+  if (wanted.size === 0) return [];
+
+  const files = await githubRequest(
+    'GET',
+    `/repos/${owner}/${repo}/contents/${folder}`,
+    null,
+    token
+  );
+
+  if (!Array.isArray(files)) return [];
+
+  return files
+    .filter(file => file.name.endsWith('.md') && file.name !== '.gitkeep' && wanted.has(file.name))
+    .map(file => ({ filename: file.name, sha: file.sha }));
+}
+
+async function readMarkdownItemFromAPI({ folder, filename, token, owner, repo }) {
+  const fileData = await githubRequest(
+    'GET',
+    `/repos/${owner}/${repo}/contents/${folder}/${filename}`,
+    null,
+    token
+  );
+  const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
+  const parsedItem = parseFrontmatter(content);
+  return { content, filename, sha: fileData.sha, parsedItem };
+}
+
+function normalizeName(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+async function readSingleItemFromAPI({ folder, filename, lookupName, token, owner, repo }) {
+  try {
+    return await readMarkdownItemFromAPI({ folder, filename, token, owner, repo });
+  } catch (error) {
+    if (!error.message.includes('404')) {
+      throw error;
+    }
+  }
+
+  if (!lookupName) {
+    return null;
+  }
+
+  const jsonItems = await tryReadFromJSON(folder, owner, repo);
+  if (!jsonItems || jsonItems.length === 0) {
+    return null;
+  }
+
+  const targetName = normalizeName(lookupName);
+  const candidate = jsonItems.find(item => normalizeName(item.parsedItem?.nome) === targetName);
+  if (!candidate?.filename || candidate.filename === filename) {
+    return null;
+  }
+
+  try {
+    return await readMarkdownItemFromAPI({ folder, filename: candidate.filename, token, owner, repo });
+  } catch (error) {
+    if (error.message.includes('404')) return null;
+    throw error;
+  }
+}
+
 // ========================================
 // LETTURA DA JSON STATICI
 // ========================================
@@ -169,13 +276,10 @@ async function tryReadFromJSON(folder, owner, repo) {
       const catRes = await fetch(catUrl);
       if (catRes.ok) {
         const catData = await catRes.json();
-        const match = (catData.categories || []).find(c => {
-          const slug = (c.slug || '').toLowerCase().replace(/\s+/g, '-');
-          return c.tipo_menu === 'beverage' && slug === folder;
-        });
+        const match = findBeverageCategoryByFolder(catData.categories || [], folder);
         if (match) {
           config = { file: 'beverages/beverages.json', field: 'beverages', filter: match.nome };
-          console.log(`[tryReadFromJSON] Dynamic beverage mapping: ${folder} → filter "${match.nome}"`);
+          console.log(`[tryReadFromJSON] Dynamic beverage mapping: ${normalizeSlug(folder)} → filter "${match.nome}" (folder ${getCategoryFolder(match)})`);
         }
       }
     } catch (e) {
@@ -232,29 +336,7 @@ async function tryReadFromJSON(folder, owner, repo) {
 }
 
 function generateMarkdownFromItem(item) {
-  let yaml = '---\n';
-
-  for (const [key, value] of Object.entries(item)) {
-    if (Array.isArray(value)) {
-      if (value.length > 0) {
-        yaml += `${key}:\n`;
-        value.forEach(v => {
-          yaml += `  - "${v}"\n`;
-        });
-      }
-    } else if (typeof value === 'boolean') {
-      yaml += `${key}: ${value}\n`;
-    } else if (typeof value === 'number') {
-      yaml += `${key}: ${value}\n`;
-    } else if (value !== null && value !== undefined) {
-      // Escape quotes in string values
-      const escaped = String(value).replace(/"/g, '\\"');
-      yaml += `${key}: "${escaped}"\n`;
-    }
-  }
-
-  yaml += '---\n';
-  return yaml;
+  return stringifyFrontmatter(item);
 }
 
 function slugify(text) {

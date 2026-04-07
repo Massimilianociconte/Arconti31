@@ -1,6 +1,7 @@
 ---
 nome: "Wave Runner - Hammer"
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "6.50"
 descrizione: "IPA"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1771179719/arconti31/fnxzbje0yhbcwlfj66rf.jpg"

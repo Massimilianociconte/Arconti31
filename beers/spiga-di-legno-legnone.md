@@ -1,6 +1,7 @@
 ---
 nome: "Spiga di Legno - Legnone "
 sezione: "Birre artigianali alla spina a rotazione"
+sezione_slug: "birre-artigianali"
 prezzo: "6.50"
 descrizione: "Golden Ale"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1770584628/arconti31/xv0ykgfro8dr7tici7bj.jpg"
