@@ -32,7 +32,7 @@
     },
     {
       "nome": "Grappe & Distillati",
-      "slug": "Grappe - Distillati",
+      "slug": "grappe",
       "tipo_menu": "beverage",
       "parent_category": "amari-distillati",
       "icona": "🔥",
@@ -490,7 +490,7 @@
     },
     {
       "nome": "Grappe & Distillati",
-      "slug": "Grappe - Distillati",
+      "slug": "grappe",
       "tipo_menu": "beverage",
       "parent_category": "amari-distillati",
       "icona": "🔥",

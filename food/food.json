@@ -19,10 +19,10 @@
     },
     {
       "nome": "Romagnola ",
-      "category": "Piadine",
-      "category_slug": "piadine",
+      "category": "Vegetariano/ Vegano ",
+      "category_slug": "vegetariano-vegano",
       "prezzo": "8.00",
-      "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
+      "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
       "allergeni": [
         "Glutine",
         "Latte"
@@ -34,6 +34,23 @@
       "disponibile": true,
       "order": 0,
       "_filename": "arnate-calcio.md"
+    },
+    {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "category_slug": "vegetariano-vegano",
+      "prezzo": "10.00",
+      "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Hamburger F1 Bufala",
@@ -73,16 +90,17 @@
       "_filename": "profitterol.md"
     },
     {
-      "nome": "PULLED NOT PORK ",
-      "category": "Hamburger Fassona e Street food",
-      "category_slug": "hamburger-fassona",
-      "prezzo": "16.50",
-      "descrizione": "Pane al sesamo, Pulled di lepre CBT, cavolo cappuccio, cipolle caramellate, pomodori secchi artigianali e salsa bbq affumicata.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772823176/arconti31/nclvmcvuwhfiuwfivqq3.png",
+      "nome": "PULLED BEEF",
+      "category": "Piatti Speciali e griglieria",
+      "category_slug": "piatti-speciali-e-griglieria",
+      "prezzo": "16.00",
+      "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
       "allergeni": [
         "Glutine",
         "Uova",
-        "Soia"
+        "Latte",
+        "Sesamo"
       ],
       "tags": [
         "Novità",
@@ -90,7 +108,7 @@
       ],
       "disponibile": true,
       "order": 0,
-      "_filename": "pulled-not-pulled.md"
+      "_filename": "pulled-beef.md"
     },
     {
       "nome": "Soffice Cremoso",
@@ -108,9 +126,70 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "_filename": "soffice-cremoso.md"
+    },
+    {
+      "nome": "Veggy Burger ",
+      "category": "Vegetariano/ Vegano ",
+      "category_slug": "vegetariano-vegano",
+      "prezzo": "15.00",
+      "descrizione": "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋. Contorno di patatine fritte. *coperto €1",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte",
+        "Frutta a guscio"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "veggy-burger.md"
+    },
+    {
+      "nome": "Verdure pastellate",
+      "category": "Vegetariano/ Vegano ",
+      "category_slug": "vegetariano-vegano",
+      "prezzo": "7.00",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "verdure-pastellate-1.md"
+    },
+    {
+      "nome": "Verdure pastellate",
+      "category": "Fritti",
+      "category_slug": "fritti",
+      "prezzo": "7.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "verdure-pastellate.md"
     },
     {
       "nome": "Bacon burger",
@@ -240,7 +319,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 8,
       "_filename": "tiramis-al-bicchiere.md"
     },
@@ -481,7 +560,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 25,
       "_filename": "salame-al-cioccolato.md"
     },
@@ -867,8 +946,8 @@
     },
     {
       "nome": "Cajello vegano",
-      "category": "Panini Ciabatta",
-      "category_slug": "panini",
+      "category": "Vegetariano/ Vegano ",
+      "category_slug": "vegetariano-vegano",
       "prezzo": "8.00",
       "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
       "allergeni": [
@@ -921,6 +1000,100 @@
         "disponibile": true,
         "order": 26,
         "_filename": "stinco-di-maiale-al-forno.md"
+      }
+    ],
+    "Vegetariano/ Vegano ": [
+      {
+        "nome": "Romagnola ",
+        "category": "Vegetariano/ Vegano ",
+        "category_slug": "vegetariano-vegano",
+        "prezzo": "8.00",
+        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Vegetariano",
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "arnate-calcio.md"
+      },
+      {
+        "nome": "Insalatona",
+        "category": "Vegetariano/ Vegano ",
+        "category_slug": "vegetariano-vegano",
+        "prezzo": "10.00",
+        "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "insalatona.md"
+      },
+      {
+        "nome": "Veggy Burger ",
+        "category": "Vegetariano/ Vegano ",
+        "category_slug": "vegetariano-vegano",
+        "prezzo": "15.00",
+        "descrizione": "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋. Contorno di patatine fritte. *coperto €1",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte",
+          "Frutta a guscio"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "veggy-burger.md"
+      },
+      {
+        "nome": "Verdure pastellate",
+        "category": "Vegetariano/ Vegano ",
+        "category_slug": "vegetariano-vegano",
+        "prezzo": "7.00",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "verdure-pastellate-1.md"
+      },
+      {
+        "nome": "Cajello vegano",
+        "category": "Vegetariano/ Vegano ",
+        "category_slug": "vegetariano-vegano",
+        "prezzo": "8.00",
+        "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
+        "allergeni": [
+          "Glutine",
+          "Sedano"
+        ],
+        "tags": [
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 50,
+        "_filename": "cajello-vegano.md"
       }
     ],
     "Menù Partita": [],
@@ -995,26 +1168,6 @@
       }
     ],
     "Hamburger Fassona e Street food": [
-      {
-        "nome": "PULLED NOT PORK ",
-        "category": "Hamburger Fassona e Street food",
-        "category_slug": "hamburger-fassona",
-        "prezzo": "16.50",
-        "descrizione": "Pane al sesamo, Pulled di lepre CBT, cavolo cappuccio, cipolle caramellate, pomodori secchi artigianali e salsa bbq affumicata.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772823176/arconti31/nclvmcvuwhfiuwfivqq3.png",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Soia"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "pulled-not-pulled.md"
-      },
       {
         "nome": "Bacon burger",
         "category": "Hamburger Fassona e Street food",
@@ -1326,26 +1479,30 @@
         "disponibile": true,
         "order": 49,
         "_filename": "varesina.md"
-      },
-      {
-        "nome": "Cajello vegano",
-        "category": "Panini Ciabatta",
-        "category_slug": "panini",
-        "prezzo": "8.00",
-        "descrizione": "Ciabatta 180gr con pomodoro, zucchine, melanzane, verdure stagione",
-        "allergeni": [
-          "Glutine",
-          "Sedano"
-        ],
-        "tags": [
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 50,
-        "_filename": "cajello-vegano.md"
       }
     ],
     "Piatti Speciali e griglieria": [
+      {
+        "nome": "PULLED BEEF",
+        "category": "Piatti Speciali e griglieria",
+        "category_slug": "piatti-speciali-e-griglieria",
+        "prezzo": "16.00",
+        "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Latte",
+          "Sesamo"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "pulled-beef.md"
+      },
       {
         "nome": "Piatto classico",
         "category": "Piatti Speciali e griglieria",
@@ -1469,24 +1626,6 @@
     ],
     "Piadine": [
       {
-        "nome": "Romagnola ",
-        "category": "Piadine",
-        "category_slug": "piadine",
-        "prezzo": "8.00",
-        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Vegetariano",
-          "Vegano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "arnate-calcio.md"
-      },
-      {
         "nome": "Gallaratese",
         "category": "Piadine",
         "category_slug": "piadine",
@@ -1536,6 +1675,27 @@
       }
     ],
     "Fritti": [
+      {
+        "nome": "Verdure pastellate",
+        "category": "Fritti",
+        "category_slug": "fritti",
+        "prezzo": "7.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "_filename": "verdure-pastellate.md"
+      },
       {
         "nome": "Rosti di patate e speck",
         "category": "Fritti",
@@ -1670,7 +1830,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "_filename": "soffice-cremoso.md"
       },
@@ -1686,7 +1846,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 8,
         "_filename": "tiramis-al-bicchiere.md"
       },
@@ -1712,7 +1872,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 25,
         "_filename": "salame-al-cioccolato.md"
       },
@@ -1788,6 +1948,7 @@
   },
   "categoryOrder": {
     "Bavarese": 0,
+    "Vegetariano/ Vegano ": 1,
     "Menù Partita": 2,
     "Hamburger di bufala": 3,
     "Hamburger Fassona e Street food": 4,
