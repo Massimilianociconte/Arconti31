@@ -1,7 +1,6 @@
 ---
-nome: "Cedratese"
+nome: "Moriggia"
 category: "Piadine"
-category_slug: "piadine"
 prezzo: "8.00"
 descrizione: "Romagnola con squaquerone fresco, cotto, rucola"
 allergeni:
@@ -11,4 +10,5 @@ tags:
   - "Più venduto"
 disponibile: true
 order: 24
+category_slug: "piadine"
 ---

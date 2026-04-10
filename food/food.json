@@ -544,9 +544,8 @@
       "_filename": "ronchi.md"
     },
     {
-      "nome": "Cedratese",
+      "nome": "Moriggia",
       "category": "Piadine",
-      "category_slug": "piadine",
       "prezzo": "8.00",
       "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
       "allergeni": [
@@ -558,6 +557,7 @@
       ],
       "disponibile": true,
       "order": 24,
+      "category_slug": "piadine",
       "_filename": "cedratese.md"
     },
     {
@@ -1672,9 +1672,8 @@
         "_filename": "ronchi.md"
       },
       {
-        "nome": "Cedratese",
+        "nome": "Moriggia",
         "category": "Piadine",
-        "category_slug": "piadine",
         "prezzo": "8.00",
         "descrizione": "Romagnola con squaquerone fresco, cotto, rucola",
         "allergeni": [
@@ -1686,6 +1685,7 @@
         ],
         "disponibile": true,
         "order": 24,
+        "category_slug": "piadine",
         "_filename": "cedratese.md"
       }
     ],
