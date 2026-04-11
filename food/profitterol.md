@@ -11,7 +11,7 @@ allergeni:
   - "Latte"
 tags:
   - "Novità"
-disponibile: false
+disponibile: true
 order: 0
 category_slug: "dolci"
 ---
