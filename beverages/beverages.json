@@ -893,16 +893,6 @@
       "tipo": "I nostri Rum"
     },
     {
-      "nome": "Amari da frigo",
-      "tipo_slug": "amari-distillati",
-      "prezzo": "4.00",
-      "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "amari-da-frigo.md",
-      "tipo": "Amari e Distillati"
-    },
-    {
       "nome": "Amaro del Capo - Caffo",
       "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
@@ -964,6 +954,17 @@
       "disponibile": true,
       "order": 0,
       "_filename": "montenegro-.md",
+      "tipo": "Amari e Distillati"
+    },
+    {
+      "nome": "Amari da frigo",
+      "prezzo": "4.00",
+      "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776113084/arconti31/miqnfhev83ohsszspc1l.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "amari-distillati",
+      "_filename": "amari-da-frigo.md",
       "tipo": "Amari e Distillati"
     }
   ],
@@ -1882,16 +1883,6 @@
     ],
     "Amari e Distillati": [
       {
-        "nome": "Amari da frigo",
-        "tipo_slug": "amari-distillati",
-        "prezzo": "4.00",
-        "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "amari-da-frigo.md",
-        "tipo": "Amari e Distillati"
-      },
-      {
         "nome": "Amaro del Capo - Caffo",
         "tipo_slug": "amari-distillati",
         "prezzo": "4.00",
@@ -1953,6 +1944,17 @@
         "disponibile": true,
         "order": 0,
         "_filename": "montenegro-.md",
+        "tipo": "Amari e Distillati"
+      },
+      {
+        "nome": "Amari da frigo",
+        "prezzo": "4.00",
+        "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776113084/arconti31/miqnfhev83ohsszspc1l.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "amari-distillati",
+        "_filename": "amari-da-frigo.md",
         "tipo": "Amari e Distillati"
       }
     ]
