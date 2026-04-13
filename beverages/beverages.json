@@ -872,6 +872,15 @@
       "tipo": "Classici"
     },
     {
+      "nome": "San Simone",
+      "prezzo": "4.00",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "san-simone.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Diplomatico - Reserva Exclusiva",
       "tipo_slug": "i-nostri-rum",
       "prezzo": "0.00",
@@ -1843,6 +1852,15 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "vecchia-romagna.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "San Simone",
+        "prezzo": "4.00",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "san-simone.md",
         "tipo": "Classici"
       }
     ],
