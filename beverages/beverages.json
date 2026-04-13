@@ -854,16 +854,6 @@
       "tipo": "Classici"
     },
     {
-      "nome": "Vecchio Amaro del Capo ",
-      "tipo_slug": "classici",
-      "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️ ",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "vecchio-amaro-del-capo.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Diplomatico - Reserva Exclusiva",
       "tipo_slug": "i-nostri-rum",
       "prezzo": "0.00",
@@ -1817,16 +1807,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "ramazzotti.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Vecchio Amaro del Capo ",
-        "tipo_slug": "classici",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️ ",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "vecchio-amaro-del-capo.md",
         "tipo": "Classici"
       }
     ],
