@@ -818,6 +818,15 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Jefferson",
+      "prezzo": "5.00",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "jefferson.md",
+      "tipo": "Artigianali"
+    },
+    {
       "nome": "Baileys ",
       "tipo_slug": "classici",
       "prezzo": "4.00",
@@ -1832,6 +1841,15 @@
         "order": 0,
         "tipo_slug": "artigianali",
         "_filename": "amaro-di-sicilia.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Jefferson",
+        "prezzo": "5.00",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "jefferson.md",
         "tipo": "Artigianali"
       }
     ],
