@@ -836,16 +836,6 @@
       "tipo": "Classici"
     },
     {
-      "nome": "Jägermeister",
-      "tipo_slug": "classici",
-      "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "jagermeister.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Montenegro",
       "tipo_slug": "classici",
       "prezzo": "4.00",
@@ -1809,16 +1799,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "fernet-branca.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Jägermeister",
-        "tipo_slug": "classici",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "jagermeister.md",
         "tipo": "Classici"
       },
       {
