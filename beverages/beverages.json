@@ -800,16 +800,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Amaro Silano",
-      "tipo_slug": "classici",
-      "prezzo": "4.00",
-      "descrizione": "❄️Da frigo❄️",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "amaro-silano.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Baileys ",
       "tipo_slug": "classici",
       "prezzo": "4.00",
@@ -1785,16 +1775,6 @@
       }
     ],
     "Classici": [
-      {
-        "nome": "Amaro Silano",
-        "tipo_slug": "classici",
-        "prezzo": "4.00",
-        "descrizione": "❄️Da frigo❄️",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "amaro-silano.md",
-        "tipo": "Classici"
-      },
       {
         "nome": "Baileys ",
         "tipo_slug": "classici",
