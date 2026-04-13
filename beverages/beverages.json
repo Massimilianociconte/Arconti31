@@ -893,17 +893,6 @@
       "tipo": "I nostri Rum"
     },
     {
-      "nome": "Amaro del Capo - Caffo",
-      "tipo_slug": "amari-distillati",
-      "prezzo": "4.00",
-      "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "amaro-del-capo-caffo.md",
-      "tipo": "Amari e Distillati"
-    },
-    {
       "nome": "Jegermaister ",
       "tipo_slug": "amari-distillati",
       "prezzo": "4.00",
@@ -965,6 +954,17 @@
       "order": 0,
       "tipo_slug": "amari-distillati",
       "_filename": "amaro-silano.md",
+      "tipo": "Amari e Distillati"
+    },
+    {
+      "nome": "Amaro del Capo - Caffo",
+      "prezzo": "4.00",
+      "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
+      "disponibile": false,
+      "order": 0,
+      "tipo_slug": "amari-distillati",
+      "_filename": "amaro-del-capo-caffo.md",
       "tipo": "Amari e Distillati"
     }
   ],
@@ -1883,17 +1883,6 @@
     ],
     "Amari e Distillati": [
       {
-        "nome": "Amaro del Capo - Caffo",
-        "tipo_slug": "amari-distillati",
-        "prezzo": "4.00",
-        "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "amaro-del-capo-caffo.md",
-        "tipo": "Amari e Distillati"
-      },
-      {
         "nome": "Jegermaister ",
         "tipo_slug": "amari-distillati",
         "prezzo": "4.00",
@@ -1955,6 +1944,17 @@
         "order": 0,
         "tipo_slug": "amari-distillati",
         "_filename": "amaro-silano.md",
+        "tipo": "Amari e Distillati"
+      },
+      {
+        "nome": "Amaro del Capo - Caffo",
+        "prezzo": "4.00",
+        "descrizione": "Calabria | 35% alc. Caratterizzato da un gusto dolce-amaro, unisce 29 erbe, fiori, frutti e radici (tra cui arancia, menta, liquirizia e camomilla).",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1772381054/arconti31/r0gc4pqmwsma7xjpuhn3.jpg",
+        "disponibile": false,
+        "order": 0,
+        "tipo_slug": "amari-distillati",
+        "_filename": "amaro-del-capo-caffo.md",
         "tipo": "Amari e Distillati"
       }
     ]
