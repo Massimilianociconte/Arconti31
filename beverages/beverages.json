@@ -800,15 +800,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Bomba Carta ",
-      "prezzo": "5.00",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "artigianali",
-      "_filename": "bomba-carta.md",
-      "tipo": "Artigianali"
-    },
-    {
       "nome": "Jefferson",
       "prezzo": "5.00",
       "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
@@ -828,6 +819,16 @@
       "order": 0,
       "tipo_slug": "artigianali",
       "_filename": "amaro-di-sicilia.md",
+      "tipo": "Artigianali"
+    },
+    {
+      "nome": "Bomba Carta ",
+      "prezzo": "5.00",
+      "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "bomba-carta.md",
       "tipo": "Artigianali"
     },
     {
@@ -1825,15 +1826,6 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Bomba Carta ",
-        "prezzo": "5.00",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "artigianali",
-        "_filename": "bomba-carta.md",
-        "tipo": "Artigianali"
-      },
-      {
         "nome": "Jefferson",
         "prezzo": "5.00",
         "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
@@ -1853,6 +1845,16 @@
         "order": 0,
         "tipo_slug": "artigianali",
         "_filename": "amaro-di-sicilia.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Bomba Carta ",
+        "prezzo": "5.00",
+        "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "bomba-carta.md",
         "tipo": "Artigianali"
       }
     ],
