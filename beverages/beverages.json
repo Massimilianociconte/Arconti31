@@ -926,6 +926,16 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Amari da frigo ",
+      "prezzo": "4.00",
+      "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "amari-da-frigo.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Diplomatico - Reserva Exclusiva",
       "prezzo": "0.00",
       "disponibile": false,
@@ -1951,6 +1961,16 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "petrus-b.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Amari da frigo ",
+        "prezzo": "4.00",
+        "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "amari-da-frigo.md",
         "tipo": "Classici"
       }
     ],
