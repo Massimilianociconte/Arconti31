@@ -809,15 +809,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Amaro di Sicilia ",
-      "prezzo": "5.00",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "artigianali",
-      "_filename": "amaro-di-sicilia.md",
-      "tipo": "Artigianali"
-    },
-    {
       "nome": "Jefferson",
       "prezzo": "5.00",
       "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
@@ -826,6 +817,17 @@
       "order": 0,
       "tipo_slug": "artigianali",
       "_filename": "jefferson.md",
+      "tipo": "Artigianali"
+    },
+    {
+      "nome": "Amaro di Sicilia ",
+      "prezzo": "5.00",
+      "descrizione": "Catania | 32% alc.\nDeriva dall'infusione di erbe, radici e agrumi siciliani, coltivati alle pendici dell'Etna. \nDal sapore complesso e aromatico, alterna note agrumate (arancia rossa) a sentori amaricanti ed erboristici, ideale a fine pasto.\n",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196061/arconti31/z1s20rsjyuhzcehx6ax1.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "amaro-di-sicilia.md",
       "tipo": "Artigianali"
     },
     {
@@ -1832,15 +1834,6 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Amaro di Sicilia ",
-        "prezzo": "5.00",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "artigianali",
-        "_filename": "amaro-di-sicilia.md",
-        "tipo": "Artigianali"
-      },
-      {
         "nome": "Jefferson",
         "prezzo": "5.00",
         "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
@@ -1849,6 +1842,17 @@
         "order": 0,
         "tipo_slug": "artigianali",
         "_filename": "jefferson.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Amaro di Sicilia ",
+        "prezzo": "5.00",
+        "descrizione": "Catania | 32% alc.\nDeriva dall'infusione di erbe, radici e agrumi siciliani, coltivati alle pendici dell'Etna. \nDal sapore complesso e aromatico, alterna note agrumate (arancia rossa) a sentori amaricanti ed erboristici, ideale a fine pasto.\n",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196061/arconti31/z1s20rsjyuhzcehx6ax1.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "amaro-di-sicilia.md",
         "tipo": "Artigianali"
       }
     ],
