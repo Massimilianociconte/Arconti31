@@ -1,8 +1,7 @@
 ---
 nome: "Verdure pastellate"
 category: "Vegetariano/ Vegano "
-category_slug: "vegetariano-vegano"
-prezzo: "7.00"
+prezzo: "6.00"
 allergeni:
   - "Glutine"
   - "Uova"
@@ -13,4 +12,5 @@ tags:
   - "Vegetariano"
 disponibile: true
 order: 0
+category_slug: "vegetariano-vegano"
 ---
