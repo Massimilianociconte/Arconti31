@@ -1,5 +1,5 @@
 ---
-nome: "Smash Burger"
+nome: "Smash Burger (N strati?)"
 category: "Hamburger Fassona e Street food"
 prezzo: "10.00"
 descrizione: "100 gr di Fassona pressata su piastra per una croccantezza super! \nPane artigianale, insalata, pomodori, cheddar e bacon.\nI piani li decidi tu: 1st. €8 | 2st. €12 | 3st. \nQuali patatine anche! (Classiche +€2 | Twist +€3) \n"
