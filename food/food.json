@@ -184,25 +184,6 @@
       "_filename": "profitterol.md"
     },
     {
-      "nome": "Verdure pastellate",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "6.00",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "verdure-pastellate-1.md"
-    },
-    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "category_slug": "hamburger-fassona",
@@ -1072,25 +1053,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "veggy-burger.md"
-      },
-      {
-        "nome": "Verdure pastellate",
-        "category": "Vegetariano/ Vegano ",
-        "prezzo": "6.00",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Vegetariano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "vegetariano-vegano",
-        "_filename": "verdure-pastellate-1.md"
       },
       {
         "nome": "Cajello vegano",
