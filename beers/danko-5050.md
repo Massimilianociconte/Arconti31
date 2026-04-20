@@ -6,7 +6,7 @@ descrizione: "Baltic Porter | IBU 25\nPur mantenendo la sua complessità tipica,
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1774650252/arconti31/rjew5ngixvq1jtywoj3q.png"
 formato: "0,4 l "
 gradazione: "8%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
