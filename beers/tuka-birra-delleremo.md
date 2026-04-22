@@ -6,7 +6,7 @@ descrizione: "NEIPA | IBU 25 \nUtilizzo del lievito Vermont che le dona un corpo
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1775769107/arconti31/mnscrqozv3ngrxkdvcyu.png"
 formato: "0,4 l "
 gradazione: "6,2%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
