@@ -1,7 +1,6 @@
 ---
 nome: "Veggy Burger "
 category: "Vegetariano/ Vegano "
-category_slug: "vegetariano-vegano"
 prezzo: "15.00"
 descrizione: "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋. Contorno di patatine fritte. *coperto €1"
 allergeni:
@@ -13,6 +12,7 @@ allergeni:
 tags:
   - "Novità"
   - "Vegetariano"
-disponibile: true
+disponibile: false
 order: 0
+category_slug: "vegetariano-vegano"
 ---
