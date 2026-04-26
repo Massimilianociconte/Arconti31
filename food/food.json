@@ -18,23 +18,6 @@
       "_filename": "arconti-31.md"
     },
     {
-      "nome": "Insalatona",
-      "category": "Vegetariano/ Vegano ",
-      "category_slug": "vegetariano-vegano",
-      "prezzo": "10.00",
-      "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "_filename": "insalatona.md"
-    },
-    {
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
       "category_slug": "hamburger-bufala",
@@ -182,6 +165,23 @@
       "order": 0,
       "category_slug": "vegetariano-vegano",
       "_filename": "arnate-calcio.md"
+    },
+    {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "10.00",
+      "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "vegetariano-vegano",
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Bacon burger",
@@ -1019,23 +1019,6 @@
     ],
     "Vegetariano/ Vegano ": [
       {
-        "nome": "Insalatona",
-        "category": "Vegetariano/ Vegano ",
-        "category_slug": "vegetariano-vegano",
-        "prezzo": "10.00",
-        "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
-        "allergeni": [
-          "Glutine"
-        ],
-        "tags": [
-          "Novità",
-          "Vegetariano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "_filename": "insalatona.md"
-      },
-      {
         "nome": "Veggy Burger ",
         "category": "Vegetariano/ Vegano ",
         "category_slug": "vegetariano-vegano",
@@ -1073,6 +1056,23 @@
         "order": 0,
         "category_slug": "vegetariano-vegano",
         "_filename": "arnate-calcio.md"
+      },
+      {
+        "nome": "Insalatona",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "10.00",
+        "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … ",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": false,
+        "order": 0,
+        "category_slug": "vegetariano-vegano",
+        "_filename": "insalatona.md"
       },
       {
         "nome": "Cajello vegano",
