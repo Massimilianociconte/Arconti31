@@ -10,7 +10,7 @@ allergeni:
   - "Latte"
 tags:
   - "Novità"
-disponibile: true
+disponibile: false
 order: 48
 category_slug: "hamburger-fassona"
 ---
