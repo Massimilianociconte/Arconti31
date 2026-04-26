@@ -941,7 +941,7 @@
       "tags": [
         "Novità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 48,
       "category_slug": "hamburger-fassona",
       "_filename": "hamburger-autunnale.md"
@@ -1339,7 +1339,7 @@
         "tags": [
           "Novità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 48,
         "category_slug": "hamburger-fassona",
         "_filename": "hamburger-autunnale.md"
