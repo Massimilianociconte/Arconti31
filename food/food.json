@@ -18,23 +18,6 @@
       "_filename": "arconti-31.md"
     },
     {
-      "nome": "Hamburger F1 Bufala",
-      "category": "Hamburger di bufala",
-      "category_slug": "hamburger-bufala",
-      "prezzo": "15.50",
-      "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte",
-      "allergeni": [
-        "Glutine",
-        "Uova"
-      ],
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
-    },
-    {
       "nome": "PULLED BEEF",
       "category": "Piatti Speciali e griglieria",
       "category_slug": "piatti-speciali-e-griglieria",
@@ -182,6 +165,23 @@
       "order": 0,
       "category_slug": "vegetariano-vegano",
       "_filename": "veggy-burger.md"
+    },
+    {
+      "nome": "Hamburger F1 Bufala",
+      "category": "Hamburger di bufala",
+      "prezzo": "15.50",
+      "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
+      "allergeni": [
+        "Glutine",
+        "Uova"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "hamburger-bufala",
+      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
     },
     {
       "nome": "Bacon burger",
@@ -1096,9 +1096,8 @@
       {
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
-        "category_slug": "hamburger-bufala",
         "prezzo": "15.50",
-        "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte",
+        "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
         "allergeni": [
           "Glutine",
           "Uova"
@@ -1108,6 +1107,7 @@
         ],
         "disponibile": true,
         "order": 0,
+        "category_slug": "hamburger-bufala",
         "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
       },
       {
