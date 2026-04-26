@@ -7,7 +7,7 @@ immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v17701284
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1770128482/arconti31/j5kos9aqrlkpo07ch6nf.jpg"
 tags:
   - "Specialità"
-disponibile: false
+disponibile: true
 order: 5
 category_slug: "piatti-speciali-e-griglieria"
 ---
