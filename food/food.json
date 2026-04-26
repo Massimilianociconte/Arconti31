@@ -583,7 +583,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 26,
       "category_slug": "bavarese",
       "_filename": "stinco-di-maiale-al-forno.md"
@@ -1021,7 +1021,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 26,
         "category_slug": "bavarese",
         "_filename": "stinco-di-maiale-al-forno.md"
