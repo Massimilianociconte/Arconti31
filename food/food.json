@@ -18,27 +18,6 @@
       "_filename": "arconti-31.md"
     },
     {
-      "nome": "PULLED BEEF",
-      "category": "Piatti Speciali e griglieria",
-      "category_slug": "piatti-speciali-e-griglieria",
-      "prezzo": "16.00",
-      "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Latte",
-        "Sesamo"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "_filename": "pulled-beef.md"
-    },
-    {
       "nome": "Soffice Cremoso",
       "category": "Dolci",
       "category_slug": "dolci",
@@ -182,6 +161,27 @@
       "order": 0,
       "category_slug": "hamburger-bufala",
       "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
+    },
+    {
+      "nome": "PULLED BEEF",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "16.00",
+      "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Latte",
+        "Sesamo"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "pulled-beef.md"
     },
     {
       "nome": "Bacon burger",
@@ -1502,7 +1502,6 @@
       {
         "nome": "PULLED BEEF",
         "category": "Piatti Speciali e griglieria",
-        "category_slug": "piatti-speciali-e-griglieria",
         "prezzo": "16.00",
         "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
@@ -1516,8 +1515,9 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "pulled-beef.md"
       },
       {
