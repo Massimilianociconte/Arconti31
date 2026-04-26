@@ -848,7 +848,7 @@
         "Più venduto",
         "Specialità"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 43,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "smash-burger.md"
@@ -1635,7 +1635,7 @@
           "Più venduto",
           "Specialità"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 43,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "smash-burger.md"

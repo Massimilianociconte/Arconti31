@@ -11,7 +11,7 @@ tags:
   - "Novità"
   - "Più venduto"
   - "Specialità"
-disponibile: false
+disponibile: true
 order: 43
 category_slug: "piatti-speciali-e-griglieria"
 ---
