@@ -331,7 +331,7 @@
         "Glutine",
         "Latte"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 9,
       "category_slug": "panini",
       "_filename": "azalee.md"
@@ -1372,7 +1372,7 @@
           "Glutine",
           "Latte"
         ],
-        "disponibile": false,
+        "disponibile": true,
         "order": 9,
         "category_slug": "panini",
         "_filename": "azalee.md"
