@@ -833,15 +833,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "San Simone",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "san-simone.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Amari da frigo ",
       "prezzo": "4.00",
       "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -957,6 +948,16 @@
       "order": 0,
       "tipo_slug": "classici",
       "_filename": "petrus-b.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "San Simone",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "san-simone.md",
       "tipo": "Classici"
     },
     {
@@ -1820,15 +1821,6 @@
     ],
     "Classici": [
       {
-        "nome": "San Simone",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "san-simone.md",
-        "tipo": "Classici"
-      },
-      {
         "nome": "Amari da frigo ",
         "prezzo": "4.00",
         "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -1944,6 +1936,16 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "petrus-b.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "San Simone",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "san-simone.md",
         "tipo": "Classici"
       }
     ],
