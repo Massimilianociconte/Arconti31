@@ -90,24 +90,6 @@
       "_filename": "profitterol.md"
     },
     {
-      "nome": "Romagnola ",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "8.00",
-      "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
-      "allergeni": [
-        "Glutine",
-        "Latte"
-      ],
-      "tags": [
-        "Vegetariano",
-        "Vegano"
-      ],
-      "disponibile": false,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "arnate-calcio.md"
-    },
-    {
       "nome": "Insalatona",
       "category": "Vegetariano/ Vegano ",
       "prezzo": "10.00",
@@ -182,6 +164,24 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-beef.md"
+    },
+    {
+      "nome": "Romagnola ",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "8.00",
+      "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
+      "allergeni": [
+        "Glutine",
+        "Latte"
+      ],
+      "tags": [
+        "Vegetariano",
+        "Vegano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "vegetariano-vegano",
+      "_filename": "arnate-calcio.md"
     },
     {
       "nome": "Bacon burger",
@@ -1029,24 +1029,6 @@
     ],
     "Vegetariano/ Vegano ": [
       {
-        "nome": "Romagnola ",
-        "category": "Vegetariano/ Vegano ",
-        "prezzo": "8.00",
-        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
-        "allergeni": [
-          "Glutine",
-          "Latte"
-        ],
-        "tags": [
-          "Vegetariano",
-          "Vegano"
-        ],
-        "disponibile": false,
-        "order": 0,
-        "category_slug": "vegetariano-vegano",
-        "_filename": "arnate-calcio.md"
-      },
-      {
         "nome": "Insalatona",
         "category": "Vegetariano/ Vegano ",
         "prezzo": "10.00",
@@ -1083,6 +1065,24 @@
         "order": 0,
         "category_slug": "vegetariano-vegano",
         "_filename": "veggy-burger.md"
+      },
+      {
+        "nome": "Romagnola ",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "8.00",
+        "descrizione": "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto",
+        "allergeni": [
+          "Glutine",
+          "Latte"
+        ],
+        "tags": [
+          "Vegetariano",
+          "Vegano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "vegetariano-vegano",
+        "_filename": "arnate-calcio.md"
       },
       {
         "nome": "Cajello vegano",
