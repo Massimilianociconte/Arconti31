@@ -833,15 +833,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Fernet-Branca",
-      "tipo_slug": "classici",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "fernet-branca.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "San Simone",
       "prezzo": "4.00",
       "disponibile": true,
@@ -955,6 +946,16 @@
       "order": 0,
       "tipo_slug": "classici",
       "_filename": "branca-menta.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "Fernet-Branca",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "fernet-branca.md",
       "tipo": "Classici"
     },
     {
@@ -1818,15 +1819,6 @@
     ],
     "Classici": [
       {
-        "nome": "Fernet-Branca",
-        "tipo_slug": "classici",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "fernet-branca.md",
-        "tipo": "Classici"
-      },
-      {
         "nome": "San Simone",
         "prezzo": "4.00",
         "disponibile": true,
@@ -1940,6 +1932,16 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "branca-menta.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Fernet-Branca",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "fernet-branca.md",
         "tipo": "Classici"
       }
     ],
