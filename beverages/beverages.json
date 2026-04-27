@@ -833,15 +833,6 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Branca Menta",
-      "tipo_slug": "classici",
-      "prezzo": "4.00",
-      "disponibile": true,
-      "order": 0,
-      "_filename": "branca-menta.md",
-      "tipo": "Classici"
-    },
-    {
       "nome": "Fernet-Branca",
       "tipo_slug": "classici",
       "prezzo": "4.00",
@@ -954,6 +945,16 @@
       "order": 0,
       "tipo_slug": "classici",
       "_filename": "unicum.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "Branca Menta",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "branca-menta.md",
       "tipo": "Classici"
     },
     {
@@ -1817,15 +1818,6 @@
     ],
     "Classici": [
       {
-        "nome": "Branca Menta",
-        "tipo_slug": "classici",
-        "prezzo": "4.00",
-        "disponibile": true,
-        "order": 0,
-        "_filename": "branca-menta.md",
-        "tipo": "Classici"
-      },
-      {
         "nome": "Fernet-Branca",
         "tipo_slug": "classici",
         "prezzo": "4.00",
@@ -1938,6 +1930,16 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "unicum.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Branca Menta",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "branca-menta.md",
         "tipo": "Classici"
       }
     ],
