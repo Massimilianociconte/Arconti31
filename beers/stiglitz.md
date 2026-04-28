@@ -6,7 +6,7 @@ descrizione: "German Pilsner\nchiara, tesa e scorrevole, carbonazione vivace, fi
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1775668253/arconti31/tsvyehnx1duktlcdx9yf.jpg"
 formato: "0,4"
 gradazione: "5 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
