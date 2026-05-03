@@ -613,6 +613,15 @@
       "_filename": "monkey-planet-legnone.md"
     },
     {
+      "nome": "Killer Queen - Hammer ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "7.00",
+      "disponibile": true,
+      "order": 0,
+      "sezione_slug": "birre-artigianali",
+      "_filename": "killer-queen-hammer.md"
+    },
+    {
       "nome": "Lager Hell - Ayinger",
       "sezione": "Birre alla spina",
       "sezione_slug": "birre-alla-spina",
@@ -1487,6 +1496,15 @@
         "order": 0,
         "sezione_slug": "birre-artigianali",
         "_filename": "monkey-planet-legnone.md"
+      },
+      {
+        "nome": "Killer Queen - Hammer ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "7.00",
+        "disponibile": true,
+        "order": 0,
+        "sezione_slug": "birre-artigianali",
+        "_filename": "killer-queen-hammer.md"
       },
       {
         "nome": "Rochefort",
