@@ -622,6 +622,15 @@
       "_filename": "killer-queen-hammer.md"
     },
     {
+      "nome": "Kalopsia - 50&50 ",
+      "sezione": "Birre artigianali alla spina a rotazione",
+      "prezzo": "6.00",
+      "disponibile": true,
+      "order": 0,
+      "sezione_slug": "birre-artigianali",
+      "_filename": "kalopsia-5050.md"
+    },
+    {
       "nome": "Lager Hell - Ayinger",
       "sezione": "Birre alla spina",
       "sezione_slug": "birre-alla-spina",
@@ -1505,6 +1514,15 @@
         "order": 0,
         "sezione_slug": "birre-artigianali",
         "_filename": "killer-queen-hammer.md"
+      },
+      {
+        "nome": "Kalopsia - 50&50 ",
+        "sezione": "Birre artigianali alla spina a rotazione",
+        "prezzo": "6.00",
+        "disponibile": true,
+        "order": 0,
+        "sezione_slug": "birre-artigianali",
+        "_filename": "kalopsia-5050.md"
       },
       {
         "nome": "Rochefort",
