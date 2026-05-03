@@ -7,7 +7,7 @@ immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v17772092
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1776806648/arconti31/m9xaypb4k58upgl2bxyu.jpg"
 formato: "0,4 l "
 gradazione: "7,6 % "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
