@@ -6,7 +6,7 @@ descrizione: "Belgian Brett Ale. \nBirra con l'aggiunta di una frazione di mosto
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1774906567/arconti31/nvmgmevdlburksxmeb8n.png"
 formato: "0,4"
 gradazione: "6,6%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
