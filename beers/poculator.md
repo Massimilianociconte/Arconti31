@@ -6,7 +6,7 @@ descrizione: "Doppelbock | IBU 18\nBirra scura ad alta gradazione, con una notev
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1775238990/arconti31/gazkapsjtfn18cqdecn3.jpg"
 formato: "0,4"
 gradazione: "7,4"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
