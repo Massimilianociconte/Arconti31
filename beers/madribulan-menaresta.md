@@ -6,7 +6,7 @@ descrizione: "Dal colore ambrato velato, per realizzare questa birra viene utili
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1778798526/arconti31/pisvpoy4mtgl4fthhv1v.png"
 formato: "37.5 cl"
 gradazione: "5.2 % "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-speciali-bottiglia"
 ---
