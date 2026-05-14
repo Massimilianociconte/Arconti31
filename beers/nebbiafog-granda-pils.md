@@ -1,5 +1,5 @@
 ---
-nome: "Bevera - Birrificio Menaresta"
+nome: "Bevera (Pils) - Birrificio Menaresta"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.00"
 descrizione: "Italian Pils \nChiara e leggera, secca con finale amaro (di bassa fermentazione, assai beverina, con impiego abbondante di luppoli cechi e tedeschi). \nNote degustative: miele, erbaceo\n\n\n"
