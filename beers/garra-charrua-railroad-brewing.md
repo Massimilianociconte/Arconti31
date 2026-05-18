@@ -6,7 +6,7 @@ descrizione: "Golden (fresh hop) Ale \nBirra chiara con stampo britannico, facil
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1777394575/arconti31/brqhu3i39eug3humtvb2.png"
 formato: "0,4 l"
 gradazione: "5,2 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
