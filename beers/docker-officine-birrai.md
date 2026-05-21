@@ -6,7 +6,7 @@ descrizione: "Coffee Porter (Stout) \nProfilo intenso, profondo e armonico. \nÉ
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1776806922/arconti31/h0clanow0k1ueqqgbaly.png"
 formato: "0,4 l "
 gradazione: "5%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
