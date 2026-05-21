@@ -6,7 +6,7 @@ descrizione: "Belgian Pale Ale | IBU 54\nDal colore dorato con schiuma cremosa e
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1776889743/arconti31/sdv5wpgelz16prccrpia.png"
 formato: "0,4 l "
 gradazione: "4,5 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
