@@ -6,7 +6,7 @@ descrizione: "Guerrilla è una produzione di Crak. Trae ispirazione dalla catego
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1778775530/arconti31/xudqfqbtbba49nrprdt1.png"
 formato: "0,4"
 gradazione: "5,8 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
