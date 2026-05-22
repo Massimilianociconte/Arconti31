@@ -1,6 +1,6 @@
 ---
 nome: "Mezzo polletto grigliato"
-category: "Piatti Speciali e griglieria"
+category: "VERGUENZA DAYS"
 prezzo: "16.00"
 descrizione: "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola."
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg"
@@ -14,5 +14,5 @@ tags:
   - "Specialità"
 disponibile: true
 order: 3
-category_slug: "piatti-speciali-e-griglieria"
+category_slug: "bavarese"
 ---

@@ -284,7 +284,7 @@
     },
     {
       "nome": "Mezzo polletto grigliato",
-      "category": "Piatti Speciali e griglieria",
+      "category": "VERGUENZA DAYS",
       "prezzo": "16.00",
       "descrizione": "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg",
@@ -300,7 +300,7 @@
       ],
       "disponibile": true,
       "order": 3,
-      "category_slug": "piatti-speciali-e-griglieria",
+      "category_slug": "bavarese",
       "_filename": "mezzo-polletto-grigliato.md"
     },
     {
@@ -1028,7 +1028,6 @@
     }
   ],
   "foodByCategory": {
-    "Bavarese": [],
     "Vegetariano/ Vegano ": [
       {
         "nome": "Romagnola ",
@@ -1102,6 +1101,29 @@
         "disponibile": true,
         "order": 50,
         "_filename": "cajello-vegano.md"
+      }
+    ],
+    "VERGUENZA DAYS": [
+      {
+        "nome": "Mezzo polletto grigliato",
+        "category": "VERGUENZA DAYS",
+        "prezzo": "16.00",
+        "descrizione": "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Senape"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 3,
+        "category_slug": "bavarese",
+        "_filename": "mezzo-polletto-grigliato.md"
       }
     ],
     "Hamburger di bufala": [
@@ -1561,27 +1583,6 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "pulled-beef.md"
-      },
-      {
-        "nome": "Mezzo polletto grigliato",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "16.00",
-        "descrizione": "Mezzo polletto grigliato da 400 grammi, patate al forno, cavolo viola.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768827443/arconti31/midiv38fcko77oda4xio.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1767468074/arconti31/xdtxq3klcfl7vrfzp2d2.jpg",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Senape"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 3,
-        "category_slug": "piatti-speciali-e-griglieria",
-        "_filename": "mezzo-polletto-grigliato.md"
       },
       {
         "nome": "Piatto classico",
@@ -2075,8 +2076,8 @@
     ]
   },
   "categoryOrder": {
-    "Bavarese": 0,
-    "Vegetariano/ Vegano ": 1,
+    "Vegetariano/ Vegano ": 0,
+    "VERGUENZA DAYS": 1,
     "Hamburger di bufala": 3,
     "Hamburger Fassona e Street food": 4,
     "Panini Ciabatta": 5,
