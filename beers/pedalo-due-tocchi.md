@@ -6,7 +6,7 @@ descrizione: "La \"Pedalò\" è una birra artigianale in stile Gose (prodotta da
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1779215857/arconti31/yzae7rskpverajgd0lje.jpg"
 formato: "0,4"
 gradazione: "3,8"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
