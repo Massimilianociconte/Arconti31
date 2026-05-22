@@ -205,27 +205,6 @@
       "_filename": "crostata-alle-albicocche.md"
     },
     {
-      "nome": "Salmon Burger",
-      "category": "Hamburger Fassona e Street food",
-      "prezzo": "14.00",
-      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Pesce",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "hamburger-fassona",
-      "_filename": "salmon-burger.md"
-    },
-    {
       "nome": "Pulled Lamb ",
       "category": "VERGUENZA DAYS",
       "prezzo": "15.50",
@@ -243,6 +222,27 @@
       "order": 0,
       "category_slug": "bavarese",
       "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Salmon Burger",
+      "category": "VERGUENZA DAYS",
+      "prezzo": "14.00",
+      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Pesce",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "bavarese",
+      "_filename": "salmon-burger.md"
     },
     {
       "nome": "Bacon burger",
@@ -1124,6 +1124,27 @@
         "_filename": "pulled-lamb.md"
       },
       {
+        "nome": "Salmon Burger",
+        "category": "VERGUENZA DAYS",
+        "prezzo": "14.00",
+        "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Pesce",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "bavarese",
+        "_filename": "salmon-burger.md"
+      },
+      {
         "nome": "Mezzo polletto grigliato",
         "category": "VERGUENZA DAYS",
         "prezzo": "16.00",
@@ -1236,27 +1257,6 @@
       }
     ],
     "Hamburger Fassona e Street food": [
-      {
-        "nome": "Salmon Burger",
-        "category": "Hamburger Fassona e Street food",
-        "prezzo": "14.00",
-        "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Pesce",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "hamburger-fassona",
-        "_filename": "salmon-burger.md"
-      },
       {
         "nome": "Bacon burger",
         "category": "Hamburger Fassona e Street food",
