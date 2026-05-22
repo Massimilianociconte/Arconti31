@@ -1,5 +1,5 @@
 ---
-nome: "Bavarese"
+nome: "VERGUENZA DAYS"
 slug: "bavarese"
 tipo_menu: "food"
 icona: "🥨"
