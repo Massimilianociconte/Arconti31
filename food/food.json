@@ -983,7 +983,9 @@
         "Latte"
       ],
       "tags": [
-        "Novità"
+        "Novità",
+        "Più venduto",
+        "Specialità"
       ],
       "disponibile": true,
       "order": 48,
@@ -1421,7 +1423,9 @@
           "Latte"
         ],
         "tags": [
-          "Novità"
+          "Novità",
+          "Più venduto",
+          "Specialità"
         ],
         "disponibile": true,
         "order": 48,
