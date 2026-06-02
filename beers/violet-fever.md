@@ -6,7 +6,7 @@ descrizione: "Violet Fever è una Modern Sour nata dalla collaborazione tra il B
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1778280565/arconti31/u4zjfape5nnawx1cnz99.jpg"
 formato: "0,4"
 gradazione: "5,2"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
