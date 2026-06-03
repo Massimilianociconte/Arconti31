@@ -853,6 +853,15 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Bonaventura “erbe e spezie”",
+      "prezzo": "5.00",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "bonaventura-erbe-e-spezie.md",
+      "tipo": "Artigianali"
+    },
+    {
       "nome": "Amari da frigo ",
       "prezzo": "4.00",
       "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -1856,6 +1865,15 @@
         "order": 0,
         "tipo_slug": "artigianali",
         "_filename": "bonaventura-erbe-e-fiori.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Bonaventura “erbe e spezie”",
+        "prezzo": "5.00",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "bonaventura-erbe-e-spezie.md",
         "tipo": "Artigianali"
       }
     ],
