@@ -898,6 +898,15 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "Amaro Locale",
+      "prezzo": "5.00",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "amaro-locale-1.md",
+      "tipo": "Artigianali"
+    },
+    {
       "nome": "Amari da frigo ",
       "prezzo": "4.00",
       "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -1946,6 +1955,15 @@
         "order": 0,
         "tipo_slug": "artigianali",
         "_filename": "amaro-del-ciclista.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Amaro Locale",
+        "prezzo": "5.00",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "amaro-locale-1.md",
         "tipo": "Artigianali"
       }
     ],
