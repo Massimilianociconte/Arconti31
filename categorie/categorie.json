@@ -51,16 +51,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "London Dry",
-      "slug": "london-dry",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "🫐 ",
-      "visibile": true,
-      "order": 0,
-      "_filename": "london-dry.md"
-    },
-    {
       "nome": "New Western ",
       "slug": "new-western",
       "tipo_menu": "beverage",
@@ -116,6 +106,16 @@
       "visibile": true,
       "order": 0,
       "_filename": "vegetariano-vegano.md"
+    },
+    {
+      "nome": "London Dry",
+      "slug": "london-dry",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🫐 ",
+      "visibile": false,
+      "order": 0,
+      "_filename": "london-dry.md"
     },
     {
       "nome": "Menù Partita",
@@ -499,16 +499,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "London Dry",
-      "slug": "london-dry",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "🫐 ",
-      "visibile": true,
-      "order": 0,
-      "_filename": "london-dry.md"
-    },
-    {
       "nome": "New Western ",
       "slug": "new-western",
       "tipo_menu": "beverage",
@@ -554,6 +544,16 @@
       "visibile": false,
       "order": 0,
       "_filename": "selezione-di-whisky.md"
+    },
+    {
+      "nome": "London Dry",
+      "slug": "london-dry",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "🫐 ",
+      "visibile": false,
+      "order": 0,
+      "_filename": "london-dry.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
