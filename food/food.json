@@ -245,6 +245,25 @@
       "_filename": "crostata-alle-albicocche.md"
     },
     {
+      "nome": "Crostata di albicocche ",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "allergeni": [
+        "Glutine",
+        "Pesce",
+        "Soia",
+        "Latte",
+        "Frutta a guscio"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "dolci",
+      "_filename": "crostata-di-albicocche.md"
+    },
+    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -1953,6 +1972,25 @@
         "order": 0,
         "category_slug": "dolci",
         "_filename": "crostata-alle-albicocche.md"
+      },
+      {
+        "nome": "Crostata di albicocche ",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "allergeni": [
+          "Glutine",
+          "Pesce",
+          "Soia",
+          "Latte",
+          "Frutta a guscio"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "dolci",
+        "_filename": "crostata-di-albicocche.md"
       },
       {
         "nome": "Tiramisù al bicchiere",
