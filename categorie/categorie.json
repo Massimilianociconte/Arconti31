@@ -51,15 +51,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "Others ",
-      "slug": "others",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "visibile": true,
-      "order": 0,
-      "_filename": "others.md"
-    },
-    {
       "nome": "Selezione di Gin",
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
@@ -116,6 +107,15 @@
       "visibile": false,
       "order": 0,
       "_filename": "new-western.md"
+    },
+    {
+      "nome": "Others ",
+      "slug": "others",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "visibile": false,
+      "order": 0,
+      "_filename": "others.md"
     },
     {
       "nome": "Menù Partita",
@@ -499,15 +499,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "Others ",
-      "slug": "others",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "visibile": true,
-      "order": 0,
-      "_filename": "others.md"
-    },
-    {
       "nome": "Selezione di Gin",
       "slug": "selezione-di-gin",
       "tipo_menu": "beverage",
@@ -554,6 +545,15 @@
       "visibile": false,
       "order": 0,
       "_filename": "new-western.md"
+    },
+    {
+      "nome": "Others ",
+      "slug": "others",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "visibile": false,
+      "order": 0,
+      "_filename": "others.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
