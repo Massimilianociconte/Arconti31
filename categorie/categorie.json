@@ -51,16 +51,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "New Western ",
-      "slug": "new-western",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "💐",
-      "visibile": true,
-      "order": 0,
-      "_filename": "new-western.md"
-    },
-    {
       "nome": "Others ",
       "slug": "others",
       "tipo_menu": "beverage",
@@ -116,6 +106,16 @@
       "visibile": false,
       "order": 0,
       "_filename": "old-tom.md"
+    },
+    {
+      "nome": "New Western ",
+      "slug": "new-western",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "💐",
+      "visibile": false,
+      "order": 0,
+      "_filename": "new-western.md"
     },
     {
       "nome": "Menù Partita",
@@ -499,16 +499,6 @@
       "_filename": "lammazza-caffe.md"
     },
     {
-      "nome": "New Western ",
-      "slug": "new-western",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "💐",
-      "visibile": true,
-      "order": 0,
-      "_filename": "new-western.md"
-    },
-    {
       "nome": "Others ",
       "slug": "others",
       "tipo_menu": "beverage",
@@ -554,6 +544,16 @@
       "visibile": false,
       "order": 0,
       "_filename": "old-tom.md"
+    },
+    {
+      "nome": "New Western ",
+      "slug": "new-western",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "💐",
+      "visibile": false,
+      "order": 0,
+      "_filename": "new-western.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
