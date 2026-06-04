@@ -184,27 +184,6 @@
       "_filename": "insalatona.md"
     },
     {
-      "nome": "Salmon Burger",
-      "category": "VERGUENZA DAYS",
-      "prezzo": "14.00",
-      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Pesce",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "bavarese",
-      "_filename": "salmon-burger.md"
-    },
-    {
       "nome": "Crostata alle albicocche ",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -264,6 +243,27 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Salmon Burger",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "14.00",
+      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Pesce",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "salmon-burger.md"
     },
     {
       "nome": "Bacon burger",
@@ -1128,27 +1128,6 @@
     ],
     "VERGUENZA DAYS": [
       {
-        "nome": "Salmon Burger",
-        "category": "VERGUENZA DAYS",
-        "prezzo": "14.00",
-        "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Pesce",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "bavarese",
-        "_filename": "salmon-burger.md"
-      },
-      {
         "nome": "Mezzo polletto grigliato",
         "category": "VERGUENZA DAYS",
         "prezzo": "16.00",
@@ -1628,6 +1607,27 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "pulled-lamb.md"
+      },
+      {
+        "nome": "Salmon Burger",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "14.00",
+        "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Pesce",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "salmon-burger.md"
       },
       {
         "nome": "Piatto classico",
