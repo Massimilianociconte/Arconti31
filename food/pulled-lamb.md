@@ -1,6 +1,6 @@
 ---
 nome: "Pulled Lamb "
-category: "VERGUENZA DAYS"
+category: "Piatti Speciali e griglieria"
 prezzo: "15.50"
 descrizione: "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ "
 allergeni:
@@ -12,5 +12,5 @@ tags:
   - "Specialità"
 disponibile: true
 order: 0
-category_slug: "bavarese"
+category_slug: "piatti-speciali-e-griglieria"
 ---

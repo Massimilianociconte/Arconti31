@@ -184,25 +184,6 @@
       "_filename": "insalatona.md"
     },
     {
-      "nome": "Pulled Lamb ",
-      "category": "VERGUENZA DAYS",
-      "prezzo": "15.50",
-      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
-      "allergeni": [
-        "Glutine",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "bavarese",
-      "_filename": "pulled-lamb.md"
-    },
-    {
       "nome": "Salmon Burger",
       "category": "VERGUENZA DAYS",
       "prezzo": "14.00",
@@ -264,6 +245,25 @@
       "order": 0,
       "category_slug": "dolci",
       "_filename": "crostata-di-albicocche.md"
+    },
+    {
+      "nome": "Pulled Lamb ",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "15.50",
+      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+      "allergeni": [
+        "Glutine",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "pulled-lamb.md"
     },
     {
       "nome": "Bacon burger",
@@ -1128,25 +1128,6 @@
     ],
     "VERGUENZA DAYS": [
       {
-        "nome": "Pulled Lamb ",
-        "category": "VERGUENZA DAYS",
-        "prezzo": "15.50",
-        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
-        "allergeni": [
-          "Glutine",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "bavarese",
-        "_filename": "pulled-lamb.md"
-      },
-      {
         "nome": "Salmon Burger",
         "category": "VERGUENZA DAYS",
         "prezzo": "14.00",
@@ -1628,6 +1609,25 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "pulled-beef.md"
+      },
+      {
+        "nome": "Pulled Lamb ",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "15.50",
+        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+        "allergeni": [
+          "Glutine",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "pulled-lamb.md"
       },
       {
         "nome": "Piatto classico",
