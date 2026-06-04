@@ -61,16 +61,6 @@
       "_filename": "new-western.md"
     },
     {
-      "nome": "Old Tom",
-      "slug": "old-tom",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "☺️",
-      "visibile": true,
-      "order": 0,
-      "_filename": "old-tom.md"
-    },
-    {
       "nome": "Others ",
       "slug": "others",
       "tipo_menu": "beverage",
@@ -116,6 +106,16 @@
       "visibile": false,
       "order": 0,
       "_filename": "london-dry.md"
+    },
+    {
+      "nome": "Old Tom",
+      "slug": "old-tom",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "☺️",
+      "visibile": false,
+      "order": 0,
+      "_filename": "old-tom.md"
     },
     {
       "nome": "Menù Partita",
@@ -509,16 +509,6 @@
       "_filename": "new-western.md"
     },
     {
-      "nome": "Old Tom",
-      "slug": "old-tom",
-      "tipo_menu": "beverage",
-      "parent_category": "selezione-di-gin",
-      "icona": "☺️",
-      "visibile": true,
-      "order": 0,
-      "_filename": "old-tom.md"
-    },
-    {
       "nome": "Others ",
       "slug": "others",
       "tipo_menu": "beverage",
@@ -554,6 +544,16 @@
       "visibile": false,
       "order": 0,
       "_filename": "london-dry.md"
+    },
+    {
+      "nome": "Old Tom",
+      "slug": "old-tom",
+      "tipo_menu": "beverage",
+      "parent_category": "selezione-di-gin",
+      "icona": "☺️",
+      "visibile": false,
+      "order": 0,
+      "_filename": "old-tom.md"
     },
     {
       "nome": "Birre artigianali alla spina a rotazione",
