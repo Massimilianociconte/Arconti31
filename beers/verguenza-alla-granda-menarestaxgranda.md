@@ -6,7 +6,7 @@ descrizione: "Fruit IPA \nUna super collaborazione! Risultato? Una birra fresca 
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780431666/arconti31/blnrk5vf8lfba1cftdo5.jpg"
 formato: "0,4 "
 gradazione: "5,9% "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
