@@ -260,7 +260,7 @@
         "Novità",
         "Specialità"
       ],
-      "disponibile": true,
+      "disponibile": false,
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "salmon-burger.md"
@@ -1126,7 +1126,6 @@
         "_filename": "cajello-vegano.md"
       }
     ],
-    "VERGUENZA DAYS": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
@@ -1582,7 +1581,7 @@
           "Novità",
           "Specialità"
         ],
-        "disponibile": true,
+        "disponibile": false,
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "salmon-burger.md"
@@ -2122,7 +2121,6 @@
   },
   "categoryOrder": {
     "Vegetariano/ Vegano ": 0,
-    "VERGUENZA DAYS": 1,
     "Hamburger di bufala": 3,
     "Hamburger Fassona e Street food": 4,
     "Panini Ciabatta": 5,
