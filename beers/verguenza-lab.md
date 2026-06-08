@@ -6,7 +6,7 @@ descrizione: "Double IPA.\nEstremamente luppolata, colore ramato leggero e tenor
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780763397/arconti31/zonkg9h7rekje3eam0aa.png"
 formato: "0,4 l "
 gradazione: "8 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
