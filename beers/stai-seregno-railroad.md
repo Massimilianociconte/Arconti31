@@ -6,7 +6,7 @@ descrizione: "Birra saison direttamente dalla tradizione Belga.\n Il perlage è 
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1777209152/arconti31/xucn9cubtrcmrhhortwt.jpg"
 formato: "0,4"
 gradazione: "6,5 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
