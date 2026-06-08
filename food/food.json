@@ -167,23 +167,6 @@
       "_filename": "veggy-burger.md"
     },
     {
-      "nome": "Insalatona",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "10.00",
-      "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … \n🍽️ €1",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "insalatona.md"
-    },
-    {
       "nome": "Crostata di albicocche ",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -243,6 +226,23 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "10.00",
+      "descrizione": "Insalata fresca, pollo, pomodori, verdure, … \n🍽️ €1",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "vegetariano-vegano",
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Bacon burger",
@@ -1075,7 +1075,7 @@
         "nome": "Insalatona",
         "category": "Vegetariano/ Vegano ",
         "prezzo": "10.00",
-        "descrizione": "Insalata fresca, pollo/tonno su richiesta, pomodori, verdure, … \n🍽️ €1",
+        "descrizione": "Insalata fresca, pollo, pomodori, verdure, … \n🍽️ €1",
         "allergeni": [
           "Glutine"
         ],
