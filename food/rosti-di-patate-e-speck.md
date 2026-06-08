@@ -1,9 +1,8 @@
 ---
 nome: "Rosti di patate e speck"
 category: "Fritti"
-category_slug: "fritti"
 prezzo: "6.00"
-descrizione: "Forma particolare, patate, speck"
+descrizione: "Forma particolare, patate, speck.\n8 pz"
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1768463783/arconti31/f5nubikfbiusptaihbvo.jpg"
 allergeni:
   - "Glutine"
@@ -11,4 +10,5 @@ allergeni:
   - "Latte"
 disponibile: true
 order: 6
+category_slug: "fritti"
 ---
