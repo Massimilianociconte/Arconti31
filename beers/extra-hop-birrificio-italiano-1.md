@@ -6,7 +6,7 @@ descrizione: "PILS\nNasce per tradurre in realtà la quintessenza del luppolo, p
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780431162/arconti31/uh2xzextzmio9xtehso0.png"
 formato: "0,4 l "
 gradazione: "4,8 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
