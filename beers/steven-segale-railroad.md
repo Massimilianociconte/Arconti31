@@ -6,7 +6,7 @@ descrizione: "Oltre alle tipiche note aggrumate e resinose, arriva una leggera s
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780680710/arconti31/i4eqvt5aichbdzrelqox.png"
 formato: "0,4 l"
 gradazione: "6,5%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
