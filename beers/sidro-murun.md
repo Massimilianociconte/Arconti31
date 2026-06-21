@@ -6,7 +6,7 @@ descrizione: "Sidro Sour \nNote gustative: acido, funky, fruttato, minerale.\nFe
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780434247/arconti31/xzdq95pcwymc7rorknld.png"
 formato: "0,4 l "
 gradazione: "6,8% "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
