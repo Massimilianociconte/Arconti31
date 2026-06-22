@@ -1,5 +1,5 @@
 ---
-nome: "Sogno Lucido"
+nome: "Sogno Lucido - Birrificio Italiano "
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.00"
 descrizione: "Double Pils \nCome una porta segreta sul retro della coscienza, questa birra spalanca la mente verso panorami liquidi."
