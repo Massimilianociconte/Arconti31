@@ -167,27 +167,6 @@
       "_filename": "veggy-burger.md"
     },
     {
-      "nome": "Crostata di albicocche ",
-      "category": "Dolci",
-      "prezzo": "6.00",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594841/arconti31/qaljh602msd4okog5nmg.jpg",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594831/arconti31/t3ra3z7scv9hmwghlnvf.jpg",
-      "allergeni": [
-        "Glutine",
-        "Pesce",
-        "Soia",
-        "Latte",
-        "Frutta a guscio"
-      ],
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "dolci",
-      "_filename": "crostata-di-albicocche.md"
-    },
-    {
       "nome": "Salmon Burger",
       "category": "Piatti Speciali e griglieria",
       "prezzo": "14.00",
@@ -264,6 +243,27 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Crostata di albicocche ",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594841/arconti31/qaljh602msd4okog5nmg.jpg",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594831/arconti31/t3ra3z7scv9hmwghlnvf.jpg",
+      "allergeni": [
+        "Glutine",
+        "Pesce",
+        "Soia",
+        "Latte",
+        "Frutta a guscio"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "dolci",
+      "_filename": "crostata-di-albicocche.md"
     },
     {
       "nome": "Bacon burger",
@@ -1931,27 +1931,6 @@
         "_filename": "profitterol.md"
       },
       {
-        "nome": "Crostata di albicocche ",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594841/arconti31/qaljh602msd4okog5nmg.jpg",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594831/arconti31/t3ra3z7scv9hmwghlnvf.jpg",
-        "allergeni": [
-          "Glutine",
-          "Pesce",
-          "Soia",
-          "Latte",
-          "Frutta a guscio"
-        ],
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "dolci",
-        "_filename": "crostata-di-albicocche.md"
-      },
-      {
         "nome": "Torta soffice alle mele🍎👵🏻",
         "category": "Dolci",
         "prezzo": "6.00",
@@ -1971,6 +1950,27 @@
         "order": 0,
         "category_slug": "dolci",
         "_filename": "torta-soffice-alle-mele.md"
+      },
+      {
+        "nome": "Crostata di albicocche ",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594841/arconti31/qaljh602msd4okog5nmg.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1780594831/arconti31/t3ra3z7scv9hmwghlnvf.jpg",
+        "allergeni": [
+          "Glutine",
+          "Pesce",
+          "Soia",
+          "Latte",
+          "Frutta a guscio"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": false,
+        "order": 0,
+        "category_slug": "dolci",
+        "_filename": "crostata-di-albicocche.md"
       },
       {
         "nome": "Tiramisù al bicchiere",
