@@ -6,7 +6,7 @@ descrizione: "Si ispira alla tipologia delle American IPA. Nel profilo aromatico
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1781978798/arconti31/jmwnwxdpckcdegcnzyhe.webp"
 formato: "40"
 gradazione: "5"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
