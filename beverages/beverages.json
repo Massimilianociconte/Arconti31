@@ -1050,6 +1050,16 @@
       "tipo_slug": "i-nostri-rum",
       "_filename": "diplomatico-reserva-exclusiva.md",
       "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Grappa Barricata ",
+      "prezzo": "5.50",
+      "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "grappe",
+      "_filename": "grappa-barricata.md",
+      "tipo": "Grappe & Distillati"
     }
   ],
   "beveragesByType": {
@@ -2122,6 +2132,18 @@
         "tipo_slug": "i-nostri-rum",
         "_filename": "diplomatico-reserva-exclusiva.md",
         "tipo": "I nostri Rum"
+      }
+    ],
+    "Grappe & Distillati": [
+      {
+        "nome": "Grappa Barricata ",
+        "prezzo": "5.50",
+        "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "grappe",
+        "_filename": "grappa-barricata.md",
+        "tipo": "Grappe & Distillati"
       }
     ]
   }
