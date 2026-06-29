@@ -1060,6 +1060,15 @@
       "tipo_slug": "grappe",
       "_filename": "grappa-barricata.md",
       "tipo": "Grappe & Distillati"
+    },
+    {
+      "nome": "Grappa Bianca ",
+      "prezzo": "4.50",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "grappe",
+      "_filename": "grappa-bianca.md",
+      "tipo": "Grappe & Distillati"
     }
   ],
   "beveragesByType": {
@@ -2143,6 +2152,15 @@
         "order": 0,
         "tipo_slug": "grappe",
         "_filename": "grappa-barricata.md",
+        "tipo": "Grappe & Distillati"
+      },
+      {
+        "nome": "Grappa Bianca ",
+        "prezzo": "4.50",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "grappe",
+        "_filename": "grappa-bianca.md",
         "tipo": "Grappe & Distillati"
       }
     ]
