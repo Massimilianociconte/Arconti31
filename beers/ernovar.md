@@ -6,7 +6,7 @@ descrizione: "Premium Pils Tradizionale \nIl birrificio di Rakovník , noto anch
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1780951384/arconti31/kgm5xafmpyfthzlytdg9.png"
 formato: "0,4 l "
 gradazione: "4,9%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
