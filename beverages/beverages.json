@@ -1102,6 +1102,16 @@
       "tipo_slug": "grappe",
       "_filename": "riserva-privata-di-amarone-barricata-distilleria-b.md",
       "tipo": "Grappe & Distillati"
+    },
+    {
+      "nome": "“Crocodile” Gin del Professore ",
+      "prezzo": "10.00",
+      "descrizione": "Gin morbido, avvolgente e leggermente dolciastro. Le botaniche di spicco sono Ginepro, coriandolo, sambuco, pepe giamaicano, vaniglia e agrumi.\n",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "old-tom",
+      "_filename": "crocodile-gin-del-professore.md",
+      "tipo": "Old Tom"
     }
   ],
   "beveragesByType": {
@@ -2228,6 +2238,18 @@
         "tipo_slug": "grappe",
         "_filename": "riserva-privata-di-amarone-barricata-distilleria-b.md",
         "tipo": "Grappe & Distillati"
+      }
+    ],
+    "Old Tom": [
+      {
+        "nome": "“Crocodile” Gin del Professore ",
+        "prezzo": "10.00",
+        "descrizione": "Gin morbido, avvolgente e leggermente dolciastro. Le botaniche di spicco sono Ginepro, coriandolo, sambuco, pepe giamaicano, vaniglia e agrumi.\n",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "old-tom",
+        "_filename": "crocodile-gin-del-professore.md",
+        "tipo": "Old Tom"
       }
     ]
   }
