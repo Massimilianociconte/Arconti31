@@ -6,7 +6,7 @@ descrizione: "Black IPA\nHai mai preso un due di picche? Poi vedi tutto nero… 
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1779485486/arconti31/oryyufncbwa4xtsx3h0v.png"
 formato: "0,4 l "
 gradazione: "6,8% "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
