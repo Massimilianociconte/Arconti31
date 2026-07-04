@@ -6,7 +6,7 @@ descrizione: "Session IPA | IBU 27\nRealizzata con i luppoli Ekuanot, Citra e Mo
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1782503576/arconti31/chr6csttceb6ywiiiwy3.png"
 formato: "0,4 l "
 gradazione: "4,4 %"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
