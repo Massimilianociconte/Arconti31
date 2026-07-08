@@ -6,7 +6,7 @@ descrizione: "Blond Ale \nUna birra freschissima con fiori di sambuco, nata da v
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1781893424/arconti31/ybyjvfmxoyhjxilhqtom.png"
 formato: "0,4 l "
 gradazione: "5,4% "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-alla-spina"
 ---
