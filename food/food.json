@@ -168,23 +168,6 @@
       "_filename": "salmon-burger.md"
     },
     {
-      "nome": "Insalatona",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "10.00",
-      "descrizione": "Insalata fresca, pollo, pomodori, verdure, … \n🍽️ €1",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "insalatona.md"
-    },
-    {
       "nome": "Pulled Lamb ",
       "category": "Piatti Speciali e griglieria",
       "prezzo": "15.50",
@@ -285,6 +268,23 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-chicken.md"
+    },
+    {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "10.00",
+      "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "vegetariano-vegano",
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Bacon burger",
@@ -1112,7 +1112,7 @@
         "nome": "Insalatona",
         "category": "Vegetariano/ Vegano ",
         "prezzo": "10.00",
-        "descrizione": "Insalata fresca, pollo, pomodori, verdure, … \n🍽️ €1",
+        "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
         "allergeni": [
           "Glutine"
         ],
