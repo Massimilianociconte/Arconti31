@@ -168,25 +168,6 @@
       "_filename": "salmon-burger.md"
     },
     {
-      "nome": "Pulled Lamb ",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "15.50",
-      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
-      "allergeni": [
-        "Glutine",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "pulled-lamb.md"
-    },
-    {
       "nome": "Crostata di albicocche ",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -305,6 +286,25 @@
       "order": 0,
       "category_slug": "panini",
       "_filename": "madonna-in-campagna.md"
+    },
+    {
+      "nome": "Pulled Lamb ",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "15.50",
+      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+      "allergeni": [
+        "Glutine",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "pulled-lamb.md"
     },
     {
       "nome": "Bacon burger",
@@ -1625,25 +1625,6 @@
         "_filename": "salmon-burger.md"
       },
       {
-        "nome": "Pulled Lamb ",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "15.50",
-        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
-        "allergeni": [
-          "Glutine",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "piatti-speciali-e-griglieria",
-        "_filename": "pulled-lamb.md"
-      },
-      {
         "nome": "Pulled CHICKEN ",
         "category": "Piatti Speciali e griglieria",
         "prezzo": "16.00",
@@ -1663,6 +1644,25 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "pulled-chicken.md"
+      },
+      {
+        "nome": "Pulled Lamb ",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "15.50",
+        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+        "allergeni": [
+          "Glutine",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "pulled-lamb.md"
       },
       {
         "nome": "Mezzo polletto grigliato",
