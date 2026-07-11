@@ -1,6 +1,6 @@
 ---
 nome: "Pulled CHICKEN "
-category: "Piatti Speciali e griglieria"
+category: "Hamburger Fassona e Street food"
 prezzo: "16.00"
 descrizione: "Un bun con carne di filetto di pollo sfilacciato a mano, accompagnato da crauto rosso O peperoni e salsa allo yogurt/ bbq a scelta. \nContorno di patatine fritte 🍟 .\n🍽️ €1"
 allergeni:
@@ -14,5 +14,5 @@ tags:
   - "Specialità"
 disponibile: true
 order: 0
-category_slug: "piatti-speciali-e-griglieria"
+category_slug: "hamburger-fassona"
 ---

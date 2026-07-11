@@ -230,27 +230,6 @@
       "_filename": "torta-soffice-alle-mele.md"
     },
     {
-      "nome": "Pulled CHICKEN ",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "16.00",
-      "descrizione": "Un bun con carne di filetto di pollo sfilacciato a mano, accompagnato da crauto rosso O peperoni e salsa allo yogurt/ bbq a scelta. \nContorno di patatine fritte 🍟 .\n🍽️ €1",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Soia",
-        "Latte",
-        "Sesamo"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "pulled-chicken.md"
-    },
-    {
       "nome": "Insalatona",
       "category": "Vegetariano/ Vegano ",
       "prezzo": "10.00",
@@ -305,6 +284,27 @@
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
       "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Pulled CHICKEN ",
+      "category": "Hamburger Fassona e Street food",
+      "prezzo": "16.00",
+      "descrizione": "Un bun con carne di filetto di pollo sfilacciato a mano, accompagnato da crauto rosso O peperoni e salsa allo yogurt/ bbq a scelta. \nContorno di patatine fritte 🍟 .\n🍽️ €1",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte",
+        "Sesamo"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "hamburger-fassona",
+      "_filename": "pulled-chicken.md"
     },
     {
       "nome": "Bacon burger",
@@ -1235,6 +1235,27 @@
     ],
     "Hamburger Fassona e Street food": [
       {
+        "nome": "Pulled CHICKEN ",
+        "category": "Hamburger Fassona e Street food",
+        "prezzo": "16.00",
+        "descrizione": "Un bun con carne di filetto di pollo sfilacciato a mano, accompagnato da crauto rosso O peperoni e salsa allo yogurt/ bbq a scelta. \nContorno di patatine fritte 🍟 .\n🍽️ €1",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte",
+          "Sesamo"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "hamburger-fassona",
+        "_filename": "pulled-chicken.md"
+      },
+      {
         "nome": "Bacon burger",
         "category": "Hamburger Fassona e Street food",
         "prezzo": "14.00",
@@ -1623,27 +1644,6 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "salmon-burger.md"
-      },
-      {
-        "nome": "Pulled CHICKEN ",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "16.00",
-        "descrizione": "Un bun con carne di filetto di pollo sfilacciato a mano, accompagnato da crauto rosso O peperoni e salsa allo yogurt/ bbq a scelta. \nContorno di patatine fritte 🍟 .\n🍽️ €1",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Soia",
-          "Latte",
-          "Sesamo"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "piatti-speciali-e-griglieria",
-        "_filename": "pulled-chicken.md"
       },
       {
         "nome": "Pulled Lamb ",
