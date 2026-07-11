@@ -6,7 +6,7 @@ descrizione: "Session IPA | IBU 50\nBirra dorata e limpida, di cui il luppolo è
 immagine_avatar: "https://res.cloudinary.com/ducwseofw/image/upload/v1783194454/arconti31/q7sr9ooidgvkc5bpeyv7.png"
 formato: "0,4 l "
 gradazione: "5% "
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
