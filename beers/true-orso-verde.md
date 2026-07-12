@@ -6,7 +6,7 @@ descrizione: "DDH American Double IPA\nCon Metodo Double Dry Hopping (aggiunta d
 immagine_copertina: "https://res.cloudinary.com/ducwseofw/image/upload/v1775239428/arconti31/v4bg8pnfnvbvpk2p6rjt.jpg"
 formato: "0,4"
 gradazione: "8,5%"
-disponibile: true
+disponibile: false
 order: 0
 sezione_slug: "birre-artigianali"
 ---
