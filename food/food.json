@@ -310,6 +310,12 @@
       "nome": "Semifreddo al torroncino",
       "category": "Dolci",
       "prezzo": "6.00",
+      "allergeni": [
+        "Uova",
+        "Soia",
+        "Latte",
+        "Frutta a guscio"
+      ],
       "tags": [
         "Novità"
       ],
@@ -2077,6 +2083,12 @@
         "nome": "Semifreddo al torroncino",
         "category": "Dolci",
         "prezzo": "6.00",
+        "allergeni": [
+          "Uova",
+          "Soia",
+          "Latte",
+          "Frutta a guscio"
+        ],
         "tags": [
           "Novità"
         ],
