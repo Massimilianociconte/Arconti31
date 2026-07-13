@@ -2,6 +2,7 @@
 nome: "Semifreddo al torroncino"
 category: "Dolci"
 prezzo: "6.00"
+descrizione: "Un dessert al cucchiaio fresco e vellutato. Una soffice crema al torrone arricchita da una croccante granella di mandorle e nocciole, per un fine pasto equilibrato e goloso."
 allergeni:
   - "Uova"
   - "Soia"
