@@ -307,6 +307,18 @@
       "_filename": "pulled-chicken.md"
     },
     {
+      "nome": "Semifreddo al torroncino",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "dolci",
+      "_filename": "semifreddo-al-torroncino.md"
+    },
+    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -2060,6 +2072,18 @@
         "order": 0,
         "category_slug": "dolci",
         "_filename": "torta-soffice-alle-mele.md"
+      },
+      {
+        "nome": "Semifreddo al torroncino",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "dolci",
+        "_filename": "semifreddo-al-torroncino.md"
       },
       {
         "nome": "Tiramisù al bicchiere",
