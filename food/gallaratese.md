@@ -1,7 +1,7 @@
 ---
 nome: "Gallaratese"
 category: "Piadine"
-prezzo: "8.00"
+prezzo: "9.00"
 descrizione: "Romagnola con ricotta fresca, speck tirolese, zucchine grigliate"
 allergeni:
   - "Glutine"
