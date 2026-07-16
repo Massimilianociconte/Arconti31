@@ -18,96 +18,6 @@
       "_filename": "arconti-31.md"
     },
     {
-      "nome": "Soffice Cremoso",
-      "category": "Dolci",
-      "category_slug": "dolci",
-      "prezzo": "6.00",
-      "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": false,
-      "order": 0,
-      "_filename": "soffice-cremoso.md"
-    },
-    {
-      "nome": "Verdure pastellate",
-      "category": "Fritti",
-      "category_slug": "fritti",
-      "prezzo": "7.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano",
-        "Specialità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "_filename": "verdure-pastellate.md"
-    },
-    {
-      "nome": "Verdure pastellate",
-      "category": "Fritti",
-      "prezzo": "6.00",
-      "descrizione": "Gran Fritto Misto di verdure grazie alla pastella con farina di mais mantiene la sua croccantezza. Composto da vegetali zucchine, spinaci, cavolfiori, carote, peperoni e broccoli, farina di mais.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775681586/arconti31/cstxukbkkkx0uvj9xob7.jpg",
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "fritti",
-      "_filename": "verdure-pastellate-2.md"
-    },
-    {
-      "nome": "Hamburger F1 Bufala",
-      "category": "Hamburger di bufala",
-      "prezzo": "15.50",
-      "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
-      "allergeni": [
-        "Glutine",
-        "Uova"
-      ],
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "hamburger-bufala",
-      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
-    },
-    {
-      "nome": "PULLED BEEF",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "16.00",
-      "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Latte",
-        "Sesamo"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": false,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "pulled-beef.md"
-    },
-    {
       "nome": "Romagnola ",
       "category": "Vegetariano/ Vegano ",
       "prezzo": "8.00",
@@ -124,48 +34,6 @@
       "order": 0,
       "category_slug": "vegetariano-vegano",
       "_filename": "arnate-calcio.md"
-    },
-    {
-      "nome": "Veggy Burger ",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "15.00",
-      "descrizione": "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋. Contorno di patatine fritte. \n🍽️ €1",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Soia",
-        "Latte",
-        "Frutta a guscio"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "veggy-burger.md"
-    },
-    {
-      "nome": "Salmon Burger",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "14.00",
-      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Pesce",
-        "Soia",
-        "Latte"
-      ],
-      "tags": [
-        "Novità",
-        "Specialità"
-      ],
-      "disponibile": false,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "salmon-burger.md"
     },
     {
       "nome": "Crostata di albicocche ",
@@ -189,45 +57,21 @@
       "_filename": "crostata-di-albicocche.md"
     },
     {
-      "nome": "Profitterol al cioccolato bianco",
-      "category": "Dolci",
-      "prezzo": "6.00",
-      "descrizione": "Tre palline di bignè ripieni alla crema.",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129307/arconti31/zcs4pqsdqfpzn9uizytr.jpg",
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "12.00",
+      "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
       "allergeni": [
-        "Glutine",
-        "Uova",
-        "Latte"
-      ],
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "dolci",
-      "_filename": "profitterol.md"
-    },
-    {
-      "nome": "Torta soffice alle mele🍎👵🏻",
-      "category": "Dolci",
-      "prezzo": "6.00",
-      "descrizione": "Soffice e sfiziosa, il dolce fatto in casa giusto da concedersi con un po’ di gelato e topping al cioccolato😋\nApprofittane finché ce n’è!!",
-      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1781885417/arconti31/j6sz3jatt7uqfkfugvd9.webp",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781821568/arconti31/imabolrbc5lwvnctkic4.jpg",
-      "allergeni": [
-        "Glutine",
-        "Uova",
-        "Latte"
+        "Glutine"
       ],
       "tags": [
         "Novità",
-        "Specialità"
+        "Vegetariano"
       ],
-      "disponibile": false,
+      "disponibile": true,
       "order": 0,
-      "category_slug": "dolci",
-      "_filename": "torta-soffice-alle-mele.md"
+      "category_slug": "vegetariano-vegano",
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Madonna (in campagna)😝",
@@ -250,14 +94,53 @@
       "_filename": "madonna-in-campagna.md"
     },
     {
-      "nome": "Pulled Lamb ",
-      "category": "Piatti Speciali e griglieria",
+      "nome": "Hamburger F1 Bufala",
+      "category": "Hamburger di bufala",
       "prezzo": "15.50",
-      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+      "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
       "allergeni": [
         "Glutine",
-        "Soia",
+        "Uova"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "hamburger-bufala",
+      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
+    },
+    {
+      "nome": "Profitterol al cioccolato bianco",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "descrizione": "Tre palline di bignè ripieni alla crema.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129302/arconti31/l1buktrvw8qp9id5ulig.jpg",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1770129307/arconti31/zcs4pqsdqfpzn9uizytr.jpg",
+      "allergeni": [
+        "Glutine",
+        "Uova",
         "Latte"
+      ],
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "dolci",
+      "_filename": "profitterol.md"
+    },
+    {
+      "nome": "PULLED BEEF",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "16.00",
+      "descrizione": "Pane al sesamo, Pulled di filetto di manzo, cavolo cappuccio, cipolla caramellata e salsa bbq con contorno di patatine fritte.  🍽️ €1 ",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1774729307/arconti31/hy4gu77ak7g753zaymru.png",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Latte",
+        "Sesamo"
       ],
       "tags": [
         "Novità",
@@ -266,7 +149,7 @@
       "disponibile": false,
       "order": 0,
       "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "pulled-lamb.md"
+      "_filename": "pulled-beef.md"
     },
     {
       "nome": "Pulled CHICKEN ",
@@ -290,6 +173,46 @@
       "_filename": "pulled-chicken.md"
     },
     {
+      "nome": "Pulled Lamb ",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "15.50",
+      "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+      "allergeni": [
+        "Glutine",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "pulled-lamb.md"
+    },
+    {
+      "nome": "Salmon Burger",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "14.00",
+      "descrizione": "Un pane artigianale con all’interno filetto di salmone grigliato, misticanza, pomodori, salsa vinagrette.\nContorno di patatine fritte 🍟.\n🍽️ €1 ",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Pesce",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "salmon-burger.md"
+    },
+    {
       "nome": "Semifreddo al torroncino",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -310,12 +233,57 @@
       "_filename": "semifreddo-al-torroncino.md"
     },
     {
-      "nome": "Insalatona",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "12.00",
-      "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
+      "nome": "Soffice Cremoso",
+      "category": "Dolci",
+      "category_slug": "dolci",
+      "prezzo": "6.00",
+      "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
       "allergeni": [
-        "Glutine"
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "_filename": "soffice-cremoso.md"
+    },
+    {
+      "nome": "Torta soffice alle mele🍎👵🏻",
+      "category": "Dolci",
+      "prezzo": "6.00",
+      "descrizione": "Soffice e sfiziosa, il dolce fatto in casa giusto da concedersi con un po’ di gelato e topping al cioccolato😋\nApprofittane finché ce n’è!!",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1781885417/arconti31/j6sz3jatt7uqfkfugvd9.webp",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781821568/arconti31/imabolrbc5lwvnctkic4.jpg",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Specialità"
+      ],
+      "disponibile": false,
+      "order": 0,
+      "category_slug": "dolci",
+      "_filename": "torta-soffice-alle-mele.md"
+    },
+    {
+      "nome": "Veggy Burger ",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "15.00",
+      "descrizione": "Per stare in tema, all’interno del panino (verde alla spirulina!) troverai melanzane impanate, pomodori, mozzarella, cialda di Grana Padano e salsa alla Norma😋. Contorno di patatine fritte. \n🍽️ €1",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte",
+        "Frutta a guscio"
       ],
       "tags": [
         "Novità",
@@ -324,7 +292,39 @@
       "disponibile": true,
       "order": 0,
       "category_slug": "vegetariano-vegano",
-      "_filename": "insalatona.md"
+      "_filename": "veggy-burger.md"
+    },
+    {
+      "nome": "Verdure pastellate",
+      "category": "Fritti",
+      "prezzo": "6.00",
+      "descrizione": "Gran Fritto Misto di verdure grazie alla pastella con farina di mais mantiene la sua croccantezza. Composto da vegetali zucchine, spinaci, cavolfiori, carote, peperoni e broccoli, farina di mais.",
+      "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775681586/arconti31/cstxukbkkkx0uvj9xob7.jpg",
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "fritti",
+      "_filename": "verdure-pastellate-2.md"
+    },
+    {
+      "nome": "Verdure pastellate",
+      "category": "Fritti",
+      "category_slug": "fritti",
+      "prezzo": "7.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
+      "allergeni": [
+        "Glutine",
+        "Uova",
+        "Soia",
+        "Latte"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano",
+        "Specialità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "_filename": "verdure-pastellate.md"
     },
     {
       "nome": "Bacon burger",
@@ -754,8 +754,7 @@
     {
       "nome": "Broletto",
       "category": "Panini Ciabatta",
-      "category_slug": "panini",
-      "prezzo": "8.50",
+      "prezzo": "9.00",
       "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
       "allergeni": [
         "Glutine",
@@ -766,6 +765,7 @@
       ],
       "disponibile": true,
       "order": 28,
+      "category_slug": "panini",
       "_filename": "broletto.md"
     },
     {
@@ -1128,6 +1128,23 @@
         "_filename": "arnate-calcio.md"
       },
       {
+        "nome": "Insalatona",
+        "category": "Vegetariano/ Vegano ",
+        "prezzo": "12.00",
+        "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
+        "allergeni": [
+          "Glutine"
+        ],
+        "tags": [
+          "Novità",
+          "Vegetariano"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "vegetariano-vegano",
+        "_filename": "insalatona.md"
+      },
+      {
         "nome": "Veggy Burger ",
         "category": "Vegetariano/ Vegano ",
         "prezzo": "15.00",
@@ -1147,23 +1164,6 @@
         "order": 0,
         "category_slug": "vegetariano-vegano",
         "_filename": "veggy-burger.md"
-      },
-      {
-        "nome": "Insalatona",
-        "category": "Vegetariano/ Vegano ",
-        "prezzo": "12.00",
-        "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
-        "allergeni": [
-          "Glutine"
-        ],
-        "tags": [
-          "Novità",
-          "Vegetariano"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "vegetariano-vegano",
-        "_filename": "insalatona.md"
       },
       {
         "nome": "Cajello vegano",
@@ -1519,8 +1519,7 @@
       {
         "nome": "Broletto",
         "category": "Panini Ciabatta",
-        "category_slug": "panini",
-        "prezzo": "8.50",
+        "prezzo": "9.00",
         "descrizione": "Ciabatta 180gr con crudo Parma 18 mesi, brie, pomodori",
         "allergeni": [
           "Glutine",
@@ -1531,6 +1530,7 @@
         ],
         "disponibile": true,
         "order": 28,
+        "category_slug": "panini",
         "_filename": "broletto.md"
       },
       {
@@ -1645,6 +1645,25 @@
         "_filename": "pulled-beef.md"
       },
       {
+        "nome": "Pulled Lamb ",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "15.50",
+        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
+        "allergeni": [
+          "Glutine",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "pulled-lamb.md"
+      },
+      {
         "nome": "Salmon Burger",
         "category": "Piatti Speciali e griglieria",
         "prezzo": "14.00",
@@ -1664,25 +1683,6 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "salmon-burger.md"
-      },
-      {
-        "nome": "Pulled Lamb ",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "15.50",
-        "descrizione": "Una farcitura di spalla di agnello marinata e speziata (CBT 6 ore, cavolo viola e salsa bbq.\nContorno di patatine fritte. 🍟 \n€1 🍽️ ",
-        "allergeni": [
-          "Glutine",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 0,
-        "category_slug": "piatti-speciali-e-griglieria",
-        "_filename": "pulled-lamb.md"
       },
       {
         "nome": "Mezzo polletto grigliato",
@@ -1886,6 +1886,17 @@
       {
         "nome": "Verdure pastellate",
         "category": "Fritti",
+        "prezzo": "6.00",
+        "descrizione": "Gran Fritto Misto di verdure grazie alla pastella con farina di mais mantiene la sua croccantezza. Composto da vegetali zucchine, spinaci, cavolfiori, carote, peperoni e broccoli, farina di mais.",
+        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775681586/arconti31/cstxukbkkkx0uvj9xob7.jpg",
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "fritti",
+        "_filename": "verdure-pastellate-2.md"
+      },
+      {
+        "nome": "Verdure pastellate",
+        "category": "Fritti",
         "category_slug": "fritti",
         "prezzo": "7.00",
         "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1773959240/arconti31/amllwj4eg1md4dnoieuv.jpg",
@@ -1903,17 +1914,6 @@
         "disponibile": true,
         "order": 0,
         "_filename": "verdure-pastellate.md"
-      },
-      {
-        "nome": "Verdure pastellate",
-        "category": "Fritti",
-        "prezzo": "6.00",
-        "descrizione": "Gran Fritto Misto di verdure grazie alla pastella con farina di mais mantiene la sua croccantezza. Composto da vegetali zucchine, spinaci, cavolfiori, carote, peperoni e broccoli, farina di mais.",
-        "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1775681586/arconti31/cstxukbkkkx0uvj9xob7.jpg",
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "fritti",
-        "_filename": "verdure-pastellate-2.md"
       },
       {
         "nome": "Rosti di patate e speck",
@@ -2000,26 +2000,6 @@
     ],
     "Dolci": [
       {
-        "nome": "Soffice Cremoso",
-        "category": "Dolci",
-        "category_slug": "dolci",
-        "prezzo": "6.00",
-        "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
-        "allergeni": [
-          "Glutine",
-          "Uova",
-          "Soia",
-          "Latte"
-        ],
-        "tags": [
-          "Novità",
-          "Specialità"
-        ],
-        "disponibile": false,
-        "order": 0,
-        "_filename": "soffice-cremoso.md"
-      },
-      {
         "nome": "Crostata di albicocche ",
         "category": "Dolci",
         "prezzo": "6.00",
@@ -2061,6 +2041,46 @@
         "_filename": "profitterol.md"
       },
       {
+        "nome": "Semifreddo al torroncino",
+        "category": "Dolci",
+        "prezzo": "6.00",
+        "descrizione": "Un dessert al cucchiaio fresco e vellutato. Una soffice crema al torrone arricchita da una croccante granella di mandorle e nocciole, per un fine pasto equilibrato e goloso.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1783963195/arconti31/wt0dc6oaxd1dtqqar12q.jpg",
+        "allergeni": [
+          "Uova",
+          "Soia",
+          "Latte",
+          "Frutta a guscio"
+        ],
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "dolci",
+        "_filename": "semifreddo-al-torroncino.md"
+      },
+      {
+        "nome": "Soffice Cremoso",
+        "category": "Dolci",
+        "category_slug": "dolci",
+        "prezzo": "6.00",
+        "descrizione": "Dolce al bicchiere, ogni strato una texture differente per un’esperienza vivace. Crumble di biscotti, crema pasticciera, panna montata e frutti di bosco!",
+        "allergeni": [
+          "Glutine",
+          "Uova",
+          "Soia",
+          "Latte"
+        ],
+        "tags": [
+          "Novità",
+          "Specialità"
+        ],
+        "disponibile": false,
+        "order": 0,
+        "_filename": "soffice-cremoso.md"
+      },
+      {
         "nome": "Torta soffice alle mele🍎👵🏻",
         "category": "Dolci",
         "prezzo": "6.00",
@@ -2080,26 +2100,6 @@
         "order": 0,
         "category_slug": "dolci",
         "_filename": "torta-soffice-alle-mele.md"
-      },
-      {
-        "nome": "Semifreddo al torroncino",
-        "category": "Dolci",
-        "prezzo": "6.00",
-        "descrizione": "Un dessert al cucchiaio fresco e vellutato. Una soffice crema al torrone arricchita da una croccante granella di mandorle e nocciole, per un fine pasto equilibrato e goloso.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1783963195/arconti31/wt0dc6oaxd1dtqqar12q.jpg",
-        "allergeni": [
-          "Uova",
-          "Soia",
-          "Latte",
-          "Frutta a guscio"
-        ],
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "dolci",
-        "_filename": "semifreddo-al-torroncino.md"
       },
       {
         "nome": "Tiramisù al bicchiere",
