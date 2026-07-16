@@ -230,23 +230,6 @@
       "_filename": "torta-soffice-alle-mele.md"
     },
     {
-      "nome": "Insalatona",
-      "category": "Vegetariano/ Vegano ",
-      "prezzo": "10.00",
-      "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
-      "allergeni": [
-        "Glutine"
-      ],
-      "tags": [
-        "Novità",
-        "Vegetariano"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "vegetariano-vegano",
-      "_filename": "insalatona.md"
-    },
-    {
       "nome": "Madonna (in campagna)😝",
       "category": "Panini Ciabatta",
       "prezzo": "10.00",
@@ -325,6 +308,23 @@
       "order": 0,
       "category_slug": "dolci",
       "_filename": "semifreddo-al-torroncino.md"
+    },
+    {
+      "nome": "Insalatona",
+      "category": "Vegetariano/ Vegano ",
+      "prezzo": "12.00",
+      "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
+      "allergeni": [
+        "Glutine"
+      ],
+      "tags": [
+        "Novità",
+        "Vegetariano"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "vegetariano-vegano",
+      "_filename": "insalatona.md"
     },
     {
       "nome": "Bacon burger",
@@ -1151,7 +1151,7 @@
       {
         "nome": "Insalatona",
         "category": "Vegetariano/ Vegano ",
-        "prezzo": "10.00",
+        "prezzo": "12.00",
         "descrizione": "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1",
         "allergeni": [
           "Glutine"

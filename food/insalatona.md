@@ -1,7 +1,7 @@
 ---
 nome: "Insalatona"
 category: "Vegetariano/ Vegano "
-prezzo: "10.00"
+prezzo: "12.00"
 descrizione: "Insalata fresca, POLLO, pomodori, verdure, … \n🍽️ €1"
 allergeni:
   - "Glutine"
