@@ -1,0 +1,11 @@
+---
+nome: "Tagliata di diaframma "
+category: "Piatti Speciali e griglieria"
+prezzo: "18.00"
+descrizione: "200 grammi di diaframma accompagnato da patatine fritte o verdure miste."
+tags:
+  - "Novità"
+disponibile: true
+order: 0
+category_slug: "piatti-speciali-e-griglieria"
+---

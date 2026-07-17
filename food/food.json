@@ -340,6 +340,19 @@
       "_filename": "carne-salada.md"
     },
     {
+      "nome": "Tagliata di diaframma ",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "18.00",
+      "descrizione": "200 grammi di diaframma accompagnato da patatine fritte o verdure miste.",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "tagliata-di-diaframma.md"
+    },
+    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -1709,6 +1722,19 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "carne-salada.md"
+      },
+      {
+        "nome": "Tagliata di diaframma ",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "18.00",
+        "descrizione": "200 grammi di diaframma accompagnato da patatine fritte o verdure miste.",
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "tagliata-di-diaframma.md"
       },
       {
         "nome": "Mezzo polletto grigliato",
