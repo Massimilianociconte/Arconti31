@@ -1,5 +1,5 @@
 ---
-nome: "Amara te - Orso Verde"
+nome: "Amaranta - Orso Verde"
 sezione: "Birre artigianali alla spina a rotazione"
 prezzo: "6.50"
 descrizione: "Bock | IBU 18\nBirra a bassa fermentazione con dal color amaranto. \n\nLa sua schiuma avorio, contiene un percorso di aromi inediti, dove i frutti rossi, il caramello e le note terrose della frutta secca evocano l’autunno in ogni sorso."
