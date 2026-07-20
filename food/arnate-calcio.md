@@ -1,7 +1,7 @@
 ---
 nome: "Romagnola "
 category: "Vegetariano/ Vegano "
-prezzo: "8.50"
+prezzo: "8.00"
 descrizione: "Piadina romagnola da tradizione esclusivamente vegetariana con ricotta di bufala e verdure grigliate di stagione.....possibile richiesta versione vegana senza formaggio. *strutto"
 allergeni:
   - "Glutine"
