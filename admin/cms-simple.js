@@ -395,7 +395,6 @@ async function init() {
     });
   }
 
-  await checkCloudinaryConfig();
   setupEventListeners();
   setupOfflineHandling();
 
@@ -403,7 +402,11 @@ async function init() {
   const { session: savedSession } = getStoredSession();
   if (savedSession) {
     const verified = await verifyStoredSession(savedSession);
-    if (verified === true) return;
+    if (verified === true) {
+      // Cloudinary config richiede auth: solo dopo sessione valida
+      await checkCloudinaryConfig();
+      return;
+    }
     if (verified === 'network') {
       // Network error: NON clear session — mostra retry
       showSessionRetry(savedSession);
@@ -448,6 +451,7 @@ async function verifyStoredSession(savedSession) {
       showMainApp();
       loadAllData();
       fetchRepoTarget();
+      checkCloudinaryConfig();
       toast('Bentornato!', 'success');
       return true;
     }
@@ -511,12 +515,22 @@ function hideSessionRetry() {
 }
 
 async function checkCloudinaryConfig() {
+  // Richiede token (action protetta): non chiamare prima del login
+  if (!state.token) {
+    state.cloudinaryConfigured = false;
+    return;
+  }
   try {
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'get-cloudinary-config' })
+      body: JSON.stringify({ action: 'get-cloudinary-config', token: state.token })
     });
+    if (res.status === 401) {
+      // Sessione non ancora pronta / scaduta — silenzioso
+      state.cloudinaryConfigured = false;
+      return;
+    }
     if (res.ok) {
       const data = await res.json();
       if (data.cloudName && data.uploadPreset) {
@@ -622,6 +636,7 @@ async function handleLogin(e) {
     showMainApp();
     loadAllData();
     fetchRepoTarget();
+    checkCloudinaryConfig();
   } catch (e) {
     console.error(e);
     toast(mapApiError(0, { error: e.message }) || 'Errore login', 'error');
