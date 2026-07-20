@@ -2,6 +2,15 @@
 node_modules/
 jspm_packages/
 
+# Secrets / local env (never commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets/
+
 # System files
 .DS_Store
 Thumbs.db
@@ -14,3 +23,4 @@ Thumbs.db
 .idea/
 dist/
 build/
+.netlify/
