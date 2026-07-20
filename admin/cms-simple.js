@@ -1582,26 +1582,51 @@ function ensureDynamicCollections() {
   }
 }
 
+/** Riordino sicuro solo senza filtri (ordine = intera collection) */
+function canReorderList() {
+  if (state.isOffline || !navigator.onLine) return false;
+  const search = ($('#search-input')?.value || '').trim();
+  const category = $('#filter-category')?.value || '';
+  const status = $('#filter-status')?.value || '';
+  const chipActive = !!document.querySelector('#category-filters .filter-chip.active');
+  return !search && !category && !status && !chipActive;
+}
+
 function renderItems() {
   const list = $('#items-list');
+  if (!list) return;
   const items = getFilteredItems();
+  const reorderOk = canReorderList();
 
   // Clear selection state
   state.selectedItems = [];
   updateBulkActionsBar();
 
   if (!items.length) {
-    list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca <strong>Nuovo</strong> per aggiungere il primo, oppure azzera i filtri di ricerca.</p></div>';
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon" aria-hidden="true">📋</div>
+        <h3>Nessun elemento</h3>
+        <p>Clicca <strong>Nuovo</strong> per aggiungere il primo, oppure azzera i filtri di ricerca.</p>
+      </div>`;
+    updateOfflineUI();
     return;
   }
   const collection = COLLECTIONS[state.currentCollection];
   const isCategorie = state.currentCollection === 'categorie';
 
+  let hint = '';
+  if (!reorderOk && !state.isOffline) {
+    hint = `<div class="reorder-hint" role="note">Per riordinare con trascina o frecce, azzera ricerca e filtri.</div>`;
+  } else if (reorderOk) {
+    hint = `<div class="reorder-hint reorder-hint--ok" role="note">Trascina dalla maniglia <span class="reorder-hint-grip">⋮⋮</span> oppure usa ↑ ↓ per cambiare l’ordine.</div>`;
+  }
+
   if (collection.groupByCategory && state.currentCollection === 'food') {
-    renderGroupedItems(items);
+    renderGroupedItems(items, reorderOk);
+    list.insertAdjacentHTML('afterbegin', hint);
   } else {
-    // Add bulk selection header for categories
-    let html = '';
+    let html = hint;
     if (isCategorie) {
       html += `<div class="bulk-select-header">
         <label class="bulk-checkbox-label">
@@ -1610,10 +1635,9 @@ function renderItems() {
         </label>
       </div>`;
     }
-    html += items.map(item => renderItemCard(item, isCategorie)).join('');
+    html += items.map(item => renderItemCard(item, isCategorie, reorderOk)).join('');
     list.innerHTML = html;
 
-    // Setup select all checkbox
     if (isCategorie) {
       const selectAll = $('#select-all-items');
       if (selectAll) {
@@ -1628,32 +1652,13 @@ function renderItems() {
     }
   }
 
-  // Setup click handlers
-  document.querySelectorAll('.item-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't trigger edit if clicking on checkbox or drag handle
-      if (e.target.classList.contains('item-checkbox') || 
-          e.target.classList.contains('drag-handle')) return;
-      editItem(card.dataset.filename);
-    });
-  });
-
-  // Setup checkbox handlers for categories
-  if (isCategorie) {
-    document.querySelectorAll('.item-checkbox').forEach(cb => {
-      cb.addEventListener('change', (e) => {
-        e.stopPropagation();
-        toggleItemSelection(cb.dataset.filename, cb.checked);
-      });
-    });
-  }
-  
-  // Setup drag and drop for reordering
+  // Click / checkbox / freccia: delegation una sola volta via setupListInteractions
+  setupListInteractions();
   setupDragAndDrop();
   updateOfflineUI();
 }
 
-function renderGroupedItems(items) {
+function renderGroupedItems(items, reorderOk = canReorderList()) {
   const list = $('#items-list');
   const grouped = {};
   items.forEach(item => {
@@ -1673,13 +1678,13 @@ function renderGroupedItems(items) {
         <span class="category-name">${cat}</span>
         <span class="category-count">${grouped[cat].length}</span>
       </div>
-      <div class="category-items">${grouped[cat].map(renderItemCard).join('')}</div>
+      <div class="category-items" data-reorder-scope="group">${grouped[cat].map(item => renderItemCard(item, false, reorderOk)).join('')}</div>
     </div>`;
   });
   list.innerHTML = html;
 }
 
-function renderItemCard(item, showCheckbox = false) {
+function renderItemCard(item, showCheckbox = false, reorderOk = canReorderList()) {
   let thumb = item.immagine_avatar || item.immagine_copertina || item.immagine || '';
 
   // Fix relative paths for CMS (which is in /admin/)
@@ -1697,25 +1702,43 @@ function renderItemCard(item, showCheckbox = false) {
     ? `<span class="item-icon">${item.icona || '📦'}</span>`
     : `<span class="item-price">€${formatPriceDisplay(item.prezzo)}</span>`;
 
+  const statusOn = item.disponibile !== false && item.visibile !== false;
+  const statusLabel = isCategory
+    ? (item.visibile === false ? 'Nascosta' : 'Visibile')
+    : (item.disponibile === false ? 'Non disponibile' : 'Disponibile');
+
   // Checkbox for bulk selection (categories only)
   const checkboxHtml = showCheckbox
-    ? `<input type="checkbox" class="item-checkbox" data-filename="${item.filename}" onclick="event.stopPropagation()">`
+    ? `<label class="item-check-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" class="item-checkbox" data-filename="${item.filename}" aria-label="Seleziona ${item.nome || ''}">
+      </label>`
     : '';
 
-  // Drag handle for reordering
-  const dragHandle = `<div class="drag-handle" title="Trascina per riordinare">⋮⋮</div>`;
+  const reorderHtml = reorderOk
+    ? `<div class="item-reorder">
+        <button type="button" class="btn-reorder btn-reorder-up" data-filename="${item.filename}" title="Sposta su" aria-label="Sposta su">↑</button>
+        <div class="drag-handle" title="Trascina per riordinare" aria-label="Trascina per riordinare" role="button">
+          <span></span><span></span><span></span>
+        </div>
+        <button type="button" class="btn-reorder btn-reorder-down" data-filename="${item.filename}" title="Sposta giù" aria-label="Sposta giù">↓</button>
+      </div>`
+    : '';
 
-  return `<div class="item-card ${item.disponibile === false || item.visibile === false ? 'unavailable' : ''}" data-filename="${item.filename}" data-order="${item.order || 0}" draggable="true">
-    ${dragHandle}
+  return `<div class="item-card ${statusOn ? '' : 'unavailable'}" data-filename="${item.filename}" data-order="${item.order || 0}" draggable="false">
+    ${reorderHtml}
     ${checkboxHtml}
     ${thumbHtml}
     <div class="item-info">
       <div class="item-name">${item.nome || 'Senza nome'}</div>
       <div class="item-meta">
         ${metaHtml}
-        <span class="status-dot ${(item.disponibile !== false && item.visibile !== false) ? 'available' : 'unavailable'}"></span>
+        <span class="item-status-pill ${statusOn ? 'is-on' : 'is-off'}">
+          <span class="status-dot ${statusOn ? 'available' : 'unavailable'}"></span>
+          ${statusLabel}
+        </span>
       </div>
     </div>
+    <span class="item-chevron" aria-hidden="true">›</span>
   </div>`;
 }
 
@@ -1777,131 +1800,233 @@ function getFilteredItems() {
 function filterItems() { renderItems(); }
 
 // ========================================
-// DRAG & DROP REORDERING
+// DRAG & DROP + FRECCE REORDERING
 // ========================================
 
 let draggedItem = null;
-let draggedOverItem = null;
+let dragArmed = false; // true solo dopo mousedown sulla maniglia
+let listInteractionsBound = false;
+let dndBound = false;
+
+/** Event delegation lista: click card, checkbox, frecce (una sola volta) */
+function setupListInteractions() {
+  const list = $('#items-list');
+  if (!list || listInteractionsBound) return;
+  listInteractionsBound = true;
+
+  list.addEventListener('click', (e) => {
+    const up = e.target.closest('.btn-reorder-up');
+    const down = e.target.closest('.btn-reorder-down');
+    if (up || down) {
+      e.preventDefault();
+      e.stopPropagation();
+      const filename = (up || down).dataset.filename;
+      moveItemByDelta(filename, up ? -1 : 1);
+      return;
+    }
+
+    if (e.target.closest('.item-checkbox') || e.target.closest('.item-check-wrap') || e.target.closest('.item-reorder')) {
+      return;
+    }
+
+    const card = e.target.closest('.item-card');
+    if (card && card.dataset.filename) {
+      editItem(card.dataset.filename);
+    }
+  });
+
+  list.addEventListener('change', (e) => {
+    if (e.target.classList.contains('item-checkbox')) {
+      e.stopPropagation();
+      toggleItemSelection(e.target.dataset.filename, e.target.checked);
+    }
+  });
+}
 
 function setupDragAndDrop() {
   const list = $('#items-list');
-  if (!list) return;
+  if (!list || dndBound) return;
+  dndBound = true;
 
-  // Event delegation for drag events
+  // Arma il drag solo dalla maniglia (poi draggable sulla card)
+  list.addEventListener('pointerdown', (e) => {
+    const handle = e.target.closest('.drag-handle');
+    if (!handle || !canReorderList()) {
+      dragArmed = false;
+      return;
+    }
+    const card = handle.closest('.item-card');
+    if (!card) return;
+    dragArmed = true;
+    card.setAttribute('draggable', 'true');
+  });
+  const disarm = () => {
+    dragArmed = false;
+    list.querySelectorAll('.item-card[draggable="true"]').forEach(c => {
+      c.setAttribute('draggable', 'false');
+    });
+  };
+  list.addEventListener('pointerup', disarm);
+  list.addEventListener('pointercancel', disarm);
   list.addEventListener('dragstart', handleDragStart);
   list.addEventListener('dragend', handleDragEnd);
   list.addEventListener('dragover', handleDragOver);
-  list.addEventListener('dragenter', handleDragEnter);
-  list.addEventListener('dragleave', handleDragLeave);
   list.addEventListener('drop', handleDrop);
+  list.addEventListener('dragenter', (e) => e.preventDefault());
 }
 
 function handleDragStart(e) {
-  if (state.isOffline || !navigator.onLine) {
+  if (!canReorderList() || !dragArmed) {
     e.preventDefault();
     return;
   }
   const card = e.target.closest('.item-card');
-  if (!card) return;
-  
+  if (!card) {
+    e.preventDefault();
+    return;
+  }
+
   draggedItem = card;
   card.classList.add('dragging');
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/plain', card.dataset.filename);
-  
-  // Delay to allow the drag image to be captured
-  setTimeout(() => {
-    card.style.opacity = '0.5';
-  }, 0);
+  try {
+    e.dataTransfer.setDragImage(card, 40, 28);
+  } catch (_) { /* ignore */ }
 }
 
 function handleDragEnd(e) {
-  const card = e.target.closest('.item-card');
+  const card = e.target.closest('.item-card') || draggedItem;
   if (card) {
     card.classList.remove('dragging');
-    card.style.opacity = '1';
+    card.setAttribute('draggable', 'false');
   }
-  
-  // Remove all drag-over states
-  document.querySelectorAll('.item-card.drag-over').forEach(el => {
-    el.classList.remove('drag-over');
-  });
-  
+  document.querySelectorAll('.item-card.drag-over').forEach(el => el.classList.remove('drag-over'));
   draggedItem = null;
-  draggedOverItem = null;
+  dragArmed = false;
 }
 
 function handleDragOver(e) {
+  if (!draggedItem || !canReorderList()) return;
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-}
 
-function handleDragEnter(e) {
-  const card = e.target.closest('.item-card');
-  if (card && card !== draggedItem) {
-    card.classList.add('drag-over');
-    draggedOverItem = card;
-  }
-}
+  const overCard = e.target.closest('.item-card');
+  if (!overCard || overCard === draggedItem) return;
 
-function handleDragLeave(e) {
-  const card = e.target.closest('.item-card');
-  if (card && !card.contains(e.relatedTarget)) {
-    card.classList.remove('drag-over');
+  // Stesso contenitore (lista piatta o category-items)
+  const parent = overCard.parentNode;
+  if (!parent || parent !== draggedItem.parentNode) return;
+
+  const rect = overCard.getBoundingClientRect();
+  const before = e.clientY < rect.top + rect.height / 2;
+  if (before) {
+    parent.insertBefore(draggedItem, overCard);
+  } else {
+    parent.insertBefore(draggedItem, overCard.nextSibling);
   }
 }
 
 async function handleDrop(e) {
   e.preventDefault();
-  if (!guardOnline('riordino')) return;
-  
-  const targetCard = e.target.closest('.item-card');
-  if (!targetCard || !draggedItem || targetCard === draggedItem) return;
-  
-  targetCard.classList.remove('drag-over');
-  
-  const draggedFilename = draggedItem.dataset.filename;
-  const targetFilename = targetCard.dataset.filename;
-  
-  // Find items in state
-  const draggedIdx = state.items.findIndex(i => i.filename === draggedFilename);
-  const targetIdx = state.items.findIndex(i => i.filename === targetFilename);
-  
-  if (draggedIdx === -1 || targetIdx === -1) return;
-  
-  // Reorder items array
-  const [movedItem] = state.items.splice(draggedIdx, 1);
-  state.items.splice(targetIdx, 0, movedItem);
-  
-  // Track which items changed order
+  if (!draggedItem) return;
+  if (!guardOnline('riordino') || !canReorderList()) {
+    renderItems();
+    return;
+  }
+
+  // Ordine finale = ordine DOM delle card nello stesso scope del drag
+  const parent = draggedItem.parentNode;
+  const cards = [...parent.querySelectorAll(':scope > .item-card')];
+  const newOrderFilenames = cards.map(c => c.dataset.filename).filter(Boolean);
+
+  const changed = applyFilenameOrderToState(newOrderFilenames, parent.classList.contains('category-items'));
+  draggedItem.classList.remove('dragging');
+  draggedItem = null;
+
+  renderItems();
+  if (changed.length > 0) {
+    await saveNewOrder(changed);
+  }
+}
+
+/**
+ * Applica un nuovo ordine di filename a state.items.
+ * Se scopeGroup: ricalcola solo l'ordine relativo di quel sottoinsieme (food per categoria).
+ */
+function applyFilenameOrderToState(orderedFilenames, scopeGroup = false) {
+  if (!orderedFilenames.length) return [];
+
+  if (scopeGroup) {
+    // Riordina solo questi item tra loro mantenendo le posizioni globali min/max
+    const subset = orderedFilenames
+      .map(fn => state.items.find(i => i.filename === fn))
+      .filter(Boolean);
+    if (subset.length < 2) return [];
+
+    const indices = subset
+      .map(item => state.items.findIndex(i => i.filename === item.filename))
+      .filter(i => i >= 0)
+      .sort((a, b) => a - b);
+
+    // Rimuovi subset e reinserisci nell'ordine DOM nelle stesse slot
+    const byFile = new Map(subset.map(i => [i.filename, i]));
+    const reordered = orderedFilenames.map(fn => byFile.get(fn)).filter(Boolean);
+    indices.forEach((idx, i) => {
+      state.items[idx] = reordered[i];
+    });
+  } else {
+    // Lista piatta: ordine completo = DOM order; item non in lista restano in coda
+    const byFile = new Map(state.items.map(i => [i.filename, i]));
+    const next = [];
+    orderedFilenames.forEach(fn => {
+      if (byFile.has(fn)) {
+        next.push(byFile.get(fn));
+        byFile.delete(fn);
+      }
+    });
+    byFile.forEach(item => next.push(item));
+    state.items = next;
+  }
+
   const changedItems = [];
   state.items.forEach((item, idx) => {
-    if (item.order !== idx) {
+    if (Number(item.order) !== idx) {
       item.order = idx;
       changedItems.push(item);
     }
   });
-  
-  // Re-render immediately for visual feedback
-  renderItems();
-  setupDragAndDropEvents();
-  
-  // Save only changed items
-  if (changedItems.length > 0) {
-    await saveNewOrder(changedItems);
-  }
+  return changedItems;
 }
 
-function setupDragAndDropEvents() {
-  // Re-attach click handlers after re-render
-  document.querySelectorAll('.item-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't trigger edit if clicking on checkbox or drag handle
-      if (e.target.classList.contains('item-checkbox') || 
-          e.target.classList.contains('drag-handle')) return;
-      editItem(card.dataset.filename);
-    });
+async function moveItemByDelta(filename, delta) {
+  if (!canReorderList() || !guardOnline('riordino')) {
+    if (!canReorderList() && !state.isOffline) {
+      toast('Azzera ricerca e filtri per riordinare', 'info');
+    }
+    return;
+  }
+
+  const idx = state.items.findIndex(i => i.filename === filename);
+  if (idx < 0) return;
+  const target = idx + delta;
+  if (target < 0 || target >= state.items.length) return;
+
+  const [moved] = state.items.splice(idx, 1);
+  state.items.splice(target, 0, moved);
+
+  const changedItems = [];
+  state.items.forEach((item, i) => {
+    if (Number(item.order) !== i) {
+      item.order = i;
+      changedItems.push(item);
+    }
   });
+
+  renderItems();
+  if (changedItems.length) {
+    await saveNewOrder(changedItems);
+  }
 }
 
 async function saveNewOrder(changedItems) {
@@ -1910,17 +2035,19 @@ async function saveNewOrder(changedItems) {
     await loadItems(state.currentCollection, true);
     return;
   }
-  
+
+  // Evita salvataggi paralleli
+  if (state._isUpdating) return;
+  state._isUpdating = true;
+
   const saveIndicator = document.createElement('div');
   saveIndicator.className = 'order-save-indicator';
-  saveIndicator.innerHTML = `💾 Salvando ordine (${changedItems.length} elementi)...`;
+  saveIndicator.innerHTML = `<span class="order-save-spinner"></span> Salvando ordine (${changedItems.length})…`;
   document.body.appendChild(saveIndicator);
-  
+
   try {
     const collection = COLLECTIONS[state.currentCollection];
-    
-    // Send all changed items in a single batch request
-    // Server handles: parallel file reads, SHA management, atomic commit via Git Trees API
+
     const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1935,13 +2062,13 @@ async function saveNewOrder(changedItems) {
         }))
       })
     });
-    
+
     const result = await res.json().catch(() => ({}));
-    
+
     if (!res.ok) {
       if (isConflictResponse(res.status, result)) {
         toast(mapApiError(res.status, result), 'error');
-        if (confirm('Un altro ha modificato questo elemento. Ricaricare la lista?')) {
+        if (confirm('Conflitto sull’ordine. Ricaricare la lista?')) {
           await loadItems(state.currentCollection, false, true);
         }
         saveIndicator.remove();
@@ -1951,8 +2078,7 @@ async function saveNewOrder(changedItems) {
     }
 
     notifyTargetRepo(result.target);
-    
-    // Update SmartCache for all changed items
+
     if (window.SmartCache) {
       for (const item of changedItems) {
         await window.SmartCache.set('items', {
@@ -1967,16 +2093,21 @@ async function saveNewOrder(changedItems) {
     }
 
     state.allItems[state.currentCollection] = [...state.items];
-    
-    saveIndicator.innerHTML = `✅ Ordine salvato! (${result.updated || changedItems.length} elementi)`;
+
+    saveIndicator.innerHTML = `✅ Ordine salvato (${result.updated || changedItems.length})`;
     saveIndicator.classList.add('success');
-    setTimeout(() => saveIndicator.remove(), 2000);
-    
+    setTimeout(() => saveIndicator.remove(), 1800);
+    toast('Ordine aggiornato', 'success', 2500);
   } catch (e) {
     console.error('Error saving order:', e);
-    saveIndicator.innerHTML = '❌ Errore salvataggio';
+    saveIndicator.innerHTML = '❌ Errore salvataggio ordine';
     saveIndicator.classList.add('error');
-    setTimeout(() => saveIndicator.remove(), 3000);
+    setTimeout(() => saveIndicator.remove(), 3200);
+    toast(mapApiError(0, { error: e.message }), 'error');
+    // Riallinea da server
+    await loadItems(state.currentCollection, true);
+  } finally {
+    state._isUpdating = false;
   }
 }
 
