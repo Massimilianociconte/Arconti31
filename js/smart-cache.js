@@ -4,13 +4,19 @@
  */
 class SmartCache {
   constructor(config = {}) {
-    this.dbName = config.dbName || 'Arconti31Cache';
-    this.dbVersion = config.dbVersion || 1;
+    // Namespace separati pubblico vs admin: evita che sync menù e tombstone CMS si calpestino
+    // (era una causa tipica di "prodotti spariti" dopo interventi sulla cache)
+    const globalCfg = (typeof window !== 'undefined' && window.SMARTCACHE_CONFIG) || {};
+    const merged = { ...globalCfg, ...config };
+    this.dbName = merged.dbName || 'Arconti31PublicCache';
+    this.dbVersion = merged.dbVersion || 1;
     this.stores = ['items', 'metadata', 'manifest'];
     this.db = null;
     this.subscribers = new Set();
     this.pollingInterval = 0; // DISABILITATO - polling manuale solo su richiesta
-    this.broadcastChannel = new BroadcastChannel('arconti31_sync');
+    // Canali broadcast separati: admin non riceve sync del menù pubblico e viceversa
+    const channelName = merged.channel || 'arconti31_public_sync';
+    this.broadcastChannel = new BroadcastChannel(channelName);
     this.isInitialized = false;
     this.lastSaveTime = 0; // Timestamp ultimo salvataggio locale
     
@@ -33,7 +39,7 @@ class SmartCache {
     // 4. Refresh manuale (pulsante sync)
 
     this.isInitialized = true;
-    console.log('🚀 SmartCache inizializzato (polling disabilitato)');
+    console.log(`🚀 SmartCache inizializzato (${this.dbName}, polling disabilitato)`);
   }
 
   openDB() {
@@ -104,17 +110,46 @@ class SmartCache {
    * @param {Array} remoteItems - Lista di oggetti dal server
    * @param {String} collectionName - Nome della collezione (es. 'food')
    * @param {String} source - 'static' (JSON) o 'live' (API/Broadcast)
+   * @param {Object} options
+   *   - preferRemote: true = accetta sempre il remoto (menù pubblico: ignora tombstone/write protection admin)
+   *   - silent: true = aggiorna IDB senza notifySubscribers (evita re-render a metà sync)
    */
-  async syncCollection(remoteItems, collectionName, source = 'static') {
-    // Normalize items ensuring ID/filename exists
-    // Questo è fondamentale perché i JSON raw (es. food.json) non hanno filename/id
-    const normalizedRemoteItems = remoteItems.map(i => {
-      const id = i._filename || i.filename || i.id || (i.slug || (i.nome ? this.slugify(i.nome) : 'unknown-' + Math.random().toString(36).slice(2, 11))) + '.md';
-      return { ...i, id: id, filename: id };
-    });
+  async syncCollection(remoteItems, collectionName, source = 'static', options = {}) {
+    const preferRemote = options.preferRemote === true;
+    const silent = options.silent === true;
+    // Admin default: lista remota vuota NON deve spazzare la cache (json-miss / CDN stale)
+    const allowEmptyRemote = options.allowEmptyRemote === true;
 
     const localItems = await this.getAll('items');
     const collectionItems = localItems.filter(i => i._collection === collectionName);
+
+    // Anti-wipe: remoto vuoto o drasticamente più corto del locale (JSON parziale/corrotto)
+    if (collectionItems.length > 0 && !allowEmptyRemote) {
+      const remoteLen = (remoteItems && remoteItems.length) || 0;
+      if (remoteLen === 0) {
+        console.warn(
+          `🛡️ SmartCache: sync "${collectionName}" abortito — remoto vuoto con ${collectionItems.length} item locali (anti-wipe)`
+        );
+        return null;
+      }
+      // Pubblico preferRemote: rifiuta troncamenti sospetti (es. food.json a metà)
+      if (preferRemote && remoteLen < collectionItems.length * 0.5) {
+        console.warn(
+          `🛡️ SmartCache: sync "${collectionName}" abortito — remoto ${remoteLen} vs locale ${collectionItems.length} (soglia 50%)`
+        );
+        return null;
+      }
+    }
+
+    // Normalize items ensuring ID/filename exists (mai Math.random: id instabili = leak/removal sbagliate)
+    const normalizedRemoteItems = (remoteItems || []).map(i => {
+      const id = i._filename || i.filename || i.id || null;
+      if (!id) {
+        console.warn('🛡️ SmartCache: item remoto senza filename/_filename ignorato', i && i.nome);
+        return null;
+      }
+      return { ...i, id, filename: id };
+    }).filter(Boolean);
     
     const changes = {
       added: [],
@@ -126,7 +161,7 @@ class SmartCache {
     const remoteMap = new Map(normalizedRemoteItems.map(i => [i.id, i]));
     const localMap = new Map(collectionItems.map(i => [i.id, i]));
 
-    // Tempo di protezione per modifiche locali recenti (2 minuti - per permettere rebuild Netlify)
+    // Tempo di protezione per modifiche locali recenti (solo admin / sync non-preferRemote)
     const STALE_PROTECTION_MS = 2 * 60 * 1000;
 
     // Rileva aggiunte e modifiche
@@ -149,24 +184,36 @@ class SmartCache {
       } else {
         // Item esiste localmente - controlla se aggiornare
         
-        // PROTEZIONE 1: Item marcato come eliminato localmente
-        // NON resuscitare item eliminati di recente, anche se il JSON vecchio li contiene ancora
-        if (localItem._deleted && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
-          console.log(`🛡️ SmartCache: Ignorato item eliminato localmente: ${id}`);
-          continue;
+        // Pubblico (preferRemote): ignora tombstone/_writeTime admin — accetta sempre il remoto
+        if (!preferRemote) {
+          // PROTEZIONE 1: Item marcato come eliminato localmente
+          // NON resuscitare item eliminati di recente, anche se il JSON vecchio li contiene ancora
+          if (localItem._deleted && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+            console.log(`🛡️ SmartCache: Ignorato item eliminato localmente: ${id}`);
+            continue;
+          }
         }
         
-        // Se l'item era marcato come eliminato ma è passato il tempo di protezione,
-        // rimuovilo definitivamente dalla cache invece di resuscitarlo
+        // Tombstone: se remoto c'è ancora e non preferRemote, tieni tombstone finché TTL
+        // (non hard-delete "nudo" → sparizione UI / resurrezione flicker)
         if (localItem._deleted) {
-          await this.delete('items', id);
+          if (preferRemote) {
+            await this.set('items', itemToStore);
+            changes.updated.push(itemToStore);
+          } else if (localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+            continue; // tombstone ancora valido
+          } else {
+            // TTL scaduto e remoto presente → accetta remoto (delete su GitHub non applicato / JSON stale)
+            await this.set('items', itemToStore);
+            changes.updated.push(itemToStore);
+          }
           continue;
         }
         
         // PROTEZIONE 2: Item modificato localmente di recente
         // Se l'hash è diverso ma l'item locale è stato scritto di recente, ignora l'update stale
         if (localItem._hash !== itemToStore._hash) {
-          if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+          if (!preferRemote && source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
             console.log(`🛡️ SmartCache: Ignorato aggiornamento stale per ${id} (modificato localmente di recente)`);
             continue;
           }
@@ -187,10 +234,10 @@ class SmartCache {
           continue;
         }
         
-        // PROTEZIONE STALE DATA (Rimozioni):
+        // PROTEZIONE STALE DATA (Rimozioni) — saltata con preferRemote (pubblico)
         // Se l'item locale è stato modificato di recente, non rimuoverlo
         // (potrebbe essere che il JSON non è ancora aggiornato)
-        if (source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
+        if (!preferRemote && source === 'static' && localItem._writeTime && (Date.now() - localItem._writeTime < STALE_PROTECTION_MS)) {
            console.log(`🛡️ SmartCache: Ignorata rimozione stale per ${id}`);
            continue;
         }
@@ -201,7 +248,10 @@ class SmartCache {
     }
 
     if (changes.added.length || changes.updated.length || changes.removed.length) {
-      this.notifySubscribers(changes);
+      // silent: usato dal menù pubblico durante il load iniziale (niente flicker / liste a metà)
+      if (!silent) {
+        this.notifySubscribers(changes);
+      }
       return changes;
     }
     
@@ -209,12 +259,33 @@ class SmartCache {
   }
 
   /**
-   * Genera un hash semplice per il confronto
+   * Hash canonico solo su campi di dominio (prezzo, nome, order…).
+   * Esclude meta CMS/cache così un re-sync non marca "sempre diverso".
    */
   generateHash(item) {
-    // Rimuovi campi volatili o interni
-    const { _lastUpdated, _hash, _writeTime, ...cleanItem } = item;
-    return JSON.stringify(cleanItem).split('').reduce((a, b) => {
+    if (!item || typeof item !== 'object') return 0;
+    const domain = {
+      nome: item.nome,
+      prezzo: item.prezzo,
+      order: item.order,
+      disponibile: item.disponibile,
+      visibile: item.visibile,
+      category: item.category,
+      category_slug: item.category_slug,
+      sezione: item.sezione,
+      sezione_slug: item.sezione_slug,
+      tipo: item.tipo,
+      tipo_slug: item.tipo_slug,
+      descrizione: item.descrizione,
+      slug: item.slug,
+      tags: item.tags,
+      allergeni: item.allergeni,
+      immagine: item.immagine,
+      immagine_copertina: item.immagine_copertina,
+      logo: item.logo,
+      _filename: item._filename || item.filename
+    };
+    return JSON.stringify(domain).split('').reduce((a, b) => {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
     }, 0);

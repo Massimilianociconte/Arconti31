@@ -7,6 +7,10 @@
 - Browser moderno
 - (Opzionale) Account Cloudinary per upload immagini
 
+> ⚠️ Dopo l’aggiornamento di solidità del codice, **senza `REPO_OWNER` e `REPO_NAME` il CMS non salva** (fail-loud).  
+> Imposta sempre queste due variabili sul Netlify del sito, poi fai redeploy.  
+> Dettagli: [`SOLIDITY_NOTES.md`](./SOLIDITY_NOTES.md).
+
 ## 📝 Step 1: Preparazione Repository GitHub
 
 ### 1.1 Crea Account GitHub
@@ -20,7 +24,7 @@
 
 1. Clicca il pulsante "+" → "New repository"
 2. Compila:
-   - **Repository name**: `arconti31`
+   - **Repository name**: es. `arconti31` (ricordalo: sarà `REPO_NAME`)
    - **Description**: "Menù digitale con CMS"
    - **Public**: Seleziona
 3. Clicca "Create repository"
@@ -29,7 +33,7 @@
 
 **Via Web:**
 1. Clicca "uploading an existing file"
-2. Trascina tutti i file e cartelle
+2. Trascina tutti i file e cartelle (escludi `node_modules` se presente)
 3. Commit message: "Initial commit"
 4. Clicca "Commit changes"
 
@@ -62,7 +66,7 @@
 
 ### 3.3 Configura Build
 
-- **Branch to deploy**: `main`
+- **Branch to deploy**: `main` (o il branch che usi; allinealo a `GITHUB_BRANCH` se lo imposti)
 - **Build command**: `npm run build`
 - **Publish directory**: `.`
 
@@ -70,23 +74,35 @@ Clicca "Deploy site"
 
 ## ⚙️ Step 4: Configura Variabili Ambiente
 
-### 4.1 Variabili Obbligatorie
+### 4.1 Variabili obbligatorie
 
 1. In Netlify, vai su **Site configuration** → **Environment variables**
 2. Aggiungi queste variabili:
 
 | Nome | Valore | Note |
 |------|--------|------|
-| `GITHUB_TOKEN` | `ghp_xxxx...` | Token Classic creato |
+| `GITHUB_TOKEN` | `ghp_xxxx...` | Token Classic (account proprietario del repo) |
+| `REPO_OWNER` | `username-github` | **Sempre obbligatorio** — username del proprietario del repo |
+| `REPO_NAME` | `Arconti31` | **Sempre obbligatorio** — nome esatto del repository |
 | `ADMIN_EMAIL` | `admin@tuosito.com` | Email ammesse (virgola-separate) |
 | `ADMIN_PASSWORD` | `PasswordSicura123!` | Password per accesso CMS |
 
-### 4.2 Variabili Opzionali (Cloudinary)
+> ❗ **Fail-loud:** dopo questo aggiornamento codice, se mancano `REPO_OWNER` o `REPO_NAME` il CMS **non salva**. Non ci sono default silenziosi nel codice.
 
-| Nome | Valore |
-|------|--------|
-| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name |
-| `CLOUDINARY_UPLOAD_PRESET` | Nome preset unsigned |
+> 📦 Per passare il progetto da un account GitHub/Netlify a un altro (cliente): segui **`HANDOFF_CLIENTE.md`**.
+
+### 4.2 Variabili opzionali
+
+| Nome | Valore | Note |
+|------|--------|------|
+| `GITHUB_BRANCH` | `main` | Opzionale. Se assente → default **`main`** |
+| `CMS_TOKEN_SECRET` | stringa random lunga | Opzionale ma **consigliato**. Se assente → firma token con `ADMIN_PASSWORD` |
+| `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name | Upload immagini |
+| `CLOUDINARY_UPLOAD_PRESET` | Nome preset unsigned | Upload dal browser |
+| `CLOUDINARY_FOLDER` | es. `arconti31` | Opzionale — cartella destinazione |
+| `CLOUDINARY_API_KEY` | API Key | Se usi function signed `upload-image` |
+| `CLOUDINARY_API_SECRET` | API Secret | Se usi function signed `upload-image` |
+| `ALLOWED_ORIGINS` | Origini CORS extra, virgola-separate | Di solito non serve |
 
 ### 4.3 Redeploy
 
@@ -97,15 +113,23 @@ Dopo aver aggiunto le variabili:
 
 ## ✅ Step 5: Verifica e Test
 
-### 5.1 Testa il Sito
+### 5.1 Health check
 
-1. Vai su `https://tuosito.netlify.app`
+Apri:
+
+`https://URL-DEL-TUO-SITO/.netlify/functions/health`
+
+Deve rispondere **ok**.
+
+### 5.2 Testa il Sito
+
+1. Vai su `https://URL-DEL-TUO-SITO`
 2. Verifica che le categorie siano visibili
 3. Clicca su una categoria per vedere i prodotti
 
-### 5.2 Testa il CMS
+### 5.3 Testa il CMS
 
-1. Vai su `https://tuosito.netlify.app/admin`
+1. Vai su `https://URL-DEL-TUO-SITO/admin`
 2. Inserisci email e password configurati
 3. Dovresti vedere la sidebar con le collezioni:
    - ⚙️ Gestione Categorie
@@ -114,13 +138,14 @@ Dopo aver aggiunto le variabili:
    - Menù Beverage: Cocktails
    - E altre...
 
-### 5.3 Test Salvataggio
+### 5.4 Test Salvataggio
 
 1. Modifica un prodotto
 2. Clicca "Salva"
-3. Attendi 30-60 secondi
-4. Verifica che il JSON sia aggiornato su GitHub
-5. Ricarica il frontend → modifica visibile!
+3. Il CMS può mostrare **«Salvato su owner/repo»** (deve coincidere con le env)
+4. Attendi 30-60 secondi
+5. Verifica che il commit sia sul repository GitHub corretto
+6. Ricarica il frontend → modifica visibile!
 
 ## 🎨 Step 6: Personalizzazione
 
@@ -128,7 +153,7 @@ Dopo aver aggiunto le variabili:
 
 1. In Netlify → "Site settings"
 2. Clicca "Change site name"
-3. Inserisci nome (es. `arconti31`)
+3. Inserisci un nome (es. quello del locale)
 
 ### 6.2 Dominio Personalizzato (Opzionale)
 
@@ -137,12 +162,14 @@ Dopo aver aggiunto le variabili:
 3. Segui istruzioni DNS
 4. SSL gratuito automatico
 
+In caso di cutover fallito: vedi **Rollback DNS ~15 minuti** in `HANDOFF_CLIENTE.md` e `SOLIDITY_NOTES.md`.
+
 ### 6.3 Admin Multipli
 
 Per aggiungere più admin, separa le email con virgola:
 
 ```
-ADMIN_EMAIL = admin@arconti31.com, manager@arconti31.com, staff@arconti31.com
+ADMIN_EMAIL = admin@tuosito.com, manager@tuosito.com, staff@tuosito.com
 ```
 
 Tutti useranno la stessa password.
@@ -160,11 +187,17 @@ Tutti useranno la stessa password.
 - Il token è scaduto
 - Non hai selezionato il permesso `repo`
 
+### CMS non salva / errore repository
+
+- Mancano `REPO_OWNER` o `REPO_NAME` (obbligatorie)
+- Aggiungile → **Trigger deploy** → riprova
+- Controlla che `GITHUB_TOKEN` abbia accesso a quel repo
+
 ### Le modifiche non si vedono
 
 1. Attendi 1-2 minuti
-2. Controlla che il JSON sia aggiornato su GitHub
-3. Svuota cache browser (Ctrl+F5)
+2. Controlla che il JSON sia aggiornato su GitHub (repo di `REPO_OWNER`/`REPO_NAME`)
+3. Svuota cache browser (Ctrl+F5 / Cmd+Shift+R)
 
 ### Build fallisce
 
@@ -178,6 +211,10 @@ Tutti useranno la stessa password.
 - Il preset deve essere **UNSIGNED**
 - In alternativa, usa URL esterni
 
+### Health non ok
+
+- Controlla l’ultimo deploy e i log delle Functions
+
 ## 📊 Monitoring
 
 ### Verifica Deploy
@@ -185,12 +222,14 @@ Tutti useranno la stessa password.
 1. Dashboard Netlify → "Deploys"
 2. Ogni deploy mostra stato e log
 
-### Rollback
+### Rollback deploy Netlify
 
-Se qualcosa va storto:
+Se qualcosa va storto sul codice pubblicato:
 1. "Deploys" → trova deploy funzionante
 2. "Publish deploy"
 3. Sito ripristinato!
+
+> Attenzione: un rollback del **deploy** non ripristina da solo i record DNS. Per il dominio custom usa la procedura di rollback DNS in handoff.
 
 ## 🎓 Prossimi Passi
 

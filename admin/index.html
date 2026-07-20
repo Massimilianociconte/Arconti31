@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Arconti31 - Gestione Menù</title>
   
   <!-- PWA Meta Tags -->
@@ -29,10 +29,17 @@
   <!-- Splash Screens for iOS -->
   <link rel="apple-touch-startup-image" href="../images/loghi/logo_arconti31.png">
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cms-styles.css">
+  <link rel="stylesheet" href="cms-styles.css?v=20260720-ui">
 </head>
 <body>
+  <!-- Offline banner (mostrato da cms-simple.js se offline) -->
+  <div id="offline-banner" class="offline-banner" role="status" aria-live="polite">
+    Sei offline — salvataggio e modifiche non disponibili
+  </div>
+
   <div id="app">
     <!-- Login Screen -->
     <div id="login-screen" class="screen active">
@@ -41,7 +48,9 @@
         <h1>Gestione Menù</h1>
         <p>Accedi al CMS</p>
         <form id="login-form" class="login-form">
-          <input type="email" id="email-input" name="email" class="form-input" placeholder="Email" required autofocus autocomplete="email">
+          <label class="form-label" for="email-input" style="text-align:left;margin:0">Email</label>
+          <input type="email" id="email-input" name="email" class="form-input" placeholder="es. admin@locale.it" required autofocus autocomplete="email" inputmode="email">
+          <label class="form-label" for="password-input" style="text-align:left;margin:0">Password</label>
           <input type="password" id="password-input" name="password" class="form-input" placeholder="Password" required autocomplete="current-password">
           <div class="remember-me">
             <input type="checkbox" id="remember-me" name="remember">
@@ -159,8 +168,15 @@
     </div>
   </div>
 
-  <script src="../js/smart-cache.js"></script>
-  <script src="cms-simple.js"></script>
+  <!-- Cache CMS isolata dal menù pubblico (niente prodotti "spariti" per sync incrociato) -->
+  <script>
+    window.SMARTCACHE_CONFIG = {
+      dbName: 'Arconti31AdminCache',
+      channel: 'arconti31_admin_sync'
+    };
+  </script>
+  <script src="../js/smart-cache.js?v=20260720c"></script>
+  <script src="cms-simple.js?v=20260720-ui"></script>
   
   <!-- PWA Service Worker Registration -->
   <script>

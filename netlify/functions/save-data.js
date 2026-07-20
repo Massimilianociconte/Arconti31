@@ -5,6 +5,7 @@
 // Shared auth module (single source of truth)
 const crypto = require('crypto');
 const { generateToken, verifyToken, verifyLogin } = require('./auth');
+const { resolveRepoConfig } = require('./repo-config');
 const {
   BASE_BEVERAGE_CATEGORIES,
   findBeverageCategoryByFolder,
@@ -15,8 +16,9 @@ const {
   stringifyFrontmatter
 } = require('../../lib/menu-utils');
 
-// CORS Headers - restrict to known origins
-const ALLOWED_ORIGINS = [
+// CORS: domini noti + URL del sito Netlify corrente + ALLOWED_ORIGINS (env, virgola-separati)
+// Così un nuovo *.netlify.app del cliente funziona senza patch al codice.
+const BASE_ALLOWED_ORIGINS = [
   'https://arconti31.com',
   'https://www.arconti31.com',
   'https://arconti31.netlify.app',
@@ -24,21 +26,126 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000'
 ];
 
+// Login rate limit in-memory (reset su cold start accettabile su free tier)
+const LOGIN_RATE_WINDOW_MS = 15 * 60 * 1000;
+
+// Cache GET GitHub per-request: riduce chiamate ridondanti (categorie.json, snapshot, ecc.)
+// senza cambiare il risultato. Invalidata su qualsiasi write.
+let requestGetCache = null;
+
+function beginRequestGetCache() {
+  requestGetCache = new Map();
+}
+
+function endRequestGetCache() {
+  requestGetCache = null;
+}
+
+/** Campi che non devono mai finire nei file markdown (derivati JSON / meta CMS) */
+const MARKDOWN_STRIP_KEYS = new Set([
+  '_filename', '_collection', '_hash', '_lastUpdated', '_writeTime', '_deleted',
+  'filename', 'sha', 'id', 'fromJSON', 'parsedItem', 'content',
+  'tipo' // derivato in beverages.json, non nel frontmatter sorgente
+]);
+const LOGIN_RATE_MAX = 10;
+const loginAttempts = new Map(); // key -> { count, firstAt }
+
+function getClientIp(event) {
+  const xff = event.headers['x-forwarded-for'] || event.headers['X-Forwarded-For'] || '';
+  if (xff) return String(xff).split(',')[0].trim();
+  return event.headers['client-ip'] || event.headers['x-nf-client-connection-ip'] || 'unknown';
+}
+
+function checkLoginRateLimit(ip, email) {
+  const key = `${ip}|${String(email || '').toLowerCase().trim()}`;
+  const now = Date.now();
+  let entry = loginAttempts.get(key);
+  if (!entry || now - entry.firstAt > LOGIN_RATE_WINDOW_MS) {
+    entry = { count: 0, firstAt: now };
+    loginAttempts.set(key, entry);
+  }
+  entry.count += 1;
+  if (entry.count > LOGIN_RATE_MAX) {
+    return false;
+  }
+  return true;
+}
+
+function resetLoginRateLimit(ip, email) {
+  const key = `${ip}|${String(email || '').toLowerCase().trim()}`;
+  loginAttempts.delete(key);
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getAllowedOrigins() {
+  const origins = new Set(BASE_ALLOWED_ORIGINS);
+  // Netlify injects URL / DEPLOY_PRIME_URL per il sito corrente
+  [process.env.URL, process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL]
+    .filter(Boolean)
+    .forEach(u => {
+      try {
+        origins.add(new URL(u).origin);
+      } catch (_) { /* ignore invalid */ }
+    });
+  // Extra origins configurabili: "https://a.netlify.app,https://altro.com"
+  (process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean)
+    .forEach(o => origins.add(o.replace(/\/$/, '')));
+  return [...origins];
+}
+
 function getCorsOrigin(event) {
   const origin = event.headers.origin || event.headers.Origin || '';
-  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  const allowed = getAllowedOrigins();
+  if (origin && allowed.includes(origin)) {
+    return origin;
+  }
+  if (origin) {
+    console.warn(`[CORS] Origin non consentito: ${origin}`);
+  }
+  // Non restituire allowed[0] come fallback — ometti ACAO
+  return null;
 }
 
 function getHeaders(event) {
-  return {
-    'Access-Control-Allow-Origin': getCorsOrigin(event),
+  const headers = {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Content-Type': 'application/json'
   };
+  const corsOrigin = getCorsOrigin(event);
+  if (corsOrigin) {
+    headers['Access-Control-Allow-Origin'] = corsOrigin;
+  }
+  return headers;
+}
+
+function repoConfigErrorResponse(headers, error) {
+  return {
+    statusCode: 500,
+    headers,
+    body: JSON.stringify({
+      error: error.message || 'Configurazione repository mancante',
+      code: error.code || 'REPO_CONFIG_MISSING'
+    })
+  };
 }
 
 exports.handler = async (event, context) => {
+  beginRequestGetCache();
+  try {
+    return await handleSaveDataRequest(event);
+  } finally {
+    endRequestGetCache();
+  }
+};
+
+async function handleSaveDataRequest(event) {
   const headers = getHeaders(event);
 
   // Handle CORS preflight
@@ -69,28 +176,27 @@ exports.handler = async (event, context) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Filename non valido' }) };
   }
 
-  // Return Cloudinary config (no auth needed)
-  if (action === 'get-cloudinary-config') {
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
-        uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || ''
-      })
-    };
-  }
-
   // ==========================================
-  // LOGIN
+  // LOGIN (rate limit IP+email, no auth)
   // ==========================================
   if (action === 'login') {
     if (!email || !password) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Email e password richiesti' }) };
     }
 
+    const clientIp = getClientIp(event);
+    if (!checkLoginRateLimit(clientIp, email)) {
+      console.warn(`[login] Rate limit superato per ${clientIp} / ${email}`);
+      return {
+        statusCode: 429,
+        headers,
+        body: JSON.stringify({ error: 'Troppi tentativi di login. Riprova tra 15 minuti.' })
+      };
+    }
+
     const validEmail = verifyLogin(email, password);
     if (validEmail) {
+      resetLoginRateLimit(clientIp, email);
       const newToken = generateToken(validEmail);
       return {
         statusCode: 200,
@@ -107,7 +213,7 @@ exports.handler = async (event, context) => {
   }
 
   // ==========================================
-  // VERIFICA TOKEN (Middleware)
+  // VERIFICA TOKEN (Middleware) — tutte le altre action
   // ==========================================
   const authHeader = event.headers.authorization || event.headers.Authorization;
   const incomingToken = authHeader ? authHeader.replace('Bearer ', '') : token; // Use 'token' from body if no Bearer header
@@ -126,9 +232,57 @@ exports.handler = async (event, context) => {
     };
   }
 
+  // Cloudinary config — richiede auth (spostato dopo middleware)
+  if (action === 'get-cloudinary-config') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
+        uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || ''
+      })
+    };
+  }
+
+  // whoami — target repo + presenza token, senza leak
+  if (action === 'whoami') {
+    try {
+      const cfg = resolveRepoConfig();
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          ok: true,
+          target: { owner: cfg.owner, repo: cfg.repo, branch: cfg.branch },
+          hasToken: !!(process.env.GITHUB_TOKEN || '').trim()
+        })
+      };
+    } catch (error) {
+      if (error.code === 'REPO_CONFIG_MISSING') {
+        return repoConfigErrorResponse(headers, error);
+      }
+      throw error;
+    }
+  }
+
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  const REPO_OWNER = process.env.REPO_OWNER || 'Massimilianociconte';
-  const REPO_NAME = process.env.REPO_NAME || 'Arconti31';
+
+  let REPO_OWNER;
+  let REPO_NAME;
+  let REPO_BRANCH;
+  try {
+    const cfg = resolveRepoConfig();
+    REPO_OWNER = cfg.owner;
+    REPO_NAME = cfg.repo;
+    REPO_BRANCH = cfg.branch;
+  } catch (error) {
+    if (error.code === 'REPO_CONFIG_MISSING') {
+      return repoConfigErrorResponse(headers, error);
+    }
+    throw error;
+  }
+
+  const target = { owner: REPO_OWNER, repo: REPO_NAME, branch: REPO_BRANCH };
 
   if (!GITHUB_TOKEN) {
     return {
@@ -142,7 +296,10 @@ exports.handler = async (event, context) => {
     const path = `${collection}/${filename}`;
 
     if (action === 'save') {
-      const preparedData = await prepareDataForSave(collection, data, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      const preparedData = await prepareDataForSave(collection, data, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, {
+        filename,
+        sha
+      });
       await assertSafeCategorySave(collection, filename, preparedData, sha, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
 
       let result;
@@ -150,20 +307,20 @@ exports.handler = async (event, context) => {
         const content = generateMarkdown(preparedData);
         const base64Content = Buffer.from(content).toString('base64');
 
-        const body = {
+        const putBody = {
           message: `CMS: Update ${path}`,
           content: base64Content,
-          branch: 'main'
+          branch: REPO_BRANCH
         };
 
         if (sha) {
-          body.sha = sha;
+          putBody.sha = sha;
         }
 
         result = await githubRequest(
           'PUT',
           `/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
-          body,
+          putBody,
           GITHUB_TOKEN
         );
       } else {
@@ -174,14 +331,15 @@ exports.handler = async (event, context) => {
           sha,
           token: GITHUB_TOKEN,
           owner: REPO_OWNER,
-          repo: REPO_NAME
+          repo: REPO_NAME,
+          branch: REPO_BRANCH
         });
       }
 
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true, sha: result.content?.sha })
+        body: JSON.stringify({ success: true, sha: result.content?.sha, target })
       };
 
     } else if (action === 'delete') {
@@ -190,7 +348,7 @@ exports.handler = async (event, context) => {
       if (!sha) {
         return {
           statusCode: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({ error: 'SHA mancante per eliminazione' })
         };
       }
@@ -201,7 +359,7 @@ exports.handler = async (event, context) => {
         const deleteBody = {
           message: `CMS: Delete ${path}`,
           sha: sha,
-          branch: 'main'
+          branch: REPO_BRANCH
         };
 
         console.log('Sending to GitHub:', JSON.stringify(deleteBody));
@@ -218,42 +376,38 @@ exports.handler = async (event, context) => {
           filename,
           token: GITHUB_TOKEN,
           owner: REPO_OWNER,
-          repo: REPO_NAME
+          repo: REPO_NAME,
+          branch: REPO_BRANCH,
+          sha
         });
       }
 
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true })
+        body: JSON.stringify({ success: true, target })
       };
     } else if (action === 'regenerate-json') {
       console.log(`📦 Rigenerazione JSON manuale per collection: ${collection}`);
-      await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+      await regenerateJSON(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, REPO_BRANCH);
 
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ success: true })
+        headers,
+        body: JSON.stringify({ success: true, target })
       };
-    } else if (action === 'batch-save-order') {
+    } else if (action === 'batch-set-visibility') {
       // ========================================
-      // BATCH REORDER: single atomic commit via Git Trees API
+      // BATCH VISIBILITY: un commit atomico (niente N PUT + regenerate separato)
+      // Patch SOLO `visibile` leggendo i .md reali — prezzi/altri campi intatti.
       // ========================================
-      const orderItems = body.items;
-      if (!collection || !orderItems || !orderItems.length) {
+      const visItems = body.items; // [{ filename }]
+      const nextVisible = body.visibile === true || body.visibile === 'true';
+      if (!collection || !Array.isArray(visItems) || !visItems.length) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing collection or items' }) };
       }
 
-      const BRANCH = 'main';
-
-      // 1. Get current branch info (commit SHA + tree SHA in one call)
-      const branchInfo = await githubRequest('GET',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/branches/${BRANCH}`, null, GITHUB_TOKEN);
-      const latestCommitSha = branchInfo.commit.sha;
-      const baseTreeSha = branchInfo.commit.commit.tree.sha;
-
-      // 2. Read collection snapshot (prefer JSON, fallback to markdown files)
+      const filenames = visItems.map(i => i.filename || i).filter(Boolean);
       const allItems = await readCollectionSnapshot(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
         || await readCollectionFiles(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
 
@@ -261,44 +415,169 @@ exports.handler = async (event, context) => {
         return { statusCode: 404, headers, body: JSON.stringify({ error: 'Collection not found' }) };
       }
 
-      // 3. Build order lookup: by filename (primary) + by nome (fallback)
-      const orderMap = new Map(orderItems.map(i => [i.filename, i.order]));
-      const nameOrderMap = new Map();
-      orderItems.forEach(i => {
-        if (i.nome) nameOrderMap.set(i.nome.trim().toLowerCase(), i.order);
+      const treeEntries = [];
+      let updatedCount = 0;
+      const byFile = new Map(allItems.map(i => [i._filename, i]));
+
+      for (const filename of filenames) {
+        let mdData;
+        try {
+          const mdContent = await readRepoFileContent(
+            `${collection}/${filename}`,
+            GITHUB_TOKEN,
+            REPO_OWNER,
+            REPO_NAME
+          );
+          mdData = parseFrontmatter(mdContent) || {};
+        } catch (e) {
+          console.warn(`[batch-set-visibility] skip ${filename}: ${e.message}`);
+          continue;
+        }
+
+        const currentVis = mdData.visibile !== false; // default true se assente
+        if (currentVis === nextVisible) {
+          // Allinea comunque lo snapshot in memoria
+          if (byFile.has(filename)) byFile.get(filename).visibile = nextVisible;
+          continue;
+        }
+
+        mdData.visibile = nextVisible;
+        if (byFile.has(filename)) {
+          byFile.get(filename).visibile = nextVisible;
+        }
+
+        treeEntries.push({
+          path: `${collection}/${filename}`,
+          mode: '100644',
+          type: 'blob',
+          content: generateMarkdown(mdData)
+        });
+        updatedCount++;
+      }
+
+      if (treeEntries.length === 0) {
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({ success: true, updated: 0, target })
+        };
+      }
+
+      // JSON aggregato nello stesso commit (da snapshot aggiornato in memoria)
+      const sorted = [...byFile.values()].sort((a, b) => (a.order || 0) - (b.order || 0));
+      if (collection === 'categorie') {
+        treeEntries.push({
+          path: 'categorie/categorie.json',
+          mode: '100644',
+          type: 'blob',
+          content: JSON.stringify({
+            categories: sorted,
+            foodCategories: sorted.filter(c => c.tipo_menu === 'food'),
+            beverageCategories: sorted.filter(c => c.tipo_menu === 'beverage')
+          }, null, 2)
+        });
+      } else {
+        const cfg = await resolveCollectionConfig(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, {
+          [collection]: sorted
+        });
+        if (cfg) {
+          const jsonContent = await generateJSONForConfig(cfg, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, {
+            [collection]: sorted
+          });
+          if (jsonContent) {
+            treeEntries.push({
+              path: cfg.jsonPath,
+              mode: '100644',
+              type: 'blob',
+              content: JSON.stringify(jsonContent, null, 2)
+            });
+          }
+        }
+      }
+
+      await createCommitFromEntries({
+        token: GITHUB_TOKEN,
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        message: `CMS: Batch visibility ${collection} (${updatedCount} → ${nextVisible ? 'visible' : 'hidden'})`,
+        treeEntries,
+        branch: REPO_BRANCH
       });
 
-      // 4. Apply order updates and build tree entries
+      console.log(`✅ Batch visibility: ${updatedCount} in ${collection}`);
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ success: true, updated: updatedCount, target })
+      };
+
+    } else if (action === 'batch-save-order') {
+      // ========================================
+      // BATCH REORDER: un commit atomico.
+      // SICUREZZA CONTENUTI: per ogni file con order cambiato si legge il .md reale
+      // e si patcha SOLO `order` — mai dump dell'intero record JSON (evita prezzi/testi stale).
+      // ========================================
+      const orderItems = body.items;
+      if (!collection || !orderItems || !orderItems.length) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing collection or items' }) };
+      }
+
+      const BRANCH = REPO_BRANCH;
+      const orderMap = new Map(orderItems.map(i => [i.filename, i.order]));
+
+      // Snapshot JSON per ricostruire il JSON aggregato (1 GET). Fallback MD se manca.
+      const allItems = await readCollectionSnapshot(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+        || await readCollectionFiles(collection, GITHUB_TOKEN, REPO_OWNER, REPO_NAME);
+
+      if (!Array.isArray(allItems)) {
+        return { statusCode: 404, headers, body: JSON.stringify({ error: 'Collection not found' }) };
+      }
+
       const treeEntries = [];
       let updatedCount = 0;
 
       for (const item of allItems) {
-        let newOrder = orderMap.get(item._filename);
-
-        // Fallback: match by nome (handles filename mismatch)
-        if (newOrder === undefined && item.nome) {
-          const byName = nameOrderMap.get(item.nome.trim().toLowerCase());
-          if (byName !== undefined) newOrder = byName;
+        const newOrder = orderMap.get(item._filename);
+        if (newOrder === undefined || Number(newOrder) === Number(item.order || 0)) {
+          continue;
         }
 
-        if (newOrder !== undefined && newOrder !== item.order) {
-          item.order = newOrder;
-          const { _filename, ...cleanData } = item;
-          treeEntries.push({
-            path: `${collection}/${_filename}`,
-            mode: '100644',
-            type: 'blob',
-            content: generateMarkdown(cleanData)
-          });
-          updatedCount++;
+        // Leggi markdown autoritativo e patcha solo order
+        let mdData;
+        try {
+          const mdContent = await readRepoFileContent(
+            `${collection}/${item._filename}`,
+            GITHUB_TOKEN,
+            REPO_OWNER,
+            REPO_NAME
+          );
+          mdData = parseFrontmatter(mdContent) || {};
+        } catch (e) {
+          console.warn(`[batch-save-order] skip ${item._filename}: ${e.message}`);
+          continue;
         }
+
+        mdData.order = Number.parseInt(newOrder, 10) || 0;
+        item.order = mdData.order;
+
+        treeEntries.push({
+          path: `${collection}/${item._filename}`,
+          mode: '100644',
+          type: 'blob',
+          content: generateMarkdown(mdData)
+        });
+        updatedCount++;
       }
 
       if (treeEntries.length === 0) {
-        return { statusCode: 200, headers, body: JSON.stringify({ success: true, updated: 0 }) };
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({ success: true, updated: 0, target })
+        };
       }
 
-      // 5. Generate updated JSON and include in same commit (no extra API calls)
       const sorted = [...allItems].sort((a, b) => (a.order || 0) - (b.order || 0));
       let batchConfig = COLLECTION_CONFIG[collection];
 
@@ -331,10 +610,10 @@ exports.handler = async (event, context) => {
           const foodCats = categories.filter(c => c.tipo_menu === 'food' && c.visibile !== false);
           const foodByCategory = {};
           foodCats.forEach(cat => { foodByCategory[cat.nome] = []; });
-          sorted.forEach(item => {
-            const cat = item.category || 'Altro';
+          sorted.forEach(row => {
+            const cat = row.category || 'Altro';
             if (!foodByCategory[cat]) foodByCategory[cat] = [];
-            foodByCategory[cat].push(item);
+            foodByCategory[cat].push(row);
           });
           const categoryOrder = {};
           foodCats.forEach((cat, idx) => { categoryOrder[cat.nome] = cat.order || idx; });
@@ -348,6 +627,7 @@ exports.handler = async (event, context) => {
           });
           jsonContent = { beers: sorted, beersBySection };
         } else if (batchConfig.type === 'beverages') {
+          // Incremental: aggiorna solo order nella slice di questa cartella
           jsonContent = await generateJSONForConfig(batchConfig, GITHUB_TOKEN, REPO_OWNER, REPO_NAME, {
             [collection]: sorted
           });
@@ -363,25 +643,21 @@ exports.handler = async (event, context) => {
         }
       }
 
-      // 6. Create tree → commit → update ref (3 API calls)
-      const newTree = await githubRequest('POST',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/trees`,
-        { base_tree: baseTreeSha, tree: treeEntries }, GITHUB_TOKEN);
+      await createCommitFromEntries({
+        token: GITHUB_TOKEN,
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        message: `CMS: Reorder ${collection} (${updatedCount} items)`,
+        treeEntries,
+        branch: BRANCH
+      });
 
-      const newCommit = await githubRequest('POST',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/commits`,
-        { message: `CMS: Reorder ${collection} (${updatedCount} items)`,
-          tree: newTree.sha, parents: [latestCommitSha] }, GITHUB_TOKEN);
-
-      await githubRequest('PATCH',
-        `/repos/${REPO_OWNER}/${REPO_NAME}/git/refs/heads/${BRANCH}`,
-        { sha: newCommit.sha }, GITHUB_TOKEN);
-
-      console.log(`✅ Batch reorder: ${updatedCount} items in ${collection}`);
+      console.log(`✅ Batch reorder: ${updatedCount} items in ${collection} (order-only MD patch)`);
 
       return {
-        statusCode: 200, headers,
-        body: JSON.stringify({ success: true, updated: updatedCount })
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ success: true, updated: updatedCount, target })
       };
     }
 
@@ -389,20 +665,34 @@ exports.handler = async (event, context) => {
 
   } catch (error) {
     console.error('Error:', error);
+    if (error.code === 'REPO_CONFIG_MISSING') {
+      return repoConfigErrorResponse(headers, error);
+    }
     return {
       statusCode: getErrorStatusCode(error),
       headers,
       body: JSON.stringify({ error: error.message || 'Unknown error' })
     };
   }
-};
+}
 
 // ========================================
 // GENERAZIONE MARKDOWN
 // ========================================
 
+/**
+ * Scrive SOLO frontmatter prodotto. Strippa meta CMS e campi derivati JSON
+ * (es. `tipo`) per non inquinare i .md al reorder/save.
+ * NON altera prezzi/nomi: passa i campi di dominio così come sono.
+ */
 function generateMarkdown(data) {
-  return stringifyFrontmatter(data);
+  const clean = {};
+  Object.keys(data || {}).forEach(key => {
+    if (MARKDOWN_STRIP_KEYS.has(key)) return;
+    if (key.startsWith('_')) return;
+    clean[key] = data[key];
+  });
+  return stringifyFrontmatter(clean);
 }
 
 function calculateGitBlobSha(content) {
@@ -434,7 +724,8 @@ function getErrorStatusCode(error) {
   if (
     message.includes('Esiste gia una categoria') ||
     message.includes('gia usata') ||
-    message.includes('already exists')
+    message.includes('already exists') ||
+    message.includes('Conflitto: il contenuto è stato modificato')
   ) {
     return 409;
   }
@@ -461,12 +752,35 @@ async function loadCategoriesSnapshot(token, owner, repo) {
     || readCollectionFiles('categorie', token, owner, repo);
 }
 
-async function prepareDataForSave(collection, rawData = {}, token, owner, repo) {
+async function prepareDataForSave(collection, rawData = {}, token, owner, repo, options = {}) {
   if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
     throw new Error('Payload non valido');
   }
 
-  const normalized = { ...rawData };
+  // Merge con .md esistente su UPDATE: preserva campi non presenti nel form
+  // (es. legacy, note future) senza cancellarli. I campi del form vincono.
+  let existing = {};
+  if (options.sha && options.filename) {
+    try {
+      const mdContent = await readRepoFileContent(
+        `${collection}/${options.filename}`,
+        token,
+        owner,
+        repo
+      );
+      existing = parseFrontmatter(mdContent) || {};
+    } catch (e) {
+      console.warn(`[prepareDataForSave] merge skip: ${e.message}`);
+    }
+  }
+
+  const overlay = { ...rawData };
+  // Non far propagare meta CMS nel merge
+  MARKDOWN_STRIP_KEYS.forEach(k => { delete overlay[k]; delete existing[k]; });
+  Object.keys(overlay).forEach(k => { if (k.startsWith('_')) delete overlay[k]; });
+  Object.keys(existing).forEach(k => { if (k.startsWith('_')) delete existing[k]; });
+
+  const normalized = { ...existing, ...overlay };
 
   if (collection === 'categorie') {
     normalized.slug = normalizeSlug(normalized.slug || normalized.nome || '');
@@ -733,38 +1047,69 @@ async function getBranchContext(token, owner, repo, branch = 'main') {
   };
 }
 
+function isNonFastForwardError(error) {
+  const message = String(error?.message || '');
+  if (!message.includes('422')) return false;
+  const lower = message.toLowerCase();
+  return (
+    lower.includes('not a fast forward') ||
+    lower.includes('update is not a fast forward') ||
+    lower.includes('fast-forward') ||
+    lower.includes('does not point to') ||
+    lower.includes('reference does not')
+  );
+}
+
 async function createCommitFromEntries({ token, owner, repo, message, treeEntries, branch = 'main' }) {
   if (!treeEntries.length) {
     throw new Error('Nessuna modifica da salvare');
   }
 
-  const branchContext = await getBranchContext(token, owner, repo, branch);
-  const newTree = await githubRequest(
-    'POST',
-    `/repos/${owner}/${repo}/git/trees`,
-    { base_tree: branchContext.baseTreeSha, tree: treeEntries },
-    token
-  );
+  // Retry su 422 non-fast-forward: re-leggi HEAD e riprova (max 2 retry = 3 tentativi)
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const branchContext = await getBranchContext(token, owner, repo, branch);
+      const newTree = await githubRequest(
+        'POST',
+        `/repos/${owner}/${repo}/git/trees`,
+        { base_tree: branchContext.baseTreeSha, tree: treeEntries },
+        token
+      );
 
-  const newCommit = await githubRequest(
-    'POST',
-    `/repos/${owner}/${repo}/git/commits`,
-    {
-      message,
-      tree: newTree.sha,
-      parents: [branchContext.latestCommitSha]
-    },
-    token
-  );
+      const newCommit = await githubRequest(
+        'POST',
+        `/repos/${owner}/${repo}/git/commits`,
+        {
+          message,
+          tree: newTree.sha,
+          parents: [branchContext.latestCommitSha]
+        },
+        token
+      );
 
-  await githubRequest(
-    'PATCH',
-    `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
-    { sha: newCommit.sha },
-    token
-  );
+      await githubRequest(
+        'PATCH',
+        `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
+        { sha: newCommit.sha },
+        token
+      );
 
-  return newCommit;
+      return newCommit;
+    } catch (error) {
+      lastError = error;
+      if (isNonFastForwardError(error) && attempt < 2) {
+        console.warn(
+          `[createCommitFromEntries] non-fast-forward su ${branch}, re-leggo HEAD (tentativo ${attempt + 1}/2)`
+        );
+        await sleep(300 * (attempt + 1));
+        continue;
+      }
+      throw error;
+    }
+  }
+
+  throw lastError;
 }
 
 async function resolveCollectionConfig(collection, token, owner, repo, overrides = {}) {
@@ -908,7 +1253,7 @@ async function generateIncrementalBeveragesJSON(config, token, owner, repo, over
   }
 }
 
-async function saveItemAtomically({ collection, filename, data, sha, token, owner, repo }) {
+async function saveItemAtomically({ collection, filename, data, sha, token, owner, repo, branch = 'main' }) {
   const existingItems = await readCollectionSnapshot(collection, token, owner, repo)
     || await readCollectionFiles(collection, token, owner, repo);
   const fileExists = existingItems.some(item => item._filename === filename);
@@ -918,6 +1263,31 @@ async function saveItemAtomically({ collection, filename, data, sha, token, owne
   }
   if (sha && !fileExists) {
     throw new Error('File non trovato per aggiornamento');
+  }
+
+  // Optimistic concurrency: se sha fornito e file esiste, confronta con SHA blob attuale
+  if (sha && fileExists) {
+    try {
+      const fileData = await githubRequest(
+        'GET',
+        `/repos/${owner}/${repo}/contents/${collection}/${filename}?ref=${encodeURIComponent(branch)}`,
+        null,
+        token
+      );
+      if (fileData && fileData.sha && fileData.sha !== sha) {
+        throw new Error('Conflitto: il contenuto è stato modificato. Ricarica e riprova.');
+      }
+    } catch (error) {
+      if (String(error.message || '').includes('Conflitto:')) {
+        throw error;
+      }
+      // 404 o altri errori di lettura: non bloccare se lo snapshot dice che esiste
+      // (ma se GitHub dice SHA diverso l'abbiamo già gestito sopra)
+      if (String(error.message || '').includes('409') || String(error.message || '').includes('Conflitto')) {
+        throw error;
+      }
+      console.warn(`[saveItemAtomically] Impossibile verificare SHA attuale: ${error.message}`);
+    }
   }
 
   const updatedItems = applySaveToCollectionItems(existingItems, filename, data);
@@ -944,7 +1314,8 @@ async function saveItemAtomically({ collection, filename, data, sha, token, owne
     owner,
     repo,
     message: `CMS: Update ${collection}/${filename}`,
-    treeEntries
+    treeEntries,
+    branch
   });
 
   return {
@@ -954,12 +1325,40 @@ async function saveItemAtomically({ collection, filename, data, sha, token, owne
   };
 }
 
-async function deleteItemAtomically({ collection, filename, token, owner, repo }) {
+async function deleteItemAtomically({ collection, filename, token, owner, repo, branch = 'main', sha = null }) {
   const existingItems = await readCollectionSnapshot(collection, token, owner, repo)
     || await readCollectionFiles(collection, token, owner, repo);
   const fileExists = existingItems.some(item => item._filename === filename);
   if (!fileExists) {
-    throw new Error('File non trovato per eliminazione');
+    // Verifica su GitHub: lo snapshot potrebbe essere stale
+    try {
+      await githubRequest(
+        'GET',
+        `/repos/${owner}/${repo}/contents/${collection}/${filename}?ref=${encodeURIComponent(branch)}`,
+        null,
+        token
+      );
+    } catch (e) {
+      throw new Error('File non trovato per eliminazione');
+    }
+  }
+
+  // OCC: se il client manda sha, confronta con blob attuale
+  if (sha) {
+    try {
+      const fileData = await githubRequest(
+        'GET',
+        `/repos/${owner}/${repo}/contents/${collection}/${filename}?ref=${encodeURIComponent(branch)}`,
+        null,
+        token
+      );
+      if (fileData && fileData.sha && fileData.sha !== sha) {
+        throw new Error('Conflitto: il contenuto è stato modificato. Ricarica e riprova.');
+      }
+    } catch (error) {
+      if (String(error.message || '').includes('Conflitto:')) throw error;
+      console.warn(`[deleteItemAtomically] SHA check: ${error.message}`);
+    }
   }
 
   const updatedItems = applyDeleteToCollectionItems(existingItems, filename);
@@ -984,7 +1383,8 @@ async function deleteItemAtomically({ collection, filename, token, owner, repo }
     owner,
     repo,
     message: `CMS: Delete ${collection}/${filename}`,
-    treeEntries
+    treeEntries,
+    branch
   });
 }
 
@@ -993,6 +1393,11 @@ async function deleteItemAtomically({ collection, filename, token, owner, repo }
 // ========================================
 
 async function githubRequest(method, path, body, token) {
+  const cacheKey = method === 'GET' && !body ? path : null;
+  if (cacheKey && requestGetCache && requestGetCache.has(cacheKey)) {
+    return requestGetCache.get(cacheKey);
+  }
+
   const url = `https://api.github.com${path}`;
 
   const options = {
@@ -1010,16 +1415,47 @@ async function githubRequest(method, path, body, token) {
     options.body = JSON.stringify(body);
   }
 
-  console.log(`GitHub ${method} ${path}`);
+  // Retry semplice su 429/502/503 (max 3 tentativi, backoff 300ms * attempt)
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    console.log(`GitHub ${method} ${path}${attempt > 1 ? ` (retry ${attempt}/3)` : ''}`);
 
-  const response = await fetch(url, options);
-  const data = await response.text();
+    const response = await fetch(url, options);
+    const data = await response.text();
 
-  if (response.ok) {
-    return data ? JSON.parse(data) : {};
-  } else {
+    if (response.ok) {
+      const parsed = data ? JSON.parse(data) : {};
+      if (cacheKey && requestGetCache) {
+        requestGetCache.set(cacheKey, parsed);
+      }
+      // Qualsiasi write invalida la cache (ref/tree/contents cambiati)
+      if (method !== 'GET' && requestGetCache) {
+        requestGetCache.clear();
+      }
+      return parsed;
+    }
+
+    const retriable = response.status === 429 || response.status === 502 || response.status === 503;
+    if (retriable && attempt < 3) {
+      let delay = 300 * attempt;
+      const retryAfter = response.headers.get('retry-after') || response.headers.get('Retry-After');
+      if (retryAfter) {
+        const asNum = Number(retryAfter);
+        if (Number.isFinite(asNum) && asNum >= 0) {
+          // Retry-After può essere secondi
+          delay = asNum < 1000 ? asNum * 1000 : asNum;
+        }
+      }
+      console.warn(`[githubRequest] status ${response.status}, backoff ${delay}ms`);
+      await sleep(delay);
+      lastError = new Error(`GitHub API error: ${response.status} - ${data}`);
+      continue;
+    }
+
     throw new Error(`GitHub API error: ${response.status} - ${data}`);
   }
+
+  throw lastError || new Error('GitHub API error: retry esauriti');
 }
 
 // ========================================
@@ -1046,16 +1482,18 @@ const COLLECTION_CONFIG = {
   ]))
 };
 
-async function regenerateJSON(collection, token, owner, repo) {
+async function regenerateJSON(collection, token, owner, repo, branch = 'main') {
   const config = await resolveCollectionConfig(collection, token, owner, repo);
   if (!config) {
     console.log(`⚠️ Collection ${collection} non configurata per rigenerazione JSON`);
     return;
   }
 
+  // Full rebuild da markdown (source of truth). Più call API ma corretto se JSON stale.
+  // I path atomici (save/reorder/visibility) non passano da qui: aggiornano JSON nello stesso commit.
   const jsonContent = await generateJSONForConfig(config, token, owner, repo);
   if (jsonContent) {
-    await commitJSON(config.jsonPath, jsonContent, token, owner, repo);
+    await commitJSON(config.jsonPath, jsonContent, token, owner, repo, branch);
     console.log(`✅ JSON rigenerato: ${config.jsonPath}`);
   }
 }
@@ -1204,7 +1642,9 @@ async function generateBeersJSON(token, owner, repo, overrides = {}) {
 }
 
 async function generateCategoriesJSON(token, owner, repo, overrides = {}) {
-  const categories = await readCollectionFiles('categorie', token, owner, repo, overrides);
+  // Preferisci snapshot JSON (1 GET) — stesso shape; full MD solo se snapshot manca
+  const categories = (await readCollectionSnapshot('categorie', token, owner, repo, overrides))
+    || await readCollectionFiles('categorie', token, owner, repo, overrides);
 
   // Ordina (NON FILTRARE VISIBILI: il CMS deve vederle tutte!)
   const allCategories = categories
@@ -1283,14 +1723,19 @@ async function generateBeveragesJSON(token, owner, repo, overrides = {}) {
 // COMMIT JSON SU GITHUB
 // ========================================
 
-async function commitJSON(jsonPath, content, token, owner, repo) {
+async function commitJSON(jsonPath, content, token, owner, repo, branch = 'main') {
   const jsonString = JSON.stringify(content, null, 2);
   const base64Content = Buffer.from(jsonString).toString('base64');
 
   // Prima prova a ottenere lo SHA del file esistente
   let existingSha = null;
   try {
-    const existingFile = await githubRequest('GET', `/repos/${owner}/${repo}/contents/${jsonPath}`, null, token);
+    const existingFile = await githubRequest(
+      'GET',
+      `/repos/${owner}/${repo}/contents/${jsonPath}?ref=${encodeURIComponent(branch)}`,
+      null,
+      token
+    );
     existingSha = existingFile.sha;
   } catch (e) {
     // File non esiste, verrà creato
@@ -1300,7 +1745,7 @@ async function commitJSON(jsonPath, content, token, owner, repo) {
   const body = {
     message: `CMS Auto: Rigenera ${jsonPath}`,
     content: base64Content,
-    branch: 'main'
+    branch
   };
 
   if (existingSha) {

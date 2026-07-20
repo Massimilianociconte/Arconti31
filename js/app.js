@@ -1,13 +1,8 @@
 // ========================================
 // ARCONTI31 - MENU DIGITALE
 // Lettura da JSON statici (zero rate limiting)
+// Il menù pubblico non usa GitHub: carica solo i JSON del sito deployato.
 // ========================================
-
-const CONFIG = {
-  owner: 'Massimilianociconte',
-  repo: 'Arconti31',
-  branch: 'main'
-};
 
 // Icon mapping per Tags e Allergeni
 const ICONS = {
@@ -89,6 +84,42 @@ function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
+}
+
+/**
+ * Confronta nomi categoria/item ignorando spazi iniziali/finali
+ */
+function namesMatch(a, b) {
+  return String(a || '').trim() === String(b || '').trim();
+}
+
+/**
+ * Encode path segments for relative image URLs with spaces.
+ * Non tocca URL assoluti http(s)/protocol-relative/data (es. Cloudinary).
+ */
+function safeImageUrl(url) {
+  if (!url) return '';
+  const s = String(url).trim();
+  if (!s) return '';
+  if (/^(https?:)?\/\//i.test(s) || /^data:/i.test(s) || /^blob:/i.test(s)) {
+    return s;
+  }
+  try {
+    const match = s.match(/^([^?#]*)(.*)$/);
+    const path = match[1];
+    const rest = match[2] || '';
+    const encoded = path.split('/').map(seg => {
+      if (!seg) return seg;
+      try {
+        return encodeURIComponent(decodeURIComponent(seg));
+      } catch {
+        return encodeURIComponent(seg);
+      }
+    }).join('/');
+    return encoded + rest;
+  } catch {
+    return s;
+  }
 }
 
 function normalizeSlugValue(value) {
@@ -175,13 +206,18 @@ function formatPrice(price) {
 // ========================================
 
 /**
- * Carica un file JSON con cache buster per avere sempre dati freschi
+ * Carica un file JSON con cache buster aggressivo (sempre dati freschi)
  */
 async function loadFromJSON(jsonPath) {
   try {
-    // Cache buster: 60s granularity allows browser to reuse within the same minute
-    const cacheBuster = `?_=${Math.floor(Date.now() / 60000)}`;
-    const res = await fetch(jsonPath + cacheBuster);
+    const cacheBuster = `?_=${Date.now()}`;
+    const res = await fetch(jsonPath + cacheBuster, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    });
     if (!res.ok) {
       console.warn(`⚠️ Errore caricamento ${jsonPath}: ${res.status}`);
       return null;
@@ -197,62 +233,147 @@ async function loadFromJSON(jsonPath) {
 // DATA LOADING
 // ========================================
 
-// ========================================
-// DATA LOADING
-// ========================================
+function navigateFromHash(hash) {
+  if (hash) {
+    const category = findCategoryBySlug(hash);
+    if (category) {
+      showCategory(category.name, category.type, { skipHistory: true });
+    } else {
+      showCategoriesView({ skipHistory: true });
+    }
+  } else {
+    showCategoriesView({ skipHistory: true });
+  }
+}
+
+function showCacheModeBanner() {
+  console.warn('⚠️ Modalità cache: menù da dati locali (rete non disponibile)');
+  if (document.getElementById('cache-mode-banner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'cache-mode-banner';
+  banner.setAttribute('role', 'status');
+  banner.textContent = 'Modalità cache — connessione assente, mostro l\'ultima versione salvata';
+  banner.style.cssText = 'background:#664d03;color:#fff3cd;padding:0.5rem 1rem;text-align:center;font-size:0.875rem;z-index:9999;';
+  document.body.prepend(banner);
+}
+
+function showLoadError() {
+  const el = document.getElementById('categories-view');
+  if (!el) return;
+  el.style.display = 'block';
+  const detail = document.getElementById('detail-view');
+  if (detail) detail.style.display = 'none';
+  el.innerHTML = `
+    <div class="loading" style="text-align:center;padding:2rem;">
+      <p>Impossibile caricare il menù. Controlla la connessione e riprova.</p>
+      <button type="button" onclick="location.reload()" style="margin-top:1rem;padding:0.75rem 1.5rem;cursor:pointer;font-size:1rem;border-radius:8px;border:1px solid #ccc;background:#fff;">
+        Riprova
+      </button>
+    </div>
+  `;
+}
+
+/**
+ * Unisce rete + cache per collezione.
+ * REGOLA ANTI-SPARIZIONE: se un JSON non arriva, NON svuotare quella collezione —
+ * tieni i dati in cache (o skeleton). Solo le collezioni scaricate con successo
+ * diventano source of truth e aggiornano IndexedDB.
+ */
+function buildMenuItemsFromSources({ categoriesRes, foodRes, beersRes, beveragesRes, cacheItems }) {
+  const fromCache = (collection) =>
+    (cacheItems || [])
+      .filter(i => i._collection === collection && !i._deleted)
+      .map(i => ({ ...i }));
+
+  const parts = [];
+  let usedCacheFallback = false;
+  const networkCollections = [];
+
+  if (categoriesRes?.categories) {
+    parts.push(...categoriesRes.categories.map(i => ({ ...i, _collection: 'categorie' })));
+    networkCollections.push({ name: 'categorie', items: categoriesRes.categories });
+  } else {
+    const cached = fromCache('categorie');
+    if (cached.length) {
+      parts.push(...cached);
+      usedCacheFallback = true;
+    }
+  }
+
+  if (foodRes?.food) {
+    parts.push(...foodRes.food.map(i => ({ ...i, _collection: 'food' })));
+    networkCollections.push({ name: 'food', items: foodRes.food });
+  } else {
+    const cached = fromCache('food');
+    if (cached.length) {
+      parts.push(...cached);
+      usedCacheFallback = true;
+    }
+  }
+
+  if (beersRes?.beers) {
+    parts.push(...beersRes.beers.map(i => ({ ...i, _collection: 'beers' })));
+    networkCollections.push({ name: 'beers', items: beersRes.beers });
+  } else {
+    const cached = fromCache('beers');
+    if (cached.length) {
+      parts.push(...cached);
+      usedCacheFallback = true;
+    }
+  }
+
+  if (beveragesRes?.beverages) {
+    parts.push(...beveragesRes.beverages.map(i => ({ ...i, _collection: 'beverages' })));
+    networkCollections.push({ name: 'beverages', items: beveragesRes.beverages });
+  } else {
+    const cached = fromCache('beverages');
+    if (cached.length) {
+      parts.push(...cached);
+      usedCacheFallback = true;
+    }
+  }
+
+  return { allItems: parts, usedCacheFallback, networkCollections };
+}
 
 async function loadAllData() {
   showLoading();
   
   // Salva l'hash PRIMA di qualsiasi operazione (per il restore dopo)
   const initialHash = window.location.hash.slice(1);
+  let hadCacheSkeleton = false;
+  let cacheItems = [];
 
-  // Init SmartCache
+  // Init SmartCache — skeleton offline/istantaneo (non è source of truth se la rete risponde)
   if (window.SmartCache) {
     await window.SmartCache.init();
     
-    // Try to load from cache first (ma filtra items eliminati)
-    const cachedFood = await window.SmartCache.getAll('items');
-    const validCachedItems = cachedFood.filter(i => !i._deleted);
+    cacheItems = (await window.SmartCache.getAll('items')).filter(i => !i._deleted);
     
-    if (validCachedItems.length > 0) {
-      console.log('⚡ Loaded items from SmartCache');
-      processItems(validCachedItems);
-      
-      // Se c'è un hash, naviga alla categoria invece di mostrare home
-      if (initialHash) {
-        const category = findCategoryBySlug(initialHash);
-        if (category) {
-          showCategory(category.name, category.type, { skipHistory: true });
-        } else {
-          showCategoriesView({ skipHistory: true });
-        }
-      } else {
-        showCategoriesView();
-      }
+    if (cacheItems.length > 0) {
+      console.log('⚡ Loaded items from SmartCache (skeleton)');
+      processItems(cacheItems);
+      hadCacheSkeleton = true;
+      navigateFromHash(initialHash);
       hideLoading();
     }
 
-    // Subscribe to updates
+    // Subscribe DOPO lo skeleton: re-render solo su notify espliciti (admin multi-tab / sync non silent)
     window.SmartCache.subscribe((changes) => {
       console.log('🔄 SmartCache update received:', changes);
-      // Aggiorna i dati in background senza cambiare la vista corrente
       window.SmartCache.getAll('items').then(items => {
-        // Filtra sempre gli items eliminati
         processItems(items.filter(i => !i._deleted));
-        // NON fare goHome() - l'utente potrebbe essere in una categoria
-        // Aggiorna solo se siamo nella home
         if (currentView === 'home') {
-          showCategoriesView();
+          showCategoriesView({ skipHistory: true });
+        } else if (currentView === 'detail' && currentCategory) {
+          showCategory(currentCategory, currentCategoryType, { skipHistory: true });
         }
-        // Se siamo in una categoria, i dati sono già aggiornati in memoria
-        // e verranno mostrati al prossimo render
       });
     });
   }
 
   try {
-    // Carica tutti i JSON in parallelo (velocissimo, zero rate limiting!)
+    // Carica tutti i JSON in parallelo
     const [categoriesRes, foodRes, beersRes, beveragesRes] = await Promise.all([
       loadFromJSON('/categorie/categorie.json'),
       loadFromJSON('/food/food.json'),
@@ -260,49 +381,59 @@ async function loadAllData() {
       loadFromJSON('/beverages/beverages.json')
     ]);
 
-    // Process raw JSON data
-    let allItems = [];
-    if (categoriesRes?.categories) allItems = allItems.concat(categoriesRes.categories.map(i => ({...i, _collection: 'categorie'})));
-    if (foodRes?.food) allItems = allItems.concat(foodRes.food.map(i => ({...i, _collection: 'food'})));
-    if (beersRes?.beers) allItems = allItems.concat(beersRes.beers.map(i => ({...i, _collection: 'beers'})));
-    if (beveragesRes?.beverages) allItems = allItems.concat(beveragesRes.beverages.map(i => ({...i, _collection: 'beverages'})));
+    const { allItems, usedCacheFallback, networkCollections } = buildMenuItemsFromSources({
+      categoriesRes,
+      foodRes,
+      beersRes,
+      beveragesRes,
+      cacheItems
+    });
 
-    // Update SmartCache
-    if (window.SmartCache) {
-      // Sync each collection
-      if (categoriesRes?.categories) await window.SmartCache.syncCollection(categoriesRes.categories, 'categorie');
-      if (foodRes?.food) await window.SmartCache.syncCollection(foodRes.food, 'food');
-      if (beersRes?.beers) await window.SmartCache.syncCollection(beersRes.beers, 'beers');
-      if (beveragesRes?.beverages) await window.SmartCache.syncCollection(beveragesRes.beverages, 'beverages');
-      
-      // RE-FETCH from SmartCache to get the authoritative version (including local edits)
-      // This ensures that if we have local changes (protected by stale data check),
-      // we use THOSE instead of the stale JSON we just downloaded.
-      const cachedItems = await window.SmartCache.getAll('items');
-      allItems = cachedItems.filter(i => !i._deleted);
-    }
+    const anyNetwork = networkCollections.length > 0;
+    const allNetworkOk = networkCollections.length === 4;
 
-    // Process for UI
-    processItems(allItems);
-
-    console.log(`✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande`);
-
-    // Controlla se c'è un hash nell'URL per navigare direttamente alla categoria
-    // (usa initialHash salvato all'inizio per evitare race condition)
-    if (initialHash) {
-      const category = findCategoryBySlug(initialHash);
-      if (category) {
-        showCategory(category.name, category.type, { skipHistory: true });
-      } else {
-        showCategoriesView({ skipHistory: true });
+    if (allItems.length > 0) {
+      // Aggiorna IDB SOLO per le collezioni scaricate con successo (mai "svuotare" le altre)
+      // silent: niente notify a metà sync → niente prodotti che spariscono per un frame
+      if (window.SmartCache && networkCollections.length) {
+        const pubOpts = { preferRemote: true, silent: true };
+        for (const col of networkCollections) {
+          await window.SmartCache.syncCollection(col.items, col.name, 'static', pubOpts);
+        }
       }
+
+      processItems(allItems);
+      console.log(
+        `✅ Dati caricati: ${foodData.length} piatti, ${beersData.length} birre, ${beveragesData.length} bevande` +
+        (allNetworkOk ? ' (rete completa)' : anyNetwork ? ' (rete parziale + cache)' : ' (solo cache)')
+      );
+      navigateFromHash(initialHash);
+
+      if (!anyNetwork || usedCacheFallback) {
+        showCacheModeBanner();
+      }
+    } else if (hadCacheSkeleton) {
+      showCacheModeBanner();
     } else {
-      showCategoriesView();
+      showLoadError();
     }
   } catch (error) {
     console.error('Errore nel caricamento:', error);
-    document.getElementById('categories-view').innerHTML =
-      '<p class="loading">Errore nel caricamento. Riprova più tardi.</p>';
+    // Fallback cache se possibile
+    try {
+      if (window.SmartCache) {
+        const fallback = (await window.SmartCache.getAll('items')).filter(i => !i._deleted);
+        if (fallback.length > 0) {
+          if (!hadCacheSkeleton) {
+            processItems(fallback);
+            navigateFromHash(initialHash);
+          }
+          showCacheModeBanner();
+          return;
+        }
+      }
+    } catch (_) { /* ignore */ }
+    showLoadError();
   } finally {
     hideLoading();
   }
@@ -434,7 +565,8 @@ function showCategoriesView(options = {}) {
 
 function createCategoryCard(cat, count, type) {
   // Priorità: immagine dalla categoria dinamica > fallback hardcoded
-  let imageUrl = cat.immagine || DEFAULT_CATEGORY_IMAGES[cat.nome] || null;
+  const catNameKey = String(cat.nome || '').trim();
+  let imageUrl = cat.immagine || DEFAULT_CATEGORY_IMAGES[catNameKey] || null;
   
   // Sanitizza per prevenire XSS
   const safeName = escapeHtml(cat.nome);
@@ -442,7 +574,7 @@ function createCategoryCard(cat, count, type) {
 
   const hasImageClass = imageUrl ? 'has-bg-image' : '';
   const imageHtml = imageUrl
-    ? `<img src="${escapeHtml(imageUrl)}" alt="${safeName}" class="category-bg-img" loading="lazy" decoding="async">`
+    ? `<img src="${escapeHtml(safeImageUrl(imageUrl))}" alt="${safeName}" class="category-bg-img" loading="lazy" decoding="async">`
     : '';
 
   return `
@@ -467,7 +599,7 @@ function showCategory(categoryName, type, options = {}) {
   currentCategoryType = type;
   
   // Aggiorna URL con hash per permettere refresh e condivisione
-  const category = categoriesData.find(cat => cat.nome === categoryName);
+  const category = categoriesData.find(cat => namesMatch(cat.nome, categoryName));
   const slug = category ? getCategoryHash(category) : slugifyCategory(categoryName);
   if (!skipHistory) {
     history.pushState({ category: categoryName, type: type }, '', `#${slug}`);
@@ -478,7 +610,7 @@ function showCategory(categoryName, type, options = {}) {
   document.getElementById('detail-view').style.display = 'block';
 
   // Check if this category has subcategories
-  const thisCat = categoriesData.find(c => c.nome === categoryName);
+  const thisCat = categoriesData.find(c => namesMatch(c.nome, categoryName));
   const subcats = thisCat ? getSubcategories(thisCat.slug) : [];
 
   const detailContent = document.getElementById('detail-content');
@@ -654,7 +786,7 @@ function renderCard(item, index, type) {
   const imageUrl = item.immagine_copertina || item.immagine;
 
   const imageHtml = hasImage
-    ? `<div class="card-image-container"><img src="${escapeHtml(imageUrl)}" alt="${safeName}" class="beer-image" loading="lazy" decoding="async"></div>`
+    ? `<div class="card-image-container"><img src="${escapeHtml(safeImageUrl(imageUrl))}" alt="${safeName}" class="beer-image" loading="lazy" decoding="async"></div>`
     : '';
 
   const noImageClass = !hasImage ? 'no-image-card' : '';
@@ -662,7 +794,7 @@ function renderCard(item, index, type) {
   // Avatar/Logo (opzionale)
   const logoUrl = item.immagine_avatar || item.logo;
   const logoHtml = logoUrl
-    ? `<img src="${escapeHtml(logoUrl)}" alt="${safeName}" class="beer-logo">`
+    ? `<img src="${escapeHtml(safeImageUrl(logoUrl))}" alt="${safeName}" class="beer-logo">`
     : '';
 
   // Tags
@@ -717,7 +849,7 @@ function openModal(itemName, type) {
   else if (type === 'beverage') allItems = beveragesData;
   else if (type === 'food') allItems = foodData;
 
-  const item = allItems.find(i => i.nome === itemName.replace(/\\'/g, "'"));
+  const item = allItems.find(i => namesMatch(i.nome, itemName.replace(/\\'/g, "'")));
   if (!item) return;
 
   const modal = document.getElementById('beer-modal');
@@ -731,11 +863,11 @@ function openModal(itemName, type) {
 
   // Immagine copertina
   const imageUrl = item.immagine_copertina || item.immagine;
-  const imageHtml = imageUrl ? `<div class="modal-hero-wrapper"><img src="${escapeHtml(imageUrl)}" class="modal-hero-img" alt="${safeName}"></div>` : '';
+  const imageHtml = imageUrl ? `<div class="modal-hero-wrapper"><img src="${escapeHtml(safeImageUrl(imageUrl))}" class="modal-hero-img" alt="${safeName}"></div>` : '';
 
   // Avatar
   const avatarUrl = item.immagine_avatar || item.logo;
-  const avatarHtml = avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" class="modal-logo-small" alt="Logo">` : '';
+  const avatarHtml = avatarUrl ? `<img src="${escapeHtml(safeImageUrl(avatarUrl))}" class="modal-logo-small" alt="Logo">` : '';
 
   // Tags (sanitizzati)
   let tagsHtml = '';

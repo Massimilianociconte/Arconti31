@@ -6,6 +6,10 @@ Per far funzionare il CMS devi configurare le **variabili d'ambiente** su Netlif
 
 > **NOTA**: Il menù digitale si aggiorna automaticamente quando salvi dal CMS! I JSON vengono rigenerati automaticamente, non serve alcun intervento manuale.
 
+> ⚠️ **`REPO_OWNER` e `REPO_NAME` sono sempre obbligatori.**  
+> Senza di esse il CMS **non salva** (niente default nel codice).  
+> Dopo aver impostato le env: **sempre un nuovo deploy**.
+
 ---
 
 ## Passo 1: Crea un Token GitHub (CLASSIC)
@@ -26,24 +30,32 @@ Per far funzionare il CMS devi configurare le **variabili d'ambiente** su Netlif
 ## Passo 2: Configura le Variabili su Netlify
 
 1. Vai su [Netlify Dashboard](https://app.netlify.com)
-2. Seleziona il sito **Arconti31**
+2. Seleziona il **tuo sito**
 3. Vai su: **Site configuration** → **Environment variables**
 4. Aggiungi queste variabili:
 
-### Variabili Obbligatorie
+### Variabili obbligatorie
 
 | Nome | Valore | Esempio |
 |------|--------|---------|
-| `GITHUB_TOKEN` | Token GitHub Classic | `ghp_xxxxxxxxxxxx` |
-| `ADMIN_EMAIL` | Email ammesse (virgola-separate) | `admin@arconti31.com, staff@arconti31.com` |
+| `GITHUB_TOKEN` | Token GitHub Classic (account proprietario del repo) | `ghp_xxxxxxxxxxxx` |
+| `REPO_OWNER` | Username GitHub del **proprietario del repo** — **sempre ✅ obbligatorio** | `username-github` |
+| `REPO_NAME` | Nome esatto del repository — **sempre ✅ obbligatorio** | `Arconti31` |
+| `ADMIN_EMAIL` | Email ammesse (virgola-separate) | `admin@tuodominio.com, staff@tuodominio.com` |
 | `ADMIN_PASSWORD` | Password sicura | `MiaPassword123!` |
 
-### Variabili Opzionali (per upload immagini)
+### Variabili opzionali
 
 | Nome | Valore | Note |
 |------|--------|------|
-| `CLOUDINARY_CLOUD_NAME` | Cloud Name Cloudinary | Es: `ducwsodfw` |
-| `CLOUDINARY_UPLOAD_PRESET` | Nome preset unsigned | Es: `arconti31_unsigned` |
+| `GITHUB_BRANCH` | Branch su cui il CMS scrive i commit | Default se assente: **`main`** |
+| `CMS_TOKEN_SECRET` | Segreto random per firmare i token di sessione CMS | **Consigliato.** Se assente usa `ADMIN_PASSWORD` |
+| `ALLOWED_ORIGINS` | Origini CORS extra (virgola-separate) | Di solito non serve: l’URL del sito Netlify corrente è già gestito |
+| `CLOUDINARY_CLOUD_NAME` | Cloud Name Cloudinary | Per upload immagini |
+| `CLOUDINARY_UPLOAD_PRESET` | Nome preset **unsigned** | Es: `arconti31_unsigned` |
+| `CLOUDINARY_FOLDER` | Cartella destinazione upload | Opzionale |
+| `CLOUDINARY_API_KEY` | API Key | Solo se usi la function signed `upload-image` |
+| `CLOUDINARY_API_SECRET` | API Secret | Solo se usi la function signed `upload-image` |
 
 ---
 
@@ -57,11 +69,15 @@ Dopo aver salvato le variabili:
 
 ---
 
-## Passo 4: Accedi al CMS
+## Passo 4: Verifica e accedi al CMS
 
-1. Vai su: `https://arconti31.netlify.app/admin/`
-2. Inserisci email e password configurati
-3. Inizia a gestire il menù!
+1. Test health: apri `https://URL-DEL-TUO-SITO/.netlify/functions/health` → deve dare **ok**
+2. Vai su: `https://URL-DEL-TUO-SITO/admin/`
+3. Inserisci email e password configurati
+4. Inizia a gestire il menù!
+5. Dopo un salvataggio, verifica che su GitHub compaia il commit sul repo indicato da `REPO_OWNER`/`REPO_NAME`. Il CMS può mostrare un messaggio tipo **«Salvato su owner/repo»**.
+
+Sostituisci sempre `URL-DEL-TUO-SITO` con l’indirizzo reale del tuo sito Netlify (o dominio custom).
 
 ---
 
@@ -70,7 +86,7 @@ Dopo aver salvato le variabili:
 Per aggiungere più admin, separa le email con virgola:
 
 ```
-ADMIN_EMAIL = admin@arconti31.com, manager@arconti31.com, staff@arconti31.com
+ADMIN_EMAIL = admin@tuodominio.com, manager@tuodominio.com, staff@tuodominio.com
 ```
 
 Tutti gli utenti useranno la stessa password.
@@ -93,9 +109,18 @@ Tutti gli utenti useranno la stessa password.
 - La variabile non è stata salvata su Netlify
 - Fai un deploy dopo aver aggiunto la variabile
 
+### CMS non salva / errore su repository
+- Controlla che `REPO_OWNER` e `REPO_NAME` siano **entrambe** impostate (obbligatorie)
+- Fai **Trigger deploy** dopo averle aggiunte
+- Verifica che il token abbia accesso a quel repo
+
+### Health non ok
+- Controlla che l’ultimo deploy sia andato a buon fine
+- Apri i log delle Functions su Netlify
+
 ### Modifiche non visibili
 - Attendi 30-60 secondi
-- Ricarica la pagina (Ctrl+F5)
+- Ricarica la pagina (Ctrl+F5 / Cmd+Shift+R)
 - Verifica che il JSON sia aggiornato su GitHub
 
 ---
@@ -105,7 +130,8 @@ Tutti gli utenti useranno la stessa password.
 - ✅ Credenziali in variabili ambiente (mai nel codice)
 - ✅ Token generato per sessione (sessionStorage)
 - ✅ Scadenza token dopo 7 giorni
-- ✅ GITHUB_TOKEN solo lato server
+- ✅ `GITHUB_TOKEN` solo lato server
+- ✅ `CMS_TOKEN_SECRET` consigliato (se assente si usa la password)
 - ✅ Logout automatico chiudendo il browser
 
 ---
@@ -135,9 +161,9 @@ Per abilitare upload diretto dal CMS:
 1. Settings → Upload
 2. Upload presets → Add upload preset
 3. Compila:
-   - **Preset name**: `arconti31_unsigned`
+   - **Preset name**: es. `tuosito_unsigned`
    - **Signing Mode**: **Unsigned** ⚠️
-   - **Folder**: `arconti31` (opzionale)
+   - **Folder**: (opzionale; puoi anche usare env `CLOUDINARY_FOLDER`)
 4. Save
 
 #### 3. Configura su Netlify
@@ -145,7 +171,8 @@ Per abilitare upload diretto dal CMS:
 | Nome | Valore |
 |------|--------|
 | `CLOUDINARY_CLOUD_NAME` | Il tuo Cloud Name |
-| `CLOUDINARY_UPLOAD_PRESET` | `arconti31_unsigned` |
+| `CLOUDINARY_UPLOAD_PRESET` | Nome del preset unsigned |
+| `CLOUDINARY_FOLDER` | (Opzionale) cartella destinazione |
 
 #### 4. Redeploy
 Fai un nuovo deploy dopo aver aggiunto le variabili.
@@ -180,10 +207,19 @@ Fai un nuovo deploy dopo aver aggiunto le variabili.
 
 | Variabile | Obbligatoria | Descrizione |
 |-----------|--------------|-------------|
-| `GITHUB_TOKEN` | ✅ | Token Classic con permesso repo |
+| `GITHUB_TOKEN` | ✅ | Token Classic con permesso `repo` (dell'account che possiede il repo) |
+| `REPO_OWNER` | ✅ **sempre** | Username GitHub del proprietario del repo. **Senza → CMS non salva** |
+| `REPO_NAME` | ✅ **sempre** | Nome esatto del repository. **Senza → CMS non salva** |
 | `ADMIN_EMAIL` | ✅ | Email ammesse (virgola-separate) |
 | `ADMIN_PASSWORD` | ✅ | Password accesso CMS |
+| `GITHUB_BRANCH` | ❌ | Branch commit CMS (default `main`) |
+| `CMS_TOKEN_SECRET` | ❌ (consigliato) | Segreto firma token sessione; se assente usa `ADMIN_PASSWORD` |
+| `ALLOWED_ORIGINS` | ❌ | Origini extra CORS (virgola-separate). Il sito Netlify corrente è già incluso automaticamente |
 | `CLOUDINARY_CLOUD_NAME` | ❌ | Per upload immagini |
-| `CLOUDINARY_UPLOAD_PRESET` | ❌ | Preset unsigned Cloudinary |
-| `REPO_OWNER` | ❌ | Default: Massimilianociconte |
-| `REPO_NAME` | ❌ | Default: Arconti31 |
+| `CLOUDINARY_UPLOAD_PRESET` | ❌ | Preset unsigned Cloudinary (se usi upload dal browser) |
+| `CLOUDINARY_FOLDER` | ❌ | Cartella destinazione upload Cloudinary |
+| `CLOUDINARY_API_KEY` | ❌ | Richiesto se usi la function `upload-image` (signed) |
+| `CLOUDINARY_API_SECRET` | ❌ | Richiesto se usi la function `upload-image` (signed) |
+
+> 📖 Migrazione completa verso account GitHub/Netlify del cliente: **`HANDOFF_CLIENTE.md`** (root del progetto).  
+> 📖 Breaking changes e azioni esterne obbligatorie: **`SOLIDITY_NOTES.md`**.

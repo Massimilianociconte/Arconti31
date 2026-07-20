@@ -54,8 +54,8 @@
     Expires = "0"
     Access-Control-Allow-Origin = "*"
 
-# 3. Static Assets (Images, CSS, JS, Fonts): Cache with revalidation.
-# Since files are NOT fingerprinted, we use stale-while-revalidate for fast loads + updates.
+# 3. Static Assets
+# Images: short cache + SWR. CSS/JS: no fingerprint → always revalidate (zero risk stale FE).
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -64,12 +64,12 @@
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=3600"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=3600"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/fonts/*"

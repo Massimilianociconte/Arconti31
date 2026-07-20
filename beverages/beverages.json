@@ -75,7 +75,7 @@
     {
       "nome": "Chocolate coco",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
       "disponibile": true,
       "order": 6,
@@ -106,7 +106,7 @@
     {
       "nome": "Hurricane",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
       "disponibile": true,
       "order": 10,
@@ -159,7 +159,7 @@
     {
       "nome": "Negroni",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Bitter, vermouth rosso e gin",
       "disponibile": true,
       "order": 15,
@@ -202,7 +202,7 @@
     {
       "nome": "Sex on the beach",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
       "disponibile": true,
       "order": 19,
@@ -212,7 +212,7 @@
     {
       "nome": "Sweet and red",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Rum bianco, lampone, lemonsoda",
       "disponibile": true,
       "order": 20,
@@ -242,7 +242,7 @@
     {
       "nome": "Waikiki",
       "tipo_slug": "cocktails",
-      "prezzo": "8,00",
+      "prezzo": "8.00",
       "descrizione": "Vodka e ananas fresco",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
       "disponibile": true,
@@ -253,7 +253,7 @@
     {
       "nome": "Arconti summer",
       "tipo_slug": "analcolici",
-      "prezzo": "7,00",
+      "prezzo": "7.00",
       "descrizione": "Mirtillo, ananas, papaja",
       "disponibile": true,
       "order": 0,
@@ -272,7 +272,7 @@
     {
       "nome": "Come on",
       "tipo_slug": "analcolici",
-      "prezzo": "7,00",
+      "prezzo": "7.00",
       "descrizione": "Pompelmo, ananas, maracuja",
       "disponibile": true,
       "order": 1,
@@ -292,7 +292,7 @@
     {
       "nome": "Florida",
       "tipo_slug": "analcolici",
-      "prezzo": "7,00",
+      "prezzo": "7.00",
       "descrizione": "Pompelmo, arancia, sweet and sour, soda",
       "disponibile": true,
       "order": 3,
@@ -302,7 +302,7 @@
     {
       "nome": "Gallarate beach",
       "tipo_slug": "analcolici",
-      "prezzo": "7,00",
+      "prezzo": "7.00",
       "descrizione": "Arancia, ananas, sweet and sour, fragola",
       "disponibile": true,
       "order": 4,
@@ -312,7 +312,7 @@
     {
       "nome": "Tropic star",
       "tipo_slug": "analcolici",
-      "prezzo": "7,00",
+      "prezzo": "7.00",
       "descrizione": "Arancia, maracuja, ananas",
       "disponibile": true,
       "order": 5,
@@ -342,7 +342,7 @@
     {
       "nome": "Mojito Analcolico",
       "tipo_slug": "analcolici",
-      "prezzo": "7,50",
+      "prezzo": "7.50",
       "descrizione": "Lime, zucchero, menta, Lemon Soda",
       "disponibile": true,
       "order": 8,
@@ -372,7 +372,7 @@
     {
       "nome": "Aranciata amara",
       "tipo_slug": "bibite",
-      "prezzo": "4,00",
+      "prezzo": "4.00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 1,
@@ -382,7 +382,7 @@
     {
       "nome": "Chinotto",
       "tipo_slug": "bibite",
-      "prezzo": "4,00",
+      "prezzo": "4.00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 2,
@@ -392,7 +392,7 @@
     {
       "nome": "Coca cola",
       "tipo_slug": "bibite",
-      "prezzo": "4,50",
+      "prezzo": "4.50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 3,
@@ -402,7 +402,7 @@
     {
       "nome": "Coca cola zero",
       "tipo_slug": "bibite",
-      "prezzo": "4,50",
+      "prezzo": "4.50",
       "formato": "Bottiglia vetro 33cl",
       "disponibile": true,
       "order": 4,
@@ -412,7 +412,7 @@
     {
       "nome": "Fanta",
       "tipo_slug": "bibite",
-      "prezzo": "4,00",
+      "prezzo": "4.00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 5,
@@ -422,7 +422,7 @@
     {
       "nome": "Lemonsoda",
       "tipo_slug": "bibite",
-      "prezzo": "4,00",
+      "prezzo": "4.00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 6,
@@ -432,7 +432,7 @@
     {
       "nome": "Red bull",
       "tipo_slug": "bibite",
-      "prezzo": "5,00",
+      "prezzo": "5.00",
       "descrizione": "Bevanda energetica",
       "formato": "33cl",
       "disponibile": true,
@@ -443,7 +443,7 @@
     {
       "nome": "Sprite",
       "tipo_slug": "bibite",
-      "prezzo": "4,00",
+      "prezzo": "4.00",
       "formato": "Lattina 33cl",
       "disponibile": true,
       "order": 8,
@@ -453,7 +453,7 @@
     {
       "nome": "Succhi di frutta",
       "tipo_slug": "bibite",
-      "prezzo": "3,50",
+      "prezzo": "3.50",
       "descrizione": "Mirtillo, pompelmo, ananas, arancia",
       "formato": "20cl",
       "disponibile": true,
@@ -482,7 +482,7 @@
     {
       "nome": "Ginger beer | Fever-Tree",
       "tipo_slug": "bibite",
-      "prezzo": "5,00",
+      "prezzo": "5.00",
       "descrizione": "Aroma di zenzero profondo",
       "disponibile": true,
       "order": 12,
@@ -492,7 +492,7 @@
     {
       "nome": "Caffè decaffeinato",
       "tipo_slug": "caffetteria",
-      "prezzo": "2,00",
+      "prezzo": "2.00",
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 0,
@@ -502,7 +502,7 @@
     {
       "nome": "Caffè espresso",
       "tipo_slug": "caffetteria",
-      "prezzo": "1,50",
+      "prezzo": "1.50",
       "descrizione": "In tazzina",
       "disponibile": true,
       "order": 1,
@@ -512,7 +512,7 @@
     {
       "nome": "Caffè shakerato",
       "tipo_slug": "caffetteria",
-      "prezzo": "3,50",
+      "prezzo": "3.50",
       "descrizione": "Lungo con ghiaccio e zucchero di canna",
       "disponibile": true,
       "order": 2,
@@ -522,7 +522,7 @@
     {
       "nome": "Cappuccino",
       "tipo_slug": "caffetteria",
-      "prezzo": "2,50",
+      "prezzo": "2.50",
       "disponibile": true,
       "order": 3,
       "_filename": "cappuccino.md",
@@ -531,7 +531,7 @@
     {
       "nome": "The e tisane",
       "tipo_slug": "caffetteria",
-      "prezzo": "3,00",
+      "prezzo": "3.00",
       "descrizione": "Selezione",
       "disponibile": true,
       "order": 4,
@@ -541,7 +541,7 @@
     {
       "nome": "Caffè macchiato",
       "tipo_slug": "caffetteria",
-      "prezzo": "2,00",
+      "prezzo": "2.00",
       "disponibile": true,
       "order": 5,
       "_filename": "caff-macchiato.md",
@@ -572,7 +572,7 @@
     {
       "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
       "tipo_slug": "bollicine",
-      "prezzo": "24,00",
+      "prezzo": "24.00",
       "descrizione": "Dai terreni ripidi e insidiosi e da una lunga sosta sui lieviti più nobili, una bollicina fine ed elegante. In bocca una vibrante energia accompagna sapidità e freschezza, con profumi di pera e mela decisa. Gradazione 11%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384266/arconti31/besbjscngkxq8xutkvxm.webp",
       "formato": "0,75L",
@@ -596,7 +596,7 @@
     {
       "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
       "tipo_slug": "bollicine",
-      "prezzo": "22,00",
+      "prezzo": "22.00",
       "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante. Colore: rosa tenue, pesca Perlage: fine e minuto, elegante. Profumo: sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi. Sapore: al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323860/arconti31/okyrfgpkeyzwlmniq8d4.jpg",
       "formato": "0,75L",
@@ -618,7 +618,7 @@
     {
       "nome": "21 Cuvée Millesimato Extra Dry",
       "tipo_slug": "bollicine",
-      "prezzo": "20,00",
+      "prezzo": "20.00",
       "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
       "formato": "0,75L",
       "disponibile": true,
@@ -629,7 +629,7 @@
     {
       "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
       "tipo_slug": "bollicine",
-      "prezzo": "22,00",
+      "prezzo": "22.00",
       "descrizione": "2023",
       "disponibile": true,
       "order": 7,
@@ -663,7 +663,7 @@
     {
       "nome": "Greco 'Janare' - La Guardiense",
       "tipo_slug": "bianchi-fermi",
-      "prezzo": "22,00",
+      "prezzo": "22.00",
       "descrizione": "Il Greco del Sannio \"Janare\" è un vino bianco fresco e dalle note sapide, perfetto da accompagnare a menù di pesce o verdure. Al naso sviluppa note fragranti e tipiche di agrumi, pesca, mela verde, camomilla e sensazioni erbacee. Presenta un corpo equilibrato, limpido e scorrevole, energizzato da una vivace freschezza marina. Gradazione 13%",
       "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384604/arconti31/uytm7jpotkw6cjoboxns.jpg",
       "formato": "0,75L",
@@ -732,7 +732,7 @@
     {
       "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
       "tipo_slug": "vini-rossi",
-      "prezzo": "25,00",
+      "prezzo": "25.00",
       "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
       "formato": "0,75L",
       "gradazione": "14%vol",
@@ -789,14 +789,13 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Jefferson",
+      "nome": "Amaro del ciclista",
       "prezzo": "5.00",
-      "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776195699/arconti31/dfvoyvmxr9trsadppsdi.jpg",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163489/arconti31/yvgvzsakhlsmdvdxjxqe.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "artigianali",
-      "_filename": "jefferson.md",
+      "_filename": "amaro-del-ciclista.md",
       "tipo": "Artigianali"
     },
     {
@@ -811,25 +810,13 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Bomba Carta ",
-      "prezzo": "6.00",
-      "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196284/arconti31/sthija9tdy0ysjlzwgcy.jpg",
-      "disponibile": false,
-      "order": 0,
-      "tipo_slug": "artigianali",
-      "_filename": "bomba-carta.md",
-      "tipo": "Artigianali"
-    },
-    {
-      "nome": "Mandragola - Carlo Alberto",
-      "prezzo": "6.00",
-      "descrizione": "Piemonte | 45% alc. È ispirato alla tradizione locale dei Setmin, guaritori dotati di conoscenze magiche tramandate attraverso generazioni. La ricetta prevede una miscela di 15 erbe, di cui solo otto vengono rivelate, mantenendo così il mistero e la potenza del prodotto. È intenso e balsamico, arricchito da note fresche di frutti, foglie e radici che ne sottolineano la complessità. Il Mandragola è ideale da gustare liscio.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
+      "nome": "Amaro Locale",
+      "prezzo": "5.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163501/arconti31/gcpulefeyrrjhacj6pr0.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "artigianali",
-      "_filename": "amaro-mandragola-carlo-alberto.md",
+      "_filename": "amaro-locale-1.md",
       "tipo": "Artigianali"
     },
     {
@@ -844,14 +831,25 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Bonaventura “erbe e spezie”",
-      "prezzo": "5.00",
-      "descrizione": "Treviso, Veneto | 30% alc.\nÈ realizzato partendo da acquavite d'uva (Prime Uve Nere) e unisce note di cannella, vaniglia e fava tonka a botaniche amare e balsamiche come genziana e china. ",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781902745/arconti31/k1b2ugtbs0wznewk85l6.jpg",
+      "nome": "Mandragola - Carlo Alberto",
+      "prezzo": "6.00",
+      "descrizione": "Piemonte | 45% alc. È ispirato alla tradizione locale dei Setmin, guaritori dotati di conoscenze magiche tramandate attraverso generazioni. La ricetta prevede una miscela di 15 erbe, di cui solo otto vengono rivelate, mantenendo così il mistero e la potenza del prodotto. È intenso e balsamico, arricchito da note fresche di frutti, foglie e radici che ne sottolineano la complessità. Il Mandragola è ideale da gustare liscio.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "artigianali",
-      "_filename": "bonaventura-erbe-e-spezie.md",
+      "_filename": "amaro-mandragola-carlo-alberto.md",
+      "tipo": "Artigianali"
+    },
+    {
+      "nome": "Bomba Carta ",
+      "prezzo": "6.00",
+      "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196284/arconti31/sthija9tdy0ysjlzwgcy.jpg",
+      "disponibile": false,
+      "order": 0,
+      "tipo_slug": "artigianali",
+      "_filename": "bomba-carta.md",
       "tipo": "Artigianali"
     },
     {
@@ -866,23 +864,25 @@
       "tipo": "Artigianali"
     },
     {
-      "nome": "Amaro del ciclista",
+      "nome": "Bonaventura “erbe e spezie”",
       "prezzo": "5.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163489/arconti31/yvgvzsakhlsmdvdxjxqe.jpg",
+      "descrizione": "Treviso, Veneto | 30% alc.\nÈ realizzato partendo da acquavite d'uva (Prime Uve Nere) e unisce note di cannella, vaniglia e fava tonka a botaniche amare e balsamiche come genziana e china. ",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781902745/arconti31/k1b2ugtbs0wznewk85l6.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "artigianali",
-      "_filename": "amaro-del-ciclista.md",
+      "_filename": "bonaventura-erbe-e-spezie.md",
       "tipo": "Artigianali"
     },
     {
-      "nome": "Amaro Locale",
+      "nome": "Jefferson",
       "prezzo": "5.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163501/arconti31/gcpulefeyrrjhacj6pr0.jpg",
+      "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776195699/arconti31/dfvoyvmxr9trsadppsdi.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "artigianali",
-      "_filename": "amaro-locale-1.md",
+      "_filename": "jefferson.md",
       "tipo": "Artigianali"
     },
     {
@@ -915,6 +915,17 @@
       "tipo": "Artigianali"
     },
     {
+      "nome": "A. Lucano",
+      "prezzo": "4.00",
+      "descrizione": "Pisticci Basilicata | 28% alc. \nViene da una ricetta segreta che unisce oltre 30 erbe officinali, come artemisia e genziana.\nIl colore è bruno caramello, il gusto deciso ma equilibrato porta note agrumate e floreali.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196344/arconti31/xyhgfupnvkauo11czqjh.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "a-lucano.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Amari da frigo ",
       "prezzo": "4.00",
       "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -937,36 +948,13 @@
       "tipo": "Classici"
     },
     {
-      "nome": "Montenegro",
+      "nome": "Branca Menta",
       "prezzo": "4.00",
-      "descrizione": "Bologna | 23% alc. \nProdotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194468/arconti31/alj5kepsvsp0ukl5vq6c.jpg",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "classici",
-      "_filename": "montenegro.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Vecchia Romagna",
-      "prezzo": "4.00",
-      "descrizione": "*brandy italiano del 1820 a Bologna | 38% alc.\nÈ un distillato di vino invecchiato in botti di rovere, noto per il suo colore ambrato, il gusto morbido e complesso con note di vaniglia.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194505/arconti31/yrcmunqgocsm3ovgnbdo.jpg",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "vecchia-romagna.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "A. Lucano",
-      "prezzo": "4.00",
-      "descrizione": "Pisticci Basilicata | 28% alc. \nViene da una ricetta segreta che unisce oltre 30 erbe officinali, come artemisia e genziana.\nIl colore è bruno caramello, il gusto deciso ma equilibrato porta note agrumate e floreali.",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196344/arconti31/xyhgfupnvkauo11czqjh.jpg",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "a-lucano.md",
+      "_filename": "branca-menta.md",
       "tipo": "Classici"
     },
     {
@@ -981,6 +969,37 @@
       "tipo": "Classici"
     },
     {
+      "nome": "Fernet-Branca",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "fernet-branca.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "Montenegro",
+      "prezzo": "4.00",
+      "descrizione": "Bologna | 23% alc. \nProdotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194468/arconti31/alj5kepsvsp0ukl5vq6c.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "montenegro.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "Petrus B.",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325307/arconti31/u8bntx9nlv47eql5davp.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "petrus-b.md",
+      "tipo": "Classici"
+    },
+    {
       "nome": "Ramazzotti ",
       "prezzo": "4.00",
       "descrizione": "Milano | 30% alc\nDal 1815, presenta una ricetta segreta che unisce 33 erbe, spezie, fiori e frutti, tra cui spiccano scorze d'arancia siciliana, anice stellato e cardamomo. \nSi distingue per il gusto armonico, dolceamaro e corposo.",
@@ -989,6 +1008,16 @@
       "order": 0,
       "tipo_slug": "classici",
       "_filename": "ramazzotti.md",
+      "tipo": "Classici"
+    },
+    {
+      "nome": "San Simone",
+      "prezzo": "4.00",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "classici",
+      "_filename": "san-simone.md",
       "tipo": "Classici"
     },
     {
@@ -1003,72 +1032,15 @@
       "tipo": "Classici"
     },
     {
-      "nome": "Branca Menta",
+      "nome": "Vecchia Romagna",
       "prezzo": "4.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
+      "descrizione": "*brandy italiano del 1820 a Bologna | 38% alc.\nÈ un distillato di vino invecchiato in botti di rovere, noto per il suo colore ambrato, il gusto morbido e complesso con note di vaniglia.",
+      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194505/arconti31/yrcmunqgocsm3ovgnbdo.jpg",
       "disponibile": true,
       "order": 0,
       "tipo_slug": "classici",
-      "_filename": "branca-menta.md",
+      "_filename": "vecchia-romagna.md",
       "tipo": "Classici"
-    },
-    {
-      "nome": "Fernet-Branca",
-      "prezzo": "4.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "fernet-branca.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Petrus B.",
-      "prezzo": "4.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325307/arconti31/u8bntx9nlv47eql5davp.jpg",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "petrus-b.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "San Simone",
-      "prezzo": "4.00",
-      "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "classici",
-      "_filename": "san-simone.md",
-      "tipo": "Classici"
-    },
-    {
-      "nome": "Diplomatico - Reserva Exclusiva",
-      "prezzo": "0.00",
-      "disponibile": false,
-      "order": 0,
-      "tipo_slug": "i-nostri-rum",
-      "_filename": "diplomatico-reserva-exclusiva.md",
-      "tipo": "I nostri Rum"
-    },
-    {
-      "nome": "Grappa Barricata ",
-      "prezzo": "5.50",
-      "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "grappe",
-      "_filename": "grappa-barricata.md",
-      "tipo": "Grappe & Distillati"
-    },
-    {
-      "nome": "Grappa Bianca ",
-      "prezzo": "4.50",
-      "disponibile": true,
-      "order": 0,
-      "tipo_slug": "grappe",
-      "_filename": "grappa-bianca.md",
-      "tipo": "Grappe & Distillati"
     },
     {
       "nome": "Génépi Nature - Savio ",
@@ -1079,6 +1051,16 @@
       "order": 0,
       "tipo_slug": "grappe",
       "_filename": "genepi-nature-savio.md",
+      "tipo": "Grappe & Distillati"
+    },
+    {
+      "nome": "Grappa Barricata ",
+      "prezzo": "5.50",
+      "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "grappe",
+      "_filename": "grappa-barricata.md",
       "tipo": "Grappe & Distillati"
     },
     {
@@ -1093,6 +1075,15 @@
       "tipo": "Grappe & Distillati"
     },
     {
+      "nome": "Grappa Bianca ",
+      "prezzo": "4.50",
+      "disponibile": true,
+      "order": 0,
+      "tipo_slug": "grappe",
+      "_filename": "grappa-bianca.md",
+      "tipo": "Grappe & Distillati"
+    },
+    {
       "nome": "Riserva Privata di Amarone Barricata -  Distilleria Bottega ",
       "prezzo": "7.00",
       "descrizione": "Veneto | 43% Vol.\nFrutto della distillazione delle bucce dell’uva fermentate di Amarone della Valpolicella. Il lungo affinamento in legno gli conferisce il caratteristico colore ambrato intenso e ne arricchisce il bouquet, dando vita ad una grappa suadente ed intrigante.\nIntensa ed avvolgente, presenta un bouquet complesso che, a partire dai sentori di miele e di vaniglia, evolve nell’aroma di cacao per finire in un delicato e affascinante speziato.\n.\n\n\n",
@@ -1102,6 +1093,87 @@
       "tipo_slug": "grappe",
       "_filename": "riserva-privata-di-amarone-barricata-distilleria-b.md",
       "tipo": "Grappe & Distillati"
+    },
+    {
+      "nome": "Diplomatico - Reserva Exclusiva",
+      "prezzo": "0.00",
+      "disponibile": false,
+      "order": 0,
+      "tipo_slug": "i-nostri-rum",
+      "_filename": "diplomatico-reserva-exclusiva.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Matusalem Solera 7 Years Old",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "matusalem-solera-7-years-old.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Pampero Aniversario",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "pampero-aniversario.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Rum Brugal Anejo Superior",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "rum-brugal-anejo-superior.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Rum Bumbu",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "rum-bumbu.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Rum Pampero Especial",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "rum-pampero-especial.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Saint James Royal Ambré",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "saint-james.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Santa Teresa Anejo Gran Reserva",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "santa-teresa-anejo-gran-reserva.md",
+      "tipo": "I nostri Rum"
+    },
+    {
+      "nome": "Zacapa Solera Gran Reserva",
+      "tipo_slug": "i-nostri-rum",
+      "prezzo": "10.00",
+      "disponibile": true,
+      "order": 0,
+      "_filename": "zacapa-solera-gran-reserva.md",
+      "tipo": "I nostri Rum"
     },
     {
       "nome": "“Crocodile” Gin del Professore ",
@@ -1191,7 +1263,7 @@
       {
         "nome": "Chocolate coco",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Rum, malibù, sweet and sour, ananas, cioccolato",
         "disponibile": true,
         "order": 6,
@@ -1222,7 +1294,7 @@
       {
         "nome": "Hurricane",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Rum scuro e bianco, lime, arancia, ananas, maracuja",
         "disponibile": true,
         "order": 10,
@@ -1275,7 +1347,7 @@
       {
         "nome": "Negroni",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Bitter, vermouth rosso e gin",
         "disponibile": true,
         "order": 15,
@@ -1318,7 +1390,7 @@
       {
         "nome": "Sex on the beach",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Vodka peach tree, arancia, sweet and sour, granatina",
         "disponibile": true,
         "order": 19,
@@ -1328,7 +1400,7 @@
       {
         "nome": "Sweet and red",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Rum bianco, lampone, lemonsoda",
         "disponibile": true,
         "order": 20,
@@ -1358,7 +1430,7 @@
       {
         "nome": "Waikiki",
         "tipo_slug": "cocktails",
-        "prezzo": "8,00",
+        "prezzo": "8.00",
         "descrizione": "Vodka e ananas fresco",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768297054/arconti31/hphwtg8yibhyjjgzwgal.jpg",
         "disponibile": true,
@@ -1371,7 +1443,7 @@
       {
         "nome": "Arconti summer",
         "tipo_slug": "analcolici",
-        "prezzo": "7,00",
+        "prezzo": "7.00",
         "descrizione": "Mirtillo, ananas, papaja",
         "disponibile": true,
         "order": 0,
@@ -1390,7 +1462,7 @@
       {
         "nome": "Come on",
         "tipo_slug": "analcolici",
-        "prezzo": "7,00",
+        "prezzo": "7.00",
         "descrizione": "Pompelmo, ananas, maracuja",
         "disponibile": true,
         "order": 1,
@@ -1410,7 +1482,7 @@
       {
         "nome": "Florida",
         "tipo_slug": "analcolici",
-        "prezzo": "7,00",
+        "prezzo": "7.00",
         "descrizione": "Pompelmo, arancia, sweet and sour, soda",
         "disponibile": true,
         "order": 3,
@@ -1420,7 +1492,7 @@
       {
         "nome": "Gallarate beach",
         "tipo_slug": "analcolici",
-        "prezzo": "7,00",
+        "prezzo": "7.00",
         "descrizione": "Arancia, ananas, sweet and sour, fragola",
         "disponibile": true,
         "order": 4,
@@ -1430,7 +1502,7 @@
       {
         "nome": "Tropic star",
         "tipo_slug": "analcolici",
-        "prezzo": "7,00",
+        "prezzo": "7.00",
         "descrizione": "Arancia, maracuja, ananas",
         "disponibile": true,
         "order": 5,
@@ -1460,7 +1532,7 @@
       {
         "nome": "Mojito Analcolico",
         "tipo_slug": "analcolici",
-        "prezzo": "7,50",
+        "prezzo": "7.50",
         "descrizione": "Lime, zucchero, menta, Lemon Soda",
         "disponibile": true,
         "order": 8,
@@ -1492,7 +1564,7 @@
       {
         "nome": "Aranciata amara",
         "tipo_slug": "bibite",
-        "prezzo": "4,00",
+        "prezzo": "4.00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 1,
@@ -1502,7 +1574,7 @@
       {
         "nome": "Chinotto",
         "tipo_slug": "bibite",
-        "prezzo": "4,00",
+        "prezzo": "4.00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 2,
@@ -1512,7 +1584,7 @@
       {
         "nome": "Coca cola",
         "tipo_slug": "bibite",
-        "prezzo": "4,50",
+        "prezzo": "4.50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 3,
@@ -1522,7 +1594,7 @@
       {
         "nome": "Coca cola zero",
         "tipo_slug": "bibite",
-        "prezzo": "4,50",
+        "prezzo": "4.50",
         "formato": "Bottiglia vetro 33cl",
         "disponibile": true,
         "order": 4,
@@ -1532,7 +1604,7 @@
       {
         "nome": "Fanta",
         "tipo_slug": "bibite",
-        "prezzo": "4,00",
+        "prezzo": "4.00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 5,
@@ -1542,7 +1614,7 @@
       {
         "nome": "Lemonsoda",
         "tipo_slug": "bibite",
-        "prezzo": "4,00",
+        "prezzo": "4.00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 6,
@@ -1552,7 +1624,7 @@
       {
         "nome": "Red bull",
         "tipo_slug": "bibite",
-        "prezzo": "5,00",
+        "prezzo": "5.00",
         "descrizione": "Bevanda energetica",
         "formato": "33cl",
         "disponibile": true,
@@ -1563,7 +1635,7 @@
       {
         "nome": "Sprite",
         "tipo_slug": "bibite",
-        "prezzo": "4,00",
+        "prezzo": "4.00",
         "formato": "Lattina 33cl",
         "disponibile": true,
         "order": 8,
@@ -1573,7 +1645,7 @@
       {
         "nome": "Succhi di frutta",
         "tipo_slug": "bibite",
-        "prezzo": "3,50",
+        "prezzo": "3.50",
         "descrizione": "Mirtillo, pompelmo, ananas, arancia",
         "formato": "20cl",
         "disponibile": true,
@@ -1602,7 +1674,7 @@
       {
         "nome": "Ginger beer | Fever-Tree",
         "tipo_slug": "bibite",
-        "prezzo": "5,00",
+        "prezzo": "5.00",
         "descrizione": "Aroma di zenzero profondo",
         "disponibile": true,
         "order": 12,
@@ -1614,7 +1686,7 @@
       {
         "nome": "Caffè decaffeinato",
         "tipo_slug": "caffetteria",
-        "prezzo": "2,00",
+        "prezzo": "2.00",
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 0,
@@ -1624,7 +1696,7 @@
       {
         "nome": "Caffè espresso",
         "tipo_slug": "caffetteria",
-        "prezzo": "1,50",
+        "prezzo": "1.50",
         "descrizione": "In tazzina",
         "disponibile": true,
         "order": 1,
@@ -1634,7 +1706,7 @@
       {
         "nome": "Caffè shakerato",
         "tipo_slug": "caffetteria",
-        "prezzo": "3,50",
+        "prezzo": "3.50",
         "descrizione": "Lungo con ghiaccio e zucchero di canna",
         "disponibile": true,
         "order": 2,
@@ -1644,7 +1716,7 @@
       {
         "nome": "Cappuccino",
         "tipo_slug": "caffetteria",
-        "prezzo": "2,50",
+        "prezzo": "2.50",
         "disponibile": true,
         "order": 3,
         "_filename": "cappuccino.md",
@@ -1653,7 +1725,7 @@
       {
         "nome": "The e tisane",
         "tipo_slug": "caffetteria",
-        "prezzo": "3,00",
+        "prezzo": "3.00",
         "descrizione": "Selezione",
         "disponibile": true,
         "order": 4,
@@ -1663,7 +1735,7 @@
       {
         "nome": "Caffè macchiato",
         "tipo_slug": "caffetteria",
-        "prezzo": "2,00",
+        "prezzo": "2.00",
         "disponibile": true,
         "order": 5,
         "_filename": "caff-macchiato.md",
@@ -1696,7 +1768,7 @@
       {
         "nome": "Valdobbiadene Superiore DOCG Extra Dry Batìso",
         "tipo_slug": "bollicine",
-        "prezzo": "24,00",
+        "prezzo": "24.00",
         "descrizione": "Dai terreni ripidi e insidiosi e da una lunga sosta sui lieviti più nobili, una bollicina fine ed elegante. In bocca una vibrante energia accompagna sapidità e freschezza, con profumi di pera e mela decisa. Gradazione 11%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384266/arconti31/besbjscngkxq8xutkvxm.webp",
         "formato": "0,75L",
@@ -1720,7 +1792,7 @@
       {
         "nome": "Prosecco DOC Treviso Rosè Brut - La Tordera",
         "tipo_slug": "bollicine",
-        "prezzo": "22,00",
+        "prezzo": "22.00",
         "descrizione": "l nome Tor Sè nasce dall'incontro tra Tordera e Rosè, un binomio che unisce la Glera, da sempre identitaria per La Tordera, e il Pinot Nero varietà caratterizzante nella produzione di questo spumante. Colore: rosa tenue, pesca Perlage: fine e minuto, elegante. Profumo: sentori di piccoli frutti rossi, dalla fragolina di bosco al lampone, caratteristici del Pinot Nero, seguiti da pesca e fiori bianchi. Sapore: al palato si avverte la struttura superiore, con sensazioni setose e persistenti. In bocca è asciutto e fruttato, non tannico.",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768323860/arconti31/okyrfgpkeyzwlmniq8d4.jpg",
         "formato": "0,75L",
@@ -1742,7 +1814,7 @@
       {
         "nome": "21 Cuvée Millesimato Extra Dry",
         "tipo_slug": "bollicine",
-        "prezzo": "20,00",
+        "prezzo": "20.00",
         "descrizione": "Lombardia - Giallo paglierino, note mela verde, pera - Uve: Trebbiano-Garganega",
         "formato": "0,75L",
         "disponibile": true,
@@ -1753,7 +1825,7 @@
       {
         "nome": "Prosecco DOC Millesimato Extra Dry - Sant'Orsola",
         "tipo_slug": "bollicine",
-        "prezzo": "22,00",
+        "prezzo": "22.00",
         "descrizione": "2023",
         "disponibile": true,
         "order": 7,
@@ -1789,7 +1861,7 @@
       {
         "nome": "Greco 'Janare' - La Guardiense",
         "tipo_slug": "bianchi-fermi",
-        "prezzo": "22,00",
+        "prezzo": "22.00",
         "descrizione": "Il Greco del Sannio \"Janare\" è un vino bianco fresco e dalle note sapide, perfetto da accompagnare a menù di pesce o verdure. Al naso sviluppa note fragranti e tipiche di agrumi, pesca, mela verde, camomilla e sensazioni erbacee. Presenta un corpo equilibrato, limpido e scorrevole, energizzato da una vivace freschezza marina. Gradazione 13%",
         "immagine_copertina": "https://res.cloudinary.com/ducwseofw/image/upload/v1768384604/arconti31/uytm7jpotkw6cjoboxns.jpg",
         "formato": "0,75L",
@@ -1860,7 +1932,7 @@
       {
         "nome": "Nebbiolo d'Alba DOC \"VinumVitaEst\" 2021 - Terre del Barolo",
         "tipo_slug": "vini-rossi",
-        "prezzo": "25,00",
+        "prezzo": "25.00",
         "descrizione": "Rosso rubino, piccoli frutti rossi, spezie",
         "formato": "0,75L",
         "gradazione": "14%vol",
@@ -1919,14 +1991,13 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Jefferson",
+        "nome": "Amaro del ciclista",
         "prezzo": "5.00",
-        "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776195699/arconti31/dfvoyvmxr9trsadppsdi.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163489/arconti31/yvgvzsakhlsmdvdxjxqe.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "artigianali",
-        "_filename": "jefferson.md",
+        "_filename": "amaro-del-ciclista.md",
         "tipo": "Artigianali"
       },
       {
@@ -1941,25 +2012,13 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Bomba Carta ",
-        "prezzo": "6.00",
-        "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196284/arconti31/sthija9tdy0ysjlzwgcy.jpg",
-        "disponibile": false,
-        "order": 0,
-        "tipo_slug": "artigianali",
-        "_filename": "bomba-carta.md",
-        "tipo": "Artigianali"
-      },
-      {
-        "nome": "Mandragola - Carlo Alberto",
-        "prezzo": "6.00",
-        "descrizione": "Piemonte | 45% alc. È ispirato alla tradizione locale dei Setmin, guaritori dotati di conoscenze magiche tramandate attraverso generazioni. La ricetta prevede una miscela di 15 erbe, di cui solo otto vengono rivelate, mantenendo così il mistero e la potenza del prodotto. È intenso e balsamico, arricchito da note fresche di frutti, foglie e radici che ne sottolineano la complessità. Il Mandragola è ideale da gustare liscio.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
+        "nome": "Amaro Locale",
+        "prezzo": "5.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163501/arconti31/gcpulefeyrrjhacj6pr0.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "artigianali",
-        "_filename": "amaro-mandragola-carlo-alberto.md",
+        "_filename": "amaro-locale-1.md",
         "tipo": "Artigianali"
       },
       {
@@ -1974,14 +2033,25 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Bonaventura “erbe e spezie”",
-        "prezzo": "5.00",
-        "descrizione": "Treviso, Veneto | 30% alc.\nÈ realizzato partendo da acquavite d'uva (Prime Uve Nere) e unisce note di cannella, vaniglia e fava tonka a botaniche amare e balsamiche come genziana e china. ",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781902745/arconti31/k1b2ugtbs0wznewk85l6.jpg",
+        "nome": "Mandragola - Carlo Alberto",
+        "prezzo": "6.00",
+        "descrizione": "Piemonte | 45% alc. È ispirato alla tradizione locale dei Setmin, guaritori dotati di conoscenze magiche tramandate attraverso generazioni. La ricetta prevede una miscela di 15 erbe, di cui solo otto vengono rivelate, mantenendo così il mistero e la potenza del prodotto. È intenso e balsamico, arricchito da note fresche di frutti, foglie e radici che ne sottolineano la complessità. Il Mandragola è ideale da gustare liscio.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1774017301/arconti31/lbx5hac8tdcaanz3jtuk.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "artigianali",
-        "_filename": "bonaventura-erbe-e-spezie.md",
+        "_filename": "amaro-mandragola-carlo-alberto.md",
+        "tipo": "Artigianali"
+      },
+      {
+        "nome": "Bomba Carta ",
+        "prezzo": "6.00",
+        "descrizione": "Oristano, Sardegna | 33% alc. \nBase intensa di erbe spontanee (timo, artemisia, elicriso, iperico) e miele di corbezzolo. \nOffre un gusto pieno, avvolgente e aromatico, che richiama la macchia mediterranea.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196284/arconti31/sthija9tdy0ysjlzwgcy.jpg",
+        "disponibile": false,
+        "order": 0,
+        "tipo_slug": "artigianali",
+        "_filename": "bomba-carta.md",
         "tipo": "Artigianali"
       },
       {
@@ -1996,23 +2066,25 @@
         "tipo": "Artigianali"
       },
       {
-        "nome": "Amaro del ciclista",
+        "nome": "Bonaventura “erbe e spezie”",
         "prezzo": "5.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163489/arconti31/yvgvzsakhlsmdvdxjxqe.jpg",
+        "descrizione": "Treviso, Veneto | 30% alc.\nÈ realizzato partendo da acquavite d'uva (Prime Uve Nere) e unisce note di cannella, vaniglia e fava tonka a botaniche amare e balsamiche come genziana e china. ",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1781902745/arconti31/k1b2ugtbs0wznewk85l6.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "artigianali",
-        "_filename": "amaro-del-ciclista.md",
+        "_filename": "bonaventura-erbe-e-spezie.md",
         "tipo": "Artigianali"
       },
       {
-        "nome": "Amaro Locale",
+        "nome": "Jefferson",
         "prezzo": "5.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1782163501/arconti31/gcpulefeyrrjhacj6pr0.jpg",
+        "descrizione": "Calabria | 30 alc.\nCaratterizzato da un gusto mediterraneo e complesso, è ottenuto da botaniche naturali come bergamotto, agrumi, rosmarino, origano ed eucalipto.\n",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776195699/arconti31/dfvoyvmxr9trsadppsdi.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "artigianali",
-        "_filename": "amaro-locale-1.md",
+        "_filename": "jefferson.md",
         "tipo": "Artigianali"
       },
       {
@@ -2047,6 +2119,17 @@
     ],
     "Classici": [
       {
+        "nome": "A. Lucano",
+        "prezzo": "4.00",
+        "descrizione": "Pisticci Basilicata | 28% alc. \nViene da una ricetta segreta che unisce oltre 30 erbe officinali, come artemisia e genziana.\nIl colore è bruno caramello, il gusto deciso ma equilibrato porta note agrumate e floreali.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196344/arconti31/xyhgfupnvkauo11czqjh.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "a-lucano.md",
+        "tipo": "Classici"
+      },
+      {
         "nome": "Amari da frigo ",
         "prezzo": "4.00",
         "descrizione": "Compreso di bicchiere freddo trovi: Amaro del Capo, Jägermeister, Mirto, Liquirizia, Limoncello e Silano. ",
@@ -2069,36 +2152,13 @@
         "tipo": "Classici"
       },
       {
-        "nome": "Montenegro",
+        "nome": "Branca Menta",
         "prezzo": "4.00",
-        "descrizione": "Bologna | 23% alc. \nProdotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194468/arconti31/alj5kepsvsp0ukl5vq6c.jpg",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "classici",
-        "_filename": "montenegro.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Vecchia Romagna",
-        "prezzo": "4.00",
-        "descrizione": "*brandy italiano del 1820 a Bologna | 38% alc.\nÈ un distillato di vino invecchiato in botti di rovere, noto per il suo colore ambrato, il gusto morbido e complesso con note di vaniglia.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194505/arconti31/yrcmunqgocsm3ovgnbdo.jpg",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "vecchia-romagna.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "A. Lucano",
-        "prezzo": "4.00",
-        "descrizione": "Pisticci Basilicata | 28% alc. \nViene da una ricetta segreta che unisce oltre 30 erbe officinali, come artemisia e genziana.\nIl colore è bruno caramello, il gusto deciso ma equilibrato porta note agrumate e floreali.",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776196344/arconti31/xyhgfupnvkauo11czqjh.jpg",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "a-lucano.md",
+        "_filename": "branca-menta.md",
         "tipo": "Classici"
       },
       {
@@ -2113,6 +2173,37 @@
         "tipo": "Classici"
       },
       {
+        "nome": "Fernet-Branca",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "fernet-branca.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Montenegro",
+        "prezzo": "4.00",
+        "descrizione": "Bologna | 23% alc. \nProdotto con una ricetta segreta che prevede l'infusione di 40 botaniche, offre note complesse di agrumi, spezie e sentori balsamici.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194468/arconti31/alj5kepsvsp0ukl5vq6c.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "montenegro.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "Petrus B.",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325307/arconti31/u8bntx9nlv47eql5davp.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "petrus-b.md",
+        "tipo": "Classici"
+      },
+      {
         "nome": "Ramazzotti ",
         "prezzo": "4.00",
         "descrizione": "Milano | 30% alc\nDal 1815, presenta una ricetta segreta che unisce 33 erbe, spezie, fiori e frutti, tra cui spiccano scorze d'arancia siciliana, anice stellato e cardamomo. \nSi distingue per il gusto armonico, dolceamaro e corposo.",
@@ -2121,6 +2212,16 @@
         "order": 0,
         "tipo_slug": "classici",
         "_filename": "ramazzotti.md",
+        "tipo": "Classici"
+      },
+      {
+        "nome": "San Simone",
+        "prezzo": "4.00",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "classici",
+        "_filename": "san-simone.md",
         "tipo": "Classici"
       },
       {
@@ -2135,77 +2236,18 @@
         "tipo": "Classici"
       },
       {
-        "nome": "Branca Menta",
+        "nome": "Vecchia Romagna",
         "prezzo": "4.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325271/arconti31/cvkmksij3ib9g75wq08o.jpg",
+        "descrizione": "*brandy italiano del 1820 a Bologna | 38% alc.\nÈ un distillato di vino invecchiato in botti di rovere, noto per il suo colore ambrato, il gusto morbido e complesso con note di vaniglia.",
+        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1776194505/arconti31/yrcmunqgocsm3ovgnbdo.jpg",
         "disponibile": true,
         "order": 0,
         "tipo_slug": "classici",
-        "_filename": "branca-menta.md",
+        "_filename": "vecchia-romagna.md",
         "tipo": "Classici"
-      },
-      {
-        "nome": "Fernet-Branca",
-        "prezzo": "4.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325284/arconti31/ow58843gxrarh8zhyxd7.jpg",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "fernet-branca.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "Petrus B.",
-        "prezzo": "4.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325307/arconti31/u8bntx9nlv47eql5davp.jpg",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "petrus-b.md",
-        "tipo": "Classici"
-      },
-      {
-        "nome": "San Simone",
-        "prezzo": "4.00",
-        "immagine_avatar": "https://res.cloudinary.com/ducwseofw/image/upload/v1777325323/arconti31/cmwauaca1hixcc45qxv6.jpg",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "classici",
-        "_filename": "san-simone.md",
-        "tipo": "Classici"
-      }
-    ],
-    "I nostri Rum": [
-      {
-        "nome": "Diplomatico - Reserva Exclusiva",
-        "prezzo": "0.00",
-        "disponibile": false,
-        "order": 0,
-        "tipo_slug": "i-nostri-rum",
-        "_filename": "diplomatico-reserva-exclusiva.md",
-        "tipo": "I nostri Rum"
       }
     ],
     "Grappe & Distillati": [
-      {
-        "nome": "Grappa Barricata ",
-        "prezzo": "5.50",
-        "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "grappe",
-        "_filename": "grappa-barricata.md",
-        "tipo": "Grappe & Distillati"
-      },
-      {
-        "nome": "Grappa Bianca ",
-        "prezzo": "4.50",
-        "disponibile": true,
-        "order": 0,
-        "tipo_slug": "grappe",
-        "_filename": "grappa-bianca.md",
-        "tipo": "Grappe & Distillati"
-      },
       {
         "nome": "Génépi Nature - Savio ",
         "prezzo": "5.00",
@@ -2215,6 +2257,16 @@
         "order": 0,
         "tipo_slug": "grappe",
         "_filename": "genepi-nature-savio.md",
+        "tipo": "Grappe & Distillati"
+      },
+      {
+        "nome": "Grappa Barricata ",
+        "prezzo": "5.50",
+        "descrizione": "- Segnana \n- 18 Lune \n- 903 ",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "grappe",
+        "_filename": "grappa-barricata.md",
         "tipo": "Grappe & Distillati"
       },
       {
@@ -2229,6 +2281,15 @@
         "tipo": "Grappe & Distillati"
       },
       {
+        "nome": "Grappa Bianca ",
+        "prezzo": "4.50",
+        "disponibile": true,
+        "order": 0,
+        "tipo_slug": "grappe",
+        "_filename": "grappa-bianca.md",
+        "tipo": "Grappe & Distillati"
+      },
+      {
         "nome": "Riserva Privata di Amarone Barricata -  Distilleria Bottega ",
         "prezzo": "7.00",
         "descrizione": "Veneto | 43% Vol.\nFrutto della distillazione delle bucce dell’uva fermentate di Amarone della Valpolicella. Il lungo affinamento in legno gli conferisce il caratteristico colore ambrato intenso e ne arricchisce il bouquet, dando vita ad una grappa suadente ed intrigante.\nIntensa ed avvolgente, presenta un bouquet complesso che, a partire dai sentori di miele e di vaniglia, evolve nell’aroma di cacao per finire in un delicato e affascinante speziato.\n.\n\n\n",
@@ -2238,6 +2299,89 @@
         "tipo_slug": "grappe",
         "_filename": "riserva-privata-di-amarone-barricata-distilleria-b.md",
         "tipo": "Grappe & Distillati"
+      }
+    ],
+    "I nostri Rum": [
+      {
+        "nome": "Diplomatico - Reserva Exclusiva",
+        "prezzo": "0.00",
+        "disponibile": false,
+        "order": 0,
+        "tipo_slug": "i-nostri-rum",
+        "_filename": "diplomatico-reserva-exclusiva.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Matusalem Solera 7 Years Old",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "matusalem-solera-7-years-old.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Pampero Aniversario",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "pampero-aniversario.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Rum Brugal Anejo Superior",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "rum-brugal-anejo-superior.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Rum Bumbu",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "rum-bumbu.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Rum Pampero Especial",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "rum-pampero-especial.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Saint James Royal Ambré",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "saint-james.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Santa Teresa Anejo Gran Reserva",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "santa-teresa-anejo-gran-reserva.md",
+        "tipo": "I nostri Rum"
+      },
+      {
+        "nome": "Zacapa Solera Gran Reserva",
+        "tipo_slug": "i-nostri-rum",
+        "prezzo": "10.00",
+        "disponibile": true,
+        "order": 0,
+        "_filename": "zacapa-solera-gran-reserva.md",
+        "tipo": "I nostri Rum"
       }
     ],
     "Old Tom": [

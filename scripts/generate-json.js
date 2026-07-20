@@ -4,15 +4,22 @@ const {
   BASE_BEVERAGE_CATEGORIES,
   getFilenameBase,
   getCategoryFolder,
+  normalizePrice,
   normalizeSlug,
   parseFrontmatter
 } = require('../lib/menu-utils');
+const { cleanupOrphanRumDir } = require('./_merge-rum-cleanup');
 
+const ROOT = path.join(__dirname, '..');
 const buildErrors = [];
+const buildWarnings = [];
+
+// DATA-001: merge legacy i-nostri-rum/ → i-nostri-rhum/ (cleanup cartella orfana)
+cleanupOrphanRumDir();
 
 // Processa categorie dinamiche PRIMA di tutto
 function loadCategories() {
-  const categoriesDir = path.join(__dirname, '../categorie');
+  const categoriesDir = path.join(ROOT, 'categorie');
   const categories = [];
   
   if (fs.existsSync(categoriesDir)) {
@@ -22,13 +29,17 @@ function loadCategories() {
       try {
         const content = fs.readFileSync(path.join(categoriesDir, file), 'utf8');
         const cat = parseFrontmatter(content);
-        if (cat) {
-          cat._filename = file;
-          // INCLUDE TUTTE LE CATEGORIE nel JSON
-          // Il filtro visibile deve essere fatto dal frontend (app.js), non qui.
-          // Altrimenti il CMS non vede le categorie nascoste e non può riattivarle.
-          categories.push(cat);
+        if (cat === null) {
+          const msg = `categorie/${file}: frontmatter assente`;
+          console.error(msg);
+          buildErrors.push(msg);
+          return;
         }
+        cat._filename = file;
+        // INCLUDE TUTTE LE CATEGORIE nel JSON
+        // Il filtro visibile deve essere fatto dal frontend (app.js), non qui.
+        // Altrimenti il CMS non vede le categorie nascoste e non può riattivarle.
+        categories.push(cat);
       } catch (error) {
         console.error(`Errore nel processare categoria ${file}:`, error.message);
         buildErrors.push(`categorie/${file}: ${error.message}`);
@@ -63,6 +74,26 @@ function findCategoryByReference(categories = [], value, typeMenu = null) {
   ) || null;
 }
 
+function applyNormalizedPrice(item, relativePath) {
+  if (item.prezzo === undefined || item.prezzo === null || item.prezzo === '') {
+    return;
+  }
+
+  const normalized = normalizePrice(item.prezzo);
+  if (normalized === null) {
+    buildWarnings.push(`${relativePath}: prezzo non valido "${item.prezzo}"`);
+    item.prezzo = String(item.prezzo);
+    return;
+  }
+
+  const numeric = Number(normalized);
+  if (!Number.isFinite(numeric) || numeric === 0) {
+    buildWarnings.push(`${relativePath}: prezzo = ${normalized} (0 o non numerico)`);
+  }
+
+  item.prezzo = normalized;
+}
+
 function processCollection(dirPath, itemType) {
   const items = [];
   
@@ -70,17 +101,25 @@ function processCollection(dirPath, itemType) {
     const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.md'));
     
     files.forEach(file => {
+      const fullPath = path.join(dirPath, file);
+      const relativePath = path.relative(ROOT, fullPath);
       try {
-        const content = fs.readFileSync(path.join(dirPath, file), 'utf8');
+        const content = fs.readFileSync(fullPath, 'utf8');
 
         const item = parseFrontmatter(content);
-        if (item) {
-          item._filename = file;
-          items.push(item);
+        if (item === null) {
+          const msg = `${relativePath}: frontmatter assente`;
+          console.error(msg);
+          buildErrors.push(msg);
+          return;
         }
+
+        item._filename = file;
+        applyNormalizedPrice(item, relativePath);
+        items.push(item);
       } catch (error) {
         console.error(`Errore nel processare ${file}:`, error.message);
-        buildErrors.push(`${path.relative(path.join(__dirname, '..'), path.join(dirPath, file))}: ${error.message}`);
+        buildErrors.push(`${relativePath}: ${error.message}`);
       }
     });
   }
@@ -91,8 +130,65 @@ function processCollection(dirPath, itemType) {
   return items;
 }
 
+// Directory di sistema / non-collection da escludere dalla scansione orphan
+const IGNORED_TOP_LEVEL_DIRS = new Set([
+  'node_modules',
+  'admin',
+  'js',
+  'css',
+  'images',
+  'lib',
+  'scripts',
+  'netlify',
+  'beverages',
+  'categorie',
+  'beers',
+  'food',
+  '.git',
+  '.netlify'
+]);
+
+/**
+ * Warning per directory top-level che contengono .md (sembrano collection beverage)
+ * ma non sono referenziate da alcuna categoria folder.
+ */
+function warnOrphanBeverageDirs(referencedFolders) {
+  let entries;
+  try {
+    entries = fs.readdirSync(ROOT, { withFileTypes: true });
+  } catch {
+    return;
+  }
+
+  const referenced = new Set(
+    [...referencedFolders].map(f => normalizeSlug(f)).filter(Boolean)
+  );
+
+  entries.forEach(entry => {
+    if (!entry.isDirectory()) return;
+    if (entry.name.startsWith('.')) return;
+    if (IGNORED_TOP_LEVEL_DIRS.has(entry.name)) return;
+
+    const dirPath = path.join(ROOT, entry.name);
+    let hasMd = false;
+    try {
+      hasMd = fs.readdirSync(dirPath).some(f => f.endsWith('.md'));
+    } catch {
+      return;
+    }
+    if (!hasMd) return;
+
+    const folderSlug = normalizeSlug(entry.name);
+    if (!referenced.has(folderSlug)) {
+      const msg = `Directory beverage-like non referenziata da categorie: ${entry.name}/`;
+      console.warn(`⚠️  ${msg}`);
+      buildWarnings.push(msg);
+    }
+  });
+}
+
 // Processa birre
-const beersDir = path.join(__dirname, '../beers');
+const beersDir = path.join(ROOT, 'beers');
 const beers = processCollection(beersDir, 'beer');
 const beverageCategoriesList = dynamicCategories.filter(c => c.tipo_menu === 'beverage');
 
@@ -117,7 +213,7 @@ beers.forEach(beer => {
 });
 
 // Processa food (NUOVO)
-const foodDir = path.join(__dirname, '../food');
+const foodDir = path.join(ROOT, 'food');
 const foodItems = processCollection(foodDir, 'food');
 const foodCategoriesList = dynamicCategories.filter(c => c.tipo_menu === 'food');
 
@@ -183,7 +279,7 @@ const beveragesByType = {};
 let totalBeverages = 0;
 
 allBeverageFolders.forEach(category => {
-  const dir = path.join(__dirname, `../${category.folder}`);
+  const dir = path.join(ROOT, category.folder);
   const items = processCollection(dir, 'beverage');
   
   // Aggiungi il tipo a ogni item
@@ -198,11 +294,33 @@ allBeverageFolders.forEach(category => {
   }
 });
 
+// Warning: directory top-level beverage-like non referenziate da un folder di categoria
+// (solo folder reali usati dal build — non slug/alias di naming)
+const referencedFolders = new Set(allBeverageFolders.map(c => c.folder));
+dynamicCategories
+  .filter(c => c.tipo_menu === 'beverage')
+  .forEach(cat => {
+    const folder = getCategoryFolder(cat);
+    if (folder) referencedFolders.add(folder);
+    if (cat.folder) referencedFolders.add(cat.folder);
+  });
+// beers/food processati separatamente — non orphan
+referencedFolders.add('beers');
+referencedFolders.add('food');
+BASE_BEVERAGE_CATEGORIES.forEach(c => referencedFolders.add(c.folder));
+
+warnOrphanBeverageDirs(referencedFolders);
+
 // Crea array piatto di tutte le bevande
 const allBeverages = [];
 Object.values(beveragesByType).forEach(items => {
   allBeverages.push(...items);
 });
+
+if (buildWarnings.length > 0) {
+  console.warn(`\n⚠️  ${buildWarnings.length} warning(s):`);
+  buildWarnings.forEach(w => console.warn(`- ${w}`));
+}
 
 if (buildErrors.length > 0) {
   console.error('\n❌ Build interrotta: trovati file markdown non validi.');
@@ -216,7 +334,7 @@ const beersOutput = {
   beersBySection 
 };
 fs.writeFileSync(
-  path.join(__dirname, '../beers/beers.json'),
+  path.join(ROOT, 'beers/beers.json'),
   JSON.stringify(beersOutput, null, 2)
 );
 
@@ -228,7 +346,7 @@ const foodOutput = {
 };
 if (!fs.existsSync(foodDir)) fs.mkdirSync(foodDir);
 fs.writeFileSync(
-  path.join(__dirname, '../food/food.json'),
+  path.join(ROOT, 'food/food.json'),
   JSON.stringify(foodOutput, null, 2)
 );
 
@@ -238,7 +356,7 @@ const categoriesOutput = {
   foodCategories: dynamicCategories.filter(c => c.tipo_menu === 'food'),
   beverageCategories: dynamicCategories.filter(c => c.tipo_menu === 'beverage')
 };
-const categoriesDir = path.join(__dirname, '../categorie');
+const categoriesDir = path.join(ROOT, 'categorie');
 if (!fs.existsSync(categoriesDir)) fs.mkdirSync(categoriesDir);
 fs.writeFileSync(
   path.join(categoriesDir, 'categorie.json'),
@@ -250,7 +368,7 @@ const beveragesOutput = {
   beveragesByType 
 };
 // Ensure beverages dir exists
-const beveragesDir = path.join(__dirname, '../beverages');
+const beveragesDir = path.join(ROOT, 'beverages');
 if (!fs.existsSync(beveragesDir)) fs.mkdirSync(beveragesDir);
 
 fs.writeFileSync(

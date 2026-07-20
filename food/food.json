@@ -36,6 +36,19 @@
       "_filename": "arnate-calcio.md"
     },
     {
+      "nome": "Carne salada",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "12.00",
+      "descrizione": "Carne salada del Trentino tagliata a carpaccio su un letto di rucola, condita con olio, sale e pepe, terminata con scaglie di grana.",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "carne-salada.md"
+    },
+    {
       "nome": "Crostata di albicocche ",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -92,23 +105,6 @@
       "order": 0,
       "category_slug": "panini",
       "_filename": "madonna-in-campagna.md"
-    },
-    {
-      "nome": "Hamburger F1 Bufala",
-      "category": "Hamburger di bufala",
-      "prezzo": "15.50",
-      "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
-      "allergeni": [
-        "Glutine",
-        "Uova"
-      ],
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "hamburger-bufala",
-      "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
     },
     {
       "nome": "Profitterol al cioccolato bianco",
@@ -253,6 +249,19 @@
       "_filename": "soffice-cremoso.md"
     },
     {
+      "nome": "Tagliata di diaframma ",
+      "category": "Piatti Speciali e griglieria",
+      "prezzo": "18.00",
+      "descrizione": "200 grammi di diaframma accompagnato da patatine fritte o verdure miste.",
+      "tags": [
+        "Novità"
+      ],
+      "disponibile": true,
+      "order": 0,
+      "category_slug": "piatti-speciali-e-griglieria",
+      "_filename": "tagliata-di-diaframma.md"
+    },
+    {
       "nome": "Torta soffice alle mele🍎👵🏻",
       "category": "Dolci",
       "prezzo": "6.00",
@@ -327,32 +336,6 @@
       "_filename": "verdure-pastellate.md"
     },
     {
-      "nome": "Carne salada",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "12.00",
-      "descrizione": "Carne salada del Trentino tagliata a carpaccio su un letto di rucola, condita con olio, sale e pepe, terminata con scaglie di grana.",
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "carne-salada.md"
-    },
-    {
-      "nome": "Tagliata di diaframma ",
-      "category": "Piatti Speciali e griglieria",
-      "prezzo": "18.00",
-      "descrizione": "200 grammi di diaframma accompagnato da patatine fritte o verdure miste.",
-      "tags": [
-        "Novità"
-      ],
-      "disponibile": true,
-      "order": 0,
-      "category_slug": "piatti-speciali-e-griglieria",
-      "_filename": "tagliata-di-diaframma.md"
-    },
-    {
       "nome": "Bacon burger",
       "category": "Hamburger Fassona e Street food",
       "prezzo": "14.00",
@@ -376,7 +359,7 @@
       "nome": "Hamburger F1 Bufala",
       "category": "Hamburger di bufala",
       "category_slug": "hamburger-bufala",
-      "prezzo": "15.5",
+      "prezzo": "15.50",
       "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da un cestino di patatine fritte.",
       "allergeni": [
         "Uova",
@@ -767,7 +750,7 @@
       "nome": "Tartare di manzo battuta a coltello",
       "category": "Piatti Speciali e griglieria",
       "category_slug": "piatti-speciali-e-griglieria",
-      "prezzo": "18,50",
+      "prezzo": "18.50",
       "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
       "tags": [
         "Più venduto",
@@ -911,7 +894,7 @@
       "nome": "Sex on the meat",
       "category": "Piatti Speciali e griglieria",
       "category_slug": "piatti-speciali-e-griglieria",
-      "prezzo": "16",
+      "prezzo": "16.00",
       "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
       "tags": [
         "Novità",
@@ -1209,29 +1192,13 @@
         "_filename": "cajello-vegano.md"
       }
     ],
+    "Menù Partita": [],
     "Hamburger di bufala": [
       {
         "nome": "Hamburger F1 Bufala",
         "category": "Hamburger di bufala",
+        "category_slug": "hamburger-bufala",
         "prezzo": "15.50",
-        "descrizione": "Hamburger di bufala (220 gr) dall’ allevamento “Facchi” diOleggio con tomino, speck, guarnito con salsa rosa accompagnato da cesto patatine fritte. Coperto 1€",
-        "allergeni": [
-          "Glutine",
-          "Uova"
-        ],
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "hamburger-bufala",
-        "_filename": "map-disponibile-true-order-0-category-hamburger-di-bufala-nome-hamburger-f1-bufala-prezzo-15-5-allergeni-list-uova-glutine-lattosio-descrizione-hamburger-di-bufala-220-gr-con-tomino-speck-guarnito-con-sals.md"
-      },
-      {
-        "nome": "Hamburger F1 Bufala",
-        "category": "Hamburger di bufala",
-        "category_slug": "hamburger-bufala",
-        "prezzo": "15.5",
         "descrizione": "Hamburger di bufala (220 gr) con tomino, speck, guarnito con salsa rosa e accompagnato da un cestino di patatine fritte.",
         "allergeni": [
           "Uova",
@@ -1650,6 +1617,19 @@
     ],
     "Piatti Speciali e griglieria": [
       {
+        "nome": "Carne salada",
+        "category": "Piatti Speciali e griglieria",
+        "prezzo": "12.00",
+        "descrizione": "Carne salada del Trentino tagliata a carpaccio su un letto di rucola, condita con olio, sale e pepe, terminata con scaglie di grana.",
+        "tags": [
+          "Novità"
+        ],
+        "disponibile": true,
+        "order": 0,
+        "category_slug": "piatti-speciali-e-griglieria",
+        "_filename": "carne-salada.md"
+      },
+      {
         "nome": "PULLED BEEF",
         "category": "Piatti Speciali e griglieria",
         "prezzo": "16.00",
@@ -1709,19 +1689,6 @@
         "order": 0,
         "category_slug": "piatti-speciali-e-griglieria",
         "_filename": "salmon-burger.md"
-      },
-      {
-        "nome": "Carne salada",
-        "category": "Piatti Speciali e griglieria",
-        "prezzo": "12.00",
-        "descrizione": "Carne salada del Trentino tagliata a carpaccio su un letto di rucola, condita con olio, sale e pepe, terminata con scaglie di grana.",
-        "tags": [
-          "Novità"
-        ],
-        "disponibile": true,
-        "order": 0,
-        "category_slug": "piatti-speciali-e-griglieria",
-        "_filename": "carne-salada.md"
       },
       {
         "nome": "Tagliata di diaframma ",
@@ -1858,7 +1825,7 @@
         "nome": "Tartare di manzo battuta a coltello",
         "category": "Piatti Speciali e griglieria",
         "category_slug": "piatti-speciali-e-griglieria",
-        "prezzo": "18,50",
+        "prezzo": "18.50",
         "descrizione": "Manzo 250gr, olio, senape, verdure stagione",
         "tags": [
           "Più venduto",
@@ -1872,7 +1839,7 @@
         "nome": "Sex on the meat",
         "category": "Piatti Speciali e griglieria",
         "category_slug": "piatti-speciali-e-griglieria",
-        "prezzo": "16",
+        "prezzo": "16.00",
         "descrizione": "Pane hamburger artigianale con  picanha grigliata tagliata fine, peperoni grigliati, cipolle caramellate, fontina, black-maio, cestino patatine stick come contorno",
         "tags": [
           "Novità",
@@ -2287,6 +2254,7 @@
   },
   "categoryOrder": {
     "Vegetariano/ Vegano ": 0,
+    "Menù Partita": 2,
     "Hamburger di bufala": 3,
     "Hamburger Fassona e Street food": 4,
     "Panini Ciabatta": 5,

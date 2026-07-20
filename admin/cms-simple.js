@@ -4,14 +4,13 @@
    Upload immagini via Cloudinary
    ======================================== */
 
+// CMS parla solo con le Netlify Functions (/.netlify/functions/*).
+// Il repo GitHub target è definito dalle env Netlify (REPO_OWNER, REPO_NAME, GITHUB_TOKEN).
 const CONFIG = {
-  owner: 'Massimilianociconte',
-  repo: 'Arconti31',
-  branch: 'main',
-  // Cloudinary config - GRATUITO fino a 25GB
+  // Cloudinary config - GRATUITO fino a 25GB (valorizzato a runtime da get-cloudinary-config)
   cloudinary: {
-    cloudName: '', // Da configurare
-    uploadPreset: '' // Da configurare
+    cloudName: '',
+    uploadPreset: ''
   }
 };
 
@@ -182,7 +181,12 @@ let state = {
   searchTimeout: null,
   globalSearchTimeout: null,
   categoryFilters: { tipo: null, image: null },
-  selectedItems: [] // For bulk selection
+  selectedItems: [], // For bulk selection
+  isSaving: false,
+  isDeleting: false,
+  formDirty: false,
+  isOffline: typeof navigator !== 'undefined' ? !navigator.onLine : false,
+  repoTarget: null // { owner, repo, branch } se whoami/save lo espongono
 };
 
 // DOM helpers
@@ -364,16 +368,13 @@ async function init() {
           .filter(i => i._collection === state.currentCollection && !i._deleted)
           .sort((a, b) => (a.order || 0) - (b.order || 0));
         
-        // Deduplicate by nome (handles orphaned entries from filename corrections)
-        const seenNomi = new Set();
+        // Dedup solo per filename (mai per nome)
+        const seenFiles = new Set();
         collectionItems = collectionItems.filter(item => {
-          const key = (item.nome || '').trim().toLowerCase();
+          const key = (item.filename || item._filename || item.id || '').toString();
           if (!key) return true;
-          if (seenNomi.has(key)) {
-            window.SmartCache.delete('items', item.id || item.filename).catch(() => {});
-            return false;
-          }
-          seenNomi.add(key);
+          if (seenFiles.has(key)) return false;
+          seenFiles.add(key);
           return true;
         });
 
@@ -396,38 +397,117 @@ async function init() {
 
   await checkCloudinaryConfig();
   setupEventListeners();
+  setupOfflineHandling();
 
   // Check for saved session (Ricordami)
   const { session: savedSession } = getStoredSession();
   if (savedSession) {
-    try {
-      const res = await fetch('/.netlify/functions/save-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'verify-token', token: savedSession.token })
-      });
-      if (res.ok) {
-        state.token = savedSession.token;
-        state.email = savedSession.email || '';
-        state.isLoggedIn = true;
-        state.currentCollection = savedSession.lastCollection || 'food';
-        showMainApp();
-        loadAllData();
-        toast('Bentornato!', 'success');
-        return;
-      } else {
-        // Token expired or invalid - clear session silently
-        console.log('🔄 Sessione scaduta, richiesto nuovo login');
-        clearStoredSessions();
-      }
-    } catch (e) {
-      // Network error or parse error - clear session
-      console.log('🔄 Errore verifica sessione, richiesto nuovo login');
-      clearStoredSessions();
+    const verified = await verifyStoredSession(savedSession);
+    if (verified === true) return;
+    if (verified === 'network') {
+      // Network error: NON clear session — mostra retry
+      showSessionRetry(savedSession);
+      return;
     }
+    // verified === false → sessione invalida già pulita
   }
 
   showLoginScreen();
+}
+
+/**
+ * Verifica sessione salvata.
+ * @returns {true|false|'network'} true = ok e app avviata; false = invalida; 'network' = rete assente
+ */
+async function verifyStoredSession(savedSession) {
+  try {
+    const res = await fetch('/.netlify/functions/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify-token', token: savedSession.token })
+    });
+
+    let result = {};
+    try {
+      result = await res.json();
+    } catch (_) { /* body non JSON */ }
+
+    // Clear SOLO su 401 esplicito o valid:false
+    if (res.status === 401 || result.valid === false) {
+      console.log('🔄 Sessione scaduta, richiesto nuovo login');
+      clearStoredSessions();
+      return false;
+    }
+
+    if (res.ok && result.valid !== false) {
+      state.token = savedSession.token;
+      state.email = savedSession.email || result.email || '';
+      state.isLoggedIn = true;
+      state.currentCollection = savedSession.lastCollection || 'food';
+      hideSessionRetry();
+      showMainApp();
+      loadAllData();
+      fetchRepoTarget();
+      toast('Bentornato!', 'success');
+      return true;
+    }
+
+    // Altri errori HTTP (5xx, ecc.): non invalidare sessione
+    console.log('🔄 Verifica sessione non riuscita (HTTP ' + res.status + '), sessione conservata');
+    toast('Rete non disponibile, riprova', 'error');
+    return 'network';
+  } catch (e) {
+    // Network / fetch fail: NON clearStoredSessions
+    console.log('🔄 Errore rete verifica sessione, sessione conservata', e);
+    toast('Rete non disponibile, riprova', 'error');
+    return 'network';
+  }
+}
+
+function showSessionRetry(savedSession) {
+  const overlay = $('#loading-overlay');
+  if (!overlay) {
+    showLoginScreen();
+    return;
+  }
+  showLoading();
+  const p = overlay.querySelector('p');
+  if (p) p.textContent = 'Rete non disponibile';
+
+  let retryBtn = overlay.querySelector('#session-retry-btn');
+  if (!retryBtn) {
+    retryBtn = document.createElement('button');
+    retryBtn.id = 'session-retry-btn';
+    retryBtn.type = 'button';
+    retryBtn.className = 'btn btn-primary';
+    retryBtn.style.marginTop = '16px';
+    retryBtn.textContent = 'Riprova';
+    overlay.appendChild(retryBtn);
+  }
+  retryBtn.style.display = 'inline-flex';
+  retryBtn.onclick = async () => {
+    if (p) p.textContent = 'Caricamento...';
+    retryBtn.style.display = 'none';
+    const verified = await verifyStoredSession(savedSession);
+    if (verified === true) return;
+    if (verified === 'network') {
+      if (p) p.textContent = 'Rete non disponibile';
+      retryBtn.style.display = 'inline-flex';
+      return;
+    }
+    hideSessionRetry();
+    showLoginScreen();
+  };
+}
+
+function hideSessionRetry() {
+  const overlay = $('#loading-overlay');
+  if (!overlay) return;
+  const p = overlay.querySelector('p');
+  if (p) p.textContent = 'Caricamento...';
+  const retryBtn = overlay.querySelector('#session-retry-btn');
+  if (retryBtn) retryBtn.style.display = 'none';
+  hideLoading();
 }
 
 async function checkCloudinaryConfig() {
@@ -521,10 +601,10 @@ async function handleLogin(e) {
       })
     });
 
-    const result = await res.json();
+    const result = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-      throw new Error(result.error || 'Errore login');
+      throw new Error(mapApiError(res.status, result) || result.error || 'Errore login');
     }
 
     // Store token
@@ -541,9 +621,10 @@ async function handleLogin(e) {
     toast('Accesso effettuato!', 'success');
     showMainApp();
     loadAllData();
+    fetchRepoTarget();
   } catch (e) {
     console.error(e);
-    toast(e.message || 'Errore login', 'error');
+    toast(mapApiError(0, { error: e.message }) || 'Errore login', 'error');
   } finally {
     hideLoading();
   }
@@ -572,14 +653,20 @@ function showMainApp() {
   $('#main-app').classList.add('active');
 }
 
-function showListView() {
+function showListView(force = false) {
+  if (!force && state.formDirty && $('#edit-view')?.classList.contains('active')) {
+    if (!confirm('Modifiche non salvate. Uscire?')) return false;
+  }
+  state.formDirty = false;
   $('#list-view').classList.add('active');
   $('#edit-view').classList.remove('active');
+  return true;
 }
 
 function showEditView() {
   $('#list-view').classList.remove('active');
   $('#edit-view').classList.add('active');
+  updateOfflineUI();
 }
 
 function toggleSidebar() {
@@ -603,13 +690,187 @@ function closeSidebar() {
 function showLoading() { $('#loading-overlay').classList.add('active'); }
 function hideLoading() { $('#loading-overlay').classList.remove('active'); }
 
-function toast(message, type = 'info') {
+/** Toast: errori 8s, altri 3s */
+function toast(message, type = 'info', durationMs) {
   const container = $('#toast-container');
+  if (!container) return;
   const t = document.createElement('div');
   t.className = `toast ${type}`;
   t.textContent = message;
   container.appendChild(t);
-  setTimeout(() => t.remove(), 3000);
+  const ms = durationMs != null ? durationMs : (type === 'error' ? 8000 : 3000);
+  setTimeout(() => t.remove(), ms);
+}
+
+/** Mappa errori API comuni in messaggi IT user-friendly */
+function mapApiError(status, body = {}) {
+  const err = String(body.error || body.message || body.code || '');
+  const lower = err.toLowerCase();
+
+  if (status === 401 || lower.includes('sessione scaduta') || lower.includes('non valida') || lower.includes('unauthorized')) {
+    return 'Sessione scaduta. Accedi di nuovo.';
+  }
+  if (status === 403 || lower.includes('forbidden') || lower.includes('permess')) {
+    return 'Non hai i permessi per questa operazione.';
+  }
+  if (
+    status === 409 ||
+    lower.includes('conflitto') ||
+    lower.includes('already exists') ||
+    lower.includes('gia usata') ||
+    lower.includes('già usata') ||
+    lower.includes('esiste gia') ||
+    lower.includes('esiste già')
+  ) {
+    return 'Un altro ha modificato questo elemento. Ricarica e riprova.';
+  }
+  if (status === 429 || lower.includes('rate limit') || lower.includes('too many')) {
+    return 'Troppe richieste. Attendi un momento e riprova.';
+  }
+  if (
+    err.includes('REPO_CONFIG_MISSING') ||
+    err.includes('REPO_OWNER') ||
+    err.includes('REPO_NAME') ||
+    lower.includes('repo non configurat')
+  ) {
+    return 'Configurazione repository mancante. Contatta l\'amministratore.';
+  }
+  if (err.includes('GITHUB_TOKEN') || lower.includes('github_token') || lower.includes('token github')) {
+    return 'Token GitHub non configurato. Contatta l\'amministratore.';
+  }
+  if (!navigator.onLine || lower.includes('failed to fetch') || lower.includes('networkerror')) {
+    return 'Rete non disponibile, riprova';
+  }
+  return err || 'Errore imprevisto. Riprova.';
+}
+
+function isConflictResponse(status, body = {}) {
+  const err = String(body.error || body.message || '');
+  return status === 409 || /conflitto/i.test(err);
+}
+
+function notifyTargetRepo(target, prefix = 'Salvato su') {
+  if (target && target.owner && target.repo) {
+    state.repoTarget = target;
+    updateRepoBadge();
+    toast(`${prefix} ${target.owner}/${target.repo}`, 'info');
+    console.log(`[CMS] ${prefix} ${target.owner}/${target.repo}`, target.branch || '');
+  }
+}
+
+async function fetchRepoTarget() {
+  if (!state.token) return;
+  for (const action of ['whoami', 'health']) {
+    try {
+      const res = await fetch('/.netlify/functions/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, token: state.token })
+      });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const target = data.target || data.repo || null;
+      if (target && target.owner && target.repo) {
+        state.repoTarget = target;
+        updateRepoBadge();
+        return;
+      }
+    } catch (_) {
+      /* opzionale: ignora */
+    }
+  }
+}
+
+function updateRepoBadge() {
+  let badge = $('#repo-target-badge');
+  if (!state.repoTarget?.owner || !state.repoTarget?.repo) {
+    if (badge) badge.remove();
+    return;
+  }
+  if (!badge) {
+    badge = document.createElement('span');
+    badge.id = 'repo-target-badge';
+    badge.className = 'repo-target-badge';
+    badge.title = 'Repository di destinazione';
+    const header = $('.app-header');
+    if (header) header.appendChild(badge);
+    else return;
+  }
+  badge.textContent = `Repo: ${state.repoTarget.owner}/${state.repoTarget.repo}`;
+}
+
+// ========================================
+// OFFLINE
+// ========================================
+
+function setupOfflineHandling() {
+  state.isOffline = !navigator.onLine;
+  updateOfflineUI();
+
+  window.addEventListener('online', () => {
+    state.isOffline = false;
+    updateOfflineUI();
+    toast('Connessione ripristinata', 'success');
+  });
+
+  window.addEventListener('offline', () => {
+    state.isOffline = true;
+    updateOfflineUI();
+    toast('Sei offline. Salvataggio non disponibile.', 'error');
+  });
+}
+
+function updateOfflineUI() {
+  const offline = state.isOffline || !navigator.onLine;
+  state.isOffline = offline;
+
+  const banner = $('#offline-banner');
+  if (banner) {
+    banner.classList.toggle('show', offline);
+    if (!banner.textContent.trim()) {
+      banner.textContent = 'Sei offline — salvataggio e modifiche non disponibili';
+    }
+  }
+  document.body.classList.toggle('is-offline', offline);
+
+  const busy = state.isSaving || state.isDeleting;
+  const blockWrite = offline || busy;
+
+  const saveBtn = $('#save-btn');
+  const deleteBtn = $('#delete-btn');
+  if (saveBtn) {
+    saveBtn.disabled = blockWrite || state.isSaving;
+    saveBtn.title = offline ? 'Offline: salvataggio non disponibile' : '';
+  }
+  if (deleteBtn) {
+    deleteBtn.disabled = blockWrite || state.isDeleting;
+    deleteBtn.title = offline ? 'Offline: eliminazione non disponibile' : '';
+  }
+
+  document.querySelectorAll('.image-upload-btn').forEach(btn => {
+    btn.disabled = offline;
+    btn.title = offline ? 'Offline: upload non disponibile' : '';
+  });
+
+  ['#bulk-enable-btn', '#bulk-disable-btn'].forEach(sel => {
+    const el = $(sel);
+    if (el) {
+      el.disabled = offline;
+      el.title = offline ? 'Offline: operazione non disponibile' : '';
+    }
+  });
+
+  document.querySelectorAll('.item-card[draggable]').forEach(card => {
+    card.setAttribute('draggable', offline ? 'false' : 'true');
+  });
+}
+
+function guardOnline(actionLabel = 'operazione') {
+  if (state.isOffline || !navigator.onLine) {
+    toast(`Offline: ${actionLabel} non disponibile`, 'error');
+    return false;
+  }
+  return true;
 }
 
 
@@ -675,6 +936,30 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
       body: JSON.stringify(requestBody)
     });
 
+    // 503 json-miss: tieni cache (anti-wipe) — non azzerare la lista
+    if (res.status === 503) {
+      const errBody = await res.json().catch(() => ({}));
+      if (errBody.source === 'json-miss' || !forceApi) {
+        if (window.SmartCache) {
+          const cachedItems = await window.SmartCache.getAll('items');
+          const fromCache = cachedItems
+            .filter(i => i._collection === collectionName && !i._deleted)
+            .sort((a, b) => (a.order || 0) - (b.order || 0));
+          if (fromCache.length > 0) {
+            state.items = fromCache;
+            state.allItems[collectionName] = [...state.items];
+            renderItems();
+            if (!silent) toast('Dati temporaneamente non disponibili: mostro ultima versione in cache', 'info');
+            if (!silent) hideLoading();
+            return;
+          }
+        }
+        if (!silent) toast('Impossibile caricare i prodotti. Riprova.', 'error');
+        if (!silent) hideLoading();
+        return;
+      }
+    }
+
     if (!res.ok) {
       // 404 = folder doesn't exist yet (new category, no products) → treat as empty
       if (res.status === 404) {
@@ -688,37 +973,61 @@ async function loadItems(collectionName, silent = false, forceApi = false) {
     }
 
     const data = await res.json();
+
+    // json-miss / lista vuota sospetta: NON svuotare SmartCache né UI (anti-wipe prodotti)
+    if (data.source === 'json-miss' || (Array.isArray(data.items) && data.items.length === 0 && !forceApi)) {
+      if (window.SmartCache) {
+        const cachedItems = await window.SmartCache.getAll('items');
+        const fromCache = cachedItems
+          .filter(i => i._collection === collectionName && !i._deleted)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (fromCache.length > 0) {
+          console.warn(`[loadItems] ${collectionName}: remoto vuoto/json-miss — tengo ${fromCache.length} item in cache`);
+          state.items = fromCache;
+          state.allItems[collectionName] = [...state.items];
+          renderItems();
+          if (!silent) toast('Dati temporaneamente non disponibili: mostro ultima versione in cache', 'info');
+          if (!silent) hideLoading();
+          return;
+        }
+      }
+      // Cache vuota e remoto vuoto → lista vuota legittima (nuova categoria)
+      if (data.source === 'json-miss') {
+        if (!silent) toast('Impossibile caricare i prodotti (JSON non disponibile). Riprova.', 'error');
+        if (!silent) hideLoading();
+        return;
+      }
+    }
+
     // Usa parsedItem se disponibile (da JSON), altrimenti parse markdown
-    const items = data.items.map(item =>
+    const items = (data.items || []).map(item =>
       item.parsedItem
         ? { ...item.parsedItem, filename: item.filename, sha: item.sha }
         : parseMarkdown(item.content, item.filename, item.sha)
     );
     state.items = items.sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    // Update SmartCache with fresh data
+    // Update SmartCache (silent: un solo render a fine load)
     if (window.SmartCache) {
-      // Sync remote items (which might be stale) with cache
-      // If cache has fresher local writes, they will be preserved
-      await window.SmartCache.syncCollection(state.items, collectionName, forceApi ? 'live' : 'static');
+      await window.SmartCache.syncCollection(
+        state.items,
+        collectionName,
+        forceApi ? 'live' : 'static',
+        { silent: true, allowEmptyRemote: forceApi === true }
+      );
 
-      // Now get the authoritative list from cache
       const cachedItems = await window.SmartCache.getAll('items');
       state.items = cachedItems
         .filter(i => i._collection === collectionName && !i._deleted)
         .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-      // Deduplicate by nome (handles orphaned SmartCache entries from filename corrections)
-      const seenNomi = new Set();
+      // Dedup SOLO per filename (mai per nome: omonimi legittimi / Romagnola vs arnate-calcio)
+      const seenFiles = new Set();
       state.items = state.items.filter(item => {
-        const key = (item.nome || '').trim().toLowerCase();
+        const key = (item.filename || item._filename || item.id || '').toString();
         if (!key) return true;
-        if (seenNomi.has(key)) {
-          // Remove the duplicate from SmartCache too
-          window.SmartCache.delete('items', item.id || item.filename).catch(() => {});
-          return false;
-        }
-        seenNomi.add(key);
+        if (seenFiles.has(key)) return false;
+        seenFiles.add(key);
         return true;
       });
 
@@ -796,6 +1105,15 @@ function selectCollection(name, categoryFilter = null, beerSection = null) {
     toast(`Collezione "${name}" non configurata nel CMS`, 'error');
     return;
   }
+
+  // Dirty form: conferma prima di cambiare collection / uscire da edit
+  if (state.formDirty && $('#edit-view')?.classList.contains('active')) {
+    if (!confirm('Modifiche non salvate. Uscire?')) return;
+    state.formDirty = false;
+    $('#list-view').classList.add('active');
+    $('#edit-view').classList.remove('active');
+  }
+
   state.currentCollection = name;
   state.currentCategory = categoryFilter;
   state.currentBeerSection = beerSection;
@@ -1273,7 +1591,7 @@ function renderItems() {
   updateBulkActionsBar();
 
   if (!items.length) {
-    list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca "Nuovo" per aggiungere</p></div>';
+    list.innerHTML = '<div class="empty-state"><h3>Nessun elemento</h3><p>Clicca <strong>Nuovo</strong> per aggiungere il primo, oppure azzera i filtri di ricerca.</p></div>';
     return;
   }
   const collection = COLLECTIONS[state.currentCollection];
@@ -1332,6 +1650,7 @@ function renderItems() {
   
   // Setup drag and drop for reordering
   setupDragAndDrop();
+  updateOfflineUI();
 }
 
 function renderGroupedItems(items) {
@@ -1368,7 +1687,9 @@ function renderItemCard(item, showCheckbox = false) {
     thumb = '../' + thumb;
   }
 
-  const thumbHtml = thumb ? `<img src="${thumb}" class="item-thumb" alt="" onerror="this.style.display='none'">` : '<div class="item-thumb-placeholder">📷</div>';
+  const thumbHtml = thumb
+    ? `<img src="${thumb}" class="item-thumb" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">`
+    : '<div class="item-thumb-placeholder" aria-hidden="true">📷</div>';
 
   // For categories, show icon instead of price
   const isCategory = state.currentCollection === 'categorie';
@@ -1476,6 +1797,10 @@ function setupDragAndDrop() {
 }
 
 function handleDragStart(e) {
+  if (state.isOffline || !navigator.onLine) {
+    e.preventDefault();
+    return;
+  }
   const card = e.target.closest('.item-card');
   if (!card) return;
   
@@ -1528,6 +1853,7 @@ function handleDragLeave(e) {
 
 async function handleDrop(e) {
   e.preventDefault();
+  if (!guardOnline('riordino')) return;
   
   const targetCard = e.target.closest('.item-card');
   if (!targetCard || !draggedItem || targetCard === draggedItem) return;
@@ -1580,6 +1906,10 @@ function setupDragAndDropEvents() {
 
 async function saveNewOrder(changedItems) {
   if (!changedItems || changedItems.length === 0) return;
+  if (!guardOnline('riordino')) {
+    await loadItems(state.currentCollection, true);
+    return;
+  }
   
   const saveIndicator = document.createElement('div');
   saveIndicator.className = 'order-save-indicator';
@@ -1606,11 +1936,21 @@ async function saveNewOrder(changedItems) {
       })
     });
     
-    const result = await res.json();
+    const result = await res.json().catch(() => ({}));
     
     if (!res.ok) {
-      throw new Error(result.error || 'Errore salvataggio ordine');
+      if (isConflictResponse(res.status, result)) {
+        toast(mapApiError(res.status, result), 'error');
+        if (confirm('Un altro ha modificato questo elemento. Ricaricare la lista?')) {
+          await loadItems(state.currentCollection, false, true);
+        }
+        saveIndicator.remove();
+        return;
+      }
+      throw new Error(mapApiError(res.status, result) || result.error || 'Errore salvataggio ordine');
     }
+
+    notifyTargetRepo(result.target);
     
     // Update SmartCache for all changed items
     if (window.SmartCache) {
@@ -1865,6 +2205,7 @@ function updateBulkActionsBar() {
   // Update count
   bar.querySelector('.bulk-count').textContent = count;
   bar.classList.add('active');
+  updateOfflineUI();
 }
 
 function clearBulkSelection() {
@@ -1878,150 +2219,74 @@ function clearBulkSelection() {
 async function bulkSetVisibility(visible) {
   const count = state.selectedItems.length;
   if (count === 0) return;
+  if (!guardOnline('operazioni bulk')) return;
 
-  const action = visible ? 'rendere visibili' : 'nascondere';
-  if (!confirm(`Vuoi ${action} ${count} categorie?`)) return;
+  const actionLabel = visible ? 'rendere visibili' : 'nascondere';
+  if (!confirm(`Vuoi ${actionLabel} ${count} categorie?`)) return;
 
   showLoading();
+  state._isUpdating = true;
 
   try {
-    // Prima ottieni tutti gli SHA freschi in un'unica chiamata (USARE API PER EVITARE DATI STALE)
-    const fetchRes = await fetch('/.netlify/functions/read-data', {
+    // Un solo commit atomico server-side (patch solo visibile + JSON) — zero N PUT + no desync
+    const res = await fetch('/.netlify/functions/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ folder: 'categorie', mode: 'api', token: state.token, filenames: state.selectedItems })
+      body: JSON.stringify({
+        token: state.token,
+        action: 'batch-set-visibility',
+        collection: 'categorie',
+        visibile: visible,
+        items: state.selectedItems.map(filename => ({ filename }))
+      })
     });
 
-    let freshData = [];
-    if (fetchRes.ok) {
-      const data = await fetchRes.json();
-      freshData = data.items;
+    const result = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(result.error || 'Errore bulk visibility');
     }
 
-    // Prepara gli items da aggiornare
-    const itemsToUpdate = [];
+    const updated = result.updated || 0;
+
+    // Aggiorna UI/cache locale senza riscrivere altri campi
     for (const filename of state.selectedItems) {
       const item = state.items.find(i => i.filename === filename);
-      if (!item) continue;
-
-      const freshItem = findFreshItem(freshData, filename, item.nome);
-      // Correct filename if matched by name
-      let correctedFilename = filename;
-      if (freshItem && freshItem.filename !== filename) {
-        console.log(`Filename corrected: ${filename} → ${freshItem.filename}`);
-        correctedFilename = freshItem.filename;
-        item.filename = correctedFilename;
-        // Remove orphaned SmartCache entry with old filename
-        if (window.SmartCache) {
-          await window.SmartCache.delete('items', filename);
-        }
-      }
-      const sha = freshItem?.sha || item.sha;
-
-      if (sha) {
-        itemsToUpdate.push({ filename: correctedFilename, item, sha });
-      }
-    }
-
-    // Esegui le richieste SEQUENZIALMENTE per evitare conflitti git
-    let successCount = 0;
-    let errorCount = 0;
-
-    for (const { filename, item, sha } of itemsToUpdate) {
-      try {
-        // Add delay to avoid rate limits
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        // Clean up item to only include valid fields + visibile
-        // This prevents internal SmartCache fields (_collection, _hash, etc.) from polluting the YAML
-        const validFields = COLLECTIONS['categorie'].fields.map(f => f.name);
-        const updatedData = {};
-
-        validFields.forEach(field => {
-          if (item[field] !== undefined) {
-            updatedData[field] = item[field];
-          }
+      if (item) item.visibile = visible;
+      if (window.SmartCache) {
+        const cached = await window.SmartCache.get('items', filename).catch(() => null);
+        const base = cached || item || { filename };
+        await window.SmartCache.set('items', {
+          ...base,
+          ...item,
+          filename,
+          id: filename,
+          visibile: visible,
+          _collection: 'categorie',
+          _hash: window.SmartCache.generateHash({ ...base, ...item, visibile: visible }),
+          _lastUpdated: Date.now(),
+          _writeTime: Date.now()
         });
-
-        // Explicitly set visibility
-        updatedData.visibile = visible;
-
-        const res = await fetch('/.netlify/functions/save-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: state.token,
-            action: 'save',
-            collection: 'categorie',
-            filename: filename,
-            data: updatedData,
-            sha: sha,
-            skipRegeneration: true // Importante: salta rigenerazione JSON per ogni item
-          })
-        });
-
-        if (res.ok) {
-          successCount++;
-          // Aggiorna cache locale
-          if (window.SmartCache) {
-            const newItem = { ...updatedData, filename, sha: (await res.json()).sha, _collection: 'categorie' };
-            await window.SmartCache.set('items', {
-              ...newItem,
-              id: filename,
-              _hash: window.SmartCache.generateHash(newItem),
-              _lastUpdated: Date.now(),
-              _writeTime: Date.now() // Timestamp scrittura per protezione stale data
-            });
-          }
-        } else {
-          errorCount++;
-        }
-      } catch (e) {
-        console.error(`Error updating ${filename}:`, e);
-        errorCount++;
       }
     }
 
-    // Rigenera JSON una sola volta alla fine
-    if (successCount > 0) {
-      try {
-        await fetch('/.netlify/functions/save-data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: state.token,
-            action: 'regenerate-json',
-            collection: 'categorie'
-          })
-        });
-      } catch (e) {
-        console.error('Error regenerating JSON:', e);
-      }
+    if (updated > 0) {
+      toast(
+        `${updated} categorie ${visible ? 'rese visibili' : 'nascoste'}!` +
+        (result.target ? ` (${result.target.owner}/${result.target.repo})` : ''),
+        'success'
+      );
+    } else {
+      toast('Nessuna modifica necessaria (già nello stato richiesto)', 'info');
     }
 
-    if (successCount > 0) {
-      toast(`${successCount} categorie ${visible ? 'rese visibili' : 'nascoste'}!`, 'success');
-    }
-    if (errorCount > 0) {
-      toast(`${errorCount} errori durante l'aggiornamento`, 'error');
-    }
-
+    await loadItems('categorie', true);
   } catch (e) {
     console.error('Bulk operation error:', e);
-    toast('Errore durante l\'operazione', 'error');
-  }
-
-  hideLoading();
-
-  // Clear selection
-  clearBulkSelection();
-
-  // Notify subscribers to refresh UI from cache
-  if (window.SmartCache) {
-    window.SmartCache.notifySubscribers({
-      collection: 'categorie',
-      updated: [] // Just trigger refresh
-    });
+    toast(mapApiError(0, { error: e.message || 'Errore durante l\'operazione' }), 'error');
+  } finally {
+    state._isUpdating = false;
+    hideLoading();
+    clearBulkSelection();
   }
 
   // DO NOT reload from server immediately
@@ -2152,8 +2417,17 @@ function renderEditForm(data) {
     }
   }).join('');
 
+  // Dirty tracking
+  state.formDirty = false;
+  const markDirty = () => { state.formDirty = true; };
+  form.addEventListener('input', markDirty);
+  form.addEventListener('change', markDirty);
+
   // Event handlers
-  document.querySelectorAll('.tag-option').forEach(tag => tag.addEventListener('click', () => tag.classList.toggle('selected')));
+  document.querySelectorAll('.tag-option').forEach(tag => tag.addEventListener('click', () => {
+    tag.classList.toggle('selected');
+    state.formDirty = true;
+  }));
 
   // Auto-slug
   const nomeInput = form.querySelector('[name="nome"]');
@@ -2177,6 +2451,7 @@ function renderEditForm(data) {
   // Image upload handlers
   document.querySelectorAll('.image-upload-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      if (!guardOnline('upload immagine')) return;
       const fieldName = btn.dataset.field;
       const input = document.createElement('input');
       input.type = 'file';
@@ -2186,17 +2461,24 @@ function renderEditForm(data) {
     });
   });
 
-  // Image remove handlers
+  // Image remove: azzera hidden + URL input + preview (niente URL residuo)
   document.querySelectorAll('.image-remove-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const fieldName = btn.dataset.field;
       const container = form.querySelector(`[data-image-field="${fieldName}"]`);
-      const input = form.querySelector(`[name="${fieldName}"]`);
-      input.value = '';
-      container.querySelector('.image-preview').innerHTML = '<div class="image-placeholder">📷 Nessuna immagine</div>';
-      container.querySelector('.image-remove-btn').style.display = 'none';
+      if (!container) return;
+      const hiddenInput = container.querySelector(`input[type="hidden"][name="${fieldName}"]`);
+      const urlInput = container.querySelector(`input[name="${fieldName}_url"]`);
+      if (hiddenInput) hiddenInput.value = '';
+      if (urlInput) urlInput.value = '';
+      const preview = container.querySelector('.image-preview');
+      if (preview) preview.innerHTML = '<div class="image-placeholder">📷 Nessuna immagine</div>';
+      btn.style.display = 'none';
+      state.formDirty = true;
     });
   });
+
+  updateOfflineUI();
 }
 
 
@@ -2235,6 +2517,7 @@ function renderImageField(field, value) {
 async function handleImageUpload(e, fieldName) {
   const file = e.target.files[0];
   if (!file) return;
+  if (!guardOnline('upload immagine')) return;
 
   const form = $('#edit-form');
   const container = form.querySelector(`[data-image-field="${fieldName}"]`);
@@ -2293,6 +2576,7 @@ async function handleImageUpload(e, fieldName) {
 
         // Aggiorna preview con URL Cloudinary
         preview.innerHTML = `<img src="${imageUrl}" alt="Preview" class="image-preview-img">`;
+        state.formDirty = true;
         toast('✅ Immagine caricata!', 'success');
         return;
       } else {
@@ -2319,6 +2603,9 @@ function escapeHtml(text) {
 // ========================================
 
 async function saveItem() {
+  if (state.isSaving) return;
+  if (!guardOnline('salvataggio')) return;
+
   const collection = COLLECTIONS[state.currentCollection];
   const form = $('#edit-form');
   const formData = new FormData(form);
@@ -2356,8 +2643,10 @@ async function saveItem() {
 
   let filename = state.isNew ? `${slugify(data.nome || data.slug)}.md` : state.currentItem.filename;
 
-  // Flag per evitare race condition con subscriber
+  // Flag per evitare race condition con subscriber + double-submit
   state._isUpdating = true;
+  state.isSaving = true;
+  updateOfflineUI();
   showLoading();
 
   try {
@@ -2429,7 +2718,7 @@ async function saveItem() {
     };
 
     let res = await performSave(filename);
-    let result = await res.json();
+    let result = await res.json().catch(() => ({}));
 
     // Gestione collisioni per nuovi item (Errore 422 da GitHub: "sha wasn't supplied")
     // Se il file esiste già, GitHub richiede SHA. Se noi non l'abbiamo (perché è nuovo),
@@ -2446,7 +2735,7 @@ async function saveItem() {
         console.log('🔄 Riprovo salvataggio con:', newFilename);
 
         res = await performSave(newFilename);
-        result = await res.json();
+        result = await res.json().catch(() => ({}));
 
         if (res.ok) {
           console.log('✅ Salvataggio riuscito con:', newFilename);
@@ -2462,9 +2751,23 @@ async function saveItem() {
       }
     }
 
-    if (!res.ok) throw new Error(result.error || 'Errore salvataggio');
+    if (!res.ok) {
+      if (isConflictResponse(res.status, result)) {
+        toast(mapApiError(res.status, result), 'error');
+        if (confirm('Un altro ha modificato questo elemento. Ricaricare la lista?')) {
+          state.formDirty = false;
+          showListView(true);
+          await loadItems(state.currentCollection, false, true);
+        }
+        hideLoading();
+        state._isUpdating = false;
+        return;
+      }
+      throw new Error(mapApiError(res.status, result) || result.error || 'Errore salvataggio');
+    }
 
     toast('Salvato!', 'success');
+    notifyTargetRepo(result.target);
 
     // Aggiorna lo state locale PRIMA di notificare
     const newItem = { ...data, filename, sha: result.sha, _collection: state.currentCollection };
@@ -2510,7 +2813,8 @@ async function saveItem() {
     }
 
     // Show list view e rilascia il flag
-    showListView();
+    state.formDirty = false;
+    showListView(true);
     hideLoading();
     state._isUpdating = false;
 
@@ -2526,15 +2830,22 @@ async function saveItem() {
     toast(e.message || 'Errore nel salvataggio', 'error');
     hideLoading();
     state._isUpdating = false;
+  } finally {
+    state.isSaving = false;
+    updateOfflineUI();
   }
 }
 
 async function deleteItem() {
   if (!state.currentItem) return;
+  if (state.isDeleting) return;
+  if (!guardOnline('eliminazione')) return;
   if (!confirm(`Eliminare "${state.currentItem.nome}"?`)) return;
 
-  // Flag per evitare race condition con subscriber
+  // Flag per evitare race condition con subscriber + double-submit
   state._isUpdating = true;
+  state.isDeleting = true;
+  updateOfflineUI();
   showLoading();
 
   const collection = COLLECTIONS[state.currentCollection];
@@ -2612,17 +2923,29 @@ async function deleteItem() {
       })
     });
 
-    const result = await res.json();
+    const result = await res.json().catch(() => ({}));
     
     if (!res.ok) {
       // ROLLBACK: ripristina l'item nella UI
       state.items = originalItems;
       state.allItems[state.currentCollection] = [...state.items];
       renderItems();
-      throw new Error(result.error || 'Errore eliminazione');
+      if (isConflictResponse(res.status, result)) {
+        toast(mapApiError(res.status, result), 'error');
+        if (confirm('Un altro ha modificato questo elemento. Ricaricare la lista?')) {
+          state.formDirty = false;
+          showListView(true);
+          await loadItems(state.currentCollection, false, true);
+        }
+        hideLoading();
+        state._isUpdating = false;
+        return;
+      }
+      throw new Error(mapApiError(res.status, result) || result.error || 'Errore eliminazione');
     }
 
     toast('Eliminato!', 'success');
+    notifyTargetRepo(result.target, 'Eliminato su');
 
     // ★ FIX: Sync state.categories when deleting a category
     if (state.currentCollection === 'categorie') {
@@ -2642,7 +2965,8 @@ async function deleteItem() {
       });
     }
 
-    showListView();
+    state.formDirty = false;
+    showListView(true);
     hideLoading();
     state._isUpdating = false;
 
@@ -2663,6 +2987,9 @@ async function deleteItem() {
     state._isUpdating = false;
     toast(e.message || 'Errore eliminazione', 'error');
     hideLoading();
+  } finally {
+    state.isDeleting = false;
+    updateOfflineUI();
   }
 }
 

@@ -38,6 +38,17 @@ Sistema di gestione contenuti (CMS) completo per menù digitale di ristorante/ba
 - **Bianchi fermi**
 - **Vini rossi**
 
+## 🚚 Passaggio ad account del cliente (handoff)
+
+Se devi spostare il progetto dal **tuo** GitHub/Netlify free a quelli del **cliente**, segui la guida completa e non tecnica:
+
+→ **[`HANDOFF_CLIENTE.md`](./HANDOFF_CLIENTE.md)**
+
+## 🧱 Solidità CMS (env obbligatorie)
+
+Dopo l’aggiornamento di solidità, **`REPO_OWNER` e `REPO_NAME` sono sempre obbligatori** su Netlify. Senza di esse il CMS **non salva**.  
+Checklist operativa, freeze writer, health e rollback DNS: **[`SOLIDITY_NOTES.md`](./SOLIDITY_NOTES.md)**.
+
 ## 🚀 Setup Iniziale
 
 ### 1. Crea Repository GitHub
@@ -71,10 +82,17 @@ In Netlify Dashboard → Site Configuration → Environment Variables, aggiungi:
 | Variabile | Descrizione |
 |-----------|-------------|
 | `GITHUB_TOKEN` | Token GitHub Classic con permesso `repo` |
+| `REPO_OWNER` | **Obbligatorio** — username GitHub del proprietario del repo |
+| `REPO_NAME` | **Obbligatorio** — nome esatto del repository |
 | `ADMIN_EMAIL` | Email admin (può essere multipla, separate da virgola) |
 | `ADMIN_PASSWORD` | Password per accesso CMS |
+| `GITHUB_BRANCH` | (Opzionale) branch commit CMS, default `main` |
+| `CMS_TOKEN_SECRET` | (Opzionale, consigliato) segreto firma token; se assente usa la password |
 | `CLOUDINARY_CLOUD_NAME` | (Opzionale) Cloud Name Cloudinary |
 | `CLOUDINARY_UPLOAD_PRESET` | (Opzionale) Preset upload unsigned |
+| `CLOUDINARY_FOLDER` | (Opzionale) Cartella destinazione upload |
+
+Dettaglio completo: [`admin/SETUP.md`](./admin/SETUP.md), deploy: [`DEPLOY_GUIDE.md`](./DEPLOY_GUIDE.md).
 
 ## 📝 Come Gestire il Menù
 

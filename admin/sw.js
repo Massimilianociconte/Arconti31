@@ -4,7 +4,7 @@
    ======================================== */
 
 // Version updated on each deploy to bust stale SW cache
-const CACHE_VERSION = '2026-04-07b';
+const CACHE_VERSION = '2026-07-20-solid';
 const CACHE_NAME = `arconti31-cms-${CACHE_VERSION}`;
 const STATIC_CACHE = `arconti31-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `arconti31-dynamic-${CACHE_VERSION}`;
@@ -52,7 +52,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch: Network first for API, Cache first for assets
+// Fetch: Network first for API/admin shell, Cache first for other assets
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
@@ -75,7 +75,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Static assets - Cache first
+  // Admin shell (JS/CSS/HTML): network-first so deploys non restano in cache-first
+  if (isAdminShellAsset(url)) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // Other static assets - Cache first
   if (isStaticAsset(url)) {
     event.respondWith(cacheFirst(request));
     return;
@@ -85,9 +91,19 @@ self.addEventListener('fetch', event => {
   event.respondWith(networkFirst(request));
 });
 
-// Check if request is for static asset
+// Admin app code/styles/HTML must prefer network (evita CMS stale post-deploy)
+function isAdminShellAsset(url) {
+  const path = url.pathname;
+  if (!path.startsWith('/admin')) return false;
+  if (path === '/admin' || path === '/admin/' || path.endsWith('/admin/index.html') || path.endsWith('/index.html')) {
+    return true;
+  }
+  return path.endsWith('.js') || path.endsWith('.css') || path.endsWith('.html');
+}
+
+// Check if request is for static asset (immagini/font)
 function isStaticAsset(url) {
-  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.woff', '.woff2', '.ttf'];
+  const staticExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.woff', '.woff2', '.ttf', '.ico'];
   return staticExtensions.some(ext => url.pathname.endsWith(ext)) ||
          url.hostname === 'fonts.googleapis.com' ||
          url.hostname === 'fonts.gstatic.com';
@@ -156,7 +172,7 @@ self.addEventListener('sync', event => {
   }
 });
 
-// Sync pending changes when back online
+// Sync pending changes when back online (notifica solo; no promise di sync CMS)
 async function syncPendingChanges() {
   try {
     const clients = await self.clients.matchAll();
